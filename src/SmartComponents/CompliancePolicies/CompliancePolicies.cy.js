@@ -2,6 +2,7 @@ import CompliancePolicies from './CompliancePolicies';
 import { init } from 'Store';
 import { buildPolicies } from '../../__factories__/policies';
 import { interceptBatchRequest } from '../../../cypress/utils/interceptors';
+import getRequestParams from '../../../cypress/utils/requestParams';
 
 const mountComponent = () => {
   cy.mountWithContext(CompliancePolicies, { store: init().getStore() });
@@ -18,24 +19,6 @@ const policiesResp = {
     limit: 10,
   },
 };
-
-function getRequestParams({
-  limit = '10',
-  offset = '0',
-  filter = undefined,
-  sortBy = 'title:asc',
-} = {}) {
-  const params = new URLSearchParams({
-    limit,
-    offset,
-    sort_by: sortBy,
-  });
-  if (filter !== undefined) {
-    params.append('filter', filter);
-  }
-
-  return params.toString();
-}
 
 describe('Policies table tests API V2', () => {
   beforeEach(() => {

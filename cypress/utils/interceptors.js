@@ -9,5 +9,5 @@ export const interceptBatchRequest = (endpoint, offset, dataSlice, total, limit=
         total: total,
       }
     }
-  }).as(`${endpoint}Batch${offset / 10 + 1}`); // getReportsBatch1, getReportsBatch2, etc
+  }).as(`${endpoint}Batch${offset / limit + 1}`); // getReportsBatch1, getReportsBatch2, etc
 };

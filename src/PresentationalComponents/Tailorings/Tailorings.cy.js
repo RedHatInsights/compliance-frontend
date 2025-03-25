@@ -11,6 +11,13 @@ import { buildRuleGroups } from '@/__factories__/ruleGroups';
 import ruleTreeFactory, { collectIdsFromTree } from '@/__factories__/ruleTree';
 import buildValueDefinitions from '@/__factories__/valueDefinitions';
 import { buildPolicies } from '@/__factories__/policies';
+import getRequestParams from '../../../cypress/utils/requestParams';
+import getComparisonMessage from '../../../cypress/utils/assertComparationMsg';
+import { interceptBatchRequest } from '../../../cypress/utils/interceptors';
+import checkRuleFields from '../../../cypress/utils/checkRuleFields';
+
+const capitalizeFirstLetter = (str) =>
+  str.charAt(0).toUpperCase() + str.slice(1);
 
 const policy = buildPolicies(1)[0];
 const DedicatedAction = () => <EditRulesButtonToolbarItem policy={policy} />;
@@ -125,6 +132,7 @@ describe('Tailorings - Tailorings on Policy details', () => {
 
     mountComponent();
     cy.wait('@getTailorings');
+    cy.wait('@getRuleTree');
   });
 
   it('Expect to render Tailorings view with tabs', () => {
@@ -141,16 +149,129 @@ describe('Tailorings - Tailorings on Policy details', () => {
       'be.visible'
     );
   });
+  describe('Export rules', () => {
+    const endpoint = `policies/${policy.id}/tailorings/${tailoring.id}/rules`;
+    beforeEach(() => {
+      interceptBatchRequest(endpoint, 0, rules.slice(0, 50), rules.length, 50);
+      if (rules.length > 50) {
+        interceptBatchRequest(
+          endpoint,
+          50,
+          rules.slice(50, 100),
+          rules.length,
+          50
+        );
+      }
+    });
+    it('Export CSV rules work', () => {
+      cy.get('button[aria-label="Export"]').should('be.visible').click();
+      cy.get('button[aria-label="Export to CSV"]').click();
+      cy.wait(`@${endpoint}Batch1`);
+      if (rules.length > 50) {
+        cy.wait(`@${endpoint}Batch2`);
+      }
+      cy.exec(`ls cypress/downloads | grep .csv | sort -n | tail -1`).then(
+        function (result) {
+          let res = result.stdout;
+          cy.readFile('cypress/downloads/' + res).should('not.be.empty');
+        }
+      );
+    });
+    it('Export JSON rules work', () => {
+      cy.get('button[aria-label="Export"]').should('be.visible').click();
+      cy.get('button[aria-label="Export to JSON"]').click();
+      cy.wait(`@${endpoint}Batch1`);
+      if (rules.length > 50) {
+        cy.wait(`@${endpoint}Batch2`);
+      }
+
+      // validate json content
+      cy.exec('ls cypress/downloads | grep .json | sort -n | tail -1').then(
+        function (result) {
+          let res = result.stdout;
+          cy.readFile('cypress/downloads/' + res)
+            .should('not.be.empty')
+            .then((fileContent) => {
+              assert(
+                fileContent.length === rules.length,
+                'Length of rules is different'
+              );
+              fileContent.forEach((item) => {
+                rules.forEach((rule) => {
+                  if (item['name'].includes(rule.title)) {
+                    assert(
+                      item['name'].includes(rule.identifier.label),
+                      getComparisonMessage(
+                        'Identifier',
+                        rule.identifier.label,
+                        item['name']
+                      )
+                    );
+                    assert(
+                      rule.severity === item['severity'],
+                      getComparisonMessage(
+                        'Severity',
+                        rule.severity,
+                        item['severity']
+                      )
+                    );
+                    const remediationWording = rule.remediation_available
+                      ? 'Playbook'
+                      : 'Manual';
+                    assert(
+                      remediationWording === item['remediation'],
+                      getComparisonMessage(
+                        'Remediation',
+                        remediationWording,
+                        item['remediation']
+                      )
+                    );
+                  }
+                });
+              });
+            });
+        }
+      );
+    });
+  });
 
   describe('Tailorings tree view', () => {
     it('Check expandable tree recursively', () => {
-      cy.wait('@getRuleTree');
-
       let accumulatedRules = [];
 
       const expandNode = (node) => {
         if (!node) return;
 
+        if (node.type === 'rule') {
+          const foundRule = rules.find((rule) => rule.id === node.id);
+          if (!foundRule) return;
+          const matchingValues = valueDefinitions.filter((def) =>
+            foundRule.value_checks.includes(def.id)
+          );
+          cy.get('tbody tr')
+            .filter((_index, el) => el.innerText.includes(foundRule.title))
+            .first()
+            .within(() => {
+              cy.get('td[data-label="Severity"]').should(
+                'contain',
+                capitalizeFirstLetter(foundRule.severity)
+              );
+              cy.get('td[data-label="Remediation"]').should(
+                'contain',
+                foundRule.remediation_available ? 'Playbook' : 'Manual'
+              );
+              cy.get('div').find("span[class*='table__toggle']").click();
+            });
+          // after expanding the rule, HTML tree structure changes
+          cy.get('tbody[role="rowgroup"]')
+            .filter((_index, el) =>
+              Cypress.$(el).text().includes(foundRule.title)
+            ) // Filter by title
+            .within(() => {
+              checkRuleFields(foundRule, matchingValues);
+            });
+          return;
+        }
         const foundRuleGroup = ruleGroups.find((group) => group.id === node.id);
         if (!foundRuleGroup) return;
 
@@ -163,10 +284,7 @@ describe('Tailorings - Tailorings on Policy details', () => {
         // Handle batches if fake tree generates more than 50 rules
         const firstBatch = accumulatedRules.slice(0, 50);
         const secondBatch = accumulatedRules.slice(50);
-
-        // const offset = accumulatedRules.length > 50 ? 50 : 0;
-        console.log('DEBUG accumulatedRules', accumulatedRules);
-
+        // dynamically intercept requests as filtering by rule_group_id includes new group ids
         cy.intercept(
           `/api/compliance/v2/policies/${policy.id}/tailorings/${tailoring.id}/rules?limit=50&offset=0&sort_by=title%3Aasc&filter=rule_group_id*`,
           {
@@ -220,6 +338,33 @@ describe('Tailorings - Tailorings on Policy details', () => {
       };
 
       expandNode(fakeTree);
+    });
+    it('Searching by rule title switches to list view', () => {
+      const first_rule = rules[0];
+      cy.intercept(
+        `/api/compliance/v2/policies/${policy.id}/tailorings/${
+          tailoring.id
+        }/rules?${getRequestParams({
+          filter: `title ~ "${first_rule.title}"`,
+        })}`,
+        {
+          statusCode: 200,
+          body: {
+            data: [first_rule],
+            meta: {
+              total: 1,
+            },
+          },
+        }
+      ).as('searchRuleByTitle');
+      cy.get('button[aria-label="rows"]').should(
+        'not.have.class',
+        'pf-m-selected'
+      );
+      cy.ouiaId('ConditionalFilter', 'input').type(first_rule.title, {
+        delay: 0,
+      });
+      cy.get('button[aria-label="rows"]').should('have.class', 'pf-m-selected');
     });
   });
 
@@ -303,34 +448,10 @@ describe('Tailorings - Tailorings on Policy details', () => {
           .eq(index)
           .within(() => {
             cy.get('tr.pf-m-expanded').within(() => {
-              cy.get('div[id^="rule-description-rule"]')
-                .should('exist')
-                .invoke('text')
-                .should('contain', currentRule.description);
-              cy.get('div[id^="rule-identifiers-references"]')
-                .should('exist')
-                .invoke('text')
-                .then((text) => {
-                  expect(text).to.include(currentRule.identifier.label);
-                  expect(text).to.include(currentRule.references[0].label);
-                });
-              cy.get('div[id^="rule-rationale"]')
-                .should('exist')
-                .invoke('text')
-                .should('contain', currentRule.rationale);
-            });
-            const matchingValues = valueDefinitions.filter((def) =>
-              currentRule.value_checks.includes(def.id)
-            );
-            matchingValues.forEach(({ title, default_value }) => {
-              cy.contains('div', 'Depends on values')
-                .parent() // Move to the parent container and get <p> child element
-                .within(() => {
-                  cy.get('p').should(
-                    'contain.text',
-                    `${title}: ${default_value}`
-                  );
-                });
+              const matchingValues = valueDefinitions.filter((def) =>
+                currentRule.value_checks.includes(def.id)
+              );
+              checkRuleFields(currentRule, matchingValues);
             });
           });
       }
@@ -456,21 +577,7 @@ describe('Tailorings - No tailorings on Policy details', () => {
           .eq(index)
           .within(() => {
             cy.get('tr.pf-m-expanded').within(() => {
-              cy.get('div[id^="rule-description-rule"]')
-                .should('exist')
-                .invoke('text')
-                .should('contain', currentRule.description);
-              cy.get('div[id^="rule-identifiers-references"]')
-                .should('exist')
-                .invoke('text')
-                .then((text) => {
-                  expect(text).to.include(currentRule.identifier.label);
-                  expect(text).to.include(currentRule.references[0].label);
-                });
-              cy.get('div[id^="rule-rationale"]')
-                .should('exist')
-                .invoke('text')
-                .should('contain', currentRule.rationale);
+              checkRuleFields(currentRule);
             });
           });
       }
