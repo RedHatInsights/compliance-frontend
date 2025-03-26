@@ -403,11 +403,11 @@ describe('Tailorings - Tailorings on Policy details', () => {
                       ? 'Playbook'
                       : 'Manual';
                     assert(
-                      remediationWording === item['remediation'],
+                      remediationWording === item['remediationType'],
                       getComparisonMessage(
                         'Remediation',
                         remediationWording,
-                        item['remediation']
+                        item['remediationType']
                       )
                     );
                   }
@@ -437,7 +437,7 @@ describe('Tailorings - Tailorings on Policy details', () => {
               'contain',
               capitalizeFirstLetter(foundRule.severity)
             );
-            cy.get('td[data-label="Remediation"]').should(
+            cy.get('td[data-label="Remediation type"]').should(
               'contain',
               foundRule.remediation_available ? 'Playbook' : 'Manual'
             );
