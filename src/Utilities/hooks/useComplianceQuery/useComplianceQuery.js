@@ -3,7 +3,7 @@ import useFetchTotalBatched from 'Utilities/hooks/useFetchTotalBatched';
 import useQuery from 'Utilities/hooks/useQuery';
 import {
   paramsWithFilters,
-  compileResult,
+  compileResult as defaultCompileResult,
   compileTotalResult,
   // hasRequiredParams,
   TOTAL_REQUEST_PARAMS,
@@ -52,6 +52,7 @@ import useComplianceFetchExtras from './hooks/useComplianceFetchExtras';
  *  @param   {boolean}                  [options.onlyTotal]      Enables a predefined "compileResult" function for the useQuery to only return the meta.total as the `data`
  *  @param   {Array | string}           [options.requiredParams] Parameters required for the endpoint. The request will be "skipped" until all parameters are provided.
  *
+ *  @param                              options.compileResult
  *  @returns {useComplianceQueryReturn}                          An object containing a data, loading and error state, as well as a fetch and fetchBatched function.
  *
  *  @category Compliance
@@ -95,6 +96,7 @@ const useComplianceQuery = (
     batch = {},
     onlyTotal,
     requiredParams,
+    compileResult,
     ...options
   } = {}
 ) => {
@@ -113,10 +115,11 @@ const useComplianceQuery = (
     fetch: queryFetch,
     refetch: queryRefetch,
   } = useQuery(apiEndpoint, {
+    endpoint,
     skip: batched ? true : skip,
-    ...options,
+    compileResult: compileResult || defaultCompileResult,
     params,
-    compileResult,
+    ...options,
     ...(onlyTotal
       ? {
           params: paramsWithFilters(TOTAL_REQUEST_PARAMS, params),
@@ -164,7 +167,8 @@ const useComplianceQuery = (
           error: queryError,
           loading: queryLoading,
         }),
-    fetch: queryFetch,
+    fetch,
+    fetchBatched,
     refetch: queryRefetch,
     ...extras,
   };
