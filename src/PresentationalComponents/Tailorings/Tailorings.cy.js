@@ -18,7 +18,18 @@ import getRequestParams from '../../../cypress/utils/requestParams';
 import getComparisonMessage from '../../../cypress/utils/assertComparationMsg';
 import { interceptBatchRequest } from '../../../cypress/utils/interceptors';
 import checkRuleFields from '../../../cypress/utils/checkRuleFields';
-import { interceptRulesByGroupRequest } from '../../../cypress/utils/interceptors';
+import {
+  interceptRulesByGroupRequest,
+  interceptPolicyTailorings,
+  interceptSecurityGuide,
+  interceptTailoringTree,
+  interceptSecurityGuideTree,
+  interceptSSGValueDefinitions,
+  interceptSupportedProfiles,
+  interceptRuleGroups,
+  interceptTailoringRules,
+  interceptProfileRules,
+} from '../../../cypress/utils/interceptors';
 
 const capitalizeFirstLetter = (str) =>
   str.charAt(0).toUpperCase() + str.slice(1);
@@ -93,7 +104,7 @@ describe('Tailorings - Tailorings on Edit policy', () => {
       },
       {
         policy: policy,
-        profiles: undefined, // if defined - profile rules tab appears
+        profiles: undefined, // TODO: add profile to test
         resetLink: true,
         rulesPageLink: true,
         selectedFilter: true,
@@ -101,89 +112,31 @@ describe('Tailorings - Tailorings on Edit policy', () => {
         columns: [Columns.Name, Columns.Severity, Columns.Remediation],
         level: 1,
         ouiaId: 'RHELVersions',
-        onValueOverrideSave: cy.spy(), // setRuleValues(_policy, tailoring, valueDefinition, newValue, closeInlineEdit)
+        onValueOverrideSave: cy.spy().as('onValueOverridesSave'), // TODO: add test
         valueOverrides: {}, // { 8: {"id1": "val", "id2": "val"}, 7: {}...}
-        onSelect: cy.spy(), // handleSelect(_policy, tailoring, newSelectedRuleIds)
+        onSelect: cy.spy().as('onSelect'), // rule selection
         showResetButton: true,
-        selected: {}, // { 8: ["id1", "id2"], 7: {}...} rule ids
-        preselected: preselected, // { 8: ["id1", "id2"], 7: {}...} rule ids
-        additionalRules: additionalRules, // empty when no additional rules selected { 8: [], 7: []...}
+        selected: preselected, // { 8: ["id1", "id2"], 7: {}...}
+        preselected: preselected, // { 8: ["id1", "id2"], 7: {}...}
+        additionalRules: additionalRules, // { 8: ["id1", "id2"], 7: []...}
         enableSecurityGuideRulesToggle: true,
-        selectedVersionCounts: selectedSystemsCount, // { 8: 10, 7: 5...} system count
+        selectedVersionCounts: selectedSystemsCount, // { 8: 10, 7: 5...}
         skipProfile: 'edit-policy',
       }
     );
   };
   beforeEach(() => {
-    cy.intercept(`/api/compliance/v2/policies/${policy.id}/tailorings*`, {
-      statusCode: 200,
-      body: {
-        data: tailorings,
-        meta: {
-          total: tailorings.length,
-          offset: 0,
-          limit: 10,
-        },
-      },
-    }).as('getTailorings');
+    interceptPolicyTailorings(policy.id, tailorings, tailorings.length);
+    interceptSecurityGuide(tailoring.security_guide_id, securityGuide);
+    interceptRuleGroups(securityGuide.id, ruleGroups, ruleGroups.length);
 
-    cy.intercept(
-      `/api/compliance/v2/security_guides/${tailoring.security_guide_id}`,
-      {
-        statusCode: 200,
-        body: {
-          data: securityGuide,
-        },
-      }
-    ).as('getSecurityGuide');
-
-    cy.intercept(
-      `/api/compliance/v2/security_guides/${securityGuide.id}/rule_groups*`,
-      {
-        statusCode: 200,
-        body: {
-          data: ruleGroups,
-          meta: {
-            limit: 50,
-            offset: 0,
-            total: ruleGroups.length,
-          },
-        },
-      }
-    ).as('getRuleGroups');
-
-    // Tailoring tree
-    cy.intercept(
-      `/api/compliance/v2/policies/${policy.id}/tailorings/${tailoring.id}/rule_tree`,
-      {
-        statusCode: 200,
-        body: [fakeTree],
-      }
-    ).as('getRuleTree');
-
-    // SSG tree
-    cy.intercept(
-      `/api/compliance/v2/security_guides/${securityGuide.id}/rule_tree`,
-      {
-        statusCode: 200,
-        body: [fakeSecurityGuideTree],
-      }
-    ).as('getSecurityGuideRuleTree');
-
-    cy.intercept(
-      `/api/compliance/v2/security_guides/${securityGuide.id}/value_definitions*`,
-      {
-        statusCode: 200,
-        body: {
-          data: valueDefinitions,
-          meta: {
-            limit: 50,
-            offset: 0,
-            total: valueDefinitions.length,
-          },
-        },
-      }
-    ).as('getValueDefinitions');
+    interceptTailoringTree(policy.id, tailoring.id, fakeTree);
+    interceptSecurityGuideTree(securityGuide.id, fakeSecurityGuideTree);
+    interceptSSGValueDefinitions(
+      securityGuide.id,
+      valueDefinitions,
+      valueDefinitions.length
+    );
 
     mountComponent();
     cy.wait('@getTailorings');
@@ -293,6 +246,7 @@ describe('Tailorings - Tailorings on Edit policy', () => {
           .find('input')
           .should('be.checked');
       });
+      cy.get('@onSelect').should('have.been.called');
       // check if rule is selected under rule group
       getRowByTitle(additionalRule.title).within(() => {
         cy.get('div')
@@ -349,65 +303,16 @@ describe('Tailorings - Tailorings on Policy details', () => {
     );
   };
   beforeEach(() => {
-    cy.intercept(`/api/compliance/v2/policies/${policy.id}/tailorings*`, {
-      statusCode: 200,
-      body: {
-        data: tailorings,
-        meta: {
-          total: tailorings.length,
-          offset: 0,
-          limit: 10,
-        },
-      },
-    }).as('getTailorings');
+    interceptPolicyTailorings(policy.id, tailorings, tailorings.length);
+    interceptSecurityGuide(tailoring.security_guide_id, securityGuide);
+    interceptRuleGroups(securityGuide.id, ruleGroups, ruleGroups.length);
 
-    cy.intercept(
-      `/api/compliance/v2/security_guides/${tailoring.security_guide_id}`,
-      {
-        statusCode: 200,
-        body: {
-          data: securityGuide,
-        },
-      }
-    ).as('getSecurityGuide');
-
-    cy.intercept(
-      `/api/compliance/v2/security_guides/${securityGuide.id}/rule_groups*`,
-      {
-        statusCode: 200,
-        body: {
-          data: ruleGroups,
-          meta: {
-            limit: 50,
-            offset: 0,
-            total: ruleGroups.length,
-          },
-        },
-      }
-    ).as('getRuleGroups');
-
-    cy.intercept(
-      `/api/compliance/v2/policies/${policy.id}/tailorings/${tailoring.id}/rule_tree`,
-      {
-        statusCode: 200,
-        body: [fakeTree],
-      }
-    ).as('getRuleTree');
-
-    cy.intercept(
-      `/api/compliance/v2/security_guides/${securityGuide.id}/value_definitions*`,
-      {
-        statusCode: 200,
-        body: {
-          data: valueDefinitions,
-          meta: {
-            limit: 50,
-            offset: 0,
-            total: valueDefinitions.length,
-          },
-        },
-      }
-    ).as('getValueDefinitions');
+    interceptTailoringTree(policy.id, tailoring.id, fakeTree);
+    interceptSSGValueDefinitions(
+      securityGuide.id,
+      valueDefinitions,
+      valueDefinitions.length
+    );
 
     mountComponent();
     cy.wait('@getTailorings');
@@ -603,22 +508,19 @@ describe('Tailorings - Tailorings on Policy details', () => {
     });
     it('Searching by rule title switches to list view', () => {
       const first_rule = rules[0];
-      cy.intercept(
-        `/api/compliance/v2/policies/${policy.id}/tailorings/${
-          tailoring.id
-        }/rules?${getRequestParams({
-          filter: `title ~ "${first_rule.title}"`,
-        })}`,
-        {
-          statusCode: 200,
-          body: {
-            data: [first_rule],
-            meta: {
-              total: 1,
-            },
-          },
-        }
-      ).as('searchRuleByTitle');
+      const requestParams = getRequestParams({
+        filter: `title ~ "${first_rule.title}"`,
+      });
+      interceptTailoringRules(
+        policy.id,
+        tailoring.id,
+        [first_rule],
+        1,
+        0,
+        10,
+        requestParams
+      );
+
       cy.get('button[aria-label="rows"]').should(
         'not.have.class',
         'pf-m-selected'
@@ -631,29 +533,21 @@ describe('Tailorings - Tailorings on Policy details', () => {
   });
 
   describe('Tailorings list rules view', () => {
+    beforeEach(() => {
+      interceptTailoringRules(
+        policy.id,
+        tailoring.id,
+        rulesSlice,
+        rules.length
+      );
+    });
     it('Expect to render Tailorings list rules view on table type switch', () => {
       cy.get('button[aria-label="rows"]').should(
         'not.have.class',
         'pf-m-selected'
       );
-
-      cy.intercept(
-        `/api/compliance/v2/policies/${policy.id}/tailorings/${tailoring.id}/rules*`,
-        {
-          statusCode: 200,
-          body: {
-            data: rulesSlice,
-            meta: {
-              total: rules.length,
-              offset: 0,
-              limit: 10,
-            },
-          },
-        }
-      ).as('getRules');
-
       cy.get('button[aria-label="rows"]').click();
-      cy.wait('@getRules');
+      cy.wait('@getTailoringRules');
       cy.get('button[aria-label="rows"]').should('have.class', 'pf-m-selected');
       cy.get('table')
         .find('tbody')
@@ -669,24 +563,8 @@ describe('Tailorings - Tailorings on Policy details', () => {
         'not.have.class',
         'pf-m-selected'
       );
-
-      cy.intercept(
-        `/api/compliance/v2/policies/${policy.id}/tailorings/${tailoring.id}/rules*`,
-        {
-          statusCode: 200,
-          body: {
-            data: rulesSlice,
-            meta: {
-              total: rules.length,
-              offset: 0,
-              limit: 10,
-            },
-          },
-        }
-      ).as('getRules');
-
       cy.get('button[aria-label="rows"]').click();
-      cy.wait('@getRules');
+      cy.wait('@getTailoringRules');
 
       for (let index = 0; index < rulesSlice.length; index++) {
         const currentRule = rules[index];
@@ -746,46 +624,14 @@ describe('Tailorings - No tailorings on Policy details', () => {
   };
 
   beforeEach(() => {
-    cy.intercept(`/api/compliance/v2/policies/${policy.id}/tailorings*`, {
-      statusCode: 200,
-      body: {
-        data: [],
-        meta: {
-          total: 0,
-          offset: 0,
-          limit: 10,
-        },
-      },
-    }).as('getTailorings');
-
-    // api/compliance/v2/security_guides/supported_profiles?filter=os_major_version%3D9+AND+ref_id%3Dxccdf_org.ssgproject.content_profile_stig_gui
-    cy.intercept('/api/compliance/v2/security_guides/supported_profiles*', {
-      statusCode: 200,
-      body: {
-        data: supportedProfiles,
-        meta: {
-          total: supportedProfiles.length,
-          offset: 0,
-          limit: 10,
-        },
-      },
-    }).as('getSupportedProfiles');
-
-    // api/compliance/v2/security_guides/2b9d3a7d-e8b2-425b-a3e7-d56558c0f602/profiles/817c03ad-d98c-45dc-9f03-d6c711abbaf6/rules?limit=10&offset=0&sort_by=title%3Aasc
-    cy.intercept(
-      `/api/compliance/v2/security_guides/${supportedProfile.security_guide_id}/profiles/${supportedProfile.id}/rules*`,
-      {
-        statusCode: 200,
-        body: {
-          data: rulesSlice,
-          meta: {
-            total: rules.length,
-            offset: 0,
-            limit: 10,
-          },
-        },
-      }
-    ).as('getRules');
+    interceptPolicyTailorings(policy.id, [], 0);
+    interceptSupportedProfiles(supportedProfiles, supportedProfiles.length);
+    interceptProfileRules(
+      supportedProfile.security_guide_id,
+      supportedProfile.id,
+      rulesSlice,
+      rules.length
+    );
 
     mountComponent();
     cy.wait('@getTailorings');
@@ -807,7 +653,7 @@ describe('Tailorings - No tailorings on Policy details', () => {
 
   describe('NoTailorings list rules view', () => {
     it('NoTailorings view expanded rules content', () => {
-      cy.wait('@getRules');
+      cy.wait('@getProfileRules');
 
       cy.get('table')
         .find('tbody')
