@@ -1,9 +1,8 @@
 import { useMemo, useEffect } from 'react';
 import { APIFactory } from '@redhat-cloud-services/javascript-clients-shared';
-import * as complianceApi from '@redhat-cloud-services/compliance-client';
 import { useAxiosWithPlatformInterceptors } from '@redhat-cloud-services/frontend-components-utilities/interceptors';
-
-const BASE_URL = '/api/compliance/v2';
+import * as complianceApi from '@redhat-cloud-services/compliance-client';
+import { API_BASE_URL } from '@/constants';
 
 /**
  *
@@ -21,7 +20,7 @@ const useComplianceApi = (endpoint) => {
   const axios = useAxiosWithPlatformInterceptors();
 
   const apiEndpoint = useMemo(() => {
-    const apiInstance = APIFactory(BASE_URL, complianceApi, axios);
+    const apiInstance = APIFactory(API_BASE_URL, complianceApi, axios);
     return endpoint ? apiInstance[endpoint] : apiInstance;
   }, [axios, endpoint]);
 

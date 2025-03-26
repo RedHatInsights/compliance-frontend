@@ -1,4 +1,4 @@
-import useComplianceQuery from './useComplianceQuery';
+import useComplianceQuery from '../useComplianceQuery';
 
 const convertToArray = (params) => {
   if (Array.isArray(params)) {
@@ -15,6 +15,10 @@ const convertToArray = (params) => {
 };
 
 const useAssignSystems = (options) =>
-  useComplianceQuery('assignSystems', { ...options, convertToArray });
+  useComplianceQuery('assignSystems', {
+    ...options,
+    skip: true,
+    convertToArray,
+  });
 
 export default useAssignSystems;

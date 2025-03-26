@@ -19,11 +19,10 @@ const useSecurityGuideData = ({
     error: securityGuideError,
   } = useSecurityGuide({
     params: { securityGuideId },
-    skip: !securityGuideId,
   });
 
   const {
-    data: ruleTree,
+    data: { data: ruleTree } = {},
     loading: ruleTreeLoading,
     error: ruleTreeError,
   } = useSecurityGuideRuleTree({
@@ -34,8 +33,8 @@ const useSecurityGuideData = ({
   });
 
   const {
+    data: { data: ruleGroups } = {},
     loading: ruleGroupsLoading,
-    data: ruleGroups,
     error: ruleGroupsError,
   } = useRuleGroups({
     params: {

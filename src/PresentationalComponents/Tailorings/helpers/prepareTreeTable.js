@@ -144,7 +144,7 @@ const prepareTreeTable = ({
   const builtSecurityGuideTree =
     ruleGroups &&
     securityGuideRuleTree &&
-    buildTreeTable(securityGuideRuleTree, ruleGroups?.data);
+    buildTreeTable(securityGuideRuleTree, ruleGroups);
   const additionalRulesTree =
     builtSecurityGuideTree &&
     groupRulesInGroups(additionalRules, builtSecurityGuideTree);
@@ -153,7 +153,7 @@ const prepareTreeTable = ({
     (profileRuleTree || tailoringRuleTree || securityGuideRuleTree)
       ? buildTreeTable(
           tailoringRuleTree || profileRuleTree || securityGuideRuleTree,
-          ruleGroups?.data
+          ruleGroups
         )
       : undefined;
 

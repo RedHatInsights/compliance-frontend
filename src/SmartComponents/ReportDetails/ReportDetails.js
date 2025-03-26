@@ -44,8 +44,14 @@ import TabTitleWithData from 'SmartComponents/ReportDetails/Components/TabTitleW
 
 const ReportDetails = ({ route }) => {
   const { report_id } = useParams();
-  const { data: { data } = {}, error, loading } = useReport(report_id);
-  const { data: ssgVersions = [] } = useReportTestResultsSG(report_id);
+  const {
+    data: { data } = {},
+    error,
+    loading,
+  } = useReport({ params: { reportId: report_id } });
+  const { data: { data: ssgVersions } = {} } = useReportTestResultsSG({
+    params: { reportId: report_id },
+  });
   let reportData = {};
   let reportTitle;
   let pageTitle;

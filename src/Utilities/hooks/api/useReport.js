@@ -1,7 +1,15 @@
-import useComplianceQuery from './useComplianceQuery';
+import useComplianceQuery from '../useComplianceQuery';
 
-// TODO investigate why this endpoint requires direct arguments and does not recognise the params object.
-const useReport = (reportId, options) =>
-  useComplianceQuery('report', { params: [reportId], ...options });
+const convertToArray = ({ reportId }) => [
+  reportId,
+  undefined, // xRHIDENTITY
+];
+
+const useReport = (options) =>
+  useComplianceQuery('report', {
+    ...options,
+    requiredParams: 'reportId',
+    convertToArray,
+  });
 
 export default useReport;
