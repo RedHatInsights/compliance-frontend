@@ -62,4 +62,5 @@ module.exports = {
   },
   routes,
   _unstableSpdy: true,
+  frontendCRDPath: 'deployment_template.yaml',
 };
