@@ -1,22 +1,31 @@
 import { defaultPlaceholder, stringToId } from './helpers';
-import filterTypeHelpers from './filterTypeHelpers';
+import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/ConditionalFilter';
 
-const getActiveFilters = (configItem, activeFilters) =>
-  filterTypeHelpers(configItem.type)?.getActiveFilterValues?.(
-    configItem,
-    activeFilters
-  ) || activeFilters?.[stringToId(configItem.label)];
+const isCustomFilter = (type) =>
+  !Object.keys(conditionalFilterType).includes(type);
 
-const toFilterConfigItem = (configItem, handler, activeFilters) => {
-  const value = getActiveFilters(configItem, activeFilters);
-  const filterValues = filterTypeHelpers(configItem.type)?.filterValues(
+const getActiveFilters = (configItem, activeFilters, filterTypeHelpers) =>
+  filterTypeHelpers.getActiveFilterValues?.(configItem, activeFilters) ||
+  activeFilters?.[stringToId(configItem.label)];
+
+const toFilterConfigItem = (
+  configItem,
+  filterTypeHelpers,
+  handler,
+  activeFilters
+) => {
+  const value = getActiveFilters(configItem, activeFilters, filterTypeHelpers);
+  const filterValues = filterTypeHelpers.filterValues(
     configItem,
     handler,
     value
   );
+
   return filterValues
     ? {
-        type: configItem.type,
+        type: isCustomFilter(configItem.type)
+          ? conditionalFilterType.custom
+          : configItem.type,
         label: configItem.label,
         className: configItem.className, // TODO questionable... maybe add a props prop
         placeholder:
@@ -31,10 +40,22 @@ export const toIdedFilters = (configItem) => ({
   id: stringToId(configItem.label),
 });
 
-export const toFilterConfig = (filterConfig, activeFilters, handler) => ({
+export const toFilterConfig = (
+  filterConfig,
+  filterTypes,
+  activeFilters,
+  handler
+) => ({
   items: filterConfig
     .map(toIdedFilters)
-    .map((configItem) => toFilterConfigItem(configItem, handler, activeFilters))
+    .map((configItem) =>
+      toFilterConfigItem(
+        configItem,
+        filterTypes[configItem.type],
+        handler,
+        activeFilters
+      )
+    )
     .filter((v) => !!v),
 });
 
@@ -45,12 +66,14 @@ export const getFilterConfigItem = (filterConfig, filter) =>
 
 export const toSelectValue = (
   filterConfig,
+  filterTypes,
   filter,
   selectedValue,
   selectedValues
 ) => {
   const configItem = getFilterConfigItem(filterConfig, filter);
-  return filterTypeHelpers(configItem.type).toSelectValue(
+  console.log('YOOO', filterTypes, configItem);
+  return filterTypes[configItem.type].toSelectValue(
     configItem,
     selectedValues,
     selectedValue

@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
-import { toSelectValue } from './filterConfigHelpers';
-import { toDeselectValue } from './filterChipHelpers';
+import { toSelectValue } from '../filterConfigHelpers';
+import { toDeselectValue } from '../filterChipHelpers';
 
 const useEventHandlers = ({
   filters: { filterConfig } = {},
@@ -8,16 +8,23 @@ const useEventHandlers = ({
   onFilterUpdate: onFilterUpdateCallback,
   onDeleteFilter,
   resetOnClear,
+  filterTypes,
   selectionActions: { select, deselect, reset, clear },
 }) => {
   const onFilterUpdate = useCallback(
     (filter, selectedValue, selectedValues) => {
       select(
-        ...toSelectValue(filterConfig, filter, selectedValue, selectedValues)
+        ...toSelectValue(
+          filterConfig,
+          filterTypes,
+          filter,
+          selectedValue,
+          selectedValues
+        )
       );
       onFilterUpdateCallback?.();
     },
-    [filterConfig, select, onFilterUpdateCallback]
+    [filterConfig, select, onFilterUpdateCallback, filterTypes]
   );
 
   const onFilterDelete = useCallback(
@@ -26,7 +33,14 @@ const useEventHandlers = ({
         ? resetOnClear
           ? reset()
           : clear()
-        : deselect(...toDeselectValue(filterConfig, chips[0], activeFilters));
+        : deselect(
+            ...toDeselectValue(
+              filterConfig,
+              filterTypes,
+              chips[0],
+              activeFilters
+            )
+          );
       onDeleteFilter?.(chips, clearAll);
     },
     [
@@ -37,6 +51,7 @@ const useEventHandlers = ({
       clear,
       deselect,
       resetOnClear,
+      filterTypes,
     ]
   );
 
