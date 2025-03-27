@@ -26,8 +26,8 @@ const ruleFactory = Factory.define(() => ({
 const ruleGroupFactory = Factory.define(({ transientParams }) => {
   const {
     depth = 3,
-    minChildren = 3,
-    maxChildren = 6,
+    minChildren = 2,
+    maxChildren = 4,
     ruleProbability = 0.5,
   } = transientParams;
 

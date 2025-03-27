@@ -3,7 +3,7 @@ import { init } from 'Store';
 import { buildPolicies } from '../../__factories__/policies';
 import { interceptBatchRequest } from '../../../cypress/utils/interceptors';
 import getRequestParams from '../../../cypress/utils/requestParams';
-import getComparisonMessage from '../../../cypress/utils/assertComparationMsg';
+import getComparisonMessage from '../../../cypress/utils/getComparisonMessage';
 
 const mountComponent = () => {
   cy.mountWithContext(CompliancePolicies, { store: init().getStore() });

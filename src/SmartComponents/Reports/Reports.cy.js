@@ -2,7 +2,7 @@ import Reports from './Reports';
 import { init } from 'Store';
 import { buildReports } from '../../__factories__/reports';
 import { interceptBatchRequest } from '../../../cypress/utils/interceptors';
-import getComparisonMessage from '../../../cypress/utils/assertComparationMsg';
+import getComparisonMessage from '../../../cypress/utils/getComparisonMessage';
 import getRequestParams from '../../../cypress/utils/requestParams';
 
 const mountComponent = () => {

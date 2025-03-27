@@ -4,9 +4,9 @@ export const interceptBatchRequest = (endpoint, offset, dataSlice, total, limit=
     body: {
       data: dataSlice,
       meta: {
-        limit: limit,
+        limit,
         offset,
-        total: total,
+        total,
       }
     }
   }).as(`${endpoint}Batch${offset / limit + 1}`); // getReportsBatch1, getReportsBatch2, etc
@@ -20,9 +20,9 @@ export const interceptRulesByGroupRequest = (groupId, endpoint, dataSlice, total
       body: {
         data: dataSlice,
         meta: {
-          limit: limit,
+          limit,
           offset,
-          total: total,
+          total,
         }
     }
   }).as(`getRulesByGroupId-${groupId}`);
@@ -36,8 +36,8 @@ export const interceptPolicyTailorings = (policyId, tailoringsData, total, offse
       body: {
         data: tailoringsData,
         meta: {
-          limit: limit,
-          offset: offset,
+          limit,
+          offset,
           total: total || tailoringsData.length,
         }
     }
@@ -83,9 +83,9 @@ export const interceptSSGValueDefinitions = (securityGuideId, valueDefinitionsDa
       body: {
         data: valueDefinitionsData,
         meta: {
-          limit: limit,
-          offset: offset,
-          total: valueDefinitionsData.length,
+          limit,
+          offset,
+          total: total || valueDefinitionsData.length,
         }
     }
   }).as('getValueDefinitions');
@@ -99,8 +99,8 @@ export const interceptSupportedProfiles = (supportedProfiles, total, offset=0, l
       body: {
         data: supportedProfiles,
         meta: {
-          limit: limit,
-          offset: offset,
+          limit,
+          offset,
           total: total || supportedProfiles.length,
         }
     }
@@ -115,8 +115,8 @@ export const interceptRuleGroups = (securityGuideId, ruleGroupsData, total, offs
       body: {
         data: ruleGroupsData,
         meta: {
-          limit: limit,
-          offset: offset,
+          limit,
+          offset,
           total: total || ruleGroupsData.length,
         }
     }
@@ -131,8 +131,8 @@ export const interceptTailoringRules = (policyId, tailoringId, rulesData, total,
       body: {
         data: rulesData,
         meta: {
-          limit: limit,
-          offset: offset,
+          limit,
+          offset,
           total: total || rulesData.length,
         }
     }
@@ -147,8 +147,8 @@ export const interceptProfileRules = (securityGuideId, profileId, rulesData, tot
       body: {
         data: rulesData,
         meta: {
-          limit: limit,
-          offset: offset,
+          limit,
+          offset,
           total: total || rulesData.length,
         }
     }
