@@ -52,8 +52,15 @@ const EditPolicy = ({ route }) => {
   );
 
   const [updatedPolicy, setUpdatedPolicy] = useState(null);
+  const [systemsDataLoading, setIsSystemsDataLoading] = useState(false);
 
-  const saveEnabled = !updatedPolicy;
+  const saveDisabled =
+    !updatedPolicy ||
+    policyLoading ||
+    supportedProfilesLoading ||
+    assignedRulesLoading ||
+    assignedSystemsLoading ||
+    systemsDataLoading;
 
   const onSaveCallback = (isClose) =>
     navigate(
@@ -92,12 +99,12 @@ const EditPolicy = ({ route }) => {
   };
   const actions = [
     <Button
-      isDisabled={saveEnabled}
+      isDisabled={saveDisabled}
       key="save"
       ouiaId="EditPolicySaveButton"
       variant="primary"
       spinnerAriaValueText="Saving"
-      isLoading={isSaving}
+      isLoading={isSaving || systemsDataLoading}
       onClick={onSave}
     >
       Save
@@ -151,6 +158,7 @@ const EditPolicy = ({ route }) => {
               setRuleValues,
               supportedOsVersions,
               securityGuide,
+              setIsSystemsDataLoading,
             }}
           />
         </StateViewPart>

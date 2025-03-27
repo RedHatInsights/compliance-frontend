@@ -225,6 +225,7 @@ export const useSystemBulkSelect = ({
   currentPageItems,
   fetchApi,
   tableLoaded,
+  setIsSystemsDataLoading,
 }) => {
   const dispatch = useDispatch();
   const { isLoading, fetchBatched } = useFetchBatched();
@@ -296,6 +297,7 @@ export const useSystemBulkSelect = ({
   const onSelectCallback = useCallback(
     async (selectedIds) => {
       dispatch(setDisabledSelection(true));
+      setIsSystemsDataLoading(true); // needed for EditPolicy to disable Saving until data loaded
       const systemsToFetch = selectedIds.filter(
         (id) => !loadedItems.map(({ id }) => id).includes(id)
       );
@@ -310,6 +312,7 @@ export const useSystemBulkSelect = ({
           ...fetchedSystems,
         ]);
       dispatch(setDisabledSelection(false));
+      setIsSystemsDataLoading(false);
     },
     [dispatch, loadedItems, fetchSystemsById, onSelect]
   );
