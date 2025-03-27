@@ -30,6 +30,7 @@ import {
   interceptTailoringRules,
   interceptProfileRules,
 } from '../../../cypress/utils/interceptors';
+/* eslint-disable rulesdir/disallow-fec-relative-imports */
 import { TABLE_ROW } from '@redhat-cloud-services/frontend-components-utilities';
 
 const capitalizeFirstLetter = (str) =>
@@ -91,7 +92,8 @@ const SYSTEMS_COUNT = 333;
 const selectedSystemsCount = { [key]: SYSTEMS_COUNT };
 
 const getRowByTitle = (title) =>
-  cy.get(TABLE_ROW)
+  cy
+    .get(TABLE_ROW)
     .filter((_index, el) => el.innerText.includes(title))
     .first();
 
@@ -145,10 +147,10 @@ describe('Tailorings - Tailorings on Edit policy', () => {
   });
   it('Expect to render Tailorings view with tabs', () => {
     // ensure there is only 1 tab displayed as 1 tailoring provided
-    cy.ouiaId(`RHEL ${tailoring.os_major_version}.${tailoring.os_minor_version}`).should('exist');
-    cy.ouiaType('PF5/TabButton')
-      .find('span')
-      .contains(SYSTEMS_COUNT);
+    cy.ouiaId(
+      `RHEL ${tailoring.os_major_version}.${tailoring.os_minor_version}`
+    ).should('exist');
+    cy.ouiaType('PF5/TabButton').find('span').contains(SYSTEMS_COUNT);
     // check tree view is shown by default
     cy.get('button[aria-label="tree"]').should('have.class', 'pf-m-selected');
     cy.ouiaId('EditRulesButton').should('not.exist');
@@ -158,9 +160,7 @@ describe('Tailorings - Tailorings on Edit policy', () => {
       .contains('View policy rules')
       .should('be.visible')
       .should('have.attr', 'href', href);
-    cy.ouiaType('PF5/Switch')
-      .should('exist')
-      .contains('Selected only');
+    cy.ouiaType('PF5/Switch').should('exist').contains('Selected only');
   });
 
   describe('Tailorings tree view', () => {
