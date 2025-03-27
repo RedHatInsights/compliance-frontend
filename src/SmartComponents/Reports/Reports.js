@@ -25,7 +25,7 @@ const Reports = () => {
   // TODO We can probably avoid this extra request by finishing the empty state implementation in the TableTools
   const { data: totalReports } = useReports({
     onlyTotal: true,
-    filter: REPORTS_FILTER,
+    params: { filter: REPORTS_FILTER },
   });
   const { data: { data: operatingSystems } = {} } = useReportsOS();
   const {
