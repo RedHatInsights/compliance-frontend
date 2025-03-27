@@ -45,7 +45,7 @@ describe('Reports table tests', () => {
     }).as('getReports');
 
     cy.intercept(
-      '/api/compliance/v2/reports?limit=1&filter=with_reported_systems%3Dtrue',
+      '/api/compliance/v2/reports?limit=1&filter=with_reported_systems+%3D+true',
       {
         statusCode: 200,
         body: reportsResp,
