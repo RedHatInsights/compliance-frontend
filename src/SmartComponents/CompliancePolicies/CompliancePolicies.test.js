@@ -6,7 +6,6 @@ import propTypes from 'prop-types';
 import { MemoryRouter } from 'react-router-dom';
 
 import CompliancePolicies from './CompliancePolicies.js';
-import usePoliciesCount from 'Utilities/hooks/usePoliciesCount';
 import usePolicies from 'Utilities/hooks/api/usePolicies';
 import { buildPolicies } from '../../__factories__/policies';
 
@@ -14,18 +13,20 @@ const TestWrapper = ({ children }) => <MemoryRouter>{children}</MemoryRouter>;
 TestWrapper.propTypes = { children: propTypes.node };
 
 const policiesData = buildPolicies(11);
-jest.mock('Utilities/hooks/usePoliciesCount', () => jest.fn());
 jest.mock('Utilities/hooks/api/usePolicies', () => jest.fn());
 
 describe('CompliancePolicies', () => {
   it('expect to render without error', () => {
-    usePoliciesCount.mockImplementation(() => policiesData.length);
-    usePolicies.mockImplementation(() => ({
-      data: { data: policiesData, meta: { total: policiesData.length } },
-      loading: false,
-      error: null,
-      refetch: () => {},
-    }));
+    usePolicies.mockImplementation(({ onlyTotal }) =>
+      !onlyTotal
+        ? {
+            data: { data: policiesData, meta: { total: policiesData.length } },
+            loading: false,
+            error: null,
+            refetch: () => {},
+          }
+        : { data: policiesData.length }
+    );
 
     render(
       <TestWrapper>
@@ -40,12 +41,8 @@ describe('CompliancePolicies', () => {
   });
 
   it('expect to render emptystate', () => {
-    usePoliciesCount.mockImplementation(() => 0);
     usePolicies.mockImplementation(() => ({
-      data: { data: [], meta: { total: 0 } },
-      loading: false,
-      error: null,
-      refetch: () => {},
+      data: 0,
     }));
 
     render(
@@ -57,13 +54,11 @@ describe('CompliancePolicies', () => {
     expect(screen.getByText('No policies')).toBeInTheDocument();
   });
 
-  it('expect to render an error', () => {
-    usePoliciesCount.mockImplementation(() => 0);
+  it('expect to render an error on total request', () => {
     usePolicies.mockImplementation(() => ({
-      data: { data: [], meta: { total: 0 } },
+      data: undefined,
       loading: false,
       error: 'Something went wrong',
-      refetch: () => {},
     }));
 
     render(
@@ -75,14 +70,17 @@ describe('CompliancePolicies', () => {
     expect(screen.getByText('Something went wrong')).toBeInTheDocument();
   });
 
-  it('expect to render loading', () => {
-    usePoliciesCount.mockImplementation(() => 0);
-    usePolicies.mockImplementation(() => ({
-      data: { data: [], meta: { total: 0 } },
-      loading: true,
-      error: null,
-      refetch: () => {},
-    }));
+  it('expect to render an error on data request', () => {
+    usePolicies.mockImplementation(({ onlyTotal }) =>
+      !onlyTotal
+        ? {
+            data: undefined,
+            loading: false,
+            error: 'Something went wrong',
+            refetch: () => {},
+          }
+        : { data: policiesData.length }
+    );
 
     render(
       <TestWrapper>
@@ -90,6 +88,21 @@ describe('CompliancePolicies', () => {
       </TestWrapper>
     );
 
-    expect(screen.getByText('Loading...')).toBeInTheDocument(1);
+    expect(screen.getByText('Something went wrong')).toBeInTheDocument();
+  });
+
+  it('expect to render loading', () => {
+    usePolicies.mockImplementation(() => ({ data: undefined, loading: true }));
+
+    render(
+      <TestWrapper>
+        <CompliancePolicies />
+      </TestWrapper>
+    );
+
+    expect(screen.getByLabelText('Contents')).toHaveAttribute(
+      'aria-valuetext',
+      'Loading...'
+    );
   });
 });
