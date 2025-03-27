@@ -164,6 +164,7 @@ const useComplianceQuery = (
           error: queryError,
           loading: queryLoading,
         }),
+    fetchBatched,
     fetch: queryFetch,
     refetch: queryRefetch,
     ...extras,
