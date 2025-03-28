@@ -2,6 +2,8 @@ import CompliancePolicies from './CompliancePolicies';
 import { init } from 'Store';
 import { buildPolicies } from '../../__factories__/policies';
 import { interceptBatchRequest } from '../../../cypress/utils/interceptors';
+import getRequestParams from '../../../cypress/utils/requestParams';
+import getComparisonMessage from '../../../cypress/utils/getComparisonMessage';
 
 const mountComponent = () => {
   cy.mountWithContext(CompliancePolicies, { store: init().getStore() });
@@ -18,24 +20,6 @@ const policiesResp = {
     limit: 10,
   },
 };
-
-function getRequestParams({
-  limit = '10',
-  offset = '0',
-  filter = undefined,
-  sortBy = 'title:asc',
-} = {}) {
-  const params = new URLSearchParams({
-    limit,
-    offset,
-    sort_by: sortBy,
-  });
-  if (filter !== undefined) {
-    params.append('filter', filter);
-  }
-
-  return params.toString();
-}
 
 describe('Policies table tests API V2', () => {
   beforeEach(() => {
@@ -319,23 +303,39 @@ describe('Policies table tests API V2', () => {
                     assert(
                       `RHEL ${policy.os_major_version}` ===
                         item['operatingSystem'],
-                      `OS comparation failed: ${policy.os_major_version} !== ${item['operatingSystem']}`
+                      getComparisonMessage(
+                        'OS',
+                        policy.os_major_version,
+                        item['operatingSystem']
+                      )
                     );
                     assert(
                       policy.total_system_count === item['systems'],
-                      `Systems comparation failed: ${policy.total_system_count} !== ${item['systems']}`
+                      getComparisonMessage(
+                        'Systems',
+                        policy.total_system_count,
+                        item['systems']
+                      )
                     );
                     const businessObj = policy.business_objective
                       ? policy.business_objective
                       : '--';
                     assert(
                       businessObj === item['businessObjective'],
-                      `BO comparation failed: ${businessObj} !== ${item['businessObjective']}`
+                      getComparisonMessage(
+                        'BO',
+                        businessObj,
+                        item['businessObjective']
+                      )
                     );
                     assert(
                       `${policy.compliance_threshold}%` ==
                         item['complianceThreshold'],
-                      `Threshold comparation failed: ${policy.compliance_threshold} !== ${item['complianceThreshold']}`
+                      getComparisonMessage(
+                        'Threshold',
+                        `${policy.compliance_threshold}%`,
+                        item['complianceThreshold']
+                      )
                     );
                   }
                 });

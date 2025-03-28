@@ -1,4 +1,5 @@
 /* eslint-disable react/display-name */
+/* eslint-disable rulesdir/disallow-fec-relative-imports */
 import React from 'react';
 import propTypes from 'prop-types';
 import { NoSystemsTableWithWarning } from 'PresentationalComponents';
