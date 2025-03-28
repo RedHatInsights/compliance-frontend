@@ -1,25 +1,32 @@
 import { isNotEmpty, stringToId } from './helpers';
 import { getFilterConfigItem } from './filterConfigHelpers';
-import filterTypeHelpers from './filterTypeHelpers';
 
-const filterChipTemplates = (configItem, value) =>
-  filterTypeHelpers(configItem.type)?.filterChips(configItem, value);
+const filterChipTemplates = (configItem, value, filterTypeHelpers) =>
+  filterTypeHelpers?.filterChips(configItem, value);
 
-export const toFilterChips = (filterConfig, activeFilters) =>
+export const toFilterChips = (filterConfig, filterTypes, activeFilters) =>
   Object.entries(activeFilters || {})
-    .map(([filter, value]) =>
-      isNotEmpty(value)
-        ? filterChipTemplates(getFilterConfigItem(filterConfig, filter), value)
-        : undefined
-    )
+    .map(([filter, value]) => {
+      const configItem = getFilterConfigItem(filterConfig, filter);
+
+      return isNotEmpty(value)
+        ? filterChipTemplates(configItem, value, filterTypes[configItem.type])
+        : undefined;
+    })
     .filter((v) => !!v);
 
-export const toDeselectValue = (filterConfig, chip, activeFilters) => {
+export const toDeselectValue = (
+  filterConfig,
+  filterTypes,
+  chip,
+  activeFilters
+) => {
   const configItem = getFilterConfigItem(
     filterConfig,
     stringToId(chip.category)
   );
-  return filterTypeHelpers(configItem.type).toDeselectValue(
+
+  return filterTypes[configItem.type]?.toDeselectValue(
     configItem,
     chip,
     activeFilters

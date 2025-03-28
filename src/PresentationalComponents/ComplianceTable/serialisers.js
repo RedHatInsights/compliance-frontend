@@ -19,10 +19,14 @@ const checkboxFilterSerialiser = (filterConfigItem, values) =>
 const raidoFilterSerialiser = (filterConfigItem, values) =>
   `${filterConfigItem.filterAttribute} = "${values[0]}"`;
 
+const calendarFilterSerialiser = (filterConfigItem, values) =>
+  values.toLocaleString();
+
 const filterSerialisers = {
   text: textFilterSerialiser,
   checkbox: checkboxFilterSerialiser,
   radio: raidoFilterSerialiser,
+  // calendar: calendarFilterSerialiser,
 };
 
 const findFilterSerialiser = (filterConfigItem) => {

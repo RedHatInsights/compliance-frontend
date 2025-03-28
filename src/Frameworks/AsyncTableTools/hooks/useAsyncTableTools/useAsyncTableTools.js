@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useDeepCompareMemo } from 'use-deep-compare';
 
 import usePagination from '../usePagination';
 import useFilterConfig from '../useFilterConfig';
@@ -48,7 +48,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     ColumnManager,
   } = useColumnManager(columns, options);
 
-  const { toolbarProps: toolbarActionsProps } = useMemo(
+  const { toolbarProps: toolbarActionsProps } = useDeepCompareMemo(
     () =>
       toToolbarActions({
         ...options,
@@ -58,8 +58,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
           ...((columnManagerAction && [columnManagerAction]) || []),
         ],
       }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [JSON.stringify(columnManagerAction), JSON.stringify(options)]
+    [columnManagerAction, options, dedicatedAction]
   );
 
   const { toolbarProps: paginationToolbarProps } = usePagination(options);
@@ -108,7 +107,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     ...options,
   });
 
-  const toolbarProps = useMemo(
+  const toolbarProps = useDeepCompareMemo(
     () => ({
       ...toolbarActionsProps,
       ...paginationToolbarProps,
@@ -118,21 +117,18 @@ const useAsyncTableTools = (items, columns, options = {}) => {
       ...toolbarPropsOption,
       ...tableViewToolbarProps,
     }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [
       toolbarActionsProps,
       paginationToolbarProps,
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      JSON.stringify(conditionalFilterProps),
+      conditionalFilterProps,
       bulkSelectToolbarProps,
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      JSON.stringify(exportConfig.toolbarProps),
+      exportConfig.toolbarProps,
       tableViewToolbarProps,
       toolbarPropsOption,
     ]
   );
 
-  const tableProps = useMemo(
+  const tableProps = useDeepCompareMemo(
     () => ({
       // TODO we should have a hook that maintains columns.
       // at least the columns manager and table sort hook "act" on columns, currently without a good interface

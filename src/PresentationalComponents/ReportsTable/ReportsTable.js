@@ -8,6 +8,7 @@ import {
   policyNameFilter,
   operatingSystemFilter,
   policyComplianceFilter,
+  calendarFilterType,
 } from './Filters';
 import '../../App.scss';
 
@@ -34,6 +35,9 @@ const ReportsTable = ({
           : []),
         ...policyComplianceFilter,
       ],
+      customFilterTypes: {
+        calendar: calendarFilterType,
+      },
     }}
     options={{
       ...COMPLIANCE_TABLE_DEFAULTS,
