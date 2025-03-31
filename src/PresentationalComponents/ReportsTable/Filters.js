@@ -1,9 +1,9 @@
 import React from 'react';
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/ConditionalFilter';
 import CalendarFilter from './CalendarFilter';
+import NumberFilter from './NumberFilter';
 
-export const stringToId = (string) =>
-  string.split(/\s+/).join('-').toLowerCase();
+const stringToId = (string) => string.split(/\s+/).join('-').toLowerCase();
 
 export const policyNameFilter = [
   {
@@ -26,8 +26,8 @@ export const calendarFilterType = {
   }),
   // Returns "select" arguments for the selection manager from a selected value
   // The returning of selectedValue/selectedValues is inconsistent.
-  toSelectValue: (configItem, value, values) => [
-    value || values,
+  toSelectValue: (configItem, value) => [
+    value,
     stringToId(configItem.label),
     true,
   ],
@@ -37,6 +37,13 @@ export const calendarFilterType = {
     stringToId(configItem.label),
     true,
   ],
+};
+
+export const numberFilterType = {
+  Component: NumberFilter,
+  chips: (value) => value,
+  selectValue: (value) => [value, true],
+  deselectValue: () => [undefined, true],
 };
 
 export const operatingSystemFilter = (operatingSystems) => [
@@ -54,6 +61,10 @@ export const operatingSystemFilter = (operatingSystems) => [
     label: 'Calendar Filter',
     filterAttribute: 'calendar',
     Component: CalendarFilter,
+  },
+  {
+    type: 'number',
+    label: 'Number Filter',
   },
 ];
 

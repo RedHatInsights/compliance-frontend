@@ -71,8 +71,9 @@ export const toSelectValue = (
   selectedValue,
   selectedValues
 ) => {
+  console.log('YOOO', filterTypes, filter);
+
   const configItem = getFilterConfigItem(filterConfig, filter);
-  console.log('YOOO', filterTypes, configItem);
   return filterTypes[configItem.type].toSelectValue(
     configItem,
     selectedValues,

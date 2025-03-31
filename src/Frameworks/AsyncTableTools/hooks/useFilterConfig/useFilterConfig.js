@@ -39,7 +39,7 @@ const useFilterConfig = (options) => {
     enableFilters,
     filterTypes,
   } = useFilterOptions(options);
-
+  console.log(filterTypes);
   const { selection: activeFilters, ...selectionActions } = useSelectionManager(
     initialActiveFilters,
     { withGroups: true }

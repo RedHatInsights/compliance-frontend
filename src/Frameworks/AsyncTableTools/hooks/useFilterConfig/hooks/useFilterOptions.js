@@ -1,5 +1,6 @@
 import { useDeepCompareMemo } from 'use-deep-compare';
 import filterTypeHelpers from '../filterTypeHelpers';
+import { prepareCustomFilterTypes } from '../helpers';
 
 const useFilterOptions = (options) => {
   const { filters, serialisers } = options;
@@ -17,7 +18,7 @@ const useFilterOptions = (options) => {
       filterConfig,
       filterTypes: {
         ...filterTypeHelpers,
-        ...customFilterTypes,
+        ...prepareCustomFilterTypes(customFilterTypes),
       },
       initialActiveFilters,
       serialisers,

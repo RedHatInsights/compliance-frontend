@@ -18,7 +18,8 @@ module.exports = {
   appName,
   appUrl: `/${bundle}/${appName}`,
   useProxy: process.env.PROXY === 'true',
-  devtool: 'hidden-source-map',
+  // devtool: 'hidden-source-map',
+  useDevBuild: true,
   plugins: [
     ...(process.env.ENABLE_SENTRY
       ? [

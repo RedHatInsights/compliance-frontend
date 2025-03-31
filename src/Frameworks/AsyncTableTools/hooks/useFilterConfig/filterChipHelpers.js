@@ -21,6 +21,7 @@ export const toDeselectValue = (
   chip,
   activeFilters
 ) => {
+  console.log('sssss');
   const configItem = getFilterConfigItem(
     filterConfig,
     stringToId(chip.category)

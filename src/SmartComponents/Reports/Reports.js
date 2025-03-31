@@ -10,6 +10,8 @@ import {
   ReportsEmptyState,
 } from 'PresentationalComponents';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
+import { useFullTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
+
 import useReports from 'Utilities/hooks/api/useReports';
 import useReportsOS from 'Utilities/hooks/api/useReportsOs';
 
@@ -21,6 +23,8 @@ const ReportsHeader = () => (
 const REPORTS_FILTER = 'with_reported_systems = true';
 
 const Reports = () => {
+  const tState = useFullTableState();
+  console.log('State', tState);
   // Required for correctly showing empty state
   // TODO We can probably avoid this extra request by finishing the empty state implementation in the TableTools
   const { data: totalReports } = useReports({

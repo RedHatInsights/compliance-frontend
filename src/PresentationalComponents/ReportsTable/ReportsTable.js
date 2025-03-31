@@ -2,6 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
 import { emptyRows } from '../../Utilities/hooks/useTableTools/Components/NoResultsTable';
+
 import { ComplianceTable as TableToolsTable } from 'PresentationalComponents';
 import columns, { exportableColumns, PDFExportDownload } from './Columns';
 import {
@@ -9,6 +10,7 @@ import {
   operatingSystemFilter,
   policyComplianceFilter,
   calendarFilterType,
+  numberFilterType,
 } from './Filters';
 import '../../App.scss';
 
@@ -37,6 +39,7 @@ const ReportsTable = ({
       ],
       customFilterTypes: {
         calendar: calendarFilterType,
+        number: numberFilterType,
       },
     }}
     options={{
