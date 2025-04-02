@@ -190,7 +190,7 @@ const TailoringTab = ({
 
   const onSelectRule = (...ruleParams) =>
     onSelect?.(
-      tailoring || { ...securityGuide.data, os_minor_version: osMinorVersion },
+      tailoring || { ...securityGuide?.data, os_minor_version: osMinorVersion },
       ...ruleParams
     );
 
