@@ -183,8 +183,21 @@ export const useInventoryUtilities = (
   }, [activeFilters]);
 };
 
-export const useSystemsExport = ({ columns, selectedItems, total }) => {
-  const exporter = async () => selectedItems;
+export const useSystemsExport = ({
+  columns,
+  selectedItems,
+  total,
+  fetchSystems,
+}) => {
+  const { fetchBatched } = useFetchBatched();
+  const exporter = async () => {
+    if (selectedItems && selectedItems.length > 0) {
+      return selectedItems;
+    } else {
+      const fetchedItems = await fetchBatched(fetchSystems, total);
+      return fetchedItems.flatMap((result) => result.entities);
+    }
+  };
 
   const {
     toolbarProps: { exportConfig },

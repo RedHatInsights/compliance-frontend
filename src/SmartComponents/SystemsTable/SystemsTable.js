@@ -169,6 +169,7 @@ export const SystemsTable = ({
     columns,
     selectedItems,
     total,
+    fetchSystems,
   });
 
   const handleOperatingSystemsFetch = useCallback(
