@@ -125,7 +125,7 @@ See the FEC script documentation for an example: https://github.com/RedHatInsigh
    These are components that have no side effects. They may handle state internally, but do not require a store or external data source.
 
  * **Smart Components:**
-   If a component works with any store or makes requests to an API, they are Smart Components
+   If a component works with any store or makes requests to an API, they are Smart Components.
 
  * **store:**
   Contains primarily a reducer and actions for working with the [inventory](https://github.com/RedHatInsights/frontend-components/blob/master/packages/inventory/doc/inventory.md) component.
