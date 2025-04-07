@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import AsyncTableToolsTable from '@/Frameworks/AsyncTableTools/components/AsyncTableToolsTable';
+import { TableToolsTable as AsyncTableToolsTable } from 'bastilian-tabletools';
 import {
   paginationSerialiser,
   filtersSerialiser,

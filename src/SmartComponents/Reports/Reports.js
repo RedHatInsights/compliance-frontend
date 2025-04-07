@@ -9,7 +9,8 @@ import {
   StateViewWithError,
   ReportsEmptyState,
 } from 'PresentationalComponents';
-import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
+import { TableStateProvider } from 'bastilian-tabletools';
+
 import useReports from 'Utilities/hooks/api/useReports';
 import useReportsOS from 'Utilities/hooks/api/useReportsOs';
 
@@ -50,7 +51,7 @@ const Reports = () => {
   const error = totalReportsError || reportsOSError || reportsError;
   const showTable =
     totalReports !== undefined && operatingSystems !== undefined && !error;
-
+  console.log(reportsData);
   return (
     <React.Fragment>
       <ReportsHeader />
