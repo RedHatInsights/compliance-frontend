@@ -49,7 +49,7 @@ const useBulkSelect = ({
   const [loading, setLoading] = useState(false);
   const enableBulkSelect = !!onSelect;
   const {
-    selection: selectedIds,
+    selection: selectedIds = [],
     set,
     select,
     deselect,
@@ -116,12 +116,12 @@ const useBulkSelect = ({
         {
           ...firstRow,
           ...(!isTreeTable
-            ? { selected: selectedIds?.includes(item.itemId) }
+            ? { selected: selectedIds.includes(item.itemId) }
             : {}),
           props: {
             ...firstRow.props,
             ...(isTreeTable && !item.isTreeBranch
-              ? { isChecked: selectedIds?.includes(item.itemId) }
+              ? { isChecked: selectedIds.includes(item.itemId) }
               : {}),
           },
         },
