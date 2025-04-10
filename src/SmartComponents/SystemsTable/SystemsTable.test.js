@@ -1,12 +1,10 @@
 import { render, waitFor } from '@testing-library/react';
 import SystemsTable from './SystemsTable';
-import { useSystemBulkSelect } from './hooks.js';
 import TestWrapper from '@redhat-cloud-services/frontend-components-utilities/TestingUtils/JestUtils/TestWrapper';
-jest.mock('./hooks.js', () => ({
-  ...jest.requireActual('./hooks.js'),
-  useSystemBulkSelect: jest.fn(() => ({})),
-  useSystemsExport: jest.fn(() => ({})),
-}));
+
+import useQuery from 'Utilities/hooks/useQuery';
+jest.mock('Utilities/hooks/useQuery');
+
 jest.mock('@redhat-cloud-services/frontend-components/Inventory', () => ({
   InventoryTable: jest.fn(({ getEntities }) => {
     getEntities(10, {
@@ -30,20 +28,43 @@ const mockProps = {
   defaultFilter: 'someFilter ~ test',
 };
 
+const mockUseQuery = jest.fn(() => {
+  return {
+    data: { data: [], meta: {} },
+    loading: false,
+    error: undefined,
+    fetch: () => ({ data: [], meta: {} }),
+  };
+});
+
 describe('SystemsTable', () => {
+  beforeEach(() => {
+    useQuery.mockImplementation(mockUseQuery);
+  });
+
   it('Should connect inventory with compliance filters so that full filters are passed to bulk selection', async () => {
     render(
       <TestWrapper>
         <SystemsTable {...mockProps} />
       </TestWrapper>
     );
+
     await waitFor(() =>
-      expect(useSystemBulkSelect).toHaveBeenCalledWith(
+      expect(useQuery).toHaveBeenNthCalledWith(
+        1,
+        expect.anything(),
         expect.objectContaining({
-          fetchArguments: {
-            filter: '(someFilter ~ test) AND display_name ~ "test-name"',
-            tags: [],
-          },
+          endpoint: 'systems',
+        })
+      )
+    );
+
+    await waitFor(() =>
+      expect(useQuery).toHaveBeenNthCalledWith(
+        2,
+        expect.anything(),
+        expect.objectContaining({
+          endpoint: 'systemsOS',
         })
       )
     );
