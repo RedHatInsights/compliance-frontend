@@ -38,7 +38,7 @@ export const Passed = {
 };
 
 export const Remediation = {
-  title: 'Remediation',
+  title: 'Remediation type',
   transforms: [nowrap],
   sortable: 'remediation_available',
   renderExport: (rule) => (rule?.remediation_available ? 'Playbook' : 'Manual'),

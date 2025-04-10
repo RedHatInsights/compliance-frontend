@@ -10,7 +10,7 @@ const useTailoringsData = ({
   groupFilter,
 }) => {
   const {
-    data: ruleTree,
+    data: { data: ruleTree } = {},
     loading: ruleTreeLoading,
     error: ruleTreeError,
   } = useTailoringRuleTree({

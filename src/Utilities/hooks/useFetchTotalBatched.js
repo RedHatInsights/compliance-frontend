@@ -1,5 +1,5 @@
-import { useState, useRef } from 'react';
-import { useDeepCompareEffect, useDeepCompareCallback } from 'use-deep-compare';
+import { useCallback, useState, useRef } from 'react';
+import { useDeepCompareEffect } from 'use-deep-compare';
 import pAll from 'p-all';
 
 const DEFAULT_BATCH_SIZE = 50;
@@ -35,31 +35,36 @@ const CONCURRENT_REQUESTS = 2;
  *
  */
 const useFetchTotalBatched = (fetchFn, options = {}) => {
-  const { batchSize = DEFAULT_BATCH_SIZE, skip = false } = options;
+  const {
+    batchSize = DEFAULT_BATCH_SIZE,
+    concurrency = CONCURRENT_REQUESTS,
+    skip = false,
+  } = options;
   const loading = useRef(false);
   const mounted = useRef(true);
   const [totalResult, setTotalResult] = useState();
 
-  const fetch = useDeepCompareCallback(
+  const fetch = useCallback(
     async (...args) => {
+      // TODO Make this smarter
+      // When working with concurrent calls to fetchBatched Promise.all/pAll
+      // `loading`s will collide and only the first call will succeed
       if (!loading.current) {
         loading.current = true;
         const firstPage = await fetchFn(0, batchSize, ...args);
         const total = firstPage?.meta?.total;
-
         if (total > batchSize) {
           const pages = Math.ceil(total / batchSize) || 1;
           const requests = [...new Array(pages)]
+            .slice(1)
             .map((_, pageIdx) => async () => {
-              const page = pageIdx;
-              if (page >= 1) {
-                const offset = page * batchSize;
-                return await fetchFn(offset, batchSize, ...args);
-              }
-            })
-            .slice(1);
+              const page = pageIdx + 1;
+              const offset = page * batchSize;
+              return await fetchFn(offset, batchSize, ...args);
+            });
+
           const results = await pAll(requests, {
-            concurrency: CONCURRENT_REQUESTS,
+            concurrency,
           });
 
           const allPages = [
@@ -73,7 +78,6 @@ const useFetchTotalBatched = (fetchFn, options = {}) => {
               total: firstPage.meta.total,
             },
           };
-
           mounted.current && setTotalResult(newTotalResult);
           loading.current = false;
 
@@ -86,7 +90,7 @@ const useFetchTotalBatched = (fetchFn, options = {}) => {
         }
       }
     },
-    [fetchFn, batchSize]
+    [fetchFn, batchSize, concurrency]
   );
 
   useDeepCompareEffect(() => {

@@ -2,7 +2,7 @@ import React from 'react';
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
-import SkeletonTable from '@redhat-cloud-services/frontend-components/SkeletonTable';
+import { Spinner } from '@patternfly/react-core';
 import {
   ReportsTable,
   StateViewPart,
@@ -12,43 +12,60 @@ import {
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
 import useReports from 'Utilities/hooks/api/useReports';
 import useReportsOS from 'Utilities/hooks/api/useReportsOs';
-import useReportsCount from 'Utilities/hooks/useReportsCount';
 
 const ReportsHeader = () => (
   <PageHeader>
     <PageHeaderTitle title="Reports" />
   </PageHeader>
 );
+const REPORTS_FILTER = 'with_reported_systems = true';
 
 const Reports = () => {
   // Required for correctly showing empty state
-  const totalReports = useReportsCount();
-
-  const { data: operatingSystems } = useReportsOS();
+  // TODO We can probably avoid this extra request by finishing the empty state implementation in the TableTools
+  const {
+    data: totalReports,
+    error: totalReportsError,
+    loading: totalReportsLoading,
+  } = useReports({
+    onlyTotal: true,
+    params: { filter: REPORTS_FILTER },
+  });
+  const {
+    data: { data: operatingSystems } = {},
+    loading: reportsOSLoading,
+    error: reportsOSError,
+  } = useReportsOS();
   const {
     data: { data: reportsData, meta: { total } = {} } = {},
-    error,
+    error: reportsError,
     loading: reportsLoading,
     exporter,
   } = useReports({
-    params: { filter: 'with_reported_systems = true' },
+    params: { filter: REPORTS_FILTER },
     useTableState: true,
-    batch: {
-      batchSize: 10,
-    },
+    batch: { batchSize: 10 },
   });
-  const data = operatingSystems;
-  const loading = !data ? true : undefined;
+  const loading = totalReportsLoading || reportsOSLoading;
+  const error = totalReportsError || reportsOSError || reportsError;
+  const showTable =
+    totalReports !== undefined && operatingSystems !== undefined && !error;
 
   return (
     <React.Fragment>
       <ReportsHeader />
       <section className="pf-v5-c-page__main-section">
-        <StateViewWithError stateValues={{ error, data, loading }}>
+        <StateViewWithError
+          stateValues={{
+            error,
+            loading,
+            showTable: showTable,
+          }}
+        >
           <StateViewPart stateKey="loading">
-            <SkeletonTable colSize={3} rowSize={10} />
+            <Spinner />
           </StateViewPart>
-          <StateViewPart stateKey="data">
+          <StateViewPart stateKey="showTable">
             {totalReports === 0 ? (
               <ReportsEmptyState />
             ) : (

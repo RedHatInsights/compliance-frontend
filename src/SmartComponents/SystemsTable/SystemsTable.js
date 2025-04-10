@@ -57,6 +57,7 @@ export const SystemsTable = ({
   fetchCustomOSes,
   ignoreOsMajorVersion,
   reportId,
+  setIsSystemsDataLoading,
 }) => {
   const inventory = useRef(null);
   const [isEmpty, setIsEmpty] = useState(false);
@@ -115,6 +116,7 @@ export const SystemsTable = ({
     currentPageItems: items,
     fetchApi,
     tableLoaded: isLoaded,
+    setIsSystemsDataLoading,
   });
 
   useInventoryUtilities(inventory, selectedIds, activeFilterValues);
@@ -290,6 +292,7 @@ SystemsTable.propTypes = {
   fetchCustomOSes: PropTypes.func.isRequired,
   ignoreOsMajorVersion: PropTypes.bool,
   reportId: PropTypes.string,
+  setIsSystemsDataLoading: PropTypes.func,
 };
 
 SystemsTable.defaultProps = {

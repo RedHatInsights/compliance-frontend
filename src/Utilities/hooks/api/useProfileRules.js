@@ -1,4 +1,4 @@
-import useComplianceQuery from './useComplianceQuery';
+import useComplianceQuery from '../useComplianceQuery';
 
 const convertToArray = (params) => {
   if (Array.isArray(params)) {
@@ -28,6 +28,10 @@ const convertToArray = (params) => {
 };
 
 const useProfileRules = (options) =>
-  useComplianceQuery('profileRules', { ...options, convertToArray });
+  useComplianceQuery('profileRules', {
+    ...options,
+    requiredParams: ['profileId', 'securityGuideId'],
+    convertToArray,
+  });
 
 export default useProfileRules;

@@ -84,7 +84,7 @@ const RulesTable = ({
 
   const remediationAction = () => (
     <ComplianceRemediationButton
-      reportTestResults={selectedRules.length > 0 ? [reportTestResult] : []}
+      reportTestResults={selectedRules?.length ? [reportTestResult] : []}
       selectedRuleResultIds={selectedRules}
       reportId={policyId}
     />

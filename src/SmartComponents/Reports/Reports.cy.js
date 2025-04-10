@@ -2,6 +2,8 @@ import Reports from './Reports';
 import { init } from 'Store';
 import { buildReports } from '../../__factories__/reports';
 import { interceptBatchRequest } from '../../../cypress/utils/interceptors';
+import getComparisonMessage from '../../../cypress/utils/getComparisonMessage';
+import getRequestParams from '../../../cypress/utils/requestParams';
 
 const mountComponent = () => {
   cy.mountWithContext(Reports, { store: init().getStore() });
@@ -18,19 +20,12 @@ const reportsResp = {
   },
 };
 
-function getRequestParams({
-  limit = '10',
-  offset = '0',
-  filter = 'with_reported_systems = true',
-  sortBy = 'title:asc',
-} = {}) {
-  return new URLSearchParams({
-    limit,
-    offset,
-    sort_by: sortBy,
-    filter,
-  }).toString();
-}
+const getRequestParamsWithDefaultFilter = (params = {}) => {
+  return getRequestParams({
+    ...params,
+    filter: params.filter || 'with_reported_systems = true', // Default filter
+  });
+};
 
 describe('Reports table tests', () => {
   beforeEach(() => {
@@ -39,13 +34,16 @@ describe('Reports table tests', () => {
       body: [6, 7, 8, 9],
     }).as('getOsVersions');
 
-    cy.intercept(`/api/compliance/v2/reports?${getRequestParams()}`, {
-      statusCode: 200,
-      body: reportsResp,
-    }).as('getReports');
+    cy.intercept(
+      `/api/compliance/v2/reports?${getRequestParamsWithDefaultFilter()}`,
+      {
+        statusCode: 200,
+        body: reportsResp,
+      }
+    ).as('getReports');
 
     cy.intercept(
-      '/api/compliance/v2/reports?limit=1&filter=with_reported_systems%3Dtrue',
+      '/api/compliance/v2/reports?limit=1&filter=with_reported_systems+%3D+true',
       {
         statusCode: 200,
         body: reportsResp,
@@ -69,7 +67,7 @@ describe('Reports table tests', () => {
         .should('eq', 'ascending');
 
       cy.intercept(
-        `/api/compliance/v2/reports?${getRequestParams({
+        `/api/compliance/v2/reports?${getRequestParamsWithDefaultFilter({
           sortBy: 'title:desc',
         })}`,
         {
@@ -92,7 +90,7 @@ describe('Reports table tests', () => {
       cy.wait('@getReports');
 
       cy.intercept(
-        `/api/compliance/v2/reports?${getRequestParams({
+        `/api/compliance/v2/reports?${getRequestParamsWithDefaultFilter({
           sortBy: 'os_major_version:asc',
         })}`,
         {
@@ -111,7 +109,7 @@ describe('Reports table tests', () => {
         .should('contain', 'sort_by=os_major_version%3Aasc');
 
       cy.intercept(
-        `/api/compliance/v2/reports?${getRequestParams({
+        `/api/compliance/v2/reports?${getRequestParamsWithDefaultFilter({
           sortBy: 'os_major_version:desc',
         })}`,
         {
@@ -132,7 +130,7 @@ describe('Reports table tests', () => {
     it('Sort by Systems meeting compliance', () => {
       cy.wait('@getReports');
       cy.intercept(
-        `/api/compliance/v2/reports?${getRequestParams({
+        `/api/compliance/v2/reports?${getRequestParamsWithDefaultFilter({
           sortBy: 'percent_compliant:asc',
         })}`,
         {
@@ -150,7 +148,7 @@ describe('Reports table tests', () => {
         .should('contain', 'sort_by=percent_compliant%3Aasc');
 
       cy.intercept(
-        `/api/compliance/v2/reports?${getRequestParams({
+        `/api/compliance/v2/reports?${getRequestParamsWithDefaultFilter({
           sortBy: 'percent_compliant:desc',
         })}`,
         {
@@ -180,7 +178,7 @@ describe('Reports table tests', () => {
       const perPageOptions = [20, 50, 100];
       perPageOptions.forEach((perPageValue) => {
         cy.intercept(
-          `/api/compliance/v2/reports?${getRequestParams({
+          `/api/compliance/v2/reports?${getRequestParamsWithDefaultFilter({
             limit: perPageValue,
           })}`,
           {
@@ -282,7 +280,11 @@ describe('Reports table tests', () => {
                   if (report.title == item['policy']) {
                     assert(
                       item['operatingSystem'].includes(report.os_major_version),
-                      `Operating system values are not equal: JSON has ${item['operatingSystem']} value but table has ${report.os_major_version}`
+                      getComparisonMessage(
+                        'Operating system',
+                        report.os_major_version,
+                        item['operatingSystem']
+                      )
                     );
                     let systemMeetingCompliance = `${report.compliant_system_count} of ${report.reported_system_count} systems`;
                     let unsupportedCount = report.unsupported_system_count;
@@ -294,7 +296,11 @@ describe('Reports table tests', () => {
                     assert(
                       item['systemsMeetingCompliance'] ===
                         systemMeetingCompliance,
-                      `Systems meeting compliance values are not equal: JSON has ${item['systemsMeetingCompliance']} value but json has ${report.compliant_system_count}`
+                      getComparisonMessage(
+                        'Systems meeting compliance',
+                        systemMeetingCompliance,
+                        item['systemsMeetingCompliance']
+                      )
                     );
                   }
                 });
@@ -311,7 +317,7 @@ describe('Reports table tests', () => {
       cy.wait('@getReports');
 
       cy.intercept(
-        `/api/compliance/v2/reports?${getRequestParams({
+        `/api/compliance/v2/reports?${getRequestParamsWithDefaultFilter({
           filter: '(with_reported_systems = true) AND (title ~ "foo bar")',
         })}`,
         {
@@ -348,8 +354,8 @@ describe('Reports table tests', () => {
       cy.wait('@getReports');
       const reportTitle = reportsData[0].title;
       cy.intercept(
-        `/api/compliance/v2/reports?${getRequestParams({
-          filter: `(with_reported_systems = true) AND (title ~ "${reportTitle}")`,
+        `/api/compliance/v2/reports?${getRequestParamsWithDefaultFilter({
+          filter: `(title ~ "${reportTitle}") AND (with_reported_systems = true)`,
         })}`,
         {
           statusCode: 200,
@@ -373,7 +379,7 @@ describe('Reports table tests', () => {
         .should(
           'contain',
           new URLSearchParams({
-            filter: `(with_reported_systems = true) AND (title ~ "${reportTitle}")`,
+            filter: `(title ~ "${reportTitle}") AND (with_reported_systems = true)`,
           }).toString()
         );
       cy.get('td[data-label="Policy"] a')
@@ -386,8 +392,8 @@ describe('Reports table tests', () => {
       const reportOSVersion = reportsData[0].os_major_version;
 
       cy.intercept(
-        `/api/compliance/v2/reports?${getRequestParams({
-          filter: `(with_reported_systems = true) AND (os_major_version ^ (${reportOSVersion}))`,
+        `/api/compliance/v2/reports?${getRequestParamsWithDefaultFilter({
+          filter: `(os_major_version ^ (${reportOSVersion})) AND (with_reported_systems = true)`,
         })}`,
         {
           statusCode: 200,
@@ -416,7 +422,7 @@ describe('Reports table tests', () => {
         .should(
           'contain',
           new URLSearchParams({
-            filter: `(with_reported_systems = true) AND (os_major_version ^ (${reportOSVersion}))`,
+            filter: `(os_major_version ^ (${reportOSVersion})) AND (with_reported_systems = true)`,
           }).toString()
         );
       cy.get('td[data-label="Operating system"]')
@@ -428,8 +434,8 @@ describe('Reports table tests', () => {
       cy.wait('@getReports');
 
       cy.intercept(
-        `/api/compliance/v2/reports?${getRequestParams({
-          filter: `(with_reported_systems = true) AND (((percent_compliant >= 90 AND percent_compliant <= 100)))`,
+        `/api/compliance/v2/reports?${getRequestParamsWithDefaultFilter({
+          filter: `(((percent_compliant >= 90 AND percent_compliant <= 100))) AND (with_reported_systems = true)`,
         })}`,
         {
           statusCode: 200,
@@ -455,15 +461,18 @@ describe('Reports table tests', () => {
         .should(
           'contain',
           new URLSearchParams({
-            filter: `(with_reported_systems = true) AND (((percent_compliant >= 90 AND percent_compliant <= 100)))`,
+            limit: 10,
+            offset: 0,
+            sort_by: 'title:asc',
+            filter: `(((percent_compliant >= 90 AND percent_compliant <= 100))) AND (with_reported_systems = true)`,
           }).toString()
         );
     });
     it('Clear filters works', () => {
       cy.wait('@getReports');
       cy.intercept(
-        `/api/compliance/v2/reports?${getRequestParams({
-          filter: '(with_reported_systems = true) AND (title ~ "foo bar")',
+        `/api/compliance/v2/reports?${getRequestParamsWithDefaultFilter({
+          filter: '(title ~ "foo bar") AND (with_reported_systems = true)',
         })}`,
         {
           statusCode: 200,
@@ -487,7 +496,7 @@ describe('Reports table tests', () => {
         .should(
           'contain',
           new URLSearchParams({
-            filter: '(with_reported_systems = true) AND (title ~ "foo bar")',
+            filter: '(title ~ "foo bar") AND (with_reported_systems = true)',
           }).toString()
         );
 

@@ -1,5 +1,6 @@
 import { useDeepCompareMemo } from 'use-deep-compare';
 import { useSerialisedTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
+import { joinFilters } from '../helpers';
 
 const useComplianceTableState = (useTableState, paramsOption) => {
   const serialisedTableState = useSerialisedTableState();
@@ -12,11 +13,12 @@ const useComplianceTableState = (useTableState, paramsOption) => {
   const params = useDeepCompareMemo(() => {
     if (!Array.isArray(paramsOption)) {
       const { filter: filterParam, ...paramsParam } = paramsOption || {};
-
-      const filter =
-        filterParam && filterState
-          ? `(${filterParam}) AND (${filterState})`
-          : filterState || filterParam;
+      const filter = joinFilters(
+        ...[
+          ...(filterState ? [filterState] : []),
+          ...(filterParam ? [filterParam] : []),
+        ].filter((v) => v.length)
+      );
 
       return useTableState
         ? {
