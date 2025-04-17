@@ -57,8 +57,11 @@ const useLegendData = (donutValues) => {
               title: 'Systems never reported',
               content: `${pluralize(
                 notReportingSystemCount,
-                'system'
-              )} are not reporting scan results. This may be because the system is disconnected, or the insights-client is not properly configured to use Compliance.`,
+                'system is',
+                'systems are'
+              )} not reporting scan results. This may be because the ${
+                notReportingSystemCount === 1 ? 'system is' : 'systems are'
+              } disconnected, or the insights-client is not properly configured to use Compliance.`,
             },
             symbol: { fill: paletteColors.black200 },
           },
