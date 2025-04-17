@@ -186,10 +186,10 @@ const NeverScanned = () => (
       </Fragment>
     }
   >
-    <div>
+    <span>
       <ExclamationTriangleIcon color="var(--pf-v5-global--warning-color--100)" />
       {' ' + NEVER}
-    </div>
+    </span>
   </Tooltip>
 );
 
