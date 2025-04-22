@@ -139,14 +139,29 @@ SSGVersions.propTypes = {
   testResultProfiles: propTypes.array,
 };
 
-export const Policies = ({ policies }) =>
-  (policies || []).length > 0 && (
-    <Truncate
-      inline
-      text={policies.map((p) => p.name).join(', ')}
-      length={215}
-    />
+const getTruncateLength = (policies) => {
+  const additionalCharLength = 4; // for the commas and spaces
+  if ((policies || []).length > 2) {
+    return (
+      policies[0].name.length + policies[1].name.length + additionalCharLength
+    );
+  }
+  return 215;
+};
+
+export const Policies = ({ policies }) => {
+  const truncateLength = getTruncateLength(policies);
+
+  return (
+    (policies || []).length > 0 && (
+      <Truncate
+        inline
+        text={policies.map((p) => p.name).join(', ')}
+        length={truncateLength}
+      />
+    )
   );
+};
 
 Policies.propTypes = {
   policies: propTypes.array,
