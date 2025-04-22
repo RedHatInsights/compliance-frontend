@@ -3,18 +3,15 @@ import propTypes from 'prop-types';
 import { Text, View } from '@react-pdf/renderer';
 // eslint-disable-next-line rulesdir/disallow-fec-relative-imports
 import {
-  Panel,
   Table,
   Column,
   Section,
 } from '@redhat-cloud-services/frontend-components-pdf-generator';
-import { DateFormat } from '@redhat-cloud-services/frontend-components/DateFormat';
 import styles from './ReportPDF/StyleSheet';
 import SystemsTable from './ReportPDF/SystemsTable';
 import UnsupportedSystemsTable from './ReportPDF/UnsupportedSystemsTable';
 import NonReportedSystemsTable from './ReportPDF/NonReportedSystemsTable';
 import RulesTable from './ReportPDF/RulesTable';
-import PanelItem from './ReportPDF/PanelItem';
 import SubSection from './ReportPDF/SubSection';
 import ComplianceChart from './ReportPDF/ComplianceChart';
 
@@ -42,10 +39,6 @@ const ReportPDF = ({ data, ssgFinder }) => {
 
   return (
     <Fragment>
-      <Text style={styles.subSectionTitle}>{`Report prepared ${
-        DateFormat({ date: new Date(), type: 'exact' }).props.children
-      }`}</Text>
-
       {userNotes && (
         <View style={styles.userNotes}>
           <View style={styles.userNotesTitle}>
@@ -92,28 +85,6 @@ const ReportPDF = ({ data, ssgFinder }) => {
           style: styles.sectionTitle,
         }}
       >
-        <Panel withColumn={false} style={{ marginBottom: '20px' }}>
-          <PanelItem title="Non-compliant systems">
-            {nonCompliantSystemCount}
-          </PanelItem>
-
-          {unsupportedSystemCount ? (
-            <PanelItem title="Systems with unsupported configuration">
-              {unsupportedSystemCount}
-            </PanelItem>
-          ) : null}
-
-          {nonReportingSystemCount ? (
-            <PanelItem title="Systems never reported">
-              {nonReportingSystemCount}
-            </PanelItem>
-          ) : null}
-
-          <PanelItem title="Compliant systems">
-            {compliantSystemCount}
-          </PanelItem>
-        </Panel>
-
         {nonCompliantSystems && nonCompliantSystemCount ? (
           <SubSection title="Non-compliant systems">
             <SystemsTable systems={nonCompliantSystems} />
