@@ -213,7 +213,7 @@ export const SystemsTable = ({
             all: true,
             operatingSystem: false,
             tags: false,
-            hostGroupFilteronCustomSelect: !showGroupsFilter,
+            hostGroupFilter: !showGroupsFilter,
           }}
           showTags
           onLoad={defaultOnLoad(columns)}
