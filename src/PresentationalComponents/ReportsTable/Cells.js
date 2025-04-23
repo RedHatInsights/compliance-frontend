@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { TextContent } from '@patternfly/react-core';
-import { DownloadIcon } from '@patternfly/react-icons';
+import { ExportIcon } from '@patternfly/react-icons';
 import {
   PolicyPopover,
   GreySmallText,
@@ -61,7 +61,7 @@ export const PDFExportDownload = ({ id }) => (
       ouiaId: 'ReportsDownloadReportPDFLink',
     }}
   >
-    <DownloadIcon />
+    <ExportIcon />
   </Link>
 );
 
