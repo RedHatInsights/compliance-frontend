@@ -9,7 +9,7 @@ const SystemsTable = ({ systems }) => {
   const rows = systems.map((system) => [
     system.display_name,
     `RHEL ${system.os_major_version}.${system.os_minor_version}`,
-    `${system.failed_rule_count || ''}`,
+    `${system.failed_rule_count || 0}`,
     fixedPercentage(system.score),
   ]);
 
