@@ -153,7 +153,7 @@ export const Policies = ({ policies }) => {
   const truncateLength = getTruncateLength(policies);
 
   return (
-    (policies || []).length > 0 && (
+    (policies || []).length && (
       <Truncate
         inline
         text={policies.map((p) => p.name).join(', ')}
