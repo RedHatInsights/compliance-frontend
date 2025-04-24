@@ -29,7 +29,6 @@ export { default as WarningText } from './WarningText/WarningText';
 export { default as BreadcrumbLinkItem } from './BreadcrumbLinkItem/BreadcrumbLinkItem';
 export { default as ReportsTable } from './ReportsTable/ReportsTable';
 export { default as ReportsEmptyState } from './ReportsEmptyState/ReportsEmptyState';
-export { default as PolicyPopover } from './PolicyPopover/PolicyPopover';
 export { default as PolicyThresholdTooltip } from './PolicyThresholdTooltip/PolicyThresholdTooltip';
 export { default as PolicyBusinessObjectiveTooltip } from './PolicyBusinessObjectiveTooltip/PolicyBusinessObjectiveTooltip';
 export { default as PoliciesTable } from './PoliciesTable/PoliciesTable';
