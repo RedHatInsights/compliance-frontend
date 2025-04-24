@@ -1,9 +1,8 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { TextContent } from '@patternfly/react-core';
-import { DownloadIcon } from '@patternfly/react-icons';
+import { ExportIcon } from '@patternfly/react-icons';
 import {
-  PolicyPopover,
   GreySmallText,
   LinkWithPermission as Link,
   LinkButton,
@@ -16,7 +15,6 @@ export const Name = (report) => (
       {report.title}
     </Link>
     <React.Fragment>
-      <PolicyPopover {...{ report, position: 'right' }} />
       <GreySmallText>{report.profile_title}</GreySmallText>
     </React.Fragment>
   </TextContent>
@@ -61,7 +59,7 @@ export const PDFExportDownload = ({ id }) => (
       ouiaId: 'ReportsDownloadReportPDFLink',
     }}
   >
-    <DownloadIcon />
+    <ExportIcon />
   </Link>
 );
 
