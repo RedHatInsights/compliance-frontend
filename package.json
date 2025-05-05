@@ -168,7 +168,7 @@
     "test:snapshots": "jest -u --passWithNoTests --no-coverage",
     "test:ct": "BABEL_ENV=componentTest cypress run --browser chrome --component",
     "test:openct": "BABEL_ENV=componentTest cypress open --component",
-    "test:coverage": "./coverage.sh",
+    "test:coverage": "curl -sSL 'https://raw.githubusercontent.com/RedHatInsights/insights-interact-tools/refs/heads/main/scripts/coverage.sh' | bash",
     "lint": "npm-run-all lint:*",
     "lint:js": "eslint config src",
     "lint:js:fix": "eslint config src --fix",
@@ -183,7 +183,6 @@
     "nightly": "npm run ci:verify",
     "bump:redhatservices": "npm update @redhat-cloud-services/compliance-client @redhat-cloud-services/frontend-components-notifications @redhat-cloud-services/frontend-components-utilities @redhat-cloud-services/frontend-components-config @redhat-cloud-services/frontend-components @redhat-cloud-services/frontend-components-remediations @redhat-cloud-services/eslint-config-redhat-cloud-services @redhat-cloud-services/tsc-transform-imports @redhat-cloud-services/frontend-components-config-utilities --save",
     "bump:patternfly": "npm update @patternfly/react-core @patternfly/react-table @patternfly/react-charts @patternfly/react-tokens @patternfly/react-icons --save",
-    "coverage": "bash coverage.sh && npm run coverage:clean",
     "postinstall": "ts-patch install",
     "docs": "jsdoc --configure .jsdoc.json"
   }
