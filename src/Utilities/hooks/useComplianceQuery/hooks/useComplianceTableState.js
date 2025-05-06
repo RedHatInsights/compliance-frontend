@@ -1,5 +1,5 @@
 import { useDeepCompareMemo } from 'use-deep-compare';
-import { useSerialisedTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
+import { useSerialisedTableState } from 'bastilian-tabletools';
 import { joinFilters } from '../helpers';
 
 const useComplianceTableState = (useTableState, paramsOption) => {

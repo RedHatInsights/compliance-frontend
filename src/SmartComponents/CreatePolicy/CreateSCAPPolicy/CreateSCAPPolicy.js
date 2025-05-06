@@ -16,7 +16,7 @@ import {
   TextVariants,
   Tile,
 } from '@patternfly/react-core';
-import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
+import { TableStateProvider } from 'bastilian-tabletools';
 import useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
 import useSecurityGuidesOS from 'Utilities/hooks/api/useSecurityGuidesOS';
 import { StateViewPart, StateViewWithError } from 'PresentationalComponents';

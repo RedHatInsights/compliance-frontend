@@ -10,6 +10,16 @@ const defaultPermissions = ['compliance:*:*'];
 
 const reportsRoutes = [
   {
+    path: 'example',
+    title: 'Example Page',
+    requiredPermissions: [...defaultPermissions, 'compliance:report:read'],
+    component: lazy(() =>
+      import(
+        /* webpackChunkName: "Reports" */ './SmartComponents/Example/Example'
+      )
+    ),
+  },
+  {
     path: 'reports',
     title: defaultReportTitle,
     requiredPermissions: [...defaultPermissions, 'compliance:report:read'],

@@ -12,7 +12,7 @@ import {
 import usePolicies from 'Utilities/hooks/api/usePolicies';
 import CreateLink from 'SmartComponents/CompliancePolicies/components/CreateLink';
 import ComplianceEmptyState from 'PresentationalComponents/ComplianceEmptyState';
-import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
+import { TableStateProvider } from 'bastilian-tabletools';
 
 const CompliancePolicies = () => {
   // Async table needs info about total policy count before mounting
