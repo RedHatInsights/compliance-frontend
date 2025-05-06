@@ -31,10 +31,10 @@ export const validateDetailsPage = (name, refId, complianceThreshold) =>
 export const validateRulesPage = (selectedRuleRefIds) =>
   selectedRuleRefIds?.length > 0;
 
-export const validateSystemsPage = (systemIds) => {
-  if (systemIds) {
-    return systemIds.length > 0;
+export const validateSystemsPage = (systemIds, allowNoSystems) => {
+  if (allowNoSystems) {
+    return true;
   } else {
-    return false;
+    return systemIds?.length > 0;
   }
 };

@@ -78,10 +78,11 @@ const EditPolicyProfilesRules = ({
   const additionalRules =
     profilesAndRuleIds &&
     selectedRuleRefIds?.reduce((additions, profileAndRules) => {
-      const originalRules = profilesAndRuleIds.find(
-        ({ osMinorVersion }) =>
-          osMinorVersion === profileAndRules.osMinorVersion
-      ).ruleIds;
+      const originalRules =
+        profilesAndRuleIds.find(
+          ({ osMinorVersion }) =>
+            osMinorVersion === profileAndRules.osMinorVersion
+        )?.ruleIds || [];
 
       return {
         ...additions,

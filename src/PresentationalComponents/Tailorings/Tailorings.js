@@ -128,10 +128,11 @@ const Tailorings = ({
                         }}
                       />
                     </FlexItem>
-                    {selectedVersionCounts?.[tab.os_minor_version] && (
+                    {typeof selectedVersionCounts?.[tab.os_minor_version] !==
+                      'undefined' && (
                       <FlexItem>
                         <Badge isRead>
-                          {selectedVersionCounts[tab.os_minor_version]}
+                          {` ${selectedVersionCounts[tab.os_minor_version]} `}
                         </Badge>
                       </FlexItem>
                     )}
