@@ -14,7 +14,7 @@ export const interceptBatchRequest = (endpoint, offset, dataSlice, total, limit=
 
 export const interceptRulesByGroupRequest = (groupId, endpoint, dataSlice, total, offset=0, limit=50) => {
   cy.intercept(
-    `/api/compliance/v2/${endpoint}/rules?limit=${limit}&offset=${offset}&sort_by=title%3Aasc&filter=rule_group_id*`,
+    `/api/compliance/v2/${endpoint}/rules?limit=${limit}&offset=${offset}&sort_by=title%3Aasc&filter=*`,
     {
       statusCode: 200,
       body: {

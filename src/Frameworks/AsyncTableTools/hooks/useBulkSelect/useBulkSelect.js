@@ -137,6 +137,7 @@ const useBulkSelect = ({
 
   return {
     tableView: {
+      selected: selectedIds,
       enableBulkSelect,
       markRowSelected,
       isItemSelected,
@@ -152,7 +153,7 @@ const useBulkSelect = ({
           toolbarProps: {
             bulkSelect: {
               toggleProps: { children: [title] },
-              isDisabled,
+              isDisabled: isDisabled || loading,
               items: [
                 {
                   title: 'Select none',

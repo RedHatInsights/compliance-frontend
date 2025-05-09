@@ -4,21 +4,16 @@ export const TOTAL_REQUEST_PARAMS = {
 
 export const joinFilters = (...filters) => {
   const filteredFilters = filters.filter((v) => v?.length);
-
+  console.log('filteredFilters', filteredFilters);
   return filteredFilters.length > 1
     ? filteredFilters.map((filter) => `(${filter})`).join(' AND ')
-    : filters;
+    : filters[0];
 };
 
 export const paramsWithFilters = (fetchParams, params) => {
   if (fetchParams && !Array.isArray(fetchParams)) {
     const { filter: fetchFilter, ...remainingFetchParams } = fetchParams;
-    const filter = joinFilters(
-      ...[
-        ...(fetchFilter ? [fetchFilter] : []),
-        ...(params?.filter ? [params.filter] : []),
-      ]
-    );
+    const filter = joinFilters(fetchFilter, params?.filter || {});
 
     return {
       ...params,

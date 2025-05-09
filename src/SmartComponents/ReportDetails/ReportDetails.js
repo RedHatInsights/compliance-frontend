@@ -32,33 +32,26 @@ import useReport from 'Utilities/hooks/api/useReport';
 import useReportTestResultsSG from 'Utilities/hooks/api/useReportTestResultsSG';
 import * as Columns from '../SystemsTable/Columns';
 import ReportChart from './Components/ReportChart';
-import {
-  fetchNeverReportedCustomOSes,
-  fetchReportingCustomOSes,
-} from './constants';
 import '@/Charts.scss';
 import './ReportDetails.scss';
-import useFetchReporting from 'SmartComponents/ReportDetails/Components/hooks/useFetchReporting';
-import useFetchNeverReported from 'SmartComponents/ReportDetails/Components/hooks/useFetchNeverReported';
 import TabTitleWithData from 'SmartComponents/ReportDetails/Components/TabTitleWithData';
 
 const ReportDetails = ({ route }) => {
   const { report_id } = useParams();
   const {
-    data: { data } = {},
+    data: { data: report } = {},
     error,
     loading,
   } = useReport({ params: { reportId: report_id } });
   const { data: { data: ssgVersions } = {} } = useReportTestResultsSG({
     params: { reportId: report_id },
+    skip: !report,
   });
-  let reportData = {};
   let reportTitle;
   let pageTitle;
 
-  if (!loading && data) {
-    reportData = data;
-    reportTitle = reportData.title;
+  if (!loading && report) {
+    reportTitle = report.title;
     pageTitle = `Report: ${reportTitle}`;
   }
 
@@ -68,20 +61,10 @@ const ReportDetails = ({ route }) => {
 
   const handleTabSelect = (_, eventKey) => setTab(eventKey);
 
-  const {
-    isLoading: isLoadingReporting,
-    fetch: fetchReporting,
-    data: dataReporting,
-  } = useFetchReporting(report_id);
-
-  const {
-    isLoading: isLoadingNeverReported,
-    fetch: fetchNeverReported,
-    data: dataNeverReported,
-  } = useFetchNeverReported(report_id);
-
   return (
-    <StateViewWithError stateValues={{ error, data, loading }}>
+    <StateViewWithError
+      stateValues={{ error, report: report && !loading, loading }}
+    >
       <StateViewPart stateKey="loading">
         <PageHeader>
           <ReportDetailsContentLoader />
@@ -92,7 +75,7 @@ const ReportDetails = ({ route }) => {
           </EmptyState>
         </section>
       </StateViewPart>
-      <StateViewPart stateKey="data">
+      <StateViewPart stateKey="report">
         <PageHeader>
           <Breadcrumb ouiaId="ReportDetailsPathBreadcrumb">
             <BreadcrumbLinkItem to="/">Compliance</BreadcrumbLinkItem>
@@ -102,7 +85,7 @@ const ReportDetails = ({ route }) => {
           <Grid hasGutter>
             <GridItem sm={9} md={9} lg={9} xl={9}>
               <PageHeaderTitle title={pageTitle} />
-              <SubPageTitle>{reportData.profile_title}</SubPageTitle>
+              <SubPageTitle>{report?.profile_title}</SubPageTitle>
             </GridItem>
             <GridItem
               className="report-details-button"
@@ -112,8 +95,8 @@ const ReportDetails = ({ route }) => {
               xl={3}
             >
               <Link
-                state={{ reportData }}
-                to={`/reports/${reportData.id}/pdf`}
+                state={{ report }}
+                to={`/reports/${report?.id}/pdf`}
                 className="pf-v5-u-mr-md"
                 Component={LinkButton}
                 componentProps={{
@@ -124,8 +107,8 @@ const ReportDetails = ({ route }) => {
                 Download PDF
               </Link>
               <Link
-                state={{ reportData }}
-                to={`/reports/${reportData.id}/delete`}
+                state={{ report }}
+                to={`/reports/${report?.id}/delete`}
                 Component={LinkButton}
                 componentProps={{
                   isInline: true,
@@ -140,13 +123,13 @@ const ReportDetails = ({ route }) => {
           <Grid hasGutter>
             <GridItem sm={12} md={12} lg={12} xl={6}>
               <ReportChart
-                report={reportData}
+                report={report}
                 hasLegend={true}
                 chartClass="report-details-chart-container"
               />
             </GridItem>
             <GridItem sm={12} md={12} lg={12} xl={6}>
-              <ReportDetailsDescription report={reportData} />
+              <ReportDetailsDescription report={report} />
             </GridItem>
           </Grid>
         </PageHeader>
@@ -167,18 +150,24 @@ const ReportDetails = ({ route }) => {
                   title={
                     <TabTitleWithData
                       text="Reporting"
-                      data={dataReporting?.meta?.total}
-                      isLoading={isLoadingReporting}
+                      data={report?.reported_system_count}
+                      isLoading={loading}
                       color="blue"
                     />
                   }
                 >
                   <SystemsTable
-                    systemProps={{
-                      isFullView: true,
+                    isFullView
+                    remediationsEnabled
+                    apiEndpoint="reportTestResults"
+                    ignoreOsMajorVersion
+                    reportId={report_id}
+                    filters={{
+                      ssgVersions,
+                      compliant: true,
+                      severity: true,
+                      groups: true,
                     }}
-                    remediationsEnabled={true}
-                    fetchApi={fetchReporting}
                     columns={[
                       Columns.customDisplay({
                         showLink: true,
@@ -196,14 +185,6 @@ const ReportDetails = ({ route }) => {
                       Columns.ComplianceScore(true),
                       Columns.LastScanned,
                     ]}
-                    showOsMinorVersionFilter={[reportData.os_major_version]}
-                    ignoreOsMajorVersion
-                    ssgVersions={ssgVersions}
-                    compliantFilter
-                    ruleSeverityFilter
-                    showGroupsFilter
-                    reportId={report_id}
-                    fetchCustomOSes={fetchReportingCustomOSes}
                   />
                 </Tab>
 
@@ -214,17 +195,17 @@ const ReportDetails = ({ route }) => {
                   title={
                     <TabTitleWithData
                       text="Never reported"
-                      data={dataNeverReported?.meta?.total}
-                      isLoading={isLoadingNeverReported}
+                      data={
+                        report?.assigned_system_count -
+                        report?.reported_system_count
+                      }
+                      isLoading={loading}
                     />
                   }
                 >
                   <SystemsTable
-                    systemProps={{
-                      isFullView: true,
-                    }}
-                    remediationsEnabled={false}
-                    fetchApi={fetchNeverReported}
+                    apiEndpoint="reportSystems"
+                    isFullView
                     columns={[
                       Columns.customName(
                         {
@@ -244,10 +225,10 @@ const ReportDetails = ({ route }) => {
                     ]}
                     defaultFilter={'never_reported = true'}
                     ignoreOsMajorVersion
-                    showGroupsFilter
+                    filters={{
+                      groups: true,
+                    }}
                     reportId={report_id}
-                    fetchCustomOSes={fetchNeverReportedCustomOSes}
-                    enableExport={false}
                   />
                 </Tab>
               </Tabs>
