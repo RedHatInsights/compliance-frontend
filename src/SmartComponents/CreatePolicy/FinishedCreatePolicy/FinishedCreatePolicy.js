@@ -59,10 +59,12 @@ export const useUpdatePolicy = () => {
 
       const { id: newPolicyId } = createPolicyResponse.data;
 
-      await assignSystems(
-        [newPolicyId, undefined, { ids: hosts.map(({ id }) => id) }],
-        false
-      );
+      if (hosts) {
+        await assignSystems(
+          [newPolicyId, undefined, { ids: hosts.map(({ id }) => id) }],
+          false
+        );
+      }
 
       dispatchProgress();
 

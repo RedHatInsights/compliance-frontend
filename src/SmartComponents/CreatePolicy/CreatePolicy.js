@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import propTypes from 'prop-types';
 import { formValueSelector, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 import { Wizard } from '@patternfly/react-core/deprecated';
+import usePolicies from 'Utilities/hooks/api/usePolicies';
+import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
 import CreateSCAPPolicy from './CreateSCAPPolicy';
 import { default as EditPolicyRules } from './EditPolicyProfilesRules/EditPolicyProfilesRules';
 import EditPolicySystems from './EditPolicySystems';
@@ -28,6 +30,7 @@ export const CreatePolicyForm = ({
   systemIds,
   reset,
 }) => {
+  const enableHostless = useFeatureFlag('image-builder.compliance.enabled');
   const navigate = useNavigate();
   const [stepIdReached, setStepIdReached] = useState(1);
   const resetAnchor = () => {
@@ -48,6 +51,20 @@ export const CreatePolicyForm = ({
     navigate('/scappolicies');
   };
 
+  const { data: policiesData } = usePolicies({
+    params: {
+      filter: `os_major_version = ${osMajorVersion}`,
+    },
+    skip: !refId || !osMajorVersion,
+  });
+
+  const allowNoSystems = useMemo(() => {
+    return (
+      enableHostless &&
+      !policiesData?.data?.some(({ ref_id }) => ref_id === refId)
+    );
+  }, [policiesData, refId, enableHostless]);
+
   const steps = [
     {
       id: 1,
@@ -65,15 +82,16 @@ export const CreatePolicyForm = ({
     {
       id: 3,
       name: 'Systems',
-      component: <EditPolicySystems />,
+      component: <EditPolicySystems allowNoSystems={allowNoSystems} />,
       canJumpTo: stepIdReached >= 3,
-      enableNext: validateSystemsPage(systemIds),
+      enableNext: validateSystemsPage(systemIds, allowNoSystems),
     },
     {
       id: 4,
       name: 'Rules',
       component: <EditPolicyRules />,
-      canJumpTo: systemIds?.length > 0 && stepIdReached >= 4,
+      canJumpTo:
+        validateSystemsPage(systemIds, allowNoSystems) && stepIdReached >= 4,
       enableNext: validateRulesPage(selectedRuleRefIds),
     },
     {
@@ -83,7 +101,7 @@ export const CreatePolicyForm = ({
       nextButtonText: 'Finish',
       canJumpTo:
         validateRulesPage(selectedRuleRefIds) &&
-        systemIds?.length > 0 &&
+        validateSystemsPage(systemIds, allowNoSystems) &&
         stepIdReached >= 5,
     },
     {
@@ -91,7 +109,8 @@ export const CreatePolicyForm = ({
       name: 'Finished',
       component: <FinishedCreatePolicy onWizardFinish={onClose} />,
       isFinishedStep: true,
-      canJumpTo: systemIds?.length > 0 && stepIdReached >= 6,
+      canJumpTo:
+        validateSystemsPage(systemIds, allowNoSystems) && stepIdReached >= 6,
     },
   ];
 
