@@ -1,10 +1,12 @@
 import React, { useCallback } from 'react';
 import FinishedCreatePolicyBase from './FinishedCreatePolicyBase';
-import useCreatePolicy from '../../../Utilities/hooks/api/useCreatePolicy';
-import useAssignRules from '../../../Utilities/hooks/api/useAssignRules';
-import useAssignSystems from '../../../Utilities/hooks/api/useAssignSystems';
-import useTailorings from '../../../Utilities/hooks/api/useTailorings';
-import useUpdateTailoring from '../../../Utilities/hooks/api/useUpdateTailoring';
+import useCreatePolicy from 'Utilities/hooks/api/useCreatePolicy';
+import useCreateTailoring from 'Utilities/hooks/api/useCreateTailoring';
+
+import useAssignRules from 'Utilities/hooks/api/useAssignRules';
+import useAssignSystems from 'Utilities/hooks/api/useAssignSystems';
+import useTailorings from 'Utilities/hooks/api/useTailorings';
+import useUpdateTailoring from 'Utilities/hooks/api/useUpdateTailoring';
 
 export const useUpdatePolicy = () => {
   const { fetch: createPolicy } = useCreatePolicy({ skip: true });
@@ -12,6 +14,7 @@ export const useUpdatePolicy = () => {
   const { fetch: assignSystems } = useAssignSystems({ skip: true });
   const { fetch: fetchTailorings } = useTailorings({ skip: true });
   const { fetch: updateTailoring } = useUpdateTailoring({ skip: true }); // to update value overrides
+  const { fetchQueue: createTailorings } = useCreateTailoring();
 
   const updatedPolicy = useCallback(
     async (
@@ -60,10 +63,18 @@ export const useUpdatePolicy = () => {
       const { id: newPolicyId } = createPolicyResponse.data;
 
       if (hosts) {
-        await assignSystems(
-          [newPolicyId, undefined, { ids: hosts.map(({ id }) => id) }],
-          false
-        );
+        await assignSystems([
+          newPolicyId,
+          undefined,
+          { ids: hosts.map(({ id }) => id) },
+        ]);
+      } else {
+        const tailoringsToCreate = minorVersions.map((os_minor_version) => ({
+          policyId: newPolicyId,
+          tailoringCreate: { os_minor_version },
+        }));
+
+        await createTailorings(tailoringsToCreate);
       }
 
       dispatchProgress();

@@ -103,16 +103,13 @@ describe('useUpdatePolicy', () => {
 
     await result.current(undefined, policyDataToSubmit, onProgress);
 
-    expect(assignSystems).toBeCalledWith(
-      [
-        createdPolicyId,
-        undefined, // X-RH identity
-        {
-          ids: policyDataToSubmit.hosts.map(({ id }) => id),
-        },
-      ],
-      false // to return response data
-    );
+    expect(assignSystems).toBeCalledWith([
+      createdPolicyId,
+      undefined, // X-RH identity
+      {
+        ids: policyDataToSubmit.hosts.map(({ id }) => id),
+      },
+    ]);
   });
 
   it('fetches tailorings and adds rules to these tailorings', async () => {
