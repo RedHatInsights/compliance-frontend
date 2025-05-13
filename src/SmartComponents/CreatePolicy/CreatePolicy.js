@@ -51,19 +51,14 @@ export const CreatePolicyForm = ({
     navigate('/scappolicies');
   };
 
-  const { data: policiesData } = usePolicies({
-    params: {
-      filter: `os_major_version = ${osMajorVersion}`,
-    },
-    skip: !refId || !osMajorVersion,
+  const { data: policiesTotal } = usePolicies({
+    onlyTotal: true,
   });
 
-  const allowNoSystems = useMemo(() => {
-    return (
-      enableHostless &&
-      !policiesData?.data?.some(({ ref_id }) => ref_id === refId)
-    );
-  }, [policiesData, refId, enableHostless]);
+  const allowNoSystems = useMemo(
+    () => enableHostless && policiesTotal === 0,
+    [policiesTotal, enableHostless]
+  );
 
   const steps = [
     {
