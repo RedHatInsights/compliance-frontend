@@ -9,6 +9,17 @@ const useLegendData = (donutValues) => {
   const unsupportedSystemCount = donutValues[2].y;
   const notReportingSystemCount = donutValues[3].y;
 
+  const unsupportedVersionWording =
+    unsupportedSystemCount === 1
+      ? `This system is running an unsupported version of the SCAP
+         Security Guide (SSG) for the version of RHEL installed on it. 
+         Assessment of rules failed/passed on this system is
+         a best-guess effort and may not be accurate.`
+      : `These systems are running unsupported versions of the SCAP
+         Security Guide (SSG) for the version of RHEL installed on them. 
+         Assessment of rules failed/passed on these systems is
+         a best-guess effort and may not be accurate.`;
+
   return [
     {
       name: `${pluralize(compliantSystemCount, 'system')} compliant`,
@@ -30,12 +41,7 @@ const useLegendData = (donutValues) => {
               title: 'Unsupported SSG versions',
               content: (
                 <>
-                  <Text variant="p">
-                    These systems are running unsupported versions of the SCAP
-                    Security Guide (SSG) for the version of RHEL installed on
-                    them. Assessment of rules failed/passed on these systems is
-                    a best-guess effort and may not be accurate.
-                  </Text>
+                  <Text variant="p">{unsupportedVersionWording}</Text>
                   <Text variant="p">
                     The policy&apos;s compliance score excludes these systems.
                   </Text>

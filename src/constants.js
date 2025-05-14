@@ -290,3 +290,7 @@ export const policiesDataMapper = {
   title: 'name',
   id: 'id',
 };
+
+export const unsupportedSystemWarningMessage =
+  'This system was using an incompatible version of the SSG at the time this report was generated. ' +
+  'Assessment of rules failed/passed on this system is a best-guess effort and may not be accurate.';
