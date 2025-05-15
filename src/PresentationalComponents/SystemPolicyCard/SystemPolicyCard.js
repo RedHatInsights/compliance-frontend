@@ -11,7 +11,7 @@ import {
 } from '@patternfly/react-core';
 import DateFormat from '@redhat-cloud-services/frontend-components/DateFormat';
 import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
-import UnsupportedSSGVersion from './components/UnsupportedSSGVersion';
+import UnsupportedSSGVersionAlert from './components/UnsupportedSSGVersionAlert';
 import CompliantIcon from './components/CompliantIcon';
 
 const SystemPolicyCard = ({ policy, style }) => {
@@ -84,7 +84,7 @@ const SystemPolicyCard = ({ policy, style }) => {
       </CardBody>
       {!supported && (
         <CardFooter style={{ padding: '0' }}>
-          <UnsupportedSSGVersion
+          <UnsupportedSSGVersionAlert
             ouiaId="PolicyCardUnsupportedSSG"
             ssgVersion={ssgVersion}
             style={{

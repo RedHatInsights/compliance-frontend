@@ -11,11 +11,11 @@ import { ExclamationTriangleIcon } from '@patternfly/react-icons';
 import DateFormat from '@redhat-cloud-services/frontend-components/DateFormat';
 import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 import {
-  UnsupportedSSGVersion,
   ComplianceScore as PresentationalComplianceScore,
   LinkWithPermission as Link,
 } from 'PresentationalComponents';
 import { complianceScoreData, NEVER } from 'Utilities/ruleHelpers';
+import { unsupportedSystemWarningMessage } from '@/constants';
 
 const SystemLink = ({ id, children }) => (
   <Link to={{ pathname: `/systems/${id}` }}>{children}</Link>
@@ -112,9 +112,12 @@ export const SSGVersion = ({ ssgVersion = 'Not available', supported }) =>
   supported ? (
     ssgVersion
   ) : (
-    <UnsupportedSSGVersion messageVariant="singular">
-      {ssgVersion}
-    </UnsupportedSSGVersion>
+    <Tooltip content={unsupportedSystemWarningMessage}>
+      <span>
+        <ExclamationTriangleIcon color="var(--pf-v5-global--warning-color--100)" />
+        {' ' + ssgVersion}
+      </span>
+    </Tooltip>
   );
 
 SSGVersion.propTypes = {
