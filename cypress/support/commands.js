@@ -25,7 +25,7 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 import React from 'react';
-import { mount } from '@cypress/react18';
+import { mount } from 'cypress/react';
 import FlagProvider from '@unleash/proxy-client-react';
 import { COMPLIANCE_API_ROOT } from '@/constants';
 import TestWrapper from '@redhat-cloud-services/frontend-components-utilities/TestingUtils/JestUtils/TestWrapper';
