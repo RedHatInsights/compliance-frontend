@@ -85,7 +85,7 @@ describe('LastScanned', () => {
   it('returns the relative date the system was last scanned', () => {
     render(<LastScanned {...testSystem} />);
 
-    expect(screen.getByText('5 years ago')).toBeInTheDocument();
+    expect(screen.getByText('6 years ago')).toBeInTheDocument();
   });
 
   it('returns NEVER', () => {
