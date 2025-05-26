@@ -135,7 +135,7 @@
     "babel-plugin-istanbul": "^7.0.0",
     "better-docs": "^2.7.3",
     "css-loader": "^6.8.1",
-    "cypress": "^14.3.3",
+    "cypress": "^14.4.0",
     "dotenv-defaults": "^5.0.2",
     "eslint": "^8.43.0",
     "eslint-plugin-cypress": "^3.6.0",
