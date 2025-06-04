@@ -39,7 +39,7 @@ describe('EmptyState for systemDetails', () => {
     );
 
     expect(
-      screen.getByText(`This system isn't connected to Insights yet`)
+      screen.getByText(`This system isn’t connected to Insights yet`)
     ).toBeInTheDocument();
   });
 
