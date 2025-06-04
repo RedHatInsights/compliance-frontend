@@ -55,6 +55,7 @@ describe('ReportsTable Cells', () => {
       reported_system_count: 7,
       unsupported_system_count: 2,
       compliant_system_count: 4,
+      percent_compliant: 40,
     };
 
     render(
