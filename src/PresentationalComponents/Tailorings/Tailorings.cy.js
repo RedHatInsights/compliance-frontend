@@ -470,7 +470,7 @@ describe('Tailorings - Tailorings on Policy details', () => {
 
       expandNode(fakeTree);
     });
-    it.only('Searching by rule title switches to list view', () => {
+    it('Searching by rule title switches to list view', () => {
       const first_rule = rules[0];
       const requestParams = getRequestParams({
         filter: `(title ~ "${first_rule.title}" OR identifier_label ~ "${first_rule.title}")`,

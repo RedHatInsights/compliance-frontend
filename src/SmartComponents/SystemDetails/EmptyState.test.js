@@ -62,7 +62,7 @@ describe('EmptyState for systemDetails', () => {
     ).toBeInTheDocument();
   });
 
-  it.only('expect to render NoPoliciesState component for Compliance SystemDetails', () => {
+  it('expect to render NoPoliciesState component for Compliance SystemDetails', () => {
     useSystem.mockImplementation(() => ({}));
 
     render(
