@@ -48,11 +48,10 @@ const useDonutChart = (report) => {
     reported_system_count: testResultSystemCount = 0,
     unsupported_system_count: unsupportedSystemCount = 0,
     assigned_system_count: totalSystemCount = 0,
+    percent_compliant: compliancePercentage = 0,
   } = report;
 
   const notReportingSystemCount = totalSystemCount - testResultSystemCount;
-  // TODO: This is not always true as unsupported.
-  // Deal with it after RHINENG-14550
   const nonCompliantSystemCount =
     testResultSystemCount - compliantSystemCount - unsupportedSystemCount;
 
@@ -74,12 +73,6 @@ const useDonutChart = (report) => {
   const flyoutValues = [150, 180, 170, 170];
   const legendData = useLegendData(donutValues);
 
-  const compliancePercentage = fixedPercentage(
-    totalSystemCount > 0
-      ? Math.floor(100 * (compliantSystemCount / totalSystemCount))
-      : 0
-  );
-
   return {
     chartProps: {
       data: donutValues,
@@ -96,7 +89,7 @@ const useDonutChart = (report) => {
         />
       ),
       identifier: donutId,
-      title: compliancePercentage,
+      title: fixedPercentage(compliancePercentage),
       subTitle: 'Compliant',
       themeVariant: ChartThemeColor.light,
       colorScale: chartColorScale,
