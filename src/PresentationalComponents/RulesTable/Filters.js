@@ -32,7 +32,7 @@ const BASE_FILTER_CONFIGURATION = [
     type: conditionalFilterType.text,
     label: 'Name',
     filterSerialiser: (_, value) =>
-      `(title ~ "${value}" OR identifier_label ~ "${value}"`,
+      `(title ~ "${value}" OR identifier_label ~ "${value}")`,
   },
   {
     type: conditionalFilterType.checkbox,
