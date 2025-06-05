@@ -25,7 +25,7 @@ export const PassedSystemDetails = {
 export const RemediationSystemDetails = {
   ...Remediation,
   sortByFunction: (rule) => rule?.remediation_issue_id,
-  renderExport: (rule) => (rule?.remediation_issue_id ? 'Playbook' : 'Manual'),
+  renderExport: (rule) => (rule?.remediation_issue_id ? 'Automated' : 'Manual'),
   renderFunc: renderComponent(RemediationColumnCell),
 };
 

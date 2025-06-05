@@ -41,7 +41,8 @@ export const Remediation = {
   title: 'Remediation type',
   transforms: [nowrap],
   sortable: 'remediation_available',
-  renderExport: (rule) => (rule?.remediation_available ? 'Playbook' : 'Manual'),
+  renderExport: (rule) =>
+    rule?.remediation_available ? 'Automated' : 'Manual',
   renderFunc: renderComponent(RemediationColumnCell),
 };
 

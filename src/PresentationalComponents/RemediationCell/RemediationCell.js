@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 
 const RemediationCell = ({ hasPlaybook = false }) => (
-  <>{hasPlaybook ? ' Playbook' : ' Manual'}</>
+  <>{hasPlaybook ? ' Automated' : ' Manual'}</>
 );
 RemediationCell.propTypes = {
   hasPlaybook: propTypes.bool,

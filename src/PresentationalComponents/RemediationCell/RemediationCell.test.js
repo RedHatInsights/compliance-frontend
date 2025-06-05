@@ -9,9 +9,9 @@ describe('RemediationCell', () => {
     expect(screen.getByText('Manual')).toBeInTheDocument();
   });
 
-  it('expect to render "Palybook"', () => {
+  it('expect to render "Automated"', () => {
     render(<RemediationCell hasPlaybook={true} />);
 
-    expect(screen.getByText('Playbook')).toBeInTheDocument();
+    expect(screen.getByText('Automated')).toBeInTheDocument();
   });
 });

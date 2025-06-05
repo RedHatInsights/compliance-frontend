@@ -403,7 +403,7 @@ describe('Tailorings - Tailorings on Policy details', () => {
             );
             cy.get('td[data-label="Remediation type"]').should(
               'contain',
-              foundRule.remediation_available ? 'Playbook' : 'Manual'
+              foundRule.remediation_available ? 'Automated' : 'Manual'
             );
             cy.get('div').find("span[class*='table__toggle']").click();
           });
