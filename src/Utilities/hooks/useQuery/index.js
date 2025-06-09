@@ -1,2 +1,2 @@
-export { default as apiInstance } from './apiInstance';
+export { apiInstance } from './helpers';
 export { default } from './useQuery';

@@ -1,7 +1,6 @@
 import { renderHook, waitFor, act } from '@testing-library/react';
 import { useBulkSelect, useBulkSelectWithItems } from './useBulkSelect';
 import items from './__fixtures__/items';
-import useItemIdentify from './useItemIdentify';
 
 describe('useBulkSelect', () => {
   const defaultOptions = {
@@ -61,7 +60,7 @@ describe('useBulkSelect', () => {
 });
 
 describe('useBulkSelectWithItems', () => {
-  const exampleItems = useItemIdentify(items(20));
+  const exampleItems = items(20);
   const defaultOptions = {
     onSelect: () => ({}),
     items: exampleItems,

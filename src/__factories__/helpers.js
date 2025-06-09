@@ -17,33 +17,3 @@ export const randomNumbersArray = (count, min = 0, max = 10) =>
 
 export const randomStringsArray = (count) =>
   faker.helpers.uniqueArray(faker.word.sample, count);
-
-const wrapInNodes = (items) => ({
-  nodes: items,
-});
-
-export const wrapInEdges = (items) => ({
-  edges: items?.map((item) => ({ node: item })),
-});
-
-export const graphqlResult = (
-  query,
-  entities = {},
-  { variables, inEdges = true } = {}
-) => {
-  const data = Object.fromEntries(
-    Object.entries(entities).map(([type, items]) => {
-      return [type, inEdges ? wrapInEdges(items) : wrapInNodes(items)];
-    })
-  );
-
-  return {
-    request: {
-      query,
-      variables,
-    },
-    result: {
-      data,
-    },
-  };
-};

@@ -7,16 +7,13 @@ import { supportedProfiles } from '../../../__fixtures__/supportedProfiles';
 import useSecurityGuidesOS from 'Utilities/hooks/api/useSecurityGuidesOS';
 import useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
 import { CreateSCAPPolicyTableStateProvider } from './CreateSCAPPolicy';
-import useAPIV2FeatureFlag from 'Utilities/hooks/useAPIV2FeatureFlag';
 
 jest.mock('Utilities/hooks/api/useSecurityGuidesOS');
 jest.mock('Utilities/hooks/api/useSupportedProfiles');
-jest.mock('Utilities/hooks/useAPIV2FeatureFlag');
 
 describe('CreateSCAPPolicy', () => {
   const change = jest.fn();
   const availableVersions = [6, 7, 8, 9];
-  useAPIV2FeatureFlag.mockReturnValue(true);
 
   afterEach(() => {
     jest.clearAllMocks();
@@ -44,7 +41,7 @@ describe('CreateSCAPPolicy', () => {
 
   it('renders available OS major versions when fetched', async () => {
     useSecurityGuidesOS.mockReturnValue({
-      data: availableVersions,
+      data: { data: availableVersions },
       loading: false,
       error: undefined,
     });
@@ -69,7 +66,7 @@ describe('CreateSCAPPolicy', () => {
 
   it('calls the change callback on OS select', async () => {
     useSecurityGuidesOS.mockReturnValue({
-      data: availableVersions,
+      data: { data: availableVersions },
       loading: false,
       error: undefined,
     });
@@ -90,7 +87,7 @@ describe('CreateSCAPPolicy', () => {
 
   it('indicates selected OS version and renders policies table', async () => {
     useSecurityGuidesOS.mockReturnValue({
-      data: availableVersions,
+      data: { data: availableVersions },
       loading: false,
       error: undefined,
     });
@@ -117,7 +114,7 @@ describe('CreateSCAPPolicy', () => {
 
   it('shows available supported profiles', async () => {
     useSecurityGuidesOS.mockReturnValue({
-      data: availableVersions,
+      data: { data: availableVersions },
       loading: false,
       error: undefined,
     });
@@ -142,7 +139,7 @@ describe('CreateSCAPPolicy', () => {
 
   it('calls the change callback on profile select', async () => {
     useSecurityGuidesOS.mockReturnValue({
-      data: availableVersions,
+      data: { data: availableVersions },
       loading: false,
       error: undefined,
     });

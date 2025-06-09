@@ -46,6 +46,7 @@ const EditPolicySystemsTab = ({
   onSystemSelect,
   selectedSystems,
   supportedOsVersions,
+  setIsSystemsDataLoading,
 }) => {
   const { os_major_version } = policy;
 
@@ -72,9 +73,9 @@ const EditPolicySystemsTab = ({
       remediationsEnabled={false}
       preselectedSystems={selectedSystems}
       onSelect={onSystemSelect}
-      apiV2Enabled={true}
       fetchApi={fetchSystemsApi}
       fetchCustomOSes={fetchCustomOSes}
+      setIsSystemsDataLoading={setIsSystemsDataLoading}
     />
   );
 };
@@ -85,6 +86,7 @@ EditPolicySystemsTab.propTypes = {
   onSystemSelect: propTypes.func,
   selectedSystems: propTypes.array,
   supportedOsVersions: propTypes.array,
+  setIsSystemsDataLoading: propTypes.func,
 };
 
 export default EditPolicySystemsTab;

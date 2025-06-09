@@ -380,7 +380,7 @@ describe('skips', () => {
             skipValueDefinitions: true,
           },
           profile: {
-            skipRules: true,
+            skipRules: false,
             skipRuleTree: true,
           },
           tailoring: {
@@ -451,7 +451,7 @@ describe('skips', () => {
           },
           profile: {
             skipRules: true,
-            skipRuleTree: true,
+            skipRuleTree: false,
           },
           tailoring: {
             skipRules: true,
@@ -485,8 +485,8 @@ describe('skips', () => {
             skipValueDefinitions: false,
           },
           profile: {
-            skipRules: true,
-            skipRuleTree: true,
+            skipRules: false,
+            skipRuleTree: false,
           },
           tailoring: {
             skipRules: false,

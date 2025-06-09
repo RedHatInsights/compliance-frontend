@@ -82,7 +82,8 @@ const compileState = (
   currentState,
   newStateForNameSpace,
   observers,
-  serialisers
+  serialisers,
+  callbacks
 ) => {
   const newStateTableState = {
     ...(currentState?.tableState || {}),
@@ -104,6 +105,7 @@ const compileState = (
     ...(Object.keys(newSerialisedState).length
       ? { serialisedTableState: newSerialisedState }
       : {}),
+    callbacks: callbacks,
   };
 };
 

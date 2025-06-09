@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { useDeepCompareEffect, useDeepCompareCallback } from 'use-deep-compare';
+import { fetchResult } from './helpers';
 
 /**
  *
@@ -19,6 +20,7 @@ import { useDeepCompareEffect, useDeepCompareCallback } from 'use-deep-compare';
  *  @param   {object}         [options]                Includes options like params and skip
  *  @param   {Array | object} [options.params]         Parameters passed to the request to make. If an array is passed it will be spread as arguments!
  *  @param   {boolean}        [options.convertToArray] A function to use to convert a params object into an arguments array to pass to the fetch function
+ *  @param   {boolean}        [options.compileResult]  A function to use to convert the request response
  *  @param   {boolean}        [options.skip]           Wether or not to skip the request
  *
  *  @returns {useQueryReturn}                          An object containing a data, loading and error state, as well as a fetch and refetch function.
@@ -35,7 +37,8 @@ import { useDeepCompareEffect, useDeepCompareCallback } from 'use-deep-compare';
  *
  */
 const useQuery = (fn, options = {}) => {
-  const { params = {}, skip = false, convertToArray } = options;
+  // TODO Maybe both convertToArray and compileResult might be more useComplianceQuerys responsibility?
+  const { params = {}, skip = false, convertToArray, compileResult } = options;
   const mounted = useRef(true);
   // TODO we do not clear the data before we perform a request
   // This can under certain conditions cause odd behaviour.
@@ -46,52 +49,35 @@ const useQuery = (fn, options = {}) => {
   const [loading, setLoading] = useState(false);
 
   const fetchFn = useDeepCompareCallback(
+    // TODO We should maybe establish the wording "arguments" here
+    // This might make make it more clear that these are not request parameters, but function arguments
     async (fn, params, setDataState = true) => {
-      if (loading) {
-        return;
-      }
-
       if (setDataState) {
-        setLoading(true);
-        try {
-          const data = await (async (params) => {
-            const convertedParams = convertToArray
-              ? convertToArray(params)
-              : params;
+        if (!loading) {
+          setLoading(true);
+          try {
+            const result = await fetchResult(
+              fn,
+              params,
+              convertToArray,
+              compileResult
+            );
 
-            if (Array.isArray(convertedParams)) {
-              return await fn(...convertedParams);
-            } else {
-              return await fn(convertedParams);
+            if (mounted.current) {
+              setData(result);
+              setLoading(false);
             }
-          })(params);
-
-          if (mounted.current) {
-            setData(data?.data || data);
-            setLoading(false);
-          }
-        } catch (e) {
-          console.log(e);
-          if (mounted.current) {
-            setError(e);
-            setLoading(false);
+          } catch (e) {
+            console.log(e);
+            if (mounted.current) {
+              setError(e);
+              setLoading(false);
+            }
           }
         }
       } else {
         try {
-          const data = await (async (params) => {
-            const convertedParams = convertToArray
-              ? convertToArray(params)
-              : params;
-
-            if (Array.isArray(convertedParams)) {
-              return await fn(...convertedParams);
-            } else {
-              return await fn(convertedParams);
-            }
-          })(params);
-
-          return data?.data || data;
+          return await fetchResult(fn, params, convertToArray, compileResult);
         } catch (e) {
           console.log(e);
           throw e;
@@ -102,7 +88,7 @@ const useQuery = (fn, options = {}) => {
   );
 
   const fetch = useDeepCompareCallback(
-    async (fetchParams, setDataState) =>
+    async (fetchParams) =>
       await fetchFn(
         fn,
         !Array.isArray(fetchParams) && !Array.isArray(params)
@@ -111,12 +97,12 @@ const useQuery = (fn, options = {}) => {
               ...fetchParams,
             }
           : fetchParams,
-        setDataState
+        false
       ),
     [fn, fetchFn, params]
   );
   const refetch = useDeepCompareCallback(
-    async () => fetchFn(fn, params),
+    async () => await fetchFn(fn, params),
     [fetchFn, fn, params]
   );
 
@@ -130,7 +116,9 @@ const useQuery = (fn, options = {}) => {
     };
   }, [skip, params, typeof refetch !== 'undefined']);
 
-  return { data, error, loading, fetch, refetch };
+  // TODO We should slowly move query hooks that assign data, to use "result" and then remove "data"
+  // We then have the return look like { result, error, loading }, which will be less confusing than having to do data.data
+  return { data, result: data, error, loading, fetch, refetch };
 };
 
 export default useQuery;

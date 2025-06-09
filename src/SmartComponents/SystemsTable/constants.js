@@ -1,4 +1,3 @@
-import { gql } from '@apollo/client';
 import pickBy from 'lodash/pickBy';
 import {
   systemsPolicyFilterConfiguration,
@@ -13,14 +12,6 @@ import { apiInstance } from '@/Utilities/hooks/useQuery';
 import { buildOSObject } from '@/Utilities/helpers';
 import { policiesDataMapper, systemsDataMapper } from '@/constants';
 import dataSerialiser from '@/Utilities/dataSerialiser';
-
-export const GET_SYSTEMS_OSES = gql`
-  query ST_SystemOS($filter: String!) {
-    systems(search: $filter) {
-      osVersions
-    }
-  }
-`;
 
 export const policyFilter = (policies, filterKey) => [
   ...systemsPolicyFilterConfiguration(policies, filterKey),

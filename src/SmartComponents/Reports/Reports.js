@@ -1,8 +1,8 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
-import SkeletonTable from '@redhat-cloud-services/frontend-components/SkeletonTable';
+import { Spinner } from '@patternfly/react-core';
 import {
   ReportsTable,
   StateViewPart,
@@ -10,49 +10,62 @@ import {
   ReportsEmptyState,
 } from 'PresentationalComponents';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
-import useComplianceQuery from 'Utilities/hooks/api/useComplianceQuery';
+import useReports from 'Utilities/hooks/api/useReports';
 import useReportsOS from 'Utilities/hooks/api/useReportsOs';
-import useReportsCount from 'Utilities/hooks/useReportsCount';
-import useExporter from '@/Frameworks/AsyncTableTools/hooks/useExporter';
 
 const ReportsHeader = () => (
   <PageHeader>
     <PageHeaderTitle title="Reports" />
   </PageHeader>
 );
+const REPORTS_FILTER = 'with_reported_systems = true';
 
 const Reports = () => {
   // Required for correctly showing empty state
-  const totalReports = useReportsCount();
-
-  const { data: operatingSystems } = useReportsOS();
+  // TODO We can probably avoid this extra request by finishing the empty state implementation in the TableTools
+  const {
+    data: totalReports,
+    error: totalReportsError,
+    loading: totalReportsLoading,
+  } = useReports({
+    onlyTotal: true,
+    params: { filter: REPORTS_FILTER },
+  });
+  const {
+    data: { data: operatingSystems } = {},
+    loading: reportsOSLoading,
+    error: reportsOSError,
+  } = useReportsOS();
   const {
     data: { data: reportsData, meta: { total } = {} } = {},
-    error,
+    error: reportsError,
     loading: reportsLoading,
-    fetch: fetchReports,
-  } = useComplianceQuery('reports', {
-    params: { filter: 'with_reported_systems = true' },
+    exporter,
+  } = useReports({
+    params: { filter: REPORTS_FILTER },
     useTableState: true,
-    debounced: false,
+    batch: { batchSize: 10 },
   });
-  const fetchForExport = useCallback(
-    async (offset, limit) => await fetchReports({ offset, limit }, false),
-    [fetchReports]
-  );
-  const reportsExporter = useExporter(fetchForExport);
-  const data = operatingSystems;
-  const loading = !data ? true : undefined;
+  const loading = totalReportsLoading || reportsOSLoading;
+  const error = totalReportsError || reportsOSError || reportsError;
+  const showTable =
+    totalReports !== undefined && operatingSystems !== undefined && !error;
 
   return (
     <React.Fragment>
       <ReportsHeader />
       <section className="pf-v5-c-page__main-section">
-        <StateViewWithError stateValues={{ error, data, loading }}>
+        <StateViewWithError
+          stateValues={{
+            error,
+            loading,
+            showTable: showTable,
+          }}
+        >
           <StateViewPart stateKey="loading">
-            <SkeletonTable colSize={3} rowSize={10} />
+            <Spinner />
           </StateViewPart>
-          <StateViewPart stateKey="data">
+          <StateViewPart stateKey="showTable">
             {totalReports === 0 ? (
               <ReportsEmptyState />
             ) : (
@@ -62,7 +75,7 @@ const Reports = () => {
                 total={total}
                 loading={reportsLoading}
                 options={{
-                  exporter: async () => await reportsExporter(),
+                  exporter,
                 }}
               />
             )}

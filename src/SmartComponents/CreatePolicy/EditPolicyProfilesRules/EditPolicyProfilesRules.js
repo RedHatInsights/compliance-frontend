@@ -33,7 +33,7 @@ const EditPolicyProfilesRules = ({
   osMinorVersionCounts,
   valueOverrides = {},
 }) => {
-  const preselected =
+  const selected =
     selectedRuleRefIds &&
     (selectedRuleRefIds || []).reduce(
       (prev, cur) => ({
@@ -61,13 +61,28 @@ const EditPolicyProfilesRules = ({
     ),
     skip: skipFetchingProfileRuleIds,
   });
+
+  const preselected =
+    profilesAndRuleIds !== undefined
+      ? osMinorVersionCounts.reduce(
+          (acc, cur) => ({
+            ...acc,
+            [cur.osMinorVersion]: profilesAndRuleIds.find(
+              ({ osMinorVersion }) => osMinorVersion === cur.osMinorVersion
+            ).ruleIds,
+          }),
+          {}
+        )
+      : undefined;
+
   const additionalRules =
     profilesAndRuleIds &&
     selectedRuleRefIds?.reduce((additions, profileAndRules) => {
-      const originalRules = profilesAndRuleIds.find(
-        ({ osMinorVersion }) =>
-          osMinorVersion === profileAndRules.osMinorVersion
-      ).ruleIds;
+      const originalRules =
+        profilesAndRuleIds.find(
+          ({ osMinorVersion }) =>
+            osMinorVersion === profileAndRules.osMinorVersion
+        )?.ruleIds || [];
 
       return {
         ...additions,
@@ -111,17 +126,34 @@ const EditPolicyProfilesRules = ({
   );
 
   useDeepCompareEffect(() => {
-    if (profilesAndRuleIds !== undefined && selectedRuleRefIds === undefined) {
-      change(
-        'selectedRuleRefIds',
-        osMinorVersionCounts.map(({ osMinorVersion }) => ({
-          osMinorVersion,
-          ruleRefIds: profilesAndRuleIds.find(
-            ({ osMinorVersion: profileOsMinorVersion }) =>
-              profileOsMinorVersion === osMinorVersion
-          ).ruleIds,
-        }))
-      );
+    const newSelectedRuleRefIds = osMinorVersionCounts?.reduce(
+      (accum, { osMinorVersion }) => {
+        if (
+          selectedRuleRefIds?.some(
+            (entry) => entry.osMinorVersion === osMinorVersion
+          )
+        ) {
+          return accum; // Avoid overriding selection
+        }
+        const refIdsPerMinorVersion = profilesAndRuleIds?.find(
+          ({ osMinorVersion: profileOsMinorVersion }) =>
+            profileOsMinorVersion === osMinorVersion
+        ).ruleIds;
+
+        return [
+          ...accum,
+          ...(refIdsPerMinorVersion?.length
+            ? [{ osMinorVersion, ruleRefIds: refIdsPerMinorVersion }]
+            : []),
+        ];
+      },
+      []
+    );
+    if (newSelectedRuleRefIds?.length !== 0) {
+      change('selectedRuleRefIds', [
+        ...(selectedRuleRefIds || []),
+        ...newSelectedRuleRefIds,
+      ]);
     }
   }, [change, osMinorVersionCounts, profilesAndRuleIds, selectedRuleRefIds]);
 
@@ -181,26 +213,32 @@ const EditPolicyProfilesRules = ({
           </EmptyState>
         </StateViewPart>
         <StateViewPart stateKey="data">
-          <Tailorings
-            skipProfile="create-policy"
-            profiles={profilesAndRuleIds}
-            additionalRules={additionalRules}
-            columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
-            ouiaId="RHELVersions"
-            onSelect={onSelect}
-            preselected={preselected}
-            enableSecurityGuideRulesToggle
-            rulesPageLink={true}
-            valueOverrides={valueOverrides}
-            onValueOverrideSave={onValueOverrideSave}
-            selectedVersionCounts={osMinorVersionCounts.reduce(
-              (prev, cur) => ({
-                ...prev,
-                [cur.osMinorVersion]: cur.count,
-              }),
-              {}
+          {profilesAndRuleIds &&
+            Object.keys(preselected || {}).length ===
+              osMinorVersionCounts.length && (
+              <Tailorings
+                skipProfile="create-policy"
+                profiles={profilesAndRuleIds}
+                additionalRules={additionalRules}
+                columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
+                ouiaId="RHELVersions"
+                onSelect={onSelect}
+                showResetButton
+                selected={selected}
+                preselected={preselected}
+                enableSecurityGuideRulesToggle
+                rulesPageLink={true}
+                valueOverrides={valueOverrides}
+                onValueOverrideSave={onValueOverrideSave}
+                selectedVersionCounts={osMinorVersionCounts.reduce(
+                  (prev, cur) => ({
+                    ...prev,
+                    [cur.osMinorVersion]: cur.count,
+                  }),
+                  {}
+                )}
+              />
             )}
-          />
         </StateViewPart>
       </StateViewWithError>
     </React.Fragment>

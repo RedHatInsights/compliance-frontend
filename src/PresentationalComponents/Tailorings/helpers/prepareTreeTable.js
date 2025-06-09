@@ -110,6 +110,11 @@ const mergeTree = (firstTree = [], secondTree = []) => {
     const branchInSecondTree = secondTree.find(
       ({ itemId }) => itemId === branch.itemId
     );
+    const combinedLeaves = unionBy(
+      branchInFirstTree?.leaves,
+      branchInSecondTree?.leaves,
+      'itemId'
+    );
 
     return [
       ...combinedBranches,
@@ -121,6 +126,7 @@ const mergeTree = (firstTree = [], secondTree = []) => {
           branchInFirstTree?.twigs,
           branchInSecondTree?.twigs
         ).sort(sortNodes),
+        leaves: combinedLeaves,
       },
     ];
   };
@@ -138,7 +144,7 @@ const prepareTreeTable = ({
   const builtSecurityGuideTree =
     ruleGroups &&
     securityGuideRuleTree &&
-    buildTreeTable(securityGuideRuleTree, ruleGroups?.data);
+    buildTreeTable(securityGuideRuleTree, ruleGroups);
   const additionalRulesTree =
     builtSecurityGuideTree &&
     groupRulesInGroups(additionalRules, builtSecurityGuideTree);
@@ -147,7 +153,7 @@ const prepareTreeTable = ({
     (profileRuleTree || tailoringRuleTree || securityGuideRuleTree)
       ? buildTreeTable(
           tailoringRuleTree || profileRuleTree || securityGuideRuleTree,
-          ruleGroups?.data
+          ruleGroups
         )
       : undefined;
 

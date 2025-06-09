@@ -40,7 +40,7 @@ describe('DeleteReport', () => {
     useParams.mockReturnValue({ report_id: reportId });
   });
 
-  test('renders DeleteReportRest when apiV2Enabled is true', async () => {
+  test('renders DeleteReportRest', async () => {
     apiInstance.deleteReport.mockResolvedValue({});
 
     render(<DeleteReport />);

@@ -2,44 +2,6 @@
 import { faker } from '@faker-js/faker';
 
 export const buildReport = () => {
-  const id = faker.string.uuid();
-  const refId = faker.string.uuid();
-  const name = faker.lorem.words({ min: 2, max: 3 });
-  const businessObjectiveString = faker.lorem.words(5);
-  const businessPossibilities = [null, { title: businessObjectiveString }];
-  const businessObjective = faker.helpers.arrayElement(businessPossibilities);
-
-  return {
-    profile: {
-      id,
-      name,
-      refId,
-      totalHostCount: faker.number.int(100),
-      testResultHostCount: faker.number.int(50),
-      compliantHostCount: faker.number.int(20),
-      unsupportedHostCount: faker.number.int(30),
-      complianceThreshold: faker.number.int({ min: 1, max: 100 }),
-      osMajorVersion: faker.number.int({ min: 6, max: 9 }),
-      lastScanned: faker.date.recent(),
-      policyType: faker.word.noun(),
-      policy: {
-        id: faker.number.int(),
-        name: faker.word.noun(),
-        profiles: [
-          {
-            benchmark: { version: faker.number.int(0, 10) },
-          },
-          {
-            benchmark: { version: faker.number.int(0, 10) },
-          },
-        ],
-      },
-      businessObjective,
-    },
-  };
-};
-
-export const buildReportV2 = () => {
   const title = faker.lorem.words({ min: 2, max: 3 });
   const businessObjectiveString = faker.lorem.words(5);
   const businessPossibilities = [null, businessObjectiveString];

@@ -1,4 +1,6 @@
 import { useCallback, useState } from 'react';
+import { useDeepCompareEffect } from 'use-deep-compare';
+
 import useSelectionManager from '../useSelectionManager';
 import {
   checkCurrentPageSelected,
@@ -6,6 +8,7 @@ import {
   compileTitle,
   selectOrUnselect,
 } from './helpers';
+import useCallbacksCallback from '@/Frameworks/AsyncTableTools/hooks/useTableState/hooks/useCallbacksCallback';
 
 /**
  *  @typedef {object} useBulkSelectReturn
@@ -22,7 +25,8 @@ import {
  *  @param   {object}              [options]                AsyncTableTools options
  *  @param   {number}              [options.total]          Number to show as total count
  *  @param   {Function}            [options.onSelect]       function to call when a selection is made
- *  @param   {Array}               [options.preselected]    Array of itemIds selected when initialising
+ *  @param   {Array}               [options.selected]       Array of itemIds that should be currently selected. If it changes, the current selection will change
+ *  @param   {Array}               [options.preselected]    Array of itemIds that should be selected when initialising
  *  @param   {Function}            [options.itemIdsInTable] Function to call to retrieve IDs when "Select All" is chosen
  *  @param   {Array}               [options.itemIdsOnPage]  Array of item ids visible on the page
  *  @param   {string}              [options.identifier]     Property of the items that should be used as ID to select them
@@ -36,6 +40,7 @@ import {
 const useBulkSelect = ({
   total = 0,
   onSelect,
+  selected,
   preselected,
   itemIdsInTable,
   itemIdsOnPage,
@@ -44,11 +49,12 @@ const useBulkSelect = ({
   const [loading, setLoading] = useState(false);
   const enableBulkSelect = !!onSelect;
   const {
-    selection: selectedIds,
+    selection: selectedIds = [],
     set,
     select,
     deselect,
     clear,
+    reset,
   } = useSelectionManager(preselected, {}, onSelect);
   const selectedIdsTotal = (selectedIds || []).length;
   const paginatedTotal = itemIdsOnPage?.length || total;
@@ -85,6 +91,12 @@ const useBulkSelect = ({
     [select, deselect, itemIdsOnPage, currentPageSelected]
   );
 
+  const resetSelection = useCallback(() => {
+    reset();
+  }, [reset]);
+
+  useCallbacksCallback('resetSelection', resetSelection);
+
   const selectAll = async () => {
     setLoading(true);
     if (allSelected) {
@@ -118,6 +130,10 @@ const useBulkSelect = ({
     },
     [selectedIds]
   );
+
+  useDeepCompareEffect(() => {
+    selected && set(selected);
+  }, [set, selected]);
 
   return {
     tableView: {

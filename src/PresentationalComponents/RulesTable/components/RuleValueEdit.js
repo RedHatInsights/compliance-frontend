@@ -7,11 +7,14 @@ import {
   TextVariants,
   Button,
 } from '@patternfly/react-core';
-import { PencilAltIcon, RedoIcon } from '@patternfly/react-icons';
-import { useResetValues } from '../hooks';
+import { PencilAltIcon } from '@patternfly/react-icons';
 import InlineValueEdit from './InlineValueEdit';
 
-const RuleValueEdit = ({ rule, onValueChange, onRuleValueReset }) => {
+const RuleValueEdit = ({
+  rule,
+  onValueChange,
+  // onRuleValueReset
+}) => {
   const {
     valueDefinitions,
     profile: { id: policyId },
@@ -28,12 +31,13 @@ const RuleValueEdit = ({ rule, onValueChange, onRuleValueReset }) => {
     onValueChange?.(policyId, valueDefinition, newValue, closeInlineEdit);
   };
 
-  const { resetValues, nonDefaultValues } = useResetValues(
-    policyId,
-    ruleValues,
-    valueDefinitions,
-    onRuleValueReset
-  );
+  // TODO This still used GQL and didn't work anymore
+  // const { resetValues, nonDefaultValues } = useResetValues(
+  //   policyId,
+  //   ruleValues,
+  //   valueDefinitions,
+  //   onRuleValueReset
+  // );
 
   return (
     <Stack style={{ marginBottom: 'var(--pf-v5-global--spacer--lg)' }}>
@@ -53,7 +57,8 @@ const RuleValueEdit = ({ rule, onValueChange, onRuleValueReset }) => {
               <PencilAltIcon />
             </Button>
           )}
-          {nonDefaultValues && (
+          {/*
+            * nonDefaultValues && (
             <Button
               aria-label="Reset value button"
               ouiaId="InlineEditReset"
@@ -63,7 +68,7 @@ const RuleValueEdit = ({ rule, onValueChange, onRuleValueReset }) => {
             >
               <RedoIcon />
             </Button>
-          )}
+          )*/}
         </Text>
 
         {valueDefinitions.map((valueDefinition, idx) => (

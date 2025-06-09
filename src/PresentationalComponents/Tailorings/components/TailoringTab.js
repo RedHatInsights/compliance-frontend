@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import { Grid } from '@patternfly/react-core';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
 import { useFullTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
-import RulesTable from '../../RulesTable/RulesTableRest';
+import { RulesTable } from 'PresentationalComponents';
 import useTailoringsData from '../hooks/useTailoringsData';
 import useSecurityGuideData from '../hooks/useSecurityGuideData';
 import useSecurityGuideProfileData from '../hooks/useSecurityGuideProfileData';
@@ -34,10 +34,12 @@ import SecurityGuideRulesToggle from './SecurityGuideRulesToggle';
  *  @param   {Function}           [props.onRuleValueReset]               A callback called when values for a rule are reset
  *  @param   {Function}           [props.onValueOverrideSave]            **deprecated** We should be using setRuleValues instead
  *  @param   {Function}           [props.onSelect]                       A callback called when a selection is made
+ *  @param   {object}             [props.selected]                       An array of currently selected IDs
  *  @param   {object}             [props.preselected]                    An array of rule IDs to select
  *  @param   {string}             [props.skipProfile]
  *  @param                        [props.additionalRules]
  *  @param                        [props.valueOverrides]
+ *  @param                        [props.showResetButton]                Enables reset rules button
  *
  *  @returns {React.ReactElement}
  *
@@ -61,11 +63,13 @@ const TailoringTab = ({
   onRuleValueReset,
   onValueOverrideSave,
   onSelect,
+  selected,
   preselected,
   additionalRules,
   enableSecurityGuideRulesToggle,
   skipProfile,
   valueOverrides,
+  showResetButton = false,
 }) => {
   const tableState = useFullTableState();
   const openRuleGroups = tableState?.tableState?.['open-items'];
@@ -94,7 +98,8 @@ const TailoringTab = ({
       rules: securityGuideRules,
       valueDefinitions,
     },
-    fetchBatchedRules,
+    fetchAllIds: fetchAllSecurityGuideRuleIds,
+    exporter: securityGuideRulesExporter,
   } = useSecurityGuideData({
     securityGuideId,
     profileId,
@@ -115,7 +120,8 @@ const TailoringTab = ({
 
   const {
     data: { ruleTree: tailoringRuleTree, rules: tailoringRules },
-    fetchBatchedTailoringRules,
+    fetchAllIds: fetchAllTailoringRuleIds,
+    exporter: tailoringRulesExporter,
   } = useTailoringsData({
     policy,
     tailoring,
@@ -133,9 +139,7 @@ const TailoringTab = ({
         tailoringRules,
         valueDefinitions,
         valueOverrides: { ...tailoring?.value_overrides, ...valueOverrides },
-        ...(tableState?.tableState?.selectedRulesOnly
-          ? { selected: preselected }
-          : {}),
+        ...(tableState?.tableState?.selectedRulesOnly ? { selected } : {}),
       }),
     [
       shouldSkip,
@@ -145,7 +149,7 @@ const TailoringTab = ({
       profileRules,
       valueDefinitions,
       valueOverrides,
-      preselected,
+      selected,
       tableState,
     ]
   );
@@ -170,29 +174,23 @@ const TailoringTab = ({
     ]
   );
 
-  // TODO The wrapping of the fetches in an array is odd.
-  // Figure out why this is and how we can avoid it
-  // TODO This hook could be made a feature of either the useComplianceQuery
+  // TODO we might want to consider making this more explicit and also add SSG profile exporter and ids call
   const exporter = async () =>
-    (tailoring && policy
-      ? [await fetchBatchedTailoringRules()]
-      : [await fetchBatchedRules()]
-    ).flatMap((result) => result.data);
+    tailoring && policy
+      ? await tailoringRulesExporter()
+      : await securityGuideRulesExporter();
 
   const itemIdsInTable = async () =>
-    (tailoring && policy
-      ? await fetchBatchedTailoringRules({ idsOnly: true })
-      : await fetchBatchedRules({ idsOnly: true })
-    )
-      .flatMap((result) => result.data)
-      .map(({ id }) => id);
+    tailoring && policy
+      ? await fetchAllTailoringRuleIds()
+      : await fetchAllSecurityGuideRuleIds();
 
   const onValueSave = (_policyId, ...valueParams) =>
     onValueOverrideSave(tailoring || osMinorVersion, ...valueParams);
 
   const onSelectRule = (...ruleParams) =>
     onSelect?.(
-      tailoring || { ...securityGuide.data, os_minor_version: osMinorVersion },
+      tailoring || { ...securityGuide?.data, os_minor_version: osMinorVersion },
       ...ruleParams
     );
 
@@ -211,6 +209,7 @@ const TailoringTab = ({
             }
             profileId={profileId || tailoring.profile_id}
             rulesPageLink={rulesPageLink}
+            showResetButton={showResetButton}
             resetLink={resetLink}
             systemCount={systemCount}
           />
@@ -229,7 +228,8 @@ const TailoringTab = ({
         onRuleValueReset={onRuleValueReset}
         onValueOverrideSave={onValueSave}
         onSelect={onSelect ? onSelectRule : undefined}
-        selectedRules={preselected}
+        selectedRules={selected}
+        preselected={preselected}
         options={{
           exporter,
           itemIdsInTable,
@@ -269,7 +269,9 @@ TailoringTab.propTypes = {
   setRuleValues: propTypes.func,
   onRuleValueReset: propTypes.func,
   onValueOverrideSave: propTypes.func,
-  preselected: propTypes.object,
+  showResetButton: propTypes.bool,
+  selected: propTypes.array,
+  preselected: propTypes.array,
   enableSecurityGuideRulesToggle: propTypes.bool,
   skipProfile: propTypes.string,
   additionalRules: propTypes.object,

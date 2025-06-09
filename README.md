@@ -1,6 +1,6 @@
 # compliance-frontend
 
-[![Build Status](https://travis-ci.org/RedHatInsights/compliance-frontend.svg?branch=master)](https://travis-ci.org/RedHatInsights/compliance-frontend)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/RedhatInsights/compliance-frontend/test.yml?branch=master)](https://github.com/RedHatInsights/compliance-frontend/actions/workflows/test.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/dae99b3728337e64871c/maintainability)](https://codeclimate.com/github/RedHatInsights/compliance-frontend/maintainability)
 
 UI application for Red Hat Insights Compliance.
@@ -65,7 +65,6 @@ The deployed documentation is available at https://redhatinsights.github.io/comp
   * [React](https://reactjs.org)
   * [Patternfly](https://github.com/patternfly/patternfly-react)
   * [Jest](https://jestjs.io) & [enzyme](https://enzymejs.github.io/enzyme/)
-  * GraphQL (using [Apollo](https://www.apollographql.com/docs/react/))
 
 ### Code standards
 
@@ -126,7 +125,7 @@ See the FEC script documentation for an example: https://github.com/RedHatInsigh
    These are components that have no side effects. They may handle state internally, but do not require a store or external data source.
 
  * **Smart Components:**
-   If a component works with any store or makes requests to an API, they are Smart Components
+   If a component works with any store or makes requests to an API, they are Smart Components.
 
  * **store:**
   Contains primarily a reducer and actions for working with the [inventory](https://github.com/RedHatInsights/frontend-components/blob/master/packages/inventory/doc/inventory.md) component.

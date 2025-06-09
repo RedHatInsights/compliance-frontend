@@ -7,9 +7,11 @@ import sortBy from 'lodash/sortBy';
 export const APP_ID = 'compliance';
 export const DEFAULT_TITLE = 'Compliance';
 
+// TODO this will be obsolete with the api_v1 removal
 export const COMPLIANCE_API_ROOT = '/api/compliance';
 export const COMPLIANCE_UI_ROOT = '/rhel/compliance';
 export const INVENTORY_API_ROOT = '/api/inventory/v1';
+export const API_BASE_URL = '/api/compliance/v2';
 
 export const API_HEADERS = {
   'X-Insights-Compliance': packageJson.version,
@@ -289,19 +291,6 @@ export const policiesDataMapper = {
   id: 'id',
 };
 
-export const reportDataMap = {
-  id: 'id',
-  title: 'policy.name;name',
-  business_objective: ['businessObjective', 'businessObjective.title'],
-  compliance_threshold: 'complianceThreshold',
-  os_major_version: 'osMajorVersion',
-  profile_title: 'policyType', // REST api does not return policyType. Thus, re-using profile_title
-  ref_id: 'refId',
-  assigned_system_count: 'totalHostCount',
-  reported_system_count: 'testResultHostCount',
-  compliant_system_count: 'compliantHostCount',
-  unsupported_system_count: 'unsupportedHostCount',
-  description: 'description',
-  all_systems_exposed: 'all_systems_exposed',
-  percent_compliant: 'percent_compliant',
-};
+export const unsupportedSystemWarningMessage =
+  'This system was using an incompatible version of the SSG at the time this report was generated. ' +
+  'Assessment of rules failed/passed on this system is a best-guess effort and may not be accurate.';

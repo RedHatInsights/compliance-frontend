@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useCallback, useReducer } from 'react';
 import reducer, { init as initReducer } from './reducer';
 
 /**
@@ -29,19 +29,34 @@ const useSelectionManager = (preselected, options = {}, handleSelect) => {
     initReducer(withGroups)
   );
 
-  const set = (items, group) => dispatch({ type: 'set', group, items });
+  const set = useCallback(
+    (items, group) => dispatch({ type: 'set', group, items }),
+    [dispatch]
+  );
 
-  const select = (item, group, useSet = false) =>
-    useSet ? set(item, group) : dispatch({ type: 'select', group, item });
+  const select = useCallback(
+    (item, group, useSet = false) =>
+      useSet ? set(item, group) : dispatch({ type: 'select', group, item }),
+    [set, dispatch]
+  );
 
-  const deselect = (item, group, useSet = false) =>
-    useSet ? set(item, group) : dispatch({ type: 'deselect', group, item });
+  const deselect = useCallback(
+    (item, group, useSet = false) =>
+      useSet ? set(item, group) : dispatch({ type: 'deselect', group, item }),
+    [dispatch, set]
+  );
 
-  const toggle = (item, group) => dispatch({ type: 'toggle', group, item });
+  const toggle = useCallback(
+    (item, group) => dispatch({ type: 'toggle', group, item }),
+    [dispatch]
+  );
 
-  const reset = () => dispatch({ type: 'reset', preselected });
+  const reset = useCallback(
+    () => dispatch({ type: 'reset', preselected }),
+    [dispatch, preselected]
+  );
 
-  const clear = () => dispatch({ type: 'clear' });
+  const clear = useCallback(() => dispatch({ type: 'clear' }), [dispatch]);
 
   return {
     set,

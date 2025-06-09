@@ -7,6 +7,7 @@ export default (count) => {
       currentCount++;
       return {
         id: currentCount,
+        itemId: currentCount,
         severity: severityLevels[currentCount % 4],
         name: 'TEST ITEM #' + currentCount,
         description: 'DESCRIPTION',

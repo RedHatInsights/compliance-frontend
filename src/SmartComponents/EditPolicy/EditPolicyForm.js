@@ -24,6 +24,7 @@ const EditPolicyForm = ({
   assignedSystems,
   setRuleValues,
   supportedOsVersions,
+  setIsSystemsDataLoading,
 }) => {
   const [selectedOsMinorVersions, setSelectedOsMinorVersions] = useState([
     ...new Set(assignedSystems.map((system) => system.os_minor_version)),
@@ -101,6 +102,7 @@ const EditPolicyForm = ({
             selectedSystems={selectedSystems}
             onSystemSelect={handleSystemSelect}
             supportedOsVersions={supportedOsVersions}
+            setIsSystemsDataLoading={setIsSystemsDataLoading}
           />
           {newRulesAlert && <NewRulesAlert />}
         </Tab>
@@ -117,6 +119,7 @@ EditPolicyForm.propTypes = {
   assignedSystems: propTypes.array,
   setRuleValues: propTypes.func,
   supportedOsVersions: propTypes.array,
+  setIsSystemsDataLoading: propTypes.func,
 };
 
 export default EditPolicyForm;

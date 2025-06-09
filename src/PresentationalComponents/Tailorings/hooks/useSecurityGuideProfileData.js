@@ -10,7 +10,7 @@ const useSecurityGuideProfileData = ({
   tableState: { tableState: { tableView } = {} } = {},
 }) => {
   const {
-    data: ruleTree,
+    data: { data: ruleTree } = {},
     loading: profileTreeLoading,
     error: profileTreeError,
   } = useProfileTree({
@@ -25,7 +25,8 @@ const useSecurityGuideProfileData = ({
     data: rules,
     loading: profileRulesLoading,
     error: profileRulesError,
-    fetchBatched: fetchBatchedProfileRules,
+    fetchAllIds,
+    exporter,
   } = useProfileRules({
     params: {
       securityGuideId,
@@ -44,7 +45,8 @@ const useSecurityGuideProfileData = ({
       ...(!skipRules ? { rules } : {}),
       ...(!skipRuleTree ? { ruleTree } : {}),
     },
-    fetchBatchedProfileRules,
+    fetchAllIds,
+    exporter,
   };
 };
 

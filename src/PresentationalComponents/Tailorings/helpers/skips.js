@@ -73,7 +73,7 @@ const skipProfiles = ({
           skipValueDefinitions: hasNoOpenItems,
         },
         profile: {
-          skipRules: true,
+          skipRules: !profileId || selectedRulesOnlyDisabled,
           skipRuleTree: true,
         },
         tailoring: {
@@ -89,8 +89,8 @@ const skipProfiles = ({
           skipValueDefinitions: hasNoOpenItems,
         },
         profile: {
-          skipRules: true,
-          skipRuleTree: true,
+          skipRules: !profileId || selectedRulesOnlyDisabled || hasNoOpenItems,
+          skipRuleTree: !profileId || selectedRulesOnlyDisabled,
         },
         tailoring: {
           skipRules: !tailoring || selectedRulesOnlyDisabled || hasNoOpenItems,
@@ -125,6 +125,40 @@ const skipProfiles = ({
         profile: {
           skipRules: !profileId || selectedRulesOnlyDisabled || hasNoOpenItems,
           skipRuleTree: !profileId || selectedRulesOnlyDisabled,
+        },
+        tailoring: {
+          skipRules: true,
+          skipRuleTree: true,
+        },
+      },
+    },
+    'policy-default-rules': {
+      rows: {
+        securityGuide: {
+          skipRuleTree: true,
+          skipRules: true,
+          skipRuleGroups: true,
+          skipValueDefinitions: true,
+        },
+        profile: {
+          skipRules: !profileId,
+          skipRuleTree: true,
+        },
+        tailoring: {
+          skipRules: true,
+          skipRuleTree: true,
+        },
+      },
+      tree: {
+        securityGuide: {
+          skipRuleTree: true,
+          skipRules: true,
+          skipRuleGroups: !securityGuideId, // need
+          skipValueDefinitions: true,
+        },
+        profile: {
+          skipRules: !profileId || hasNoOpenItems,
+          skipRuleTree: !profileId,
         },
         tailoring: {
           skipRules: true,

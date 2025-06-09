@@ -11,11 +11,11 @@ import { ExclamationTriangleIcon } from '@patternfly/react-icons';
 import DateFormat from '@redhat-cloud-services/frontend-components/DateFormat';
 import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 import {
-  UnsupportedSSGVersion,
   ComplianceScore as PresentationalComplianceScore,
   LinkWithPermission as Link,
 } from 'PresentationalComponents';
 import { complianceScoreData, NEVER } from 'Utilities/ruleHelpers';
+import { unsupportedSystemWarningMessage } from '@/constants';
 
 const SystemLink = ({ id, children }) => (
   <Link to={{ pathname: `/systems/${id}` }}>{children}</Link>
@@ -112,9 +112,12 @@ export const SSGVersion = ({ ssgVersion = 'Not available', supported }) =>
   supported ? (
     ssgVersion
   ) : (
-    <UnsupportedSSGVersion messageVariant="singular">
-      {ssgVersion}
-    </UnsupportedSSGVersion>
+    <Tooltip content={unsupportedSystemWarningMessage}>
+      <span>
+        <ExclamationTriangleIcon color="var(--pf-v5-global--warning-color--100)" />
+        {' ' + ssgVersion}
+      </span>
+    </Tooltip>
   );
 
 SSGVersion.propTypes = {
@@ -139,25 +142,36 @@ SSGVersions.propTypes = {
   testResultProfiles: propTypes.array,
 };
 
-export const Policies = ({ policies }) =>
-  (policies || []).length > 0 && (
-    <Truncate
-      inline
-      text={policies.map((p) => p.name).join(', ')}
-      length={215}
-    />
+const getTruncateLength = (policies) => {
+  const additionalCharLength = 4; // for the commas and spaces
+  if ((policies || []).length > 2) {
+    return (
+      policies[0].name.length + policies[1].name.length + additionalCharLength
+    );
+  }
+  return 215;
+};
+
+export const Policies = ({ policies }) => {
+  const truncateLength = getTruncateLength(policies);
+
+  return (
+    (policies || []).length && (
+      <Truncate
+        inline
+        text={policies.map((p) => p.name).join(', ')}
+        length={truncateLength}
+      />
+    )
   );
+};
 
 Policies.propTypes = {
   policies: propTypes.array,
 };
 
 export const FailedRules = ({ system_id, rulesFailed }) => {
-  return (
-    <SystemLink {...{ id: system_id }}>
-      {rulesFailed > 0 ? rulesFailed : 'N/A'}
-    </SystemLink>
-  );
+  return <SystemLink {...{ id: system_id }}>{rulesFailed}</SystemLink>;
 };
 
 FailedRules.propTypes = {
@@ -190,10 +204,10 @@ const NeverScanned = () => (
       </Fragment>
     }
   >
-    <div>
+    <span>
       <ExclamationTriangleIcon color="var(--pf-v5-global--warning-color--100)" />
       {' ' + NEVER}
-    </div>
+    </span>
   </Tooltip>
 );
 

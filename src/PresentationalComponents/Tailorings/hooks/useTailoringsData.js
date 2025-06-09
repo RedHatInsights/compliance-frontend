@@ -10,7 +10,7 @@ const useTailoringsData = ({
   groupFilter,
 }) => {
   const {
-    data: ruleTree,
+    data: { data: ruleTree } = {},
     loading: ruleTreeLoading,
     error: ruleTreeError,
   } = useTailoringRuleTree({
@@ -22,7 +22,8 @@ const useTailoringsData = ({
     data: rules,
     loading: rulesLoading,
     error: rulesError,
-    fetchBatched: fetchBatchedTailoringRules,
+    fetchAllIds,
+    exporter,
   } = useTailoringRules({
     params: {
       policyId,
@@ -41,7 +42,8 @@ const useTailoringsData = ({
       ...(!skipRuleTree ? { ruleTree } : {}),
       ...(!skipRules ? { rules } : {}),
     },
-    fetchBatchedTailoringRules,
+    fetchAllIds,
+    exporter,
   };
 };
 

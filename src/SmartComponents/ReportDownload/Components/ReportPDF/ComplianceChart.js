@@ -4,6 +4,7 @@ import { paletteColors } from '../../../../constants';
 // eslint-disable-next-line rulesdir/disallow-fec-relative-imports
 import { Chart } from '@redhat-cloud-services/frontend-components-pdf-generator/dist/esm/index';
 import { fixedPercentage } from 'Utilities/TextHelper';
+import { pluralize } from '@patternfly/react-core';
 
 // TODO Legend table style need to be disablable
 const ComplianceChart = ({
@@ -15,17 +16,17 @@ const ComplianceChart = ({
 }) => {
   const compliantSystemsChartData = [
     {
-      x: `${compliantSystemCount} systems compliant`,
+      x: `${pluralize(compliantSystemCount, 'system')} compliant`,
       y: compliantSystemCount,
     },
     {
-      x: `${nonCompliantSystemCount} systems non-compliant`,
+      x: `${pluralize(nonCompliantSystemCount, 'system')} non-compliant`,
       y: nonCompliantSystemCount,
     },
     ...(unsupportedSystemCount > 0
       ? [
           {
-            x: `${unsupportedSystemCount} systems not supported`,
+            x: `${pluralize(unsupportedSystemCount, 'system')} not supported`,
             y: unsupportedSystemCount,
             color: paletteColors.gold300,
           },
@@ -34,7 +35,7 @@ const ComplianceChart = ({
     ...(nonReportingSystemCount > 0
       ? [
           {
-            x: `${nonReportingSystemCount} systems never reported`,
+            x: `${pluralize(nonReportingSystemCount, 'system')} never reported`,
             y: nonReportingSystemCount,
           },
         ]

@@ -9,7 +9,7 @@ import {
 } from '@patternfly/react-core';
 import useProfileRules from 'Utilities/hooks/api/useProfileRules';
 import useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
-import RulesTable from 'PresentationalComponents/RulesTable/RulesTableRest';
+import { RulesTable } from 'PresentationalComponents';
 import EditRulesButtonToolbarItem from 'SmartComponents/PolicyDetails/EditRulesButtonToolbarItem';
 import { Spinner } from '@patternfly/react-core';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
@@ -79,6 +79,7 @@ const NoTailorings = ({ policy, columns }) => {
         remediationsEnabled={false}
         columns={columns}
         DedicatedAction={DedicatedAction}
+        skipValueDefinitions={true}
       />
     </React.Fragment>
   );

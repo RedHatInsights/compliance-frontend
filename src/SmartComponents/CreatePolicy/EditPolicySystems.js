@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import {
   propTypes as reduxFormPropTypes,
   reduxForm,
@@ -86,7 +86,9 @@ export const EditPolicySystems = ({
   profile,
   change,
   osMajorVersion,
+  osMinorVersionCounts,
   selectedSystems = [],
+  allowNoSystems,
 }) => {
   const onSelect = useOnSelect(change, countOsMinorVersions);
   const osMinorVersions = profile.supportedOsVersions.map(
@@ -107,6 +109,18 @@ export const EditPolicySystems = ({
       };
     });
 
+  useEffect(() => {
+    if (!osMinorVersionCounts || !osMinorVersionCounts.length) {
+      change(
+        'osMinorVersionCounts',
+        profile.supportedOsVersions.map((version) => ({
+          osMinorVersion: version.split('.')[1],
+          count: 0,
+        }))
+      );
+    }
+  }, [profile, osMinorVersionCounts, change]);
+
   return (
     <React.Fragment>
       <TextContent className="pf-v5-u-mb-md">
@@ -117,7 +131,9 @@ export const EditPolicySystems = ({
           <SystemsTable
             showOsMinorVersionFilter={[osMajorVersion]}
             prependComponent={
-              <PrependComponent osMajorVersion={osMajorVersion} />
+              allowNoSystems ? undefined : (
+                <PrependComponent osMajorVersion={osMajorVersion} />
+              )
             }
             emptyStateComponent={<EmptyState osMajorVersion={osMajorVersion} />}
             columns={[
@@ -155,14 +171,17 @@ export const EditPolicySystems = ({
 EditPolicySystems.propTypes = {
   osMajorVersion: propTypes.string,
   profile: propTypes.object,
+  osMinorVersionCounts: propTypes.array,
   selectedSystems: propTypes.array,
   change: reduxFormPropTypes.change,
+  allowNoSystems: propTypes.bool,
 };
 
 const selector = formValueSelector('policyForm');
 const mapStateToProps = (state) => ({
   profile: selector(state, 'profile'),
   osMajorVersion: selector(state, 'osMajorVersion'),
+  osMinorVersionCounts: selector(state, 'osMinorVersionCounts'),
   selectedSystems: selector(state, 'systems'),
 });
 

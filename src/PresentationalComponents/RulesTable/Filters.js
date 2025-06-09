@@ -32,20 +32,6 @@ const BASE_FILTER_CONFIGURATION = [
     type: conditionalFilterType.text,
     label: 'Name',
     filterAttribute: 'title',
-    filter: (rules, value) =>
-      filterRulesWithAllValues(
-        rules,
-        [value],
-        (rule, value) =>
-          rule.title.toLowerCase().includes(value.toLowerCase()) ||
-          (rule.identifier &&
-            rule.identifier.label
-              .toLowerCase()
-              .includes(value.toLowerCase())) ||
-          rule.references.filter((reference) =>
-            reference.label.toLowerCase().includes(value.toLowerCase())
-          ).length > 0
-      ),
   },
   {
     type: conditionalFilterType.checkbox,
@@ -57,8 +43,6 @@ const BASE_FILTER_CONFIGURATION = [
       { label: <LowSeverity />, value: 'low' },
       { label: <UnknownSeverity />, value: 'unknown' },
     ],
-    filter: (rules, values) =>
-      anyFilterApply(rules, values, (rule, value) => rule.severity === value),
   },
 ];
 
@@ -109,12 +93,6 @@ export const ANSIBLE_SUPPORT_FILTER_CONFIG = {
     `(${values
       .map((value) => `remediation_available = ${value}`)
       .join(' OR ')})`,
-  filter: (rules, values) =>
-    anyFilterApply(
-      rules,
-      values,
-      (rule, value) => rule.remediationAvailable === (value === 'true')
-    ),
 };
 
 const buildFilterConfig = ({

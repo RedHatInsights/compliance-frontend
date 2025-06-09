@@ -1,4 +1,4 @@
-import useComplianceQuery from './useComplianceQuery';
+import useComplianceQuery from '../useComplianceQuery';
 
 const convertToArray = (params) => {
   if (Array.isArray(params)) {

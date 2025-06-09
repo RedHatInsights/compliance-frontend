@@ -42,7 +42,7 @@ export const Passed = ({ result }) =>
 Passed.propTypes = ruleResultProps;
 
 export const RemediationColumnCell = ({ remediation_issue_id }) => (
-  <RemediationCell hasPlaybook={remediation_issue_id !== undefined} />
+  <RemediationCell hasPlaybook={remediation_issue_id !== null} />
 );
 RemediationColumnCell.propTypes = ruleResultProps;
 

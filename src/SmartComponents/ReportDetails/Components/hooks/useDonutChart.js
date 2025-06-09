@@ -21,7 +21,7 @@ const DonutLabel = ({
 }) => {
   const iconLeftEdge = x - flyoutValues[datum._x - 1] / 2 + 5;
   const percentOfDonut = (datum.endAngle - datum.startAngle) / 360;
-  rest.text = `${rest.text}: ${(percentOfDonut * 100).toFixed(2)}%`;
+  rest.text = `${rest.text}: ${(percentOfDonut * 100).toFixed(1)}%`;
   return (
     <g>
       <foreignObject height="100%" width="100%" x={iconLeftEdge} y={y - 11}>

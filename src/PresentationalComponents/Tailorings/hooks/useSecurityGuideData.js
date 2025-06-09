@@ -19,11 +19,10 @@ const useSecurityGuideData = ({
     error: securityGuideError,
   } = useSecurityGuide({
     params: { securityGuideId },
-    skip: !securityGuideId,
   });
 
   const {
-    data: ruleTree,
+    data: { data: ruleTree } = {},
     loading: ruleTreeLoading,
     error: ruleTreeError,
   } = useSecurityGuideRuleTree({
@@ -34,8 +33,8 @@ const useSecurityGuideData = ({
   });
 
   const {
+    data: { data: ruleGroups } = {},
     loading: ruleGroupsLoading,
-    data: ruleGroups,
     error: ruleGroupsError,
   } = useRuleGroups({
     params: {
@@ -49,7 +48,8 @@ const useSecurityGuideData = ({
     data: rules,
     loading: rulesLoading,
     error: rulesError,
-    fetchBatched: fetchBatchedRules,
+    fetchAllIds,
+    exporter,
   } = useRules({
     params: {
       securityGuideId,
@@ -92,7 +92,8 @@ const useSecurityGuideData = ({
       ...(!skipRuleTree ? { ruleTree } : {}),
       ...(!skipRules ? { rules } : {}),
     },
-    fetchBatchedRules,
+    fetchAllIds,
+    exporter,
   };
 };
 

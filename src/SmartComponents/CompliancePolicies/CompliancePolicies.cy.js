@@ -1,14 +1,15 @@
 import CompliancePolicies from './CompliancePolicies';
 import { init } from 'Store';
-import { featureFlagsInterceptors } from '../../../cypress/utils/interceptors';
-import { buildPoliciesV2 } from '../../__factories__/policies';
+import { buildPolicies } from '../../__factories__/policies';
 import { interceptBatchRequest } from '../../../cypress/utils/interceptors';
+import getRequestParams from '../../../cypress/utils/requestParams';
+import getComparisonMessage from '../../../cypress/utils/getComparisonMessage';
 
 const mountComponent = () => {
   cy.mountWithContext(CompliancePolicies, { store: init().getStore() });
 };
 
-const policiesData = buildPoliciesV2(13);
+const policiesData = buildPolicies(13);
 const policiesDataFirstBatch = policiesData.slice(0, 10);
 
 const policiesResp = {
@@ -20,28 +21,8 @@ const policiesResp = {
   },
 };
 
-function getRequestParams({
-  limit = '10',
-  offset = '0',
-  filter = undefined,
-  sortBy = 'title:asc',
-} = {}) {
-  const params = new URLSearchParams({
-    limit,
-    offset,
-    sort_by: sortBy,
-  });
-  if (filter !== undefined) {
-    params.append('filter', filter);
-  }
-
-  return params.toString();
-}
-
 describe('Policies table tests API V2', () => {
   beforeEach(() => {
-    featureFlagsInterceptors.apiV2Enabled();
-
     cy.intercept(`/api/compliance/v2/policies?${getRequestParams()}`, {
       statusCode: 200,
       body: policiesResp,
@@ -268,7 +249,7 @@ describe('Policies table tests API V2', () => {
     });
   });
 
-  describe('Reports download', () => {
+  describe('Export download', () => {
     beforeEach(() => {
       cy.wait('@getPolicies');
       interceptBatchRequest(
@@ -322,23 +303,39 @@ describe('Policies table tests API V2', () => {
                     assert(
                       `RHEL ${policy.os_major_version}` ===
                         item['operatingSystem'],
-                      `OS comparation failed: ${policy.os_major_version} !== ${item['operatingSystem']}`
+                      getComparisonMessage(
+                        'OS',
+                        policy.os_major_version,
+                        item['operatingSystem']
+                      )
                     );
                     assert(
                       policy.total_system_count === item['systems'],
-                      `Systems comparation failed: ${policy.total_system_count} !== ${item['systems']}`
+                      getComparisonMessage(
+                        'Systems',
+                        policy.total_system_count,
+                        item['systems']
+                      )
                     );
                     const businessObj = policy.business_objective
                       ? policy.business_objective
                       : '--';
                     assert(
                       businessObj === item['businessObjective'],
-                      `BO comparation failed: ${businessObj} !== ${item['businessObjective']}`
+                      getComparisonMessage(
+                        'BO',
+                        businessObj,
+                        item['businessObjective']
+                      )
                     );
                     assert(
                       `${policy.compliance_threshold}%` ==
                         item['complianceThreshold'],
-                      `Threshold comparation failed: ${policy.compliance_threshold} !== ${item['complianceThreshold']}`
+                      getComparisonMessage(
+                        'Threshold',
+                        `${policy.compliance_threshold}%`,
+                        item['complianceThreshold']
+                      )
                     );
                   }
                 });
