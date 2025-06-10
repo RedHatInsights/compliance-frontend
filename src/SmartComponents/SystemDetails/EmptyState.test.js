@@ -39,7 +39,7 @@ describe('EmptyState for systemDetails', () => {
     );
 
     expect(
-      screen.getByText(`This system isn't connected to Insights yet`)
+      screen.getByText(`This system isn’t connected to Insights yet`)
     ).toBeInTheDocument();
   });
 
@@ -62,7 +62,7 @@ describe('EmptyState for systemDetails', () => {
     ).toBeInTheDocument();
   });
 
-  it.only('expect to render NoPoliciesState component for Compliance SystemDetails', () => {
+  it('expect to render NoPoliciesState component for Compliance SystemDetails', () => {
     useSystem.mockImplementation(() => ({}));
 
     render(
