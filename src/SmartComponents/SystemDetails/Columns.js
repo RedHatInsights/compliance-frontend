@@ -9,7 +9,6 @@ import {
 
 export const Name = {
   title: 'Name',
-  sortByProp: 'title',
   sortable: 'title',
   renderExport: ({ title, identifier }) =>
     `${title}${identifier ? ` - ${identifier.label}` : ''}`,
