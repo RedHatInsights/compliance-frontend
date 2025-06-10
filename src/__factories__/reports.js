@@ -22,7 +22,6 @@ export const buildReports = (length) =>
       min: 0,
       max: max_number_unsupported_systems,
     });
-    // TODO: we will probably need to fix it after https://issues.redhat.com/browse/RHINENG-14550
     return {
       id: faker.string.uuid(),
       title,

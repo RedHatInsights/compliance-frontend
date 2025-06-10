@@ -15,6 +15,7 @@ describe('ReportChart', () => {
       reported_system_count: 7,
       unsupported_system_count: 2,
       compliant_system_count: 4,
+      percent_compliant: 40,
     };
 
     const component = <ReportChart report={reportData} />;
@@ -29,6 +30,7 @@ describe('ReportChart', () => {
       reported_system_count: 5,
       unsupported_system_count: 0,
       compliant_system_count: 4,
+      percent_compliant: 80,
     };
 
     const component = <ReportChart report={reportData} />;
