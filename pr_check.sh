@@ -23,7 +23,7 @@ export DEPLOY_FRONTENDS="true"
 export IQE_ENV="ephemeral"
 export IQE_SELENIUM="true"
 export IQE_CJI_TIMEOUT="30m"
-export REF_ENV="insights-production"
+export REF_ENV="insights-stage"
 export COMPONENTS_W_RESOURCES="compliance"
 export COMPONENT_NAME="compliance-frontend"
 
