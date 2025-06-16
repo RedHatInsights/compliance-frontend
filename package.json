@@ -6,7 +6,7 @@
     "appname": "compliance"
   },
   "dependencies": {
-    "@babel/runtime": "^7.26.10",
+    "@babel/runtime": "^7.27.6",
     "@patternfly/patternfly": "^5.4.1",
     "@patternfly/react-charts": "^7.4.4",
     "@patternfly/react-component-groups": "^5.2.0",
@@ -114,11 +114,11 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.26.10",
-    "@babel/eslint-parser": "^7.26.10",
-    "@babel/plugin-transform-runtime": "^7.26.10",
-    "@babel/preset-env": "^7.25.4",
-    "@babel/preset-react": "^7.24.7",
+    "@babel/core": "^7.27.4",
+    "@babel/eslint-parser": "^7.27.5",
+    "@babel/plugin-transform-runtime": "^7.27.4",
+    "@babel/preset-env": "^7.27.2",
+    "@babel/preset-react": "^7.27.1",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@cypress/code-coverage": "^3.14.3",
@@ -131,7 +131,7 @@
     "@testing-library/react": "^15.0.6",
     "@testing-library/user-event": "^14.5.2",
     "@types/react": "^18.2.58",
-    "babel-loader": "^9.2.1",
+    "babel-loader": "^10.0.0",
     "babel-plugin-istanbul": "^7.0.0",
     "better-docs": "^2.7.3",
     "css-loader": "^6.8.1",
