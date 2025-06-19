@@ -20,7 +20,7 @@ describe('ComplianceThresholdHelperText', () => {
     render(<ComplianceThresholdHelperText threshold="10.222222" />);
 
     expect(
-      screen.queryByText('maximum of one decimal place')
+      screen.queryByText('maximum of one decimal place'),
     ).not.toBeInTheDocument();
   });
 });

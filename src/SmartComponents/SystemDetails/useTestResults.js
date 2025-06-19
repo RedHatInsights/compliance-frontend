@@ -26,9 +26,9 @@ const useTestResults = (systemId) => {
               undefined,
               `system_id=${systemId}`,
             ],
-            false
-          )
-        )
+            false,
+          ),
+        ),
       );
 
       setTestResults(
@@ -42,8 +42,8 @@ const useTestResults = (systemId) => {
                   profile_title: reports.data[index].profile_title,
                   report_id: reports.data[index].id,
                 },
-              ]
-        )
+              ],
+        ),
       );
       setTestResultsLoading(false);
     };

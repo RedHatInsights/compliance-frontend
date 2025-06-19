@@ -85,13 +85,13 @@ describe('orderByArray', () => {
 
   it('sorts an array asc', () => {
     expect(
-      orderByArray(exampleItems, 'severity', severityLevels, 'asc')
+      orderByArray(exampleItems, 'severity', severityLevels, 'asc'),
     ).toMatchSnapshot();
   });
 
   it('sorts an array desc', () => {
     expect(
-      orderByArray(exampleItems, 'severity', severityLevels, 'desc')
+      orderByArray(exampleItems, 'severity', severityLevels, 'desc'),
     ).toMatchSnapshot();
   });
 });

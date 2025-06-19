@@ -6,7 +6,7 @@ import useTableState from '@/Frameworks/AsyncTableTools/hooks/useTableState';
 const SecurityGuideRulesToggle = () => {
   const [selectedOnly, setSelectedOnly] = useTableState(
     'selectedRulesOnly',
-    true
+    true,
   );
 
   return (

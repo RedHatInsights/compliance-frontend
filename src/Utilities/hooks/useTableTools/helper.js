@@ -20,7 +20,7 @@ export const mergeFilters = (currentFilters, additionalFilters) =>
   Object.keys(currentFilters).reduce((acc, filter) => {
     acc[filter] = mergeIfArray(
       currentFilters[filter],
-      additionalFilters[filter]
+      additionalFilters[filter],
     );
     return acc;
   }, {});

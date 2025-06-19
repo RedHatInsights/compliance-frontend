@@ -17,7 +17,7 @@ jest.mock('react-router-dom', () => ({
 
 jest.mock(
   '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate',
-  () => () => ({})
+  () => () => ({}),
 );
 
 describe('TabSwitcher', () => {
@@ -26,7 +26,7 @@ describe('TabSwitcher', () => {
       <TabSwitcher activeKey="0">
         <Tab eventKey="0">First Tab</Tab>
         <Tab tabId="1">Second Tab</Tab>
-      </TabSwitcher>
+      </TabSwitcher>,
     );
 
     expect(asFragment()).toMatchSnapshot();
@@ -37,7 +37,7 @@ describe('TabSwitcher', () => {
       <TabSwitcher activeKey="1">
         <Tab eventKey="0">First Tab</Tab>
         <Tab eventKey="1">Second Tab</Tab>
-      </TabSwitcher>
+      </TabSwitcher>,
     );
 
     expect(asFragment()).toMatchSnapshot();
@@ -48,7 +48,7 @@ describe('TabSwitcher', () => {
       <TabSwitcher defaultTab="1" activeKey="101">
         <Tab eventKey="0">First Tab</Tab>
         <Tab eventKey="1">Second Tab</Tab>
-      </TabSwitcher>
+      </TabSwitcher>,
     );
 
     expect(asFragment()).toMatchSnapshot();
@@ -59,7 +59,7 @@ describe('TabSwitcher', () => {
       <TabSwitcher activeKey="101">
         <Tab eventKey="0">First Tab</Tab>
         <Tab eventKey="1">Second Tab</Tab>
-      </TabSwitcher>
+      </TabSwitcher>,
     );
 
     expect(asFragment()).toMatchSnapshot();
@@ -77,7 +77,7 @@ describe('RoutedTabSwitcher', () => {
         <ContentTab eventKey="details">DETAILS</ContentTab>
         <ContentTab eventKey="rules">RULES</ContentTab>
         <ContentTab eventKey="systems">SYSTEMS</ContentTab>
-      </RoutedTabSwitcher>
+      </RoutedTabSwitcher>,
     );
 
     expect(asFragment()).toMatchSnapshot();
@@ -92,7 +92,7 @@ describe('RoutedTabSwitcher', () => {
       <RoutedTabSwitcher defaultTab="0">
         <Tab eventKey="0">First Tab</Tab>
         <Tab eventKey="1">Second Tab</Tab>
-      </RoutedTabSwitcher>
+      </RoutedTabSwitcher>,
     );
 
     expect(asFragment()).toMatchSnapshot();
@@ -106,7 +106,7 @@ describe('RoutedTabs', () => {
         <Tab title="Details" id="policy-details" eventKey="details" />
         <Tab title="Rules" id="policy-rules" eventKey="rules" />
         <Tab title="Systems" id="policy-systems" eventKey="systems" />
-      </RoutedTabs>
+      </RoutedTabs>,
     );
 
     expect(asFragment()).toMatchSnapshot();
@@ -118,7 +118,7 @@ describe('RoutedTabs', () => {
         <Tab title="Details" id="policy-details" eventKey="details" />
         <Tab title="Rules" id="policy-rules" eventKey="rules" />
         <Tab title="Systems" id="policy-systems" eventKey="systems" />
-      </RoutedTabs>
+      </RoutedTabs>,
     );
 
     expect(asFragment()).toMatchSnapshot();

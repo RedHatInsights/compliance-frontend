@@ -6,7 +6,7 @@ const CONCURRENT_QUEUE_REQUESTS = 2;
 const useComplianceFetchExtras = ({ fetch, fetchBatched }) => {
   const exporter = useCallback(
     async (exporterParams) => (await fetchBatched(exporterParams)).data,
-    [fetchBatched]
+    [fetchBatched],
   );
 
   const fetchAllIds = useCallback(
@@ -17,7 +17,7 @@ const useComplianceFetchExtras = ({ fetch, fetchBatched }) => {
           fetchAllIdsParams,
         })
       ).data.map(({ id }) => id),
-    [fetchBatched]
+    [fetchBatched],
   );
 
   const fetchNamedQueue = useCallback(
@@ -30,10 +30,10 @@ const useComplianceFetchExtras = ({ fetch, fetchBatched }) => {
           ]),
           {
             concurrency: 1, // TODO make concurrent fetches possible
-          }
-        )
+          },
+        ),
       ),
-    [fetch]
+    [fetch],
   );
 
   const fetchQueue = useCallback(
@@ -45,11 +45,11 @@ const useComplianceFetchExtras = ({ fetch, fetchBatched }) => {
           queue.map((params) => async () => await fetch(params)),
           {
             concurrency: CONCURRENT_QUEUE_REQUESTS,
-          }
+          },
         );
       }
     },
-    [fetch, fetchNamedQueue]
+    [fetch, fetchNamedQueue],
   );
 
   const fetchBatchedNamedQueue = useCallback(
@@ -62,10 +62,10 @@ const useComplianceFetchExtras = ({ fetch, fetchBatched }) => {
           ]),
           {
             concurrency: 1, // TODO make batch concurrent fetches possible
-          }
-        )
+          },
+        ),
       ),
-    [fetchBatched]
+    [fetchBatched],
   );
 
   const fetchBatchedQueue = useCallback(
@@ -77,11 +77,11 @@ const useComplianceFetchExtras = ({ fetch, fetchBatched }) => {
           queue.map((params) => async () => await fetchBatched(params)),
           {
             concurrency: 1, // TODO make batch concurrent fetches possible
-          }
+          },
         );
       }
     },
-    [fetchBatched, fetchBatchedNamedQueue]
+    [fetchBatched, fetchBatchedNamedQueue],
   );
 
   return {

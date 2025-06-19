@@ -20,7 +20,7 @@ module.exports = {
             // TODO we should look into using only one useChrome mock for both jest and cyrpess tests
             '@redhat-cloud-services/frontend-components/useChrome': resolve(
               __dirname,
-              './overrideChrome.js'
+              './overrideChrome.js',
             ),
             '../useChrome': resolve(__dirname, './overrideChrome.js'),
           },

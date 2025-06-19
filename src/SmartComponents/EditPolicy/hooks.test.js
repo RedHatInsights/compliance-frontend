@@ -52,7 +52,7 @@ describe('useOnSave', function () {
       useOnSave(policy, updatedPolicy, {
         onSave: onSaveCallBack,
         onError: onErrorCallback,
-      })
+      }),
     );
     const [, onSave] = result.current;
 
@@ -65,7 +65,7 @@ describe('useOnSave', function () {
         variant: 'success',
         title: 'Policy updated',
         autoDismiss: true,
-      })
+      }),
     );
 
     expect(onSaveCallBack).toHaveBeenCalled();
@@ -83,7 +83,7 @@ describe('useOnSave', function () {
       useOnSave(policy, updatedPolicy, {
         onSave: onSaveCallBack,
         onError: onErrorCallback,
-      })
+      }),
     );
     const [, onSave] = result.current;
     act(() => {
@@ -95,7 +95,7 @@ describe('useOnSave', function () {
         variant: 'danger',
         title: 'Error updating policy',
         description: 'Update failed',
-      })
+      }),
     );
 
     expect(onErrorCallback).toHaveBeenCalled();

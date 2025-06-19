@@ -24,7 +24,7 @@ const usePaginationState = (options) => {
         },
       };
     },
-    [defaultState]
+    [defaultState],
   );
 
   const stateObservers = useMemo(
@@ -36,7 +36,7 @@ const usePaginationState = (options) => {
       [SORT_TABLE_NAMESPACE]: resetPage,
       [FILTERS_TABLE_NAMESPACE]: resetPage,
     }),
-    [resetPage, defaultState]
+    [resetPage, defaultState],
   );
   const [paginationState, setPaginationState] = useTableState(
     TABLE_STATE_NAMESPACE,
@@ -52,7 +52,7 @@ const usePaginationState = (options) => {
           }
         : {}),
       observers: stateObservers,
-    }
+    },
   );
 
   return [paginationState, setPaginationState];

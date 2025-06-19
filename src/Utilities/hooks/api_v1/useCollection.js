@@ -19,7 +19,7 @@ const includeRelationship = (entity, normalizedJson) => {
     const [relationship, relationshipData] = item;
     relationships[relationship] = relationshipData?.data
       .map((entity) =>
-        includeAttributes(normalizedJson?.[entity.type]?.[entity.id])
+        includeAttributes(normalizedJson?.[entity.type]?.[entity.id]),
       )
       .filter((v) => !!v);
   });
@@ -30,7 +30,7 @@ const includeRelationship = (entity, normalizedJson) => {
 const normalizeData = (json, type) => {
   const jsonNormalized = normalize(json);
   return Object.values(jsonNormalized[type] || {})?.map((entity) =>
-    includeRelationship(includeAttributes(entity), jsonNormalized)
+    includeRelationship(includeAttributes(entity), jsonNormalized),
   );
 };
 
@@ -38,7 +38,7 @@ const fetchCollection = async (
   apiClient,
   collection,
   params = {},
-  options = {}
+  options = {},
 ) => {
   const json = await apiClient.get(`/${collection}`, { params });
   const normalized = await normalizeData(json, options?.type || collection);

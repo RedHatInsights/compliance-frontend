@@ -45,7 +45,7 @@ class ApiClient {
           (key) =>
             encodeURIComponent(key) +
             '=' +
-            encodeURIComponent(options.params[key])
+            encodeURIComponent(options.params[key]),
         )
         .join('&');
       url.search = new URLSearchParams(params);
@@ -77,7 +77,7 @@ class ApiClient {
 
     if (response.status === 422) {
       return responseCloneJson.then((json) =>
-        Promise.reject({ ...json, title: 'Validation error' })
+        Promise.reject({ ...json, title: 'Validation error' }),
       );
     }
 

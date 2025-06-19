@@ -29,7 +29,7 @@ describe('ErrorPage', () => {
     render(<ErrorPage error={error} />);
 
     expect(
-      screen.getByText('You do not have access to Compliance')
+      screen.getByText('You do not have access to Compliance'),
     ).toBeInTheDocument();
   });
 

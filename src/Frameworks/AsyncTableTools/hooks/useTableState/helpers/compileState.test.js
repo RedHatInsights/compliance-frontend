@@ -17,7 +17,7 @@ describe('compileState', function () {
       secondObservingStateObserverState: (
         _a,
         _b,
-        observingStateObserverState
+        observingStateObserverState,
       ) => observingStateObserverState === false,
     },
   };
@@ -42,14 +42,14 @@ describe('compileState', function () {
         secondObservingStateObserverState2: (
           _a,
           _b,
-          secondObservingStateObserverState
+          secondObservingStateObserverState,
         ) => (secondObservingStateObserverState === true ? 'yolo' : 'null'),
       },
       secondObservingStateObserverState2: {
         secondObservingStateObserverState3: (
           _a,
           _b,
-          secondObservingStateObserverState2
+          secondObservingStateObserverState2,
         ) => secondObservingStateObserverState2 === 'null',
       },
       secondObservingStateObserverState3: {
@@ -58,7 +58,7 @@ describe('compileState', function () {
     };
 
     expect(
-      compileState(namespace, currentState, newState, withMoreObservers, {})
+      compileState(namespace, currentState, newState, withMoreObservers, {}),
     ).toEqual({
       tableState: {
         observedState: [], // is [] since newState is []
@@ -92,8 +92,8 @@ describe('compileState', function () {
         },
         newState,
         observers,
-        serialisers
-      )
+        serialisers,
+      ),
     ).toEqual({
       tableState: {
         justAnotherState: 'String',
@@ -145,8 +145,8 @@ describe('compileState', function () {
             }),
           },
         },
-        {}
-      )
+        {},
+      ),
     ).toEqual({
       tableState: {
         view: 'rows',
@@ -172,8 +172,8 @@ describe('compileState', function () {
         },
         undefined,
         {},
-        {}
-      )
+        {},
+      ),
     ).toEqual({
       tableState: {
         items: undefined,
@@ -192,8 +192,8 @@ describe('compileState', function () {
         },
         ['def'],
         {},
-        {}
-      )
+        {},
+      ),
     ).toEqual({
       tableState: {
         items: ['def'],
@@ -215,8 +215,8 @@ describe('compileState', function () {
           apple: true,
         },
         {},
-        {}
-      )
+        {},
+      ),
     ).toEqual({
       tableState: {
         filters: {

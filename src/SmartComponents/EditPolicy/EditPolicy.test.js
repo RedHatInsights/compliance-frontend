@@ -27,7 +27,7 @@ jest.mock('./hooks/useAssignedRules');
 jest.mock('Utilities/Dispatcher', () => ({ dispatchNotification: jest.fn() }));
 
 jest.mock(
-  '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate'
+  '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate',
 );
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -51,7 +51,7 @@ const renderComponent = (newProps = {}) =>
   render(
     <TestWrapper>
       <EditPolicy {...{ ...defaultProp, newProps }} />
-    </TestWrapper>
+    </TestWrapper>,
   );
 
 const fetchMock = jest.fn(() => Promise.resolve({ data: [{ id: 'test-id' }] }));
@@ -74,7 +74,7 @@ describe('EditPolicy', () => {
       fetch: jest.fn(() =>
         Promise.resolve({
           data: [{ id: 'tailoring-id-1', os_minor_version: 8 }],
-        })
+        }),
       ),
     }));
 
@@ -145,7 +145,7 @@ describe('EditPolicy', () => {
     expect(
       screen.getByRole('button', {
         name: /save/i,
-      })
+      }),
     ).toBeDisabled();
   });
 
@@ -156,7 +156,7 @@ describe('EditPolicy', () => {
       async (hook) =>
         await waitFor(() => {
           expect(hook).toHaveBeenCalled();
-        })
+        }),
     );
 
     await waitFor(() => {
@@ -173,21 +173,21 @@ describe('EditPolicy', () => {
       expect(
         screen.getByRole('button', {
           name: /save/i,
-        })
-      ).toBeEnabled()
+        }),
+      ).toBeEnabled(),
     );
 
     await user.click(
       screen.getByRole('button', {
         name: /save/i,
-      })
+      }),
     );
 
     await waitFor(() =>
       expect(fetchMock).toHaveBeenCalledWith({
         policyId: 'test-id',
         assignSystemsRequest: { ids: ['system-1'] },
-      })
+      }),
     );
 
     await waitFor(() =>
@@ -195,7 +195,7 @@ describe('EditPolicy', () => {
         policyId: 'test-id',
         tailoringId: 'tailoring-id-1',
         assignRulesRequest: { ids: ['rule-1', 'rule-2'] },
-      })
+      }),
     );
 
     await waitFor(() =>
@@ -203,7 +203,7 @@ describe('EditPolicy', () => {
         policyId: 'test-id',
         tailoringId: 'tailoring-id-1',
         valuesUpdate: { value_overrides: { 'value-id': 'changed-value' } },
-      })
+      }),
     );
 
     await waitFor(() =>
@@ -211,7 +211,7 @@ describe('EditPolicy', () => {
         autoDismiss: true,
         title: 'Policy updated',
         variant: 'success',
-      })
+      }),
     );
   });
 
@@ -227,14 +227,14 @@ describe('EditPolicy', () => {
       expect(
         screen.getByRole('button', {
           name: /save/i,
-        })
-      ).toBeEnabled()
+        }),
+      ).toBeEnabled(),
     );
 
     await user.click(
       screen.getByRole('button', {
         name: /save/i,
-      })
+      }),
     );
 
     await waitFor(() =>
@@ -242,7 +242,7 @@ describe('EditPolicy', () => {
         variant: 'danger',
         title: 'Error updating policy',
         description: 'error message',
-      })
+      }),
     );
   });
 
@@ -253,7 +253,7 @@ describe('EditPolicy', () => {
       async (hook) =>
         await waitFor(() => {
           expect(hook).toHaveBeenCalledWith('test-policy-id');
-        })
+        }),
     );
 
     await waitFor(() => {

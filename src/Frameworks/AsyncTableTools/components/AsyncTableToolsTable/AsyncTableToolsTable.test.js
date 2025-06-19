@@ -30,7 +30,7 @@ describe('AsyncTableToolsTable', () => {
     render(
       <TableStateProvider>
         <AsyncTableToolsTable {...defaultProps} />
-      </TableStateProvider>
+      </TableStateProvider>,
     );
 
     await waitFor(() => expect(itemsFunc).toHaveBeenCalled());

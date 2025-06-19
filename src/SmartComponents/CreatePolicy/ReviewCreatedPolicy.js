@@ -81,7 +81,7 @@ ReviewCreatedPolicy.propTypes = {
     propTypes.shape({
       osMinorVersion: propTypes.number,
       count: propTypes.number,
-    })
+    }),
   ),
   osMajorVersion: propTypes.string.isRequired,
 };

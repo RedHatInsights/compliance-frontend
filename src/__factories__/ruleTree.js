@@ -5,12 +5,12 @@ export const collectIdsFromTree = (
   node,
   ruleGroupIds = [],
   ruleAndGroupIds = [],
-  parentRuleGroupId = null
+  parentRuleGroupId = null,
 ) => {
   if (node.type === 'rule_group') {
     ruleGroupIds.push(node.id);
     node.children.forEach((child) =>
-      collectIdsFromTree(child, ruleGroupIds, ruleAndGroupIds, node.id)
+      collectIdsFromTree(child, ruleGroupIds, ruleAndGroupIds, node.id),
     );
   } else if (node.type === 'rule') {
     ruleAndGroupIds.push({ id: node.id, groupId: parentRuleGroupId });
@@ -54,8 +54,8 @@ const ruleGroupFactory = Factory.define(({ transientParams }) => {
               maxChildren,
               ruleProbability,
             },
-          }
-        )
+          },
+        ),
       );
     }
   }
@@ -71,7 +71,7 @@ const ruleTreeFactory = Factory.define(({ transientParams }) => {
   let ruleGroupCount = { count: 0 };
   let tree = ruleGroupFactory.build(
     {},
-    { transient: { ...transientParams, ruleGroupCount } }
+    { transient: { ...transientParams, ruleGroupCount } },
   );
 
   return tree;

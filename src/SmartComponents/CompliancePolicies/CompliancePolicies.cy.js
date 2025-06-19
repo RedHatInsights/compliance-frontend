@@ -72,7 +72,7 @@ describe('Policies table tests API V2', () => {
         {
           statusCode: 200,
           body: policiesResp,
-        }
+        },
       ).as('getSortedPolicies');
 
       cy.sortTableColumn('Name', 'descending');
@@ -89,7 +89,7 @@ describe('Policies table tests API V2', () => {
         {
           statusCode: 200,
           body: policiesResp,
-        }
+        },
       ).as('getSortedPolicies');
 
       cy.sortTableColumn('Operating system', 'ascending');
@@ -102,7 +102,7 @@ describe('Policies table tests API V2', () => {
         {
           statusCode: 200,
           body: policiesResp,
-        }
+        },
       ).as('getSortedPolicies');
 
       cy.sortTableColumn('Operating system', 'descending');
@@ -118,7 +118,7 @@ describe('Policies table tests API V2', () => {
         {
           statusCode: 200,
           body: policiesResp,
-        }
+        },
       ).as('getSortedPolicies');
 
       cy.sortTableColumn('Systems', 'ascending');
@@ -131,7 +131,7 @@ describe('Policies table tests API V2', () => {
         {
           statusCode: 200,
           body: policiesResp,
-        }
+        },
       ).as('getSortedPolicies');
 
       cy.sortTableColumn('Systems', 'descending');
@@ -147,7 +147,7 @@ describe('Policies table tests API V2', () => {
         {
           statusCode: 200,
           body: policiesResp,
-        }
+        },
       ).as('getSortedPolicies');
 
       cy.sortTableColumn('Business objective', 'ascending');
@@ -160,7 +160,7 @@ describe('Policies table tests API V2', () => {
         {
           statusCode: 200,
           body: policiesResp,
-        }
+        },
       ).as('getSortedPolicies');
 
       cy.sortTableColumn('Business objective', 'descending');
@@ -176,7 +176,7 @@ describe('Policies table tests API V2', () => {
         {
           statusCode: 200,
           body: policiesResp,
-        }
+        },
       ).as('getSortedPolicies');
 
       cy.sortTableColumn('Compliance threshold', 'ascending');
@@ -189,7 +189,7 @@ describe('Policies table tests API V2', () => {
         {
           statusCode: 200,
           body: policiesResp,
-        }
+        },
       ).as('getSortedPolicies');
 
       cy.sortTableColumn('Compliance threshold', 'descending');
@@ -220,7 +220,7 @@ describe('Policies table tests API V2', () => {
                 total: policiesData.length,
               },
             },
-          }
+          },
         ).as('getPaginatedPolicies');
 
         cy.ouiaType('PF5/Toolbar', 'div')
@@ -243,7 +243,7 @@ describe('Policies table tests API V2', () => {
             'have.length',
             policiesData.length > perPageValue
               ? perPageValue
-              : policiesData.length
+              : policiesData.length,
           );
       });
     });
@@ -256,13 +256,13 @@ describe('Policies table tests API V2', () => {
         'policies',
         0,
         policiesData.slice(0, 10),
-        policiesData.length
+        policiesData.length,
       );
       interceptBatchRequest(
         'policies',
         10,
         policiesData.slice(10, 20),
-        policiesData.length
+        policiesData.length,
       );
     });
     it('CSV report download and content', () => {
@@ -277,7 +277,7 @@ describe('Policies table tests API V2', () => {
         function (result) {
           let res = result.stdout;
           cy.readFile('cypress/downloads/' + res).should('not.be.empty');
-        }
+        },
       );
     });
     it('JSON report download and content', () => {
@@ -295,7 +295,7 @@ describe('Policies table tests API V2', () => {
             .then((fileContent) => {
               assert(
                 fileContent.length === policiesData.length,
-                'Length of policies is different'
+                'Length of policies is different',
               );
               fileContent.forEach((item) => {
                 policiesData.forEach((policy) => {
@@ -306,16 +306,16 @@ describe('Policies table tests API V2', () => {
                       getComparisonMessage(
                         'OS',
                         policy.os_major_version,
-                        item['operatingSystem']
-                      )
+                        item['operatingSystem'],
+                      ),
                     );
                     assert(
                       policy.total_system_count === item['systems'],
                       getComparisonMessage(
                         'Systems',
                         policy.total_system_count,
-                        item['systems']
-                      )
+                        item['systems'],
+                      ),
                     );
                     const businessObj = policy.business_objective
                       ? policy.business_objective
@@ -325,8 +325,8 @@ describe('Policies table tests API V2', () => {
                       getComparisonMessage(
                         'BO',
                         businessObj,
-                        item['businessObjective']
-                      )
+                        item['businessObjective'],
+                      ),
                     );
                     assert(
                       `${policy.compliance_threshold}%` ==
@@ -334,14 +334,14 @@ describe('Policies table tests API V2', () => {
                       getComparisonMessage(
                         'Threshold',
                         `${policy.compliance_threshold}%`,
-                        item['complianceThreshold']
-                      )
+                        item['complianceThreshold'],
+                      ),
                     );
                   }
                 });
               });
             });
-        }
+        },
       );
     });
   });
@@ -362,7 +362,7 @@ describe('Policies table tests API V2', () => {
               total: 1,
             },
           },
-        }
+        },
       ).as('getFilteredPolicies');
 
       cy.ouiaId('ConditionalFilter', 'input').type(policyTitle, { delay: 0 });
@@ -372,7 +372,7 @@ describe('Policies table tests API V2', () => {
           'contain',
           new URLSearchParams({
             filter: `title ~ "${policyTitle}"`,
-          }).toString()
+          }).toString(),
         );
       cy.get('td[data-label="Name"]')
         .should('have.length', 1)

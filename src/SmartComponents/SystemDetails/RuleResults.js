@@ -42,7 +42,7 @@ const RuleResults = ({ reportTestResult }) => {
 
   const rules = useMemo(
     () => transformRules(ruleResults?.data, reportTestResult),
-    [ruleResults, reportTestResult]
+    [ruleResults, reportTestResult],
   );
 
   return (

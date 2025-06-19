@@ -8,7 +8,7 @@ export const processTestResultsData = (data) =>
     data.map((entry) => ({
       ...entry,
     })),
-    testResultsDataMapper
+    testResultsDataMapper,
   );
 
 export const processSystemsData = (data) =>

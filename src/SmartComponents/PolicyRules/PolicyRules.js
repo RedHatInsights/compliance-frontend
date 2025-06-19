@@ -69,7 +69,7 @@ const PolicyDefaultRules = () => {
         profileRuleTree,
         ruleGroups,
       }),
-    [ruleGroups, profileRuleTree]
+    [ruleGroups, profileRuleTree],
   );
 
   return (

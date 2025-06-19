@@ -8,7 +8,9 @@ const InlineValueEdit = ({ value, valueDefinition, ...props }) => (
     {valueDefinition?.title}:{' '}
     <InlineEdit
       isDisabled={disableEdit(
-        value || valueDefinition?.defaultValue || valueDefinition?.default_value
+        value ||
+          valueDefinition?.defaultValue ||
+          valueDefinition?.default_value,
       )}
       defaultValue={
         valueDefinition?.defaultValue || valueDefinition?.default_value

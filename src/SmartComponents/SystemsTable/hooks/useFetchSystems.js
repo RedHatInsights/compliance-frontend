@@ -30,13 +30,13 @@ export const useFetchSystems = (
   fetchApi,
   onComplete,
   onError,
-  systemFetchArguments = {}
+  systemFetchArguments = {},
 ) => {
   const fetchSystems = useCallback(
     async (perPage, page, requestVariables) => {
       const combinedVariables = combineVariables(
         systemFetchArguments,
-        requestVariables
+        requestVariables,
       );
       const offset = (page - 1) * perPage;
 
@@ -44,7 +44,7 @@ export const useFetchSystems = (
         const { data, meta } = await fetchApi(
           offset,
           perPage,
-          combinedVariables
+          combinedVariables,
         );
 
         const result = {
@@ -66,7 +66,7 @@ export const useFetchSystems = (
         }
       }
     },
-    [systemFetchArguments, onComplete, onError, fetchApi]
+    [systemFetchArguments, onComplete, onError, fetchApi],
   );
 
   return fetchSystems;

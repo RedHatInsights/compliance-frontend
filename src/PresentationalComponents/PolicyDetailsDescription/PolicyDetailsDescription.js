@@ -16,7 +16,7 @@ import EditPolicyDetailsInline from '../../SmartComponents/EditPolicyDetails/Edi
 const PolicyDetailsDescription = ({ policy, refetch }) => {
   const thresholdText = `${fixedPercentage(
     policy.complianceThreshold,
-    1
+    1,
   )} of rules must be
   passed for a system to be labeled "Compliant"`;
   const businessText =

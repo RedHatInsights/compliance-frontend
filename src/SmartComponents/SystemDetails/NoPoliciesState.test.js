@@ -9,13 +9,13 @@ describe('NoPoliciesState', () => {
     render(
       <TestWrapper>
         <NoPoliciesState />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(
       screen.getByText(
-        'This system is not part of any SCAP policies defined within Compliance.'
-      )
+        'This system is not part of any SCAP policies defined within Compliance.',
+      ),
     ).toBeInTheDocument();
   });
 });

@@ -62,7 +62,7 @@ describe('checkForErrors', () => {
     response.clone = jest.fn(() => response);
 
     await expect(ApiClient.checkForErrors(response)).rejects.toEqual(
-      errors.errors[0]
+      errors.errors[0],
     );
     expect(response.json).toHaveBeenCalled();
   });
@@ -133,7 +133,7 @@ describe('API calls', () => {
       expect(ApiClient.request).toHaveBeenCalledWith(
         '/destroy',
         null,
-        'delete'
+        'delete',
       );
     });
   });

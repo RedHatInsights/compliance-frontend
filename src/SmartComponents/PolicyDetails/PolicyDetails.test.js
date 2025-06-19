@@ -11,7 +11,7 @@ jest.mock('../../PresentationalComponents/Tailorings/Tailorings');
 jest.mock('../../Utilities/hooks/api/usePolicy');
 jest.mock('./PolicySystemsTab');
 jest.mock(
-  '../../PresentationalComponents/PolicyDetailsDescription/PolicyDetailsDescription'
+  '../../PresentationalComponents/PolicyDetailsDescription/PolicyDetailsDescription',
 );
 jest.mock('../../Utilities/hooks/api/usePolicyOsVersionCounts');
 jest.mock('react-router-dom', () => ({
@@ -32,7 +32,7 @@ describe('PolicyDetails', () => {
     render(
       <TestWrapper>
         <PolicyDetails />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     screen.getByRole('heading', {
@@ -58,7 +58,7 @@ describe('PolicyDetails', () => {
     render(
       <TestWrapper>
         <PolicyDetails />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     screen.getByRole('heading', {
@@ -76,7 +76,7 @@ describe('PolicyDetails', () => {
     render(
       <TestWrapper>
         <PolicyDetails />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(usePolicyOsVersionCounts).toBeCalledWith('some-policy-id');

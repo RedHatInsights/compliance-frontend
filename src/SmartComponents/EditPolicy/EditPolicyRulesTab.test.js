@@ -22,13 +22,13 @@ describe('EditPolicyRulesTab', () => {
     render(
       <TestWrapper>
         <EditPolicyRulesTab {...defaultProps} />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(
       screen.getByText(
-        'Different release versions of RHEL are associated with different versions of the SCAP Security Guide (SSG), therefore each release must be customized independently.'
-      )
+        'Different release versions of RHEL are associated with different versions of the SCAP Security Guide (SSG), therefore each release must be customized independently.',
+      ),
     ).toBeInTheDocument();
 
     expect(screen.queryByTestId('tailorings-tab')).toBeVisible();
@@ -40,13 +40,13 @@ describe('EditPolicyRulesTab', () => {
         <EditPolicyRulesTab
           {...{ ...defaultProps, policy: { total_system_count: 0 } }}
         />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(
       screen.queryByText(
-        'This policy has no associated systems, and therefore no rules can be configured.'
-      )
+        'This policy has no associated systems, and therefore no rules can be configured.',
+      ),
     ).toBeVisible();
   });
 
@@ -56,7 +56,7 @@ describe('EditPolicyRulesTab', () => {
         <EditPolicyRulesTab
           {...{ ...defaultProps, policy: { total_system_count: undefined } }}
         />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(screen.queryByText('Loading...')).toBeVisible();

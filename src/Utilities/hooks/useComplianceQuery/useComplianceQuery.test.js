@@ -70,12 +70,12 @@ describe('useComplianceQuery', () => {
     await waitFor(() =>
       expect(mockUseQuery).toHaveBeenCalledWith(
         expect.anything(),
-        defaultUseQueryOptions
-      )
+        defaultUseQueryOptions,
+      ),
     );
 
     act(() =>
-      result.current.paginate.toolbarProps.pagination.onSetPage(undefined, 2)
+      result.current.paginate.toolbarProps.pagination.onSetPage(undefined, 2),
     );
 
     await waitFor(() =>
@@ -86,12 +86,12 @@ describe('useComplianceQuery', () => {
             limit: 10,
             offset: 10,
           }),
-        })
-      )
+        }),
+      ),
     );
 
     act(() =>
-      result.current.paginate.toolbarProps.pagination.onPerPageSelect(null, 50)
+      result.current.paginate.toolbarProps.pagination.onPerPageSelect(null, 50),
     );
 
     await waitFor(() =>
@@ -99,8 +99,8 @@ describe('useComplianceQuery', () => {
         expect.anything(),
         expect.objectContaining({
           params: expect.objectContaining({ limit: 50 }),
-        })
-      )
+        }),
+      ),
     );
   });
 
@@ -112,8 +112,8 @@ describe('useComplianceQuery', () => {
     await waitFor(() =>
       expect(mockUseQuery).toHaveBeenCalledWith(
         expect.anything(),
-        defaultUseQueryOptions
-      )
+        defaultUseQueryOptions,
+      ),
     );
 
     act(() => result.current.sort.tableProps.onSort(null, 1, 'desc'));
@@ -123,8 +123,8 @@ describe('useComplianceQuery', () => {
         expect.anything(),
         expect.objectContaining({
           params: expect.objectContaining({ sortBy: 'systems:desc' }),
-        })
-      )
+        }),
+      ),
     );
   });
 
@@ -133,14 +133,14 @@ describe('useComplianceQuery', () => {
       () => useTableStateHelper({ query: { batched: true, skip: true } }),
       {
         wrapper,
-      }
+      },
     );
 
     await waitFor(() =>
       expect(mockUseQuery).toHaveBeenCalledWith(
         expect.anything(),
-        defaultUseQueryOptions
-      )
+        defaultUseQueryOptions,
+      ),
     );
 
     await waitFor(() =>
@@ -148,8 +148,8 @@ describe('useComplianceQuery', () => {
         expect.anything(),
         expect.objectContaining({
           skip: true,
-        })
-      )
+        }),
+      ),
     );
   });
 });

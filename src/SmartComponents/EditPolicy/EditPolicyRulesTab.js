@@ -50,7 +50,7 @@ export const EditPolicyRulesTab = ({
 
   const tailoringOsMinorVersions = Object.keys(assignedRuleIds).map(Number);
   const nonTailoringOsMinorVersions = selectedOsMinorVersions.filter(
-    (version) => !tailoringOsMinorVersions.includes(version)
+    (version) => !tailoringOsMinorVersions.includes(version),
   );
 
   const shouldSkipProfiles =
@@ -79,13 +79,13 @@ export const EditPolicyRulesTab = ({
             ...(assignedRuleIds[osMinorVersion] || []),
             ...(profilesRuleIds?.find(
               (profile) =>
-                Number(profile.osMinorVersion) === Number(osMinorVersion)
+                Number(profile.osMinorVersion) === Number(osMinorVersion),
             )?.ruleIds || []),
           ]),
         ],
       ],
-      []
-    )
+      [],
+    ),
   );
 
   const { data: { data: tailoringsData } = {} } = useTailorings({
@@ -148,7 +148,7 @@ export const EditPolicyRulesTab = ({
         [tailoring.os_minor_version]: newSelectedRuleIds,
       }));
     },
-    [setUpdatedPolicy]
+    [setUpdatedPolicy],
   );
 
   const assignedSystemCount = policy?.total_system_count;

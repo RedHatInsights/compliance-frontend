@@ -22,7 +22,7 @@ describe('toDeselectValue', () => {
             name: 'OPTION 2',
           },
         ],
-      })
+      }),
     ).toEqual(['OPTION 2-value', 'checkbox-filter']);
   });
 });

@@ -4,7 +4,7 @@ import { normalizeData } from './normalize';
 describe('normalizeData', () => {
   it('normalizes API data', () => {
     expect(
-      normalizeData(supportedSsgs, 'supportedSsg', '/supported_ssgs')
+      normalizeData(supportedSsgs, 'supportedSsg', '/supported_ssgs'),
     ).toMatchSnapshot();
   });
 

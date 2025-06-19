@@ -76,7 +76,7 @@ export const SystemsTable = ({
     filters: {
       filterConfig: [
         ...defaultSystemsFilterConfiguration(
-          DEFAULT_SYSTEMS_FILTER_CONFIGURATION
+          DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
         ),
         ...(compliantFilter ? compliantSystemFilterConfiguration() : []),
         ...(policies?.length > 0 ? policyFilter(policies) : []),
@@ -88,7 +88,7 @@ export const SystemsTable = ({
   const systemsFilter = useSystemsFilter(
     filterString(),
     showOnlySystemsWithTestResults,
-    defaultFilter
+    defaultFilter,
   );
 
   const systemFetchArguments = {
@@ -144,7 +144,7 @@ export const SystemsTable = ({
         setIsEmpty(true);
       }
     },
-    [emptyStateComponent, activeFilterValues.length]
+    [emptyStateComponent, activeFilterValues.length],
   );
 
   const onError = (apiError) => {
@@ -156,7 +156,7 @@ export const SystemsTable = ({
     fetchApi,
     onComplete,
     onError,
-    systemFetchArguments
+    systemFetchArguments,
   );
 
   const getEntities = useGetEntities(fetchSystems, {
@@ -173,7 +173,7 @@ export const SystemsTable = ({
 
   const handleOperatingSystemsFetch = useCallback(
     () => fetchCustomOSes({ filters: defaultFilter, reportId, policyId }),
-    [defaultFilter, fetchCustomOSes, policyId, reportId]
+    [defaultFilter, fetchCustomOSes, policyId, reportId],
   );
 
   return (
@@ -256,7 +256,7 @@ export const SystemsTable = ({
 
 SystemsTable.propTypes = {
   columns: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.shape({}), PropTypes.string])
+    PropTypes.oneOfType([PropTypes.shape({}), PropTypes.string]),
   ),
   policies: PropTypes.arrayOf(PropTypes.shape({})),
   showAllSystems: PropTypes.bool,

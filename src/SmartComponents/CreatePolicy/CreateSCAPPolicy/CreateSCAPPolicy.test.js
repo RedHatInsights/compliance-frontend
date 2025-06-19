@@ -33,7 +33,7 @@ describe('CreateSCAPPolicy', () => {
     render(
       <TestWrapper>
         <CreateSCAPPolicyTableStateProvider change={change} />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     screen.getByRole('progressbar');
@@ -53,12 +53,12 @@ describe('CreateSCAPPolicy', () => {
     render(
       <TestWrapper>
         <CreateSCAPPolicyTableStateProvider change={change} />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     await waitFor(() => {
       screen.getByText(
-        /select the operating system and policy type for this policy\./i
+        /select the operating system and policy type for this policy\./i,
       );
     });
     availableVersions.forEach((version) => screen.getByText(`RHEL ${version}`));
@@ -78,7 +78,7 @@ describe('CreateSCAPPolicy', () => {
     render(
       <TestWrapper>
         <CreateSCAPPolicyTableStateProvider change={change} />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     await userEvent.click(screen.getByRole('option', { name: 'RHEL 8' }));
@@ -102,12 +102,12 @@ describe('CreateSCAPPolicy', () => {
           change={change}
           selectedOsMajorVersion={8}
         />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(screen.getByRole('option', { name: 'RHEL 8' })).toHaveAttribute(
       'aria-selected',
-      'true'
+      'true',
     );
     screen.getByLabelText('PolicyTypeTable');
   });
@@ -129,7 +129,7 @@ describe('CreateSCAPPolicy', () => {
           change={change}
           selectedOsMajorVersion={8}
         />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     supportedProfiles.forEach(({ title }) => {
@@ -154,13 +154,13 @@ describe('CreateSCAPPolicy', () => {
           change={change}
           selectedOsMajorVersion={8}
         />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     await userEvent.click(
       screen.getByRole('radio', {
         name: /select row 0/i,
-      })
+      }),
     );
     expect(change).toBeCalledTimes(3);
   });

@@ -9,7 +9,7 @@ const useLoadedItems = (currentPageItems, total, key = 'id') => {
     (items) => {
       setLoadedItems((loadedItems) => unionBy(items, loadedItems, key));
     },
-    [key]
+    [key],
   );
 
   useEffect(() => {

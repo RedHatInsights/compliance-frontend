@@ -17,7 +17,7 @@ const useViewState = (options) => {
       internalTableView.current = newView;
       return newView;
     },
-    []
+    [],
   );
   const itemObserver = useCallback(
     (_currentTableViewState, _previousItems, items) => {
@@ -35,7 +35,7 @@ const useViewState = (options) => {
 
       return newView;
     },
-    []
+    [],
   );
   const [tableView, setTableViewState] = useTableState(
     TABLE_STATE_NAMESPACE,
@@ -45,14 +45,14 @@ const useViewState = (options) => {
         [FILTERS_TABLE_STATE_NAMESPACE]: filtersObserver,
         items: itemObserver,
       },
-    }
+    },
   );
   const setTableView = useCallback(
     (view) => {
       internalTableView.current = view;
       setTableViewState(view);
     },
-    [setTableViewState]
+    [setTableViewState],
   );
 
   return {

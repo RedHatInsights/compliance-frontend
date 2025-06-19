@@ -76,7 +76,7 @@ const useOnSelect = (change, countOsMinorVersions) => {
       change('systems', newSelectedSystems);
       change('osMinorVersionCounts', countOsMinorVersions(newSelectedSystems));
     },
-    [change, countOsMinorVersions]
+    [change, countOsMinorVersions],
   );
 
   return onSelect;
@@ -92,7 +92,7 @@ export const EditPolicySystems = ({
 }) => {
   const onSelect = useOnSelect(change, countOsMinorVersions);
   const osMinorVersions = profile.supportedOsVersions.map(
-    (version) => version.split('.')[1]
+    (version) => version.split('.')[1],
   );
 
   const defaultFilter = osMajorVersion
@@ -116,7 +116,7 @@ export const EditPolicySystems = ({
         profile.supportedOsVersions.map((version) => ({
           osMinorVersion: version.split('.')[1],
           count: 0,
-        }))
+        })),
       );
     }
   }, [profile, osMinorVersionCounts, change]);
@@ -191,5 +191,5 @@ export default compose(
     form: 'policyForm',
     destroyOnUnmount: false,
     forceUnregisterOnUnmount: true,
-  })
+  }),
 )(EditPolicySystems);

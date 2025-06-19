@@ -24,7 +24,7 @@ export const csvForItems = ({ items, columns }) => {
     ...items.map((row) =>
       columns
         .map((column) => `"${textForCell(row, column)}"`)
-        .join(CSV_DELIMITER)
+        .join(CSV_DELIMITER),
     ),
   ];
 
@@ -39,7 +39,7 @@ export const jsonForItems = ({ items, columns }) => {
 
       object[key] = value;
       return object;
-    }, {})
+    }, {}),
   );
 
   return JSON.stringify(result);
@@ -48,7 +48,7 @@ export const jsonForItems = ({ items, columns }) => {
 export const exportableColumns = (columns) =>
   columns.filter(
     (column) =>
-      column.export !== false && (column.exportKey || column.renderExport)
+      column.export !== false && (column.exportKey || column.renderExport),
   );
 
 export const downloadItems = (columns, items, format) => {
@@ -61,7 +61,7 @@ export const downloadItems = (columns, items, format) => {
         columns,
       }),
       CSV_FILE_PREFIX + '-' + new Date().toISOString(),
-      format
+      format,
     );
   } else {
     console.info('No items returned for export');

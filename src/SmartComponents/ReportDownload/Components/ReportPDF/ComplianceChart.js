@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { paletteColors } from '../../../../constants';
-// eslint-disable-next-line rulesdir/disallow-fec-relative-imports
+
 import { Chart } from '@redhat-cloud-services/frontend-components-pdf-generator/dist/esm/index';
 import { fixedPercentage } from 'Utilities/TextHelper';
 import { pluralize } from '@patternfly/react-core';

@@ -3,12 +3,12 @@ import { useDeepCompareEffect } from 'use-deep-compare';
 const useStateObservers = (
   observerNamespace,
   observers,
-  observersInContext
+  observersInContext,
 ) => {
   useDeepCompareEffect(() => {
     if (observers && observersInContext) {
       for (const [observedStatekey, observerFunction] of Object.entries(
-        observers
+        observers,
       )) {
         observersInContext.current = {
           ...observersInContext?.current,

@@ -18,7 +18,7 @@ const useFetchReporting = (reportId) => {
           page,
           false,
           combinedVariables.sortBy,
-          combinedVariables.filter
+          combinedVariables.filter,
         )
         .then(({ data: { data = [], meta = {} } = {} } = {}) => {
           return {
@@ -47,7 +47,7 @@ const useFetchReporting = (reportId) => {
 
       return res;
     },
-    [reportId]
+    [reportId],
   );
 
   return {

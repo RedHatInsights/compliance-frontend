@@ -3,12 +3,13 @@ export const NEVER = 'Never';
 export const profilesRulesFailed = (profiles) =>
   profiles.flatMap(
     (profile) =>
-      profile.rules && profile.rules.filter((rule) => !rule.compliant)
+      profile.rules && profile.rules.filter((rule) => !rule.compliant),
   );
 
 export const profilesRulesPassed = (profiles) =>
   profiles.flatMap(
-    (profile) => profile.rules && profile.rules.filter((rule) => rule.compliant)
+    (profile) =>
+      profile.rules && profile.rules.filter((rule) => rule.compliant),
   );
 
 export const systemRulesFailed = (system) =>
@@ -44,7 +45,7 @@ export const complianceScoreData = (profiles) => {
   }, 0);
   const score = numScored ? scoreTotal / numScored : 0;
   const compliant = profiles.every(
-    (profile) => profile.lastScanned === NEVER || profile.compliant === true
+    (profile) => profile.lastScanned === NEVER || profile.compliant === true,
   );
 
   return {

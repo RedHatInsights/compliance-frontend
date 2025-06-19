@@ -20,7 +20,7 @@ describe('ComplianceTable', () => {
     render(
       <TableStateProvider>
         <ComplianceTable {...defaultProps} />
-      </TableStateProvider>
+      </TableStateProvider>,
     );
 
     expect(screen.getByLabelText('Test Table')).toBeInTheDocument();

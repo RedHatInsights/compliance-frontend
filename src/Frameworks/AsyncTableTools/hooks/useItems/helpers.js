@@ -1,7 +1,7 @@
 export const itemObserver = (
   _currentState,
   _observedPreviousState,
-  observedNextItems
+  observedNextItems,
 ) => typeof observedNextItems?.length !== 'undefined';
 
 export const identifyItems = (items) =>

@@ -23,14 +23,14 @@ describe('ReportsTable Cells', () => {
     render(
       <TestWrapper>
         <Name {...defaultProps} />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(screen.getByText(defaultProps.title)).toBeInTheDocument();
     const link = screen.getByRole('link', { name: defaultProps.title });
     expect(link).toHaveAttribute(
       'href',
-      expect.stringContaining(`/reports/${defaultProps.id}`)
+      expect.stringContaining(`/reports/${defaultProps.id}`),
     );
   });
 
@@ -42,10 +42,10 @@ describe('ReportsTable Cells', () => {
     render(
       <TestWrapper>
         <OperatingSystem {...defaultProps} />
-      </TestWrapper>
+      </TestWrapper>,
     );
     expect(
-      screen.getByText(`RHEL ${defaultProps.os_major_version}`)
+      screen.getByText(`RHEL ${defaultProps.os_major_version}`),
     ).toBeInTheDocument();
   });
 
@@ -61,7 +61,7 @@ describe('ReportsTable Cells', () => {
     render(
       <TestWrapper>
         <CompliantSystems {...defaultProps} />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(screen.getByLabelText('Report chart')).toBeInTheDocument();
@@ -72,11 +72,11 @@ describe('ReportsTable Cells', () => {
     render(
       <TestWrapper>
         <PDFExportDownload id="123" />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(
-      screen.getByLabelText('Reports PDF download link')
+      screen.getByLabelText('Reports PDF download link'),
     ).toBeInTheDocument();
   });
 });

@@ -33,7 +33,7 @@ export const defaultOnLoad =
 export const SSG_VERSION_FILTER_KEY = 'security_guide_version';
 export const ssgVersionFilter = (
   ssgVersions,
-  filter_key = SSG_VERSION_FILTER_KEY
+  filter_key = SSG_VERSION_FILTER_KEY,
 ) => [
   {
     type: conditionalFilterType.checkbox,
@@ -51,7 +51,7 @@ export const mergedColumns = (columns) => (defaultColumns) =>
     const isStringCol = typeof column === 'string';
     const key = isStringCol ? column : column.key;
     const defaultColumn = defaultColumns.find(
-      (defaultCol) => defaultCol.key === key
+      (defaultCol) => defaultCol.key === key,
     );
 
     if (defaultColumn === undefined && column?.requiresDefault === true) {
@@ -99,7 +99,7 @@ export const osFilterHandler = ({ osFilter }, ignoreOsMajorVersion) => {
             versionList.push(`${parsedSemverVersion.minor}`);
           } else {
             versionList.push(
-              `${parsedSemverVersion.major}.${parsedSemverVersion.minor}`
+              `${parsedSemverVersion.major}.${parsedSemverVersion.minor}`,
             );
           }
         }
@@ -138,7 +138,7 @@ const processSystemsData = (data) =>
       ...entry,
       policies: dataSerialiser(entry.policies, policiesDataMapper),
     })),
-    systemsDataMapper
+    systemsDataMapper,
   );
 
 export const fetchSystemsApi = async (page, perPage, combinedVariables) =>
@@ -150,7 +150,7 @@ export const fetchSystemsApi = async (page, perPage, combinedVariables) =>
       page,
       combinedVariables.idsOnly,
       combinedVariables.sortBy,
-      combinedVariables.filter
+      combinedVariables.filter,
     )
     .then(({ data: { data = [], meta = {} } = {} } = {}) => ({
       data: processSystemsData(data),

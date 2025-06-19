@@ -30,7 +30,7 @@ import {
   interceptTailoringRules,
   interceptProfileRules,
 } from '../../../cypress/utils/interceptors';
-/* eslint-disable rulesdir/disallow-fec-relative-imports */
+
 import { TABLE_ROW } from '@redhat-cloud-services/frontend-components-utilities';
 
 const capitalizeFirstLetter = (str) =>
@@ -80,7 +80,7 @@ const rulesSlice = rules.slice(0, 10); // return only 10 rules for the first pag
 const allValueCheckIds = rules.flatMap((rule) => rule.value_checks);
 const valueDefinitions = buildValueDefinitions(
   allValueCheckIds.length,
-  allValueCheckIds
+  allValueCheckIds,
 );
 
 const preselectedRuleIds = rules.map((rule) => rule.id);
@@ -124,7 +124,7 @@ describe('Tailorings - Tailorings on Edit policy', () => {
         enableSecurityGuideRulesToggle: true,
         selectedVersionCounts: selectedSystemsCount, // { 8: 10, 7: 5...}
         skipProfile: 'edit-policy',
-      }
+      },
     );
   };
   beforeEach(() => {
@@ -137,7 +137,7 @@ describe('Tailorings - Tailorings on Edit policy', () => {
     interceptSSGValueDefinitions(
       securityGuide.id,
       valueDefinitions,
-      valueDefinitions.length
+      valueDefinitions.length,
     );
 
     mountComponent();
@@ -148,7 +148,7 @@ describe('Tailorings - Tailorings on Edit policy', () => {
   it('Expect to render Tailorings view with tabs', () => {
     // ensure there is only 1 tab displayed as 1 tailoring provided
     cy.ouiaId(
-      `RHEL ${tailoring.os_major_version}.${tailoring.os_minor_version}`
+      `RHEL ${tailoring.os_major_version}.${tailoring.os_minor_version}`,
     ).should('exist');
     cy.ouiaType('PF5/TabButton').find('span').contains(SYSTEMS_COUNT);
     // check tree view is shown by default
@@ -167,7 +167,7 @@ describe('Tailorings - Tailorings on Edit policy', () => {
     it('Select non default rules & reset selection', () => {
       // take initial ruleGroup from tree
       const foundRuleGroup = ruleGroups.find(
-        (group) => group.id === fakeSecurityGuideTree.id
+        (group) => group.id === fakeSecurityGuideTree.id,
       );
 
       getRowByTitle(foundRuleGroup.title).within(() => {
@@ -182,7 +182,7 @@ describe('Tailorings - Tailorings on Edit policy', () => {
       });
 
       const filteredRules = rules.filter(
-        (rule) => rule.rule_group_id === foundRuleGroup.id
+        (rule) => rule.rule_group_id === foundRuleGroup.id,
       );
       const endpoint = `security_guides/${securityGuide.id}`;
       interceptRulesByGroupRequest(
@@ -191,7 +191,7 @@ describe('Tailorings - Tailorings on Edit policy', () => {
         filteredRules,
         filteredRules.length,
         0,
-        50
+        50,
       );
 
       getRowByTitle(foundRuleGroup.title).within(() => {
@@ -206,7 +206,7 @@ describe('Tailorings - Tailorings on Edit policy', () => {
         newRulesSet,
         newRulesSet.length,
         0,
-        50
+        50,
       );
 
       // expand group and check if not selected
@@ -265,7 +265,7 @@ describe('Tailorings - Tailorings on Policy details', () => {
         onValueOverrideSave: cy.spy(),
         selectedVersionCounts: {},
         skipProfile: 'policy-details',
-      }
+      },
     );
   };
   beforeEach(() => {
@@ -277,7 +277,7 @@ describe('Tailorings - Tailorings on Policy details', () => {
     interceptSSGValueDefinitions(
       securityGuide.id,
       valueDefinitions,
-      valueDefinitions.length
+      valueDefinitions.length,
     );
 
     mountComponent();
@@ -291,7 +291,7 @@ describe('Tailorings - Tailorings on Policy details', () => {
       .should('have.length', 1)
       .should(
         'contain.text',
-        `RHEL ${tailoring.os_major_version}.${tailoring.os_minor_version}`
+        `RHEL ${tailoring.os_major_version}.${tailoring.os_minor_version}`,
       );
     // check tree view is shown by default
     cy.get('button[aria-label="tree"]').should('have.class', 'pf-m-selected');
@@ -307,7 +307,7 @@ describe('Tailorings - Tailorings on Policy details', () => {
           50,
           rules.slice(50, 100),
           rules.length,
-          50
+          50,
         );
       }
     });
@@ -322,7 +322,7 @@ describe('Tailorings - Tailorings on Policy details', () => {
         function (result) {
           let res = result.stdout;
           cy.readFile('cypress/downloads/' + res).should('not.be.empty');
-        }
+        },
       );
     });
     it('Export JSON rules work', () => {
@@ -342,7 +342,7 @@ describe('Tailorings - Tailorings on Policy details', () => {
             .then((fileContent) => {
               assert(
                 fileContent.length === rules.length,
-                'Length of rules is different'
+                'Length of rules is different',
               );
               fileContent.forEach((item) => {
                 rules.forEach((rule) => {
@@ -352,16 +352,16 @@ describe('Tailorings - Tailorings on Policy details', () => {
                       getComparisonMessage(
                         'Identifier',
                         rule.identifier.label,
-                        item['name']
-                      )
+                        item['name'],
+                      ),
                     );
                     assert(
                       rule.severity === item['severity'],
                       getComparisonMessage(
                         'Severity',
                         rule.severity,
-                        item['severity']
-                      )
+                        item['severity'],
+                      ),
                     );
                     const remediationWording = rule.remediation_available
                       ? 'Playbook'
@@ -371,14 +371,14 @@ describe('Tailorings - Tailorings on Policy details', () => {
                       getComparisonMessage(
                         'Remediation',
                         remediationWording,
-                        item['remediationType']
-                      )
+                        item['remediationType'],
+                      ),
                     );
                   }
                 });
               });
             });
-        }
+        },
       );
     });
   });
@@ -394,23 +394,23 @@ describe('Tailorings - Tailorings on Policy details', () => {
           const foundRule = rules.find((rule) => rule.id === node.id);
           if (!foundRule) return;
           const matchingValues = valueDefinitions.filter((def) =>
-            foundRule.value_checks.includes(def.id)
+            foundRule.value_checks.includes(def.id),
           );
           getRowByTitle(foundRule.title).within(() => {
             cy.get('td[data-label="Severity"]').should(
               'contain',
-              capitalizeFirstLetter(foundRule.severity)
+              capitalizeFirstLetter(foundRule.severity),
             );
             cy.get('td[data-label="Remediation type"]').should(
               'contain',
-              foundRule.remediation_available ? 'Playbook' : 'Manual'
+              foundRule.remediation_available ? 'Playbook' : 'Manual',
             );
             cy.get('div').find("span[class*='table__toggle']").click();
           });
           // after expanding the rule, HTML tree structure changes
           cy.get('tbody[role="rowgroup"]')
             .filter((_index, el) =>
-              Cypress.$(el).text().includes(foundRule.title)
+              Cypress.$(el).text().includes(foundRule.title),
             )
             .within(() => {
               checkRuleFields(foundRule, matchingValues);
@@ -421,7 +421,7 @@ describe('Tailorings - Tailorings on Policy details', () => {
         if (!foundRuleGroup) return;
 
         const filteredRules = rules.filter(
-          (rule) => rule.rule_group_id === foundRuleGroup.id
+          (rule) => rule.rule_group_id === foundRuleGroup.id,
         );
 
         accumulatedRules = [...accumulatedRules, ...filteredRules];
@@ -437,7 +437,7 @@ describe('Tailorings - Tailorings on Policy details', () => {
           firstBatch,
           accumulatedRules.length,
           0,
-          50
+          50,
         );
 
         // Intercept second request (remaining rules, if any)
@@ -448,7 +448,7 @@ describe('Tailorings - Tailorings on Policy details', () => {
             secondBatch,
             accumulatedRules.length,
             50,
-            50
+            50,
           );
         }
 
@@ -482,12 +482,12 @@ describe('Tailorings - Tailorings on Policy details', () => {
         1,
         0,
         10,
-        requestParams
+        requestParams,
       );
 
       cy.get('button[aria-label="rows"]').should(
         'not.have.class',
-        'pf-m-selected'
+        'pf-m-selected',
       );
       cy.ouiaId('ConditionalFilter', 'input').type(first_rule.title, {
         delay: 0,
@@ -502,13 +502,13 @@ describe('Tailorings - Tailorings on Policy details', () => {
         policy.id,
         tailoring.id,
         rulesSlice,
-        rules.length
+        rules.length,
       );
     });
     it('Expect to render Tailorings list rules view on table type switch', () => {
       cy.get('button[aria-label="rows"]').should(
         'not.have.class',
-        'pf-m-selected'
+        'pf-m-selected',
       );
       cy.get('button[aria-label="rows"]').click();
       cy.wait('@getTailoringRules');
@@ -518,14 +518,14 @@ describe('Tailorings - Tailorings on Policy details', () => {
         .find('tr')
         .should(
           'have.length',
-          rules.length >= perPage ? perPage : rules.length
+          rules.length >= perPage ? perPage : rules.length,
         );
     });
 
     it('Tailorings list rules value definitions displayed and mapped correctly', () => {
       cy.get('button[aria-label="rows"]').should(
         'not.have.class',
-        'pf-m-selected'
+        'pf-m-selected',
       );
       cy.get('button[aria-label="rows"]').click();
       cy.wait('@getTailoringRules');
@@ -545,7 +545,7 @@ describe('Tailorings - Tailorings on Policy details', () => {
         cy.get('@expandFirstRowButton').should(
           'have.attr',
           'aria-expanded',
-          'true'
+          'true',
         );
 
         cy.get('tbody[role="rowgroup"]')
@@ -553,7 +553,7 @@ describe('Tailorings - Tailorings on Policy details', () => {
           .within(() => {
             cy.get('tr.pf-m-expanded').within(() => {
               const matchingValues = valueDefinitions.filter((def) =>
-                currentRule.value_checks.includes(def.id)
+                currentRule.value_checks.includes(def.id),
               );
               checkRuleFields(currentRule, matchingValues);
             });
@@ -583,7 +583,7 @@ describe('Tailorings - No tailorings on Policy details', () => {
         onValueOverrideSave: cy.spy(),
         selectedVersionCounts: {},
         skipProfile: 'policy-details',
-      }
+      },
     );
   };
 
@@ -594,7 +594,7 @@ describe('Tailorings - No tailorings on Policy details', () => {
       supportedProfile.security_guide_id,
       supportedProfile.id,
       rulesSlice,
-      rules.length
+      rules.length,
     );
 
     mountComponent();
@@ -604,7 +604,7 @@ describe('Tailorings - No tailorings on Policy details', () => {
   it('Expect to render NoTailorings view', () => {
     cy.contains('Rule editing is now available.');
     cy.contains(
-      `What rules are shown on this list? This view shows rules that are from the latest SSG version (${supportedProfile.security_guide_version})`
+      `What rules are shown on this list? This view shows rules that are from the latest SSG version (${supportedProfile.security_guide_version})`,
     );
     cy.ouiaId('EditRulesButton').should('be.visible');
   });
@@ -622,7 +622,7 @@ describe('Tailorings - No tailorings on Policy details', () => {
         .find('tr')
         .should(
           'have.length',
-          rules.length >= perPage ? perPage : rules.length
+          rules.length >= perPage ? perPage : rules.length,
         );
 
       for (let index = 0; index < rulesSlice.length; index++) {
@@ -640,7 +640,7 @@ describe('Tailorings - No tailorings on Policy details', () => {
         cy.get('@expandFirstRowButton').should(
           'have.attr',
           'aria-expanded',
-          'true'
+          'true',
         );
 
         cy.get('tbody[role="rowgroup"]')

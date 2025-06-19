@@ -39,7 +39,7 @@ const EditPolicy = ({ route }) => {
   });
 
   const securityGuide = supportedProfiles?.find(
-    (profile) => profile.ref_id === policy?.ref_id
+    (profile) => profile.ref_id === policy?.ref_id,
   );
 
   const supportedOsVersions = securityGuide?.os_minor_versions || [];
@@ -48,7 +48,7 @@ const EditPolicy = ({ route }) => {
   const { assignedSystems, assignedSystemsLoading } = useAssignedSystems(
     policyId,
     policy,
-    policyLoading
+    policyLoading,
   );
 
   const [updatedPolicy, setUpdatedPolicy] = useState(null);
@@ -64,7 +64,7 @@ const EditPolicy = ({ route }) => {
 
   const onSaveCallback = (isClose) =>
     navigate(
-      isClose ? `/scappolicies/${policyId}` : location.state?.returnTo || -1
+      isClose ? `/scappolicies/${policyId}` : location.state?.returnTo || -1,
     );
 
   const [isSaving, onSave] = useOnSave(policy, updatedPolicy, {
@@ -77,7 +77,7 @@ const EditPolicy = ({ route }) => {
     tailoring,
     valueDefinition,
     newValue,
-    closeInlineEdit
+    closeInlineEdit,
   ) => {
     // tailoring might be an object or just a number (minor version for profile tab)
     const osMinorVersion = tailoring?.os_minor_version ?? tailoring;

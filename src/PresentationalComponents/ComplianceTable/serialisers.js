@@ -61,7 +61,7 @@ export const filtersSerialiser = (state, filters) => {
           : []),
       ];
     },
-    []
+    [],
   );
 
   return queryParts.length > 0 ? queryParts.join(' AND ') : undefined;

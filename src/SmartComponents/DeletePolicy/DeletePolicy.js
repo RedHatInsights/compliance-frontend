@@ -40,7 +40,7 @@ const DeletePolicy = () => {
         addNotification({
           variant: 'success',
           title: `Deleted "${policy?.title}" and its associated reports`,
-        })
+        }),
       );
       onClose();
     } catch (e) {
@@ -49,7 +49,7 @@ const DeletePolicy = () => {
           variant: 'danger',
           title: 'Error removing policy',
           description: e?.message,
-        })
+        }),
       );
       onClose();
     }

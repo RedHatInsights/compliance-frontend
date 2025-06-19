@@ -35,7 +35,7 @@ const benchmarksFactory = Factory.define(
         : {}),
       ...params,
     };
-  }
+  },
 );
 
 export const benchmarksWithProfilesFactory = benchmarksFactory.transient({

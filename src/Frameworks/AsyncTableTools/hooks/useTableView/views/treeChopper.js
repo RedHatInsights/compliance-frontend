@@ -8,7 +8,7 @@ const buildTreeBranch = (
   setSize,
   selectable,
   isItemOpen,
-  isItemSelected
+  isItemSelected,
 ) => {
   const nextLevel = level + 1;
   const isOpen = isItemOpen(item.itemId);
@@ -37,8 +37,8 @@ const buildTreeBranch = (
           (twig.twigs?.length || 0) + (twig.leaves?.length || 0),
           selectable,
           isItemOpen,
-          isItemSelected
-        )
+          isItemSelected,
+        ),
       )
     : [];
 
@@ -59,7 +59,7 @@ const chopTreeIntoRowItems = (
   items,
   selectable = false,
   isItemOpen,
-  isItemSelected
+  isItemSelected,
 ) =>
   tableTree?.reduce(
     (treeRows, item) => [
@@ -72,10 +72,10 @@ const chopTreeIntoRowItems = (
         undefined,
         selectable,
         isItemOpen,
-        isItemSelected
+        isItemSelected,
       ),
     ],
-    []
+    [],
   );
 
 const treeChopper = (items, columns, options = {}) => {
@@ -98,7 +98,7 @@ const treeChopper = (items, columns, options = {}) => {
     items,
     enableBulkSelect,
     isItemOpen,
-    isItemSelected
+    isItemSelected,
   );
 
   return buildRows(choppedTree, columns, rowTransformers);

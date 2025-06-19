@@ -48,8 +48,8 @@ describe('usePDFExport', () => {
             unsupportedSystems: false,
             userNotes: 'NOTE',
           },
-          {}
-        )
+          {},
+        ),
       );
       const result = await exportData();
 

@@ -21,7 +21,7 @@ const useExportData = (report, exportSettings) => {
       nonCompliantSystems,
       unsupportedSystems,
       neverReported,
-      topTenFailedRules
+      topTenFailedRules,
     );
   };
 };
@@ -32,7 +32,7 @@ const useQueryExportData = (
   { onComplete, onError } = {
     onComplete: () => undefined,
     onError: () => undefined,
-  }
+  },
 ) => {
   const fetchData = useExportData(report, exportSettings);
 

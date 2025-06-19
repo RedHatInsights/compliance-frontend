@@ -8,7 +8,7 @@ describe('NoResultsTable', () => {
     render(<NoResultsTable />);
 
     expect(
-      screen.getByRole('heading', 'No matching results found')
+      screen.getByRole('heading', 'No matching results found'),
     ).toBeInTheDocument();
   });
 });

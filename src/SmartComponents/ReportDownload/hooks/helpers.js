@@ -8,7 +8,7 @@ const isSystemCompliant = (system) => {
   const hasScannedProfiles =
     scannedProfiles(system.testResultProfiles).length > 0;
   const hasOnlyCompliantScannedProfiles = scannedProfiles(
-    system.testResultProfiles
+    system.testResultProfiles,
   ).every((profile) => profile.compliant);
 
   return hasScannedProfiles && hasOnlyCompliantScannedProfiles;
@@ -19,7 +19,7 @@ const isSystemNonCompliant = (system) => {
     scannedProfiles(system.testResultProfiles).length > 0;
   const hasNonCompliantProfiles =
     scannedProfiles(system.testResultProfiles).filter(
-      (profile) => !profile.compliant
+      (profile) => !profile.compliant,
     ).length > 0;
 
   return hasScannedProfiles && hasNonCompliantProfiles;
@@ -31,23 +31,23 @@ const hasProfiles = ({ testResultProfiles }) =>
 const isSystemSupported = (system) =>
   hasProfiles(system) &&
   scannedProfiles(system.testResultProfiles).every(
-    (profile) => profile.supported
+    (profile) => profile.supported,
   );
 
 const isSystemUnsupported = (system) =>
   hasProfiles(system) &&
   scannedProfiles(system.testResultProfiles).every(
-    (profile) => !profile.supported
+    (profile) => !profile.supported,
   );
 
 export const compliantSystemsData = (systems) =>
   systems.filter(
-    (system) => isSystemSupported(system) && isSystemCompliant(system)
+    (system) => isSystemSupported(system) && isSystemCompliant(system),
   );
 
 export const nonCompliantSystemsData = (systems) =>
   systems.filter(
-    (system) => isSystemSupported(system) && isSystemNonCompliant(system)
+    (system) => isSystemSupported(system) && isSystemNonCompliant(system),
   );
 
 export const unsupportedSystemsData = (systems) =>
@@ -105,7 +105,7 @@ export const prepareForExport = (
   nonCompliantSystems = [],
   unsupportedSystems = [],
   nonReportingSystems = [],
-  topTenFailedRules = []
+  topTenFailedRules = [],
 ) => {
   return buildExportData({
     exportSettings,

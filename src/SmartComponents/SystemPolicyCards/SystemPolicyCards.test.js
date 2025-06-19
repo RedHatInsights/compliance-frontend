@@ -31,7 +31,7 @@ describe('SystemPolicyCards', () => {
       name: testResultsMock[0].title,
     });
     screen.getByText(
-      testResultsMock[0].compliant ? 'Compliant' : 'Not compliant'
+      testResultsMock[0].compliant ? 'Compliant' : 'Not compliant',
     );
     screen.getByText(
       `${testResultsMock[0].failed_rule_count} rule${
@@ -39,10 +39,10 @@ describe('SystemPolicyCards', () => {
         testResultsMock[0].failed_rule_count === 0
           ? 's'
           : ''
-      } failed`
+      } failed`,
     );
     screen.getByText(
-      `SSG version: ${testResultsMock[0].security_guide_version}`
+      `SSG version: ${testResultsMock[0].security_guide_version}`,
     );
   });
 });

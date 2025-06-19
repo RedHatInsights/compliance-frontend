@@ -8,7 +8,7 @@ describe('ConditionalLink', () => {
     render(
       <ConditionalLink>
         <span>Test Child</span>
-      </ConditionalLink>
+      </ConditionalLink>,
     );
 
     expect(screen.queryByRole('a')).not.toBeInTheDocument();
@@ -24,11 +24,11 @@ describe('ConditionalLink', () => {
     render(
       <ConditionalLink href="https://redhat.com">
         <span>Test Child</span>
-      </ConditionalLink>
+      </ConditionalLink>,
     );
 
     expect(
-      screen.getByRole('link', { name: 'Test Child' })
+      screen.getByRole('link', { name: 'Test Child' }),
     ).toBeInTheDocument();
   });
 });

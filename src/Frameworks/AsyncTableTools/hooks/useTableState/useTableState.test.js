@@ -10,7 +10,7 @@ describe('useTableState', () => {
   it('returns an array with a state and a function to set the state', async () => {
     const { result } = renderHook(
       () => useTableState('pagination', initialState),
-      DEFAULT_RENDER_OPTIONS
+      DEFAULT_RENDER_OPTIONS,
     );
 
     await waitFor(() => expect(result.current[0]).toEqual(initialState));
@@ -19,7 +19,7 @@ describe('useTableState', () => {
   it('can properly update a state', async () => {
     const { result } = renderHook(
       () => useTableState('pagination', initialState),
-      DEFAULT_RENDER_OPTIONS
+      DEFAULT_RENDER_OPTIONS,
     );
 
     act(() => {
@@ -27,7 +27,7 @@ describe('useTableState', () => {
     });
 
     await waitFor(() =>
-      expect(result.current[0]).toEqual({ page: 1, perPage: 20 })
+      expect(result.current[0]).toEqual({ page: 1, perPage: 20 }),
     );
   });
 
@@ -38,7 +38,7 @@ describe('useTableState', () => {
 
     const { result } = renderHook(
       () => useTableState('pagination', initialState, { serialiser }),
-      DEFAULT_RENDER_OPTIONS
+      DEFAULT_RENDER_OPTIONS,
     );
 
     expect(result.current[2]).toEqual('offset=1&limit=10');
@@ -55,7 +55,7 @@ describe('useTableState', () => {
     const useTwoTableStates = (options = {}) => {
       const { state1: state1Params = [], state2: state2Params = [] } = useMemo(
         () => options,
-        [options]
+        [options],
       );
       const state1 = useTableState(...state1Params);
       const state2 = useTableState(...state2Params);
@@ -79,7 +79,7 @@ describe('useTableState', () => {
               { observers: { state1: () => state2ObserverMock() } },
             ],
           }),
-        DEFAULT_RENDER_OPTIONS
+        DEFAULT_RENDER_OPTIONS,
       );
 
       expect(result.current.state1).toBeDefined();
@@ -103,7 +103,7 @@ describe('useTableState', () => {
               },
             ],
           }),
-        DEFAULT_RENDER_OPTIONS
+        DEFAULT_RENDER_OPTIONS,
       );
       const newStateForState2 = { filter: 'name=sebastian' };
 
@@ -119,7 +119,7 @@ describe('useTableState', () => {
       const filtersObserver = (
         currentState,
         observedPreviousState,
-        observedNextState
+        observedNextState,
       ) =>
         observedPreviousState.name !== observedNextState.name
           ? 'list'
@@ -139,7 +139,7 @@ describe('useTableState', () => {
               },
             ],
           }),
-        DEFAULT_RENDER_OPTIONS
+        DEFAULT_RENDER_OPTIONS,
       );
 
       act(() => {

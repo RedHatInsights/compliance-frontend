@@ -16,7 +16,7 @@ describe('StatView', () => {
         <StateViewPart stateKey="loading">LOADING</StateViewPart>
         <StateViewPart stateKey="data">DATA</StateViewPart>
         <StateViewPart stateKey="error">ERROR</StateViewPart>
-      </StateView>
+      </StateView>,
     );
 
     expect(screen.getByText('LOADING')).toBeInTheDocument();
@@ -36,7 +36,7 @@ describe('StatView', () => {
         <StateViewPart stateKey="loading">LOADING</StateViewPart>
         <StateViewPart stateKey="data">DATA</StateViewPart>
         <StateViewPart stateKey="error">ERROR</StateViewPart>
-      </StateView>
+      </StateView>,
     );
 
     expect(screen.getByText('ERROR')).toBeInTheDocument();
@@ -56,7 +56,7 @@ describe('StatView', () => {
         <StateViewPart stateKey="loading">LOADING</StateViewPart>
         <StateViewPart stateKey="data">DATA</StateViewPart>
         <StateViewPart stateKey="error">ERROR</StateViewPart>
-      </StateView>
+      </StateView>,
     );
 
     expect(screen.getByText('DATA')).toBeInTheDocument();
@@ -77,7 +77,7 @@ describe('StatViewWithError', () => {
       >
         <StateViewPart stateKey="loading">LOADING</StateViewPart>
         <StateViewPart stateKey="data">DATA</StateViewPart>
-      </StateViewWithError>
+      </StateViewWithError>,
     );
 
     expect(screen.getByText('Something went wrong')).toBeInTheDocument();

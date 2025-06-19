@@ -11,7 +11,7 @@ const filterRulesWithAllValues = (rules, values, valueCheck) =>
   rules.filter(
     (rule) =>
       values.map((value) => valueCheck(rule, value)).filter((v) => !!v).length >
-      0
+      0,
   );
 
 const anyFilterApply = (rules, values, valueCheck) => {
@@ -67,7 +67,7 @@ const RULE_STATE_FILTER_CONFIG = {
     anyFilterApply(
       rules,
       values,
-      (rule, value) => rule.compliant === (value === 'passed')
+      (rule, value) => rule.compliant === (value === 'passed'),
     ),
 };
 
@@ -79,7 +79,7 @@ export const policiesFilterConfig = (policies) => ({
     filterRulesWithAllValues(
       rules,
       values,
-      (rule, value) => rule.profile.id === value
+      (rule, value) => rule.profile.id === value,
     ),
 });
 

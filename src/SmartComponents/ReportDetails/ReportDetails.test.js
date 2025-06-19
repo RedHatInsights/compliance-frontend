@@ -32,7 +32,7 @@ describe('ReportDetails', () => {
     render(
       <TestWrapper>
         <ReportDetails />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(useReport).toHaveBeenCalledWith({ params: { reportId: '1234' } });
@@ -40,7 +40,7 @@ describe('ReportDetails', () => {
     expect(
       await screen.findByRole('heading', {
         name: `Report: ${reportsData.title}`,
-      })
+      }),
     ).toBeInTheDocument();
   });
 });

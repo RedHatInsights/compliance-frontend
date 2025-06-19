@@ -28,7 +28,7 @@ const DeleteReport = () => {
     handleDeleteReport(
       () => apiInstance.deleteReport(reportId),
       onDelete,
-      onClose
+      onClose,
     );
 
   return (

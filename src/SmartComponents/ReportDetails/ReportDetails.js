@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
@@ -233,7 +232,7 @@ const ReportDetails = ({ route }) => {
                         },
                         {
                           sortBy: ['display_name'],
-                        }
+                        },
                       ),
                       Columns.inventoryColumn('groups', {
                         requiresDefault: true,

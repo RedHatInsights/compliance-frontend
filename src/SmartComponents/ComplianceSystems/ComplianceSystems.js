@@ -32,7 +32,7 @@ const ComplianceSystems = () => {
                     {
                       showLink: true,
                     },
-                    { sortBy: ['display_name'] }
+                    { sortBy: ['display_name'] },
                   ),
                   Columns.inventoryColumn('groups', {
                     requiresDefault: true,
@@ -51,7 +51,7 @@ const ComplianceSystems = () => {
                   isFullView: true,
                 }}
                 showOsMinorVersionFilter={policies.map(
-                  (policy) => policy.os_major_version
+                  (policy) => policy.os_major_version,
                 )}
                 showComplianceSystemsInfo
                 enableEditPolicy={false}

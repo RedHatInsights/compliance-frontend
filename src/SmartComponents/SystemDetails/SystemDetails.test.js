@@ -32,11 +32,11 @@ describe('SystemDetails', () => {
     render(
       <TestWrapper>
         <SystemDetails route={{}} />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(
-      screen.getByLabelText('Inventory Details Wrapper')
+      screen.getByLabelText('Inventory Details Wrapper'),
     ).toBeInTheDocument();
     expect(screen.getByText('Loading...')).toBeInTheDocument();
   });

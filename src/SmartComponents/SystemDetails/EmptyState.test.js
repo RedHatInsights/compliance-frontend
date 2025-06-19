@@ -17,12 +17,12 @@ describe('EmptyState for systemDetails', () => {
     render(
       <TestWrapper>
         <EmptyState inventoryId={'123'} />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(screen.getByLabelText('Contents')).toHaveAttribute(
       'aria-valuetext',
-      'Loading...'
+      'Loading...',
     );
   });
 
@@ -35,11 +35,11 @@ describe('EmptyState for systemDetails', () => {
     render(
       <TestWrapper>
         <EmptyState inventoryId={'123'} />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(
-      screen.getByText(`This system isn’t connected to Insights yet`)
+      screen.getByText(`This system isn’t connected to Insights yet`),
     ).toBeInTheDocument();
   });
 
@@ -52,13 +52,13 @@ describe('EmptyState for systemDetails', () => {
     render(
       <TestWrapper>
         <EmptyState inventoryId={'123'} />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(
       screen.getByText(
-        'This system is not part of any SCAP policies defined within Compliance.'
-      )
+        'This system is not part of any SCAP policies defined within Compliance.',
+      ),
     ).toBeInTheDocument();
   });
 
@@ -71,7 +71,7 @@ describe('EmptyState for systemDetails', () => {
           inventoryId={'123'}
           system={{ insights_id: '123', policies: [] }}
         />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(useSystem).toHaveBeenCalledWith({
@@ -81,8 +81,8 @@ describe('EmptyState for systemDetails', () => {
 
     expect(
       screen.getByText(
-        'This system is not part of any SCAP policies defined within Compliance.'
-      )
+        'This system is not part of any SCAP policies defined within Compliance.',
+      ),
     ).toBeInTheDocument();
   });
 
@@ -97,14 +97,14 @@ describe('EmptyState for systemDetails', () => {
     render(
       <TestWrapper>
         <EmptyState inventoryId={'123'} />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(screen.getByText('No results reported')).toBeInTheDocument();
     expect(
       screen.getByText(
-        `This system is part of 2 policies, but has not returned any results.`
-      )
+        `This system is part of 2 policies, but has not returned any results.`,
+      ),
     ).toBeInTheDocument();
   });
 
@@ -117,7 +117,7 @@ describe('EmptyState for systemDetails', () => {
           inventoryId={'123'}
           system={{ insights_id: '123', policies: [{}] }}
         />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(useSystem).toHaveBeenCalledWith({
@@ -128,8 +128,8 @@ describe('EmptyState for systemDetails', () => {
     expect(screen.getByText('No results reported')).toBeInTheDocument();
     expect(
       screen.getByText(
-        `This system is part of 1 policy, but has not returned any results.`
-      )
+        `This system is part of 1 policy, but has not returned any results.`,
+      ),
     ).toBeInTheDocument();
   });
 });

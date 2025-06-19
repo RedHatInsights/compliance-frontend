@@ -26,7 +26,7 @@ describe('SystemsCountWarning', () => {
     render(<SystemsCountWarning count={0} variant="full" />);
 
     expect(
-      screen.getByText('Policies without systems will not have reports.')
+      screen.getByText('Policies without systems will not have reports.'),
     ).toBeInTheDocument();
   });
 });

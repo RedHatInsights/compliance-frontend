@@ -20,7 +20,7 @@ describe('useColumnManager', () => {
   it('applies columns', () => {
     const { result } = renderHook(() => useColumnManager(...defaultArguments));
     const columnsToSelect = result.current.columns.filter(
-      ({ key }) => key === 'desc'
+      ({ key }) => key === 'desc',
     );
 
     // Unmanageable columns are always visible in the table

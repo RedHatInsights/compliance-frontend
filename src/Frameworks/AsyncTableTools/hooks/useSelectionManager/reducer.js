@@ -71,8 +71,8 @@ const toggle = (state, action) => {
 };
 
 const reset = (state, action) =>
-  init(!state.hasOwnProperty(DEFAULT_GROUP_KEY))(action?.preselected); // eslint-disable-line
-const clear = (state) => init(!state.hasOwnProperty(DEFAULT_GROUP_KEY))(); // eslint-disable-line
+  init(!state.hasOwnProperty(DEFAULT_GROUP_KEY))(action?.preselected);
+const clear = (state) => init(!state.hasOwnProperty(DEFAULT_GROUP_KEY))();
 
 export default (state, action) =>
   ({
@@ -82,4 +82,4 @@ export default (state, action) =>
     toggle,
     reset,
     clear,
-  }[action.type](state, action));
+  })[action.type](state, action);

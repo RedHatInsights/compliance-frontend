@@ -19,7 +19,7 @@ describe('ComplianceEmptyState', () => {
     render(
       <TestWrapper>
         <ComplianceEmptyState />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(screen.getByText('Loading...')).toBeInTheDocument();
@@ -35,11 +35,11 @@ describe('ComplianceEmptyState', () => {
     render(
       <TestWrapper>
         <ComplianceEmptyState />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(
-      screen.getByText(`Oops! Error loading System data: ${errorMsg}`)
+      screen.getByText(`Oops! Error loading System data: ${errorMsg}`),
     ).toBeInTheDocument();
   });
 
@@ -52,12 +52,12 @@ describe('ComplianceEmptyState', () => {
     render(
       <TestWrapper>
         <ComplianceEmptyState />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(screen.getByText('No policies')).toBeInTheDocument();
     expect(
-      screen.queryByText('has been created but have no reports.')
+      screen.queryByText('has been created but have no reports.'),
     ).not.toBeInTheDocument();
   });
 
@@ -70,12 +70,12 @@ describe('ComplianceEmptyState', () => {
     render(
       <TestWrapper>
         <ComplianceEmptyState />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(screen.getByText('1 policy')).toBeInTheDocument();
     expect(
-      screen.getByText('has been created but has no reports.')
+      screen.getByText('has been created but has no reports.'),
     ).toBeInTheDocument();
   });
 
@@ -89,12 +89,12 @@ describe('ComplianceEmptyState', () => {
     render(
       <TestWrapper>
         <ComplianceEmptyState />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(screen.getByText('2 policies')).toBeInTheDocument();
     expect(
-      screen.getByText('have been created but have no reports.')
+      screen.getByText('have been created but have no reports.'),
     ).toBeInTheDocument();
   });
 
@@ -119,7 +119,7 @@ describe('ComplianceEmptyState', () => {
             </Button>
           }
         />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(screen.getByText('Cool title')).toBeInTheDocument();

@@ -25,18 +25,18 @@ describe('CompliancePolicies', () => {
             error: null,
             refetch: () => {},
           }
-        : { data: policiesData.length }
+        : { data: policiesData.length },
     );
 
     render(
       <TestWrapper>
         <CompliancePolicies />
-      </TestWrapper>
+      </TestWrapper>,
     );
     const tableRowsLength = policiesData.length + 1; // th also has 1 row
 
     expect(
-      within(screen.getByLabelText('Policies')).queryAllByRole('row').length
+      within(screen.getByLabelText('Policies')).queryAllByRole('row').length,
     ).toEqual(tableRowsLength);
   });
 
@@ -48,7 +48,7 @@ describe('CompliancePolicies', () => {
     render(
       <TestWrapper>
         <CompliancePolicies />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(screen.getByText('No policies')).toBeInTheDocument();
@@ -64,7 +64,7 @@ describe('CompliancePolicies', () => {
     render(
       <TestWrapper>
         <CompliancePolicies />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(screen.getByText('Something went wrong')).toBeInTheDocument();
@@ -79,13 +79,13 @@ describe('CompliancePolicies', () => {
             error: 'Something went wrong',
             refetch: () => {},
           }
-        : { data: policiesData.length }
+        : { data: policiesData.length },
     );
 
     render(
       <TestWrapper>
         <CompliancePolicies />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(screen.getByText('Something went wrong')).toBeInTheDocument();
@@ -97,12 +97,12 @@ describe('CompliancePolicies', () => {
     render(
       <TestWrapper>
         <CompliancePolicies />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(screen.getByLabelText('Contents')).toHaveAttribute(
       'aria-valuetext',
-      'Loading...'
+      'Loading...',
     );
   });
 });

@@ -28,7 +28,7 @@ export const emptyRows = (kind, colSpan) => [
   {
     cells: [
       {
-        title: () => <NoResultsTable kind={kind} />, // eslint-disable-line react/display-name
+        title: () => <NoResultsTable kind={kind} />,
         props: {
           colSpan,
         },

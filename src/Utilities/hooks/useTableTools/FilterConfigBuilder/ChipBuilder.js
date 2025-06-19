@@ -55,7 +55,7 @@ class ChipBuilder {
                   : []),
                 ...(group?.items || []),
               ].find(findWithString(itemValue))
-            : null
+            : null,
         );
       })
       .filter((v) => !!v);

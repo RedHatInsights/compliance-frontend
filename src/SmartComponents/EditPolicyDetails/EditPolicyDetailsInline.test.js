@@ -103,12 +103,12 @@ describe('EditPolicyDetailsInline', () => {
     const saveButton = screen.getByRole('button', { name: /Save edits/i });
     expect(saveButton).toBeDisabled();
     expect(
-      screen.getByText(/Threshold has to be a number between 0 and 100/i)
+      screen.getByText(/Threshold has to be a number between 0 and 100/i),
     ).toBeInTheDocument();
     expect(
       screen.getByText(
-        /Threshold values can have a maximum of one decimal place/i
-      )
+        /Threshold values can have a maximum of one decimal place/i,
+      ),
     ).toBeInTheDocument();
   });
 

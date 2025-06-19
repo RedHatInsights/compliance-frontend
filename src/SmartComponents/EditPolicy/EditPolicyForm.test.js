@@ -38,7 +38,7 @@ describe.skip('EditPolicyForm', () => {
     const { asFragment } = render(
       <TestWrapper mocks={mocks}>
         <EditPolicyForm {...defaultProps} />
-      </TestWrapper>
+      </TestWrapper>,
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -48,7 +48,7 @@ describe.skip('EditPolicyForm', () => {
     const { asFragment } = render(
       <TestWrapper mocks={mocks}>
         <EditPolicyForm {...defaultProps} />
-      </TestWrapper>
+      </TestWrapper>,
     );
     expect(asFragment()).toMatchSnapshot();
   });

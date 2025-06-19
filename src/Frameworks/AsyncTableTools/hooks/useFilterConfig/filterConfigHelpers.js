@@ -4,7 +4,7 @@ import filterTypeHelpers from './filterTypeHelpers';
 const getActiveFilters = (configItem, activeFilters) =>
   filterTypeHelpers(configItem.type)?.getActiveFilterValues?.(
     configItem,
-    activeFilters
+    activeFilters,
   ) || activeFilters?.[stringToId(configItem.label)];
 
 const toFilterConfigItem = (configItem, handler, activeFilters) => {
@@ -12,7 +12,7 @@ const toFilterConfigItem = (configItem, handler, activeFilters) => {
   const filterValues = filterTypeHelpers(configItem.type)?.filterValues(
     configItem,
     handler,
-    value
+    value,
   );
   return filterValues
     ? {
@@ -40,19 +40,19 @@ export const toFilterConfig = (filterConfig, activeFilters, handler) => ({
 
 export const getFilterConfigItem = (filterConfig, filter) =>
   filterConfig.find(
-    (configItem) => stringToId(configItem.label) === stringToId(filter)
+    (configItem) => stringToId(configItem.label) === stringToId(filter),
   );
 
 export const toSelectValue = (
   filterConfig,
   filter,
   selectedValue,
-  selectedValues
+  selectedValues,
 ) => {
   const configItem = getFilterConfigItem(filterConfig, filter);
   return filterTypeHelpers(configItem.type).toSelectValue(
     configItem,
     selectedValues,
-    selectedValue
+    selectedValue,
   );
 };

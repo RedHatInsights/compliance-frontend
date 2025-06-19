@@ -55,7 +55,7 @@ export const Severity = ({ severity }) =>
     high: <HighSeverity />,
     medium: <MediumSeverity />,
     low: <LowSeverity />,
-  }[severity?.toLowerCase()] || <UnknownSeverity />);
+  })[severity?.toLowerCase()] || <UnknownSeverity />;
 Severity.propTypes = ruleProps;
 
 export const Passed = ({ compliant }) =>

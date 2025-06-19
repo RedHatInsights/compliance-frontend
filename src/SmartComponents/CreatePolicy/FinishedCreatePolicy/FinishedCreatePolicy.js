@@ -29,10 +29,10 @@ export const useUpdatePolicy = () => {
         valueOverrides,
         cloneFromProfileId,
       },
-      onProgress
+      onProgress,
     ) => {
       const minorVersions = selectedRuleRefIds.map(
-        ({ osMinorVersion }) => osMinorVersion
+        ({ osMinorVersion }) => osMinorVersion,
       );
       const expectedUpdates =
         3 + minorVersions.length + Object.keys(valueOverrides).length;
@@ -55,7 +55,7 @@ export const useUpdatePolicy = () => {
             profile_id: cloneFromProfileId,
           },
         ],
-        false
+        false,
       );
 
       dispatchProgress();
@@ -85,7 +85,7 @@ export const useUpdatePolicy = () => {
           undefined,
           100 /** to ensure we fetch all tailorings at once */,
         ],
-        false
+        false,
       );
       const tailorings = fetchPolicyResponse.data;
 
@@ -94,7 +94,7 @@ export const useUpdatePolicy = () => {
       for (const tailoring of tailorings) {
         const rulesToAssign = selectedRuleRefIds.find(
           ({ osMinorVersion }) =>
-            Number(osMinorVersion) === tailoring.os_minor_version
+            Number(osMinorVersion) === tailoring.os_minor_version,
         ).ruleRefIds;
 
         await assignRules(
@@ -106,7 +106,7 @@ export const useUpdatePolicy = () => {
               ids: rulesToAssign,
             },
           ],
-          false
+          false,
         );
 
         dispatchProgress();
@@ -133,7 +133,13 @@ export const useUpdatePolicy = () => {
 
       return { id: newPolicyId };
     },
-    [createPolicy, assignSystems, fetchTailorings, assignRules, updateTailoring]
+    [
+      createPolicy,
+      assignSystems,
+      fetchTailorings,
+      assignRules,
+      updateTailoring,
+    ],
   );
 
   return updatedPolicy;

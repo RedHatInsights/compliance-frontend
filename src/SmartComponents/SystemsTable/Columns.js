@@ -77,7 +77,7 @@ export const SsgVersion = () =>
       testResultProfiles
         .map(
           ({ supported, benchmark: { version } }) =>
-            `${!supported ? '!' : ''}${version}`
+            `${!supported ? '!' : ''}${version}`,
         )
         .join(', '),
     cell: SsgVersionCell,

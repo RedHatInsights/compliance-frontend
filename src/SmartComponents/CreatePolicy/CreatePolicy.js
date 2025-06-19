@@ -57,7 +57,7 @@ export const CreatePolicyForm = ({
 
   const allowNoSystems = useMemo(
     () => enableHostless && policiesTotal === 0,
-    [policiesTotal, enableHostless]
+    [policiesTotal, enableHostless],
   );
 
   const steps = [
@@ -135,7 +135,7 @@ CreatePolicyForm.propTypes = {
     propTypes.shape({
       osMinorVersion: propTypes.number,
       count: propTypes.number,
-    })
+    }),
   ),
   complianceThreshold: propTypes.string,
   businessObjective: propTypes.object,

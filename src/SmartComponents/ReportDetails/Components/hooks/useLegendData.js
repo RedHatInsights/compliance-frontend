@@ -34,7 +34,7 @@ const useLegendData = (donutValues) => {
           {
             name: `${pluralize(
               unsupportedSystemCount,
-              'system'
+              'system',
             )} not supported`,
             symbol: { fill: paletteColors.gold300 },
             popover: {
@@ -57,14 +57,14 @@ const useLegendData = (donutValues) => {
           {
             name: `${pluralize(
               notReportingSystemCount,
-              'system'
+              'system',
             )} never reported`,
             popover: {
               title: 'Systems never reported',
               content: `${pluralize(
                 notReportingSystemCount,
                 'system is',
-                'systems are'
+                'systems are',
               )} not reporting scan results. This may be because the ${
                 notReportingSystemCount === 1 ? 'system is' : 'systems are'
               } disconnected, or the insights-client is not properly configured to use Compliance.`,

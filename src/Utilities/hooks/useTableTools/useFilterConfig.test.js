@@ -12,7 +12,7 @@ const FilterItemsMockComponent = ({ filters }) => {
 describe('useFilterConfig', () => {
   it('returns a filter config configuration', () => {
     const { result } = renderHook(() =>
-      useFilterConfig({ filters: { filterConfig: filters } })
+      useFilterConfig({ filters: { filterConfig: filters } }),
     );
     expect(result.current).toMatchSnapshot();
   });

@@ -191,7 +191,7 @@ Tailorings.propTypes = {
       osMinorVersion: propTypes.string,
       securityGuideId: propTypes.string,
       profileId: propTypes.string,
-    })
+    }),
   ),
   defaultTab: propTypes.shape({
     id: propTypes.string,

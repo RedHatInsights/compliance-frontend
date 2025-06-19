@@ -28,7 +28,7 @@ const usePagination = (options = {}) => {
           ...newState,
         },
       })),
-    [setPaginationState]
+    [setPaginationState],
   );
 
   const setPage = useCallback(
@@ -44,7 +44,7 @@ const usePagination = (options = {}) => {
         };
       });
     },
-    [setPaginationState]
+    [setPaginationState],
   );
 
   return pagination && !(paginationState || {}).isDisabled

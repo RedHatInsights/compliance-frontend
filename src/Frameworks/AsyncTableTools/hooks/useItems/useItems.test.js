@@ -12,11 +12,11 @@ describe('useItems', () => {
   it('accepts an array as items and sets it as the state directly', async () => {
     const { result } = renderHook(
       () => useItems(exampleItems),
-      DEFAULT_RENDER_OPTIONS
+      DEFAULT_RENDER_OPTIONS,
     );
 
     await waitFor(() =>
-      expect(result.current.items).toEqual(exampleItems.map(appendMockItemId))
+      expect(result.current.items).toEqual(exampleItems.map(appendMockItemId)),
     );
     await waitFor(() => expect(result.current.loaded).toEqual(true));
   });
@@ -26,11 +26,11 @@ describe('useItems', () => {
     const asyncItems = async () => tenItems;
     const { result } = renderHook(
       () => useItems(asyncItems),
-      DEFAULT_RENDER_OPTIONS
+      DEFAULT_RENDER_OPTIONS,
     );
 
     await waitFor(() =>
-      expect(result.current).toEqual({ loaded: true, items: tenItems })
+      expect(result.current).toEqual({ loaded: true, items: tenItems }),
     );
   });
 });

@@ -26,7 +26,7 @@ const WithPermission = ({
   const { hasAccess, isLoading } = usePermissionsWithContext(
     requiredPermissions,
     false,
-    false
+    false,
   );
 
   if (!isLoading) {

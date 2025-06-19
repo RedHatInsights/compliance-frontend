@@ -105,7 +105,7 @@ AsyncTableToolsTable.propTypes = {
       sortByArray: propTypes.array,
       sortByFunction: propTypes.func,
       renderFunc: propTypes.func,
-    })
+    }),
   ).isRequired,
   filters: propTypes.object,
   total: propTypes.number,

@@ -219,8 +219,8 @@ export const lastScanned = (profiles) => {
   const last = new Date(
     Math.max.apply(
       null,
-      dates.filter((date) => isFinite(date))
-    )
+      dates.filter((date) => isFinite(date)),
+    ),
   );
   const result =
     last instanceof Date && isFinite(last) ? last : <NeverScanned />;

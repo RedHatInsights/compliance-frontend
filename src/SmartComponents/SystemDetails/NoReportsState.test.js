@@ -9,8 +9,8 @@ describe('NoReportsState', () => {
 
     expect(
       screen.getByText(
-        'This system is part of 1 policy, but has not returned any results.'
-      )
+        'This system is part of 1 policy, but has not returned any results.',
+      ),
     ).toBeInTheDocument();
   });
 
@@ -19,8 +19,8 @@ describe('NoReportsState', () => {
 
     expect(
       screen.getByText(
-        'This system is part of 2 policies, but has not returned any results.'
-      )
+        'This system is part of 2 policies, but has not returned any results.',
+      ),
     ).toBeInTheDocument();
   });
 });

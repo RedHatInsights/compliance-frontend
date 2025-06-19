@@ -40,7 +40,7 @@ const EditPolicyProfilesRules = ({
         ...prev,
         [cur.osMinorVersion]: cur.ruleRefIds,
       }),
-      {}
+      {},
     );
   const profileRefId = profile?.ref_id;
 
@@ -57,7 +57,7 @@ const EditPolicyProfilesRules = ({
     profileRefId,
     osMajorVersion,
     osMinorVersions: osMinorVersionCounts.map(
-      ({ osMinorVersion }) => osMinorVersion
+      ({ osMinorVersion }) => osMinorVersion,
     ),
     skip: skipFetchingProfileRuleIds,
   });
@@ -68,10 +68,10 @@ const EditPolicyProfilesRules = ({
           (acc, cur) => ({
             ...acc,
             [cur.osMinorVersion]: profilesAndRuleIds.find(
-              ({ osMinorVersion }) => osMinorVersion === cur.osMinorVersion
+              ({ osMinorVersion }) => osMinorVersion === cur.osMinorVersion,
             ).ruleIds,
           }),
-          {}
+          {},
         )
       : undefined;
 
@@ -81,14 +81,14 @@ const EditPolicyProfilesRules = ({
       const originalRules =
         profilesAndRuleIds.find(
           ({ osMinorVersion }) =>
-            osMinorVersion === profileAndRules.osMinorVersion
+            osMinorVersion === profileAndRules.osMinorVersion,
         )?.ruleIds || [];
 
       return {
         ...additions,
         [profileAndRules.osMinorVersion]: xor(
           profileAndRules.ruleRefIds,
-          originalRules
+          originalRules,
         ),
       };
     }, {});
@@ -97,10 +97,10 @@ const EditPolicyProfilesRules = ({
     (
       _securityGuideId,
       { os_minor_version: osMinorVersion },
-      newSelectedRuleIds
+      newSelectedRuleIds,
     ) => {
       const updatedSelectedRuleRefIds = structuredClone(
-        selectedRuleRefIds || []
+        selectedRuleRefIds || [],
       );
 
       if (updatedSelectedRuleRefIds.length === 0) {
@@ -115,14 +115,14 @@ const EditPolicyProfilesRules = ({
       } else {
         const index = updatedSelectedRuleRefIds.findIndex(
           ({ osMinorVersion: _osMinorVersion }) =>
-            _osMinorVersion === osMinorVersion
+            _osMinorVersion === osMinorVersion,
         );
 
         updatedSelectedRuleRefIds[index].ruleRefIds = newSelectedRuleIds;
       }
       change('selectedRuleRefIds', updatedSelectedRuleRefIds);
     },
-    [change, selectedRuleRefIds]
+    [change, selectedRuleRefIds],
   );
 
   useDeepCompareEffect(() => {
@@ -130,14 +130,14 @@ const EditPolicyProfilesRules = ({
       (accum, { osMinorVersion }) => {
         if (
           selectedRuleRefIds?.some(
-            (entry) => entry.osMinorVersion === osMinorVersion
+            (entry) => entry.osMinorVersion === osMinorVersion,
           )
         ) {
           return accum; // Avoid overriding selection
         }
         const refIdsPerMinorVersion = profilesAndRuleIds?.find(
           ({ osMinorVersion: profileOsMinorVersion }) =>
-            profileOsMinorVersion === osMinorVersion
+            profileOsMinorVersion === osMinorVersion,
         ).ruleIds;
 
         return [
@@ -147,7 +147,7 @@ const EditPolicyProfilesRules = ({
             : []),
         ];
       },
-      []
+      [],
     );
     if (newSelectedRuleRefIds?.length !== 0) {
       change('selectedRuleRefIds', [
@@ -162,7 +162,7 @@ const EditPolicyProfilesRules = ({
     osMinorVersion,
     valueDefinition,
     valueOverrideValue,
-    closeInlineEdit
+    closeInlineEdit,
   ) => {
     let valueOverridesUpdated = structuredClone(valueOverrides);
 
@@ -235,7 +235,7 @@ const EditPolicyProfilesRules = ({
                     ...prev,
                     [cur.osMinorVersion]: cur.count,
                   }),
-                  {}
+                  {},
                 )}
               />
             )}
@@ -253,7 +253,7 @@ EditPolicyProfilesRules.propTypes = {
     propTypes.shape({
       osMinorVersion: propTypes.number,
       count: propTypes.number,
-    })
+    }),
   ),
   selectedRuleRefIds: propTypes.array,
   valueOverrides: propTypes.object,
@@ -273,5 +273,5 @@ export default compose(
     form: 'policyForm',
     destroyOnUnmount: false,
     forceUnregisterOnUnmount: true,
-  })
+  }),
 )(EditPolicyProfilesRules);
