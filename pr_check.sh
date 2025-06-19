@@ -7,7 +7,7 @@
 export IMAGE="quay.io/cloudservices/compliance-frontend"
 export WORKSPACE=${WORKSPACE:-$APP_ROOT} # if running in jenkins, use the build's workspace
 export APP_ROOT=$(pwd)
-export NODE_BUILD_VERSION=18
+export NODE_BUILD_VERSION=22
 COMMON_BUILDER=https://raw.githubusercontent.com/RedHatInsights/insights-frontend-builder-common/master
 
 set -exv
