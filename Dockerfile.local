@@ -18,7 +18,7 @@ COPY ./entrypoint.sh /
 # nvm environment variables
 ENV NVM_DIR /root/.nvm
 RUN mkdir -p $NVM_DIR
-ENV NODE_VERSION 16.13.0
+ENV NODE_VERSION 22
 
 # install nvm
 # https://github.com/creationix/nvm#install-script
