@@ -3,7 +3,7 @@ import useFetchTotalBatched from 'Utilities/hooks/useFetchTotalBatched';
 import useQuery from 'Utilities/hooks/useQuery';
 import {
   paramsWithFilters,
-  compileResult,
+  compileResult as defaultCompileResult,
   compileTotalResult,
   // hasRequiredParams,
   TOTAL_REQUEST_PARAMS,
@@ -52,6 +52,7 @@ import useComplianceFetchExtras from './hooks/useComplianceFetchExtras';
  *  @param   {boolean}                  [options.onlyTotal]      Enables a predefined "compileResult" function for the useQuery to only return the meta.total as the `data`
  *  @param   {Array | string}           [options.requiredParams] Parameters required for the endpoint. The request will be "skipped" until all parameters are provided.
  *
+ *  @param                              options.compileResult
  *  @returns {useComplianceQueryReturn}                          An object containing a data, loading and error state, as well as a fetch and fetchBatched function.
  *
  *  @category Compliance
@@ -95,6 +96,7 @@ const useComplianceQuery = (
     batch = {},
     onlyTotal,
     requiredParams,
+    compileResult,
     ...options
   } = {},
 ) => {
@@ -114,9 +116,9 @@ const useComplianceQuery = (
     refetch: queryRefetch,
   } = useQuery(apiEndpoint, {
     skip: batched ? true : skip,
-    ...options,
+    compileResult: compileResult || defaultCompileResult,
     params,
-    compileResult,
+    ...options,
     ...(onlyTotal
       ? {
           params: paramsWithFilters(TOTAL_REQUEST_PARAMS, params),
@@ -126,14 +128,17 @@ const useComplianceQuery = (
   });
 
   const fetch = useCallback(
-    async (fetchParams) => await queryFetch(fetchParams),
-    [queryFetch],
+    async (fetchParams) =>
+      await queryFetch(paramsWithFilters(fetchParams, params)),
+    [queryFetch, params],
   );
 
   const fetchForBatch = useCallback(
     async (offset, limit, fetchForBatchParams) =>
-      await fetch({ ...fetchForBatchParams, offset, limit }),
-    [fetch],
+      await fetch(
+        paramsWithFilters({ ...fetchForBatchParams, offset, limit }, params),
+      ),
+    [fetch, params],
   );
 
   const {
@@ -164,8 +169,8 @@ const useComplianceQuery = (
           error: queryError,
           loading: queryLoading,
         }),
+    fetch,
     fetchBatched,
-    fetch: queryFetch,
     refetch: queryRefetch,
     ...extras,
   };
