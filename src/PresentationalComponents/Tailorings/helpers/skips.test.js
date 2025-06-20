@@ -14,7 +14,7 @@ describe('skips', () => {
         profileId: undefined,
         securityGuide: undefined,
         tableState: undefined,
-      })
+      }),
     ).toEqual({
       securityGuide: {
         skipRuleTree: true,
@@ -52,7 +52,7 @@ describe('skips', () => {
             securityGuideId,
             profileId,
             tableState,
-          })
+          }),
         ).toEqual({
           securityGuide: {
             skipRuleTree: true,
@@ -80,7 +80,7 @@ describe('skips', () => {
             securityGuideId,
             profileId,
             tableState,
-          })
+          }),
         ).toEqual({
           securityGuide: {
             skipRuleTree: true,
@@ -114,7 +114,7 @@ describe('skips', () => {
             securityGuideId,
             profileId,
             tableState: tableStateWithOpenItems,
-          })
+          }),
         ).toEqual({
           securityGuide: {
             skipRuleTree: true,
@@ -150,7 +150,7 @@ describe('skips', () => {
             securityGuideId,
             profileId,
             tableState,
-          })
+          }),
         ).toEqual({
           securityGuide: {
             skipRuleTree: true,
@@ -184,7 +184,7 @@ describe('skips', () => {
             securityGuideId,
             profileId,
             tableState: tableStateWithOpenItems,
-          })
+          }),
         ).toEqual({
           securityGuide: {
             skipRuleTree: true,
@@ -225,7 +225,7 @@ describe('skips', () => {
             securityGuideId,
             profileId,
             tableState,
-          })
+          }),
         ).toEqual({
           securityGuide: {
             skipRuleTree: false,
@@ -259,7 +259,7 @@ describe('skips', () => {
             securityGuideId,
             profileId,
             tableState,
-          })
+          }),
         ).toEqual({
           securityGuide: {
             skipRuleTree: false,
@@ -295,7 +295,7 @@ describe('skips', () => {
             securityGuideId,
             profileId,
             tableState,
-          })
+          }),
         ).toEqual({
           securityGuide: {
             skipRuleTree: false,
@@ -330,7 +330,7 @@ describe('skips', () => {
             securityGuideId,
             profileId,
             tableState: tableStateWithOpenItems,
-          })
+          }),
         ).toEqual({
           securityGuide: {
             skipRuleTree: false,
@@ -371,7 +371,7 @@ describe('skips', () => {
             securityGuideId,
             profileId,
             tableState,
-          })
+          }),
         ).toEqual({
           securityGuide: {
             skipRuleTree: true,
@@ -405,7 +405,7 @@ describe('skips', () => {
             securityGuideId,
             profileId,
             tableState,
-          })
+          }),
         ).toEqual({
           securityGuide: {
             skipRuleTree: true,
@@ -441,7 +441,7 @@ describe('skips', () => {
             securityGuideId,
             profileId,
             tableState,
-          })
+          }),
         ).toEqual({
           securityGuide: {
             skipRuleTree: false,
@@ -476,7 +476,7 @@ describe('skips', () => {
             securityGuideId,
             profileId,
             tableState: tableStateWithOpenItems,
-          })
+          }),
         ).toEqual({
           securityGuide: {
             skipRuleTree: false,

@@ -13,10 +13,11 @@ const reportsRoutes = [
     path: 'reports',
     title: defaultReportTitle,
     requiredPermissions: [...defaultPermissions, 'compliance:report:read'],
-    component: lazy(() =>
-      import(
-        /* webpackChunkName: "Reports" */ './SmartComponents/Reports/Reports'
-      )
+    component: lazy(
+      () =>
+        import(
+          /* webpackChunkName: "Reports" */ './SmartComponents/Reports/Reports'
+        ),
     ),
   },
   {
@@ -24,20 +25,22 @@ const reportsRoutes = [
     title: `$entityTitle - ${defaultReportTitle}`,
     requiredPermissions: [...defaultPermissions, 'compliance:report:read'],
     defaultTitle: defaultReportTitle,
-    component: lazy(() =>
-      import(
-        /* webpackChunkName: "ReportDetails" */ 'SmartComponents/ReportDetails/ReportDetails'
-      )
+    component: lazy(
+      () =>
+        import(
+          /* webpackChunkName: "ReportDetails" */ 'SmartComponents/ReportDetails/ReportDetails'
+        ),
     ),
   },
   {
     path: 'reports/:report_id/delete',
     title: `Delete report - ${defaultReportTitle}`,
     requiredPermissions: [...defaultPermissions, 'compliance:report:delete'],
-    component: lazy(() =>
-      import(
-        /* webpackChunkName: "DeleteReport" */ 'SmartComponents/DeleteReport/DeleteReport'
-      )
+    component: lazy(
+      () =>
+        import(
+          /* webpackChunkName: "DeleteReport" */ 'SmartComponents/DeleteReport/DeleteReport'
+        ),
     ),
     modal: true,
   },
@@ -48,10 +51,11 @@ const reportsRoutes = [
     requiredPermissions: [...defaultPermissions, 'compliance:report:read'],
     defaultTitle: defaultReportTitle,
     modal: true,
-    component: lazy(() =>
-      import(
-        /* webpackChunkName: "ReportDetails" */ 'SmartComponents/ReportDownload/ReportDownload'
-      )
+    component: lazy(
+      () =>
+        import(
+          /* webpackChunkName: "ReportDetails" */ 'SmartComponents/ReportDownload/ReportDownload'
+        ),
     ),
   },
 ];
@@ -62,20 +66,22 @@ const policiesRoutes = [
     path: 'scappolicies',
     title: defaultPoliciesTitle,
     requiredPermissions: [...defaultPermissions, 'compliance:policy:read'],
-    component: lazy(() =>
-      import(
-        /* webpackChunkName: "CompliancePolicies" */ 'SmartComponents/CompliancePolicies/CompliancePolicies'
-      )
+    component: lazy(
+      () =>
+        import(
+          /* webpackChunkName: "CompliancePolicies" */ 'SmartComponents/CompliancePolicies/CompliancePolicies'
+        ),
     ),
   },
   {
     path: 'scappolicies/new',
     title: defaultPoliciesTitle,
     requiredPermissions: [...defaultPermissions, 'compliance:policy:create'],
-    component: lazy(() =>
-      import(
-        /* webpackChunkName: "CreatePolicy" */ 'SmartComponents/CreatePolicy/CreatePolicy'
-      )
+    component: lazy(
+      () =>
+        import(
+          /* webpackChunkName: "CreatePolicy" */ 'SmartComponents/CreatePolicy/CreatePolicy'
+        ),
     ),
     modal: true,
   },
@@ -84,10 +90,11 @@ const policiesRoutes = [
     title: `$entityTitle - ${defaultPoliciesTitle}`,
     requiredPermissions: [...defaultPermissions, 'compliance:policy:read'],
     defaultTitle: defaultPoliciesTitle,
-    component: lazy(() =>
-      import(
-        /* webpackChunkName: "PolicyDetailsWrapper" */ 'SmartComponents/PolicyDetails/PolicyDetails'
-      )
+    component: lazy(
+      () =>
+        import(
+          /* webpackChunkName: "PolicyDetailsWrapper" */ 'SmartComponents/PolicyDetails/PolicyDetails'
+        ),
     ),
   },
   {
@@ -95,10 +102,11 @@ const policiesRoutes = [
     title: `$entityTitle - ${defaultPoliciesTitle}`,
     defaultTitle: defaultPoliciesTitle,
     requiredPermissions: [...defaultPermissions, 'compliance:policy:update'],
-    component: lazy(() =>
-      import(
-        /* webpackChunkName: "EditPolicy" */ 'SmartComponents/EditPolicy/EditPolicy'
-      )
+    component: lazy(
+      () =>
+        import(
+          /* webpackChunkName: "EditPolicy" */ 'SmartComponents/EditPolicy/EditPolicy'
+        ),
     ),
     modal: true,
   },
@@ -106,10 +114,11 @@ const policiesRoutes = [
     path: 'scappolicies/:policy_id/delete',
     title: `Delete policy - ${defaultPoliciesTitle}`,
     requiredPermissions: [...defaultPermissions, 'compliance:policy:delete'],
-    component: lazy(() =>
-      import(
-        /* webpackChunkName: "DeletePolicy" */ 'SmartComponents/DeletePolicy/DeletePolicy'
-      )
+    component: lazy(
+      () =>
+        import(
+          /* webpackChunkName: "DeletePolicy" */ 'SmartComponents/DeletePolicy/DeletePolicy'
+        ),
     ),
     modal: true,
   },
@@ -117,10 +126,11 @@ const policiesRoutes = [
     path: 'scappolicies/:policy_id/default_ruleset/:security_guide_id?',
     title: `Default policy rules - ${defaultPoliciesTitle}`,
     requiredPermissions: [...defaultPermissions, 'compliance:policy:read'],
-    component: lazy(() =>
-      import(
-        /* webpackChunkName: "PolicyRules" */ 'SmartComponents/PolicyRules/PolicyRules'
-      )
+    component: lazy(
+      () =>
+        import(
+          /* webpackChunkName: "PolicyRules" */ 'SmartComponents/PolicyRules/PolicyRules'
+        ),
     ),
   },
 ];
@@ -131,10 +141,11 @@ const systemsRoutes = [
     path: 'systems',
     title: defaultSystemsTitle,
     requiredPermissions: [...defaultPermissions, 'compliance:system:read'],
-    component: lazy(() =>
-      import(
-        /* webpackChunkName: "ComplianceSystems" */ 'SmartComponents/ComplianceSystems/ComplianceSystems'
-      )
+    component: lazy(
+      () =>
+        import(
+          /* webpackChunkName: "ComplianceSystems" */ 'SmartComponents/ComplianceSystems/ComplianceSystems'
+        ),
     ),
   },
   {
@@ -142,10 +153,11 @@ const systemsRoutes = [
     title: `$entityTitle - ${defaultSystemsTitle}`,
     defaultTitle: defaultSystemsTitle,
     requiredPermissions: [...defaultPermissions, 'compliance:system:read'],
-    component: lazy(() =>
-      import(
-        /* webpackChunkName: "SystemDetails" */ 'SmartComponents/SystemDetails/SystemDetails'
-      )
+    component: lazy(
+      () =>
+        import(
+          /* webpackChunkName: "SystemDetails" */ 'SmartComponents/SystemDetails/SystemDetails'
+        ),
     ),
   },
 ];
@@ -155,7 +167,7 @@ export const routes = [...policiesRoutes, ...reportsRoutes, ...systemsRoutes];
 export const findRouteByPath = (to) => {
   const pathToMatch = typeof to === 'string' ? { pathname: to } : to;
   return routes.find((route) =>
-    matchPath({ ...route, exact: true }, pathToMatch.pathname)
+    matchPath({ ...route, exact: true }, pathToMatch.pathname),
   );
 };
 
@@ -168,7 +180,7 @@ const ComplianceRoutes = () => {
       axios
         .get(
           // look only for RHEL systems, https://issues.redhat.com/browse/RHINENG-5929
-          `${INVENTORY_TOTAL_FETCH_URL}?page=1&per_page=1&filter[system_profile][operating_system][RHEL][version][gte]=0`
+          `${INVENTORY_TOTAL_FETCH_URL}?page=1&per_page=1&filter[system_profile][operating_system][RHEL][version][gte]=0`,
         )
         .then(({ data }) => {
           setHasSystems(data.total > 0);

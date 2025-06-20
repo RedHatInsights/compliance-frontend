@@ -46,7 +46,7 @@ describe('SystemPolicyCard component', () => {
     render(<SystemPolicyCard policy={unsupportedPolicy} />);
 
     expect(
-      screen.getByText('Unsupported SSG version (0.1.45)')
+      screen.getByText('Unsupported SSG version (0.1.45)'),
     ).toBeInTheDocument();
   });
 });

@@ -59,7 +59,7 @@ const views = {
       const cells = treeColumns(
         columns,
         options.expandable?.onCollapse,
-        options.bulkSelect?.enableBulkSelect && onSelect
+        options.bulkSelect?.enableBulkSelect && onSelect,
       );
 
       return rows

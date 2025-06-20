@@ -8,7 +8,7 @@ const unionBy = (arr, ...args) => {
   return arr
     .concat(...args)
     .filter(
-      (x, i, self) => i === self.findIndex((y) => iteratee(x) === iteratee(y))
+      (x, i, self) => i === self.findIndex((y) => iteratee(x) === iteratee(y)),
     );
 };
 

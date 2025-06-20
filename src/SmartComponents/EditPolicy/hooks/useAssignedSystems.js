@@ -11,7 +11,7 @@ const fetchPolicySystems =
       null,
       null,
       per_page,
-      calculateOffset(page, per_page)
+      calculateOffset(page, per_page),
     );
 
 const useAssignedSystems = (policyId, policy = [], policyLoading) => {
@@ -22,7 +22,7 @@ const useAssignedSystems = (policyId, policy = [], policyLoading) => {
     const fetchFunction = fetchPolicySystems(policyId);
     const assignedSystems = await fetchBatched(
       fetchFunction,
-      policy.total_system_count
+      policy.total_system_count,
     ).then((systems) => systems.flatMap((system) => system?.data?.data));
 
     setAssignedSystems(assignedSystems);

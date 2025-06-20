@@ -119,5 +119,5 @@ export default compose(
     form: 'policyForm',
     destroyOnUnmount: false,
     forceUnregisterOnUnmount: true,
-  })
+  }),
 )(EditPolicyDetails);

@@ -15,14 +15,14 @@ jest.mock(
   () => ({
     __esModule: true,
     default: jest.fn(),
-  })
+  }),
 );
 
 jest.mock(
   '@redhat-cloud-services/frontend-components-notifications/redux',
   () => ({
     addNotification: jest.fn(),
-  })
+  }),
 );
 
 jest.mock('../../Utilities/hooks/useQuery');

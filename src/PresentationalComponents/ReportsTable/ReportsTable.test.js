@@ -19,11 +19,11 @@ describe('ReportsTable', () => {
     render(
       <TestWrapper>
         <ReportsTable reports={reportsData} />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(
-      screen.getByRole('link', { name: reportsData[0].title })
+      screen.getByRole('link', { name: reportsData[0].title }),
     ).toBeInTheDocument();
   });
 
@@ -31,7 +31,7 @@ describe('ReportsTable', () => {
     const operatingSystems = uniq(
       reportsData
         .map(({ os_major_version }) => os_major_version)
-        .filter((i) => !!i)
+        .filter((i) => !!i),
     );
     const nameLabel = policyNameFilter[0].label;
     const operatingSystemLabel =
@@ -44,7 +44,7 @@ describe('ReportsTable', () => {
           reports={reportsData}
           operatingSystems={operatingSystems}
         />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     const toggleButton = screen.getByRole('button', {

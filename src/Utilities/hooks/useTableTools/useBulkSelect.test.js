@@ -24,7 +24,7 @@ describe('useBulkSelect', () => {
         preselected: ['ID'],
         itemIdsInTable: () => ['ID'],
         itemIdsOnPage: () => ['ID'],
-      })
+      }),
     );
 
     expect(result.current).toMatchObject({});
@@ -38,7 +38,7 @@ describe('useBulkSelect', () => {
         preselected: ['ID'],
         itemIdsInTable: () => ['ID', 'ID2'],
         itemIdsOnPage: () => ['ID', 'ID2'],
-      })
+      }),
     );
 
     expect(result.current).toMatchObject({});
@@ -52,7 +52,7 @@ describe('useBulkSelect', () => {
         preselected: ['ID'],
         itemIdsInTable: () => ['ID', 'ID2'],
         itemIdsOnPage: () => ['ID'],
-      })
+      }),
     );
 
     expect(result.current).toMatchObject({});
@@ -93,7 +93,7 @@ describe('useBulkSelectWithItems', () => {
           selected: true,
         },
         severity: 'low',
-      })
+      }),
     );
   });
 
@@ -116,7 +116,7 @@ describe('useBulkSelectWithItems', () => {
       expect(getBulkSelect(result).toggleProps).toEqual({
         children: ['0 selected'],
         count: 20,
-      })
+      }),
     );
   });
 
@@ -141,7 +141,7 @@ describe('useBulkSelectWithItems', () => {
       expect(getBulkSelect(result).toggleProps).toEqual({
         children: ['0 selected'],
         count: 20,
-      })
+      }),
     );
   });
 
@@ -164,7 +164,7 @@ describe('useBulkSelectWithItems', () => {
       expect(getBulkSelect(result).toggleProps).toEqual({
         children: ['0 selected'],
         count: 20,
-      })
+      }),
     );
   });
 
@@ -173,7 +173,7 @@ describe('useBulkSelectWithItems', () => {
       useBulkSelectWithItems({
         ...defaultOptions,
         filter: (items) => items.slice(5, 10),
-      })
+      }),
     );
     expect(getBulkSelect(result)).toMatchObject({});
 
@@ -183,7 +183,7 @@ describe('useBulkSelectWithItems', () => {
       expect(getBulkSelect(result).toggleProps).toEqual({
         children: ['5 selected'],
         count: 5,
-      })
+      }),
     );
   });
 });

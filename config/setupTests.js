@@ -19,7 +19,7 @@ jest.mock(
   () => ({
     __esModule: true,
     default: (props) => <button aria-label="Remediation Button" {...props} />,
-  })
+  }),
 );
 const ignoredAttributes = ['onLoad', 'getEntities'];
 const convertValue = (key, value) => {
@@ -36,7 +36,7 @@ const lowercasePropNames = (props) =>
       return !ignoredAttributes.includes(key)
         ? [...entries, [key.toLowerCase(), convertValue(key, value)]]
         : entries;
-    }, [])
+    }, []),
   );
 
 jest.mock('@redhat-cloud-services/frontend-components/Inventory', () => ({
@@ -67,6 +67,6 @@ jest.mock('@redhat-cloud-services/frontend-components/Inventory', () => ({
       >
         {children}
       </div>
-    )
+    ),
   ),
 }));

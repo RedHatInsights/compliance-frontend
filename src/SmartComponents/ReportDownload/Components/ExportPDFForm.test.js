@@ -52,7 +52,7 @@ describe('ExportPDFForm', function () {
 
     expect(screen.getByLabelText('Compliant systems')).toBeChecked();
     expect(
-      screen.getByLabelText('Systems with unsupported configuration')
+      screen.getByLabelText('Systems with unsupported configuration'),
     ).not.toBeChecked();
   });
 });

@@ -25,7 +25,7 @@ describe('ProfileThresholdField', () => {
     render(
       <FormTestWrapper>
         <ProfileThresholdField previousThreshold={threshold} />
-      </FormTestWrapper>
+      </FormTestWrapper>,
     );
 
     expect(screen.getByLabelText('compliance threshold')).toBeInTheDocument();
@@ -35,12 +35,12 @@ describe('ProfileThresholdField', () => {
     render(
       <FormTestWrapper>
         <ProfileThresholdField previousThreshold={120} />
-      </FormTestWrapper>
+      </FormTestWrapper>,
     );
 
     expect(screen.getByLabelText('compliance threshold')).toHaveAttribute(
       'aria-invalid',
-      'true'
+      'true',
     );
   });
 });

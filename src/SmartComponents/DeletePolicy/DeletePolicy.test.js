@@ -40,13 +40,13 @@ describe('DeletePolicy', () => {
     render(
       <TestWrapper>
         <DeletePolicy />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(
       screen.getByText(
-        'I understand this will delete the policy and all associated reports'
-      )
+        'I understand this will delete the policy and all associated reports',
+      ),
     ).toBeInTheDocument();
     expect(screen.getByText('Test Policy 1')).toBeInTheDocument();
 

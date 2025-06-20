@@ -43,7 +43,7 @@ const EditPolicyDetailsInline = ({
   const { hasAccess, isLoading } = usePermissionsWithContext(
     ['compliance:policy:write'],
     false,
-    false
+    false,
   );
 
   const hasPermission = !isLoading && hasAccess;

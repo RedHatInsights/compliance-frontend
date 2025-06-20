@@ -11,7 +11,7 @@ export const fetchResult = async (
   fn,
   params,
   convertToArray,
-  compileResult = defaultCompileResult
+  compileResult = defaultCompileResult,
 ) => {
   const convertedParams =
     (convertToArray && !Array.isArray(params)

@@ -6,7 +6,7 @@ const useRoutePermissions = (to) => {
   return usePermissionsWithContext(
     route?.requiredPermissions || [],
     false,
-    false
+    false,
   );
 };
 

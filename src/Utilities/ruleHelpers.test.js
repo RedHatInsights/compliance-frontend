@@ -20,10 +20,10 @@ describe('passed count', () => {
       ],
     };
     expect(profilesRulesPassed([system.testResultProfiles[0]]).length).toEqual(
-      1
+      1,
     );
     expect(profilesRulesPassed([system.testResultProfiles[1]]).length).toEqual(
-      2
+      2,
     );
   });
 });
@@ -44,10 +44,10 @@ describe('fail count', () => {
     };
     expect(systemRulesFailed(system).length).toEqual(4);
     expect(profilesRulesFailed([system.testResultProfiles[0]]).length).toEqual(
-      2
+      2,
     );
     expect(profilesRulesFailed([system.testResultProfiles[1]]).length).toEqual(
-      2
+      2,
     );
   });
 

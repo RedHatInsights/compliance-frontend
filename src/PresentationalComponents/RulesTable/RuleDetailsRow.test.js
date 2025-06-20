@@ -7,7 +7,7 @@ describe('RuleDetailsRow', () => {
     const { asFragment } = render(
       <RuleDetailsRow
         item={policies.edges[0].node.policy.profiles[0].rules[0]}
-      />
+      />,
     );
     expect(asFragment()).toMatchSnapshot();
   });

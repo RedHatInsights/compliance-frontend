@@ -55,7 +55,7 @@ export const useBulkSelect = ({
   const noneSelected = selectedIdsTotal === 0;
   const currentPageSelected = checkCurrentPageSelected(
     itemIdsOnPage(),
-    selectedIds || []
+    selectedIds || [],
   );
 
   const isDisabled = total === 0;
@@ -79,7 +79,7 @@ export const useBulkSelect = ({
     onSelectCallback(() =>
       selected
         ? selectItems([row[identifier]])
-        : unselectItems([row[identifier]])
+        : unselectItems([row[identifier]]),
     );
   };
 
@@ -97,7 +97,7 @@ export const useBulkSelect = ({
 
   const selectAll = () =>
     onSelectCallback(async () =>
-      allSelected ? unselectAll() : selectItems(await itemIdsInTable())
+      allSelected ? unselectAll() : selectItems(await itemIdsInTable()),
     );
 
   useEffect(() => {
@@ -130,7 +130,7 @@ export const useBulkSelect = ({
               },
               {
                 title: `${selectOrUnselect(
-                  currentPageSelected
+                  currentPageSelected,
                 )} page (${paginatedTotal} items)`,
                 onClick: selectPage,
               },
@@ -165,7 +165,7 @@ export const useBulkSelectWithItems = ({
 }) => {
   const enableBulkSelect = !!onSelect;
   const items = propItems.map((item) =>
-    selectItemTransformer(item, preselected)
+    selectItemTransformer(item, preselected),
   );
   const total = items.length;
 

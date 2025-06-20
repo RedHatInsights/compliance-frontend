@@ -151,7 +151,7 @@ const TailoringTab = ({
       valueOverrides,
       selected,
       tableState,
-    ]
+    ],
   );
 
   const ruleTree = useMemo(
@@ -171,7 +171,7 @@ const TailoringTab = ({
       ruleGroups,
       securityGuideRuleTree,
       profileRuleTree,
-    ]
+    ],
   );
 
   // TODO we might want to consider making this more explicit and also add SSG profile exporter and ids call
@@ -191,7 +191,7 @@ const TailoringTab = ({
   const onSelectRule = (...ruleParams) =>
     onSelect?.(
       tailoring || { ...securityGuide?.data, os_minor_version: osMinorVersion },
-      ...ruleParams
+      ...ruleParams,
     );
 
   return (

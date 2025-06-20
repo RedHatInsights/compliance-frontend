@@ -14,7 +14,7 @@ describe('PolicySystemsTab', () => {
     render(
       <TestWrapper>
         <PolicySystemsTab {...{ policy }} />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(screen.getByLabelText('Inventory Table')).toBeInTheDocument();

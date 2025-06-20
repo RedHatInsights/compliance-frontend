@@ -56,47 +56,6 @@
       "pug": "^3.0.1"
     }
   },
-  "sassIncludes": {
-    "patternfly": "node_modules/patternfly/dist/sass",
-    "bootstrap": "node_modules/patternfly/node_modules/bootstrap-sass/assets/stylesheets",
-    "fontAwesome": "node_modules/patternfly/node_modules/font-awesome-sass/assets/stylesheets"
-  },
-  "jest": {
-    "testEnvironment": "jsdom",
-    "collectCoverage": true,
-    "coverageDirectory": "./coverage-jest/",
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx}",
-      "cypress/**/*.js",
-      "config/**/*.js",
-      "!src/**/*.test.js",
-      "!src/**/*.cy.js",
-      "!src/{App,entry,entry-dev}.js",
-      "!src/**/__fixtures__/*.js",
-      "!src/**/__factories__/*.js"
-    ],
-    "setupFiles": [
-      "<rootDir>/config/setupTests.js"
-    ],
-    "roots": [
-      "<rootDir>/src/"
-    ],
-    "transformIgnorePatterns": [
-      "node_modules/(?!(uuid|p-all|p-map|aggregate-error|indent-string|clean-stack))"
-    ],
-    "moduleNameMapper": {
-      "\\.(css|scss|svg)$": "identity-obj-proxy",
-      "^SmartComponents$": "<rootDir>/src/SmartComponents",
-      "^SmartComponents/(.*)": "<rootDir>/src/SmartComponents/$1",
-      "^PresentationalComponents$": "<rootDir>/src/PresentationalComponents",
-      "^PresentationalComponents/(.*)": "<rootDir>/src/PresentationalComponents/$1",
-      "^Mutations(|/.*)": "<rootDir>/src/Mutations$1",
-      "^Utilities/(.*)": "<rootDir>/src/Utilities/$1",
-      "^Store/(.*)": "<rootDir>/src/store/$1",
-      "^Store$": "<rootDir>/src/store",
-      "^@/(.*)$": "<rootDir>/src/$1"
-    }
-  },
   "nyc": {
     "report-dir": "coverage-cypress",
     "include": [
@@ -115,7 +74,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.26.10",
-    "@babel/eslint-parser": "^7.26.10",
     "@babel/plugin-transform-runtime": "^7.26.10",
     "@babel/preset-env": "^7.25.4",
     "@babel/preset-react": "^7.24.7",
@@ -124,7 +82,7 @@
     "@cypress/code-coverage": "^3.14.3",
     "@cypress/react18": "^2.0.1",
     "@faker-js/faker": "^8.4.1",
-    "@redhat-cloud-services/eslint-config-redhat-cloud-services": "^2.0.10",
+    "@redhat-cloud-services/eslint-config-redhat-cloud-services": "^3.0.0",
     "@redhat-cloud-services/frontend-components-config": "^6.4.8",
     "@redhat-cloud-services/tsc-transform-imports": "^1.0.21",
     "@testing-library/jest-dom": "^6.4.3",
@@ -137,11 +95,11 @@
     "css-loader": "^6.8.1",
     "cypress": "^14.3.3",
     "dotenv-defaults": "^5.0.2",
-    "eslint": "^8.43.0",
-    "eslint-plugin-cypress": "^3.6.0",
-    "eslint-plugin-jest-dom": "^5.1.0",
-    "eslint-plugin-jsdoc": "^48.9.2",
-    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint": "^9.24.0",
+    "eslint-plugin-cypress": "^5.1.0",
+    "eslint-plugin-jest-dom": "^5.5.0",
+    "eslint-plugin-jsdoc": "^51.0.3",
+    "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-testing-library": "^6.2.0",
     "fishery": "^2.2.2",
     "identity-obj-proxy": "^3.0.0",
@@ -158,7 +116,8 @@
     "stylelint-config-recommended-scss": "^12.0.0",
     "stylelint-scss": "^5.0.1",
     "ts-patch": "^3.1.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.32.0"
   },
   "scripts": {
     "build": "fec build",

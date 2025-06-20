@@ -24,7 +24,7 @@ describe('RuleValueEdit', () => {
           },
           ruleValues: {},
         }}
-      />
+      />,
     );
 
     expect(screen.getByText('default string value')).toBeInTheDocument();
@@ -46,7 +46,7 @@ describe('RuleValueEdit', () => {
             2: 'second user defined value',
           },
         }}
-      />
+      />,
     );
 
     expect(screen.getByText('second user defined value')).toBeInTheDocument();
@@ -67,7 +67,7 @@ describe('RuleValueEdit', () => {
             1: 'second user defined value',
           },
         }}
-      />
+      />,
     );
 
     expect(screen.queryByLabelText('Save edits')).not.toBeInTheDocument();

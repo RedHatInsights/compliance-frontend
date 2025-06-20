@@ -8,7 +8,7 @@ describe('useSelectedFilter', () => {
         addFilterConfigItem: () => ({}),
         setActiveFilter: () => ({}),
         activeFilters: [],
-      })
+      }),
     );
     expect(result).toMatchSnapshot();
   });

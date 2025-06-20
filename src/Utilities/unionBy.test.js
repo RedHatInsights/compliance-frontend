@@ -11,7 +11,7 @@ describe('unionBy', () => {
 
   it('union of basic array with func identifier', () => {
     expect(
-      unionBy([{ id: 1 }, { id: 2 }], [{ id: 3 }], (item) => item.id)
+      unionBy([{ id: 1 }, { id: 2 }], [{ id: 3 }], (item) => item.id),
     ).toStrictEqual([{ id: 1 }, { id: 2 }, { id: 3 }]);
   });
 

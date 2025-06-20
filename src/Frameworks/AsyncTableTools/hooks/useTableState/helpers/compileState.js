@@ -10,7 +10,7 @@ const applySerialisers = (serialisers, newState) =>
           : {}),
       };
     },
-    {}
+    {},
   );
 
 const applyNameSpaceObserver = (namespace, observers, newState, currentState) =>
@@ -19,7 +19,7 @@ const applyNameSpaceObserver = (namespace, observers, newState, currentState) =>
       const observerResult = observerFunction(
         currentState?.[observedState],
         currentState?.[namespace],
-        newState[namespace]
+        newState[namespace],
       );
 
       return {
@@ -29,7 +29,7 @@ const applyNameSpaceObserver = (namespace, observers, newState, currentState) =>
           : {}),
       };
     },
-    {}
+    {},
   );
 
 const applyObservers = (namespace, observers, newState, currentState) => {
@@ -37,7 +37,7 @@ const applyObservers = (namespace, observers, newState, currentState) => {
     namespace,
     observers,
     newState,
-    currentState
+    currentState,
   );
 
   const updateStateRecursively = (currentStateSnapshot, pendingChanges) => {
@@ -48,10 +48,10 @@ const applyObservers = (namespace, observers, newState, currentState) => {
           stateKey,
           observers,
           currentStateSnapshot,
-          currentState
+          currentState,
         ),
       }),
-      {}
+      {},
     );
 
     if (Object.keys(nextStateChanges).length === 0) {
@@ -60,13 +60,13 @@ const applyObservers = (namespace, observers, newState, currentState) => {
 
     return updateStateRecursively(
       { ...currentStateSnapshot, ...nextStateChanges },
-      nextStateChanges
+      nextStateChanges,
     );
   };
 
   const finalObserverStates = updateStateRecursively(
     newObserverStates,
-    newObserverStates
+    newObserverStates,
   );
 
   return {
@@ -83,7 +83,7 @@ const compileState = (
   newStateForNameSpace,
   observers,
   serialisers,
-  callbacks
+  callbacks,
 ) => {
   const newStateTableState = {
     ...(currentState?.tableState || {}),
@@ -93,11 +93,11 @@ const compileState = (
     namespace,
     observers,
     newStateTableState,
-    currentState?.tableState || {}
+    currentState?.tableState || {},
   );
   const newSerialisedState = applySerialisers(
     serialisers,
-    newStateWithObservers
+    newStateWithObservers,
   );
 
   return {

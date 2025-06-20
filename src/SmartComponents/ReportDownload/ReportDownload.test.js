@@ -5,7 +5,7 @@ const ReportDownload = () => <div>REPLACE WHEN UNSKIP</div>;
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
-  useParams: jest.fn().mockReturnValue({ policy_id: '1' }), // eslint-disable-line
+  useParams: jest.fn().mockReturnValue({ policy_id: '1' }),
   useLocation: jest.fn(),
 }));
 jest.mock('Utilities/Dispatcher');
@@ -27,7 +27,7 @@ describe('ReportDownload', function () {
         unsupportedSystems: true,
         userNotes: undefined,
       },
-      { name: 'Test Profile' }
+      { name: 'Test Profile' },
     );
 
     const compliantSystemsCheckBox = screen.getByText('Compliant systems');

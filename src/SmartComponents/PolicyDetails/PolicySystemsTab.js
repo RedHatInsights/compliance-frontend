@@ -1,5 +1,3 @@
-/* eslint-disable react/display-name */
-/* eslint-disable rulesdir/disallow-fec-relative-imports */
 import React from 'react';
 import propTypes from 'prop-types';
 import { NoSystemsTableWithWarning } from 'PresentationalComponents';
@@ -22,7 +20,7 @@ const fetchApi = (offset, limit, fetchArguments) =>
       offset,
       null,
       fetchArguments.sortBy,
-      fetchArguments.filter
+      fetchArguments.filter,
     )
     .then(({ data: { data = [], meta = {} } = {} } = {}) => ({
       data: dataSerialiser(data, systemsDataMapper),
@@ -45,7 +43,7 @@ const PolicySystemsTab = ({ policy }) => {
           {
             showLink: true,
           },
-          { sortBy: ['display_name'] }
+          { sortBy: ['display_name'] },
         ),
         Columns.inventoryColumn('tags'),
         Columns.OS(),

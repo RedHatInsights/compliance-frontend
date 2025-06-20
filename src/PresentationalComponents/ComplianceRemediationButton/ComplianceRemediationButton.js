@@ -15,7 +15,7 @@ const ComplianceRemediationButton = ({
   const { isLoading: isLoadingIssues, fetch } = useIssuesFetch(
     reportId,
     reportTestResults,
-    selectedRuleResultIds
+    selectedRuleResultIds,
   );
 
   return (

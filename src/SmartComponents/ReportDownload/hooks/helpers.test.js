@@ -31,13 +31,13 @@ describe('compliantSystemsData', () => {
     expect(
       compliantSystemsData(allSystems)
         .map((system) => system.name)
-        .includes(randomCompliantSystem.name)
+        .includes(randomCompliantSystem.name),
     ).toBeTruthy();
 
     expect(
       compliantSystemsData(allSystems)
         .map((system) => system.name)
-        .includes(randomNonCompliantSystem.name)
+        .includes(randomNonCompliantSystem.name),
     ).toBeFalsy();
   });
 });
@@ -47,13 +47,13 @@ describe('nonCompliantSystemsData', () => {
     expect(
       nonCompliantSystemsData(allSystems)
         .map((system) => system.name)
-        .includes(randomCompliantSystem.name)
+        .includes(randomCompliantSystem.name),
     ).toBeFalsy();
 
     expect(
       nonCompliantSystemsData(allSystems)
         .map((system) => system.name)
-        .includes(randomNonCompliantSystem.name)
+        .includes(randomNonCompliantSystem.name),
     ).toBeTruthy();
   });
 });
@@ -63,13 +63,13 @@ describe('unsupportedSystemsData', () => {
     expect(
       unsupportedSystemsData(allSystems)
         .map((system) => system.name)
-        .includes(randomCompliantSystem.name)
+        .includes(randomCompliantSystem.name),
     ).toBeFalsy();
 
     expect(
       unsupportedSystemsData(allSystems)
         .map((system) => system.name)
-        .includes(randomUnsupportedSystems.name)
+        .includes(randomUnsupportedSystems.name),
     ).toBeTruthy();
   });
 });

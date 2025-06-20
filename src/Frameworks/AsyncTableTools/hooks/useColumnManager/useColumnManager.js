@@ -33,7 +33,7 @@ const useColumnManager = (columns = [], options = {}) => {
   const fixedColumns = useMemo(() => getFixedColumns(columns), [columns]);
   const manageableColumns = fixedColumns.filter(({ manageable }) => manageable);
   const unManagableColumns = fixedColumns.filter(
-    ({ manageable }) => !manageable
+    ({ manageable }) => !manageable,
   );
   const [selectedColumns, setSelectedColumns] = useState(manageableColumns);
   const [isManagerOpen, setIsManagerOpen] = useState(false);
@@ -52,22 +52,21 @@ const useColumnManager = (columns = [], options = {}) => {
       ...selectedColumns.filter(({ isShown }) => isShown),
       ...unManagableColumns,
     ],
-    [selectedColumns, unManagableColumns]
+    [selectedColumns, unManagableColumns],
   );
 
   const ColumnManager = useMemo(
     // eslint-disable-next-line react/display-name
-    () => () =>
-      (
-        <ColumnManagementModal
-          appliedColumns={selectedColumns}
-          isOpen={isManagerOpen}
-          onClose={() => setIsManagerOpen(false)}
-          applyColumns={applyColumns}
-          selectProp={selectProp}
-        />
-      ),
-    [applyColumns, selectProp, isManagerOpen, selectedColumns]
+    () => () => (
+      <ColumnManagementModal
+        appliedColumns={selectedColumns}
+        isOpen={isManagerOpen}
+        onClose={() => setIsManagerOpen(false)}
+        applyColumns={applyColumns}
+        selectProp={selectProp}
+      />
+    ),
+    [applyColumns, selectProp, isManagerOpen, selectedColumns],
   );
 
   return enableColumnManager

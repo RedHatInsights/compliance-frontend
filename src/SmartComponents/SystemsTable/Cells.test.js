@@ -50,7 +50,7 @@ describe('FailedRules', () => {
           system_id={testSystem.id}
           rulesFailed={testSystem.testResultProfiles[0].rulesFailed}
         />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(screen.getByText('28')).toBeInTheDocument();
@@ -60,7 +60,7 @@ describe('FailedRules', () => {
     render(
       <TestWrapper>
         <FailedRules {...testSystem} rulesFailed={0} />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(screen.getByText('0')).toBeInTheDocument();

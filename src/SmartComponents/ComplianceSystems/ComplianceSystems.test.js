@@ -19,7 +19,7 @@ describe('ComplianceSystems', () => {
     render(
       <TestWrapper>
         <ComplianceSystems />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(screen.getByLabelText('Inventory Table')).toBeInTheDocument();

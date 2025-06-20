@@ -25,12 +25,12 @@ export const configItemItemByLabel = (configItem, label) =>
 
 export const itemForValueInGroups = (configItem, value) =>
   flattenConfigItems(configItem).find(
-    ({ value: itemValue }) => `${itemValue}` === `${value}`
+    ({ value: itemValue }) => `${itemValue}` === `${value}`,
   );
 
 export const itemForLabelInGroups = (configItem, label) =>
   flattenConfigItems(configItem).find(
-    ({ label: ItemLabel }) => `${ItemLabel}` === `${label}`
+    ({ label: ItemLabel }) => `${ItemLabel}` === `${label}`,
   );
 
 export const isNotEmpty = (value) =>

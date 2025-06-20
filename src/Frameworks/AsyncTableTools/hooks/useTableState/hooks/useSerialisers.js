@@ -3,7 +3,7 @@ import { useDeepCompareEffect } from 'use-deep-compare';
 const useSerialisers = (
   serialiserNamespace,
   serialiser,
-  serialiserInContext
+  serialiserInContext,
 ) => {
   useDeepCompareEffect(() => {
     if (serialiser) {

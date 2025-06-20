@@ -16,7 +16,7 @@ describe('useQuery', () => {
         data: undefined,
         error: undefined,
         loading: true,
-      })
+      }),
     );
   });
 
@@ -47,7 +47,7 @@ describe('useQuery', () => {
         data: undefined,
         error: undefined,
         loading: true,
-      })
+      }),
     );
 
     await waitFor(() => {
@@ -68,7 +68,7 @@ describe('useQuery', () => {
     };
     apiInstance.systems.mockResolvedValue(data);
     const { result } = renderHook(() =>
-      useQuery(apiInstance.systems, { params: ['123', '456'] })
+      useQuery(apiInstance.systems, { params: ['123', '456'] }),
     );
 
     const originalRefetch = result.current.refetch;
@@ -80,7 +80,7 @@ describe('useQuery', () => {
         data,
         error: undefined,
         loading: false,
-      })
+      }),
     );
 
     // api returns different data now
@@ -126,11 +126,11 @@ describe('useQuery', () => {
       ({ param }) => useQuery(apiInstance.systems, { params: [param] }),
       {
         initialProps,
-      }
+      },
     );
 
     await waitFor(() =>
-      expect(apiInstance.systems).toHaveBeenCalledWith(param)
+      expect(apiInstance.systems).toHaveBeenCalledWith(param),
     );
 
     await waitFor(() => {
@@ -146,7 +146,7 @@ describe('useQuery', () => {
     rerender({ param: param2 });
 
     await waitFor(() =>
-      expect(apiInstance.systems).toHaveBeenLastCalledWith(param2)
+      expect(apiInstance.systems).toHaveBeenLastCalledWith(param2),
     );
 
     await waitFor(() => {
@@ -183,7 +183,7 @@ describe('useQuery', () => {
         useQuery(apiInstance.systems, { params: [param], skip }),
       {
         initialProps,
-      }
+      },
     );
 
     // Make sure the timeout is bigger than the debounce timeout

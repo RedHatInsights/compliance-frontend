@@ -39,7 +39,7 @@ describe('Reports table tests', () => {
       {
         statusCode: 200,
         body: reportsResp,
-      }
+      },
     ).as('getReports');
 
     cy.intercept(
@@ -47,7 +47,7 @@ describe('Reports table tests', () => {
       {
         statusCode: 200,
         body: reportsResp,
-      }
+      },
     ).as('getReportsTotal');
 
     mountComponent();
@@ -73,7 +73,7 @@ describe('Reports table tests', () => {
         {
           statusCode: 200,
           body: reportsResp,
-        }
+        },
       ).as('getSortedReports');
 
       cy.get('th[data-label="Policy"] > button').click();
@@ -96,7 +96,7 @@ describe('Reports table tests', () => {
         {
           statusCode: 200,
           body: reportsResp,
-        }
+        },
       ).as('getSortedReports');
 
       cy.get('th[data-label="Operating system"] > button').click();
@@ -115,7 +115,7 @@ describe('Reports table tests', () => {
         {
           statusCode: 200,
           body: reportsResp,
-        }
+        },
       ).as('getSortedReports');
 
       cy.get('th[data-label="Operating system"] > button').click();
@@ -136,7 +136,7 @@ describe('Reports table tests', () => {
         {
           statusCode: 200,
           body: reportsResp,
-        }
+        },
       ).as('getSortedReports');
 
       cy.get('th[data-label="Systems meeting compliance"] > button').click();
@@ -154,7 +154,7 @@ describe('Reports table tests', () => {
         {
           statusCode: 200,
           body: reportsResp,
-        }
+        },
       ).as('getSortedReports');
 
       cy.get('th[data-label="Systems meeting compliance"] > button').click();
@@ -190,7 +190,7 @@ describe('Reports table tests', () => {
                 total: reportsData.length,
               },
             },
-          }
+          },
         ).as('getPaginatedReports');
 
         cy.ouiaType('PF5/Toolbar', 'div')
@@ -213,7 +213,7 @@ describe('Reports table tests', () => {
             'have.length',
             reportsData.length > perPageValue
               ? perPageValue
-              : reportsData.length
+              : reportsData.length,
           );
       });
     });
@@ -226,19 +226,19 @@ describe('Reports table tests', () => {
         'reports',
         0,
         reportsData.slice(0, 10),
-        reportsData.length
+        reportsData.length,
       );
       interceptBatchRequest(
         'reports',
         10,
         reportsData.slice(10, 20),
-        reportsData.length
+        reportsData.length,
       );
       interceptBatchRequest(
         'reports',
         20,
         reportsData.slice(20, 30),
-        reportsData.length
+        reportsData.length,
       );
     });
     it('CSV report download and content', () => {
@@ -254,7 +254,7 @@ describe('Reports table tests', () => {
         function (result) {
           let res = result.stdout;
           cy.readFile('cypress/downloads/' + res).should('not.be.empty');
-        }
+        },
       );
     });
     it('JSON report download and content', () => {
@@ -273,7 +273,7 @@ describe('Reports table tests', () => {
             .then((fileContent) => {
               assert(
                 fileContent.length === reportsData.length,
-                'Length of profiles is different'
+                'Length of profiles is different',
               );
               fileContent.forEach((item) => {
                 reportsData.forEach((report) => {
@@ -283,8 +283,8 @@ describe('Reports table tests', () => {
                       getComparisonMessage(
                         'Operating system',
                         report.os_major_version,
-                        item['operatingSystem']
-                      )
+                        item['operatingSystem'],
+                      ),
                     );
                     let systemMeetingCompliance = `${report.compliant_system_count} of ${report.reported_system_count} systems`;
                     let unsupportedCount = report.unsupported_system_count;
@@ -299,14 +299,14 @@ describe('Reports table tests', () => {
                       getComparisonMessage(
                         'Systems meeting compliance',
                         systemMeetingCompliance,
-                        item['systemsMeetingCompliance']
-                      )
+                        item['systemsMeetingCompliance'],
+                      ),
                     );
                   }
                 });
               });
             });
-        }
+        },
       );
     });
   });
@@ -328,7 +328,7 @@ describe('Reports table tests', () => {
               total: 0,
             },
           },
-        }
+        },
       ).as('getFilteredReports');
 
       cy.ouiaId('PrimaryToolbar', 'div')
@@ -343,11 +343,11 @@ describe('Reports table tests', () => {
           'contain',
           new URLSearchParams({
             filter: '(with_reported_systems = true) AND (title ~ "foo bar")',
-          }).toString()
+          }).toString(),
         );
 
       cy.get('div[class="pf-v5-c-empty-state"]').contains(
-        'No matching reports found'
+        'No matching reports found',
       );
     });
     it('Find report by Name', () => {
@@ -365,7 +365,7 @@ describe('Reports table tests', () => {
               total: 1,
             },
           },
-        }
+        },
       ).as('getFilteredReports');
 
       cy.ouiaId('PrimaryToolbar', 'div')
@@ -380,7 +380,7 @@ describe('Reports table tests', () => {
           'contain',
           new URLSearchParams({
             filter: `(title ~ "${reportTitle}") AND (with_reported_systems = true)`,
-          }).toString()
+          }).toString(),
         );
       cy.get('td[data-label="Policy"] a')
         .should('have.length', 1)
@@ -403,7 +403,7 @@ describe('Reports table tests', () => {
               total: 1,
             },
           },
-        }
+        },
       ).as('getFilteredReports');
 
       cy.ouiaId('PrimaryToolbar', 'div')
@@ -423,7 +423,7 @@ describe('Reports table tests', () => {
           'contain',
           new URLSearchParams({
             filter: `(os_major_version ^ (${reportOSVersion})) AND (with_reported_systems = true)`,
-          }).toString()
+          }).toString(),
         );
       cy.get('td[data-label="Operating system"]')
         .should('have.length', 1)
@@ -445,7 +445,7 @@ describe('Reports table tests', () => {
               total: 1,
             },
           },
-        }
+        },
       ).as('getFilteredReports');
 
       // cy.ouiaId('ConditionalFilter', 'button').click();
@@ -465,7 +465,7 @@ describe('Reports table tests', () => {
             offset: 0,
             sort_by: 'title:asc',
             filter: `(((percent_compliant >= 90 AND percent_compliant <= 100))) AND (with_reported_systems = true)`,
-          }).toString()
+          }).toString(),
         );
     });
     it('Clear filters works', () => {
@@ -482,7 +482,7 @@ describe('Reports table tests', () => {
               total: 0,
             },
           },
-        }
+        },
       ).as('getFilteredReports');
 
       cy.ouiaId('PrimaryToolbar', 'div')
@@ -497,7 +497,7 @@ describe('Reports table tests', () => {
           'contain',
           new URLSearchParams({
             filter: '(title ~ "foo bar") AND (with_reported_systems = true)',
-          }).toString()
+          }).toString(),
         );
 
       cy.ouiaId('ClearFilters', 'button').should('be.visible').click();

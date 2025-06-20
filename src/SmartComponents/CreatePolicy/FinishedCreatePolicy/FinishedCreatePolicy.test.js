@@ -20,12 +20,12 @@ describe('FinishedCreatePolicy', () => {
     render(
       <TestWrapper>
         <FinishedCreatePolicy />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(FinishedCreatePolicyBase).toBeCalledWith(
       { updatePolicy: expect.anything() },
-      expect.anything()
+      expect.anything(),
     );
   });
 });
@@ -94,7 +94,7 @@ describe('useUpdatePolicy', () => {
           title: policyDataToSubmit.name,
         },
       ],
-      false // to return response data
+      false, // to return response data
     );
   });
 
@@ -123,7 +123,7 @@ describe('useUpdatePolicy', () => {
         undefined, // X-RH identity
         100,
       ],
-      false // to return response data
+      false, // to return response data
     );
 
     expect(assignRules).toBeCalledWith(
@@ -133,7 +133,7 @@ describe('useUpdatePolicy', () => {
         undefined,
         { ids: policyDataToSubmit.selectedRuleRefIds[0].ruleRefIds },
       ],
-      false
+      false,
     );
   });
 
@@ -150,7 +150,7 @@ describe('useUpdatePolicy', () => {
           },
         },
       },
-      onProgress
+      onProgress,
     );
 
     expect(updateTailoring).toBeCalledWith({

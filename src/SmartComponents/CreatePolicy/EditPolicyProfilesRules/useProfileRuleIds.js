@@ -41,7 +41,7 @@ const useProfileRuleIds = ({
   const fetchProfileRulesForBatch = useCallback(
     async (offset, limit, params) =>
       await fetchProfileRules({ limit, offset, ...params }, false),
-    [fetchProfileRules]
+    [fetchProfileRules],
   );
   const { fetch: fetchRulesBatched } = useFetchTotalBatched(
     fetchProfileRulesForBatch,
@@ -49,7 +49,7 @@ const useProfileRuleIds = ({
       batchSize: 100,
       skip: true,
       withMeta: true,
-    }
+    },
   );
 
   const fetchProfilesAndIdsForMinorVersion = useCallback(
@@ -59,7 +59,7 @@ const useProfileRuleIds = ({
           {
             filter: `os_major_version=${osMajorVersion} AND supported_profile=${profileRefId}:${osMinorVersion}`,
           },
-          false
+          false,
         )
       ).data[0].id;
       const profileId = (await fetchProfiles({ securityGuideId }, false))
@@ -76,20 +76,20 @@ const useProfileRuleIds = ({
       fetchRulesBatched,
       fetchSecurityGuide,
       profileRefId,
-    ]
+    ],
   );
 
   useDeepCompareEffectNoCheck(() => {
     const fetchMinorOsRuleIds = async () => {
       const profilesAndRuleIdsUpdated = structuredClone(
-        profilesAndRuleIds || []
+        profilesAndRuleIds || [],
       );
 
       for (const osMinorVersion of osMinorVersions) {
         if (
           profilesAndRuleIdsUpdated.find(
             ({ osMinorVersion: _osMinorVersion }) =>
-              _osMinorVersion === osMinorVersion
+              _osMinorVersion === osMinorVersion,
           ) !== undefined
         )
           continue; // skip this version since already fetched

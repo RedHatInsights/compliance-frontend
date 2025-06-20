@@ -17,7 +17,7 @@ export const paramsWithFilters = (fetchParams, params) => {
       ...[
         ...(fetchFilter ? [fetchFilter] : []),
         ...(params?.filter ? [params.filter] : []),
-      ]
+      ],
     );
 
     return {
@@ -54,7 +54,7 @@ export const hasRequiredParams = (requiredParams, params = {}) => {
       typeof requiredParams === 'string' ? [requiredParams] : requiredParams;
 
     return (paramsToCheck || []).every((param) =>
-      Object.keys(params).includes(param)
+      Object.keys(params).includes(param),
     );
   }
 };

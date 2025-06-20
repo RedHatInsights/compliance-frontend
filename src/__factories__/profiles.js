@@ -24,7 +24,7 @@ const profilesFactory = Factory.define(
       rules: rules.buildList(2),
       ...params,
     };
-  }
+  },
 );
 
 const rulesFromFactories = (factories, allParams, allOptions) => {
@@ -39,8 +39,8 @@ const rulesFromFactories = (factories, allParams, allOptions) => {
         {
           ...allOptions,
           ...options,
-        }
-      )
+        },
+      ),
     );
   }
 };
@@ -67,11 +67,11 @@ export const testResultProfiles = Factory.define(
           {},
           {
             transient: { profile },
-          }
+          },
         ),
       ...params,
     };
-  }
+  },
 );
 
 export const buildNonCompliantProfiles = (count = 5, attributes = {}) => {
@@ -98,7 +98,7 @@ export const buildNonCompliantProfiles = (count = 5, attributes = {}) => {
           },
         ],
       },
-    }
+    },
   );
 };
 

@@ -13,7 +13,7 @@ const getCounts = (arr) =>
       ...prev,
       [cur]: prev[cur] ? prev[cur] + 1 : 1,
     }),
-    {}
+    {},
   );
 
 const EditPolicyForm = ({
@@ -30,15 +30,15 @@ const EditPolicyForm = ({
     ...new Set(assignedSystems.map((system) => system.os_minor_version)),
   ]);
   const [selectedVersionCounts, setSelectedVersionCounts] = useState(
-    getCounts(assignedSystems.map((system) => system.os_minor_version))
+    getCounts(assignedSystems.map((system) => system.os_minor_version)),
   );
   const [newRulesAlert, setNewRulesAlert] = useNewRulesAlertState(false);
 
   const [selectedSystems, setSelectedSystems] = useState(
-    assignedSystems?.map((system) => system.id)
+    assignedSystems?.map((system) => system.id),
   );
   const preUsedOsMinorVersions = assignedSystems.map(
-    (system) => system.os_minor_version
+    (system) => system.os_minor_version,
   );
 
   const handleSystemSelect = useCallback(
@@ -46,14 +46,14 @@ const EditPolicyForm = ({
       const newOsMinorVersions = [
         ...new Set(
           newSelectedSystems.map(
-            (system) => system.os_minor_version ?? system.osMinorVersion
-          )
+            (system) => system.os_minor_version ?? system.osMinorVersion,
+          ),
         ), // get unique values
       ];
 
       const hasNewOsMinorVersions =
         newOsMinorVersions.filter(
-          (osMinorVersion) => !preUsedOsMinorVersions.includes(osMinorVersion)
+          (osMinorVersion) => !preUsedOsMinorVersions.includes(osMinorVersion),
         ).length > 0;
 
       setUpdatedPolicy((prev) => ({
@@ -65,13 +65,13 @@ const EditPolicyForm = ({
       setSelectedVersionCounts(
         getCounts(
           newSelectedSystems.map(
-            (system) => system.osMinorVersion ?? system.os_minor_version
-          )
-        )
+            (system) => system.osMinorVersion ?? system.os_minor_version,
+          ),
+        ),
       );
       setSelectedSystems(newSelectedSystems.map((system) => system.id));
     },
-    [preUsedOsMinorVersions, setNewRulesAlert, setUpdatedPolicy]
+    [preUsedOsMinorVersions, setNewRulesAlert, setUpdatedPolicy],
   );
 
   return (

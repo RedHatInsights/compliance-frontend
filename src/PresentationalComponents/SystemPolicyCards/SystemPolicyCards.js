@@ -6,7 +6,7 @@ import LoadingPolicyCards from './components/LoadingPolicyCards';
 
 const SystemPolicyCards = ({ policies = [], loading }) => {
   const policiesToShow = policies.filter(
-    (policy) => policy.rulesFailed + policy.rulesPassed > 0
+    (policy) => policy.rulesFailed + policy.rulesPassed > 0,
   );
 
   return (

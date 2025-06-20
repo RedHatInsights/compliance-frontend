@@ -48,7 +48,7 @@ export const Systems = {
   title: 'Systems',
   sortable: 'total_system_count',
   renderExport: (policy) => policy.total_system_count,
-  // eslint-disable-next-line react/display-name
+
   renderFunc: (_data, _id, policy) =>
     policy.total_system_count > 0 ? (
       policy.total_system_count

@@ -14,14 +14,14 @@ describe('PoliciesTable', () => {
     render(
       <TestWrapper>
         <PoliciesTable policies={policies} />
-      </TestWrapper>
+      </TestWrapper>,
     );
     const table = screen.queryByLabelText('Policies');
 
     expect(
       within(table).getByText(policies[0].profile_title, {
         selector: 'small',
-      })
+      }),
     ).toBeInTheDocument();
   });
 
@@ -29,14 +29,14 @@ describe('PoliciesTable', () => {
     render(
       <TestWrapper>
         <PoliciesTable policies={[]} />
-      </TestWrapper>
+      </TestWrapper>,
     );
     const table = screen.queryByLabelText('Policies');
     // AsyncTable doesn't respect emptyRows param and returns No matching results found
     await waitFor(() =>
       expect(within(table).getByRole('heading')).toHaveTextContent(
-        'No matching policies found'
-      )
+        'No matching policies found',
+      ),
     );
   });
 
@@ -49,12 +49,12 @@ describe('PoliciesTable', () => {
     render(
       <TestWrapper>
         <PoliciesTable policies={modifiedPolicies} />
-      </TestWrapper>
+      </TestWrapper>,
     );
     const table = screen.queryByLabelText('Policies');
 
     expect(within(table).getAllByRole('cell', { name: /^0$/i }).length).toEqual(
-      10
+      10,
     );
   });
 });

@@ -17,7 +17,7 @@ const useComplianceTableState = (useTableState, paramsOption) => {
         ...[
           ...(filterState ? [filterState] : []),
           ...(filterParam ? [filterParam] : []),
-        ].filter((v) => v.length)
+        ].filter((v) => v.length),
       );
 
       return useTableState

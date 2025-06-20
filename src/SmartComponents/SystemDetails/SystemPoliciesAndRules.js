@@ -11,7 +11,7 @@ const SystemPoliciesAndRules = ({
 }) => {
   // FYI: test result ID and policy ID are not the same, but test result ID only identifies each tab here.
   const [selectedPolicy, setSelectedPolicy] = useState(
-    reportTestResults[0].report_id
+    reportTestResults[0].report_id,
   );
 
   return (

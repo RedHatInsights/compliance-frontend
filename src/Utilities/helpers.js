@@ -15,8 +15,9 @@ export const sortingByProp =
   };
 
 // eslint-disable-next-line react/display-name
-export const renderComponent = (Component, props) => (_data, _id, entity) =>
-  <Component {...entity} {...props} />;
+export const renderComponent = (Component, props) => (_data, _id, entity) => (
+  <Component {...entity} {...props} />
+);
 
 const getSortable = (property, item) => {
   if (typeof property === 'function') {
@@ -32,18 +33,18 @@ export const orderArrayByProp = (property, objects, direction) =>
   objects.sort((a, b) => {
     if (direction === 'asc') {
       return String(getSortable(property, a)).localeCompare(
-        String(getSortable(property, b))
+        String(getSortable(property, b)),
       );
     } else {
       return -String(getSortable(property, a)).localeCompare(
-        String(getSortable(property, b))
+        String(getSortable(property, b)),
       );
     }
   });
 
 export const orderByArray = (objectArray, orderProp, orderArray, direction) => {
   const sortedObjectArray = orderArray.flatMap((orderKey) =>
-    objectArray.filter((item) => item[orderProp] === orderKey)
+    objectArray.filter((item) => item[orderProp] === orderKey),
   );
   return direction !== 'asc' ? sortedObjectArray.reverse() : sortedObjectArray;
 };

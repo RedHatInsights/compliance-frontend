@@ -49,7 +49,7 @@ const useTableState = (namespace, initialState, options = {}) => {
           newState,
           observers.current,
           serialisers.current,
-          callbacks.current
+          callbacks.current,
         );
 
         // Comment out for debugging table issues
@@ -62,7 +62,7 @@ const useTableState = (namespace, initialState, options = {}) => {
         return nextState;
       });
     },
-    [observers, serialisers, callbacks, setState, namespace]
+    [observers, serialisers, callbacks, setState, namespace],
   );
 
   useDeepCompareEffect(() => {

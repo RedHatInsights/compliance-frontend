@@ -54,5 +54,5 @@ export const mapCountOsMinorVersions = (systems) => {
 
 export const countOsMinorVersions = (systems) =>
   Object.values(mapCountOsMinorVersions(systems)).sort(
-    sortingByProp('osMinorVersion', 'desc')
+    sortingByProp('osMinorVersion', 'desc'),
   );

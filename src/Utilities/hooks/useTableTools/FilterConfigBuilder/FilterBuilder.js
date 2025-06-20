@@ -47,8 +47,8 @@ class FilterBuilder {
       .map((configItem) =>
         this.buildFilterFilterString(
           configItem,
-          filters[stringToId(configItem.label)]
-        )
+          filters[stringToId(configItem.label)],
+        ),
       )
       .filter((f) => f.length > 0);
     return this.combineFilterStrings(filterStringArray);

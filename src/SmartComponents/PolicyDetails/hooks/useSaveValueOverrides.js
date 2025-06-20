@@ -21,7 +21,7 @@ const useSaveValueOverrides = () => {
         valuesUpdate: tailoringData,
       });
     },
-    [submit]
+    [submit],
   );
 
   return saveValueOverrides;

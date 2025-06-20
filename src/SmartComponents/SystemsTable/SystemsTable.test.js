@@ -35,7 +35,7 @@ describe('SystemsTable', () => {
     render(
       <TestWrapper>
         <SystemsTable {...mockProps} />
-      </TestWrapper>
+      </TestWrapper>,
     );
     await waitFor(() =>
       expect(useSystemBulkSelect).toHaveBeenCalledWith(
@@ -44,8 +44,8 @@ describe('SystemsTable', () => {
             filter: '(someFilter ~ test) AND display_name ~ "test-name"',
             tags: [],
           },
-        })
-      )
+        }),
+      ),
     );
   });
 });

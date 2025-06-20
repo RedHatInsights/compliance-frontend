@@ -11,23 +11,23 @@ jest.mock('@/Utilities/hooks/useQuery', () => ({
 describe('useSystemsFilter', () => {
   it('returns a filter string', () => {
     const { result } = renderHook(() =>
-      useSystemsFilter('name = "Name"', true, 'default = "filter"')
+      useSystemsFilter('name = "Name"', true, 'default = "filter"'),
     );
     expect(result.current).toEqual(
-      '(default = "filter") and (has_test_results = true and name = "Name")'
+      '(default = "filter") and (has_test_results = true and name = "Name")',
     );
   });
 
   it('returns a filter string without default filter', () => {
     const { result } = renderHook(() =>
-      useSystemsFilter('name = "Name"', true)
+      useSystemsFilter('name = "Name"', true),
     );
     expect(result.current).toEqual('has_test_results = true and name = "Name"');
   });
 
   it('returns a filter string without test result filter', () => {
     const { result } = renderHook(() =>
-      useSystemsFilter('name = "Name"', false)
+      useSystemsFilter('name = "Name"', false),
     );
     expect(result.current).toEqual('name = "Name"');
   });
@@ -66,7 +66,7 @@ describe('useSystemsExport', () => {
       useSystemsExport({
         ...defaultOptions,
         total: 0,
-      })
+      }),
     );
 
     expect(result.current).toMatchSnapshot();
@@ -77,7 +77,7 @@ describe('useSystemsExport', () => {
       useSystemsExport({
         ...defaultOptions,
         selected: [1],
-      })
+      }),
     );
 
     expect(result.current).toMatchSnapshot();
@@ -88,7 +88,7 @@ describe('useSystemsExport', () => {
       useSystemsExport({
         ...defaultOptions,
         selected: [1],
-      })
+      }),
     );
 
     await act(async () => {
@@ -102,7 +102,7 @@ describe('useGetEntities', () => {
     Promise.resolve({
       entities: [{ id: 1, name: 'TEST ENTITY NAME' }],
       meta: { totalCount: 0 },
-    })
+    }),
   );
 
   it('returns a getEntities function', () => {
@@ -129,7 +129,7 @@ describe('useGetEntities', () => {
           },
         ],
         selected: [{ id: 1 }],
-      })
+      }),
     );
 
     await result.current([], {
@@ -154,7 +154,7 @@ describe('useGetEntities', () => {
           },
         ],
         selected: [{ id: 1 }],
-      })
+      }),
     );
     await result.current([], {
       per_page: 10,
@@ -181,7 +181,7 @@ describe('useGetEntities', () => {
           },
         ],
         selected: [{ id: 1 }],
-      })
+      }),
     );
     await result.current([], {
       per_page: 10,
@@ -210,7 +210,7 @@ describe('useGetEntities', () => {
           },
         ],
         selected: [{ id: 1 }],
-      })
+      }),
     );
     await result.current([], {
       per_page: 10,

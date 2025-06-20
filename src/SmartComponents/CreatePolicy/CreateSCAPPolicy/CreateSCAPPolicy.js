@@ -27,7 +27,7 @@ const serialiseOsVersions = (profiles = []) =>
   profiles.map((profile) => ({
     ...profile,
     supportedOsVersions: profile.os_minor_versions.map(
-      (minorVersion) => `${profile.os_major_version}.${minorVersion}`
+      (minorVersion) => `${profile.os_major_version}.${minorVersion}`,
     ),
   }));
 
@@ -152,7 +152,7 @@ const CreateSCAPPolicyWithRedux = compose(
     form: 'policyForm',
     destroyOnUnmount: false,
     forceUnregisterOnUnmount: true,
-  })
+  }),
 )(CreateSCAPPolicyTableStateProvider);
 
 export { CreateSCAPPolicyWithRedux, CreateSCAPPolicyTableStateProvider };

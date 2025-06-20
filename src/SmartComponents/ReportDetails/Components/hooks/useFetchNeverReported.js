@@ -18,7 +18,7 @@ const useFetchNeverReported = (reportId) => {
           page,
           false,
           combinedVariables.sortBy,
-          combinedVariables.filter
+          combinedVariables.filter,
         )
         .then(({ data: { data = [], meta = {} } = {} } = {}) => {
           return {
@@ -35,7 +35,7 @@ const useFetchNeverReported = (reportId) => {
 
       return res;
     },
-    [reportId]
+    [reportId],
   );
 
   return {

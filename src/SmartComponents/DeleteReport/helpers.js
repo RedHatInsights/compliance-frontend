@@ -10,7 +10,7 @@ export const handleDeleteReport = async (operation, onDelete, onClose) => {
         title: 'Report deleted',
         description:
           'Systems associated with this policy will upload reports on the next check-in.',
-      })
+      }),
     );
     onDelete();
   } catch (error) {
@@ -19,7 +19,7 @@ export const handleDeleteReport = async (operation, onDelete, onClose) => {
         variant: 'danger',
         title: 'Error removing report',
         description: error?.message,
-      })
+      }),
     );
     onClose();
   }

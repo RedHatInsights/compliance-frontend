@@ -13,11 +13,11 @@ const useEventHandlers = ({
   const onFilterUpdate = useCallback(
     (filter, selectedValue, selectedValues) => {
       select(
-        ...toSelectValue(filterConfig, filter, selectedValue, selectedValues)
+        ...toSelectValue(filterConfig, filter, selectedValue, selectedValues),
       );
       onFilterUpdateCallback?.();
     },
-    [filterConfig, select, onFilterUpdateCallback]
+    [filterConfig, select, onFilterUpdateCallback],
   );
 
   const onFilterDelete = useCallback(
@@ -37,7 +37,7 @@ const useEventHandlers = ({
       clear,
       deselect,
       resetOnClear,
-    ]
+    ],
   );
 
   return { onFilterUpdate, onFilterDelete };

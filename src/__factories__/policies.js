@@ -6,7 +6,7 @@ export const buildPolicies = (length) =>
     const businessObjectiveString = faker.lorem.words(5);
     const businessPossibilities = [null, businessObjectiveString];
     const business_objective = faker.helpers.arrayElement(
-      businessPossibilities
+      businessPossibilities,
     );
     return {
       id: faker.string.uuid(),

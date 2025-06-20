@@ -76,7 +76,7 @@ export const SEVERITY_LEVELS = ['high', 'medium', 'low', 'unknown'];
 export const DEFAULT_SYSTEMS_FILTER_CONFIGURATION = 'display_name';
 
 export const defaultSystemsFilterConfiguration = (
-  filterKey = DEFAULT_SYSTEMS_FILTER_CONFIGURATION
+  filterKey = DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
 ) => [
   {
     type: conditionalFilterType.text,
@@ -89,7 +89,7 @@ export const POLICY_FILTER_KEY = 'policies';
 
 export const systemsPolicyFilterConfiguration = (
   policies,
-  filterKey = POLICY_FILTER_KEY
+  filterKey = POLICY_FILTER_KEY,
 ) => [
   {
     type: conditionalFilterType.checkbox,
@@ -138,8 +138,8 @@ export const systemsOsMinorFilterConfiguration = (osMajorVersions) => {
         Object.keys(value[majorVersion]).map(
           (minorVersion) =>
             value[majorVersion][minorVersion] &&
-            `(os_major_version = ${majorVersion} AND os_minor_version = ${minorVersion})`
-        )
+            `(os_major_version = ${majorVersion} AND os_minor_version = ${minorVersion})`,
+        ),
       )
       .filter((v) => !!v)
       .join(' OR ')})`,
@@ -169,7 +169,7 @@ export const COMPLIANT_SYSTEM_FILTER_CONFIG_KEYS = {
 };
 
 export const compliantSystemFilterConfiguration = (
-  filterKeys = COMPLIANT_SYSTEM_FILTER_CONFIG_KEYS
+  filterKeys = COMPLIANT_SYSTEM_FILTER_CONFIG_KEYS,
 ) => [
   {
     type: conditionalFilterType.checkbox,
@@ -206,7 +206,7 @@ export const compliantSystemFilterConfiguration = (
 export const FAILED_RULE_SEVERITY_FITLER_KEY = 'failed_rule_severity';
 
 export const complianceReportTableAdditionalFilter = (
-  filterKey = FAILED_RULE_SEVERITY_FITLER_KEY
+  filterKey = FAILED_RULE_SEVERITY_FITLER_KEY,
 ) => [
   {
     type: conditionalFilterType.checkbox,

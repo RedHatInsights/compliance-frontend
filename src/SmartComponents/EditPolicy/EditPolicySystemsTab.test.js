@@ -46,14 +46,14 @@ describe('EditPolicySystemsTab', () => {
       Promise.resolve({
         data: systemsFactory.buildList(2),
         meta: { total: 2 },
-      })
+      }),
     );
 
     fetchCustomOSes.mockReturnValue(
       Promise.resolve({
         data: ['8.1', '8.2'],
         meta: { total: 2 },
-      })
+      }),
     );
     useSystem.mockReturnValue({
       fetch: jest.fn(() => Promise.resolve({ data: [] })),
@@ -63,7 +63,7 @@ describe('EditPolicySystemsTab', () => {
     render(
       <TestWrapper>
         <EditPolicySystemsTab {...defaultProps} />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     await screen.findByTestId('inventory-mock-component');
@@ -73,7 +73,7 @@ describe('EditPolicySystemsTab', () => {
           '(os_major_version = 8 AND os_minor_version ^ (1 2)) AND display_name ~ "test-name"',
         sortBy: ['name:asc'],
         tags: [],
-      })
+      }),
     );
   });
 
@@ -81,13 +81,13 @@ describe('EditPolicySystemsTab', () => {
     render(
       <TestWrapper>
         <EditPolicySystemsTab {...defaultProps} />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     await waitFor(async () =>
       expect(screen.getByTestId('prepend-component')).toHaveTextContent(
-        `Select which of your RHEL ${defaultProps.policy.os_major_version} systems should be included in this policy.`
-      )
+        `Select which of your RHEL ${defaultProps.policy.os_major_version} systems should be included in this policy.`,
+      ),
     );
   });
 
@@ -96,13 +96,13 @@ describe('EditPolicySystemsTab', () => {
       Promise.resolve({
         data: [],
         meta: { total: 0 },
-      })
+      }),
     );
 
     render(
       <TestWrapper>
         <EditPolicySystemsTab {...defaultProps} />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     await screen.findByTestId('empty-state');

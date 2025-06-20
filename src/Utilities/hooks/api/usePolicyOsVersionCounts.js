@@ -25,7 +25,7 @@ const usePolicyOsVersionCounts = (policyId) => {
               limit: 1,
               filter: `(os_minor_version = ${minor})`,
             },
-            false
+            false,
           );
 
           newCounts[minor] = policySystemsResponse.meta.total;

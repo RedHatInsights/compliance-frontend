@@ -96,12 +96,12 @@ const useComplianceQuery = (
     onlyTotal,
     requiredParams,
     ...options
-  } = {}
+  } = {},
 ) => {
   const apiEndpoint = useComplianceApi(endpoint);
   const { params, hasState } = useComplianceTableState(
     useTableState,
-    paramsOption
+    paramsOption,
   );
   const skip = !!(useTableState && !hasState) || !!skipOption; //||
   //!hasRequiredParams(requiredParams, params); // TODO This check should maybe happen elsewhere (too)
@@ -127,13 +127,13 @@ const useComplianceQuery = (
 
   const fetch = useCallback(
     async (fetchParams) => await queryFetch(fetchParams),
-    [queryFetch]
+    [queryFetch],
   );
 
   const fetchForBatch = useCallback(
     async (offset, limit, fetchForBatchParams) =>
       await fetch({ ...fetchForBatchParams, offset, limit }),
-    [fetch]
+    [fetch],
   );
 
   const {

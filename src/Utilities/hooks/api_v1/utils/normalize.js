@@ -23,7 +23,7 @@ export const includeItemRelationships = (item, fullPayload) => {
 
   relatedResourceKinds.forEach((relatedResourceKind) => {
     const relatedResourcesData = Object.values(
-      item.relationships[relatedResourceKind].data
+      item.relationships[relatedResourceKind].data,
     );
     const relatedIds = relatedResourcesData.map((item) => item.id);
     if (!relatedResources[relatedResourceKind]) {
@@ -33,11 +33,11 @@ export const includeItemRelationships = (item, fullPayload) => {
     relatedIds.forEach((id) => {
       let itemData = includeItemRelationships(
         findItemById(id, relatedResourcesData),
-        fullPayload
+        fullPayload,
       );
       let additionalData = includeItemRelationships(
         findIncluded(fullPayload, id, relatedResourceKind),
-        fullPayload
+        fullPayload,
       );
 
       relatedResources[relatedResourceKind][id] = {
@@ -64,7 +64,7 @@ export const includeRelationships = (normalizedPayload) => {
 
       relationshipsIncluded[resourceKind][id] = includeItemRelationships(
         resources[id],
-        normalizedPayload
+        normalizedPayload,
       );
     });
   });
@@ -98,7 +98,7 @@ export const sortData = (data, sortBy) => {
   if (data && sortBy) {
     const sort = sortBy.split(' ');
     const sortedValues = Object.values(data).sort(
-      compareValues(sort[0], sort[1])
+      compareValues(sort[0], sort[1]),
     );
     data = Object.assign({}, sortedValues);
   }
@@ -109,7 +109,7 @@ export const sortData = (data, sortBy) => {
 export const normalizeData = (data, property, endpoint, sortBy) => {
   const normalizedData = _.mapValues(
     normalizePayload(data, endpoint)[property],
-    (item) => ({ ...item, ...item.attributes })
+    (item) => ({ ...item, ...item.attributes }),
   );
   return sortData(normalizedData, sortBy);
 };

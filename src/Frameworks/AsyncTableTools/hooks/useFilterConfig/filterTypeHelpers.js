@@ -97,7 +97,7 @@ const groupType = {
     chips: Object.entries(value).flatMap((groupItem) =>
       Object.keys(groupItem[1]).map((itemValue) => ({
         name: itemForValueInGroups(configItem, itemValue).label,
-      }))
+      })),
     ),
   }),
   toSelectValue: (configItem, selectedValues) => [
@@ -125,4 +125,4 @@ export default (type) =>
     [conditionalFilterType.checkbox]: checkboxType,
     [conditionalFilterType.radio]: radioType,
     [conditionalFilterType.group]: groupType,
-  }[type]);
+  })[type];

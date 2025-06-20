@@ -7,10 +7,10 @@ import pAll from 'p-all';
 export const useIssuesFetch = (
   reportId,
   testResults,
-  selectedRuleResultIds // use to limit remediation to only selected rule results
+  selectedRuleResultIds, // use to limit remediation to only selected rule results
 ) => {
   const { isResolving, results, resolve } = usePromiseQueue(
-    DEFAULT_CONNCURRENT_REQUESTS_FOR_ISSUES
+    DEFAULT_CONNCURRENT_REQUESTS_FOR_ISSUES,
   );
   const fetch = useCallback(async () => {
     // Keep only supported test results
@@ -23,8 +23,8 @@ export const useIssuesFetch = (
     // Get rules of all test results
     const results = await resolve(
       [...filteredTestResultIds].map(
-        (tr) => () => batchFetch(tr, reportId, 100)
-      )
+        (tr) => () => batchFetch(tr, reportId, 100),
+      ),
     );
 
     const hashMap = {};
@@ -83,11 +83,11 @@ export const useIssuesFetch = (
 
     const results = await pAll(
       [...offsets].map(
-        (offset) => () => buildFetch(testResultId, reportId, offset, limit)
+        (offset) => () => buildFetch(testResultId, reportId, offset, limit),
       ),
       {
         concurrency: 1,
-      }
+      },
     );
 
     return [firstRes, ...results];

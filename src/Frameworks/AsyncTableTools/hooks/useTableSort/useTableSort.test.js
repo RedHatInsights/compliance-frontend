@@ -13,7 +13,7 @@ describe('useTableSort', () => {
   it('returns a table sort configuration', () => {
     const { result } = renderHook(
       () => useTableSort(columns),
-      DEFAULT_RENDER_OPTIONS
+      DEFAULT_RENDER_OPTIONS,
     );
     expect(result.current.tableProps).toBeDefined();
   });
@@ -24,11 +24,11 @@ describe('useTableSort', () => {
         useTableSort(columns, {
           sortBy: exampleSortBy,
         }),
-      DEFAULT_RENDER_OPTIONS
+      DEFAULT_RENDER_OPTIONS,
     );
 
     await waitFor(() =>
-      expect(result.current.tableProps.sortBy).toEqual(exampleSortBy)
+      expect(result.current.tableProps.sortBy).toEqual(exampleSortBy),
     );
   });
 
@@ -38,7 +38,7 @@ describe('useTableSort', () => {
         useTableSort(columns, {
           sortBy: exampleSortBy,
         }),
-      DEFAULT_RENDER_OPTIONS
+      DEFAULT_RENDER_OPTIONS,
     );
 
     act(() => {
@@ -49,7 +49,7 @@ describe('useTableSort', () => {
       expect(result.current.tableProps.sortBy).toEqual({
         index: 1,
         direction: 'desc',
-      })
+      }),
     );
   });
 
@@ -74,7 +74,7 @@ describe('useTableSort', () => {
             sort: sortSerialiser,
           },
         }),
-      DEFAULT_RENDER_OPTIONS
+      DEFAULT_RENDER_OPTIONS,
     );
 
     act(() => {
@@ -85,7 +85,7 @@ describe('useTableSort', () => {
       expect(result.current.sort.tableProps.sortBy).toEqual({
         index: 2,
         direction: 'desc',
-      })
+      }),
     );
 
     expect(result.current.serialised.sort).toEqual('Serialised sort');

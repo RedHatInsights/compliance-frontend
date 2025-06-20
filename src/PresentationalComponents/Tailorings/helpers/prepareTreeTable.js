@@ -55,7 +55,7 @@ const findGroupsForRule = (rule, securityGuideRuleTree) => {
       foundResult = branch.twigs.reduce(
         (foundResult, branch, _idx, _arr) =>
           findRule(foundResult, branch, _idx, _arr, currentParents),
-        foundResult
+        foundResult,
       );
     }
 
@@ -80,7 +80,7 @@ const groupRulesInGroups = (rules, securityGuideRuleTree) => {
       ?.filter(({ itemId }) => groupsRules.includes(itemId))
       .flatMap((branch) => filterTwigs([], branch));
     const leaves = branch.leaves?.filter(({ itemId }) =>
-      rules.includes(itemId)
+      rules.includes(itemId),
     );
 
     return [
@@ -105,15 +105,15 @@ const mergeTree = (firstTree = [], secondTree = []) => {
 
   const combineBranches = (combinedBranches, branch) => {
     const branchInFirstTree = firstTree.find(
-      ({ itemId }) => itemId === branch.itemId
+      ({ itemId }) => itemId === branch.itemId,
     );
     const branchInSecondTree = secondTree.find(
-      ({ itemId }) => itemId === branch.itemId
+      ({ itemId }) => itemId === branch.itemId,
     );
     const combinedLeaves = unionBy(
       branchInFirstTree?.leaves,
       branchInSecondTree?.leaves,
-      'itemId'
+      'itemId',
     );
 
     return [
@@ -124,7 +124,7 @@ const mergeTree = (firstTree = [], secondTree = []) => {
         ...branchInSecondTree,
         twigs: mergeTree(
           branchInFirstTree?.twigs,
-          branchInSecondTree?.twigs
+          branchInSecondTree?.twigs,
         ).sort(sortNodes),
         leaves: combinedLeaves,
       },
@@ -153,7 +153,7 @@ const prepareTreeTable = ({
     (profileRuleTree || tailoringRuleTree || securityGuideRuleTree)
       ? buildTreeTable(
           tailoringRuleTree || profileRuleTree || securityGuideRuleTree,
-          ruleGroups
+          ruleGroups,
         )
       : undefined;
 

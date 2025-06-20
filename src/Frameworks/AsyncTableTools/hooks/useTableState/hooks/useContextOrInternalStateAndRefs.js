@@ -16,7 +16,7 @@ const useContextOrInternalStateAndRefs = () => {
         '%cNo context provided for useTableState.\n' +
           'Using internal state and refs.\n' +
           'Make sure a TableStateProvider is available!',
-        'background: red; color: white; font-weight: bold;'
+        'background: red; color: white; font-weight: bold;',
       );
     }
   }, [context]);

@@ -24,7 +24,7 @@ export const itemDetailsRow = (item, options, runningIndex) =>
     item,
     options.detailsComponent,
     options.columns?.length,
-    runningIndex
+    runningIndex,
   );
 
 const expandTreeTableRow = (firstRow, isOpen) => ({

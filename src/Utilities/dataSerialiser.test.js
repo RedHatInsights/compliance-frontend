@@ -61,7 +61,7 @@ describe('basic array ', () => {
         id: item.id,
         title: item.name,
         totalSystems: item.total_systems,
-      }))
+      })),
     );
   });
 });

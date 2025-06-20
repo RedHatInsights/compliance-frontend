@@ -21,7 +21,7 @@ import useSystem from '../../Utilities/hooks/api/useSystem';
 export const useSystemsFilter = (
   filterString,
   showOnlySystemsWithTestResults,
-  defaultFilter
+  defaultFilter,
 ) => {
   const combindedFilter = [
     ...(showOnlySystemsWithTestResults ? ['has_test_results = true'] : []),
@@ -45,8 +45,8 @@ const useFetchBatched = () => {
 
       const results = resolve(
         [...new Array(pages)].map(
-          (_, pageIdx) => () => fetchFunction(batchSize, pageIdx + 1, filter)
-        )
+          (_, pageIdx) => () => fetchFunction(batchSize, pageIdx + 1, filter),
+        ),
       );
 
       return results;
@@ -69,9 +69,9 @@ const buildApiFilters = (filters = {}, ignoreOsMajorVersion) => {
           tagFilter.values.map(
             (tag) =>
               `${encodeURIComponent(tagFilter.key)}/${encodeURIComponent(
-                tag.tagKey
-              )}=${encodeURIComponent(tag.value)}`
-          )
+                tag.tagKey,
+              )}=${encodeURIComponent(tag.value)}`,
+          ),
         ),
       }
     : {};
@@ -86,7 +86,7 @@ const buildApiFilters = (filters = {}, ignoreOsMajorVersion) => {
         hostGroupFilter,
         hostnameOrId,
       },
-      ignoreOsMajorVersion
+      ignoreOsMajorVersion,
     ),
   };
 };
@@ -102,7 +102,7 @@ const prepareEntitiesForInventory = (entities, selected) =>
 
 export const useGetEntities = (
   fetchEntities,
-  { selected, columns, ignoreOsMajorVersion } = {}
+  { selected, columns, ignoreOsMajorVersion } = {},
 ) => {
   const appendDirection = (attributes, direction) =>
     attributes.map((attribute) => `${attribute}:${direction}`);
@@ -111,12 +111,12 @@ export const useGetEntities = (
     (columns || []).find(
       (column) =>
         column.key === sortKey || // group column has a sort key different to its main key
-        (column.key === 'groups' && sortKey === 'group_name')
+        (column.key === 'groups' && sortKey === 'group_name'),
     );
 
   return async (
     _ids,
-    { page = 1, per_page: perPage, orderBy, orderDirection, filters }
+    { page = 1, per_page: perPage, orderBy, orderDirection, filters },
   ) => {
     const sortableColumn = findColumnByKey(orderBy);
     const sortBy =
@@ -148,7 +148,7 @@ export const useGetEntities = (
 export const useInventoryUtilities = (
   inventory,
   selectedSystems,
-  activeFilters
+  activeFilters,
 ) => {
   const dispatch = useDispatch();
 
@@ -176,7 +176,7 @@ export const useInventoryUtilities = (
     Promise.resolve(
       dispatch({
         type: 'RESET_PAGE',
-      })
+      }),
     ).then(() => inventory?.current?.onRefreshData());
   };
 
@@ -236,14 +236,14 @@ export const useSystemBulkSelect = ({
   const { isLoading, fetchBatched } = useFetchBatched();
   const { loadedItems, addToLoadedItems } = useLoadedItems(
     currentPageItems,
-    total
+    total,
   );
   const { fetch: fetchSystem } = useSystem({ skip: true });
 
   const fetchSystemsById = useCallback(
     async (ids) => {
       const fns = ids.map(
-        (systemId) => async () => await fetchSystem([systemId], false)
+        (systemId) => async () => await fetchSystem([systemId], false),
       );
 
       const systemsData = await pAll(fns, {
@@ -252,7 +252,7 @@ export const useSystemBulkSelect = ({
 
       return systemsData;
     },
-    [fetchSystem]
+    [fetchSystem],
   );
 
   useEffect(() => {
@@ -261,7 +261,7 @@ export const useSystemBulkSelect = ({
         preselectedSystems.filter((preselectedSystemId) => {
           currentPageItems.find(({ id }) => preselectedSystemId === id) ===
             undefined;
-        })
+        }),
       );
       addToLoadedItems(systems.map(({ data }) => data));
     };
@@ -296,7 +296,7 @@ export const useSystemBulkSelect = ({
     fetchApi,
     undefined,
     onError,
-    fetchArguments
+    fetchArguments,
   );
 
   const onSelectCallback = useCallback(
@@ -304,11 +304,11 @@ export const useSystemBulkSelect = ({
       dispatch(setDisabledSelection(true));
       setIsSystemsDataLoading?.(true); // needed for EditPolicy to disable Saving until data loaded
       const systemsToFetch = selectedIds.filter(
-        (id) => !loadedItems.map(({ id }) => id).includes(id)
+        (id) => !loadedItems.map(({ id }) => id).includes(id),
       );
 
       const fetchedSystems = (await fetchSystemsById(systemsToFetch)).map(
-        ({ data }) => data
+        ({ data }) => data,
       );
 
       onSelect &&
@@ -319,7 +319,13 @@ export const useSystemBulkSelect = ({
       dispatch(setDisabledSelection(false));
       setIsSystemsDataLoading?.(false);
     },
-    [dispatch, loadedItems, fetchSystemsById, onSelect, setIsSystemsDataLoading]
+    [
+      dispatch,
+      loadedItems,
+      fetchSystemsById,
+      onSelect,
+      setIsSystemsDataLoading,
+    ],
   );
 
   const getItemsInTable = useCallback(async () => {
@@ -350,7 +356,7 @@ export const useSystemBulkSelect = ({
   });
 
   const selectedItems = bulkSelect?.selectedIds.map((id) =>
-    loadedItems.find((item) => id === item.id)
+    loadedItems.find((item) => id === item.id),
   );
 
   return {

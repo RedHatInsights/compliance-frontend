@@ -173,5 +173,5 @@ export default compose(
     form: 'policyForm',
     destroyOnUnmount: true,
     forceUnregisterOnUnmount: true,
-  })
+  }),
 )(FinishedCreatePolicyBase);

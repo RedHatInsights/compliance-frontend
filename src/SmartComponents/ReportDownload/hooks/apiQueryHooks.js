@@ -20,13 +20,13 @@ const useFetchBatched = () => {
 
         const results = resolve(
           [...new Array(pages)].map(
-            (_, pageIdx) => () => fetchFunction(batchSize, pageIdx + 1, filter)
-          )
+            (_, pageIdx) => () => fetchFunction(batchSize, pageIdx + 1, filter),
+          ),
         );
 
         return results;
       },
-      [resolve]
+      [resolve],
     ),
   };
 };
@@ -37,7 +37,7 @@ export const useFetchFailedRules = ({ id: reportId } = {}) => {
       apiInstance
         .reportStats(reportId)
         .then(({ data: { top_failed_rules } = {} }) => top_failed_rules),
-    [reportId]
+    [reportId],
   );
 };
 
@@ -53,10 +53,10 @@ const useFetchReportTestResults = (reportId, filter) =>
           calculateOffset(page, perPage),
           undefined,
           undefined,
-          filter
+          filter,
         )
         .then(({ data: { data } = {} }) => data),
-    [reportId, filter]
+    [reportId, filter],
   );
 
 const useFetchReportSystems = (reportId, filter) =>
@@ -71,10 +71,10 @@ const useFetchReportSystems = (reportId, filter) =>
           calculateOffset(page, perPage),
           undefined,
           undefined,
-          filter
+          filter,
         )
         .then(({ data: { data } = {} }) => data),
-    [reportId, filter]
+    [reportId, filter],
   );
 
 export const useSystemsFetch = ({
@@ -87,24 +87,24 @@ export const useSystemsFetch = ({
   const { fetchBatched } = useFetchBatched();
   const fetchCompliant = useFetchReportTestResults(
     reportId,
-    COMPLIANT_SYSTEMS_FILTER
+    COMPLIANT_SYSTEMS_FILTER,
   );
   const fetchNonCompliante = useFetchReportTestResults(
     reportId,
-    NON_COMPLIANT_SYSTEMS_FILTER
+    NON_COMPLIANT_SYSTEMS_FILTER,
   );
   const fetchUnsupported = useFetchReportTestResults(
     reportId,
-    UNSUPPORTED_SYSTEMS_FILTER
+    UNSUPPORTED_SYSTEMS_FILTER,
   );
   const fetchNeverReported = useFetchReportSystems(
     reportId,
-    NOT_REPORTING_SYSTEMS_FILTER
+    NOT_REPORTING_SYSTEMS_FILTER,
   );
 
   const fetchAndConcat = (fetchFunction, count) => {
     return fetchBatched(fetchFunction, count).then((result) =>
-      concat(...result)
+      concat(...result),
     );
   };
 
@@ -113,12 +113,12 @@ export const useSystemsFetch = ({
       fetchAndConcat(fetchCompliant, compliantSystemsCount),
       fetchAndConcat(
         fetchNonCompliante,
-        assignedSystemsCount - compliantSystemsCount
+        assignedSystemsCount - compliantSystemsCount,
       ),
       fetchAndConcat(fetchUnsupported, unsupportedSystemsCount),
       fetchAndConcat(
         fetchNeverReported,
-        assignedSystemsCount - reportedSystemsCount
+        assignedSystemsCount - reportedSystemsCount,
       ),
     ]);
 };

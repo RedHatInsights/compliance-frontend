@@ -30,7 +30,7 @@ describe('Reports', () => {
     render(
       <TestWrapper>
         <Reports />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(screen.getByText('Something went wrong')).toBeInTheDocument();
@@ -50,13 +50,13 @@ describe('Reports', () => {
             error: 'Something went wrong',
             refetch: () => {},
           }
-        : { data: 1 }
+        : { data: 1 },
     );
 
     render(
       <TestWrapper>
         <Reports />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(screen.getByText('Something went wrong')).toBeInTheDocument();
@@ -69,12 +69,12 @@ describe('Reports', () => {
     render(
       <TestWrapper>
         <Reports />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(screen.getByLabelText('Contents')).toHaveAttribute(
       'aria-valuetext',
-      'Loading...'
+      'Loading...',
     );
   });
 
@@ -99,24 +99,24 @@ describe('Reports', () => {
             error: null,
             refetch: () => {},
           }
-        : { data: 0 }
+        : { data: 0 },
     );
 
     render(
       <TestWrapper>
         <Reports />
-      </TestWrapper>
+      </TestWrapper>,
     );
 
     expect(useReportsOS).toHaveBeenCalled();
     expect(useReports).toHaveBeenCalled();
 
     expect(
-      await screen.findByRole('button', { name: 'Create new policy' })
+      await screen.findByRole('button', { name: 'Create new policy' }),
     ).toBeInTheDocument();
     expect(screen.getByText('No policies are reporting')).toBeInTheDocument();
     expect(
-      screen.getByRole('link', { name: 'Learn about OpenSCAP and Compliance' })
+      screen.getByRole('link', { name: 'Learn about OpenSCAP and Compliance' }),
     ).toBeInTheDocument();
   });
 });

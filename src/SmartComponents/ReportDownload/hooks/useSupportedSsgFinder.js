@@ -12,7 +12,7 @@ const useSupportedSsgFinder = (skip) => {
     const matchingVersion = (supportedSsgs || {}).collection?.find(
       (profile) =>
         compareAsIntegers(profile.osMajorVersion, majorVersion) &&
-        compareAsIntegers(profile.osMinorVersion, minorVersion)
+        compareAsIntegers(profile.osMinorVersion, minorVersion),
     );
 
     return matchingVersion?.version || 'N/A';

@@ -90,7 +90,7 @@ const useFetchTotalBatched = (fetchFn, options = {}) => {
         }
       }
     },
-    [fetchFn, batchSize, concurrency]
+    [fetchFn, batchSize, concurrency],
   );
 
   useDeepCompareEffect(() => {

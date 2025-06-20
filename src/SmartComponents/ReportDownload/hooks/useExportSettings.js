@@ -5,7 +5,7 @@ import { DEFAULT_EXPORT_SETTINGS } from '../constants';
 const preparedSettings = (withReporting = true) =>
   pickBy(
     DEFAULT_EXPORT_SETTINGS,
-    (_value, key) => !(key === 'nonReportingSystems' && !withReporting)
+    (_value, key) => !(key === 'nonReportingSystems' && !withReporting),
   );
 
 const useExportSettings = () => {
@@ -17,12 +17,12 @@ const useExportSettings = () => {
         ...exportSettings,
         [setting]: value,
       }),
-    [setExportSettings, exportSettings]
+    [setExportSettings, exportSettings],
   );
 
   const isValid = () =>
     Object.keys(exportSettings).some(
-      (key) => (key !== 'userNotes' && !!exportSettings[key]) === true
+      (key) => (key !== 'userNotes' && !!exportSettings[key]) === true,
     );
 
   return {

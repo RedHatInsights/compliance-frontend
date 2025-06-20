@@ -13,7 +13,7 @@ export function init(environment) {
     [promiseMiddleware, ...(environment === 'development' ? [logger] : [])],
     environment === 'development' && typeof window !== 'undefined'
       ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-      : compose
+      : compose,
   );
 
   registry.register({ form, notifications: notificationsReducer });

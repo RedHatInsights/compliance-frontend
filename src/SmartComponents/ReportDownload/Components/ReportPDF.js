@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import propTypes from 'prop-types';
 import { Text, View } from '@react-pdf/renderer';
-// eslint-disable-next-line rulesdir/disallow-fec-relative-imports
+
 import {
   Table,
   Column,

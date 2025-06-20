@@ -13,13 +13,13 @@ describe('provideData', () => {
   const unsupportedSystems = buildUnsupportedSystems();
   const randomSystem = faker.helpers.arrayElement(nonComplianceSystems);
   const randomNonCompliantProfile = faker.helpers.arrayElement(
-    randomSystem.testResultProfiles.filter(({ compliant }) => !compliant)
+    randomSystem.testResultProfiles.filter(({ compliant }) => !compliant),
   );
   const randomFailedRule = faker.helpers.arrayElement(
     randomNonCompliantProfile.rules.filter(
       ({ compliant, remediationAvailable }) =>
-        !compliant && remediationAvailable
-    )
+        !compliant && remediationAvailable,
+    ),
   );
 
   it('returns an object', () => {
@@ -32,7 +32,7 @@ describe('provideData', () => {
         systems: [...systems, ...nonComplianceSystems, ...unsupportedSystems],
       })
         .issues.find(({ id }) => id.endsWith(randomFailedRule.refId))
-        .systems.includes(randomSystem.id)
+        .systems.includes(randomSystem.id),
     ).toBeTruthy();
   });
 
@@ -40,7 +40,7 @@ describe('provideData', () => {
     expect(
       provideData({
         systems: unsupportedSystems,
-      }).issues
+      }).issues,
     ).toBeUndefined();
   });
 
@@ -49,7 +49,7 @@ describe('provideData', () => {
       provideData({
         systems: nonComplianceSystems,
         selectedRules: [{ refId: randomFailedRule.refId }],
-      }).issues.length
+      }).issues.length,
     ).toEqual(1);
   });
 });

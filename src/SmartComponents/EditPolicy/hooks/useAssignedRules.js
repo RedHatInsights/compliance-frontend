@@ -24,9 +24,9 @@ const useAssignedRules = (policyId) => {
           offset,
           true, // fetch IDs only
         ],
-        false
+        false,
       ),
-    [fetchTailoringRules]
+    [fetchTailoringRules],
   );
 
   const { fetch: fetchTailoringRulesBatched } = useFetchTotalBatched(
@@ -34,7 +34,7 @@ const useAssignedRules = (policyId) => {
     {
       batchSize: 60,
       skip: true,
-    }
+    },
   );
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const useAssignedRules = (policyId) => {
       let rules = {};
 
       const nonCanonicalTailorings = tailoringsData.filter(
-        ({ os_minor_version }) => os_minor_version !== null
+        ({ os_minor_version }) => os_minor_version !== null,
       );
 
       for (const tailoring of nonCanonicalTailorings) {

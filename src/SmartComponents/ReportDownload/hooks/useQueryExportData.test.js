@@ -36,7 +36,7 @@ describe('useQueryExportData', () => {
           nonCompliantSystems.buildList(2),
           unsupportedSystems.buildList(2),
           systemsFactory.buildList(2),
-        ])
+        ]),
     );
 
     afterEach(() => {
@@ -51,7 +51,7 @@ describe('useQueryExportData', () => {
         useQueryExportData(DEFAULT_EXPORT_SETTINGS, profile, {
           onComplete,
           onError,
-        })
+        }),
       );
       const result = await queryExportData();
 
@@ -68,7 +68,7 @@ describe('useQueryExportData', () => {
         useQueryExportData(DEFAULT_EXPORT_SETTINGS, profile, {
           onComplete,
           onError,
-        })
+        }),
       );
 
       await queryExportData();

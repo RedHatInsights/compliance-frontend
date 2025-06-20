@@ -32,7 +32,7 @@ export const buildRules = (length, itemIds = []) =>
     let remediationAvailable = faker.datatype.boolean();
     let valueChecksRandomList = Array.from(
       { length: faker.number.int({ min: 1, max: 3 }) },
-      () => faker.string.uuid()
+      () => faker.string.uuid(),
     );
     let rhelVersion = faker.number.int({ min: 6, max: 9 });
     const profileSlug = faker.lorem.slug({ min: 3, max: 4 });

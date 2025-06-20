@@ -35,7 +35,7 @@ const useUpdatePolicyRest = (policy, updatedPolicyHostsAndRules) => {
           policyId,
           limit: 100,
         },
-        false
+        false,
       ); // fetch the most up-to-date tailorings
       const tailoringsUpdated = tailoringsResponse.data;
       if (tailoringRules) {
@@ -46,7 +46,7 @@ const useUpdatePolicyRest = (policy, updatedPolicyHostsAndRules) => {
             policyId,
             tailoringId: tailoringsUpdated.find(
               ({ os_minor_version }) =>
-                os_minor_version === Number(osMinorVersion)
+                os_minor_version === Number(osMinorVersion),
             ).id,
             assignRulesRequest: { ids: rules },
           });
@@ -60,7 +60,7 @@ const useUpdatePolicyRest = (policy, updatedPolicyHostsAndRules) => {
             policyId,
             tailoringId: tailoringsUpdated.find(
               ({ os_minor_version }) =>
-                os_minor_version === Number(osMinorVersion)
+                os_minor_version === Number(osMinorVersion),
             ).id,
             valuesUpdate: { value_overrides: valueOverrides },
           });
@@ -86,7 +86,7 @@ const useUpdatePolicyRest = (policy, updatedPolicyHostsAndRules) => {
 export const useOnSave = (
   policy,
   updatedPolicyHostsAndRules,
-  { onSave: onSaveCallback, onError: onErrorCallback } = {}
+  { onSave: onSaveCallback, onError: onErrorCallback } = {},
 ) => {
   const updatePolicy = useUpdatePolicyRest(policy, updatedPolicyHostsAndRules);
 

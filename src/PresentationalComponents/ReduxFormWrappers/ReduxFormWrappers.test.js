@@ -16,7 +16,7 @@ describe('ReduxFormTextInput', () => {
     render(<ReduxFormTextInput {...field} />);
 
     expect(screen.getByLabelText('text-input').value).toEqual(
-      field.input.value
+      field.input.value,
     );
   });
 
@@ -32,7 +32,7 @@ describe('ReduxFormTextInput', () => {
     render(<ReduxFormTextInput {...field} />);
 
     expect(screen.getByLabelText('text-input').value).toEqual(
-      field.defaultValue
+      field.defaultValue,
     );
   });
 });

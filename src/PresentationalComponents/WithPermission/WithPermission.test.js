@@ -11,7 +11,7 @@ describe('WithPermission', () => {
       isLoading: false,
     }));
     const { asFragment } = render(
-      <WithPermission>NEEDS PERMISSION</WithPermission>
+      <WithPermission>NEEDS PERMISSION</WithPermission>,
     );
 
     expect(asFragment()).toMatchSnapshot();
@@ -22,7 +22,7 @@ describe('WithPermission', () => {
       isLoading: true,
     }));
     const { asFragment } = render(
-      <WithPermission>NEEDS PERMISSION</WithPermission>
+      <WithPermission>NEEDS PERMISSION</WithPermission>,
     );
 
     expect(asFragment()).toMatchSnapshot();
@@ -34,7 +34,7 @@ describe('WithPermission', () => {
       isLoading: false,
     }));
     const { asFragment } = render(
-      <WithPermission>NEEDS PERMISSION</WithPermission>
+      <WithPermission>NEEDS PERMISSION</WithPermission>,
     );
 
     expect(asFragment()).toMatchSnapshot();
@@ -46,7 +46,7 @@ describe('WithPermission', () => {
       isLoading: false,
     }));
     const { asFragment } = render(
-      <WithPermission hide>NEEDS PERMISSION</WithPermission>
+      <WithPermission hide>NEEDS PERMISSION</WithPermission>,
     );
 
     expect(asFragment()).toMatchSnapshot();

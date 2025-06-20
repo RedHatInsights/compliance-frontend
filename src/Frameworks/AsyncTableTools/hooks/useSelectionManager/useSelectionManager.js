@@ -26,34 +26,34 @@ const useSelectionManager = (preselected, options = {}, handleSelect) => {
       return newState;
     },
     preselected,
-    initReducer(withGroups)
+    initReducer(withGroups),
   );
 
   const set = useCallback(
     (items, group) => dispatch({ type: 'set', group, items }),
-    [dispatch]
+    [dispatch],
   );
 
   const select = useCallback(
     (item, group, useSet = false) =>
       useSet ? set(item, group) : dispatch({ type: 'select', group, item }),
-    [set, dispatch]
+    [set, dispatch],
   );
 
   const deselect = useCallback(
     (item, group, useSet = false) =>
       useSet ? set(item, group) : dispatch({ type: 'deselect', group, item }),
-    [dispatch, set]
+    [dispatch, set],
   );
 
   const toggle = useCallback(
     (item, group) => dispatch({ type: 'toggle', group, item }),
-    [dispatch]
+    [dispatch],
   );
 
   const reset = useCallback(
     () => dispatch({ type: 'reset', preselected }),
-    [dispatch, preselected]
+    [dispatch, preselected],
   );
 
   const clear = useCallback(() => dispatch({ type: 'clear' }), [dispatch]);

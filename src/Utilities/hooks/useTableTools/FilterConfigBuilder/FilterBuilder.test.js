@@ -19,7 +19,7 @@ describe('buildFilterString', () => {
     };
 
     expect(
-      filterBuilder.buildFilterString(exampleActiveFilters)
+      filterBuilder.buildFilterString(exampleActiveFilters),
     ).toMatchSnapshot();
   });
 
@@ -29,7 +29,7 @@ describe('buildFilterString', () => {
         name: 'Name',
       };
       expect(
-        filterBuilder.buildFilterString(testExampleState)
+        filterBuilder.buildFilterString(testExampleState),
       ).toMatchSnapshot();
     });
 
@@ -38,7 +38,7 @@ describe('buildFilterString', () => {
         compliance: [true],
       };
       expect(
-        filterBuilder.buildFilterString(testExampleState)
+        filterBuilder.buildFilterString(testExampleState),
       ).toMatchSnapshot();
     });
 
@@ -47,7 +47,7 @@ describe('buildFilterString', () => {
         systemsmeetingcompliance: ['0-49', '50-69'],
       };
       expect(
-        filterBuilder.buildFilterString(testExampleState)
+        filterBuilder.buildFilterString(testExampleState),
       ).toMatchSnapshot();
     });
   });
@@ -55,24 +55,24 @@ describe('buildFilterString', () => {
   describe('builds filters from constants in use: ', () => {
     it('compliantSystemFilterConfiguration Rest', () => {
       let builder = new FilterBuilder(
-        new FilterConfigBuilder(compliantSystemFilterConfiguration())
+        new FilterConfigBuilder(compliantSystemFilterConfiguration()),
       );
 
       expect(
         builder.buildFilterString({
           compliancescore: ['0-50', '50-70'],
-        })
+        }),
       ).toEqual(
-        '((score >= 0 and score < 50) OR (score >= 50 and score < 70))'
+        '((score >= 0 and score < 50) OR (score >= 50 and score < 70))',
       );
 
       expect(
         builder.buildFilterString({
           compliancescore: ['90-101', '70-90'],
           compliance: ['compliant=true'],
-        })
+        }),
       ).toEqual(
-        'compliant=true AND ((score >= 90 and score < 101) OR (score >= 70 and score < 90))'
+        'compliant=true AND ((score >= 90 and score < 101) OR (score >= 70 and score < 90))',
       );
     });
   });

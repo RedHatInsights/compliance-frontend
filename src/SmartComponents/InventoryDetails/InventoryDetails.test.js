@@ -8,7 +8,7 @@ describe('InventoryDetails', () => {
     render(<InventoryDetails />);
 
     expect(
-      screen.getByLabelText('Inventory Details Wrapper')
+      screen.getByLabelText('Inventory Details Wrapper'),
     ).toBeInTheDocument();
     expect(screen.getByLabelText('Inventory Detail Head')).toBeInTheDocument();
   });

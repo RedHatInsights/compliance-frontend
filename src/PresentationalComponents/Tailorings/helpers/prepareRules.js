@@ -12,7 +12,7 @@ export const prepareRules = ({
     ...(securityGuideRules?.data || []),
   ];
   const rules = combinedRules.filter(
-    (obj, index) => index === combinedRules.findIndex((o) => obj.id === o.id)
+    (obj, index) => index === combinedRules.findIndex((o) => obj.id === o.id),
   );
   // TODO: investigate better solution to show Selected only correctly
   // const filteredRules = selected
@@ -20,15 +20,15 @@ export const prepareRules = ({
   //   : rules;
   const data = rules?.map((rule) => {
     const definitions = rule.value_checks?.map((checkId) =>
-      valueDefinitions?.data?.find(({ id }) => id === checkId)
+      valueDefinitions?.data?.find(({ id }) => id === checkId),
     );
 
     // TODO doublecheck, maybe the entries should rather be created from the value_checks
     const ruleValues = valueOverrides
       ? Object.fromEntries(
           Object.entries(valueOverrides).filter(([id]) =>
-            rule.value_checks.includes(id)
-          )
+            rule.value_checks.includes(id),
+          ),
         )
       : undefined;
 
