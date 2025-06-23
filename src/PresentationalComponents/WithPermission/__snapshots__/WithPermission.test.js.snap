@@ -1,25 +1,23 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`WithPermission expect to render "No permissions" with no access 1`] = `
 <DocumentFragment>
   <div
-    class="pf-v5-c-empty-state"
-    data-ouia-component-id="NotAuthorized"
+    class="pf-v6-c-empty-state"
+    data-ouia-component-id="UnauthorizedAccess"
   >
     <div
-      class="pf-v5-c-empty-state__content"
+      class="pf-v6-c-empty-state__content"
     >
       <div
-        class="pf-v5-c-empty-state__header"
-        data-ouia-component-id="NotAuthorized-header"
+        class="pf-v6-c-empty-state__header"
       >
         <div
-          class="pf-v5-c-empty-state__icon"
+          class="pf-v6-c-empty-state__icon"
         >
           <svg
             aria-hidden="true"
-            class="pf-v5-svg"
-            data-ouia-component-id="NotAuthorized-icon"
+            class="pf-v6-svg"
             fill="currentColor"
             height="1em"
             role="img"
@@ -32,18 +30,18 @@ exports[`WithPermission expect to render "No permissions" with no access 1`] = `
           </svg>
         </div>
         <div
-          class="pf-v5-c-empty-state__title"
+          class="pf-v6-c-empty-state__title"
         >
           <h5
-            class="pf-v5-c-empty-state__title-text"
+            class="pf-v6-c-empty-state__title-text"
           >
             You do not have access to Compliance
           </h5>
         </div>
       </div>
       <div
-        class="pf-v5-c-empty-state__body"
-        data-ouia-component-id="NotAuthorized-body"
+        class="pf-v6-c-empty-state__body"
+        data-ouia-component-id="UnauthorizedAccess-body"
       >
         Contact your organization administrator(s) for more information or visit 
         <a
@@ -54,21 +52,24 @@ exports[`WithPermission expect to render "No permissions" with no access 1`] = `
          to learn more about your permissions.
       </div>
       <div
-        class="pf-v5-c-empty-state__footer"
-        data-ouia-component-id="NotAuthorized-footer"
+        class="pf-v6-c-empty-state__footer"
+        data-ouia-component-id="UnauthorizedAccess-footer"
       >
         <a
-          aria-disabled="false"
-          class="pf-v5-c-button pf-m-primary"
-          data-ouia-component-id="NotAuthorized-home-button"
-          data-ouia-component-type="PF5/Button"
+          class="pf-v6-c-button pf-m-primary"
+          data-ouia-component-id="UnauthorizedAccess-home-button"
+          data-ouia-component-type="PF6/Button"
           data-ouia-safe="true"
           href="."
         >
-          Go to landing page
+          <span
+            class="pf-v6-c-button__text"
+          >
+            Go to landing page
+          </span>
         </a>
         <div
-          class="pf-v5-c-empty-state__actions"
+          class="pf-v6-c-empty-state__actions"
         />
       </div>
     </div>

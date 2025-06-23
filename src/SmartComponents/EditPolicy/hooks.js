@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react';
-import { dispatchNotification } from 'Utilities/Dispatcher';
-import useAssignRules from '../../Utilities/hooks/api/useAssignRules';
-import useAssignSystems from '../../Utilities/hooks/api/useAssignSystems';
-import useTailorings from '../../Utilities/hooks/api/useTailorings';
-import useUpdatePolicy from '../../Utilities/hooks/api/useUpdatePolicy';
-import useUpdateTailoring from '../../Utilities/hooks/api/useUpdateTailoring';
+import { useAddNotification } from '@redhat-cloud-services/frontend-components-notifications/hooks';
+import useAssignRules from 'Utilities/hooks/api/useAssignRules';
+import useAssignSystems from 'Utilities/hooks/api/useAssignSystems';
+import useTailorings from 'Utilities/hooks/api/useTailorings';
+import useUpdatePolicy from 'Utilities/hooks/api/useUpdatePolicy';
+import useUpdateTailoring from 'Utilities/hooks/api/useUpdateTailoring';
 
 const useUpdatePolicyRest = (policy, updatedPolicyHostsAndRules) => {
   const {
@@ -88,6 +88,7 @@ export const useOnSave = (
   updatedPolicyHostsAndRules,
   { onSave: onSaveCallback, onError: onErrorCallback } = {},
 ) => {
+  const addNotification = useAddNotification();
   const updatePolicy = useUpdatePolicyRest(policy, updatedPolicyHostsAndRules);
 
   const [isSaving, setIsSaving] = useState(false);
@@ -101,7 +102,7 @@ export const useOnSave = (
     updatePolicy(policy, updatedPolicyHostsAndRules)
       .then(() => {
         setIsSaving(false);
-        dispatchNotification({
+        addNotification({
           variant: 'success',
           title: 'Policy updated',
           autoDismiss: true,
@@ -110,7 +111,7 @@ export const useOnSave = (
       })
       .catch((error) => {
         setIsSaving(false);
-        dispatchNotification({
+        addNotification({
           variant: 'danger',
           title: 'Error updating policy',
           description: error.message,

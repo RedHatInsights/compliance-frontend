@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { TextContent } from '@patternfly/react-core';
+import { Content, Icon } from '@patternfly/react-core';
 import {
   CheckCircleIcon,
   ExclamationCircleIcon,
@@ -17,27 +17,31 @@ const ruleResultProps = {
 
 export const Rule = ({ title, result = 'pass' }) => {
   return (
-    <TextContent
+    <Content
       style={{
         ...(result === 'fail'
           ? {
               fontWeight: 'bold',
-              color: 'var(--pf-v5-global--danger-color--100)',
+              color: 'var(--pf-t--global--color--status--danger--100)',
             }
           : {}),
       }}
     >
       {title}
-    </TextContent>
+    </Content>
   );
 };
 Rule.propTypes = ruleResultProps;
 
 export const Passed = ({ result }) =>
   result === 'pass' ? (
-    <CheckCircleIcon className="ins-u-passed" />
+    <Icon status="success">
+      <CheckCircleIcon className="ins-u-passed" />
+    </Icon>
   ) : (
-    <ExclamationCircleIcon className="ins-u-failed" />
+    <Icon status="danger">
+      <ExclamationCircleIcon className="ins-u-failed" />
+    </Icon>
   );
 Passed.propTypes = ruleResultProps;
 

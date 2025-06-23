@@ -1,12 +1,12 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Card, CardBody } from '@patternfly/react-core';
-import { ErrorState } from '@redhat-cloud-services/frontend-components/ErrorState';
+import { ErrorState } from '@patternfly/react-component-groups';
 
 const ErrorCard = ({ errorMsg }) => (
   <Card className="ins-error-card">
     <CardBody>
-      <ErrorState errorDescription={errorMsg} />
+      <ErrorState bodyText={errorMsg} />
     </CardBody>
   </Card>
 );

@@ -49,9 +49,9 @@ describe('Policies table tests API V2', () => {
     });
     it('Shows correct total item count', () => {
       cy.wait('@getPolicies');
-      cy.ouiaType('PF5/Pagination', 'div')
+      cy.ouiaType('PF6/Pagination', 'div')
         .first()
-        .get('.pf-v5-c-menu-toggle__text')
+        .get('.pf-v6-c-menu-toggle__text')
         .find('b')
         .eq(1)
         .should('have.text', policiesData.length);
@@ -200,9 +200,9 @@ describe('Policies table tests API V2', () => {
   describe('Table pagination', () => {
     it('Set per page elements', () => {
       cy.wait('@getPolicies');
-      cy.ouiaType('PF5/Toolbar', 'div')
-        .ouiaType('PF5/Pagination', 'div')
-        .ouiaType('PF5/MenuToggle', 'button')
+      cy.ouiaType('PF6/Toolbar', 'div')
+        .ouiaType('PF6/Pagination', 'div')
+        .ouiaType('PF6/MenuToggle', 'button')
         .should('contain', `1 - 10 of ${policiesData.length}`);
 
       const perPageOptions = [20, 50, 100];
@@ -223,9 +223,9 @@ describe('Policies table tests API V2', () => {
           },
         ).as('getPaginatedPolicies');
 
-        cy.ouiaType('PF5/Toolbar', 'div')
-          .ouiaType('PF5/Pagination', 'div')
-          .ouiaType('PF5/MenuToggle', 'button')
+        cy.ouiaType('PF6/Toolbar', 'div')
+          .ouiaType('PF6/Pagination', 'div')
+          .ouiaType('PF6/MenuToggle', 'button')
           .click();
 
         cy.get('button[role="menuitem"]')
@@ -389,7 +389,7 @@ describe('Policies table tests API V2', () => {
         .get('button[aria-label="kebab dropdown toggle"]')
         .click();
 
-      cy.ouiaType('PF5/DropdownItem', 'li')
+      cy.ouiaType('PF6/DropdownItem', 'li')
         .contains('Manage columns')
         .should('be.visible')
         .click();
@@ -410,7 +410,7 @@ describe('Policies table tests API V2', () => {
         .get('button[aria-label="kebab dropdown toggle"]')
         .click();
 
-      cy.ouiaType('PF5/DropdownItem', 'li')
+      cy.ouiaType('PF6/DropdownItem', 'li')
         .contains('Manage columns')
         .should('be.visible')
         .click();

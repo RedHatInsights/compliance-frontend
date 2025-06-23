@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import Routes from './Routes';
-import NotificationsPortal from '@redhat-cloud-services/frontend-components-notifications/NotificationPortal';
+import NotificationsProvider from '@redhat-cloud-services/frontend-components-notifications/NotificationsProvider';
 import { RBACProvider } from '@redhat-cloud-services/frontend-components/RBACProvider';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
@@ -16,8 +16,9 @@ const App = (props) => {
 
   return (
     <RBACProvider appName="compliance">
-      <NotificationsPortal />
-      <Routes childProps={props} />
+      <NotificationsProvider>
+        <Routes childProps={props} />
+      </NotificationsProvider>
     </RBACProvider>
   );
 };

@@ -22,7 +22,7 @@ const ComplianceSystems = () => {
       <PageHeader className="page-header">
         <PageHeaderTitle title="Systems" />
       </PageHeader>
-      <section className="pf-v5-c-page__main-section">
+      <section className="pf-v6-c-page__main-section">
         <StateViewWithError stateValues={{ error, data: policies, loading }}>
           <StateViewPart stateKey="data">
             {policies && (

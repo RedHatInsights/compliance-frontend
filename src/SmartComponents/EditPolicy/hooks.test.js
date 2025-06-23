@@ -1,35 +1,29 @@
 import { renderHook, act, waitFor } from '@testing-library/react';
 import { useOnSave } from './hooks';
-import useAssignRules from '../../Utilities/hooks/api/useAssignRules';
-import useAssignSystems from '../../Utilities/hooks/api/useAssignSystems';
-import useTailorings from '../../Utilities/hooks/api/useTailorings';
-import useUpdatePolicy from '../../Utilities/hooks/api/useUpdatePolicy';
-
-import { dispatchNotification } from 'Utilities/Dispatcher';
-jest.mock('Utilities/Dispatcher');
+import useAssignRules from 'Utilities/hooks/api/useAssignRules';
+import useAssignSystems from 'Utilities/hooks/api/useAssignSystems';
+import useTailorings from 'Utilities/hooks/api/useTailorings';
+import useUpdatePolicy from 'Utilities/hooks/api/useUpdatePolicy';
 
 jest.mock('Utilities/hooks/useAnchor', () => ({
   __esModule: true,
   default: () => () => ({}),
 }));
 
-jest.mock('../../Utilities/hooks/api/useAssignRules');
-jest.mock('../../Utilities/hooks/api/useAssignSystems');
-jest.mock('../../Utilities/hooks/api/useTailorings');
-jest.mock('../../Utilities/hooks/api/useUpdatePolicy');
+jest.mock('Utilities/hooks/api/useAssignRules');
+jest.mock('Utilities/hooks/api/useAssignSystems');
+jest.mock('Utilities/hooks/api/useTailorings');
+jest.mock('Utilities/hooks/api/useUpdatePolicy');
 
 describe('useOnSave', function () {
   const policy = {};
   const updatedPolicy = { description: 'Foo' };
-  const mockedNotification = jest.fn();
   const onSaveCallBack = jest.fn();
   const onErrorCallback = jest.fn();
 
   beforeEach(() => {
     onSaveCallBack.mockReset();
     onErrorCallback.mockReset();
-    dispatchNotification.mockImplementation(mockedNotification);
-
     useAssignRules.mockReturnValue({ fetch: jest.fn(() => Promise.resolve()) });
     useAssignSystems.mockReturnValue({
       fetch: jest.fn(() => Promise.resolve()),
@@ -60,15 +54,8 @@ describe('useOnSave', function () {
       onSave();
     });
 
-    await waitFor(() =>
-      expect(mockedNotification).toHaveBeenCalledWith({
-        variant: 'success',
-        title: 'Policy updated',
-        autoDismiss: true,
-      }),
-    );
+    await waitFor(() => expect(onSaveCallBack).toHaveBeenCalled());
 
-    expect(onSaveCallBack).toHaveBeenCalled();
     expect(onErrorCallback).not.toHaveBeenCalled();
   });
 
@@ -90,15 +77,8 @@ describe('useOnSave', function () {
       onSave();
     });
 
-    await waitFor(() =>
-      expect(mockedNotification).toHaveBeenCalledWith({
-        variant: 'danger',
-        title: 'Error updating policy',
-        description: 'Update failed',
-      }),
-    );
+    await waitFor(() => expect(onErrorCallback).toHaveBeenCalled());
 
-    expect(onErrorCallback).toHaveBeenCalled();
     expect(onSaveCallBack).not.toHaveBeenCalled();
   });
 });

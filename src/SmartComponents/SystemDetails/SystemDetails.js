@@ -51,7 +51,7 @@ const SystemDetails = ({ route }) => {
           <PageBreadcrumb systemName={systemName} />
           <InventoryDetails inventoryId={inventoryId} />
         </PageHeader>
-        <PageSection>
+        <PageSection hasBodyWrapper={false}>
           <Details hidePassed inventoryId={inventoryId} system={data} />
         </PageSection>
       </StateViewPart>

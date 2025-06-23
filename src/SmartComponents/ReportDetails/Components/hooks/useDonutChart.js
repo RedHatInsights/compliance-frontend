@@ -4,7 +4,7 @@ import {
   ChartTooltip,
   ChartLabel,
   ChartThemeColor,
-} from '@patternfly/react-charts';
+} from '@patternfly/react-charts/victory';
 import { Icon } from '@patternfly/react-core';
 import { paletteColors } from '../../../../constants';
 import { fixedPercentage } from 'Utilities/TextHelper';

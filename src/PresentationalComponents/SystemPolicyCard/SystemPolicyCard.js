@@ -4,9 +4,8 @@ import {
   Card,
   CardBody,
   CardFooter,
-  Text,
-  TextContent,
-  TextVariants,
+  Content,
+  ContentVariants,
   Tooltip,
 } from '@patternfly/react-core';
 import DateFormat from '@redhat-cloud-services/frontend-components/DateFormat';
@@ -33,27 +32,29 @@ const SystemPolicyCard = ({ policy, style }) => {
   return (
     <Card ouiaId="PolicyCard" style={style}>
       <CardBody>
-        <TextContent className="margin-bottom-md">
-          <Text
+        <Content className="margin-bottom-md">
+          <Content
             ouiaId="PolicyCardName"
             className="margin-bottom-top-none"
-            component={TextVariants.h4}
+            component={ContentVariants.h4}
           >
             <Truncate text={name} length={110} {...truncateDefaults} />
-          </Text>
-          <Text
+          </Content>
+          <Content
             ouiaId="PolicyCardType"
-            style={{ color: 'var(--pf-v5-global--Color--200)' }}
-            component={TextVariants.small}
+            style={{
+              color: 'var(pf-t--global--text--color--200)',
+            }}
+            component={ContentVariants.small}
           >
             <Truncate text={policyType} length={110} {...truncateDefaults} />
-          </Text>
-        </TextContent>
+          </Content>
+        </Content>
         <div className="margin-bottom-md">
           {supported && <CompliantIcon compliant={compliant} />}
-          <Text
+          <Content
             ouiaId="PolicyCardFailedRulesScore"
-            component={TextVariants.small}
+            component={ContentVariants.small}
           >
             {rulesFailed} rule{rulesFailed === 1 ? '' : 's'} failed{' '}
             <Tooltip
@@ -68,19 +69,24 @@ const SystemPolicyCard = ({ policy, style }) => {
                 (Score: {supported ? passedPercentage : 'Unsupported'})
               </span>
             </Tooltip>
-          </Text>
+          </Content>
         </div>
-        <Text className="margin-bottom-none" component={TextVariants.small}>
-          <Text ouiaId="PolicyCardSSGVersion">SSG version: {ssgVersion}</Text>
-          <Text ouiaId="PolicyCardLastScanned">
+        <Content
+          className="margin-bottom-none"
+          component={ContentVariants.small}
+        >
+          <Content component="p" ouiaId="PolicyCardSSGVersion">
+            SSG version: {ssgVersion}
+          </Content>
+          <Content component="p" ouiaId="PolicyCardLastScanned">
             Last scanned:{' '}
             {lastScanned !== 'Never' ? (
               <DateFormat date={Date.parse(lastScanned)} type="relative" />
             ) : (
               lastScanned
             )}
-          </Text>
-        </Text>
+          </Content>
+        </Content>
       </CardBody>
       {!supported && (
         <CardFooter style={{ padding: '0' }}>
@@ -88,10 +94,10 @@ const SystemPolicyCard = ({ policy, style }) => {
             ouiaId="PolicyCardUnsupportedSSG"
             ssgVersion={ssgVersion}
             style={{
-              paddingTop: 'var(--pf-v5-c-alert--PaddingTop)',
-              paddingRight: 'var(--pf-v5-c-card--child--PaddingRight)',
-              paddingLeft: 'var(--pf-v5-c-card--child--PaddingLeft)',
-              paddingBottom: 'var(--pf-v5-c-alert--PaddingBottom)',
+              paddingTop: 'var(--pf-v6-c-alert--PaddingTop)',
+              paddingRight: 'var(--pf-v6-c-card--child--PaddingRight)',
+              paddingLeft: 'var(--pf-v6-c-card--child--PaddingLeft)',
+              paddingBottom: 'var(--pf-v6-c-alert--PaddingBottom)',
             }}
           />
         </CardFooter>

@@ -8,20 +8,17 @@ import {
   Bullseye,
   EmptyState,
   EmptyStateBody,
-  EmptyStateIcon,
   EmptyStateActions,
-  EmptyStateHeader,
   EmptyStateFooter,
 } from '@patternfly/react-core';
 
 const NoPoliciesState = () => (
   <Bullseye>
-    <EmptyState>
-      <EmptyStateHeader
-        titleText="This system is not part of any SCAP policies defined within Compliance."
-        icon={<EmptyStateIcon icon={PlusCircleIcon} />}
-        headingLevel="h1"
-      />
+    <EmptyState
+      headingLevel="h1"
+      icon={PlusCircleIcon}
+      titleText="This system is not part of any SCAP policies defined within Compliance."
+    >
       <EmptyStateBody>
         To assess and monitor compliance against a SCAP policy for this system,
         add it to an existing policy or create a new policy.

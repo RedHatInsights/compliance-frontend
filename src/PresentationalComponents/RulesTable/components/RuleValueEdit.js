@@ -3,8 +3,8 @@ import propTypes from 'prop-types';
 import {
   Stack,
   StackItem,
-  Text,
-  TextVariants,
+  Content,
+  ContentVariants,
   Button,
 } from '@patternfly/react-core';
 import { PencilAltIcon } from '@patternfly/react-icons';
@@ -40,36 +40,35 @@ const RuleValueEdit = ({
   // );
 
   return (
-    <Stack style={{ marginBottom: 'var(--pf-v5-global--spacer--lg)' }}>
-      <StackItem style={{ marginBottom: 'var(--pf-v5-global--spacer--xs)' }}>
-        <Text className="pf-v5-c-form__label" component={TextVariants.h5}>
+    <Stack style={{ marginBottom: 'var(--pf-t--global--spacer--lg)' }}>
+      <StackItem style={{ marginBottom: 'var(--pf-t--global--spacer--xs)' }}>
+        <Content className="pf-v6-c-form__label" component={ContentVariants.h5}>
           <b>Depends on values</b>{' '}
           {enableAllEdit && (
             <Button
+              icon={<PencilAltIcon />}
               aria-label="Edit value button"
               ouiaId="InlineEditPencil"
-              className="pf-v5-u-ml-sm"
+              className="pf-v6-u-ml-sm"
               onClick={() => {
                 setIsOpen((current) => !current);
               }}
               variant="plain"
-            >
-              <PencilAltIcon />
-            </Button>
+            />
           )}
           {/*
             * nonDefaultValues && (
             <Button
               aria-label="Reset value button"
               ouiaId="InlineEditReset"
-              className="pf-v5-u-ml-sm"
+              className="pf-v6-u-ml-sm"
               onClick={resetValues}
               variant="plain"
             >
               <RedoIcon />
             </Button>
           )*/}
-        </Text>
+        </Content>
 
         {valueDefinitions.map((valueDefinition, idx) => (
           <InlineValueEdit

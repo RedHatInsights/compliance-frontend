@@ -1,15 +1,15 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { TextContent } from '@patternfly/react-core';
+import { Content } from '@patternfly/react-core';
 import { LinkWithPermission as Link } from 'PresentationalComponents';
 import { GreySmallText, SystemsCountWarning } from 'PresentationalComponents';
 import { renderComponent } from 'Utilities/helpers';
 
 const PolicyNameCell = ({ id, title, profile_title }) => (
-  <TextContent>
+  <Content>
     <Link to={'/scappolicies/' + id}>{title}</Link>
     <GreySmallText>{profile_title}</GreySmallText>
-  </TextContent>
+  </Content>
 );
 
 PolicyNameCell.propTypes = {

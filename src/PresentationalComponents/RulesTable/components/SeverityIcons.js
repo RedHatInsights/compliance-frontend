@@ -13,7 +13,7 @@ const LowSeverityIcon = () => (
 
 export const HighSeverity = () => (
   <>
-    <Icon status="danger" className="pf-v5-u-mr-xs" isInline>
+    <Icon status="danger" className="pf-v6-u-mr-xs" isInline>
       <ExclamationCircleIcon />
     </Icon>
     High
@@ -22,7 +22,7 @@ export const HighSeverity = () => (
 
 export const MediumSeverity = () => (
   <>
-    <Icon status="warning" className="pf-v5-u-mr-xs" isInline>
+    <Icon status="warning" className="pf-v6-u-mr-xs" isInline>
       <ExclamationTriangleIcon />
     </Icon>
     Medium
@@ -31,7 +31,7 @@ export const MediumSeverity = () => (
 
 export const LowSeverity = () => (
   <>
-    <Icon className="pf-v5-u-mr-xs" isInline>
+    <Icon className="pf-v6-u-mr-xs" isInline>
       <LowSeverityIcon />
     </Icon>
     Low
@@ -40,7 +40,7 @@ export const LowSeverity = () => (
 
 export const UnknownSeverity = () => (
   <>
-    <Icon className="pf-v5-u-mr-xs" isInline>
+    <Icon className="pf-v6-u-mr-xs" isInline>
       <QuestionCircleIcon />
     </Icon>
     Unknown

@@ -8,7 +8,6 @@ import {
   GridItem,
   Tab,
   PageSection,
-  PageSectionVariants,
 } from '@patternfly/react-core';
 import PageHeader, {
   PageHeaderTitle,
@@ -57,7 +56,7 @@ export const PolicyDetailsBase = ({
         <PageHeader>
           <PolicyDetailsContentLoader />
         </PageHeader>
-        <section className="pf-v5-c-page__main-section">
+        <section className="pf-v6-c-page__main-section">
           <Spinner />
         </section>
       </StateViewPart>
@@ -87,13 +86,13 @@ export const PolicyDetailsBase = ({
                 <Tab title="Systems" id="policy-systems" eventKey="systems" />
               </RoutedTabs>
             </PageHeader>
-            <section className="pf-v5-c-page__main-section">
+            <section className="pf-v6-c-page__main-section">
               <TabSwitcher defaultTab={defaultTab}>
                 <ContentTab eventKey="details">
                   <PolicyDetailsDescription policy={policy} refetch={refetch} />
                 </ContentTab>
                 <ContentTab eventKey="rules">
-                  <PageSection variant={PageSectionVariants.light}>
+                  <PageSection hasBodyWrapper={false}>
                     <Tailorings
                       ouiaId="RHELVersions"
                       columns={[

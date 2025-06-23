@@ -1,10 +1,11 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
 import columns, { exportableColumns } from './Columns';
 import * as Filters from './Filters';
-import { emptyRows } from '../../Utilities/hooks/useTableTools/Components/NoResultsTable';
+import { emptyRows } from 'Utilities/hooks/useTableTools/Components/NoResultsTable';
 import useActionResolver from './hooks/useActionResolvers';
+import useComplianceTableDefaults from 'Utilities/hooks/useComplianceTableDefaults';
+
 import ComplianceTable from 'PresentationalComponents/ComplianceTable/ComplianceTable';
 
 export const PoliciesTable = ({
@@ -14,6 +15,7 @@ export const PoliciesTable = ({
   loading,
   options,
 }) => {
+  const complianceTableDefaults = useComplianceTableDefaults();
   const filters = Object.values(Filters);
   const actionResolver = useActionResolver();
 
@@ -31,11 +33,11 @@ export const PoliciesTable = ({
       total={total}
       loading={loading}
       options={{
-        ...COMPLIANCE_TABLE_DEFAULTS,
+        ...complianceTableDefaults,
         actionResolver,
         ...(DedicatedAction ? { dedicatedAction: DedicatedAction } : {}),
         exportable: {
-          ...COMPLIANCE_TABLE_DEFAULTS.exportable,
+          ...complianceTableDefaults.exportable,
           columns: exportableColumns,
         },
         emptyRows: emptyRows('policies', columns.length),

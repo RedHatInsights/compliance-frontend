@@ -1,13 +1,13 @@
+/* eslint-disable testing-library/no-node-access */
 import { act, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { useLocation } from 'react-router-dom';
-import { dispatchAction } from 'Utilities/Dispatcher';
-import TestWrapper from '@/Utilities/TestWrapper';
+import TestWrapper from 'Utilities/TestWrapper';
 import DeletePolicy from './DeletePolicy.js';
-import { apiInstance } from '../../Utilities/hooks/useQuery';
+import { apiInstance } from 'Utilities/hooks/useQuery';
 
-jest.mock('../../Utilities/hooks/useQuery', () => ({
+jest.mock('Utilities/hooks/useQuery', () => ({
   __esModule: true,
   apiInstance: { deletePolicy: jest.fn() },
   default: () => ({
@@ -16,8 +16,6 @@ jest.mock('../../Utilities/hooks/useQuery', () => ({
     loading: undefined,
   }),
 }));
-
-jest.mock('Utilities/Dispatcher');
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -33,7 +31,6 @@ describe('DeletePolicy', () => {
         policy,
       },
     }));
-    dispatchAction.mockImplementation(() => {});
   });
 
   it('expect to render a modal and delete a policy', () => {
@@ -63,6 +60,6 @@ describe('DeletePolicy', () => {
       screen.getByRole('button', { name: 'delete' }).click();
     });
 
-    expect(apiInstance.deletePolicy).toBeCalled();
+    expect(apiInstance.deletePolicy).toHaveBeenCalled();
   });
 });

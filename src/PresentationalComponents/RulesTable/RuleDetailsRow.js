@@ -5,8 +5,8 @@ import {
   GridItem,
   Stack,
   StackItem,
-  Text,
-  TextVariants,
+  Content,
+  ContentVariants,
 } from '@patternfly/react-core';
 import { ConditionalLink } from 'PresentationalComponents';
 import RuleValueEdit from './components/RuleValueEdit';
@@ -23,50 +23,50 @@ const RuleDetailsRow = ({ item: rule, onValueChange, onRuleValueReset }) => {
   const key = `rule-child-row-${refId}`;
 
   return (
-    <div key={key} style={{ marginTop: 'var(--pf-v5-global--spacer--lg)' }}>
+    <div key={key} style={{ marginTop: 'var(--pf-t--global--spacer--lg)' }}>
       <Stack
         id={`rule-description-${key}`}
-        style={{ marginBottom: 'var(--pf-v5-global--spacer--md)' }}
+        style={{ marginBottom: 'var(--pf-t--global--spacer--md)' }}
       >
-        <StackItem style={{ marginBottom: 'var(--pf-v5-global--spacer--xs)' }}>
-          <Text className="pf-c-form__label" component={TextVariants.h5}>
+        <StackItem style={{ marginBottom: 'var(--pf-t--global--spacer--xs)' }}>
+          <Content className="pf-c-form__label" component={ContentVariants.h5}>
             <b>Description</b>
-          </Text>
+          </Content>
         </StackItem>
         <StackItem isFilled>{description}</StackItem>
       </Stack>
       <Stack
         id={`rule-identifiers-references-${key}`}
-        style={{ marginBottom: 'var(--pf-v5-global--spacer--md)' }}
+        style={{ marginBottom: 'var(--pf-t--global--spacer--md)' }}
       >
         <Grid>
           {identifier && (
             <GridItem span={2}>
-              <Text
+              <Content
                 className="pf-c-form__label"
-                component={TextVariants.h5}
-                style={{ marginBottom: 'var(--pf-v5-global--spacer--xs)' }}
+                component={ContentVariants.h5}
+                style={{ marginBottom: 'var(--pf-t--global--spacer--xs)' }}
               >
                 <b>Identifier</b>
-              </Text>
-              <Text>
+              </Content>
+              <Content component="p">
                 <ConditionalLink href={identifier.system} target="_blank">
                   {identifier.label}
                 </ConditionalLink>
-              </Text>
+              </Content>
             </GridItem>
           )}
 
           {references && references.length > 0 && (
             <GridItem span={10}>
-              <Text
+              <Content
                 className="pf-c-form__label"
-                component={TextVariants.h5}
-                style={{ marginBottom: 'var(--pf-v5-global--spacer--xs)' }}
+                component={ContentVariants.h5}
+                style={{ marginBottom: 'var(--pf-t--global--spacer--xs)' }}
               >
                 <b>References</b>
-              </Text>
-              <Text>
+              </Content>
+              <Content component="p">
                 {references
                   .map((ref, idx) => (
                     <ConditionalLink
@@ -78,7 +78,7 @@ const RuleDetailsRow = ({ item: rule, onValueChange, onRuleValueReset }) => {
                     </ConditionalLink>
                   ))
                   .reduce((prev, next) => [prev, ', ', next])}
-              </Text>
+              </Content>
             </GridItem>
           )}
         </Grid>
@@ -87,14 +87,17 @@ const RuleDetailsRow = ({ item: rule, onValueChange, onRuleValueReset }) => {
       {rationale && (
         <Stack
           id={`rule-rationale-${key}`}
-          style={{ marginBottom: 'var(--pf-v5-global--spacer--lg)' }}
+          style={{ marginBottom: 'var(--pf-t--global--spacer--lg)' }}
         >
           <StackItem
-            style={{ marginBottom: 'var(--pf-v5-global--spacer--xs)' }}
+            style={{ marginBottom: 'var(--pf-t--global--spacer--xs)' }}
           >
-            <Text className="pf-c-form__label" component={TextVariants.h5}>
+            <Content
+              className="pf-c-form__label"
+              component={ContentVariants.h5}
+            >
               <b>Rationale</b>
-            </Text>
+            </Content>
           </StackItem>
           <StackItem isFilled>{rationale}</StackItem>
         </Stack>

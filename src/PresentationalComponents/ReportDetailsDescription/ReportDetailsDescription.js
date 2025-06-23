@@ -1,14 +1,7 @@
 import React from 'react';
 import { fixedPercentage } from 'Utilities/TextHelper';
 import propTypes from 'prop-types';
-import {
-  Text,
-  TextContent,
-  TextList,
-  TextListVariants,
-  TextListItem,
-  TextListItemVariants,
-} from '@patternfly/react-core';
+import { Content, ContentVariants } from '@patternfly/react-core';
 import { LinkWithPermission as Link } from 'PresentationalComponents';
 
 const PropTypes = {
@@ -16,25 +9,27 @@ const PropTypes = {
 };
 
 const Dt = ({ children, ...props }) => (
-  <TextListItem {...props} component={TextListItemVariants.dt}>
+  <Content {...props} component={ContentVariants.dt}>
     {children}
-  </TextListItem>
+  </Content>
 );
 Dt.propTypes = PropTypes;
 
 const Dd = ({ children, ...props }) => (
-  <TextListItem {...props} component={TextListItemVariants.dd}>
+  <Content {...props} component={ContentVariants.dd}>
     {children}
-  </TextListItem>
+  </Content>
 );
 Dd.propTypes = PropTypes;
 
 const ReportDetailsDescription = ({ report }) => (
-  <TextContent className="policy-details">
+  <Content className="policy-details">
     <React.Fragment>
-      <TextList component={TextListVariants.dl}>
+      <Content component={ContentVariants.dl}>
         <Dt>
-          <Text className="ins-c-non-bold-h2">Policy details</Text>
+          <Content component="p" className="ins-c-non-bold-h2">
+            Policy details
+          </Content>
         </Dt>
         <Dt>Operating system</Dt>
         <Dd>RHEL {report.os_major_version}</Dd>
@@ -45,10 +40,10 @@ const ReportDetailsDescription = ({ report }) => (
         </Dd>
         <Dt>Business objective</Dt>
         <Dd>{report.business_objective || '--'}</Dd>
-      </TextList>
+      </Content>
       <Link to={'/scappolicies/' + report.id}>View policy</Link>
     </React.Fragment>
-  </TextContent>
+  </Content>
 );
 
 ReportDetailsDescription.propTypes = {

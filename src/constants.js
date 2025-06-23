@@ -1,8 +1,16 @@
 /* eslint max-len: 0 */
-import packageJson from './../package.json';
+
+import React from 'react';
+import {
+  ExclamationCircleIcon,
+  ExclamationTriangleIcon,
+  QuestionCircleIcon,
+  InfoCircleIcon,
+} from '@patternfly/react-icons';
+import { Icon } from '@patternfly/react-core';
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/ConditionalFilter';
-import { dispatchNotification } from 'Utilities/Dispatcher';
 import sortBy from 'lodash/sortBy';
+import packageJson from './../package.json';
 
 export const APP_ID = 'compliance';
 export const DEFAULT_TITLE = 'Compliance';
@@ -15,7 +23,7 @@ export const API_BASE_URL = '/api/compliance/v2';
 import {
   chart_color_black_100,
   chart_color_black_200,
-  chart_color_gold_300,
+  chart_color_yellow_300,
   chart_color_blue_100,
   chart_color_blue_300,
 } from '@patternfly/react-tokens';
@@ -29,52 +37,42 @@ export const API_HEADERS = {
 export const supportedConfigsLink =
   'https://access.redhat.com/articles/6644131';
 
-import React from 'react';
-import {
-  ExclamationCircleIcon,
-  ExclamationTriangleIcon,
-  QuestionCircleIcon,
-} from '@patternfly/react-icons';
-
 export const REMEDIATIONS_COLUMN = 4;
 export const COMPLIANT_COLUMN = 3;
 export const SEVERITY_COLUMN = 2;
 export const POLICY_COLUMN = 1;
 export const TITLE_COLUMN = 0;
 
-const LowSeverityIcon = (
-  <svg
-    width="1em"
-    height="1em"
-    viewBox="0 0 18 18"
-    role="img"
-    style={{ verticalAlign: '-0.125em' }}
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M2 0h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm6.67 10.46a1.67 1.67 0 1 0 0 3.338 1.67 1.67 0 0 0 0-3.338zm-1.586-6l.27 4.935a.435.435 0 0 0 .434.411H9.55c.232 0 .422-.18.435-.411l.27-4.936A.435.435 0 0 0 9.818 4h-2.3c-.25 0-.448.21-.435.46z"
-      fill="#3A9CA6"
-      fillRule="evenodd"
-    />
-  </svg>
-);
-
 export const HIGH_SEVERITY = (
   <React.Fragment>
-    <ExclamationCircleIcon className="ins-u-failed" /> High
+    <Icon status="danger">
+      <ExclamationCircleIcon />
+    </Icon>{' '}
+    High
   </React.Fragment>
 );
 export const MEDIUM_SEVERITY = (
   <React.Fragment>
-    <ExclamationTriangleIcon className="ins-u-warning" /> Medium
+    <Icon status="warning">
+      <ExclamationTriangleIcon />
+    </Icon>{' '}
+    Medium
   </React.Fragment>
 );
 export const LOW_SEVERITY = (
-  <React.Fragment>{LowSeverityIcon} Low</React.Fragment>
+  <React.Fragment>
+    <Icon status="info">
+      <InfoCircleIcon />
+    </Icon>{' '}
+    Low
+  </React.Fragment>
 );
 export const UNKNOWN_SEVERITY = (
   <React.Fragment>
-    <QuestionCircleIcon /> Unknown
+    <Icon>
+      <QuestionCircleIcon />
+    </Icon>{' '}
+    Unknown
   </React.Fragment>
 );
 
@@ -228,31 +226,12 @@ export const complianceReportTableAdditionalFilter = (
   },
 ];
 
-export const COMPLIANCE_TABLE_DEFAULTS = {
-  exportable: {
-    onStart: () => {
-      dispatchNotification({
-        variant: 'info',
-        title: 'Preparing export',
-        description: 'Once complete, your download will start automatically.',
-      });
-    },
-    onComplete: () => {
-      dispatchNotification({
-        variant: 'success',
-        title: 'Downloading export',
-      });
-    },
-  },
-  manageColumns: true,
-};
-
 export const paletteColors = {
   black100: chart_color_black_100.value,
   black200: chart_color_black_200.value,
   blue100: chart_color_blue_100.value,
   blue300: chart_color_blue_300.value,
-  gold300: chart_color_gold_300.value,
+  gold300: chart_color_yellow_300.value,
 };
 
 export const backgroundColors = {

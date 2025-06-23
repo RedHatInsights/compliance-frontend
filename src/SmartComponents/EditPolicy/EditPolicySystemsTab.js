@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TextContent } from '@patternfly/react-core';
+import { Content } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import { SystemsTable } from 'SmartComponents';
 import * as Columns from '../SystemsTable/Columns';
@@ -10,15 +10,17 @@ import {
 
 const EmptyState = ({ osMajorVersion }) => (
   <div data-testid="empty-state">
-    <TextContent className="pf-v5-u-mb-md">
-      <Text>
+    <Content className="pf-v6-u-mb-md">
+      <Content component="p">
         You do not have any <b>RHEL {osMajorVersion}</b> systems connected to
         Insights and enabled for Compliance.
-      </Text>
-    </TextContent>
-    <TextContent className="pf-v5-u-mb-md">
-      <Text>Connect RHEL {osMajorVersion} systems to Insights.</Text>
-    </TextContent>
+      </Content>
+    </Content>
+    <Content className="pf-v6-u-mb-md">
+      <Content component="p">
+        Connect RHEL {osMajorVersion} systems to Insights.
+      </Content>
+    </Content>
   </div>
 );
 
@@ -28,12 +30,12 @@ EmptyState.propTypes = {
 
 const PrependComponent = ({ osMajorVersion }) => (
   <React.Fragment>
-    <TextContent className="pf-v5-u-mb-md" data-testid="prepend-component">
-      <Text>
+    <Content className="pf-v6-u-mb-md" data-testid="prepend-component">
+      <Content component="p">
         Select which of your <b>RHEL {osMajorVersion}</b> systems should be
         included in this policy.
-      </Text>
-    </TextContent>
+      </Content>
+    </Content>
   </React.Fragment>
 );
 

@@ -2,13 +2,11 @@ import React from 'react';
 import propTypes from 'prop-types';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink';
 import {
-  TextContent,
+  Content,
   Button,
   EmptyState,
   EmptyStateBody,
-  EmptyStateIcon,
   EmptyStateActions,
-  EmptyStateHeader,
   EmptyStateFooter,
 } from '@patternfly/react-core';
 import { CloudSecurityIcon } from '@patternfly/react-icons';
@@ -34,43 +32,33 @@ const ComplianceEmptyState = ({ title, mainButton }) => {
 
   return (
     <EmptyState
+      headingLevel="h2"
+      icon={CloudSecurityIcon}
+      titleText={<>{title}</>}
       style={{
-        '--pf-v5-c-empty-state__icon--FontSize':
-          'var(--pf-v5-c-empty-state--m-xl__icon--FontSize)',
+        '--pf-v6-c-empty-state__icon--FontSize':
+          'var(--pf-v6-c-empty-state--m-xl__icon--FontSize)',
       }}
     >
-      <EmptyStateHeader
-        titleText={<>{title}</>}
-        icon={
-          <EmptyStateIcon
-            style={{
-              fontWeight: '500',
-              color: 'var(--pf-v5-global--primary-color--100)',
-            }}
-            icon={CloudSecurityIcon}
-          />
-        }
-        headingLevel="h2"
-      />
       <EmptyStateBody>
         {policiesCount > 0 ? (
-          <TextContent>
+          <Content>
             <InsightsLink to="/scappolicies">
               {policiesCount} {policyWord}
             </InsightsLink>{' '}
             {haveWord} been created but {haveWord} no reports.
-          </TextContent>
+          </Content>
         ) : (
           <></>
         )}
-        <TextContent>
+        <Content>
           The Compliance service uses SCAP policies to track your
           organization&#39;s adherence to compliance requirements.
-        </TextContent>
-        <TextContent>
+        </Content>
+        <Content>
           Get started by adding a policy, or read documentation about how to
           connect OpenSCAP to the Compliance service.
-        </TextContent>
+        </Content>
       </EmptyStateBody>
       <EmptyStateFooter>
         <EmptyStateActions>{mainButton}</EmptyStateActions>
