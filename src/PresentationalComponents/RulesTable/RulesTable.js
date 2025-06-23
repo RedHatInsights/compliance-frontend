@@ -1,7 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import propTypes from 'prop-types';
 import { Skeleton } from '@patternfly/react-core';
-import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
+import useComplianceTableDefaults from 'Utilities/hooks/useComplianceTableDefaults';
+
 import { ComplianceRemediationButton } from 'PresentationalComponents';
 import { ComplianceTable } from 'PresentationalComponents';
 import RuleDetailsRow from './RuleDetailsRow';
@@ -71,6 +72,7 @@ const RulesTable = ({
   valueOverrides,
   ...rulesTableProps
 }) => {
+  const complianceTableDefaults = useComplianceTableDefaults();
   const internalSelectedState = useState([]);
   const [selectedRules, setSelectedRules] =
     typeof onSelect === 'function'
@@ -138,7 +140,7 @@ const RulesTable = ({
         }),
       }}
       options={{
-        ...COMPLIANCE_TABLE_DEFAULTS,
+        ...complianceTableDefaults,
         ...options,
         defaultTableView,
         // TODO set this in views where we want a tree and make rows default

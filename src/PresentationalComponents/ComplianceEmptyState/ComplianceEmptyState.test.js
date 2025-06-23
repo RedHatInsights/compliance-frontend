@@ -38,9 +38,7 @@ describe('ComplianceEmptyState', () => {
       </TestWrapper>,
     );
 
-    expect(
-      screen.getByText(`Oops! Error loading System data: ${errorMsg}`),
-    ).toBeInTheDocument();
+    expect(screen.getByText(`Something went wrong`)).toBeInTheDocument();
   });
 
   it('expect to render without error if no policies exist', () => {

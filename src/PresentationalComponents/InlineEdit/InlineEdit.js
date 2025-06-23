@@ -3,9 +3,9 @@ import propTypes from 'prop-types';
 import {
   Button,
   FormGroup,
-  Text,
+  Content,
   TextInput,
-  TextVariants,
+  ContentVariants,
 } from '@patternfly/react-core';
 import { CheckIcon, TimesIcon, PencilAltIcon } from '@patternfly/react-icons';
 import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
@@ -73,10 +73,10 @@ const InlineEdit = ({
 
   return (
     <FormGroup
-      className="pf-v5-c-inline-edit pf-v5-m-inline-editable"
+      className="pf-v6-c-inline-edit pf-v6-m-inline-editable"
       style={{ display: 'inline-block' }}
     >
-      <div className="pf-v5-c-inline-edit__group">
+      <div className="pf-v6-c-inline-edit__group">
         {open ? (
           <>
             <div>
@@ -87,19 +87,20 @@ const InlineEdit = ({
               />
             </div>
             <div
-              className="pf-v5-c-inline-edit__group pf-v5-m-action-group pf-v5-m-icon-group"
+              className="pf-v6-c-inline-edit__group pf-v6-m-action-group pf-v6-m-icon-group"
               style={{
                 display: 'inline',
               }}
             >
               <div
-                className="pf-v5-c-inline-edit__action pf-v5-m-valid"
+                className="pf-v6-c-inline-edit__action pf-v6-m-valid"
                 style={{
                   display: 'inline',
                 }}
               >
                 <Button
-                  className="pf-v5-c-button pf-v5-u-ml-sm"
+                  icon={<CheckIcon />}
+                  className="pf-v6-c-button pf-v6-u-ml-sm"
                   variant="plain"
                   type="button"
                   aria-label="Save edits"
@@ -110,50 +111,46 @@ const InlineEdit = ({
                   style={{
                     'margin-left': '5px',
                     color: valid
-                      ? 'var(--pf-v5-global--primary-color--100)'
-                      : 'var(--pf-v5-c-button--disabled--Color)',
+                      ? 'var(--pf-t--global--text--color--100)'
+                      : 'var(--pf-t--global--text--color--disabled)',
                   }}
-                >
-                  <CheckIcon />
-                </Button>
+                />
               </div>
               <div
-                className="pf-v5-c-inline-edit__action"
+                className="pf-v6-c-inline-edit__action"
                 style={{
                   display: 'inline',
                 }}
               >
                 <Button
-                  className="pf-v5-c-button pf-v5-u-ml-sm"
+                  icon={<TimesIcon />}
+                  className="pf-v6-c-button pf-v6-u-ml-sm"
                   variant="plain"
                   type="button"
                   aria-label="Cancel edits"
                   ouiaId="CancelEdits"
                   onClick={onCloseEdit}
                   style={{ 'margin-left': '5px' }}
-                >
-                  <TimesIcon />
-                </Button>
+                />
               </div>
             </div>
           </>
         ) : (
-          <Text className="textAreaClosedText" component={TextVariants.p}>
+          <Content className="textAreaClosedText" component={ContentVariants.p}>
             <Truncate text={value} length={380} inline={true} />
             {enableEdit && (
               <Button
+                icon={<PencilAltIcon />}
                 aria-label="Edit"
                 ouiaId="InlineEditPencil"
-                className="pf-v5-u-ml-sm"
+                className="pf-v6-u-ml-sm"
                 onClick={() => {
                   setOpen(true);
                 }}
                 variant="plain"
-              >
-                <PencilAltIcon />
-              </Button>
+              />
             )}
-          </Text>
+          </Content>
         )}
       </div>
       {/*

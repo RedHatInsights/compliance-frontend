@@ -1,14 +1,14 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Text } from '@patternfly/react-core';
+import { Content } from '@patternfly/react-core';
 import { ExclamationTriangleIcon } from '@patternfly/react-icons';
 
 const WarningText = ({ children }) => (
   <React.Fragment>
     <ExclamationTriangleIcon className="ins-u-warning" />
-    <Text component="span" className="ins-c-warning-text">
+    <Content component="span" className="ins-c-warning-text">
       &nbsp;{children}
-    </Text>
+    </Content>
   </React.Fragment>
 );
 

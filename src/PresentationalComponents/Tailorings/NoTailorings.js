@@ -2,10 +2,9 @@ import React from 'react';
 import propTypes from 'prop-types';
 import {
   Alert,
-  Text,
-  TextVariants,
+  Content,
+  ContentVariants,
   PageSection,
-  PageSectionVariants,
 } from '@patternfly/react-core';
 import useProfileRules from 'Utilities/hooks/api/useProfileRules';
 import useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
@@ -54,8 +53,8 @@ const NoTailorings = ({ policy, columns }) => {
         benchmark for systems within the policy. Click the &quot;Edit
         rules&quot; or &quot;Edit policy&quot; button to edit rules.
       </Alert>
-      <PageSection variant={PageSectionVariants.light}>
-        <Text component={TextVariants.p}>
+      <PageSection hasBodyWrapper={false}>
+        <Content component={ContentVariants.p}>
           <strong>What rules are shown on this list?&nbsp;</strong>
           This view shows rules that are from the latest SSG version (
           {isLoading ? (
@@ -66,7 +65,7 @@ const NoTailorings = ({ policy, columns }) => {
           ). If you are using a different version of SSG for systems in this
           policy, those rules will be different and can be viewed on the systems
           details page.
-        </Text>
+        </Content>
       </PageSection>
       <RulesTable
         policyId={policy?.id}

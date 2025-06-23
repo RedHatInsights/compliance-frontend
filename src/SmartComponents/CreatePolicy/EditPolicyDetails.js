@@ -11,9 +11,8 @@ import propTypes from 'prop-types';
 import {
   Form,
   FormGroup,
-  Text,
-  TextContent,
-  TextVariants,
+  Content,
+  ContentVariants,
 } from '@patternfly/react-core';
 import {
   ReduxFormTextInput,
@@ -35,9 +34,9 @@ export const EditPolicyDetails = ({ change, profile, refId }) => {
 
   return (
     <React.Fragment>
-      <TextContent>
-        <Text component={TextVariants.h1}>Details</Text>
-      </TextContent>
+      <Content>
+        <Content component={ContentVariants.h1}>Details</Content>
+      </Content>
       <br />
       <Form id="editpolicydetails">
         <FormGroup label="Policy name" isRequired fieldId="name">
@@ -71,7 +70,7 @@ export const EditPolicyDetails = ({ change, profile, refId }) => {
         </FormGroup>
         <FormGroup
           label="Business objective"
-          labelIcon={<PolicyBusinessObjectiveTooltip />}
+          labelHelp={<PolicyBusinessObjectiveTooltip />}
           fieldId="businessObjective"
         >
           <Field

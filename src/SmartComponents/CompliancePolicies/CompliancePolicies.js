@@ -41,7 +41,7 @@ const CompliancePolicies = () => {
       <PageHeader className="page-header">
         <PageHeaderTitle title="SCAP policies" />
       </PageHeader>
-      <section className="pf-v5-c-page__main-section">
+      <section className="pf-v6-c-page__main-section">
         <StateView
           stateValues={{
             error: error,

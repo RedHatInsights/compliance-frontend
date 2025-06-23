@@ -29,7 +29,7 @@ const UnsupportedSSGVersionAlert = ({ ssgVersion, style, ...props }) => {
               style={{
                 marginLeft: '.5em',
                 cursor: 'pointer',
-                color: 'var(--pf-v5-global--Color--200)',
+                color: 'var(--pf-t--global--text--color--200)',
               }}
             />
           </Popover>

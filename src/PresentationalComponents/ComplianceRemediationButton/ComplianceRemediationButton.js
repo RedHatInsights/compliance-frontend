@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { dispatchNotification } from 'Utilities/Dispatcher';
+import { useAddNotification } from '@redhat-cloud-services/frontend-components-notifications/hooks';
 import { default as RemediationRemediationButton } from '@redhat-cloud-services/frontend-components-remediations/RemediationButton';
 import { useIssuesFetch } from './hooks';
 import FallbackButton from './components/FallBackButton';
@@ -12,6 +12,7 @@ const ComplianceRemediationButton = ({
   onRemediationCreated,
   ...buttonProps
 }) => {
+  const addNotification = useAddNotification();
   const { isLoading: isLoadingIssues, fetch } = useIssuesFetch(
     reportId,
     reportTestResults,
@@ -22,7 +23,7 @@ const ComplianceRemediationButton = ({
     <RemediationRemediationButton
       isDisabled={reportTestResults?.length === 0 || isLoadingIssues}
       onRemediationCreated={(result) => {
-        dispatchNotification(result.getNotification());
+        addNotification(result.getNotification());
       }}
       dataProvider={fetch}
       buttonProps={{

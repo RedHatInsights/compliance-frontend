@@ -3,18 +3,18 @@ import {
   CheckCircleIcon,
   ExclamationCircleIcon,
 } from '@patternfly/react-icons';
-import { Text, Tooltip, Icon } from '@patternfly/react-core';
+import { Content, Tooltip, Icon } from '@patternfly/react-core';
 import { fixedPercentage } from 'Utilities/TextHelper';
 
 const CompliantIcon = (system) => {
   {
     return system.compliant ? (
-      <Icon>
-        <CheckCircleIcon className="ins-u-passed" />
+      <Icon status="success">
+        <CheckCircleIcon />
       </Icon>
     ) : (
-      <Icon>
-        <ExclamationCircleIcon className="ins-u-failed" />
+      <Icon status="danger">
+        <ExclamationCircleIcon />
       </Icon>
     );
   }
@@ -31,7 +31,7 @@ export const complianceScoreString = (system) => {
 };
 
 const ComplianceScore = (system) => (
-  <Text>
+  <Content component="p">
     {system.supported ? (
       <Tooltip
         content={
@@ -44,13 +44,13 @@ const ComplianceScore = (system) => (
             key={`system-compliance-icon-${system.id}`}
             {...system}
           />
-          {complianceScoreString(system)}
+          {' ' + complianceScoreString(system)}
         </span>
       </Tooltip>
     ) : (
       complianceScoreString(system)
     )}
-  </Text>
+  </Content>
 );
 
 export default ComplianceScore;

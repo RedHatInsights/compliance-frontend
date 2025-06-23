@@ -1,5 +1,5 @@
 import React from 'react';
-import { pluralize, Text } from '@patternfly/react-core';
+import { pluralize, Content } from '@patternfly/react-core';
 import { SupportedSSGVersionsLink } from 'PresentationalComponents';
 import { paletteColors } from '../../../../constants';
 
@@ -12,11 +12,11 @@ const useLegendData = (donutValues) => {
   const unsupportedVersionWording =
     unsupportedSystemCount === 1
       ? `This system is running an unsupported version of the SCAP
-         Security Guide (SSG) for the version of RHEL installed on it. 
+         Security Guide (SSG) for the version of RHEL installed on it.
          Assessment of rules failed/passed on this system is
          a best-guess effort and may not be accurate.`
       : `These systems are running unsupported versions of the SCAP
-         Security Guide (SSG) for the version of RHEL installed on them. 
+         Security Guide (SSG) for the version of RHEL installed on them.
          Assessment of rules failed/passed on these systems is
          a best-guess effort and may not be accurate.`;
 
@@ -41,10 +41,12 @@ const useLegendData = (donutValues) => {
               title: 'Unsupported SSG versions',
               content: (
                 <>
-                  <Text variant="p">{unsupportedVersionWording}</Text>
-                  <Text variant="p">
+                  <Content component="p" variant="p">
+                    {unsupportedVersionWording}
+                  </Content>
+                  <Content component="p" variant="p">
                     The policy&apos;s compliance score excludes these systems.
-                  </Text>
+                  </Content>
                 </>
               ),
               footer: <SupportedSSGVersionsLink />,

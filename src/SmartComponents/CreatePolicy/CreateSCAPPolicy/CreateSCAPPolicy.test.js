@@ -82,7 +82,7 @@ describe('CreateSCAPPolicy', () => {
     );
 
     await userEvent.click(screen.getByRole('option', { name: 'RHEL 8' }));
-    expect(change).toBeCalledWith('osMajorVersion', 8);
+    expect(change).toHaveBeenCalledWith('osMajorVersion', 8);
   });
 
   it('indicates selected OS version and renders policies table', async () => {
@@ -162,6 +162,6 @@ describe('CreateSCAPPolicy', () => {
         name: /select row 0/i,
       }),
     );
-    expect(change).toBeCalledTimes(3);
+    expect(change).toHaveBeenCalledTimes(3);
   });
 });

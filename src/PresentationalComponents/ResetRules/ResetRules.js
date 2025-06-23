@@ -10,8 +10,8 @@ const ResetRules = () => {
     callbacks?.current?.resetSelection?.();
   };
   return (
-    <a className="pf-v5-u-ml-lg pf-v5-u-mr-xl" onClick={resetSelectionCallback}>
-      <RebootingIcon className="pf-v5-u-mr-sm" />
+    <a className="pf-v6-u-ml-lg pf-v6-u-mr-xl" onClick={resetSelectionCallback}>
+      <RebootingIcon className="pf-v6-u-mr-sm" />
       Reset to default
     </a>
   );

@@ -11,11 +11,10 @@ import {
   Form,
   FormGroup,
   Spinner,
-  Text,
-  TextContent,
-  TextVariants,
-  Tile,
+  Content,
+  ContentVariants,
 } from '@patternfly/react-core';
+import { Tile } from '@patternfly/react-core/deprecated';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
 import useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
 import useSecurityGuidesOS from 'Utilities/hooks/api/useSecurityGuidesOS';
@@ -76,20 +75,20 @@ const CreateSCAPPolicy = ({
         <Spinner />
       </StateViewPart>
       <StateViewPart stateKey="data">
-        <TextContent>
-          <Text component={TextVariants.h1} className="pf-v5-u-mb-md">
+        <Content>
+          <Content component={ContentVariants.h1} className="pf-v6-u-mb-md">
             Create SCAP policy
-          </Text>
-          <Text className="pf-v5-u-mb-md">
+          </Content>
+          <Content component="p" className="pf-v6-u-mb-md">
             Select the operating system and policy type for this policy.
-          </Text>
-        </TextContent>
+          </Content>
+        </Content>
         <Form>
           <FormGroup label="Operating system" isRequired fieldId="benchmark">
             {(data?.availableOsMajorVersions || []).map((osMajorVersion) => (
               <Tile
                 key={`rhel${osMajorVersion}-select`}
-                className="pf-v5-u-mr-md"
+                className="pf-v6-u-mr-md"
                 title={`RHEL ${osMajorVersion}`}
                 onClick={() => {
                   change('osMajorVersion', osMajorVersion);
@@ -102,7 +101,7 @@ const CreateSCAPPolicy = ({
           {selectedOsMajorVersion ? (
             <FormGroup
               isRequired
-              labelIcon={<PolicyTypeTooltip />}
+              labelHelp={<PolicyTypeTooltip />}
               label="Policy type"
               fieldId="policy-type"
             >

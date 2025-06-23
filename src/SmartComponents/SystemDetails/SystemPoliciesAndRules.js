@@ -18,12 +18,7 @@ const SystemPoliciesAndRules = ({
     <>
       <SystemPolicyCards reportTestResults={reportTestResults} />
       <br />
-      <Tabs
-        activeKey={selectedPolicy}
-        style={{
-          background: 'var(--pf-v5-global--BackgroundColor--100)',
-        }}
-      >
+      <Tabs activeKey={selectedPolicy}>
         {reportTestResults.map((reportTestResult, idx) => (
           <Tab
             key={'policy-tab-' + idx}

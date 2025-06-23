@@ -1,7 +1,6 @@
 import { act, renderHook } from '@testing-library/react';
 import { useGetEntities, useSystemsFilter, useSystemsExport } from './hooks';
 
-jest.mock('Utilities/Dispatcher');
 jest.mock('@/Utilities/hooks/useQuery', () => ({
   __esModule: true,
   ...jest.requireActual('@/Utilities/hooks/useQuery'),

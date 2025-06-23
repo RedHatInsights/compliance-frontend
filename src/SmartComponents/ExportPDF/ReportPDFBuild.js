@@ -3,16 +3,15 @@ import { StyleSheet } from '@react-pdf/renderer';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-  global_BackgroundColor_200,
-  global_LineHeight_sm,
-  global_palette_red_100,
-  global_spacer_lg,
-  global_spacer_md,
-  global_spacer_sm,
-  global_spacer_xl,
-  global_FontSize_md,
-  global_FontSize_2xl,
-  global_FontSize_3xl,
+  chart_global_Fill_Color_200,
+  t_color_red_70,
+  t_global_spacer_lg,
+  t_global_spacer_md,
+  t_global_spacer_sm,
+  t_global_spacer_xl,
+  chart_global_FontSize_sm,
+  chart_global_FontSize_2xl,
+  chart_global_FontSize_lg,
 } from '@patternfly/react-tokens';
 import { API_BASE_URL } from '@/constants';
 import PolicyDetailsSection from './PolicyDetailsSection';
@@ -25,9 +24,9 @@ import {
 
 const styles = StyleSheet.create({
   document: {
-    paddingTop: global_spacer_lg.value,
-    paddingLeft: global_spacer_xl.value,
-    paddingRight: global_spacer_xl.value,
+    paddingTop: t_global_spacer_lg.value,
+    paddingLeft: t_global_spacer_xl.value,
+    paddingRight: t_global_spacer_xl.value,
   },
 });
 
@@ -143,8 +142,8 @@ const ReportPDFBuild = ({ asyncData }) => {
     <div style={styles.document}>
       <span
         style={{
-          fontSize: global_FontSize_2xl.value,
-          color: global_palette_red_100.value,
+          fontSize: chart_global_FontSize_2xl.value,
+          color: t_color_red_70.value,
         }}
       >
         Red Hat Insights
@@ -152,10 +151,9 @@ const ReportPDFBuild = ({ asyncData }) => {
       <br />
       <span
         style={{
-          fontSize: global_FontSize_3xl.value,
-          color: global_palette_red_100.value,
+          fontSize: chart_global_FontSize_lg.value,
+          color: t_color_red_70.value,
           fontWeight: 'bold',
-          lineHeight: global_LineHeight_sm.value,
         }}
       >
         {`Compliance: ${reportData.title}`}
@@ -164,16 +162,16 @@ const ReportPDFBuild = ({ asyncData }) => {
         <>
           <br />
           <br />
-          <div style={{ backgroundColor: global_BackgroundColor_200.value }}>
+          <div style={{ backgroundColor: chart_global_Fill_Color_200.value }}>
             <div
               style={{
-                fontSize: global_FontSize_md.value,
-                padding: global_spacer_sm.value,
-                paddingBottom: global_spacer_md.value,
+                fontSize: chart_global_FontSize_sm.value,
+                padding: t_global_spacer_sm.value,
+                paddingBottom: t_global_spacer_md.value,
               }}
             >
               <div>User notes:</div>
-              <div style={{ marginTop: global_spacer_sm.value }}>
+              <div style={{ marginTop: t_global_spacer_sm.value }}>
                 {options.exportSettings.userNotes}
               </div>
             </div>

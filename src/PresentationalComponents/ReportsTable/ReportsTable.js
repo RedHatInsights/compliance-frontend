@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
+import useComplianceTableDefaults from 'Utilities/hooks/useComplianceTableDefaults';
 import { emptyRows } from '../../Utilities/hooks/useTableTools/Components/NoResultsTable';
 import { ComplianceTable as TableToolsTable } from 'PresentationalComponents';
 import columns, { exportableColumns, PDFExportDownload } from './Columns';
@@ -17,37 +17,41 @@ const ReportsTable = ({
   options,
   total,
   loading,
-}) => (
-  <TableToolsTable
-    aria-label="Reports"
-    ouiaId="ReportsTable"
-    columns={[...columns, PDFExportDownload]}
-    items={reports}
-    total={total}
-    loading={loading}
-    isStickyHeader
-    filters={{
-      filterConfig: [
-        ...policyNameFilter,
-        ...(operatingSystems?.length > 0
-          ? operatingSystemFilter(operatingSystems)
-          : []),
-        ...policyComplianceFilter,
-      ],
-    }}
-    options={{
-      ...COMPLIANCE_TABLE_DEFAULTS,
-      exportable: {
-        ...COMPLIANCE_TABLE_DEFAULTS.exportable,
-        columns: exportableColumns,
-      },
-      pagination: true,
-      emptyRows: emptyRows('reports', columns.length),
-      ...options,
-    }}
-    className={'reports-table'}
-  />
-);
+}) => {
+  const complianceTableDefaults = useComplianceTableDefaults();
+
+  return (
+    <TableToolsTable
+      aria-label="Reports"
+      ouiaId="ReportsTable"
+      columns={[...columns, PDFExportDownload]}
+      items={reports}
+      total={total}
+      loading={loading}
+      isStickyHeader
+      filters={{
+        filterConfig: [
+          ...policyNameFilter,
+          ...(operatingSystems?.length > 0
+            ? operatingSystemFilter(operatingSystems)
+            : []),
+          ...policyComplianceFilter,
+        ],
+      }}
+      options={{
+        ...complianceTableDefaults,
+        exportable: {
+          ...complianceTableDefaults.exportable,
+          columns: exportableColumns,
+        },
+        pagination: true,
+        emptyRows: emptyRows('reports', columns.length),
+        ...options,
+      }}
+      className={'reports-table'}
+    />
+  );
+};
 
 ReportsTable.propTypes = {
   reports: propTypes.array.isRequired,

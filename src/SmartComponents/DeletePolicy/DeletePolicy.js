@@ -1,25 +1,20 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-import {
-  Button,
-  Checkbox,
-  ModalVariant,
-  Text,
-  Spinner,
-} from '@patternfly/react-core';
+import { Button, Checkbox, Content, Spinner } from '@patternfly/react-core';
+import { ModalVariant } from '@patternfly/react-core/deprecated';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
-import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
+import { useAddNotification } from '@redhat-cloud-services/frontend-components-notifications/hooks';
 import {
   ComplianceModal,
   StateViewWithError,
   StateViewPart,
 } from 'PresentationalComponents';
-import { dispatchAction } from 'Utilities/Dispatcher';
 import usePolicy from 'Utilities/hooks/api/usePolicy';
 import { apiInstance } from 'Utilities/hooks/useQuery';
 
 const DeletePolicy = () => {
+  const addNotification = useAddNotification();
   const [deleteEnabled, setDeleteEnabled] = useState(false);
   const { policy_id: policyId } = useParams();
   const navigate = useNavigate();
@@ -36,21 +31,17 @@ const DeletePolicy = () => {
   const deletePolicy = async (id) => {
     try {
       await apiInstance.deletePolicy(id);
-      dispatchAction(
-        addNotification({
-          variant: 'success',
-          title: `Deleted "${policy?.title}" and its associated reports`,
-        }),
-      );
+      addNotification({
+        variant: 'success',
+        title: `Deleted "${policy?.title}" and its associated reports`,
+      });
       onClose();
     } catch (e) {
-      dispatchAction(
-        addNotification({
-          variant: 'danger',
-          title: 'Error removing policy',
-          description: e?.message,
-        }),
-      );
+      addNotification({
+        variant: 'danger',
+        title: 'Error removing policy',
+        description: e?.message,
+      });
       onClose();
     }
   };
@@ -89,10 +80,10 @@ const DeletePolicy = () => {
           <Spinner />
         </StateViewPart>
         <StateViewPart stateKey="data">
-          <Text className="policy-delete-body-text">
+          <Content component="p" className="policy-delete-body-text">
             Deleting the policy <b>{policy?.title}</b> will also delete its
             associated reports.
-          </Text>
+          </Content>
           <Checkbox
             label="I understand this will delete the policy and all associated reports"
             id={`deleting-policy-check-${policy?.id}`}

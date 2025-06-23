@@ -1,33 +1,33 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`ProgressBar expect to render failed bar without error 1`] = `
 <DocumentFragment>
   <div
-    class="pf-v5-c-progress pf-m-danger wizard-progress-bar"
+    class="pf-v6-c-progress pf-m-danger wizard-progress-bar"
     id="finished-create-policy"
   >
     <div
       aria-hidden="true"
-      class="pf-v5-c-progress__description"
+      class="pf-v6-c-progress__description"
       id="finished-create-policy-description"
     >
       Error
     </div>
     <div
       aria-hidden="true"
-      class="pf-v5-c-progress__status"
+      class="pf-v6-c-progress__status"
     >
       <span
-        class="pf-v5-c-progress__measure"
+        class="pf-v6-c-progress__measure"
       >
         50%
       </span>
       <span
-        class="pf-v5-c-progress__status-icon"
+        class="pf-v6-c-progress__status-icon"
       >
         <svg
           aria-hidden="true"
-          class="pf-v5-svg"
+          class="pf-v6-svg"
           fill="currentColor"
           height="1em"
           role="img"
@@ -45,15 +45,15 @@ exports[`ProgressBar expect to render failed bar without error 1`] = `
       aria-valuemax="100"
       aria-valuemin="0"
       aria-valuenow="50"
-      class="pf-v5-c-progress__bar"
+      class="pf-v6-c-progress__bar"
       role="progressbar"
     >
       <div
-        class="pf-v5-c-progress__indicator"
+        class="pf-v6-c-progress__indicator"
         style="width: 50%;"
       >
         <span
-          class="pf-v5-c-progress__measure"
+          class="pf-v6-c-progress__measure"
         />
       </div>
     </div>
@@ -64,22 +64,22 @@ exports[`ProgressBar expect to render failed bar without error 1`] = `
 exports[`ProgressBar expect to render progress bar without error 1`] = `
 <DocumentFragment>
   <div
-    class="pf-v5-c-progress wizard-progress-bar"
+    class="pf-v6-c-progress wizard-progress-bar"
     id="finished-create-policy"
   >
     <div
       aria-hidden="true"
-      class="pf-v5-c-progress__description"
+      class="pf-v6-c-progress__description"
       id="finished-create-policy-description"
     >
       Progress
     </div>
     <div
       aria-hidden="true"
-      class="pf-v5-c-progress__status"
+      class="pf-v6-c-progress__status"
     >
       <span
-        class="pf-v5-c-progress__measure"
+        class="pf-v6-c-progress__measure"
       >
         0%
       </span>
@@ -89,15 +89,15 @@ exports[`ProgressBar expect to render progress bar without error 1`] = `
       aria-valuemax="100"
       aria-valuemin="0"
       aria-valuenow="0"
-      class="pf-v5-c-progress__bar"
+      class="pf-v6-c-progress__bar"
       role="progressbar"
     >
       <div
-        class="pf-v5-c-progress__indicator"
+        class="pf-v6-c-progress__indicator"
         style="width: 0%;"
       >
         <span
-          class="pf-v5-c-progress__measure"
+          class="pf-v6-c-progress__measure"
         />
       </div>
     </div>
@@ -108,31 +108,31 @@ exports[`ProgressBar expect to render progress bar without error 1`] = `
 exports[`ProgressBar expect to render success bar without error 1`] = `
 <DocumentFragment>
   <div
-    class="pf-v5-c-progress pf-m-success wizard-progress-bar"
+    class="pf-v6-c-progress pf-m-success wizard-progress-bar"
     id="finished-create-policy"
   >
     <div
       aria-hidden="true"
-      class="pf-v5-c-progress__description"
+      class="pf-v6-c-progress__description"
       id="finished-create-policy-description"
     >
       Success
     </div>
     <div
       aria-hidden="true"
-      class="pf-v5-c-progress__status"
+      class="pf-v6-c-progress__status"
     >
       <span
-        class="pf-v5-c-progress__measure"
+        class="pf-v6-c-progress__measure"
       >
         100%
       </span>
       <span
-        class="pf-v5-c-progress__status-icon"
+        class="pf-v6-c-progress__status-icon"
       >
         <svg
           aria-hidden="true"
-          class="pf-v5-svg"
+          class="pf-v6-svg"
           fill="currentColor"
           height="1em"
           role="img"
@@ -150,15 +150,15 @@ exports[`ProgressBar expect to render success bar without error 1`] = `
       aria-valuemax="100"
       aria-valuemin="0"
       aria-valuenow="100"
-      class="pf-v5-c-progress__bar"
+      class="pf-v6-c-progress__bar"
       role="progressbar"
     >
       <div
-        class="pf-v5-c-progress__indicator"
+        class="pf-v6-c-progress__indicator"
         style="width: 100%;"
       >
         <span
-          class="pf-v5-c-progress__measure"
+          class="pf-v6-c-progress__measure"
         />
       </div>
     </div>
