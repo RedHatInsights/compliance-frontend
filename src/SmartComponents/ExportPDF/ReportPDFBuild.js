@@ -71,21 +71,90 @@ export const fetchData = async (createAsyncRequest, options) => {
   }
 
   // nonReportingSystems
+  // if (options.exportSettings.nonReportingSystems) {
+  //   const nonReportingSystemsPromise = createAsyncRequest(
+  //     'compliance-backend',
+  //     {
+  //       method: 'GET',
+  //       url: `${API_BASE_URL}/reports/${options.reportId}/systems`,
+  //       params: {
+  //         limit: 10,
+  //         filter: 'never_reported = true',
+  //       },
+  //     },
+  //   );
+  //   requests.push(nonReportingSystemsPromise);
+  // } else {
+  //   requests.push(Promise.resolve({ nonReportingSystemsPromise: [] }));
+  // }
+
   if (options.exportSettings.nonReportingSystems) {
-    const nonReportingSystemsPromise = createAsyncRequest(
-      'compliance-backend',
-      {
-        method: 'GET',
-        url: `${API_BASE_URL}/reports/${options.reportId}/systems`,
-        params: {
-          limit: 10,
-          filter: 'never_reported = true',
-        },
-      },
-    );
-    requests.push(nonReportingSystemsPromise);
+    const nonReportingSystemsPaginatedPromise = (async () => {
+      const batchSize = 10;
+      const filter = 'never_reported = true';
+      let allNonReportingSystemsItems = [];
+
+      const fetchNonReportingSystemsPage = async (limit, offset) => {
+        const response = await createAsyncRequest('compliance-backend', {
+          method: 'GET',
+          url: `${API_BASE_URL}/reports/${options.reportId}/systems`,
+          params: {
+            limit: limit,
+            offset: offset,
+            filter: filter,
+          },
+        });
+        return response;
+      };
+
+      try {
+        // initial request
+        const initialResponse = await fetchNonReportingSystemsPage(
+          batchSize,
+          0,
+        );
+
+        const firstPageItems = initialResponse.data || [];
+        allNonReportingSystemsItems.push(...firstPageItems);
+
+        const totalNonReportingSystems = initialResponse.meta?.total || 0;
+
+        // If no more pages, return results
+        if (totalNonReportingSystems <= batchSize) {
+          return { non_reporting_systems: allNonReportingSystemsItems };
+        }
+
+        const totalPages = Math.ceil(totalNonReportingSystems / batchSize);
+        const pagePromises = [];
+
+        // Loop to generate promises for next pages
+        for (let pageIdx = 1; pageIdx < totalPages; pageIdx++) {
+          pagePromises.push(
+            fetchNonReportingSystemsPage(
+              batchSize,
+              pageIdx * batchSize, // Calculate the offset
+            ),
+          );
+        }
+
+        const batchedResults = await Promise.all(pagePromises);
+
+        const remainingPagesItems = batchedResults.flatMap(
+          (response) => response.data,
+        );
+
+        allNonReportingSystemsItems.push(...remainingPagesItems);
+
+        // Resolve the promise with the complete list of all non-reporting systems
+        return { nonReportingSystems: allNonReportingSystemsItems };
+      } catch (error) {
+        return { nonReportingSystems: [] };
+      }
+    })();
+
+    requests.push(nonReportingSystemsPaginatedPromise);
   } else {
-    requests.push(Promise.resolve({ nonReportingSystemsPromise: [] }));
+    requests.push(Promise.resolve({ nonReportingSystems: [] }));
   }
 
   // unsupportedSystems
@@ -105,7 +174,7 @@ const ReportPDFBuild = ({ asyncData }) => {
   const topFailedRules = data[1].top_failed_rules;
   const compliantSystems = data[2].data;
   const nonCompliantSystems = data[3].data;
-  const nonReportingSystems = data[4].data;
+  const nonReportingSystems = data[4].nonReportingSystems;
 
   return (
     <div style={styles.document}>
