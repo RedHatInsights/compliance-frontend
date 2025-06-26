@@ -44,7 +44,6 @@ const reportsRoutes = [
     ),
     modal: true,
   },
-
   {
     path: 'reports/:report_id/pdf',
     title: `Export report - ${defaultReportTitle}`,
@@ -55,6 +54,19 @@ const reportsRoutes = [
       () =>
         import(
           /* webpackChunkName: "ReportDetails" */ 'SmartComponents/ReportDownload/ReportDownload'
+        ),
+    ),
+  },
+  {
+    path: 'reports/:report_id/pdf_new',
+    title: `Export report - ${defaultReportTitle}`,
+    requiredPermissions: [...defaultPermissions, 'compliance:report:read'],
+    defaultTitle: defaultReportTitle,
+    modal: true,
+    component: lazy(
+      () =>
+        import(
+          /* webpackChunkName: "ReportDetails" */ 'SmartComponents/ExportPDF/ExportPDF'
         ),
     ),
   },
