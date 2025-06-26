@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 
 import { Table } from '@redhat-cloud-services/frontend-components-pdf-generator/dist/esm/index';
 
-const UnsupportedSystemsTable = ({ systems, ssgFinder }) => {
+const UnsupportedSystemsTable = ({ systems }) => {
   const headerRow = [
     'System name',
     'OS',
@@ -14,7 +14,7 @@ const UnsupportedSystemsTable = ({ systems, ssgFinder }) => {
     system.display_name,
     `RHEL ${system.os_major_version}.${system.os_minor_version}`,
     system.security_guide_version,
-    ssgFinder(system.os_major_version, system.os_minor_version),
+    system.expectedSsgVersion,
   ]);
 
   return <Table withHeader rows={[headerRow, ...rows]} />;
@@ -22,7 +22,6 @@ const UnsupportedSystemsTable = ({ systems, ssgFinder }) => {
 
 UnsupportedSystemsTable.propTypes = {
   systems: propTypes.array,
-  ssgFinder: propTypes.func,
 };
 
 export default UnsupportedSystemsTable;

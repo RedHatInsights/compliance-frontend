@@ -1,12 +1,10 @@
 import { dispatchNotification } from 'Utilities/Dispatcher';
 import useQueryExportData from './useQueryExportData';
 import usePDFBuilder from './usePDFBuilder';
-import useSupportedSsgFinder from './useSupportedSsgFinder';
 
 // Hook to provide a function that fetches the necessary data to export
 // and compile it into pages for the pdf-generator DownloadButton
 const usePDFExport = (exportSettings, report) => {
-  const ssgFinder = useSupportedSsgFinder();
   const queryExportData = useQueryExportData(exportSettings, report, {
     onError: () => {
       dispatchNotification({
@@ -31,7 +29,7 @@ const usePDFExport = (exportSettings, report) => {
       description: 'Once complete, your download will start automatically.',
     });
     const data = await queryExportData();
-    return await buildPDFPages(data, ssgFinder);
+    return await buildPDFPages(data);
   };
 
   return exportPDF;

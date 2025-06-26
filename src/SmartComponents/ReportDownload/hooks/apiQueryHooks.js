@@ -1,8 +1,9 @@
 import { useCallback } from 'react';
 import usePromiseQueue from 'Utilities/hooks/usePromiseQueue';
 import { apiInstance } from '../../../Utilities/hooks/useQuery';
-import concat from 'lodash/concat';
+import { concat, uniq } from 'lodash';
 import { calculateOffset } from '@/Utilities/helpers';
+import useSecurityGuides from 'Utilities/hooks/api/useSecurityGuides';
 
 const COMPLIANT_SYSTEMS_FILTER = 'compliant = true and supported = true';
 const NON_COMPLIANT_SYSTEMS_FILTER = 'compliant = false and supported = true';
@@ -77,8 +78,49 @@ const useFetchReportSystems = (reportId, filter) =>
     [reportId, filter],
   );
 
+const useFetchSupportedSsg = () => {
+  const { fetchQueue } = useSecurityGuides({
+    skip: true,
+    params: {
+      limit: 1,
+      sortBy: 'version:desc',
+    },
+  });
+
+  return async (refId, osMajorVersion, unsupportedSystems) => {
+    const queueToFetch = uniq(
+      unsupportedSystems.map(({ os_minor_version }) => os_minor_version),
+    ).reduce((queue, osMinorVersion) => {
+      return {
+        ...queue,
+        [osMinorVersion]: {
+          filter: `os_major_version=${osMajorVersion} AND supported_profile=${refId}:${osMinorVersion}`,
+        },
+      };
+    }, {});
+    const fetchedExpectedVersions = await fetchQueue(queueToFetch);
+    const expectedVersions = Object.fromEntries(
+      Object.entries(fetchedExpectedVersions).map(
+        ([
+          osMinorVersion,
+          {
+            data: [{ version }],
+          },
+        ]) => [osMinorVersion, version],
+      ),
+    );
+
+    return unsupportedSystems.map((system) => ({
+      ...system,
+      expectedSsgVersion: expectedVersions[system.os_minor_version],
+    }));
+  };
+};
+
 export const useSystemsFetch = ({
   id: reportId,
+  ref_id,
+  os_major_version,
   compliant_system_count: compliantSystemsCount,
   unsupported_system_count: unsupportedSystemsCount,
   assigned_system_count: assignedSystemsCount,
@@ -97,28 +139,46 @@ export const useSystemsFetch = ({
     reportId,
     UNSUPPORTED_SYSTEMS_FILTER,
   );
+  const fetchSupportedSsgs = useFetchSupportedSsg();
   const fetchNeverReported = useFetchReportSystems(
     reportId,
     NOT_REPORTING_SYSTEMS_FILTER,
   );
 
-  const fetchAndConcat = (fetchFunction, count) => {
-    return fetchBatched(fetchFunction, count).then((result) =>
+  const fetchAndConcat = async (fetchFunction, count) => {
+    return await fetchBatched(fetchFunction, count).then((result) =>
       concat(...result),
     );
   };
 
-  return async () =>
-    Promise.all([
-      fetchAndConcat(fetchCompliant, compliantSystemsCount),
-      fetchAndConcat(
-        fetchNonCompliante,
-        assignedSystemsCount - compliantSystemsCount,
-      ),
-      fetchAndConcat(fetchUnsupported, unsupportedSystemsCount),
-      fetchAndConcat(
-        fetchNeverReported,
-        assignedSystemsCount - reportedSystemsCount,
-      ),
-    ]);
+  return async () => {
+    const compliantSystems = await fetchAndConcat(
+      fetchCompliant,
+      compliantSystemsCount,
+    );
+    const nonCompliantSystems = await fetchAndConcat(
+      fetchNonCompliante,
+      assignedSystemsCount - compliantSystemsCount,
+    );
+    const unsupportedSystems = await fetchAndConcat(
+      fetchUnsupported,
+      unsupportedSystemsCount,
+    );
+    const unsupportedSystemsWithExpectedSsg = await fetchSupportedSsgs(
+      ref_id,
+      os_major_version,
+      unsupportedSystems,
+    );
+    const neverReportedSystems = await fetchAndConcat(
+      fetchNeverReported,
+      assignedSystemsCount - reportedSystemsCount,
+    );
+
+    return [
+      compliantSystems,
+      nonCompliantSystems,
+      unsupportedSystemsWithExpectedSsg,
+      neverReportedSystems,
+    ];
+  };
 };

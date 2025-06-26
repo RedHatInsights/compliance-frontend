@@ -15,7 +15,7 @@ import RulesTable from './ReportPDF/RulesTable';
 import SubSection from './ReportPDF/SubSection';
 import ComplianceChart from './ReportPDF/ComplianceChart';
 
-const ReportPDF = ({ data, ssgFinder }) => {
+const ReportPDF = ({ data }) => {
   const {
     compliantSystems,
     compliantSystemCount,
@@ -93,10 +93,7 @@ const ReportPDF = ({ data, ssgFinder }) => {
 
         {unsupportedSystems && unsupportedSystemCount ? (
           <SubSection title="Systems with unsupported configuration">
-            <UnsupportedSystemsTable
-              systems={unsupportedSystems}
-              ssgFinder={ssgFinder}
-            />
+            <UnsupportedSystemsTable systems={unsupportedSystems} />
           </SubSection>
         ) : null}
 
@@ -132,7 +129,6 @@ const ReportPDF = ({ data, ssgFinder }) => {
 
 ReportPDF.propTypes = {
   data: propTypes.object,
-  ssgFinder: propTypes.func,
 };
 
 export default ReportPDF;
