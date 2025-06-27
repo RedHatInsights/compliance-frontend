@@ -45,7 +45,6 @@ export const ReportDownload = () => {
     setExportSetting,
     isValid: settingsValid,
   } = useExportSettings();
-  console.log('DEBUG exportSettings', exportSettings);
 
   const { requestPdf } = useChrome();
 
