@@ -17,12 +17,64 @@ const styles = StyleSheet.create({
   },
 });
 
+const fetchPaginatedList = async (
+  createAsyncRequest,
+  reportId,
+  endpointPath,
+  filter,
+  outputKey,
+  batchSize,
+) => {
+  let allItems = [];
+
+  const fetchPage = async (limit, offset) => {
+    const response = await createAsyncRequest('compliance-backend', {
+      method: 'GET',
+      url: `${API_BASE_URL}/reports/${reportId}${endpointPath}`,
+      params: { limit, offset, filter },
+    });
+    return response;
+  };
+
+  try {
+    const initialResponse = await fetchPage(batchSize, 0);
+
+    const firstPageItems = initialResponse.data || [];
+    allItems.push(...firstPageItems);
+
+    const totalItems = initialResponse.meta.total || 0;
+
+    if (totalItems <= batchSize) {
+      return { [outputKey]: allItems };
+    }
+
+    const totalPages = Math.ceil(totalItems / batchSize);
+    const pagePromises = [];
+
+    for (let pageIdx = 1; pageIdx < totalPages; pageIdx++) {
+      pagePromises.push(fetchPage(batchSize, pageIdx * batchSize));
+    }
+
+    const batchedResults = await Promise.all(pagePromises);
+    const remainingItems = batchedResults.flatMap(
+      (response) => response.data || [],
+    );
+
+    allItems.push(...remainingItems);
+
+    return { [outputKey]: allItems };
+  } catch ({}) {
+    return { [outputKey]: [] };
+  }
+};
+
 export const fetchData = async (createAsyncRequest, options) => {
   const requests = [];
+  const reportId = options.reportId;
   // Report details
   const reportPromise = createAsyncRequest('compliance-backend', {
     method: 'GET',
-    url: `${API_BASE_URL}/reports/${options.reportId}`,
+    url: `${API_BASE_URL}/reports/${reportId}`,
   });
   requests.push(reportPromise);
 
@@ -30,7 +82,7 @@ export const fetchData = async (createAsyncRequest, options) => {
   if (options.exportSettings.topTenFailedRules) {
     const topTenFailedRulesPromise = createAsyncRequest('compliance-backend', {
       method: 'GET',
-      url: `${API_BASE_URL}/reports/${options.reportId}/stats`,
+      url: `${API_BASE_URL}/reports/${reportId}/stats`,
     });
     requests.push(topTenFailedRulesPromise);
   } else {
@@ -39,130 +91,67 @@ export const fetchData = async (createAsyncRequest, options) => {
 
   // Compliant systems
   if (options.exportSettings.compliantSystems) {
-    const compliantSystemsPromise = createAsyncRequest('compliance-backend', {
-      method: 'GET',
-      url: `${API_BASE_URL}/reports/${options.reportId}/test_results`,
-      params: {
-        limit: 50,
-        filter: 'compliant = true and supported = true',
-      },
-    });
-    requests.push(compliantSystemsPromise);
+    requests.push(
+      fetchPaginatedList(
+        createAsyncRequest,
+        reportId,
+        '/test_results',
+        'compliant = true and supported = true',
+        'compliant_systems',
+        50,
+      ),
+    );
   } else {
-    requests.push(Promise.resolve({ compliantSystemsPromise: [] }));
+    requests.push(Promise.resolve({ compliant_systems: [] }));
   }
 
   // nonCompliantSystems
   if (options.exportSettings.nonCompliantSystems) {
-    const nonCompliantSystemsPromise = createAsyncRequest(
-      'compliance-backend',
-      {
-        method: 'GET',
-        url: `${API_BASE_URL}/reports/${options.reportId}/test_results`,
-        params: {
-          limit: 50,
-          filter: 'compliant = false and supported = true',
-        },
-      },
+    requests.push(
+      fetchPaginatedList(
+        createAsyncRequest,
+        reportId,
+        '/test_results',
+        'compliant = false and supported = true',
+        'non_compliant_systems',
+        50,
+      ),
     );
-    requests.push(nonCompliantSystemsPromise);
   } else {
-    requests.push(Promise.resolve({ nonCompliantSystemsPromise: [] }));
+    requests.push(Promise.resolve({ non_compliant_systems: [] }));
   }
 
   // nonReportingSystems
-  // if (options.exportSettings.nonReportingSystems) {
-  //   const nonReportingSystemsPromise = createAsyncRequest(
-  //     'compliance-backend',
-  //     {
-  //       method: 'GET',
-  //       url: `${API_BASE_URL}/reports/${options.reportId}/systems`,
-  //       params: {
-  //         limit: 10,
-  //         filter: 'never_reported = true',
-  //       },
-  //     },
-  //   );
-  //   requests.push(nonReportingSystemsPromise);
-  // } else {
-  //   requests.push(Promise.resolve({ nonReportingSystemsPromise: [] }));
-  // }
-
   if (options.exportSettings.nonReportingSystems) {
-    const nonReportingSystemsPaginatedPromise = (async () => {
-      const batchSize = 10;
-      const filter = 'never_reported = true';
-      let allNonReportingSystemsItems = [];
-
-      const fetchNonReportingSystemsPage = async (limit, offset) => {
-        const response = await createAsyncRequest('compliance-backend', {
-          method: 'GET',
-          url: `${API_BASE_URL}/reports/${options.reportId}/systems`,
-          params: {
-            limit: limit,
-            offset: offset,
-            filter: filter,
-          },
-        });
-        return response;
-      };
-
-      try {
-        // initial request
-        const initialResponse = await fetchNonReportingSystemsPage(
-          batchSize,
-          0,
-        );
-
-        const firstPageItems = initialResponse.data || [];
-        allNonReportingSystemsItems.push(...firstPageItems);
-
-        const totalNonReportingSystems = initialResponse.meta?.total || 0;
-
-        // If no more pages, return results
-        if (totalNonReportingSystems <= batchSize) {
-          return { non_reporting_systems: allNonReportingSystemsItems };
-        }
-
-        const totalPages = Math.ceil(totalNonReportingSystems / batchSize);
-        const pagePromises = [];
-
-        // Loop to generate promises for next pages
-        for (let pageIdx = 1; pageIdx < totalPages; pageIdx++) {
-          pagePromises.push(
-            fetchNonReportingSystemsPage(
-              batchSize,
-              pageIdx * batchSize, // Calculate the offset
-            ),
-          );
-        }
-
-        const batchedResults = await Promise.all(pagePromises);
-
-        const remainingPagesItems = batchedResults.flatMap(
-          (response) => response.data,
-        );
-
-        allNonReportingSystemsItems.push(...remainingPagesItems);
-
-        // Resolve the promise with the complete list of all non-reporting systems
-        return { nonReportingSystems: allNonReportingSystemsItems };
-      } catch (error) {
-        return { nonReportingSystems: [] };
-      }
-    })();
-
-    requests.push(nonReportingSystemsPaginatedPromise);
+    requests.push(
+      fetchPaginatedList(
+        createAsyncRequest,
+        reportId,
+        '/systems',
+        'never_reported = true',
+        'non_reporting_systems',
+        10,
+      ),
+    );
   } else {
-    requests.push(Promise.resolve({ nonReportingSystems: [] }));
+    requests.push(Promise.resolve({ non_reporting_systems: [] }));
   }
 
   // unsupportedSystems
-
-  // const unsupportedSystems = createAsyncRequest('compliance-backend', {
-  //   method: 'GET',
-  //   url: `${API_BASE_URL}/reports/${options.reportId}/stats`,
-  // });
+  if (options.exportSettings.unsupportedSystems) {
+    requests.push(
+      fetchPaginatedList(
+        createAsyncRequest,
+        reportId,
+        '/test_results',
+        'supported = false',
+        'unsupported_systems',
+        50,
+      ),
+    );
+  } else {
+    requests.push(Promise.resolve({ unsupported_systems: [] }));
+  }
 
   const data = await Promise.all(requests);
   return { data: data, options };
@@ -172,9 +161,10 @@ const ReportPDFBuild = ({ asyncData }) => {
   const { data, options } = asyncData.data;
   const reportData = data[0].data;
   const topFailedRules = data[1].top_failed_rules;
-  const compliantSystems = data[2].data;
-  const nonCompliantSystems = data[3].data;
-  const nonReportingSystems = data[4].nonReportingSystems;
+  const compliantSystems = data[2].compliant_systems;
+  const nonCompliantSystems = data[3].non_compliant_systems;
+  const nonReportingSystems = data[4].non_reporting_systems;
+  const unsupportedSystems = data[5].unsupported_systems;
 
   return (
     <div style={styles.document}>
@@ -202,6 +192,16 @@ const ReportPDFBuild = ({ asyncData }) => {
           <SystemsTableSection
             sectionTitle={'Non-compliant systems'}
             systemsData={nonCompliantSystems}
+          />
+        </>
+      )}
+      {options.exportSettings.unsupportedSystems && (
+        <>
+          <br />
+          <br />
+          <SystemsTableSection
+            sectionTitle={'Systems with unsupported configuration'}
+            systemsData={unsupportedSystems}
           />
         </>
       )}

@@ -56,8 +56,8 @@ const SystemsTableSection = ({ sectionTitle, systemsData }) => {
           >
             <Td key={system.display_name}>{system.display_name}</Td>
             <Td key={osMajorVersion}>{osMajorVersion}</Td>
-            <Td key={system.ssg_version_running || 'N/A'}>
-              {system.ssg_version_running || 'N/A'}
+            <Td key={system.security_guide_version || 'N/A'}>
+              {system.security_guide_version || 'N/A'}
             </Td>
             <Td key={system.ssg_version_expected || 'N/A'}>
               {system.ssg_version_expected || 'N/A'}
