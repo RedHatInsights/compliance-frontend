@@ -71,19 +71,37 @@ const fetchPaginatedList = async (
 export const fetchData = async (createAsyncRequest, options) => {
   const requests = [];
   const reportId = options.reportId;
+  let osMajorVersion = null;
+  let refId = null;
+
   // Report details
-  const reportPromise = createAsyncRequest('compliance-backend', {
-    method: 'GET',
-    url: `${API_BASE_URL}/reports/${reportId}`,
-  });
-  requests.push(reportPromise);
+  try {
+    const rawReportResponse = await createAsyncRequest('compliance-backend', {
+      method: 'GET',
+      url: `${API_BASE_URL}/reports/${reportId}`,
+    });
+
+    osMajorVersion = rawReportResponse.data.os_major_version;
+    refId = rawReportResponse.data.ref_id;
+
+    requests.push(Promise.resolve({ report_details: rawReportResponse.data }));
+  } catch ({}) {
+    requests.push(Promise.resolve({ report_details: {} }));
+  }
 
   // Top 10 failed rules
   if (options.exportSettings.topTenFailedRules) {
-    const topTenFailedRulesPromise = createAsyncRequest('compliance-backend', {
-      method: 'GET',
-      url: `${API_BASE_URL}/reports/${reportId}/stats`,
-    });
+    const topTenFailedRulesPromise = (async () => {
+      try {
+        const response = await createAsyncRequest('compliance-backend', {
+          method: 'GET',
+          url: `${API_BASE_URL}/reports/${reportId}/stats`,
+        });
+        return { top_failed_rules: response.top_failed_rules };
+      } catch ({}) {
+        return { top_failed_rules: [] };
+      }
+    })();
     requests.push(topTenFailedRulesPromise);
   } else {
     requests.push(Promise.resolve({ top_failed_rules: [] }));
@@ -139,16 +157,81 @@ export const fetchData = async (createAsyncRequest, options) => {
 
   // unsupportedSystems
   if (options.exportSettings.unsupportedSystems) {
-    requests.push(
-      fetchPaginatedList(
-        createAsyncRequest,
-        reportId,
-        '/test_results',
-        'supported = false',
-        'unsupported_systems',
-        50,
-      ),
-    );
+    const unsupportedSystemsPromise = (async () => {
+      try {
+        const { unsupported_systems: rawUnsupportedSystems } =
+          await fetchPaginatedList(
+            createAsyncRequest,
+            reportId,
+            '/test_results',
+            'supported = false',
+            'unsupported_systems',
+            50,
+          );
+
+        if (rawUnsupportedSystems.length === 0) {
+          return { unsupported_systems: [] };
+        }
+
+        const uniqueOsMinorVersions = new Set();
+        rawUnsupportedSystems.forEach((system) => {
+          uniqueOsMinorVersions.add(system.os_minor_version);
+        });
+
+        // Fetch security guides for each unique OS minor version
+        const securityGuidePromises = Array.from(uniqueOsMinorVersions).map(
+          async (osMinorVersion) => {
+            try {
+              const response = await createAsyncRequest('compliance-backend', {
+                method: 'GET',
+                url: `${API_BASE_URL}/security_guides`,
+                params: {
+                  limit: 1,
+                  filter: `os_major_version=${osMajorVersion} AND supported_profile=${refId}:${osMinorVersion}`,
+                  sort_by: `version:desc`,
+                },
+              });
+              if (response.data && response.data.length > 0) {
+                return {
+                  osMinorVersion: osMinorVersion,
+                  expectedVersion: response.data[0].version,
+                };
+              }
+              return null;
+            } catch ({}) {
+              return null;
+            }
+          },
+        );
+
+        const securityGuideResults = await Promise.all(securityGuidePromises);
+
+        const expectedSsgVersionMap = new Map();
+        securityGuideResults.forEach((result) => {
+          expectedSsgVersionMap.set(
+            result.osMinorVersion,
+            result.expectedVersion,
+          );
+        });
+
+        // Populate expected_security_guide_version for each unsupported system
+        const mutatedUnsupportedSystems = rawUnsupportedSystems.map(
+          (system) => {
+            const expectedSsgVersion =
+              expectedSsgVersionMap.get(system.os_minor_version) || null;
+            return {
+              ...system,
+              expected_security_guide_version: expectedSsgVersion,
+            };
+          },
+        );
+
+        return { unsupported_systems: mutatedUnsupportedSystems };
+      } catch ({}) {
+        return { unsupported_systems: [] };
+      }
+    })();
+    requests.push(unsupportedSystemsPromise);
   } else {
     requests.push(Promise.resolve({ unsupported_systems: [] }));
   }
@@ -159,7 +242,7 @@ export const fetchData = async (createAsyncRequest, options) => {
 
 const ReportPDFBuild = ({ asyncData }) => {
   const { data, options } = asyncData.data;
-  const reportData = data[0].data;
+  const reportData = data[0].report_details;
   const topFailedRules = data[1].top_failed_rules;
   const compliantSystems = data[2].compliant_systems;
   const nonCompliantSystems = data[3].non_compliant_systems;

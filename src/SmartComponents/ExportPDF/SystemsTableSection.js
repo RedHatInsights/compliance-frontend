@@ -59,8 +59,8 @@ const SystemsTableSection = ({ sectionTitle, systemsData }) => {
             <Td key={system.security_guide_version || 'N/A'}>
               {system.security_guide_version || 'N/A'}
             </Td>
-            <Td key={system.ssg_version_expected || 'N/A'}>
-              {system.ssg_version_expected || 'N/A'}
+            <Td key={system.expected_security_guide_version || 'N/A'}>
+              {system.expected_security_guide_version || 'N/A'}
             </Td>
           </Tr>
         );
