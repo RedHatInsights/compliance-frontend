@@ -13,22 +13,7 @@ import useExportSettings from 'SmartComponents/ReportDownload/hooks/useExportSet
 import useReport from 'Utilities/hooks/api/useReport';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import { dispatchNotification } from 'Utilities/Dispatcher';
-
-const exportNotifications = {
-  pending: {
-    title: `Preparing export. Once complete, your download will start automatically.`,
-    variant: 'info',
-  },
-  success: {
-    title: `Downloading export`,
-    variant: 'success',
-  },
-  error: {
-    title: 'Couldn’t download export',
-    variant: 'danger',
-    autoDismiss: false,
-  },
-};
+import { exportNotifications } from './constants';
 
 export const ReportDownload = () => {
   const { report_id: reportId } = useParams();
@@ -84,6 +69,7 @@ export const ReportDownload = () => {
       key="export"
       isDisabled={loadingPDF || !settingsValid}
       ouiaId="ExportPDFButton"
+      isLoading={loadingPDF}
     >
       Export to PDF
     </Button>,
