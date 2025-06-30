@@ -2,12 +2,22 @@ import { StyleSheet } from '@react-pdf/renderer';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import chart_color_red_100 from '@patternfly/react-tokens/dist/js/chart_color_red_100';
+import {
+  global_BackgroundColor_200,
+  global_LineHeight_sm,
+  global_palette_red_100,
+  global_spacer_lg,
+  global_spacer_md,
+  global_spacer_sm,
+  global_spacer_xl,
+  global_FontSize_md,
+  global_FontSize_2xl,
+  global_FontSize_3xl,
+} from '@patternfly/react-tokens';
 import { API_BASE_URL } from '@/constants';
 import PolicyDetailsSection from './PolicyDetailsSection';
 import TopFailedRulesSection from './TopFailedRulesSection';
 import SystemsTableSection from './SystemsTableSection';
-import { TextArea } from '@patternfly/react-core';
 import {
   fetchPaginatedList,
   fetchUnsupportedSystemsWithExpectedSSG,
@@ -15,9 +25,9 @@ import {
 
 const styles = StyleSheet.create({
   document: {
-    paddingTop: '24px',
-    paddingLeft: '32px',
-    paddingRight: '32px',
+    paddingTop: global_spacer_lg.value,
+    paddingLeft: global_spacer_xl.value,
+    paddingRight: global_spacer_xl.value,
   },
 });
 
@@ -135,18 +145,43 @@ const ReportPDFBuild = ({ asyncData }) => {
 
   return (
     <div style={styles.document}>
-      <span style={{ fontSize: '24px', color: chart_color_red_100.value }}>
+      <span
+        style={{
+          fontSize: global_FontSize_2xl.value,
+          color: global_palette_red_100.value,
+        }}
+      >
         Red Hat Insights
       </span>
       <br />
-      <span style={{ fontSize: '32px', color: chart_color_red_100.value }}>
+      <span
+        style={{
+          fontSize: global_FontSize_3xl.value,
+          color: global_palette_red_100.value,
+          fontWeight: 'bold',
+          lineHeight: global_LineHeight_sm.value,
+        }}
+      >
         {`Compliance: ${reportData.title}`}
       </span>
       {options.exportSettings.userNotes && (
         <>
           <br />
           <br />
-          <TextArea value={options.exportSettings.userNotes} />
+          <div style={{ backgroundColor: global_BackgroundColor_200.value }}>
+            <div
+              style={{
+                fontSize: global_FontSize_md.value,
+                padding: global_spacer_sm.value,
+                paddingBottom: global_spacer_md.value,
+              }}
+            >
+              <div>User notes:</div>
+              <div style={{ marginTop: global_spacer_sm.value }}>
+                {options.exportSettings.userNotes}
+              </div>
+            </div>
+          </div>
         </>
       )}
       <br />

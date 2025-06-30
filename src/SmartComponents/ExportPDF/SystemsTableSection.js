@@ -1,14 +1,20 @@
 import React from 'react';
-import propTypes from 'prop-types';
-import { Text } from '@react-pdf/renderer';
-import chart_color_red_100 from '@patternfly/react-tokens/dist/js/chart_color_red_100';
-import global_BackgroundColor_200 from '@patternfly/react-tokens/dist/js/global_BackgroundColor_200';
+import PropTypes from 'prop-types';
+import {
+  global_palette_red_100,
+  global_BackgroundColor_200,
+  global_FontSize_lg,
+  global_FontSize_md,
+  global_spacer_sm,
+  global_spacer_xs,
+} from '@patternfly/react-tokens';
 import { Table, Tbody, Td, Th, Thead, Tr } from '@patternfly/react-table';
+import { Text } from '@patternfly/react-core';
 
 const SystemsTableSection = ({ sectionTitle, systemsData }) => {
   const commonTableConfig = {
     headers: [
-      { value: 'System name' },
+      { value: 'Name' },
       { value: 'OS' },
       { value: 'Failed rules' },
       { value: 'Compliance score' },
@@ -16,18 +22,35 @@ const SystemsTableSection = ({ sectionTitle, systemsData }) => {
     rowBuilder: (system, isOddRow) => {
       const osMajorVersion = `${system.os_major_version}.${system.os_minor_version}`;
       const customStyle = {
-        backgroundColor: global_BackgroundColor_200.var,
+        backgroundColor: global_BackgroundColor_200.value,
       };
       return (
-        <Tr
-          noPadding={true}
-          key={`${system.display_name}`}
-          style={isOddRow ? customStyle : {}}
-        >
-          <Td key={system.display_name}>{system.display_name}</Td>
-          <Td key={osMajorVersion}>{osMajorVersion}</Td>
-          <Td key={system.failed_rule_count}>{system.failed_rule_count}</Td>
-          <Td key={system.score}>{system.score}</Td>
+        <Tr key={`${system.id}`} style={isOddRow ? customStyle : {}}>
+          <Td
+            style={{
+              fontSize: global_FontSize_md.value,
+              paddingLeft: global_spacer_xs.value,
+            }}
+            key={system.display_name}
+            noPadding={true}
+          >
+            {system.display_name}
+          </Td>
+          <Td
+            style={{ fontSize: global_FontSize_md.value }}
+            key={osMajorVersion}
+          >
+            RHEL {osMajorVersion}
+          </Td>
+          <Td
+            style={{ fontSize: global_FontSize_md.value }}
+            key={system.failed_rule_count}
+          >
+            {system.failed_rule_count}
+          </Td>
+          <Td style={{ fontSize: global_FontSize_md.value }} key={system.score}>
+            {system.score}%
+          </Td>
         </Tr>
       );
     },
@@ -38,10 +61,10 @@ const SystemsTableSection = ({ sectionTitle, systemsData }) => {
     'Non-compliant systems': commonTableConfig,
     'Systems with unsupported configuration': {
       headers: [
-        { value: 'System name' },
+        { value: 'Name' },
         { value: 'OS' },
-        { value: 'Running SSG version' },
-        { value: 'Expected SSG version' },
+        { value: 'Current SSG' },
+        { value: 'Expected SSG' },
       ],
       rowBuilder: (system, isOddRow) => {
         const osMajorVersion = `${system.os_major_version}.${system.os_minor_version}`;
@@ -49,17 +72,33 @@ const SystemsTableSection = ({ sectionTitle, systemsData }) => {
           backgroundColor: global_BackgroundColor_200.var,
         };
         return (
-          <Tr
-            noPadding={true}
-            key={`${system.display_name}`}
-            style={isOddRow ? customStyle : {}}
-          >
-            <Td key={system.display_name}>{system.display_name}</Td>
-            <Td key={osMajorVersion}>{osMajorVersion}</Td>
-            <Td key={system.security_guide_version || 'N/A'}>
+          <Tr key={`${system.id}`} style={isOddRow ? customStyle : {}}>
+            <Td
+              style={{
+                fontSize: global_FontSize_md.value,
+                paddingLeft: global_spacer_xs.value,
+              }}
+              key={system.display_name}
+              noPadding={true}
+            >
+              {system.display_name}
+            </Td>
+            <Td
+              style={{ fontSize: global_FontSize_md.value }}
+              key={osMajorVersion}
+            >
+              RHEL {osMajorVersion}
+            </Td>
+            <Td
+              style={{ fontSize: global_FontSize_md.value }}
+              key={system.security_guide_version || 'N/A'}
+            >
               {system.security_guide_version || 'N/A'}
             </Td>
-            <Td key={system.expected_security_guide_version || 'N/A'}>
+            <Td
+              style={{ fontSize: global_FontSize_md.value }}
+              key={system.expected_security_guide_version || 'N/A'}
+            >
               {system.expected_security_guide_version || 'N/A'}
             </Td>
           </Tr>
@@ -67,20 +106,30 @@ const SystemsTableSection = ({ sectionTitle, systemsData }) => {
       },
     },
     'Systems never reported': {
-      headers: [{ value: 'System name' }, { value: 'OS' }],
+      headers: [{ value: 'Name' }, { value: 'OS' }],
       rowBuilder: (system, isOddRow) => {
         const osMajorVersion = `${system.os_major_version}.${system.os_minor_version}`;
         const customStyle = {
           backgroundColor: global_BackgroundColor_200.var,
         };
         return (
-          <Tr
-            noPadding={true}
-            key={`${system.display_name}`}
-            style={isOddRow ? customStyle : {}}
-          >
-            <Td key={system.display_name}>{system.display_name}</Td>
-            <Td key={osMajorVersion}>{osMajorVersion}</Td>
+          <Tr key={`${system.id}`} style={isOddRow ? customStyle : {}}>
+            <Td
+              style={{
+                fontSize: global_FontSize_md.value,
+                paddingLeft: global_spacer_xs.value,
+              }}
+              key={system.display_name}
+              noPadding={true}
+            >
+              {system.display_name}
+            </Td>
+            <Td
+              style={{ fontSize: global_FontSize_md.value }}
+              key={osMajorVersion}
+            >
+              RHEL {osMajorVersion}
+            </Td>
           </Tr>
         );
       },
@@ -99,12 +148,33 @@ const SystemsTableSection = ({ sectionTitle, systemsData }) => {
 
   return (
     <React.Fragment>
-      <Text style={{ color: chart_color_red_100.value }}>{sectionTitle}</Text>
-      <Table variant="compact">
-        <Thead>
-          {headers.map((colHeader, index) => (
-            <Th key={`header-${index}`}>{colHeader.value}</Th>
-          ))}
+      <Text
+        style={{
+          color: global_palette_red_100.value,
+          fontSize: global_FontSize_lg.value,
+          marginBottom: global_spacer_xs.value,
+        }}
+      >
+        {sectionTitle}
+      </Text>
+      <Table borders={false} variant="compact">
+        <Thead noWrap={true}>
+          <Tr>
+            {headers.map((colHeader, index) => (
+              <Th
+                style={{
+                  fontSize: global_FontSize_md.value,
+                  paddingLeft:
+                    index === 0
+                      ? global_spacer_xs.value
+                      : global_spacer_sm.value,
+                }}
+                key={`header-${index}`}
+              >
+                {colHeader.value}
+              </Th>
+            ))}
+          </Tr>
         </Thead>
         <Tbody>{rows}</Tbody>
       </Table>
@@ -113,8 +183,8 @@ const SystemsTableSection = ({ sectionTitle, systemsData }) => {
 };
 
 SystemsTableSection.propTypes = {
-  sectionTitle: propTypes.string.isRequired,
-  systemsData: propTypes.array.isRequired,
+  sectionTitle: PropTypes.string.isRequired,
+  systemsData: PropTypes.array.isRequired,
 };
 
 export default SystemsTableSection;

@@ -58,7 +58,7 @@ const reportsRoutes = [
     ),
   },
   {
-    path: 'reports/:report_id/pdf_new',
+    path: 'reports/:report_id/pdfv2',
     title: `Export report - ${defaultReportTitle}`,
     requiredPermissions: [...defaultPermissions, 'compliance:report:read'],
     defaultTitle: defaultReportTitle,

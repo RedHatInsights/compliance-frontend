@@ -53,7 +53,7 @@ export const PDFExportDownload = ({ id }) => {
   const isPDFGeneratorEnabled = useFeatureFlag('compliance.pdf_generator');
   const basePath = `/reports/${id}`;
   const downloadUrl = isPDFGeneratorEnabled
-    ? `${basePath}/pdf_new`
+    ? `${basePath}/pdfv2`
     : `${basePath}/pdf`;
 
   return (

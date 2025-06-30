@@ -27,7 +27,7 @@ const useLegendData = (donutValues) => {
     },
     {
       name: `${pluralize(nonCompliantSystemCount, 'system')} non-compliant`,
-      symbol: { fill: paletteColors.blue200 },
+      symbol: { fill: paletteColors.blue100 },
     },
     ...(unsupportedSystemCount > 0
       ? [

@@ -1,13 +1,23 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Text } from '@react-pdf/renderer';
-import chart_color_red_100 from '@patternfly/react-tokens/dist/js/chart_color_red_100';
-import global_BackgroundColor_150 from '@patternfly/react-tokens/dist/js/global_BackgroundColor_150';
-import { Flex, FlexItem } from '@patternfly/react-core';
-import { Table, Tbody, Td, Tr } from '@patternfly/react-table';
+import {
+  global_FontSize_lg,
+  global_FontSize_md,
+  global_palette_red_100,
+  global_spacer_md,
+} from '@patternfly/react-tokens';
+import {
+  DescriptionList,
+  DescriptionListTerm,
+  DescriptionListGroup,
+  DescriptionListDescription,
+  Flex,
+  FlexItem,
+  Text,
+} from '@patternfly/react-core';
 import { ChartDonut } from '@patternfly/react-charts';
 import { fixedPercentage } from 'Utilities/TextHelper';
-import { paletteColors } from '../../constants';
+import { paletteColors } from '@/constants';
 
 const PolicyDetailsSection = ({ reportData }) => {
   const threshold = fixedPercentage(reportData.compliance_threshold);
@@ -35,48 +45,66 @@ const PolicyDetailsSection = ({ reportData }) => {
 
   const chartColorScale = [
     paletteColors.blue300,
-    paletteColors.blue200,
+    paletteColors.blue100,
     paletteColors.gold300,
     paletteColors.black200,
   ];
 
   return (
     <React.Fragment>
-      <Text style={{ color: chart_color_red_100.value }}>Policy details</Text>
+      <Text
+        style={{
+          color: global_palette_red_100.value,
+          fontSize: global_FontSize_lg.value,
+          marginBottom: global_spacer_md.value,
+        }}
+      >
+        Policy details
+      </Text>
       <Flex alignItems={{ default: 'alignItemsCenter' }}>
         <FlexItem flex={{ default: 'flex_2' }}>
-          <Table variant="compact">
-            <Tbody>
-              <Tr style={{ fontSize: '12px' }}>
-                <Td style={{ fontSize: '12px' }}>Policy type</Td>
-                <Td style={{ fontSize: '12px' }}>{reportData.profile_title}</Td>
-              </Tr>
-              <Tr
-                style={{
-                  fontSize: '12px',
-                  backgroundColor: global_BackgroundColor_150.var,
-                }}
+          <DescriptionList isCompact>
+            <DescriptionListGroup>
+              <DescriptionListTerm
+                style={{ fontSize: global_FontSize_md.value }}
               >
-                <Td style={{ fontSize: '12px' }}>Operating system</Td>
-                <Td style={{ fontSize: '12px' }}>
-                  RHEL {reportData.os_major_version}
-                </Td>
-              </Tr>
-              <Tr style={{ fontSize: '12px' }}>
-                <Td style={{ fontSize: '12px' }}>Compliance threshold</Td>
-                <Td style={{ fontSize: '12px' }}>{threshold}</Td>
-              </Tr>
-              <Tr
-                style={{
-                  fontSize: '12px',
-                  backgroundColor: global_BackgroundColor_150.var,
-                }}
+                Policy type
+              </DescriptionListTerm>
+              <DescriptionListDescription>
+                {reportData.profile_title}
+              </DescriptionListDescription>
+            </DescriptionListGroup>
+            <DescriptionListGroup>
+              <DescriptionListTerm
+                style={{ fontSize: global_FontSize_md.value }}
               >
-                <Td style={{ fontSize: '12px' }}>Business objective</Td>
-                <Td style={{ fontSize: '12px' }}>{businessObjective}</Td>
-              </Tr>
-            </Tbody>
-          </Table>
+                Operating system
+              </DescriptionListTerm>
+              <DescriptionListDescription>
+                RHEL {reportData.os_major_version}
+              </DescriptionListDescription>
+            </DescriptionListGroup>
+            <DescriptionListGroup>
+              <DescriptionListTerm
+                style={{ fontSize: global_FontSize_md.value }}
+              >
+                Compliance threshold
+              </DescriptionListTerm>
+              <DescriptionListDescription>
+                {threshold}
+              </DescriptionListDescription>
+            </DescriptionListGroup>
+            <DescriptionListGroup>
+              <DescriptionListTerm
+                style={{ fontSize: global_FontSize_md.value }}
+              >
+                Business objective
+              </DescriptionListTerm>
+              <DescriptionListDescription>
+                {businessObjective}
+              </DescriptionListDescription>
+            </DescriptionListGroup>
+          </DescriptionList>
         </FlexItem>
         <FlexItem flex={{ default: 'flex_3' }}>
           <ChartDonut

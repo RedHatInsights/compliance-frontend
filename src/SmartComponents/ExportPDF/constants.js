@@ -1,4 +1,3 @@
-
 export const exportNotifications = {
   pending: {
     title: `Preparing export.`,

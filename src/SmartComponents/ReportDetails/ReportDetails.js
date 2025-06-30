@@ -116,7 +116,7 @@ const ReportDetails = ({ route }) => {
                 state={{ reportData }}
                 to={
                   isPDFGeneratorEnabled
-                    ? `/reports/${reportData.id}/pdf_new`
+                    ? `/reports/${reportData.id}/pdfv2`
                     : `/reports/${reportData.id}/pdf`
                 }
                 className="pf-v5-u-mr-md"
