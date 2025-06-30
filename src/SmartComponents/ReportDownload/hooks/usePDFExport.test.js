@@ -1,17 +1,14 @@
 import { renderHook } from '@testing-library/react';
 import { DEFAULT_EXPORT_SETTINGS } from '../constants';
 import usePDFBuilder from './usePDFBuilder';
-import useSupportedSsgFinder from './useSupportedSsgFinder';
 import useQueryExportData from './useQueryExportData';
 
 jest.mock('Utilities/Dispatcher');
 
 jest.mock('./useQueryExportData', () => jest.fn());
 jest.mock('./usePDFBuilder', () => jest.fn());
-jest.mock('./useSupportedSsgFinder', () => jest.fn());
 
 usePDFBuilder.mockImplementation(() => async (data) => data);
-useSupportedSsgFinder.mockImplementation(() => async () => []);
 useQueryExportData.mockImplementation(() => async () => [
   { nonCompliantSystemCount: 2 },
 ]);

@@ -15,7 +15,6 @@ const NonReportedSystemsTable = ({ systems }) => {
 
 NonReportedSystemsTable.propTypes = {
   systems: propTypes.array,
-  ssgFinder: propTypes.func,
 };
 
 export default NonReportedSystemsTable;
