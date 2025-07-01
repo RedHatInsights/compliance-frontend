@@ -108,8 +108,7 @@ const PolicyDetailsSection = ({ reportData }) => {
         </FlexItem>
         <FlexItem flex={{ default: 'flex_3' }}>
           <ChartDonut
-            ariaDesc="Average number of pets"
-            ariaTitle="Donut chart example"
+            ariaTitle="Compliance donut chart"
             constrainToVisibleArea
             data={donutValues}
             legendData={[
@@ -140,7 +139,17 @@ const PolicyDetailsSection = ({ reportData }) => {
 };
 
 PolicyDetailsSection.propTypes = {
-  reportData: PropTypes.object,
+  reportData: PropTypes.shape({
+    business_objective: PropTypes.string,
+    compliance_threshold: PropTypes.number,
+    os_major_version: PropTypes.number,
+    profile_title: PropTypes.string,
+    percent_compliant: PropTypes.number,
+    assigned_system_count: PropTypes.number,
+    compliant_system_count: PropTypes.number,
+    unsupported_system_count: PropTypes.number,
+    reported_system_count: PropTypes.number,
+  }),
 };
 
 export default PolicyDetailsSection;

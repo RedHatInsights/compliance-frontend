@@ -48,7 +48,6 @@ export const fetchData = async (createAsyncRequest, options) => {
 
   requests.push(Promise.resolve({ report_details: rawReportResponse.data }));
 
-
   // Top 10 failed rules
   if (options.exportSettings.topTenFailedRules) {
     try {
