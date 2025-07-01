@@ -329,17 +329,38 @@ describe('ReportPDFBuild', () => {
     ).toBeInTheDocument();
     expect(screen.getByText('PolicyDetailsSection')).toBeInTheDocument();
 
-    // Other optional sections are not in the doc
     expect(screen.queryByText('User notes:')).not.toBeInTheDocument();
     expect(screen.queryByText('TopFailedRulesSection')).not.toBeInTheDocument();
-    expect(screen.queryByText('Non-compliant systems')).not.toBeInTheDocument();
+    expect(screen.queryByText('SystemsTableSection')).not.toBeInTheDocument();
+  });
+
+  it('does no renders sections that have empty data', () => {
+    const mockAsyncDataModified = {
+      data: {
+        ...mockAsyncData.data,
+        options: {
+          ...mockAsyncData.data.options,
+          exportSettings: {
+            ...mockAsyncData.data.options.exportSettings,
+            topTenFailedRules: true,
+            compliantSystems: true,
+            nonCompliantSystems: true,
+            nonReportingSystems: true,
+            unsupportedSystems: true,
+          },
+        },
+      },
+    };
+    render(<ReportPDFBuild asyncData={mockAsyncDataModified} />);
+
+    expect(screen.getByText('Red Hat Insights')).toBeInTheDocument();
     expect(
-      screen.queryByText('Systems with unsupported configuration'),
-    ).not.toBeInTheDocument();
-    expect(
-      screen.queryByText('Systems never reported'),
-    ).not.toBeInTheDocument();
-    expect(screen.queryByText('Compliant systems')).not.toBeInTheDocument();
+      screen.getByText(`Compliance: ${mockReportData.title}`),
+    ).toBeInTheDocument();
+    expect(screen.getByText('PolicyDetailsSection')).toBeInTheDocument();
+
+    expect(screen.queryByText('TopFailedRulesSection')).not.toBeInTheDocument();
+    expect(screen.queryByText('SystemsTableSection')).not.toBeInTheDocument();
   });
 
   it('should render all sections when all export settings are enabled and data is provided', () => {

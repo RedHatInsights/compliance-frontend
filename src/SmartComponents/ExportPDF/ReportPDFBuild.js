@@ -183,53 +183,58 @@ const ReportPDFBuild = ({ asyncData }) => {
       <br />
       <br />
       <PolicyDetailsSection reportData={reportData} />
-      {options.exportSettings.nonCompliantSystems && (
-        <>
-          <br />
-          <br />
-          <SystemsTableSection
-            sectionTitle={'Non-compliant systems'}
-            systemsData={nonCompliantSystems}
-          />
-        </>
-      )}
-      {options.exportSettings.unsupportedSystems && (
-        <>
-          <br />
-          <br />
-          <SystemsTableSection
-            sectionTitle={'Systems with unsupported configuration'}
-            systemsData={unsupportedSystems}
-          />
-        </>
-      )}
-      {options.exportSettings.nonReportingSystems && (
-        <>
-          <br />
-          <br />
-          <SystemsTableSection
-            sectionTitle={'Systems never reported'}
-            systemsData={nonReportingSystems}
-          />
-        </>
-      )}
-      {options.exportSettings.compliantSystems && (
-        <>
-          <br />
-          <br />
-          <SystemsTableSection
-            sectionTitle={'Compliant systems'}
-            systemsData={compliantSystems}
-          />
-        </>
-      )}
-      {options.exportSettings.topTenFailedRules && (
-        <>
-          <br />
-          <br />
-          <TopFailedRulesSection rulesData={topFailedRules} />
-        </>
-      )}
+      {options.exportSettings.nonCompliantSystems &&
+        nonCompliantSystems.length > 0 && (
+          <>
+            <br />
+            <br />
+            <SystemsTableSection
+              sectionTitle={'Non-compliant systems'}
+              systemsData={nonCompliantSystems}
+            />
+          </>
+        )}
+      {options.exportSettings.unsupportedSystems &&
+        unsupportedSystems.length > 0 && (
+          <>
+            <br />
+            <br />
+            <SystemsTableSection
+              sectionTitle={'Systems with unsupported configuration'}
+              systemsData={unsupportedSystems}
+            />
+          </>
+        )}
+      {options.exportSettings.nonReportingSystems &&
+        nonReportingSystems.length > 0 && (
+          <>
+            <br />
+            <br />
+            <SystemsTableSection
+              sectionTitle={'Systems never reported'}
+              systemsData={nonReportingSystems}
+            />
+          </>
+        )}
+      {options.exportSettings.compliantSystems &&
+        compliantSystems.length > 0 && (
+          <>
+            <br />
+            <br />
+            <SystemsTableSection
+              sectionTitle={'Compliant systems'}
+              systemsData={compliantSystems}
+            />
+          </>
+        )}
+      {options.exportSettings.topTenFailedRules &&
+        topFailedRules.length > 0 && (
+          <>
+            <br />
+            <br />
+            <TopFailedRulesSection rulesData={topFailedRules} />
+          </>
+        )}
       <br />
     </div>
   );
