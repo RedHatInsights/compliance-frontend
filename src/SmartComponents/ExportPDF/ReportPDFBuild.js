@@ -38,19 +38,16 @@ export const fetchData = async (createAsyncRequest, options) => {
   let refId = null;
 
   // Report details
-  try {
-    const rawReportResponse = await createAsyncRequest('compliance-backend', {
-      method: 'GET',
-      url: `${API_BASE_URL}/reports/${reportId}`,
-    });
+  const rawReportResponse = await createAsyncRequest('compliance-backend', {
+    method: 'GET',
+    url: `${API_BASE_URL}/reports/${reportId}`,
+  });
 
-    osMajorVersion = rawReportResponse.data.os_major_version;
-    refId = rawReportResponse.data.ref_id;
+  osMajorVersion = rawReportResponse.data.os_major_version;
+  refId = rawReportResponse.data.ref_id;
 
-    requests.push(Promise.resolve({ report_details: rawReportResponse.data }));
-  } catch ({}) {
-    requests.push(Promise.resolve({ report_details: {} }));
-  }
+  requests.push(Promise.resolve({ report_details: rawReportResponse.data }));
+
 
   // Top 10 failed rules
   if (options.exportSettings.topTenFailedRules) {

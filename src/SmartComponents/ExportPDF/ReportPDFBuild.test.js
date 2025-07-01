@@ -191,16 +191,6 @@ describe('fetchData', () => {
     expect(result.data[5]).toEqual({ unsupported_systems: [] });
   });
 
-  it('should return empty report_details on report_details fetch error', async () => {
-    const options = { ...mockOptionsBase };
-    createAsyncRequest.mockRejectedValueOnce(new Error('Report fetch failed'));
-
-    const result = await fetchData(createAsyncRequest, options);
-
-    expect(createAsyncRequest).toHaveBeenCalledTimes(1);
-    expect(result.data[0]).toEqual({ report_details: {} });
-  });
-
   it('should return empty top_failed_rules on fetch error when enabled', async () => {
     const options = {
       ...mockOptionsBase,
@@ -267,34 +257,6 @@ describe('fetchData', () => {
       8,
       'xccdf_foo',
     );
-    expect(result.data[5]).toEqual({ unsupported_systems: [] });
-  });
-
-  it('should pass null for osMajorVersion and refId to fetchUnsupportedSystemsWithExpectedSSG if report_details fetch fails', async () => {
-    const options = {
-      ...mockOptionsBase,
-      exportSettings: { unsupportedSystems: true },
-    };
-
-    createAsyncRequest.mockRejectedValueOnce(
-      new Error('Report details failed'),
-    );
-
-    fetchUnsupportedSystemsWithExpectedSSG.mockResolvedValueOnce({
-      unsupported_systems: [],
-    });
-
-    const result = await fetchData(createAsyncRequest, options);
-
-    expect(createAsyncRequest).toHaveBeenCalledTimes(1);
-    expect(fetchUnsupportedSystemsWithExpectedSSG).toHaveBeenCalledTimes(1);
-    expect(fetchUnsupportedSystemsWithExpectedSSG).toHaveBeenCalledWith(
-      createAsyncRequest,
-      mockReportId,
-      null,
-      null,
-    );
-    expect(result.data[0]).toEqual({ report_details: {} });
     expect(result.data[5]).toEqual({ unsupported_systems: [] });
   });
 
