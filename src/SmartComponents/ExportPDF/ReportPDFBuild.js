@@ -109,7 +109,7 @@ export const fetchData = async (createAsyncRequest, options) => {
         '/systems',
         'never_reported = true',
         'non_reporting_systems',
-        10,
+        50,
       ),
     );
   } else {
