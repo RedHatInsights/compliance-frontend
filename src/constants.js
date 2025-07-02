@@ -12,6 +12,13 @@ export const COMPLIANCE_API_ROOT = '/api/compliance';
 export const COMPLIANCE_UI_ROOT = '/rhel/compliance';
 export const INVENTORY_API_ROOT = '/api/inventory/v1';
 export const API_BASE_URL = '/api/compliance/v2';
+import {
+  chart_color_black_100,
+  chart_color_black_200,
+  chart_color_gold_300,
+  chart_color_blue_100,
+  chart_color_blue_300,
+} from '@patternfly/react-tokens';
 
 export const API_HEADERS = {
   'X-Insights-Compliance': packageJson.version,
@@ -241,12 +248,11 @@ export const COMPLIANCE_TABLE_DEFAULTS = {
 };
 
 export const paletteColors = {
-  black300: '#D2D2D2', // '--pf-global--palette--black-300',
-  black200: '#F0F0F0', // --pf-global--palette--black-200,
-  blue200: '#73BCF7', // '--pf-global--palette--blue-200',
-  blue300: '#2B9AF3', //'--pf-global--palette--blue-300',
-  blue400: '#0066CC', //'--pf-global--palette--blue-400',
-  gold300: '#F4C145', //--pf-global--palette--gold-300',
+  black100: chart_color_black_100.value,
+  black200: chart_color_black_200.value,
+  blue100: chart_color_blue_100.value,
+  blue300: chart_color_blue_300.value,
+  gold300: chart_color_gold_300.value,
 };
 
 export const backgroundColors = {

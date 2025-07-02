@@ -55,6 +55,10 @@ module.exports = {
         `/src/${process.env.NODE_ENV !== 'production' ? 'Dev' : ''}AppEntry`
       ),
       './SystemDetail': resolve(__dirname, '/src/Modules/ComplianceDetails'),
+      './ReportPDFBuild': resolve(
+        __dirname,
+        '/src/SmartComponents/ExportPDF/ReportPDFBuild',
+      ),
     },
   },
   resolve: {

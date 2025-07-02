@@ -5,6 +5,8 @@ import {
   sortingByProp,
   orderByArray,
   buildOSObject,
+  capitalizeWord,
+  stringToSentenceCase,
 } from './helpers';
 import items, {
   severityLevels,
@@ -141,5 +143,19 @@ describe('buildOSObject', () => {
       { count: 0, value: { major: '6', minor: '9', name: 'RHEL' } },
       { count: 0, value: { major: '7', minor: '8', name: 'RHEL' } },
     ]);
+  });
+});
+
+describe('capitalizeWord', () => {
+  it('should capitalize single word', () => {
+    const result = capitalizeWord('foobar');
+    expect(result).toEqual('Foobar');
+  });
+});
+
+describe('stringToSentenceCase', () => {
+  it('should apply sentence case to string', () => {
+    const result = stringToSentenceCase('this Is A Test String');
+    expect(result).toEqual('This is a test string');
   });
 });

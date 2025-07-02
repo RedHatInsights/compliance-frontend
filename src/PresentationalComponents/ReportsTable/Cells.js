@@ -8,6 +8,7 @@ import {
   LinkButton,
 } from 'PresentationalComponents';
 import ReportChart from '../../SmartComponents/ReportDetails/Components/ReportChart';
+import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
 
 export const Name = (report) => (
   <TextContent>
@@ -48,20 +49,28 @@ CompliantSystems.propTypes = {
   report: propTypes.object,
 };
 
-export const PDFExportDownload = ({ id }) => (
-  <Link
-    aria-label="Reports PDF download link"
-    to={`/reports/${id}/pdf`}
-    Component={LinkButton}
-    componentProps={{
-      className: 'pf-v5-u-mr-md',
-      variant: 'plain',
-      ouiaId: 'ReportsDownloadReportPDFLink',
-    }}
-  >
-    <ExportIcon />
-  </Link>
-);
+export const PDFExportDownload = ({ id }) => {
+  const isPDFGeneratorEnabled = useFeatureFlag('compliance.pdf_generator');
+  const basePath = `/reports/${id}`;
+  const downloadUrl = isPDFGeneratorEnabled
+    ? `${basePath}/pdfv2`
+    : `${basePath}/pdf`;
+
+  return (
+    <Link
+      aria-label="Reports PDF download link"
+      to={downloadUrl}
+      Component={LinkButton}
+      componentProps={{
+        className: 'pf-v5-u-mr-md',
+        variant: 'plain',
+        ouiaId: 'ReportsDownloadReportPDFLink',
+      }}
+    >
+      <ExportIcon />
+    </Link>
+  );
+};
 
 PDFExportDownload.propTypes = {
   id: propTypes.string,

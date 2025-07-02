@@ -63,10 +63,10 @@ const useDonutChart = (report) => {
     { x: 'Not reporting', y: notReportingSystemCount },
   ];
   const chartColorScale = (totalSystemCount === 0 && [
-    paletteColors.black300,
+    paletteColors.black100,
   ]) || [
     paletteColors.blue300,
-    paletteColors.blue200,
+    paletteColors.blue100,
     paletteColors.gold300,
     paletteColors.black200,
   ];

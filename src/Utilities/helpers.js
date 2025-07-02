@@ -94,3 +94,11 @@ export const buildOSObject = (osVersions = []) => {
     });
 };
 export const calculateOffset = (page, perPage) => (page - 1) * perPage;
+
+export const capitalizeWord = (string) =>
+  string.charAt(0).toUpperCase() + string.slice(1);
+
+export const stringToSentenceCase = (string) => {
+  const lowercasedString = string.toLowerCase();
+  return lowercasedString.charAt(0).toUpperCase() + lowercasedString.slice(1);
+};
