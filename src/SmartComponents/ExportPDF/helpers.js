@@ -11,12 +11,11 @@ export const fetchPaginatedList = async (
   let allItems = [];
 
   const fetchPage = async (limit, offset) => {
-    const response = await createAsyncRequest('compliance-backend', {
+    return await createAsyncRequest('compliance-backend', {
       method: 'GET',
       url: `${API_BASE_URL}/reports/${reportId}${endpointPath}`,
       params: { limit, offset, filter },
     });
-    return response;
   };
 
   try {

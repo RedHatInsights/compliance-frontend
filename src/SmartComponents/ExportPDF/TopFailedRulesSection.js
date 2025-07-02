@@ -83,7 +83,14 @@ const TopFailedRulesSection = ({ rulesData }) => {
 };
 
 TopFailedRulesSection.propTypes = {
-  rulesData: PropTypes.object,
+  rulesData: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      identifier: PropTypes.node,
+      severity: PropTypes.string,
+      count: PropTypes.number,
+    }),
+  ).isRequired,
 };
 
 export default TopFailedRulesSection;

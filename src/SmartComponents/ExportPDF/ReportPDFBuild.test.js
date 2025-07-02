@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom'; // For additional matchers like .toBeInTheDocument()
+import '@testing-library/jest-dom';
 
 import { API_BASE_URL } from '@/constants';
 import { fetchData } from './ReportPDFBuild';
 
-import ReportPDFBuild from './ReportPDFBuild'; // Assuming ReportPDFBuild is the default export
+import ReportPDFBuild from './ReportPDFBuild';
 import PolicyDetailsSection from './PolicyDetailsSection';
 import TopFailedRulesSection from './TopFailedRulesSection';
 import SystemsTableSection from './SystemsTableSection';

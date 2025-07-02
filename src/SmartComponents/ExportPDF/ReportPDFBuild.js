@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 
 export const fetchData = async (createAsyncRequest, options) => {
   const requests = [];
-  const reportId = options.reportId;
+  const { reportId } = options;
   let osMajorVersion = null;
   let refId = null;
 

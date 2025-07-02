@@ -7,22 +7,31 @@ import { ReportDownload } from './ExportPDF';
 jest.mock('react-router-dom', () => ({
   useParams: jest.fn(() => ({ report_id: 'test-report-id' })),
 }));
-jest.mock('@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate', () => jest.fn(() => jest.fn()));
-jest.mock('SmartComponents/ReportDownload/hooks/useExportSettings', () => jest.fn(() => ({
-  exportSettings: {},
-  setExportSetting: jest.fn(),
-  isValid: true,
-})));
+jest.mock(
+  '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate',
+  () => jest.fn(() => jest.fn()),
+);
+jest.mock('SmartComponents/ReportDownload/hooks/useExportSettings', () =>
+  jest.fn(() => ({
+    exportSettings: {},
+    setExportSetting: jest.fn(),
+    isValid: true,
+  })),
+);
 
-jest.mock('Utilities/hooks/api/useReport', () => jest.fn(() => ({
-  data: { data: { title: 'Test report title' } },
-  loading: false,
-  error: undefined,
-})));
+jest.mock('Utilities/hooks/api/useReport', () =>
+  jest.fn(() => ({
+    data: { data: { title: 'Test report title' } },
+    loading: false,
+    error: undefined,
+  })),
+);
 
-jest.mock('@redhat-cloud-services/frontend-components/useChrome', () => jest.fn(() => ({
-  requestPdf: jest.fn(),
-})));
+jest.mock('@redhat-cloud-services/frontend-components/useChrome', () =>
+  jest.fn(() => ({
+    requestPdf: jest.fn(),
+  })),
+);
 
 jest.mock('Utilities/Dispatcher', () => ({
   dispatchNotification: jest.fn(),

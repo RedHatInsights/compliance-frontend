@@ -138,8 +138,8 @@ const SystemsTableSection = ({ sectionTitle, systemsData }) => {
 
   const currentConfig = tableConfigurations[sectionTitle];
 
-  const headers = currentConfig.headers;
-  const rowBuilder = currentConfig.rowBuilder;
+  const { headers } = currentConfig;
+  const { rowBuilder } = currentConfig;
 
   const rows = systemsData.map((system, idx) => {
     const isOddRow = (idx + 1) % 2;
