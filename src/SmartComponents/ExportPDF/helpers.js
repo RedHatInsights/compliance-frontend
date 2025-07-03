@@ -11,7 +11,7 @@ export const fetchPaginatedList = async (
   let allItems = [];
 
   const fetchPage = async (limit, offset) => {
-    return await createAsyncRequest('compliance-backend', {
+    return await createAsyncRequest('compliance', {
       method: 'GET',
       url: `${API_BASE_URL}/reports/${reportId}${endpointPath}`,
       params: { limit, offset, filter },
@@ -80,7 +80,7 @@ export const fetchUnsupportedSystemsWithExpectedSSG = async (
     const securityGuidePromises = Array.from(uniqueOsMinorVersions).map(
       async (osMinorVersion) => {
         try {
-          const response = await createAsyncRequest('compliance-backend', {
+          const response = await createAsyncRequest('compliance', {
             method: 'GET',
             url: `${API_BASE_URL}/security_guides`,
             params: {
