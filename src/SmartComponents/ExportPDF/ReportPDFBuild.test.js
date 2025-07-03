@@ -82,11 +82,11 @@ describe('fetchData', () => {
     const result = await fetchData(createAsyncRequest, options);
 
     expect(createAsyncRequest).toHaveBeenCalledTimes(2); // reportDetails & top failed rules
-    expect(createAsyncRequest).toHaveBeenCalledWith('compliance-backend', {
+    expect(createAsyncRequest).toHaveBeenCalledWith('compliance', {
       method: 'GET',
       url: `${API_BASE_URL}/reports/${mockReportId}`,
     });
-    expect(createAsyncRequest).toHaveBeenCalledWith('compliance-backend', {
+    expect(createAsyncRequest).toHaveBeenCalledWith('compliance', {
       method: 'GET',
       url: `${API_BASE_URL}/reports/${mockReportId}/stats`,
     });
@@ -167,7 +167,7 @@ describe('fetchData', () => {
     const result = await fetchData(createAsyncRequest, options);
 
     expect(createAsyncRequest).toHaveBeenCalledTimes(1);
-    expect(createAsyncRequest).toHaveBeenCalledWith('compliance-backend', {
+    expect(createAsyncRequest).toHaveBeenCalledWith('compliance', {
       method: 'GET',
       url: `${API_BASE_URL}/reports/${mockReportId}`,
     });

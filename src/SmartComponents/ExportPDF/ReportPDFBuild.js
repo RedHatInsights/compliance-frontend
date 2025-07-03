@@ -38,7 +38,7 @@ export const fetchData = async (createAsyncRequest, options) => {
   let refId = null;
 
   // Report details
-  const rawReportResponse = await createAsyncRequest('compliance-backend', {
+  const rawReportResponse = await createAsyncRequest('compliance', {
     method: 'GET',
     url: `${API_BASE_URL}/reports/${reportId}`,
   });
@@ -51,7 +51,7 @@ export const fetchData = async (createAsyncRequest, options) => {
   // Top 10 failed rules
   if (options.exportSettings.topTenFailedRules) {
     try {
-      const response = await createAsyncRequest('compliance-backend', {
+      const response = await createAsyncRequest('compliance', {
         method: 'GET',
         url: `${API_BASE_URL}/reports/${reportId}/stats`,
       });

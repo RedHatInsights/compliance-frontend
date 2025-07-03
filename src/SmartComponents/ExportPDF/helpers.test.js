@@ -43,7 +43,7 @@ describe('fetchPaginatedList', () => {
     );
 
     expect(createAsyncRequest).toHaveBeenCalledTimes(1);
-    expect(createAsyncRequest).toHaveBeenCalledWith('compliance-backend', {
+    expect(createAsyncRequest).toHaveBeenCalledWith('compliance', {
       method: 'GET',
       url: `${API_BASE_URL}/reports/${reportId}${endpointPath}`,
       params: { limit: batchSize, offset: 0, filter },
@@ -83,17 +83,17 @@ describe('fetchPaginatedList', () => {
 
     expect(createAsyncRequest).toHaveBeenCalledTimes(3);
 
-    expect(createAsyncRequest).toHaveBeenCalledWith('compliance-backend', {
+    expect(createAsyncRequest).toHaveBeenCalledWith('compliance', {
       method: 'GET',
       url: `${API_BASE_URL}/reports/${reportId}${endpointPath}`,
       params: { limit: batchSize, offset: 0, filter },
     });
-    expect(createAsyncRequest).toHaveBeenCalledWith('compliance-backend', {
+    expect(createAsyncRequest).toHaveBeenCalledWith('compliance', {
       method: 'GET',
       url: `${API_BASE_URL}/reports/${reportId}${endpointPath}`,
       params: { limit: batchSize, offset: batchSize, filter },
     });
-    expect(createAsyncRequest).toHaveBeenCalledWith('compliance-backend', {
+    expect(createAsyncRequest).toHaveBeenCalledWith('compliance', {
       method: 'GET',
       url: `${API_BASE_URL}/reports/${reportId}${endpointPath}`,
       params: { limit: batchSize, offset: 4, filter },
@@ -224,7 +224,7 @@ describe('fetchUnsupportedSystemsWithExpectedSSG', () => {
     );
 
     expect(createAsyncRequest).toHaveBeenCalledTimes(3);
-    expect(createAsyncRequest).toHaveBeenCalledWith('compliance-backend', {
+    expect(createAsyncRequest).toHaveBeenCalledWith('compliance', {
       method: 'GET',
       url: `${API_BASE_URL}/reports/${reportId}/test_results`,
       params: {
@@ -233,7 +233,7 @@ describe('fetchUnsupportedSystemsWithExpectedSSG', () => {
         offset: 0,
       },
     });
-    expect(createAsyncRequest).toHaveBeenCalledWith('compliance-backend', {
+    expect(createAsyncRequest).toHaveBeenCalledWith('compliance', {
       method: 'GET',
       url: `${API_BASE_URL}/security_guides`,
       params: {
@@ -242,7 +242,7 @@ describe('fetchUnsupportedSystemsWithExpectedSSG', () => {
         sort_by: `version:desc`,
       },
     });
-    expect(createAsyncRequest).toHaveBeenCalledWith('compliance-backend', {
+    expect(createAsyncRequest).toHaveBeenCalledWith('compliance', {
       method: 'GET',
       url: `${API_BASE_URL}/security_guides`,
       params: {
