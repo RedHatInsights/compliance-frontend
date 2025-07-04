@@ -23,7 +23,7 @@ describe('FinishedCreatePolicy', () => {
       </TestWrapper>,
     );
 
-    expect(FinishedCreatePolicyBase).toBeCalledWith(
+    expect(FinishedCreatePolicyBase).toHaveBeenCalledWith(
       { updatePolicy: expect.anything() },
       expect.anything(),
     );
@@ -83,7 +83,7 @@ describe('useUpdatePolicy', () => {
 
     await result.current(undefined, policyDataToSubmit, onProgress);
 
-    expect(createPolicy).toBeCalledWith(
+    expect(createPolicy).toHaveBeenCalledWith(
       [
         undefined, // X-RH identity
         {
@@ -103,7 +103,7 @@ describe('useUpdatePolicy', () => {
 
     await result.current(undefined, policyDataToSubmit, onProgress);
 
-    expect(assignSystems).toBeCalledWith([
+    expect(assignSystems).toHaveBeenCalledWith([
       createdPolicyId,
       undefined, // X-RH identity
       {
@@ -117,7 +117,7 @@ describe('useUpdatePolicy', () => {
 
     await result.current(undefined, policyDataToSubmit, onProgress);
 
-    expect(fetchTailorings).toBeCalledWith(
+    expect(fetchTailorings).toHaveBeenCalledWith(
       [
         createdPolicyId,
         undefined, // X-RH identity
@@ -126,7 +126,7 @@ describe('useUpdatePolicy', () => {
       false, // to return response data
     );
 
-    expect(assignRules).toBeCalledWith(
+    expect(assignRules).toHaveBeenCalledWith(
       [
         createdPolicyId,
         createdTailoringId,
@@ -153,7 +153,7 @@ describe('useUpdatePolicy', () => {
       onProgress,
     );
 
-    expect(updateTailoring).toBeCalledWith({
+    expect(updateTailoring).toHaveBeenCalledWith({
       policyId: createdPolicyId,
       tailoringId: createdTailoringId,
       valuesUpdate: { value_overrides: { test_id_1: 'test_value_1' } },
@@ -165,6 +165,6 @@ describe('useUpdatePolicy', () => {
 
     await result.current(undefined, policyDataToSubmit, onProgress);
 
-    expect(onProgress).toBeCalledTimes(4);
+    expect(onProgress).toHaveBeenCalledTimes(4);
   });
 });

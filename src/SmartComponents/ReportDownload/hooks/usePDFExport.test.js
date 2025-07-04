@@ -3,8 +3,6 @@ import { DEFAULT_EXPORT_SETTINGS } from '../constants';
 import usePDFBuilder from './usePDFBuilder';
 import useQueryExportData from './useQueryExportData';
 
-jest.mock('Utilities/Dispatcher');
-
 jest.mock('./useQueryExportData', () => jest.fn());
 jest.mock('./usePDFBuilder', () => jest.fn());
 

@@ -79,6 +79,6 @@ describe('PolicyDetails', () => {
       </TestWrapper>,
     );
 
-    expect(usePolicyOsVersionCounts).toBeCalledWith('some-policy-id');
+    expect(usePolicyOsVersionCounts).toHaveBeenCalledWith('some-policy-id');
   });
 });

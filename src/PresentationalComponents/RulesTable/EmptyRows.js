@@ -3,7 +3,6 @@ import {
   EmptyState,
   EmptyStateBody,
   EmptyStateVariant,
-  EmptyStateHeader,
 } from '@patternfly/react-core';
 
 const emptyRows = (columns) => [
@@ -11,11 +10,11 @@ const emptyRows = (columns) => [
     cells: [
       {
         title: (
-          <EmptyState variant={EmptyStateVariant.full}>
-            <EmptyStateHeader
-              titleText="No matching rules found"
-              headingLevel="h5"
-            />
+          <EmptyState
+            headingLevel="h5"
+            titleText="No matching rules found"
+            variant={EmptyStateVariant.full}
+          >
             <EmptyStateBody>
               This filter criteria matches no rules. <br /> Try changing your
               filter settings.

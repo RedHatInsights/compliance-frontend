@@ -8,14 +8,15 @@ import {
   StateViewPart,
 } from 'PresentationalComponents';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
+import { useAddNotification } from '@redhat-cloud-services/frontend-components-notifications/hooks';
 import ExportPDFForm from 'SmartComponents/ReportDownload/Components/ExportPDFForm';
 import useExportSettings from 'SmartComponents/ReportDownload/hooks/useExportSettings';
 import useReport from 'Utilities/hooks/api/useReport';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
-import { dispatchNotification } from 'Utilities/Dispatcher';
 import { exportNotifications } from './constants';
 
 export const ReportDownload = () => {
+  const addNotification = useAddNotification();
   const { report_id: reportId } = useParams();
   const [loadingPDF, setLoadingPDF] = useState(false);
   const {
@@ -35,7 +36,7 @@ export const ReportDownload = () => {
 
   const dataFetch = async () => {
     setLoadingPDF(true);
-    dispatchNotification(exportNotifications.pending);
+    addNotification(exportNotifications.pending);
 
     try {
       await requestPdf({
@@ -53,10 +54,10 @@ export const ReportDownload = () => {
         },
       });
 
-      dispatchNotification(exportNotifications.success);
+      addNotification(exportNotifications.success);
     } catch (error) {
       console.log(error);
-      dispatchNotification(exportNotifications.error);
+      addNotification(exportNotifications.error);
     } finally {
       setLoadingPDF(false);
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Modal } from '@patternfly/react-core';
+import { Modal } from '@patternfly/react-core/deprecated';
 
 // Provides a modal with defaults used in compliance
 const ComplianceModal = ({ children, className = '', ...props }) => {

@@ -1,9 +1,8 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import {
-  Text,
-  TextVariants,
-  TextContent,
+  Content,
+  ContentVariants,
   Flex,
   FlexItem,
 } from '@patternfly/react-core';
@@ -21,9 +20,9 @@ const TabHeader = ({
   showResetButton,
 }) => {
   return (
-    <TextContent className="pf-v5-u-mt-md">
-      <Text component={TextVariants.h3}>
-        <span className="pf-v5-u-pr-sm">
+    <Content className="pf-v6-u-mt-md">
+      <Content component={ContentVariants.h3}>
+        <span className="pf-v6-u-pr-sm">
           <OsVersionText
             profile={{
               osMajorVersion:
@@ -35,7 +34,7 @@ const TabHeader = ({
             }}
           />
         </span>
-      </Text>
+      </Content>
       <Flex>
         <FlexItem>
           <SSGVersionText
@@ -57,15 +56,15 @@ const TabHeader = ({
             <Link
               to={`/scappolicies/${profileId}/default_ruleset/${securityGuide?.id}`}
               target="_blank"
-              className="pf-v5-u-mr-xl"
+              className="pf-v6-u-mr-xl"
             >
               View policy rules
-              <ExternalLinkAltIcon className="pf-v5-u-ml-sm" />
+              <ExternalLinkAltIcon className="pf-v6-u-ml-sm" />
             </Link>
           )}
         </FlexItem>
       </Flex>
-    </TextContent>
+    </Content>
   );
 };
 

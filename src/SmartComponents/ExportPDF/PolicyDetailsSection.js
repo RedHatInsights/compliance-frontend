@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-  global_FontSize_lg,
-  global_FontSize_md,
-  global_palette_red_100,
-  global_spacer_md,
+  chart_global_FontSize_lg,
+  chart_global_FontSize_2xl,
+  t_color_red_70,
+  t_global_spacer_md,
 } from '@patternfly/react-tokens';
 import {
   DescriptionList,
@@ -13,9 +13,9 @@ import {
   DescriptionListDescription,
   Flex,
   FlexItem,
-  Text,
+  Content,
 } from '@patternfly/react-core';
-import { ChartDonut } from '@patternfly/react-charts';
+import { ChartDonut } from '@patternfly/react-charts/victory';
 import { fixedPercentage } from 'Utilities/TextHelper';
 import { paletteColors } from '@/constants';
 
@@ -52,21 +52,21 @@ const PolicyDetailsSection = ({ reportData }) => {
 
   return (
     <React.Fragment>
-      <Text
+      <Content
         style={{
-          color: global_palette_red_100.value,
-          fontSize: global_FontSize_lg.value,
-          marginBottom: global_spacer_md.value,
+          color: t_color_red_70.value,
+          fontSize: chart_global_FontSize_lg.value,
+          marginBottom: t_global_spacer_md.value,
         }}
       >
         Policy details
-      </Text>
+      </Content>
       <Flex alignItems={{ default: 'alignItemsCenter' }}>
         <FlexItem flex={{ default: 'flex_2' }}>
           <DescriptionList isCompact>
             <DescriptionListGroup>
               <DescriptionListTerm
-                style={{ fontSize: global_FontSize_md.value }}
+                style={{ fontSize: chart_global_FontSize_2xl.value }}
               >
                 Policy type
               </DescriptionListTerm>
@@ -76,7 +76,7 @@ const PolicyDetailsSection = ({ reportData }) => {
             </DescriptionListGroup>
             <DescriptionListGroup>
               <DescriptionListTerm
-                style={{ fontSize: global_FontSize_md.value }}
+                style={{ fontSize: chart_global_FontSize_2xl.value }}
               >
                 Operating system
               </DescriptionListTerm>
@@ -86,7 +86,7 @@ const PolicyDetailsSection = ({ reportData }) => {
             </DescriptionListGroup>
             <DescriptionListGroup>
               <DescriptionListTerm
-                style={{ fontSize: global_FontSize_md.value }}
+                style={{ fontSize: chart_global_FontSize_2xl.value }}
               >
                 Compliance threshold
               </DescriptionListTerm>
@@ -96,7 +96,7 @@ const PolicyDetailsSection = ({ reportData }) => {
             </DescriptionListGroup>
             <DescriptionListGroup>
               <DescriptionListTerm
-                style={{ fontSize: global_FontSize_md.value }}
+                style={{ fontSize: chart_global_FontSize_2xl.value }}
               >
                 Business objective
               </DescriptionListTerm>

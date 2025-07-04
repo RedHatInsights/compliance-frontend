@@ -6,11 +6,9 @@ import {
   EmptyState,
   EmptyStateBody,
   EmptyStateVariant,
-  EmptyStateIcon,
   List,
   ListItem,
   EmptyStateActions,
-  EmptyStateHeader,
   EmptyStateFooter,
 } from '@patternfly/react-core';
 import {
@@ -18,10 +16,10 @@ import {
   LinkWithPermission as Link,
 } from 'PresentationalComponents';
 import { WrenchIcon } from '@patternfly/react-icons';
+import { useAddNotification } from '@redhat-cloud-services/frontend-components-notifications/hooks';
 import { reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { dispatchNotification } from 'Utilities/Dispatcher';
 
 const EmptyStateWithErrors = ({ errors }) =>
   errors && Array.isArray(errors) && errors.length > 0 ? (
@@ -50,6 +48,7 @@ export const FinishedCreatePolicyBase = ({
   valueOverrides = {},
   updatePolicy,
 }) => {
+  const addNotification = useAddNotification();
   const [percent, setPercent] = useState(0);
   const [message, setMessage] = useState('This usually takes a minute or two.');
   const [errors, setErrors] = useState(null);
@@ -75,7 +74,7 @@ export const FinishedCreatePolicyBase = ({
       .then(({ id }) => {
         setPercent(100);
         setMessage();
-        dispatchNotification({
+        addNotification({
           variant: 'success',
           title: `Created policy "${name}"`,
           autoDismiss: true,
@@ -91,7 +90,7 @@ export const FinishedCreatePolicyBase = ({
         setMessage(error.networkError?.message);
         setErrors(error.networkError?.result?.errors);
         setFailed(true);
-        dispatchNotification({
+        addNotification({
           variant: 'danger',
           title: 'Error creating policy',
           description: error.message,
@@ -105,12 +104,12 @@ export const FinishedCreatePolicyBase = ({
 
   return (
     <Bullseye>
-      <EmptyState variant={EmptyStateVariant.full}>
-        <EmptyStateHeader
-          titleText="Creating policy"
-          icon={<EmptyStateIcon icon={WrenchIcon} />}
-          headingLevel="h1"
-        />
+      <EmptyState
+        headingLevel="h1"
+        icon={WrenchIcon}
+        titleText="Creating policy"
+        variant={EmptyStateVariant.full}
+      >
         <br />
 
         <EmptyStateBody>

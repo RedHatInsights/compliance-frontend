@@ -3,8 +3,6 @@ import '@testing-library/jest-dom';
 import { DEFAULT_EXPORT_SETTINGS } from '../constants';
 import ExportPDFForm from './ExportPDFForm';
 
-jest.mock('Utilities/Dispatcher');
-
 describe('ExportPDFForm', function () {
   const defaultProps = {
     report: {

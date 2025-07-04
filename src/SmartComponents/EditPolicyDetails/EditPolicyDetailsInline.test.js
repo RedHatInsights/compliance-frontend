@@ -4,19 +4,16 @@ import '@testing-library/jest-dom';
 import EditPolicyDetailsInline from './EditPolicyDetailsInline';
 import { usePermissionsWithContext } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 import useUpdatePolicy from 'Utilities/hooks/api/useUpdatePolicy';
-import { dispatchAction } from 'Utilities/Dispatcher';
 import { TextArea } from '@patternfly/react-core';
 
 jest.mock('@redhat-cloud-services/frontend-components-utilities/RBACHook');
 jest.mock('Utilities/hooks/api/useUpdatePolicy');
-jest.mock('Utilities/Dispatcher');
 
 describe('EditPolicyDetailsInline', () => {
   beforeEach(() => {
     useUpdatePolicy.mockReturnValue({
       fetch: jest.fn(() => Promise.resolve()),
     });
-    dispatchAction.mockImplementation(() => {});
     usePermissionsWithContext.mockImplementation(() => ({
       hasAccess: true,
       isLoading: false,

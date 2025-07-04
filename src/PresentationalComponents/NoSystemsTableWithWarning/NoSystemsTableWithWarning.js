@@ -3,31 +3,34 @@ import {
   EmptyStateBody,
   EmptyState,
   EmptyStateVariant,
-  Text,
-  TextContent,
-  TextVariants,
+  Content,
+  ContentVariants,
   Bullseye,
-  EmptyStateHeader,
 } from '@patternfly/react-core';
 import { ExclamationTriangleIcon } from '@patternfly/react-icons';
 import { WARNING_TEXT } from 'PresentationalComponents';
 
 const NoSystemsTableWithWarning = () => (
   <Bullseye>
-    <EmptyState variant={EmptyStateVariant.full}>
-      <EmptyStateHeader
-        titleText="No systems on this policy"
-        headingLevel="h2"
-      />
+    <EmptyState
+      headingLevel="h2"
+      titleText="No systems on this policy"
+      variant={EmptyStateVariant.full}
+    >
       <EmptyStateBody>
-        <TextContent>
-          <Text component={TextVariants.p}>
+        <Content>
+          <Content component={ContentVariants.p}>
             Add systems to this policy from the systems page
-          </Text>
-          <Text style={{ color: 'var(--pf-v5-global--warning-color--100)' }}>
+          </Content>
+          <Content
+            component="p"
+            style={{
+              color: 'var(--pf-t--global--color--status--warning--100)',
+            }}
+          >
             <ExclamationTriangleIcon /> {WARNING_TEXT}
-          </Text>
-        </TextContent>
+          </Content>
+        </Content>
       </EmptyStateBody>
     </EmptyState>
   </Bullseye>

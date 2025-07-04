@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
 import propTypes from 'prop-types';
 import {
-  Text,
-  TextContent,
-  TextVariants,
+  Content,
+  ContentVariants,
   Tooltip,
+  Icon,
 } from '@patternfly/react-core';
 import { ExclamationTriangleIcon } from '@patternfly/react-icons';
 
@@ -42,7 +42,7 @@ export const CustomDisplay = (props) => {
   const customName = props[nameProperty];
 
   return (
-    <TextContent>
+    <Content>
       {showLink ? (
         <SystemLink {...{ id: customId }}>{customName}</SystemLink>
       ) : (
@@ -50,11 +50,11 @@ export const CustomDisplay = (props) => {
       )}
 
       {hasOsInfo(osMajorVersion, osMinorVersion) && (
-        <Text component={TextVariants.small}>
+        <Content component={ContentVariants.small}>
           RHEL {osMajorVersion}.{osMinorVersion}
-        </Text>
+        </Content>
       )}
-    </TextContent>
+    </Content>
   );
 };
 
@@ -81,15 +81,15 @@ export const Name = ({
     !!osMajorVersion && !!osMinorVersion && showOsInfo;
 
   return (
-    <TextContent>
+    <Content>
       {showLink ? <SystemLink {...{ id }}>{name}</SystemLink> : name}
 
       {hasOsInfo(osMajorVersion, osMinorVersion) && (
-        <Text component={TextVariants.small}>
+        <Content component={ContentVariants.small}>
           RHEL {osMajorVersion}.{osMinorVersion}
-        </Text>
+        </Content>
       )}
-    </TextContent>
+    </Content>
   );
 };
 
@@ -112,12 +112,14 @@ export const SSGVersion = ({ ssgVersion = 'Not available', supported }) =>
   supported ? (
     ssgVersion
   ) : (
-    <Tooltip content={unsupportedSystemWarningMessage}>
-      <span>
-        <ExclamationTriangleIcon color="var(--pf-v5-global--warning-color--100)" />
-        {' ' + ssgVersion}
-      </span>
-    </Tooltip>
+    <>
+      <Tooltip content={unsupportedSystemWarningMessage}>
+        <Icon status="warning">
+          <ExclamationTriangleIcon />
+        </Icon>
+      </Tooltip>
+      {' ' + ssgVersion}
+    </>
   );
 
 SSGVersion.propTypes = {
@@ -205,7 +207,7 @@ const NeverScanned = () => (
     }
   >
     <span>
-      <ExclamationTriangleIcon color="var(--pf-v5-global--warning-color--100)" />
+      <ExclamationTriangleIcon color="var(--pf-t--global--color--status--warning--100)" />
       {' ' + NEVER}
     </span>
   </Tooltip>
