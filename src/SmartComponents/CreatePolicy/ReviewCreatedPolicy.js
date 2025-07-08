@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-  Label,
-  Text,
-  TextVariants,
-  TextContent,
-  TextList,
-  TextListVariants,
-  TextListItem,
-  TextListItemVariants,
-} from '@patternfly/react-core';
+import { Label, Content, ContentVariants } from '@patternfly/react-core';
 import { formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
@@ -21,55 +12,43 @@ const ReviewCreatedPolicy = ({
   osMinorVersionCounts,
   osMajorVersion,
 }) => (
-  <TextContent>
-    <Text component={TextVariants.h1}>Review</Text>
-    <Text>Review your SCAP policy before finishing.</Text>
-    <Text component={TextVariants.h3}>{name}</Text>
-    <TextList component={TextListVariants.dl} className="pf-u-mt-md">
-      <TextListItem component={TextListItemVariants.dt}>
-        Policy type
-      </TextListItem>
-      <TextListItem component={TextListItemVariants.dd}>
-        {parentProfileName}
-      </TextListItem>
-      <TextListItem component={TextListItemVariants.dt}>
-        Compliance threshold
-      </TextListItem>
-      <TextListItem component={TextListItemVariants.dd}>
-        {complianceThreshold}%
-      </TextListItem>
+  <Content>
+    <Content component={ContentVariants.h1}>Review</Content>
+    <Content component="p">Review your SCAP policy before finishing.</Content>
+    <Content component={ContentVariants.h3}>{name}</Content>
+    <Content component={ContentVariants.dl} className="pf-u-mt-md">
+      <Content component={ContentVariants.dt}>Policy type</Content>
+      <Content component={ContentVariants.dd}>{parentProfileName}</Content>
+      <Content component={ContentVariants.dt}>Compliance threshold</Content>
+      <Content component={ContentVariants.dd}>{complianceThreshold}%</Content>
       {businessObjective && (
         <React.Fragment>
-          <TextListItem component={TextListItemVariants.dt}>
-            Business objective
-          </TextListItem>
-          <TextListItem component={TextListItemVariants.dd}>
-            {businessObjective}
-          </TextListItem>
+          <Content component={ContentVariants.dt}>Business objective</Content>
+          <Content component={ContentVariants.dd}>{businessObjective}</Content>
         </React.Fragment>
       )}
-      <TextListItem component={TextListItemVariants.dt}>Systems</TextListItem>
-      <TextListItem component={TextListItemVariants.dd}>
-        <TextList component={TextListVariants.dl}>
+      <Content component={ContentVariants.dt}>Systems</Content>
+      <Content component={ContentVariants.dd}>
+        <Content component={ContentVariants.dl}>
           {osMinorVersionCounts.map(({ osMinorVersion, count }) => (
             <React.Fragment key={osMinorVersion}>
-              <TextListItem
-                component={TextListItemVariants.dt}
+              <Content
+                component={ContentVariants.dt}
                 style={{ fontWeight: 'normal' }}
               >
                 RHEL {osMajorVersion}.{osMinorVersion}
-              </TextListItem>
-              <TextListItem component={TextListItemVariants.dd}>
+              </Content>
+              <Content component={ContentVariants.dd}>
                 <Label color="grey" isCompact={true}>
                   {count} {count > 1 ? 'systems' : 'system'}
                 </Label>
-              </TextListItem>
+              </Content>
             </React.Fragment>
           ))}
-        </TextList>
-      </TextListItem>
-    </TextList>
-  </TextContent>
+        </Content>
+      </Content>
+    </Content>
+  </Content>
 );
 
 ReviewCreatedPolicy.propTypes = {

@@ -1,17 +1,12 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import {
-  Text,
-  TextVariants,
-  TextContent,
-  Popover,
-} from '@patternfly/react-core';
+import { Content, ContentVariants, Popover } from '@patternfly/react-core';
 import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import { SupportedSSGVersionsLink } from 'PresentationalComponents';
 import OsVersionText from './osVersionText';
 
 export const SSGVersionText = ({ profile, newOsMinorVersion }) => (
-  <Text component={TextVariants.p}>
+  <Content component={ContentVariants.p}>
     SSG version: {profile?.benchmark.version}{' '}
     <Popover
       position="right"
@@ -22,7 +17,7 @@ export const SSGVersionText = ({ profile, newOsMinorVersion }) => (
         <OutlinedQuestionCircleIcon className="grey-icon" />
       </span>
     </Popover>
-  </Text>
+  </Content>
 );
 
 SSGVersionText.propTypes = {
@@ -31,16 +26,16 @@ SSGVersionText.propTypes = {
 };
 
 const SSGPopoverBody = ({ profile, newOsMinorVersion }) => (
-  <TextContent style={{ fontSize: 'var(--pf-v5-c-popover--FontSize)' }}>
-    <Text>
+  <Content style={{ fontSize: 'var(--pf-v6-c-popover--FontSize)' }}>
+    <Content component="p">
       This is the latest supported version of the SCAP Security Guide (SSG) for{' '}
       <OsVersionText {...{ profile, newOsMinorVersion }} />
-    </Text>
-    <Text>
+    </Content>
+    <Content component="p">
       <OsVersionText {...{ profile, newOsMinorVersion }} /> systems assigned to
       this policy will report using this rule list.
-    </Text>
-  </TextContent>
+    </Content>
+  </Content>
 );
 
 SSGPopoverBody.propTypes = {

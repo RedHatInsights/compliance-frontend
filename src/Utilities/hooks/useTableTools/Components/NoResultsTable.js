@@ -4,15 +4,14 @@ import {
   EmptyState,
   EmptyStateBody,
   EmptyStateVariant,
-  EmptyStateHeader,
 } from '@patternfly/react-core';
 
 export const NoResultsTable = ({ kind = 'results' }) => (
-  <EmptyState variant={EmptyStateVariant.full}>
-    <EmptyStateHeader
-      titleText={<>No matching {kind} found</>}
-      headingLevel="h5"
-    />
+  <EmptyState
+    headingLevel="h5"
+    titleText={<>No matching {kind} found</>}
+    variant={EmptyStateVariant.full}
+  >
     <EmptyStateBody>
       This filter criteria matches no {kind}.<br />
       Try changing your filter settings.

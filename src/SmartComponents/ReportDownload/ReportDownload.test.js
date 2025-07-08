@@ -8,7 +8,6 @@ jest.mock('react-router-dom', () => ({
   useParams: jest.fn().mockReturnValue({ policy_id: '1' }),
   useLocation: jest.fn(),
 }));
-jest.mock('Utilities/Dispatcher');
 jest.mock('./hooks/usePDFExport', () => () => []);
 
 describe('ReportDownload', function () {

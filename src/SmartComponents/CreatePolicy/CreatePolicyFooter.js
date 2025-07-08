@@ -1,4 +1,4 @@
-import { Button, ButtonVariant } from '@patternfly/react-core';
+import { Button, ButtonVariant, Flex } from '@patternfly/react-core';
 import {
   WizardContextConsumer,
   WizardFooter,
@@ -14,7 +14,7 @@ const CreatePolicyFooter = () => (
           .replaceAll(' ', '-');
 
         return (
-          <>
+          <Flex columnGap={{ default: 'columnGapSm' }}>
             <Button
               id={`${stepNameEdited}-next-button`}
               variant={ButtonVariant.primary}
@@ -39,17 +39,15 @@ const CreatePolicyFooter = () => (
               </Button>
             )}
             {!activeStep.hideCancelButton && (
-              <div className="pf-v5-c-wizard__footer-cancel">
-                <Button
-                  id={`${stepNameEdited}-cancel-button`}
-                  variant={ButtonVariant.link}
-                  onClick={onClose}
-                >
-                  {activeStep.cancelButtonText || 'Cancel'}
-                </Button>
-              </div>
+              <Button
+                id={`${stepNameEdited}-cancel-button`}
+                variant={ButtonVariant.link}
+                onClick={onClose}
+              >
+                {activeStep.cancelButtonText || 'Cancel'}
+              </Button>
             )}
-          </>
+          </Flex>
         );
       }}
     </WizardContextConsumer>

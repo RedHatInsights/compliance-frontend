@@ -170,9 +170,9 @@ describe('Reports table tests', () => {
   describe('table pagination', () => {
     it('Set per page elements', () => {
       cy.wait('@getReports');
-      cy.ouiaType('PF5/Toolbar', 'div')
-        .ouiaType('PF5/Pagination', 'div')
-        .ouiaType('PF5/MenuToggle', 'button')
+      cy.ouiaType('PF6/Toolbar', 'div')
+        .ouiaType('PF6/Pagination', 'div')
+        .ouiaType('PF6/MenuToggle', 'button')
         .should('contain', `1 - 10 of ${reportsData.length}`);
 
       const perPageOptions = [20, 50, 100];
@@ -193,9 +193,9 @@ describe('Reports table tests', () => {
           },
         ).as('getPaginatedReports');
 
-        cy.ouiaType('PF5/Toolbar', 'div')
-          .ouiaType('PF5/Pagination', 'div')
-          .ouiaType('PF5/MenuToggle', 'button')
+        cy.ouiaType('PF6/Toolbar', 'div')
+          .ouiaType('PF6/Pagination', 'div')
+          .ouiaType('PF6/MenuToggle', 'button')
           .click();
 
         cy.get('button[role="menuitem"]')
@@ -514,7 +514,7 @@ describe('Reports table tests', () => {
         .get('button[aria-label="kebab dropdown toggle"]')
         .click();
 
-      cy.ouiaType('PF5/DropdownItem', 'li').first().find('button').click();
+      cy.ouiaType('PF6/DropdownItem', 'li').first().find('button').click();
       cy.get('input[checked]')
         .not('[disabled]')
         .each(($checkbox) => {
@@ -530,7 +530,7 @@ describe('Reports table tests', () => {
         .get('button[aria-label="kebab dropdown toggle"]')
         .click();
 
-      cy.ouiaType('PF5/DropdownItem', 'li').first().find('button').click();
+      cy.ouiaType('PF6/DropdownItem', 'li').first().find('button').click();
       cy.get('button').contains('Select all').click();
       cy.ouiaId('ColumnManagementModal-save-button', 'button').click();
 

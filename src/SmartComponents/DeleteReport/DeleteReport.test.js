@@ -3,7 +3,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { useParams } from 'react-router-dom';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
-import { apiInstance } from '../../Utilities/hooks/useQuery';
+import { apiInstance } from 'Utilities/hooks/useQuery';
 import DeleteReport from './DeleteReport';
 
 jest.mock('react-router-dom', () => ({
@@ -17,18 +17,7 @@ jest.mock(
     default: jest.fn(),
   }),
 );
-
-jest.mock(
-  '@redhat-cloud-services/frontend-components-notifications/redux',
-  () => ({
-    addNotification: jest.fn(),
-  }),
-);
-
-jest.mock('../../Utilities/hooks/useQuery');
-jest.mock('Utilities/Dispatcher', () => ({
-  dispatchAction: jest.fn(),
-}));
+jest.mock('Utilities/hooks/useQuery');
 
 describe('DeleteReport', () => {
   const navigateMocked = jest.fn();

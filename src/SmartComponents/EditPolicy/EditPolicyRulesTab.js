@@ -2,9 +2,7 @@ import React, { useCallback, useState } from 'react';
 import {
   EmptyState,
   EmptyStateBody,
-  Text,
-  TextContent,
-  EmptyStateHeader,
+  Content,
   EmptyStateFooter,
 } from '@patternfly/react-core';
 import propTypes from 'prop-types';
@@ -18,11 +16,7 @@ import useTailorings from 'Utilities/hooks/api/useTailorings';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 
 const EditPolicyRulesTabEmptyState = () => (
-  <EmptyState>
-    <EmptyStateHeader
-      titleText="No rules can be configured"
-      headingLevel="h5"
-    />
+  <EmptyState headingLevel="h5" titleText="No rules can be configured">
     <EmptyStateBody>
       This policy has no associated systems, and therefore no rules can be
       configured.
@@ -172,13 +166,13 @@ export const EditPolicyRulesTab = ({
         </EmptyState>
       </StateViewPart>
       <StateViewPart stateKey="data">
-        <TextContent>
-          <Text>
+        <Content>
+          <Content component="p">
             Different release versions of RHEL are associated with different
             versions of the SCAP Security Guide (SSG), therefore each release
             must be customized independently.
-          </Text>
-        </TextContent>
+          </Content>
+        </Content>
         <Tailorings
           policy={policy}
           profiles={profilesRuleIds}

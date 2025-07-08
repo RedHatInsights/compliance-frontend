@@ -1,5 +1,4 @@
 import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/Registry';
-import { notificationsReducer } from '@redhat-cloud-services/frontend-components-notifications/redux';
 import promiseMiddleware from 'redux-promise-middleware';
 import { reducer as form } from 'redux-form';
 import { compose } from 'redux';
@@ -16,7 +15,7 @@ export function init(environment) {
       : compose,
   );
 
-  registry.register({ form, notifications: notificationsReducer });
+  registry.register({ form });
   return registry;
 }
 

@@ -11,7 +11,7 @@ import {
 } from './constants';
 import useExport from 'Utilities/hooks/useTableTools/useExport';
 import { useBulkSelect } from 'Utilities/hooks/useTableTools/useBulkSelect';
-import { dispatchNotification } from 'Utilities/Dispatcher';
+import { useAddNotification } from '@redhat-cloud-services/frontend-components-notifications/hooks';
 import usePromiseQueue from 'Utilities/hooks/usePromiseQueue';
 import { setDisabledSelection } from '../../store/Actions/SystemActions';
 import { useFetchSystems } from './hooks/useFetchSystems';
@@ -189,6 +189,7 @@ export const useInventoryUtilities = (
 };
 
 export const useSystemsExport = ({ columns, selectedItems, total }) => {
+  const addNotification = useAddNotification();
   const exporter = async () => selectedItems;
 
   const {
@@ -198,20 +199,20 @@ export const useSystemsExport = ({ columns, selectedItems, total }) => {
     columns,
     isDisabled: total === 0,
     onStart: useCallback(() => {
-      dispatchNotification({
+      addNotification({
         variant: 'info',
         title: 'Preparing export',
         description: 'Once complete, your download will start automatically.',
       });
     }, []),
     onComplete: useCallback(() => {
-      dispatchNotification({
+      addNotification({
         variant: 'success',
         title: 'Downloading export',
       });
     }, []),
     onError: useCallback(() => {
-      dispatchNotification({
+      addNotification({
         variant: 'danger',
         title: 'Couldn’t download export',
         description: 'Reinitiate this export to try again.',
@@ -232,6 +233,7 @@ export const useSystemBulkSelect = ({
   tableLoaded,
   setIsSystemsDataLoading,
 }) => {
+  const addNotification = useAddNotification();
   const dispatch = useDispatch();
   const { isLoading, fetchBatched } = useFetchBatched();
   const { loadedItems, addToLoadedItems } = useLoadedItems(
@@ -285,7 +287,7 @@ export const useSystemBulkSelect = ({
   }, [JSON.stringify(fetchArguments), addToLoadedItems]);
 
   const onError = useCallback((error) => {
-    dispatchNotification({
+    addNotification({
       variant: 'danger',
       title: 'Error selecting systems',
       description: error.message,

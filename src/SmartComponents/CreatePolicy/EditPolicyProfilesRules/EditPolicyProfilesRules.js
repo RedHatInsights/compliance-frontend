@@ -7,9 +7,8 @@ import {
   Bullseye,
   EmptyState,
   Spinner,
-  Text,
-  TextContent,
-  TextVariants,
+  Content,
+  ContentVariants,
 } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import {
@@ -188,18 +187,18 @@ const EditPolicyProfilesRules = ({
     </Bullseye>
   ) : (
     <React.Fragment>
-      <TextContent className="pf-v5-u-pb-md">
-        <Text component={TextVariants.h1}>Rules</Text>
-        <Text>
+      <Content className="pf-v6-u-pb-md">
+        <Content component={ContentVariants.h1}>Rules</Content>
+        <Content component="p">
           Customize your <b>{profile.title}</b> SCAP policy by including and
           excluding rules.
-        </Text>
-        <Text>
+        </Content>
+        <Content component="p">
           Each release of RHEL is supported with a unique and specific version
           of the SCAP Security Guide (SSG). You must customize each version of
           SSG for each release of RHEL.
-        </Text>
-      </TextContent>
+        </Content>
+      </Content>
       <StateViewWithError
         stateValues={{
           error: preselectedRuleIdsError,

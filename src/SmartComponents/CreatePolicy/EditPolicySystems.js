@@ -8,9 +8,8 @@ import {
   Button,
   Form,
   FormGroup,
-  Text,
-  TextContent,
-  TextVariants,
+  Content,
+  ContentVariants,
 } from '@patternfly/react-core';
 import { WizardContextConsumer } from '@patternfly/react-core/deprecated';
 import { SystemsTable } from 'SmartComponents';
@@ -25,20 +24,20 @@ import { fetchSystemsApi } from 'SmartComponents/SystemsTable/constants';
 
 const EmptyState = ({ osMajorVersion }) => (
   <React.Fragment>
-    <TextContent className="pf-v5-u-mb-md">
-      <Text>
+    <Content className="pf-v6-u-mb-md">
+      <Content component="p">
         You do not have any <b>RHEL {osMajorVersion}</b> systems connected to
         Insights and enabled for Compliance.
         <br />
         Policies must be created with at least one system.
-      </Text>
-    </TextContent>
-    <TextContent className="pf-v5-u-mb-md">
-      <Text>
+      </Content>
+    </Content>
+    <Content className="pf-v6-u-mb-md">
+      <Content component="p">
         Choose a different RHEL version, or connect <b>RHEL {osMajorVersion}</b>{' '}
         systems to Insights.
-      </Text>
-    </TextContent>
+      </Content>
+    </Content>
     <WizardContextConsumer>
       {({ goToStepById }) => (
         <Button onClick={() => goToStepById(1)}>
@@ -55,14 +54,14 @@ EmptyState.propTypes = {
 
 const PrependComponent = ({ osMajorVersion }) => (
   <React.Fragment>
-    <TextContent className="pf-v5-u-mb-md">
-      <Text>
+    <Content className="pf-v6-u-mb-md">
+      <Content component="p">
         Select which of your <b>RHEL {osMajorVersion}</b> systems should be
         included in this policy.
         <br />
         Systems can be added or removed at any time.
-      </Text>
-    </TextContent>
+      </Content>
+    </Content>
   </React.Fragment>
 );
 
@@ -123,9 +122,9 @@ export const EditPolicySystems = ({
 
   return (
     <React.Fragment>
-      <TextContent className="pf-v5-u-mb-md">
-        <Text component={TextVariants.h1}>Systems</Text>
-      </TextContent>
+      <Content className="pf-v6-u-mb-md">
+        <Content component={ContentVariants.h1}>Systems</Content>
+      </Content>
       <Form>
         <FormGroup>
           <SystemsTable

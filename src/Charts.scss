@@ -28,13 +28,13 @@
 // want to show only 2 donuts on the screen unless it's truly
 // big enough to support 3
 @media screen and (min-width: 1200px) {
-    .pf-v5-l-grid > .pf-v5-m-4-col-on-xl {
+    .pf-v6-l-grid > .pf-v6-m-4-col-on-xl {
         --pf-l-grid__item--GridColumnEnd: span 6 !important;
     }
 }
 
 @media screen and (min-width: 1388px) {
-    .pf-v5-l-grid > .pf-v5-m-4-col-on-xl {
+    .pf-v6-l-grid > .pf-v6-m-4-col-on-xl {
         --pf-l-grid__item--GridColumnEnd: span 4 !important;
     }
 }

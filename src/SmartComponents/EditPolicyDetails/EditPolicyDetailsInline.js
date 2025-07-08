@@ -3,9 +3,9 @@ import propTypes from 'prop-types';
 import {
   Button,
   FormGroup,
-  Text,
+  Content,
   TextInput,
-  TextVariants,
+  ContentVariants,
   Icon,
 } from '@patternfly/react-core';
 import { TimesIcon, CheckIcon, PencilAltIcon } from '@patternfly/react-icons';
@@ -99,51 +99,55 @@ const EditPolicyDetailsInline = ({
   }, [isEditOpen]);
 
   return (
-    <FormGroup className="pf-v5-c-inline-edit pf-v5-m-inline-editable">
-      <Text component={TextVariants.h5}>
+    <FormGroup className="pf-v6-c-inline-edit pf-v6-m-inline-editable">
+      <Content component={ContentVariants.h5}>
         {label}
         {hasPermission && (
           <Button
+            icon={<PencilAltIcon />}
             onClick={handleToggle}
             variant="plain"
             style={{ 'margin-left': '5px' }}
             ouiaId="InlineEditPencil"
-          >
-            <PencilAltIcon />
-          </Button>
+          />
         )}
         {variant === 'threshold' ? (
           <PolicyThresholdTooltip />
         ) : variant === 'business' ? (
           <PolicyBusinessObjectiveTooltip />
         ) : null}
-      </Text>
-      <div className="pf-v5-c-inline-edit__group">
+      </Content>
+      <div className="pf-v6-c-inline-edit__group">
         {isEditOpen ? (
           <>
             <div style={style}>
               <Component value={value} onChange={handleTextUpdate} {...props} />
               {showTextUnderInline && validThreshold ? (
-                <Text>{textUnderInline}</Text>
+                <Content component="p">{textUnderInline}</Content>
               ) : null}
               {!validThreshold && (
                 <ComplianceThresholdHelperText threshold={value} />
               )}
             </div>
             <div
-              className="pf-v5-c-inline-edit__group pf-v5-m-action-group pf-v5-m-icon-group"
+              className="pf-v6-c-inline-edit__group pf-v6-m-action-group pf-v6-m-icon-group"
               style={{
                 display: 'inline',
               }}
             >
               <div
-                className="pf-v5-c-inline-edit__action pf-v5-m-valid"
+                className="pf-v6-c-inline-edit__action pf-v6-m-valid"
                 style={{
                   display: 'inline',
                 }}
               >
                 <Button
-                  className="pf-v5-c-button"
+                  icon={
+                    <Icon>
+                      <CheckIcon />
+                    </Icon>
+                  }
+                  className="pf-v6-c-button"
                   variant="plain"
                   type="button"
                   aria-label="Save edits"
@@ -154,45 +158,42 @@ const EditPolicyDetailsInline = ({
                   style={{
                     'margin-left': '5px',
                     color: validThreshold
-                      ? 'var(--pf-v5-global--primary-color--100)'
-                      : 'var(--pf-v5-c-button--disabled--Color)',
+                      ? 'var(--pf-t--global--background--color--primary--default)'
+                      : 'var(--pf-v6-c-button--disabled--Color)',
                   }}
-                >
-                  <Icon>
-                    <CheckIcon />
-                  </Icon>
-                </Button>
+                />
               </div>
               <div
-                className="pf-v5-c-inline-edit__action"
+                className="pf-v6-c-inline-edit__action"
                 style={{
                   display: 'inline',
                 }}
               >
                 <Button
-                  className="pf-v5-c-button"
+                  icon={
+                    <Icon>
+                      <TimesIcon />
+                    </Icon>
+                  }
+                  className="pf-v6-c-button"
                   variant="plain"
                   type="button"
                   aria-label="Cancel edits"
                   ouiaId="CancelEdits"
                   onClick={handleCloseEdit}
                   style={{ 'margin-left': '5px' }}
-                >
-                  <Icon>
-                    <TimesIcon />
-                  </Icon>
-                </Button>
+                />
               </div>
             </div>
           </>
         ) : variant !== 'description' ? (
-          <Text className="labelClosedText" component={TextVariants.p}>
+          <Content className="labelClosedText" component={ContentVariants.p}>
             {inlineClosedText}
-          </Text>
+          </Content>
         ) : (
-          <Text className="textAreaClosedText" component={TextVariants.p}>
+          <Content className="textAreaClosedText" component={ContentVariants.p}>
             <Truncate text={text} length={380} inline={true} />
-          </Text>
+          </Content>
         )}
       </div>
       {/* <Prompt

@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Text, TextVariants, TextContent } from '@patternfly/react-core';
+import { Content, ContentVariants, Icon } from '@patternfly/react-core';
 import {
   CheckCircleIcon,
   ExclamationCircleIcon,
@@ -26,23 +26,23 @@ const ruleProps = {
 
 export const Rule = ({ title, identifier, compliant = true }) => {
   return (
-    <TextContent
+    <Content
       style={{
         ...(!compliant
           ? {
               fontWeight: 'bold',
-              color: 'var(--pf-v5-global--danger-color--100)',
+              color: 'var(--pf-t--global--color--status--danger--100)',
             }
           : {}),
       }}
     >
       {title}
       {identifier ? (
-        <Text component={TextVariants.small}>{identifier.label}</Text>
+        <Content component={ContentVariants.small}>{identifier.label}</Content>
       ) : (
         ''
       )}
-    </TextContent>
+    </Content>
   );
 };
 Rule.propTypes = ruleProps;
@@ -60,9 +60,13 @@ Severity.propTypes = ruleProps;
 
 export const Passed = ({ compliant }) =>
   compliant ? (
-    <CheckCircleIcon className="ins-u-passed" />
+    <Icon status="success">
+      <CheckCircleIcon />
+    </Icon>
   ) : (
-    <ExclamationCircleIcon className="ins-u-failed" />
+    <Icon status="danger">
+      <ExclamationCircleIcon />
+    </Icon>
   );
 Passed.propTypes = ruleProps;
 

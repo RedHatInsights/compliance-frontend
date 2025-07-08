@@ -13,7 +13,6 @@ import TestWrapper from '@redhat-cloud-services/frontend-components-utilities/Te
 import userEvent from '@testing-library/user-event';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 import EditPolicyForm from './EditPolicyForm';
-import { dispatchNotification } from 'Utilities/Dispatcher';
 import useUpdatePolicy from 'Utilities/hooks/api/useUpdatePolicy';
 
 jest.mock('Utilities/hooks/api/useSupportedProfiles');
@@ -24,7 +23,6 @@ jest.mock('Utilities/hooks/api/useTailorings');
 jest.mock('Utilities/hooks/api/useUpdatePolicy');
 jest.mock('Utilities/hooks/api/useUpdateTailoring');
 jest.mock('./hooks/useAssignedRules');
-jest.mock('Utilities/Dispatcher', () => ({ dispatchNotification: jest.fn() }));
 
 jest.mock(
   '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate',
@@ -205,14 +203,6 @@ describe('EditPolicy', () => {
         valuesUpdate: { value_overrides: { 'value-id': 'changed-value' } },
       }),
     );
-
-    await waitFor(() =>
-      expect(dispatchNotification).toHaveBeenCalledWith({
-        autoDismiss: true,
-        title: 'Policy updated',
-        variant: 'success',
-      }),
-    );
   });
 
   it('Should submit fail if any API errors', async () => {
@@ -234,14 +224,6 @@ describe('EditPolicy', () => {
     await user.click(
       screen.getByRole('button', {
         name: /save/i,
-      }),
-    );
-
-    await waitFor(() =>
-      expect(dispatchNotification).toHaveBeenCalledWith({
-        variant: 'danger',
-        title: 'Error updating policy',
-        description: 'error message',
       }),
     );
   });

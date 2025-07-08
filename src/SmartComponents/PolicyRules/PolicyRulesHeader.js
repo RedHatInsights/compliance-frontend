@@ -3,7 +3,7 @@ import React from 'react';
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
-import { Text, TextContent } from '@patternfly/react-core';
+import { Content } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 
 const PolicyRulesHeader = ({ name, benchmarkVersion, osMajorVersion }) => {
@@ -12,16 +12,18 @@ const PolicyRulesHeader = ({ name, benchmarkVersion, osMajorVersion }) => {
       <PageHeaderTitle
         title={`Compliance | Default rules for ${name} policy`}
       />
-      <TextContent className="pf-v5-u-mb-md pf-v5-u-mt-md">
-        <Text>
+      <Content className="pf-v5-u-mb-md pf-v5-u-mt-md">
+        <Content component="p">
           This is a read-only view of the full set of rules and their
           description for
           <b> {name} policy</b> operating on
           <br />
           <b>RHEL {osMajorVersion}</b> - <b>SSG version: {benchmarkVersion}</b>
-        </Text>
-        <Text>Rule selection must be made in the policy modal</Text>
-      </TextContent>
+        </Content>
+        <Content component="p">
+          Rule selection must be made in the policy modal
+        </Content>
+      </Content>
     </PageHeader>
   );
 };

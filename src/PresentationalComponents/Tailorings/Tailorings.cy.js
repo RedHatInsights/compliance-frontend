@@ -93,7 +93,7 @@ const selectedSystemsCount = { [key]: SYSTEMS_COUNT };
 
 const getRowByTitle = (title) =>
   cy
-    .get(TABLE_ROW)
+    .get(TABLE_ROW.replace('PF5/', 'PF6/'))
     .filter((_index, el) => el.innerText.includes(title))
     .first();
 
@@ -150,7 +150,7 @@ describe('Tailorings - Tailorings on Edit policy', () => {
     cy.ouiaId(
       `RHEL ${tailoring.os_major_version}.${tailoring.os_minor_version}`,
     ).should('exist');
-    cy.ouiaType('PF5/TabButton').find('span').contains(SYSTEMS_COUNT);
+    cy.ouiaType('PF6/TabButton').find('span').contains(SYSTEMS_COUNT);
     // check tree view is shown by default
     cy.get('button[aria-label="tree"]').should('have.class', 'pf-m-selected');
     cy.ouiaId('EditRulesButton').should('not.exist');
@@ -160,7 +160,7 @@ describe('Tailorings - Tailorings on Edit policy', () => {
       .contains('View policy rules')
       .should('be.visible')
       .should('have.attr', 'href', href);
-    cy.ouiaType('PF5/Switch').should('exist').contains('Selected only');
+    cy.ouiaType('PF6/Switch').should('exist').contains('Selected only');
   });
 
   describe('Tailorings tree view', () => {
@@ -171,14 +171,14 @@ describe('Tailorings - Tailorings on Edit policy', () => {
       );
 
       getRowByTitle(foundRuleGroup.title).within(() => {
-        cy.ouiaType('PF5/Checkbox').should('have.prop', 'checked', true);
+        cy.ouiaType('PF6/Checkbox').should('have.prop', 'checked', true);
       });
 
       // Switch toggle to show security guide tree
       cy.get('span[class*="switch__toggle"]').click();
       // check if checkbox changed from checked to indeterminate
       getRowByTitle(foundRuleGroup.title).within(() => {
-        cy.ouiaType('PF5/Checkbox').should('have.prop', 'indeterminate', true);
+        cy.ouiaType('PF6/Checkbox').should('have.prop', 'indeterminate', true);
       });
 
       const filteredRules = rules.filter(
@@ -213,34 +213,34 @@ describe('Tailorings - Tailorings on Edit policy', () => {
       getRowByTitle(additionalRuleGroupTree.title).within(() => {
         cy.get('div').find("span[class*='table__toggle']").click();
         cy.wait(`@getRulesByGroupId-${additionalRuleGroupTree.id}`);
-        cy.ouiaType('PF5/Checkbox').should('not.be.checked');
+        cy.ouiaType('PF6/Checkbox').should('not.be.checked');
       });
       // check if rule is not selected under rule group
       getRowByTitle(additionalRule.title).within(() => {
-        cy.ouiaType('PF5/Checkbox').should('not.be.checked');
+        cy.ouiaType('PF6/Checkbox').should('not.be.checked');
       });
       // select rule group and check if selected
       getRowByTitle(additionalRuleGroupTree.title).within(() => {
-        cy.ouiaType('PF5/Checkbox').check();
-        cy.ouiaType('PF5/Checkbox').should('be.checked');
+        cy.ouiaType('PF6/Checkbox').check();
+        cy.ouiaType('PF6/Checkbox').should('be.checked');
       });
       cy.get('@onSelect').should('have.been.called');
       // check if rule is selected under rule group
       getRowByTitle(additionalRule.title).within(() => {
-        cy.ouiaType('PF5/Checkbox').should('be.checked');
+        cy.ouiaType('PF6/Checkbox').should('be.checked');
       });
       // check reset selection works
       cy.contains('a', 'Reset to default').click();
       // select rule group and check if selected
       getRowByTitle(additionalRuleGroupTree.title).within(() => {
-        cy.ouiaType('PF5/Checkbox').should('not.be.checked');
+        cy.ouiaType('PF6/Checkbox').should('not.be.checked');
       });
       // check if rule is selected under rule group
       getRowByTitle(additionalRule.title).within(() => {
-        cy.ouiaType('PF5/Checkbox').should('not.be.checked');
+        cy.ouiaType('PF6/Checkbox').should('not.be.checked');
       });
       getRowByTitle(foundRuleGroup.title).within(() => {
-        cy.ouiaType('PF5/Checkbox').should('have.prop', 'indeterminate', true);
+        cy.ouiaType('PF6/Checkbox').should('have.prop', 'indeterminate', true);
       });
     });
   });
@@ -287,7 +287,7 @@ describe('Tailorings - Tailorings on Policy details', () => {
 
   it('Expect to render Tailorings view with tabs', () => {
     // ensure there is only 1 tab displayed as 1 tailoring provided
-    cy.ouiaType('PF5/TabButton')
+    cy.ouiaType('PF6/TabButton')
       .should('have.length', 1)
       .should(
         'contain.text',

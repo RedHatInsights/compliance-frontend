@@ -33,9 +33,11 @@ jest.mock('@redhat-cloud-services/frontend-components/useChrome', () =>
   })),
 );
 
-jest.mock('Utilities/Dispatcher', () => ({
-  dispatchNotification: jest.fn(),
-}));
+jest.mock('@redhat-cloud-services/frontend-components/useChrome', () =>
+  jest.fn(() => ({
+    requestPdf: jest.fn(),
+  })),
+);
 
 describe('ReportDownload', () => {
   it('renders the Compliance report modal title', () => {

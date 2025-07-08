@@ -1,11 +1,12 @@
 import React from 'react';
-import { Button, ModalVariant, TextContent } from '@patternfly/react-core';
+import { Button, Content } from '@patternfly/react-core';
+import { ModalVariant } from '@patternfly/react-core/deprecated';
 import { useParams } from 'react-router-dom';
 import { ComplianceModal } from 'PresentationalComponents';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
-import { apiInstance } from '../../Utilities/hooks/useQuery';
-import { handleDeleteReport } from './helpers';
+import { apiInstance } from 'Utilities/hooks/useQuery';
 
+import { useHandleDeleteReport } from './hooks';
 /**
  * DeleteReport Component
  *
@@ -15,6 +16,7 @@ import { handleDeleteReport } from './helpers';
  *  @returns {React.Element} The rendered DeleteReport component.
  */
 const DeleteReport = () => {
+  const handleDeleteReport = useHandleDeleteReport();
   const { report_id: reportId } = useParams();
   const navigate = useNavigate();
   const onClose = () => {
@@ -59,9 +61,7 @@ const DeleteReport = () => {
         </Button>,
       ]}
     >
-      <TextContent>
-        Deleting a report is permanent and cannot be undone.
-      </TextContent>
+      <Content>Deleting a report is permanent and cannot be undone.</Content>
     </ComplianceModal>
   );
 };

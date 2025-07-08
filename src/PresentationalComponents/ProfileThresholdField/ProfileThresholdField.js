@@ -22,7 +22,7 @@ export const ProfileThresholdField = ({ previousThreshold }) => {
   return (
     <FormGroup
       fieldId="policy-threshold"
-      labelIcon={<PolicyThresholdTooltip />}
+      labelHelp={<PolicyThresholdTooltip />}
       label="Compliance threshold (%)"
       style={{ width: '60%', display: 'block' }}
     >

@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { TextContent } from '@patternfly/react-core';
+import { Content } from '@patternfly/react-core';
 import { ExportIcon } from '@patternfly/react-icons';
 import {
   GreySmallText,
@@ -11,14 +11,14 @@ import ReportChart from '../../SmartComponents/ReportDetails/Components/ReportCh
 import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
 
 export const Name = (report) => (
-  <TextContent>
+  <Content>
     <Link to={`/reports/${report.id}`} style={{ marginRight: '.5rem' }}>
       {report.title}
     </Link>
     <React.Fragment>
       <GreySmallText>{report.profile_title}</GreySmallText>
     </React.Fragment>
-  </TextContent>
+  </Content>
 );
 
 Name.propTypes = {
