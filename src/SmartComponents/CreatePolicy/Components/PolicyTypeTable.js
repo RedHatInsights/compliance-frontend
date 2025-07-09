@@ -4,7 +4,7 @@ import { fitContent } from '@patternfly/react-table';
 import { ComplianceTable as TableToolsTable } from 'PresentationalComponents';
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/ConditionalFilter';
 import PolicyTypeDetailsRow from './PolicyTypeDetailsRow';
-import { emptyRows } from '@/Frameworks/AsyncTableTools/components/NoResultsTable';
+import { emptyRows } from 'PresentationalComponents/NoResultsTable/NoResultsTable';
 
 const PolicyTypeTable = ({
   profiles,
@@ -23,8 +23,7 @@ const PolicyTypeTable = ({
       title: 'Supported OS versions',
       transforms: [fitContent],
       sortable: 'os_minor_versions',
-      renderFunc: (_data, _id, profile) =>
-        profile.supportedOsVersions.join(', '),
+      Component: (profile) => profile.supportedOsVersions.join(', '),
     },
   ];
 

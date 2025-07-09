@@ -1,8 +1,8 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import propTypes from 'prop-types';
 import { Grid } from '@patternfly/react-core';
-import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
-import { useFullTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
+import { TableStateProvider } from 'bastilian-tabletools';
+import { useFullTableState } from 'bastilian-tabletools';
 import { RulesTable } from 'PresentationalComponents';
 import useTailoringsData from '../hooks/useTailoringsData';
 import useSecurityGuideData from '../hooks/useSecurityGuideData';
@@ -91,6 +91,7 @@ const TailoringTab = ({
   });
 
   const {
+    loading: securityGuideDataLoading,
     data: {
       securityGuide,
       ruleGroups,
@@ -109,6 +110,7 @@ const TailoringTab = ({
   });
 
   const {
+    loading: profilesDataLoading,
     data: { rules: profileRules, ruleTree: profileRuleTree },
   } = useSecurityGuideProfileData({
     securityGuideId,
@@ -119,6 +121,7 @@ const TailoringTab = ({
   });
 
   const {
+    loading: tailoringsDataLoading,
     data: { ruleTree: tailoringRuleTree, rules: tailoringRules },
     fetchAllIds: fetchAllTailoringRuleIds,
     exporter: tailoringRulesExporter,
@@ -175,25 +178,39 @@ const TailoringTab = ({
   );
 
   // TODO we might want to consider making this more explicit and also add SSG profile exporter and ids call
-  const exporter = async () =>
-    tailoring && policy
-      ? await tailoringRulesExporter()
-      : await securityGuideRulesExporter();
+  const exporter = useCallback(
+    async () =>
+      tailoring && policy
+        ? await tailoringRulesExporter()
+        : await securityGuideRulesExporter(),
+    [tailoring, policy, tailoringRulesExporter, securityGuideRulesExporter],
+  );
 
-  const itemIdsInTable = async () =>
-    tailoring && policy
-      ? await fetchAllTailoringRuleIds()
-      : await fetchAllSecurityGuideRuleIds();
+  const itemIdsInTable = useCallback(
+    async () =>
+      tailoring && policy
+        ? await fetchAllTailoringRuleIds()
+        : await fetchAllSecurityGuideRuleIds(),
+    [tailoring, policy, fetchAllTailoringRuleIds, fetchAllSecurityGuideRuleIds],
+  );
 
-  const onValueSave = (_policyId, ...valueParams) =>
-    onValueOverrideSave(tailoring || osMinorVersion, ...valueParams);
+  const onValueSave = useCallback(
+    (_policyId, ...valueParams) =>
+      onValueOverrideSave(tailoring || osMinorVersion, ...valueParams),
+    [tailoring, osMinorVersion, onValueOverrideSave],
+  );
 
-  const onSelectRule = (...ruleParams) =>
-    onSelect?.(
-      tailoring || { ...securityGuide?.data, os_minor_version: osMinorVersion },
-      ...ruleParams,
-    );
-
+  const onSelectRule = useCallback(
+    (...ruleParams) =>
+      onSelect?.(
+        tailoring || {
+          ...securityGuide?.data,
+          os_minor_version: osMinorVersion,
+        },
+        ...ruleParams,
+      ),
+    [onSelect, osMinorVersion, securityGuide, tailoring],
+  );
   return (
     <>
       <Grid>
@@ -216,6 +233,11 @@ const TailoringTab = ({
         )}
       </Grid>
       <RulesTable
+        loading={
+          securityGuideDataLoading ||
+          profilesDataLoading ||
+          tailoringsDataLoading
+        }
         policyId={policy?.id}
         securityGuideId={tailoring?.security_guide_id || securityGuideId}
         total={rules?.meta?.total}

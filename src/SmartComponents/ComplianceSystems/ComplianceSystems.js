@@ -8,6 +8,20 @@ import usePolicies from 'Utilities/hooks/api/usePolicies';
 import CompliancePageHeader from 'PresentationalComponents/CompliancePageHeader/CompliancePageHeader';
 import { systemsPopoverData } from '@/constants';
 
+const systemTableColumns = [
+  Columns.customName(
+    {
+      showLink: true,
+    },
+    { sortable: ['display_name'] },
+  ),
+  Columns.Workspaces,
+  Columns.Tags,
+  Columns.OS(),
+  Columns.Policies,
+  Columns.Updated,
+];
+
 const ComplianceSystems = () => {
   const navigateToInventory = useNavigate('inventory');
   const { data, error, loading } = usePolicies();
@@ -33,19 +47,7 @@ const ComplianceSystems = () => {
             />
             <SystemsTable
               isFullView
-              columns={[
-                Columns.customName(
-                  {
-                    showLink: true,
-                  },
-                  { sortable: ['display_name'] },
-                ),
-                Columns.Workspaces,
-                Columns.Tags,
-                Columns.OS(),
-                Columns.Policies,
-                Columns.Updated,
-              ]}
+              columns={systemTableColumns}
               defaultFilter="assigned_or_scanned=true"
               filters={{
                 policies,

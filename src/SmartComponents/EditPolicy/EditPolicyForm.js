@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import propTypes from 'prop-types';
 import { Form, Tab, TabTitleText } from '@patternfly/react-core';
 import { RoutedTabs } from 'PresentationalComponents';
@@ -37,8 +37,9 @@ const EditPolicyForm = ({
   const [selectedSystems, setSelectedSystems] = useState(
     assignedSystems?.map((system) => system.id),
   );
-  const preUsedOsMinorVersions = assignedSystems.map(
-    (system) => system.os_minor_version,
+  const preUsedOsMinorVersions = useMemo(
+    () => assignedSystems.map((system) => system.os_minor_version),
+    [assignedSystems],
   );
 
   const handleSystemSelect = useCallback(

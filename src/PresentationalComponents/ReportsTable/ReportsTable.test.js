@@ -50,7 +50,7 @@ describe('ReportsTable', () => {
       </TestWrapper>,
     );
 
-    const toggleButton = screen.getByRole('button', {
+    const toggleButton = await screen.findByRole('button', {
       name: 'Conditional filter toggle',
     });
     expect(toggleButton).toHaveTextContent(nameLabel);
