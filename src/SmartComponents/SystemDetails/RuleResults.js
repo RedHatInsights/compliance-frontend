@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import propTypes from 'prop-types';
-import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
+import { TableStateProvider } from 'bastilian-tabletools';
 import useReportRuleResults from 'Utilities/hooks/api/useReportRuleResults';
 import { RulesTable } from 'PresentationalComponents';
 import columns from './Columns';

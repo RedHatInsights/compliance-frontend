@@ -1,12 +1,16 @@
 import { renderHook, act, waitFor } from '@testing-library/react';
-import { useSerialisedTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
-import usePagination from '@/Frameworks/AsyncTableTools/hooks/usePagination';
+import {
+  useSerialisedTableState,
+  useTableSort,
+  useTableSort,
+  TableStateProvider,
+  usePagination,
+  useTableSort,
+} from 'bastilian-tabletools';
 import {
   paginationSerialiser,
   sortSerialiser,
 } from '@/PresentationalComponents/ComplianceTable/serialisers';
-import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
-import useTableSort from '@/Frameworks/AsyncTableTools/hooks/useTableSort';
 import useQuery from '../useQuery';
 import useComplianceQuery from './useComplianceQuery';
 

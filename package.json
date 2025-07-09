@@ -26,6 +26,7 @@
     "@sentry/webpack-plugin": "^2.22.6",
     "@unleash/proxy-client-react": "^3.5.0",
     "axios": "^1.7.7",
+    "bastilian-tabletools": "^2.0.1",
     "linkify-html": "^4.3.1",
     "linkifyjs": "^4.3.1",
     "p-all": "^5.0.0",
