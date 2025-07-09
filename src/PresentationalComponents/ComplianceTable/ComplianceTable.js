@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import AsyncTableToolsTable from '@/Frameworks/AsyncTableTools/components/AsyncTableToolsTable';
+import { TableToolsTable } from 'bastilian-tabletools';
 import {
   paginationSerialiser,
   filtersSerialiser,
@@ -9,7 +9,7 @@ import {
 
 /**
  * This component serves as a place to either use the non-async TableTools or the AsyncTableTools
- * And allow preparing the AsyncTableToolsTable props/options common across tables in Compliance
+ * And allow preparing the TableToolsTable props/options common across tables in Compliance
  *
  *  @param   {object}             props Component props
  *
@@ -20,7 +20,7 @@ import {
  */
 const ComplianceTable = (props) => {
   return (
-    <AsyncTableToolsTable
+    <TableToolsTable
       {...props}
       options={{
         serialisers: {

@@ -1,12 +1,12 @@
 import { renderHook, waitFor, act } from '@testing-library/react';
 import useQuery from 'Utilities/hooks/useQuery';
-import { useSerialisedTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
+import { useSerialisedTableState } from 'bastilian-tabletools';
 import { Name } from '../../Columns';
 
 import useSystemsQueries from './useSystemsQueries';
 
 jest.mock('Utilities/hooks/useQuery');
-jest.mock('@/Frameworks/AsyncTableTools/hooks/useTableState');
+jest.mock('bastilian-tabletools');
 
 const columns = [Name];
 const defaultPagination = {
