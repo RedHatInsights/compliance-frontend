@@ -34,14 +34,14 @@ export const PoliciesTable = ({
       loading={loading}
       options={{
         ...complianceTableDefaults,
-        actionResolver,
-        ...(DedicatedAction ? { dedicatedAction: DedicatedAction } : {}),
-        exportable: {
-          ...complianceTableDefaults.exportable,
-          columns: exportableColumns,
-        },
-        emptyRows: emptyRows('policies', columns.length),
-        ...options,
+        // actionResolver,
+        // ...(DedicatedAction ? { dedicatedAction: DedicatedAction } : {}),
+        // exportable: {
+        //   ...complianceTableDefaults.exportable,
+        //   columns: exportableColumns,
+        // },
+        // emptyRows: emptyRows('policies', columns.length),
+        // ...options,
       }}
     />
   );

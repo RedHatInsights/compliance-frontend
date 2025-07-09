@@ -5,7 +5,7 @@ import '@testing-library/jest-dom';
 import items from 'Utilities/hooks/useTableTools/__fixtures__/items';
 import columns from 'Utilities/hooks/useTableTools/__fixtures__/columns';
 
-import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
+import TableStateProvider from 'bastilian-tabletools';
 import ComplianceTable from './ComplianceTable';
 
 describe('ComplianceTable', () => {

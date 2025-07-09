@@ -36,7 +36,7 @@ export const Rule = ({ title, identifier, compliant = true }) => {
           : {}),
       }}
     >
-      {title}
+      x{title}
       {identifier ? (
         <Content component={ContentVariants.small}>{identifier.label}</Content>
       ) : (
