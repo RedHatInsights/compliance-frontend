@@ -29,11 +29,15 @@ import { SystemsTable } from 'SmartComponents';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import useReport from 'Utilities/hooks/api/useReport';
 import useReportTestResultsSG from 'Utilities/hooks/api/useReportTestResultsSG';
-import * as Columns from '../SystemsTable/Columns';
-import ReportChart from './Components/ReportChart';
+
 import '@/Charts.scss';
 import './ReportDetails.scss';
-import TabTitleWithData from 'SmartComponents/ReportDetails/Components/TabTitleWithData';
+import TabTitleWithData from './Components/TabTitleWithData';
+import ReportChart from './Components/ReportChart';
+import {
+  neverReportedSystemsTableColumns,
+  reportedSystemTableColumns,
+} from './constants';
 
 const ReportDetails = ({ route }) => {
   const { report_id } = useParams();
@@ -167,20 +171,7 @@ const ReportDetails = ({ route }) => {
                       severity: true,
                       groups: true,
                     }}
-                    columns={[
-                      Columns.customDisplay({
-                        showLink: true,
-                        showOsInfo: true,
-                        idProperty: 'system_id',
-                        sortBy: ['display_name'],
-                      }),
-                      Columns.Workspaces,
-                      Columns.Tags,
-                      Columns.SsgVersion(true),
-                      Columns.FailedRules(true),
-                      Columns.ComplianceScore(true),
-                      Columns.LastScanned,
-                    ]}
+                    columns={reportedSystemTableColumns}
                   />
                 </Tab>
 
@@ -202,23 +193,7 @@ const ReportDetails = ({ route }) => {
                   <SystemsTable
                     apiEndpoint="reportSystems"
                     isFullView
-                    columns={[
-                      Columns.customName(
-                        {
-                          showLink: true,
-                          showOsInfo: true,
-                        },
-                        {
-                          sortBy: ['display_name'],
-                        },
-                      ),
-                      Columns.inventoryColumn('groups', {
-                        requiresDefault: true,
-                        sortBy: ['groups'],
-                      }),
-                      Columns.inventoryColumn('tags'),
-                      Columns.LastScanned,
-                    ]}
+                    columns={neverReportedSystemsTableColumns}
                     defaultFilter={'never_reported = true'}
                     ignoreOsMajorVersion
                     filters={{

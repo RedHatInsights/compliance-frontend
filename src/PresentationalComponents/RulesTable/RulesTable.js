@@ -26,7 +26,7 @@ import defaultColumns from './Columns';
  *  @param   {Array}              [props.selectedRules]        An array of rule IDs currently selected
  *  @param   {Array}              [props.preselected]          An array of rule IDs set as initial selection
  *  @param   {boolean}            [props.hidePassed]           Enables a default filter to only show failed rules.
- *  @param   {object}             [props.options ]             AsyncTableTools options
+ *  @param   {object}             [props.options ]             TableToolsTable options
  *  @param   {string}             [props.activeFilters]        Default filter
  *  @param   {object}             [props.ruleValues]           An object of values to show for certain rule values
  *  @param   {Array}              [props.valueDefinitions]     An array of value definitons available for rules in the table
@@ -157,7 +157,6 @@ const RulesTable = ({
           : {}),
         onSelect: (onSelect || remediationsEnabled) && setSelectedRules,
         selected: selectedRules,
-        preselected: preselected,
         detailsComponent: DetailsRow,
         selectedFilter,
         dedicatedAction: DedicatedAction,

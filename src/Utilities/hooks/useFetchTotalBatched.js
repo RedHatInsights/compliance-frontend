@@ -40,6 +40,7 @@ const useFetchTotalBatched = (fetchFn, options = {}) => {
     concurrency = CONCURRENT_REQUESTS,
     skip = false,
   } = options;
+  const [isFetching, setIsFetching] = useState(false);
   const loading = useRef(false);
   const mounted = useRef(true);
   const [totalResult, setTotalResult] = useState();
@@ -50,6 +51,7 @@ const useFetchTotalBatched = (fetchFn, options = {}) => {
       // When working with concurrent calls to fetchBatched Promise.all/pAll
       // `loading`s will collide and only the first call will succeed
       if (!loading.current) {
+        setIsFetching(true);
         loading.current = true;
         const firstPage = await fetchFn(0, batchSize, ...args);
         const total = firstPage?.meta?.total;
@@ -78,12 +80,15 @@ const useFetchTotalBatched = (fetchFn, options = {}) => {
               total: firstPage.meta.total,
             },
           };
+
           mounted.current && setTotalResult(newTotalResult);
+          setIsFetching(false);
           loading.current = false;
 
           return newTotalResult;
         } else {
           mounted.current && setTotalResult(firstPage);
+          setIsFetching(false);
           loading.current = false;
 
           return firstPage;
@@ -104,7 +109,7 @@ const useFetchTotalBatched = (fetchFn, options = {}) => {
 
   return {
     // TODO this might be redundant... ?
-    loading: typeof totalResult === 'undefined',
+    loading: isFetching,
     // TODO Maybe consider renaming to "result" to avoid confusion with the wrapped "data" of responses.
     data: totalResult,
     fetch,

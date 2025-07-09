@@ -2,10 +2,10 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import items from '@/Frameworks/AsyncTableTools/__fixtures__/legacy/items';
-import columns from '@/Frameworks/AsyncTableTools/__fixtures__/legacy/columns';
+import items from '@/__fixtures__/legacy/items';
+import columns from '@/__fixtures__/legacy/columns';
 
-import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
+import { TableStateProvider } from 'bastilian-tabletools';
 import ComplianceTable from './ComplianceTable';
 
 describe('ComplianceTable', () => {

@@ -3,7 +3,6 @@ import propTypes from 'prop-types';
 import { Content } from '@patternfly/react-core';
 import { LinkWithPermission as Link } from 'PresentationalComponents';
 import { GreySmallText, SystemsCountWarning } from 'PresentationalComponents';
-import { renderComponent } from 'Utilities/helpers';
 
 const PolicyNameCell = ({ id, title, profile_title }) => (
   <Content>
@@ -25,35 +24,34 @@ export const Name = {
   },
   sortable: 'title',
   renderExport: (policy) => policy.title,
-  renderFunc: renderComponent(PolicyNameCell),
+  Component: PolicyNameCell,
 };
 
 export const Description = {
   title: 'Description',
-  renderExport: (policy) => policy.description,
+  key: 'description',
+  exportKey: 'description',
   hiddenByDefault: true,
   isShown: false,
 };
 
-const osString = (policy) => `RHEL ${policy.os_major_version}`;
-
 export const OperatingSystem = {
   title: 'Operating system',
   sortable: 'os_major_version',
-  renderExport: osString,
-  renderFunc: (_data, _id, policy) => osString(policy),
+  renderExport: ({ os_major_version }) => `RHEL ${os_major_version}`,
+  Component: ({ os_major_version }) => `RHEL ${os_major_version}`,
 };
 
 export const Systems = {
   title: 'Systems',
   sortable: 'total_system_count',
   renderExport: (policy) => policy.total_system_count,
-
-  renderFunc: (_data, _id, policy) =>
-    policy.total_system_count > 0 ? (
-      policy.total_system_count
+  // eslint-disable-next-line
+  Component: ({ total_system_count }) =>
+    total_system_count > 0 ? (
+      total_system_count
     ) : (
-      <SystemsCountWarning count={policy.total_system_count} variant="count" />
+      <SystemsCountWarning count={total_system_count} variant="count" />
     ),
 };
 
@@ -63,7 +61,7 @@ export const BusinessObjective = {
   title: 'Business objective',
   sortable: 'business_objective',
   renderExport: businessObjectiveString,
-  renderFunc: (_data, _id, policy) => businessObjectiveString(policy),
+  Component: (policy) => businessObjectiveString(policy),
 };
 
 const complianceThresholdString = (policy) => `${policy.compliance_threshold}%`;
@@ -72,7 +70,7 @@ export const ComplianceThreshold = {
   title: 'Compliance threshold',
   sortable: 'compliance_threshold',
   renderExport: complianceThresholdString,
-  renderFunc: (_data, _id, policy) => complianceThresholdString(policy),
+  Component: (policy) => complianceThresholdString(policy),
 };
 
 export const exportableColumns = [

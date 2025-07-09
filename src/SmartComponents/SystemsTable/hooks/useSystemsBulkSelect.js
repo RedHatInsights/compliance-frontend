@@ -1,6 +1,6 @@
-import { useEffect, useCallback, useRef } from 'react';
+import { useCallback, useRef, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
-import useBulkSelect from '@/Frameworks/AsyncTableTools/hooks/useBulkSelect';
+import { useBulkSelect } from 'bastilian-tabletools';
 import { setDisabledSelection } from 'Store/Actions/SystemActions';
 
 const useSystemsBulkSelect = ({
@@ -12,18 +12,21 @@ const useSystemsBulkSelect = ({
 }) => {
   const dispatch = useDispatch();
   const itemCache = useRef();
-  const itemIdsOnPage = resultCache?.current?.data?.map(({ id }) => id);
+  const itemIdsOnPage = useMemo(
+    () => resultCache?.current?.data?.map(({ id }) => id),
+    [resultCache],
+  );
 
   const itemIdsInTable = useCallback(async () => {
     itemCache.current = undefined;
-    setIsSystemsDataLoading(true);
+    setIsSystemsDataLoading?.(true);
     dispatch(setDisabledSelection(true));
 
     const results = await fetchSystemsBatched();
     const items = results?.data;
     itemCache.current = items;
 
-    setIsSystemsDataLoading(false);
+    setIsSystemsDataLoading?.(false);
 
     return items.map(({ id }) => id);
   }, [fetchSystemsBatched, dispatch, setIsSystemsDataLoading]);
@@ -33,8 +36,16 @@ const useSystemsBulkSelect = ({
       const selectedItems = selectedIds.map((id) => ({
         id,
         ...resultCache.current?.data?.find(({ id: itemId }) => id === itemId),
-        ...itemIdsOnPage.find(({ id: itemId }) => id === itemId),
+        ...itemIdsOnPage?.find(({ id: itemId }) => id === itemId),
       }));
+
+      // Ensures rows are marked as selected in the inventory table
+      dispatch({
+        type: 'SELECT_ENTITIES',
+        payload: {
+          selected: selectedIds,
+        },
+      });
 
       itemCache.current = selectedItems;
       dispatch(setDisabledSelection(false));
@@ -60,16 +71,6 @@ const useSystemsBulkSelect = ({
     }),
     [bulkSelect],
   );
-
-  // Ensures rows are marked as selected in the inventory table
-  useEffect(() => {
-    dispatch({
-      type: 'SELECT_ENTITIES',
-      payload: {
-        selected: bulkSelect?.tableView.selected,
-      },
-    });
-  }, [dispatch, bulkSelect?.tableView.selected]);
 
   return {
     ...bulkSelect,

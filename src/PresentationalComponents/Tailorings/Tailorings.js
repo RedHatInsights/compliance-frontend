@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import propTypes from 'prop-types';
 import { Badge, Flex, FlexItem, Spinner, Tab } from '@patternfly/react-core';
 import {
@@ -90,10 +90,15 @@ const Tailorings = ({
     })) || []),
   ];
 
-  const onValueSave = (...valueParams) =>
-    onValueOverrideSave?.(policy, ...valueParams);
+  const onValueSave = useCallback(
+    (...valueParams) => onValueOverrideSave?.(policy, ...valueParams),
+    [onValueOverrideSave, policy],
+  );
 
-  const onSelectTailoring = (...tabParams) => onSelect?.(policy, ...tabParams);
+  const onSelectTailoring = useCallback(
+    (...tabParams) => onSelect?.(policy, ...tabParams),
+    [onSelect, policy],
+  );
 
   return (
     <StateViewWithError
@@ -159,9 +164,6 @@ const Tailorings = ({
                     showResetButton: showResetButton,
                     selected:
                       selected?.[tab.id] || selected?.[tab.os_minor_version],
-                    preselected:
-                      preselected?.[tab.id] ||
-                      preselected?.[tab.os_minor_version],
                     additionalRules:
                       additionalRules?.[tab.id] ||
                       additionalRules?.[tab.os_minor_version],
