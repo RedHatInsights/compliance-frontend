@@ -34,7 +34,7 @@ export const EditPolicyDetails = ({
 }) => {
   const { data: totalPolicies, loading } = usePolicies({
     params: {
-      filter: `os_major_version=${profile.os_major_version} AND title="${name}"`,
+      filter: `os_major_version=${profile.os_major_version} AND title~"${name}"`,
     },
     onlyTotal: true,
     skip: !name,

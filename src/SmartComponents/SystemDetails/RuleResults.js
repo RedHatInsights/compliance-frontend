@@ -1,6 +1,6 @@
 import React, { useMemo, useCallback } from 'react';
 import propTypes from 'prop-types';
-import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
+import { TableStateProvider } from 'bastilian-tabletools';
 import useReportRuleResults from 'Utilities/hooks/api/useReportRuleResults';
 import { RulesTable } from 'PresentationalComponents';
 import columns from './Columns';
@@ -15,6 +15,8 @@ const RuleResults = ({ reportTestResult }) => {
   const reportId = reportTestResult.report_id;
 
   const {
+    loading,
+    error,
     data: ruleResults,
     exporter,
     fetchBatched,
@@ -32,6 +34,7 @@ const RuleResults = ({ reportTestResult }) => {
     [fetchBatched],
   );
 
+  // TODO clean up and make columns use new object properties
   const transformRules = (ruleResults, reportTestResult) => {
     return ruleResults !== undefined
       ? ruleResults.map((rule) => ({
@@ -48,6 +51,8 @@ const RuleResults = ({ reportTestResult }) => {
 
   return (
     <RulesTable
+      loading={loading}
+      error={error}
       activeFilters={activeFilters}
       ansibleSupportFilter
       rules={rules.map((rule) => ({ ...rule, itemId: rule.rule_id }))}

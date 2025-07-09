@@ -2,7 +2,8 @@ import React from 'react';
 import propTypes from 'prop-types';
 import columns, { exportableColumns } from './Columns';
 import * as Filters from './Filters';
-import { emptyRows } from '@/Frameworks/AsyncTableTools/components/NoResultsTable';
+
+import { emptyRows } from 'PresentationalComponents/NoResultsTable/NoResultsTable';
 import useActionResolver from './hooks/useActionResolvers';
 import useComplianceTableDefaults from 'Utilities/hooks/useComplianceTableDefaults';
 
@@ -40,6 +41,7 @@ export const PoliciesTable = ({
           ...complianceTableDefaults.exportable,
           columns: exportableColumns,
         },
+        // TODO replace with empty rows component
         emptyRows: emptyRows('policies', columns.length),
         ...options,
       }}

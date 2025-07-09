@@ -1,5 +1,5 @@
 import { useAddNotification } from '@redhat-cloud-services/frontend-components-notifications/hooks';
-import withExport from '@/Frameworks/AsyncTableTools/utils/withExport';
+import { useExport } from 'bastilian-tabletools';
 
 export const useSystemsExport = ({ columns, exporter, total }) => {
   const addNotification = useAddNotification();
@@ -26,7 +26,7 @@ export const useSystemsExport = ({ columns, exporter, total }) => {
 
   const {
     toolbarProps: { exportConfig },
-  } = withExport({
+  } = useExport({
     exporter,
     columns,
     isDisabled: total === 0,

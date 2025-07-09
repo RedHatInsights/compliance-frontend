@@ -36,8 +36,10 @@ const useTailoringsData = ({
   });
 
   return {
-    error: rulesLoading || ruleTreeLoading,
-    loading: rulesError || ruleTreeError,
+    ruleTreeLoading,
+    rulesLoading,
+    loading: rulesLoading || ruleTreeLoading,
+    error: rulesError || ruleTreeError,
     data: {
       ...(!skipRuleTree ? { ruleTree } : {}),
       ...(!skipRules ? { rules } : {}),

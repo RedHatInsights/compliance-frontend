@@ -5,7 +5,6 @@ import TestWrapper from 'Utilities/TestWrapper';
 
 import useSystemsQueries from './useSystemsQueries';
 
-jest.mock('@/Frameworks/AsyncTableTools/hooks/useTableState');
 jest.mock('Utilities/hooks/useComplianceApi');
 
 const columns = [Name];

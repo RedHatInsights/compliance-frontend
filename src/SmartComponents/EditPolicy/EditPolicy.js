@@ -122,7 +122,7 @@ const EditPolicy = ({ route }) => {
   useTitleEntity(route, policy?.title);
 
   const statusValues = {
-    data: policy && supportedProfiles && assignedRuleIds,
+    data: policy && supportedProfiles && assignedRuleIds && assignedSystems,
     loading:
       policyLoading ||
       supportedProfilesLoading ||

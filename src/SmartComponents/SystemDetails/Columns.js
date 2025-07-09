@@ -1,4 +1,3 @@
-import { renderComponent } from 'Utilities/helpers';
 import { Passed as PassedCell, RemediationColumnCell, Rule } from './Cells';
 import {
   Passed,
@@ -12,20 +11,20 @@ export const Name = {
   sortable: 'title',
   renderExport: ({ title, identifier }) =>
     `${title}${identifier ? ` - ${identifier.label}` : ''}`,
-  renderFunc: renderComponent(Rule),
+  Component: Rule,
 };
 
 export const PassedSystemDetails = {
   ...Passed,
   renderExport: ({ result }) => (result === 'pass' ? 'passed' : 'failed'),
-  renderFunc: renderComponent(PassedCell),
+  Component: PassedCell,
 };
 
 export const RemediationSystemDetails = {
   ...Remediation,
   sortByFunction: (rule) => rule?.remediation_issue_id,
   renderExport: (rule) => (rule?.remediation_issue_id ? 'Playbook' : 'Manual'),
-  renderFunc: renderComponent(RemediationColumnCell),
+  Component: RemediationColumnCell,
 };
 
 export default [
