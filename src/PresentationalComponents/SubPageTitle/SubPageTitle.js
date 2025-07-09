@@ -1,17 +1,17 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Content } from '@patternfly/react-core';
+import { Title } from '@patternfly/react-core';
 
 const SubPageTitle = ({ children }) => (
-  <Content
-    component="h2"
+  <Title
+    headingLevel="h4"
     style={{
-      color: 'var(--pf-t--global--color--status--danger--100)',
+      color: 'var(--pf-t--global--text--color--200)',
       lineHeight: '2rem',
     }}
   >
     {children}
-  </Content>
+  </Title>
 );
 
 SubPageTitle.propTypes = {
