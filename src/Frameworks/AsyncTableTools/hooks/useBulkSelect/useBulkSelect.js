@@ -2,6 +2,8 @@ import { useCallback, useState } from 'react';
 import { useDeepCompareEffect } from 'use-deep-compare';
 
 import useSelectionManager from '../useSelectionManager';
+import useTableState from '@/Frameworks/AsyncTableTools/hooks/useTableState';
+
 import {
   checkCurrentPageSelected,
   checkboxState,
@@ -56,6 +58,7 @@ const useBulkSelect = ({
     clear,
     reset,
   } = useSelectionManager(preselected, {}, onSelect);
+  const [, setSelected] = useTableState('selected');
   const selectedIdsTotal = (selectedIds || []).length;
   const paginatedTotal = itemIdsOnPage?.length || total;
   const allSelected = selectedIdsTotal === total;
@@ -135,8 +138,13 @@ const useBulkSelect = ({
     selected && set(selected);
   }, [set, selected]);
 
+  useDeepCompareEffect(() => {
+    setSelected(selectedIds);
+  }, [selectedIds, setSelected]);
+
   return {
     tableView: {
+      selected: selectedIds,
       enableBulkSelect,
       markRowSelected,
       isItemSelected,
@@ -152,7 +160,7 @@ const useBulkSelect = ({
           toolbarProps: {
             bulkSelect: {
               toggleProps: { children: [title] },
-              isDisabled,
+              isDisabled: isDisabled || loading,
               items: [
                 {
                   title: 'Select none',
