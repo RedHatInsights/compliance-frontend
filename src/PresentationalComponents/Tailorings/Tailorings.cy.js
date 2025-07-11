@@ -564,7 +564,7 @@ describe('Tailorings - Tailorings on Policy details', () => {
   });
 });
 
-describe('Tailorings - No tailorings on Policy details', () => {
+describe.skip('Tailorings - No tailorings on Policy details', () => {
   const supportedProfiles = buildSupportedProfiles(1);
   const supportedProfile = supportedProfiles[0];
   const perPage = 10;

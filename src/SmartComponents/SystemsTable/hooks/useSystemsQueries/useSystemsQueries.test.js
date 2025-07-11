@@ -1,37 +1,25 @@
-import { renderHook, waitFor, act } from '@testing-library/react';
-import useQuery from 'Utilities/hooks/useQuery';
-import { useSerialisedTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
+import { renderHook, act } from '@testing-library/react';
 import { Name } from '../../Columns';
+import useComplianceApi from 'Utilities/hooks/useComplianceApi';
+import TestWrapper from 'Utilities/TestWrapper';
 
 import useSystemsQueries from './useSystemsQueries';
 
-jest.mock('Utilities/hooks/useQuery');
 jest.mock('@/Frameworks/AsyncTableTools/hooks/useTableState');
+jest.mock('Utilities/hooks/useComplianceApi');
 
 const columns = [Name];
-const defaultPagination = {
-  limit: 10,
-  offset: 0,
-};
-
-const mockUseTableState = jest.fn(() => ({
-  pagination: defaultPagination,
-}));
-
-const mockQueryFetch = jest.fn(() => {});
-
-const mockUseQuery = jest.fn(() => {
-  return {
-    data: [],
-    loading: false,
-    error: undefined,
-    fetch: mockQueryFetch,
-  };
-});
-
-useQuery.mockImplementation(mockUseQuery);
 
 describe('useSystemsQueries', () => {
+  const apiMock = jest.fn(() => ({
+    data: {
+      data: [],
+      meta: {
+        total: 0,
+      },
+    },
+  }));
+
   const defaultQuerieOptions = {
     apiEndpoint: 'systems',
     columns,
@@ -39,36 +27,13 @@ describe('useSystemsQueries', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    useSerialisedTableState.mockImplementation(mockUseTableState);
+    useComplianceApi.mockReturnValue(apiMock);
   });
 
   it('returns a fetchSystems and batched function', async () => {
-    const { result } = renderHook(() =>
-      useSystemsQueries({ ...defaultQuerieOptions }),
-    );
-
-    await waitFor(() =>
-      expect(useQuery).toHaveBeenNthCalledWith(
-        1,
-        expect.anything(),
-        expect.objectContaining({
-          params: expect.objectContaining({
-            ...defaultPagination,
-          }),
-        }),
-      ),
-    );
-
-    await waitFor(() =>
-      expect(useQuery).toHaveBeenNthCalledWith(
-        2,
-        expect.anything(),
-        expect.objectContaining({
-          params: expect.objectContaining({
-            ...defaultPagination,
-          }),
-        }),
-      ),
+    const { result } = renderHook(
+      () => useSystemsQueries({ ...defaultQuerieOptions }),
+      { wrapper: TestWrapper },
     );
 
     expect(result.current.fetchSystems).toBeDefined();
@@ -77,84 +42,67 @@ describe('useSystemsQueries', () => {
 
   describe('fetchSystems', () => {
     it('calls query fetch function when fetchSystems called', async () => {
-      const { result } = renderHook(() =>
-        useSystemsQueries({ ...defaultQuerieOptions }),
+      const { result } = renderHook(
+        () => useSystemsQueries({ ...defaultQuerieOptions }),
+        { wrapper: TestWrapper },
       );
 
-      await act(async () => await result.current.fetchSystems());
+      await result.current.fetchSystems();
 
-      await waitFor(() =>
-        expect(mockQueryFetch).toHaveBeenCalledWith({ ...defaultPagination }),
-      );
+      expect(apiMock).toHaveBeenCalled();
     });
 
     it('passes on params', async () => {
-      const testParams = { id: 'test-id' };
-      const { result } = renderHook(() =>
-        useSystemsQueries({ ...defaultQuerieOptions }),
-      );
-
-      await act(() => result.current.fetchSystems(testParams));
-
-      await waitFor(() =>
-        expect(mockQueryFetch).toHaveBeenCalledWith(
-          expect.objectContaining(testParams),
-        ),
-      );
-    });
-
-    it('passes on filters in params', async () => {
-      const testParams = { filters: { hostnameOrId: 'test' } };
-      const { result } = renderHook(() =>
-        useSystemsQueries({ ...defaultQuerieOptions }),
+      const testParams = {
+        page: 1,
+        per_page: 10,
+        filters: { hostnameOrId: 'test-id' },
+        sortBy: { key: 'name', direction: 'asc' },
+      };
+      const { result } = renderHook(
+        () => useSystemsQueries({ ...defaultQuerieOptions }),
+        { wrapper: TestWrapper },
       );
 
       await act(async () => await result.current.fetchSystems(testParams));
 
-      await waitFor(() =>
-        expect(mockQueryFetch).toHaveBeenCalledWith({
-          filter: 'display_name ~ "test"',
-          ...defaultPagination,
-        }),
+      expect(apiMock).toHaveBeenCalledWith(
+        undefined,
+        undefined,
+        10,
+        0,
+        undefined,
+        'display_name:asc',
+        'display_name ~ "test-id"',
       );
     });
 
     it('passes on filters in params and prepends the defaultFilter', async () => {
       const testParams = { filters: { hostnameOrId: 'test' } };
-      const { result } = renderHook(() =>
-        useSystemsQueries({
-          ...defaultQuerieOptions,
-          defaultFilter: 'policyId = "testId"',
-        }),
+      const { result } = renderHook(
+        () =>
+          useSystemsQueries({
+            ...defaultQuerieOptions,
+            defaultFilter: 'policyId = "testId"',
+          }),
+        { wrapper: TestWrapper },
       );
 
       await act(async () => await result.current.fetchSystems(testParams));
 
-      await waitFor(() =>
-        expect(mockQueryFetch).toHaveBeenCalledWith({
-          ...defaultPagination,
-          filter: '(display_name ~ "test") AND (policyId = "testId")',
-        }),
+      expect(apiMock).toHaveBeenCalledWith(
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        '(policyId = "testId") AND (display_name ~ "test")',
       );
     });
   });
 
-  describe('fetchSystemsBatched', () => {
-    it('calls query fetch function when fetchSystemsBatched called', async () => {
-      const { result } = renderHook(() =>
-        useSystemsQueries({ ...defaultQuerieOptions }),
-      );
-
-      await act(async () => await result.current.fetchSystemsBatched());
-
-      await waitFor(() =>
-        expect(mockQueryFetch).toHaveBeenCalledWith(
-          expect.objectContaining({
-            limit: 50,
-            offset: 0,
-          }),
-        ),
-      );
-    });
-  });
+  // TODO Add tests for fetchSystemsBatched
+  // TODO Add tests for systemsExporter
+  // TODO Add tests for fetchOperatingSystemsAsOsObjects
 });

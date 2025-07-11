@@ -27,8 +27,7 @@
 import React from 'react';
 import { mount } from 'cypress/react';
 import FlagProvider from '@unleash/proxy-client-react';
-import { COMPLIANCE_API_ROOT } from '@/constants';
-import TestWrapper from '@redhat-cloud-services/frontend-components-utilities/TestingUtils/JestUtils/TestWrapper';
+import TestWrapper from 'Utilities/TestWrapper';
 
 Cypress.Commands.add(
   'ouiaId',
@@ -36,7 +35,7 @@ Cypress.Commands.add(
   (subject, item, el = '') => {
     const attr = `${el}[data-ouia-component-id="${item}"]`;
     return subject ? cy.wrap(subject).find(attr) : cy.get(attr);
-  }
+  },
 );
 
 Cypress.Commands.add(
@@ -45,7 +44,7 @@ Cypress.Commands.add(
   (subject, item, el = '') => {
     const attr = `${el}[data-ouia-component-type="${item}"]`;
     return subject ? cy.wrap(subject).find(attr) : cy.get(attr);
-  }
+  },
 );
 
 Cypress.Commands.add(
@@ -59,13 +58,12 @@ Cypress.Commands.add(
           appName: 'abc',
         }}
       >
-          <TestWrapper renderOptions={renderOptions}>
-            <Component {...props} />
-          </TestWrapper>
-
-      </FlagProvider>
+        <TestWrapper renderOptions={renderOptions}>
+          <Component {...props} />
+        </TestWrapper>
+      </FlagProvider>,
     );
-  }
+  },
 );
 
 Cypress.Commands.add('checkAPISorting', (endpoint, sortKey, direction) => {
@@ -73,7 +71,7 @@ Cypress.Commands.add('checkAPISorting', (endpoint, sortKey, direction) => {
     .its('request.url')
     .should(
       'include',
-      `sort_by=${encodeURIComponent(`${sortKey}:${direction}`)}`
+      `sort_by=${encodeURIComponent(`${sortKey}:${direction}`)}`,
     );
 });
 
@@ -82,7 +80,7 @@ Cypress.Commands.add('checkAPIFiltering', (endpoint, filterKey, value) => {
     .its('request.url')
     .should(
       'include',
-      `filter=${encodeURIComponent(`${filterKey} ~ ${value}`)}`
+      `filter=${encodeURIComponent(`${filterKey} ~ ${value}`)}`,
     );
 });
 
@@ -91,4 +89,4 @@ Cypress.Commands.add('sortTableColumn', (colName, order) => {
   cy.get(`th[data-label="${colName}"]`)
     .invoke('attr', 'aria-sort')
     .should('eq', order);
-})
+});
