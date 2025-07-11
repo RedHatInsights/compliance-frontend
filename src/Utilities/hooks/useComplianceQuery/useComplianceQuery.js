@@ -1,16 +1,20 @@
 import { useCallback } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import useFetchTotalBatched from 'Utilities/hooks/useFetchTotalBatched';
-import useQuery from 'Utilities/hooks/useQuery';
+import useComplianceApi from 'Utilities/hooks/useComplianceApi';
+
 import {
   paramsWithFilters,
   compileResult,
   compileTotalResult,
   // hasRequiredParams,
   TOTAL_REQUEST_PARAMS,
+  fetchResult,
 } from './helpers';
-import useComplianceApi from './hooks/useComplianceApi';
+
 import useComplianceTableState from './hooks/useComplianceTableState';
 import useComplianceFetchExtras from './hooks/useComplianceFetchExtras';
+import useComplianceFetchApi from './hooks/useComplianceFetchApi';
 
 /**
  *  @typedef {object} useComplianceQueryParams
@@ -52,6 +56,10 @@ import useComplianceFetchExtras from './hooks/useComplianceFetchExtras';
  *  @param   {boolean}                  [options.onlyTotal]      Enables a predefined "compileResult" function for the useQuery to only return the meta.total as the `data`
  *  @param   {Array | string}           [options.requiredParams] Parameters required for the endpoint. The request will be "skipped" until all parameters are provided.
  *
+ *  @param                              options.convertArray
+ *  @param                              options.convertToArray
+ *  @param                              options.compileResult
+ *  @param                              options.useQueryOptions
  *  @returns {useComplianceQueryReturn}                          An object containing a data, loading and error state, as well as a fetch and fetchBatched function.
  *
  *  @category Compliance
@@ -94,8 +102,8 @@ const useComplianceQuery = (
     skip: skipOption,
     batch = {},
     onlyTotal,
-    requiredParams,
-    ...options
+    convertToArray,
+    useQueryOptions = {},
   } = {},
 ) => {
   const apiEndpoint = useComplianceApi(endpoint);
@@ -103,38 +111,27 @@ const useComplianceQuery = (
     useTableState,
     paramsOption,
   );
-  const skip = !!(useTableState && !hasState) || !!skipOption; //||
-  //!hasRequiredParams(requiredParams, params); // TODO This check should maybe happen elsewhere (too)
+  const skip = !!(useTableState && !hasState) || !!skipOption;
+
+  const { fetchApi, fetchForBatch } = useComplianceFetchApi({
+    apiEndpoint,
+    params,
+    convertToArray,
+    onlyTotal,
+  });
 
   const {
     data: queryData,
     error: queryError,
-    loading: queryLoading,
-    fetch: queryFetch,
+    isFetching: queryLoading,
     refetch: queryRefetch,
-  } = useQuery(apiEndpoint, {
-    skip: batched ? true : skip,
-    ...options,
-    params,
-    compileResult,
-    ...(onlyTotal
-      ? {
-          params: paramsWithFilters(TOTAL_REQUEST_PARAMS, params),
-          compileResult: compileTotalResult,
-        }
-      : {}),
+  } = useQuery({
+    queryKey: [endpoint, params],
+    queryFn: (_queryContext, ...args) => fetchApi(...args),
+    enabled: !(batched ? true : skip),
+    refetchOnWindowFocus: false,
+    ...useQueryOptions,
   });
-
-  const fetch = useCallback(
-    async (fetchParams) => await queryFetch(fetchParams),
-    [queryFetch],
-  );
-
-  const fetchForBatch = useCallback(
-    async (offset, limit, fetchForBatchParams) =>
-      await fetch({ ...fetchForBatchParams, offset, limit }),
-    [fetch],
-  );
 
   const {
     loading: batchedLoading,
@@ -147,7 +144,7 @@ const useComplianceQuery = (
   });
 
   const extras = useComplianceFetchExtras({
-    fetch,
+    fetch: fetchApi,
     fetchBatched,
     params,
   });
@@ -164,8 +161,8 @@ const useComplianceQuery = (
           error: queryError,
           loading: queryLoading,
         }),
+    fetch: fetchApi,
     fetchBatched,
-    fetch: queryFetch,
     refetch: queryRefetch,
     ...extras,
   };
