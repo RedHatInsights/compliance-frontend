@@ -3,24 +3,5 @@ import { instance } from '@redhat-cloud-services/frontend-components-utilities/i
 import * as complianceApi from '@redhat-cloud-services/compliance-client';
 import { API_BASE_URL } from '@/constants';
 
+// TODO Delete once all places using `apiInstance` directly have been removed
 export const apiInstance = APIFactory(API_BASE_URL, complianceApi, instance);
-
-const defaultCompileResult = (fetchResult) => fetchResult;
-
-export const fetchResult = async (
-  fn,
-  params,
-  convertToArray,
-  compileResult = defaultCompileResult,
-) => {
-  const convertedParams =
-    (convertToArray && !Array.isArray(params)
-      ? convertToArray(params)
-      : params) || [];
-
-  if (Array.isArray(convertedParams)) {
-    return compileResult(await fn(...convertedParams), params);
-  } else {
-    return compileResult(await fn(convertedParams), params);
-  }
-};
