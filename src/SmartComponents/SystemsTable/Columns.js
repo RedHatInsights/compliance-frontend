@@ -37,7 +37,7 @@ export const customColumn = (column, props) =>
 export const Name = compileColumnRenderFunc({
   key: 'name',
   title: 'Name',
-  sortBy: ['name'],
+  sortable: 'display_name',
   props: {
     width: 40,
   },
@@ -71,7 +71,7 @@ export const SsgVersion = () =>
     title: 'SSG version',
     transforms: [nowrap],
     exportKey: 'testResultProfiles',
-    sortBy: ['security_guide_version'],
+    sortable: 'security_guide_version',
     key: 'ssg_version',
     renderExport: (testResultProfiles) =>
       testResultProfiles
@@ -102,7 +102,7 @@ export const FailedRules = () =>
     key: 'failedRules',
     exportKey: 'rulesFailed',
     transforms: [nowrap],
-    sortBy: ['failed_rule_count'],
+    sortable: 'failed_rule_count',
     props: {
       width: 5,
     },
@@ -117,7 +117,6 @@ export const ComplianceScore = () =>
   compileColumnRenderFunc({
     title: 'Compliance score',
     key: 'complianceScore',
-    sortBy: ['score'],
     sortable: 'score',
     transforms: [nowrap],
     props: {
@@ -145,7 +144,7 @@ export const OperatingSystem = () =>
   compileColumnRenderFunc({
     title: 'Operating system',
     key: 'operatingSystem',
-    sortBy: ['os_version'],
+    sortable: 'os_version',
     transforms: [nowrap],
     renderExport: (cell) => operatingSystemString(cell),
     cell: OperatingSystemCell,
@@ -162,7 +161,7 @@ export const OS = () =>
     key: 'operatingSystem',
     dataLabel: 'OS',
     transforms: [nowrap],
-    sortBy: ['os_version'],
+    sortable: 'os_version',
     props: {
       width: 10,
     },
@@ -178,7 +177,7 @@ export const inventoryColumn = (column, props) => ({
 export const Workspaces = inventoryColumn('groups', {
   title: 'Workspaces',
   requiresDefault: true,
-  sortBy: ['groups'],
+  sortable: 'groups',
   renderExport: ({ groups }) => groups.map(({ name }) => name).join(', '),
 });
 

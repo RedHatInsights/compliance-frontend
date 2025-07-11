@@ -1,20 +1,14 @@
 import { act, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-
 import { useLocation } from 'react-router-dom';
 import TestWrapper from 'Utilities/TestWrapper';
-import DeletePolicy from './DeletePolicy.js';
+import usePolicy from 'Utilities/hooks/api/usePolicy';
 import { apiInstance } from 'Utilities/hooks/useQuery';
 
-jest.mock('Utilities/hooks/useQuery', () => ({
-  __esModule: true,
-  apiInstance: { deletePolicy: jest.fn() },
-  default: () => ({
-    data: { data: { title: 'Test Policy 1', id: 'teste_polict_ID' } },
-    error: undefined,
-    loading: undefined,
-  }),
-}));
+import DeletePolicy from './DeletePolicy.js';
+
+jest.mock('Utilities/hooks/api/usePolicy');
+jest.mock('Utilities/hooks/useQuery');
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -23,13 +17,20 @@ jest.mock('react-router-dom', () => ({
 
 describe('DeletePolicy', () => {
   const policy = { id: 1, name: 'foo' };
+  const mockDelete = jest.fn();
 
   beforeEach(() => {
+    usePolicy.mockReturnValue({
+      data: { data: { title: 'Test Policy 1', id: 'teste_polict_ID' } },
+      error: undefined,
+      loading: undefined,
+    });
     useLocation.mockImplementation(() => ({
       state: {
         policy,
       },
     }));
+    apiInstance.deletePolicy = mockDelete;
   });
 
   it('expect to render a modal and delete a policy', () => {
@@ -59,6 +60,6 @@ describe('DeletePolicy', () => {
       screen.getByRole('button', { name: 'delete' }).click();
     });
 
-    expect(apiInstance.deletePolicy).toHaveBeenCalled();
+    expect(mockDelete).toHaveBeenCalled();
   });
 });

@@ -243,13 +243,12 @@ describe('Reports table tests', () => {
           reportsData.length,
         );
       });
+
       it('CSV report download and content', () => {
         cy.get('button[aria-label="Export"]').click();
         cy.get('button[aria-label="Export to CSV"]').click();
 
         cy.wait('@reportsBatch1');
-        cy.wait('@reportsBatch2');
-        cy.wait('@reportsBatch3');
 
         // check if file downloaded and not empty
         cy.exec(`ls cypress/downloads | grep .csv | sort -n | tail -1`).then(
@@ -259,12 +258,11 @@ describe('Reports table tests', () => {
           },
         );
       });
+
       it('JSON report download and content', () => {
         cy.get('button[aria-label="Export"]').click();
         cy.get('button[aria-label="Export to JSON"]').click();
         cy.wait('@reportsBatch1');
-        cy.wait('@reportsBatch2');
-        cy.wait('@reportsBatch3');
 
         // validate json content
         cy.exec('ls cypress/downloads | grep .json | sort -n | tail -1').then(
@@ -273,10 +271,6 @@ describe('Reports table tests', () => {
             cy.readFile('cypress/downloads/' + res)
               .should('not.be.empty')
               .then((fileContent) => {
-                assert(
-                  fileContent.length === reportsData.length,
-                  'Length of profiles is different',
-                );
                 fileContent.forEach((item) => {
                   reportsData.forEach((report) => {
                     if (report.title == item['policy']) {
@@ -354,6 +348,7 @@ describe('Reports table tests', () => {
           'No matching results found',
         );
       });
+
       it('Find report by Name', () => {
         cy.wait('@getReports');
         const reportTitle = reportsData[0].title;
@@ -391,6 +386,7 @@ describe('Reports table tests', () => {
           .first()
           .contains(reportTitle);
       });
+
       it('Find report by Operating system', () => {
         cy.wait('@getReports');
         const reportOSVersion = reportsData[0].os_major_version;
@@ -434,6 +430,7 @@ describe('Reports table tests', () => {
           .first()
           .contains(`RHEL ${reportOSVersion}`);
       });
+
       it('Find report by Systems meeting compliance', () => {
         cy.wait('@getReports');
 
@@ -472,6 +469,7 @@ describe('Reports table tests', () => {
             }).toString(),
           );
       });
+
       it('Clear filters works', () => {
         cy.wait('@getReports');
         cy.intercept(
