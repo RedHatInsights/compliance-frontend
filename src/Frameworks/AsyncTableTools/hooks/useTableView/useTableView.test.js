@@ -1,5 +1,5 @@
 import { renderHook, waitFor } from '@testing-library/react';
-import NoResultsTable from 'Utilities/hooks/useTableTools/Components/NoResultsTable';
+import NoResultsTable from '@/Frameworks/AsyncTableTools/components/NoResultsTable';
 import { Spinner } from '@patternfly/react-core';
 
 import items from '../../__fixtures__/items';

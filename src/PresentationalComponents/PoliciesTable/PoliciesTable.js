@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import columns, { exportableColumns } from './Columns';
 import * as Filters from './Filters';
-import { emptyRows } from 'Utilities/hooks/useTableTools/Components/NoResultsTable';
+import { emptyRows } from '@/Frameworks/AsyncTableTools/components/NoResultsTable';
 import useActionResolver from './hooks/useActionResolvers';
 import useComplianceTableDefaults from 'Utilities/hooks/useComplianceTableDefaults';
 

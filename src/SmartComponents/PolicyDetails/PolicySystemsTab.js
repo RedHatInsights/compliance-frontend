@@ -4,7 +4,7 @@ import { NoSystemsTableWithWarning } from 'PresentationalComponents';
 import { SystemsTable } from 'SmartComponents';
 import * as Columns from '../SystemsTable/Columns';
 import EditSystemsButtonToolbarItem from './EditSystemsButtonToolbarItem';
-import NoResultsTable from '../../Utilities/hooks/useTableTools/Components/NoResultsTable';
+import NoResultsTable from '@/Frameworks/AsyncTableTools/components/NoResultsTable';
 
 const PolicySystemsTab = ({ policy }) => {
   return (

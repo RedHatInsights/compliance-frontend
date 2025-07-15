@@ -4,7 +4,7 @@ import { fitContent } from '@patternfly/react-table';
 import { ComplianceTable as TableToolsTable } from 'PresentationalComponents';
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/ConditionalFilter';
 import PolicyTypeDetailsRow from './PolicyTypeDetailsRow';
-import { emptyRows } from 'Utilities/hooks/useTableTools/Components/NoResultsTable';
+import { emptyRows } from '@/Frameworks/AsyncTableTools/components/NoResultsTable';
 
 const PolicyTypeTable = ({
   profiles,

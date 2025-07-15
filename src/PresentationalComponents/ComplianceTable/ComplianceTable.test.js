@@ -2,8 +2,8 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import items from 'Utilities/hooks/useTableTools/__fixtures__/items';
-import columns from 'Utilities/hooks/useTableTools/__fixtures__/columns';
+import items from '@/Frameworks/AsyncTableTools/__fixtures__/legacy/items';
+import columns from '@/Frameworks/AsyncTableTools/__fixtures__/legacy/columns';
 
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
 import ComplianceTable from './ComplianceTable';

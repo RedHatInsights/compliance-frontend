@@ -10,7 +10,7 @@ import {
 } from './helpers';
 import items, {
   severityLevels,
-} from './hooks/useTableTools/__fixtures__/items';
+} from '@/Frameworks/AsyncTableTools/__fixtures__/legacy/items';
 
 describe('uniq', () => {
   it('should deduplicate items', () => {
