@@ -7,18 +7,13 @@ export const joinFilters = (...filters) => {
 
   return filteredFilters.length > 1
     ? filteredFilters.map((filter) => `(${filter})`).join(' AND ')
-    : filters;
+    : filters[0];
 };
 
 export const paramsWithFilters = (fetchParams, params) => {
   if (fetchParams && !Array.isArray(fetchParams)) {
     const { filter: fetchFilter, ...remainingFetchParams } = fetchParams;
-    const filter = joinFilters(
-      ...[
-        ...(fetchFilter ? [fetchFilter] : []),
-        ...(params?.filter ? [params.filter] : []),
-      ],
-    );
+    const filter = joinFilters(fetchFilter, params?.filter || {});
 
     return {
       ...params,

@@ -1,4 +1,4 @@
-import useComplianceQuery from './useComplianceQuery';
+import useComplianceQuery from '../useComplianceQuery';
 
 export const convertToArray = ({ filter }) => [
   undefined, // xRHIDENTITY

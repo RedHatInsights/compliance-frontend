@@ -1,17 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`compileColumnRenderFunc a column with a renderFunc 1`] = `
-{
-  "key": "columnKey",
-  "props": {
-    "width": 40,
-  },
-  "renderFunc": [Function],
-  "title": "Column title",
-}
-`;
+exports[`compileColumnRenderFunc a column with a renderFunc 1`] = `undefined`;
 
-exports[`compileColumnRenderFunc a column with custom props appended 1`] = `
+exports[`customColumn a column with custom props appended 1`] = `
 {
   "key": "columnKey",
   "props": {

@@ -3,10 +3,6 @@ import { Content } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import { SystemsTable } from 'SmartComponents';
 import * as Columns from '../SystemsTable/Columns';
-import {
-  fetchSystemsApi,
-  fetchCustomOSes,
-} from 'SmartComponents/SystemsTable/constants';
 
 const EmptyState = ({ osMajorVersion }) => (
   <div data-testid="empty-state">
@@ -60,23 +56,18 @@ const EditPolicySystemsTab = ({
 
   return (
     <SystemsTable
+      apiEndpoint="systems"
       columns={[
         Columns.Name,
         Columns.inventoryColumn('tags'),
         Columns.OperatingSystem(),
       ]}
-      showOsMinorVersionFilter={[os_major_version]}
       prependComponent={<PrependComponent osMajorVersion={os_major_version} />}
       emptyStateComponent={<EmptyState osMajorVersion={os_major_version} />}
       compact
-      showActions={false}
       defaultFilter={defaultFilter}
-      enableExport={false}
-      remediationsEnabled={false}
       preselectedSystems={selectedSystems}
       onSelect={onSystemSelect}
-      fetchApi={fetchSystemsApi}
-      fetchCustomOSes={fetchCustomOSes}
       setIsSystemsDataLoading={setIsSystemsDataLoading}
     />
   );

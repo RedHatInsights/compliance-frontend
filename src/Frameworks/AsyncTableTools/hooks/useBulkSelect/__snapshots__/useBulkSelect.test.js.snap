@@ -13,6 +13,7 @@ exports[`useBulkSelect returns a bulk select configuration 1`] = `
       "isItemSelected": [Function],
       "markRowSelected": [Function],
       "select": [Function],
+      "selected": [],
     },
     "toolbarProps": {
       "bulkSelect": {

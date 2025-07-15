@@ -62,6 +62,6 @@ describe('useFilterConfig', () => {
       ]),
     );
 
-    expect(result.current.activeFilters).toEqual(undefined);
+    expect(result.current.activeFilters).toEqual({});
   });
 });

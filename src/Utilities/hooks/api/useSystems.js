@@ -1,6 +1,13 @@
 import useComplianceQuery from '../useComplianceQuery';
 
-const convertToArray = ({ tags, limit, offset, idsOnly, sortBy, filter }) => [
+export const convertToArray = ({
+  tags,
+  limit,
+  offset,
+  idsOnly,
+  sortBy,
+  filter,
+}) => [
   undefined, // xRHIDENTITY
   tags,
   limit,

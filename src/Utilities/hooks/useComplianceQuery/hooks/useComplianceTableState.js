@@ -1,6 +1,6 @@
 import { useDeepCompareMemo } from 'use-deep-compare';
 import { useSerialisedTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
-import { joinFilters } from '../helpers';
+import { paramsWithFilters } from '../helpers';
 
 const useComplianceTableState = (useTableState, paramsOption) => {
   const serialisedTableState = useSerialisedTableState();
@@ -9,26 +9,16 @@ const useComplianceTableState = (useTableState, paramsOption) => {
     pagination: { offset, limit } = {},
     sort: sortBy,
   } = serialisedTableState || {};
-
   const params = useDeepCompareMemo(() => {
     if (!Array.isArray(paramsOption)) {
-      const { filter: filterParam, ...paramsParam } = paramsOption || {};
-      const filter = joinFilters(
-        ...[
-          ...(filterState ? [filterState] : []),
-          ...(filterParam ? [filterParam] : []),
-        ].filter((v) => v.length),
-      );
+      const allParams = paramsWithFilters(paramsOption, {
+        limit,
+        offset,
+        sortBy,
+        ...(filterState ? { filter: filterState } : {}),
+      });
 
-      return useTableState
-        ? {
-            ...paramsParam,
-            limit,
-            offset,
-            sortBy,
-            ...(filter ? { filter } : {}),
-          }
-        : paramsOption;
+      return useTableState ? allParams : paramsOption;
     } else {
       return paramsOption;
     }

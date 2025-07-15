@@ -1,6 +1,6 @@
 import useComplianceQuery from '../useComplianceQuery';
 
-const convertToArray = ({
+export const convertToArray = ({
   reportId,
   tags,
   limit,

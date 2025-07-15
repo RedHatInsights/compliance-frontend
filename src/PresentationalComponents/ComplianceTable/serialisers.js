@@ -1,10 +1,9 @@
 // TODO correct the serialiser to transform state put into the tablestate to be API consumable
-export const paginationSerialiser = (state) => {
-  if (state) {
-    const offset = (state.page - 1) * state.perPage;
-    const limit = state.perPage;
+export const paginationSerialiser = ({ perPage, page } = {}) => {
+  if (perPage && page) {
+    const offset = (page - 1) * perPage;
 
-    return { offset, limit };
+    return { offset, limit: perPage };
   }
 };
 
@@ -49,10 +48,10 @@ const findFilterSerialiser = (filterConfigItem) => {
  *
  */
 export const filtersSerialiser = (state, filters) => {
-  const queryParts = Object.entries(state || {}).reduce(
-    (filterQueryParts, [filterId, value]) => {
+  const queryParts = Object.entries(state || {})
+    .reduce((filterQueryParts, [filterId, value]) => {
       const filterConfigItem = filters.find((filter) => filter.id === filterId);
-      const filterSerialiser = findFilterSerialiser(filterConfigItem);
+      const filterSerialiser = findFilterSerialiser(filterConfigItem || {});
 
       return [
         ...filterQueryParts,
@@ -60,9 +59,8 @@ export const filtersSerialiser = (state, filters) => {
           ? [filterSerialiser(filterConfigItem, value)]
           : []),
       ];
-    },
-    [],
-  );
+    }, [])
+    .filter((v) => !!v);
 
   return queryParts.length > 0 ? queryParts.join(' AND ') : undefined;
 };

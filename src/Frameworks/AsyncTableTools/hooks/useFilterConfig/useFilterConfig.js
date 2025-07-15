@@ -67,6 +67,7 @@ const useFilterConfig = (options = {}) => {
 
   return enableFilters
     ? {
+        activeFilters,
         toolbarProps: {
           filterConfig: builtFilterConfig,
           activeFiltersConfig: {
