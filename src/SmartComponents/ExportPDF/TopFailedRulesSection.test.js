@@ -4,6 +4,7 @@ import '@testing-library/jest-dom';
 
 import TopFailedRulesSection from './TopFailedRulesSection';
 import { capitalizeWord, stringToSentenceCase } from '@/Utilities/helpers';
+import { styles } from './ReportPDFBuild';
 
 describe('TopFailedRulesSection', () => {
   const mockRulesData = [
@@ -28,13 +29,13 @@ describe('TopFailedRulesSection', () => {
   ];
 
   it('renders no table rows when rulesData is empty', () => {
-    render(<TopFailedRulesSection rulesData={[]} />);
+    render(<TopFailedRulesSection rulesData={[]} styles={styles} />);
     const rows = screen.queryAllByRole('row');
     expect(rows).toHaveLength(1);
   });
 
   it('renders the correct number of rows based on rulesData', () => {
-    render(<TopFailedRulesSection rulesData={mockRulesData} />);
+    render(<TopFailedRulesSection rulesData={mockRulesData} styles={styles} />);
     expect(screen.getByText('Top failed rules')).toBeInTheDocument();
 
     expect(screen.getAllByRole('row')).toHaveLength(mockRulesData.length + 1);
