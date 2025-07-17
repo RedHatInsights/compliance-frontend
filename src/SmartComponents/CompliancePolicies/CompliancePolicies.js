@@ -1,5 +1,13 @@
 import React from 'react';
-import { Grid, Spinner } from '@patternfly/react-core';
+import {
+  Flex,
+  Grid,
+  Spinner,
+  Popover,
+  Icon,
+  Content,
+  ContentVariants,
+} from '@patternfly/react-core';
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
@@ -13,6 +21,10 @@ import usePolicies from 'Utilities/hooks/api/usePolicies';
 import CreateLink from 'SmartComponents/CompliancePolicies/components/CreateLink';
 import ComplianceEmptyState from 'PresentationalComponents/ComplianceEmptyState';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
+import {
+  ExternalLinkAltIcon,
+  OutlinedQuestionCircleIcon,
+} from '@patternfly/react-icons';
 
 const CompliancePolicies = () => {
   // Async table needs info about total policy count before mounting
@@ -39,7 +51,53 @@ const CompliancePolicies = () => {
   return (
     <React.Fragment>
       <PageHeader className="page-header">
-        <PageHeaderTitle title="SCAP policies" />
+        <PageHeaderTitle
+          title={
+            <React.Fragment>
+              SCAP policies
+              <Popover
+                headerContent="About SCAP policies"
+                bodyContent={
+                  <Content>
+                    <Flex direction={{ default: 'column' }}>
+                      <Content component={ContentVariants.p}>
+                        Customize OpenSCAP policies based on your
+                        organization&apos;s compliance requirements.
+                      </Content>
+                      <Content component={ContentVariants.p}>
+                        <a
+                          rel="noreferrer"
+                          target="_blank"
+                          href={
+                            'https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html-single/' +
+                            'assessing_and_monitoring_security_policy_compliance_of_rhel_systems/' +
+                            'index#compliance-managing-policies_intro-compliance'
+                          }
+                        >
+                          Learn more
+                          <Icon className="pf-v6-u-ml-xs">
+                            <ExternalLinkAltIcon />
+                          </Icon>
+                        </a>
+                      </Content>
+                    </Flex>
+                  </Content>
+                }
+              >
+                <Icon>
+                  <OutlinedQuestionCircleIcon
+                    className="grey-icon pf-v6-u-ml-md"
+                    style={{
+                      verticalAlign: 0,
+                      fontSize: 16,
+                      cursor: 'pointer',
+                    }}
+                  />
+                </Icon>
+              </Popover>
+            </React.Fragment>
+          }
+        />
       </PageHeader>
       <section className="pf-v6-c-page__main-section">
         <StateView
