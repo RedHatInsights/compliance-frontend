@@ -1,3 +1,4 @@
+/* eslint-disable testing-library/no-node-access */
 import CompliancePolicies from './CompliancePolicies';
 import { init } from 'Store';
 import { buildPolicies } from '../../__factories__/policies';

@@ -1,3 +1,5 @@
+/* eslint-disable testing-library/no-node-access */
+
 import { camelCase, getProperty } from 'Utilities/helpers';
 
 const CSV_FILE_PREFIX = 'compliance-export';
