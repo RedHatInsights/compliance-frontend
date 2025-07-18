@@ -74,7 +74,7 @@ export const SystemsTable = ({
     markEntitySelected,
   } = useSystemsBulkSelect({
     total,
-    onSelect,
+    onSelect: onSelect || remediationsEnabled,
     preselected: preselectedSystems,
     fetchSystemsBatched,
     resultCache,

@@ -1,16 +1,12 @@
 import React, { useMemo } from 'react';
 import propTypes from 'prop-types';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
-import { useSerialisedTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
 import useReportRuleResults from 'Utilities/hooks/api/useReportRuleResults';
 import { RulesTable } from 'PresentationalComponents';
 import columns from './Columns';
 
 const RuleResults = ({ reportTestResult }) => {
-  const serialisedTableState = useSerialisedTableState();
-
   // Enable default filter
-  const activeFiltersPassed = true;
   const activeFilters = {
     'rule-state': ['failed'],
   };
@@ -28,7 +24,6 @@ const RuleResults = ({ reportTestResult }) => {
       reportId,
     },
     useTableState: true,
-    skip: serialisedTableState === undefined,
   });
 
   const transformRules = (ruleResults, reportTestResult) => {
@@ -47,11 +42,10 @@ const RuleResults = ({ reportTestResult }) => {
 
   return (
     <RulesTable
-      activeFiltersPassed={activeFiltersPassed}
       activeFilters={activeFilters}
       ansibleSupportFilter
       showFailedCounts
-      rules={rules}
+      rules={rules.map((rule) => ({ ...rule, itemId: rule.rule_id }))}
       columns={columns}
       policyId={reportTestResult.report_id}
       policyName={reportTestResult.title}
