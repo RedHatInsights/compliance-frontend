@@ -88,7 +88,7 @@ export const Policies = {
   transforms: [nowrap],
   key: 'policies',
   exportKey: 'policies',
-  renderExport: (policies) => policies.map(({ title }) => title).join(', '),
+  renderExport: (policies) => policies.map(({ name }) => name).join(', '),
   props: {
     width: 40,
     ...disableSorting,
@@ -117,16 +117,14 @@ export const ComplianceScore = () =>
   compileColumnRenderFunc({
     title: 'Compliance score',
     key: 'complianceScore',
-    exportKey: null,
     sortBy: ['score'],
     sortable: 'score',
     transforms: [nowrap],
     props: {
       width: 5,
     },
-    renderExport: (testResultProfiles) => {
-      return complianceScoreString(testResultProfiles);
-    },
+    renderExport: ({ testResultProfiles }) =>
+      complianceScoreString(testResultProfiles[0]),
     cell: ComplianceScoreCell,
   });
 
@@ -175,4 +173,23 @@ export const OS = () =>
 export const inventoryColumn = (column, props) => ({
   key: column,
   ...props,
+});
+
+export const Workspaces = inventoryColumn('groups', {
+  title: 'Workspaces',
+  requiresDefault: true,
+  sortBy: ['groups'],
+  renderExport: ({ groups }) => groups.map(({ name }) => name).join(', '),
+});
+
+export const Updated = inventoryColumn('updated', {
+  title: 'Last seen',
+  props: { isStatic: true },
+  transforms: [nowrap],
+  renderExport: ({ updated }) => updated,
+});
+
+export const Tags = inventoryColumn('tags', {
+  title: 'Tags',
+  renderExport: ({ tags }) => tags.length,
 });

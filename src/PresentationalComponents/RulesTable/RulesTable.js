@@ -27,7 +27,6 @@ import defaultColumns from './Columns';
  *  @param   {Array}              [props.preselected]          An array of rule IDs set as initial selection
  *  @param   {boolean}            [props.hidePassed]           Enables a default filter to only show failed rules.
  *  @param   {object}             [props.options ]             AsyncTableTools options
- *  @param   {boolean}            [props.activeFiltersPassed]  Enable Default filter
  *  @param   {string}             [props.activeFilters]        Default filter
  *  @param   {object}             [props.ruleValues]           An object of values to show for certain rule values
  *  @param   {Array}              [props.valueDefinitions]     An array of value definitons available for rules in the table
@@ -57,7 +56,6 @@ const RulesTable = ({
   preselected,
   hidePassed = false,
   options,
-  activeFiltersPassed = false,
   activeFilters,
   ruleValues,
   valueDefinitions,
@@ -112,7 +110,13 @@ const RulesTable = ({
     }
 
     return Row;
-  }, [policyId, policyName, onValueOverrideSave, onRuleValueReset]);
+  }, [
+    policyId,
+    policyName,
+    onValueOverrideSave,
+    onRuleValueReset,
+    skipValueDefinitions,
+  ]);
 
   return (
     <ComplianceTable
@@ -135,17 +139,22 @@ const RulesTable = ({
             ...activeFilters,
           }),
         }),
-        ...(activeFiltersPassed && {
-          activeFilters: { ...activeFilters },
-        }),
+        ...(!!activeFilters
+          ? {
+              activeFilters,
+            }
+          : {}),
       }}
       options={{
         ...complianceTableDefaults,
         ...options,
-        defaultTableView,
-        // TODO set this in views where we want a tree and make rows default
-        enableTreeView: true,
-        tableTree: ruleTree,
+        ...(ruleTree
+          ? {
+              defaultTableView,
+              tableTree: ruleTree,
+              enableTreeView: true,
+            }
+          : {}),
         onSelect: (onSelect || remediationsEnabled) && setSelectedRules,
         selected: selectedRules,
         preselected: preselected,
@@ -167,7 +176,6 @@ RulesTable.propTypes = {
   policyId: propTypes.string,
   policyName: propTypes.string,
   hidePassed: propTypes.bool,
-  activeFiltersPassed: propTypes.bool,
   remediationsEnabled: propTypes.bool,
   ansibleSupportFilter: propTypes.bool,
   selectedRules: propTypes.array,

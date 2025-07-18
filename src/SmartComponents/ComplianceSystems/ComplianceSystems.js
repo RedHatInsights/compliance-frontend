@@ -1,5 +1,4 @@
 import React from 'react';
-import { nowrap } from '@patternfly/react-table';
 import { Alert } from '@patternfly/react-core';
 import PageHeader, {
   PageHeaderTitle,
@@ -41,17 +40,11 @@ const ComplianceSystems = () => {
                   },
                   { sortable: ['display_name'] },
                 ),
-                Columns.inventoryColumn('groups', {
-                  requiresDefault: true,
-                  sortable: ['groups'],
-                }),
-                Columns.inventoryColumn('tags'),
+                Columns.Workspaces,
+                Columns.Tags,
                 Columns.OS(),
                 Columns.Policies,
-                Columns.inventoryColumn('updated', {
-                  props: { isStatic: true },
-                  transforms: [nowrap],
-                }),
+                Columns.Updated,
               ]}
               defaultFilter="assigned_or_scanned=true"
               filters={{

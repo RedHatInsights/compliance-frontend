@@ -1,8 +1,8 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { useAddNotification } from '@redhat-cloud-services/frontend-components-notifications/hooks';
-import { default as RemediationRemediationButton } from '@redhat-cloud-services/frontend-components-remediations/RemediationButton';
-import { useIssuesFetch } from './hooks';
+import RemediationRemediationButton from '@redhat-cloud-services/frontend-components-remediations/RemediationButton';
+import useIssuesFetch from './hooks/useIssuesFetch';
 import FallbackButton from './components/FallBackButton';
 
 const ComplianceRemediationButton = ({
@@ -13,22 +13,22 @@ const ComplianceRemediationButton = ({
   ...buttonProps
 }) => {
   const addNotification = useAddNotification();
-  const { isLoading: isLoadingIssues, fetch } = useIssuesFetch(
+  const { isLoading, fetchIssues, canFetch } = useIssuesFetch({
     reportId,
-    reportTestResults,
+    reportTestResults: reportTestResults,
     selectedRuleResultIds,
-  );
+  });
 
   return (
     <RemediationRemediationButton
-      isDisabled={reportTestResults?.length === 0 || isLoadingIssues}
+      isDisabled={reportTestResults?.length === 0 || !canFetch || isLoading}
       onRemediationCreated={(result) => {
         addNotification(result.getNotification());
       }}
-      dataProvider={fetch}
+      dataProvider={fetchIssues}
       buttonProps={{
         ouiaId: 'RemediateButton',
-        isLoading: isLoadingIssues,
+        isLoading,
       }}
       fallback={<FallbackButton />}
       {...buttonProps}

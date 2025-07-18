@@ -102,3 +102,6 @@ export const stringToSentenceCase = (string) => {
   const lowercasedString = string.toLowerCase();
   return lowercasedString.charAt(0).toUpperCase() + lowercasedString.slice(1);
 };
+
+export const isObject = (value) =>
+  typeof value === 'object' && value !== null && !Array.isArray(value);

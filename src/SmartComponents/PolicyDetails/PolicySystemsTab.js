@@ -17,7 +17,7 @@ const PolicySystemsTab = ({ policy }) => {
           },
           { sortBy: ['display_name'] },
         ),
-        Columns.inventoryColumn('tags'),
+        Columns.Tags,
         Columns.OS(),
       ]}
       policyId={policy.id}

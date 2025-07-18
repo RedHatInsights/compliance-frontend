@@ -62,7 +62,7 @@ const mapData = ({
   ...(score || compliant || supported
     ? {
         testResultProfiles: [
-          { score, compliant, supported, benchmark: { version } },
+          { score, compliant, supported, benchmark: { version }, lastScanned },
         ],
       }
     : {}),
