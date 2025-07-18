@@ -180,11 +180,8 @@ const ReportDetails = ({ route }) => {
                         idProperty: 'system_id',
                         sortBy: ['display_name'],
                       }),
-                      Columns.inventoryColumn('groups', {
-                        requiresDefault: true,
-                        sortBy: ['groups'],
-                      }),
-                      Columns.inventoryColumn('tags'),
+                      Columns.Workspaces,
+                      Columns.Tags,
                       Columns.SsgVersion(true),
                       Columns.FailedRules(true),
                       Columns.ComplianceScore(true),

@@ -57,11 +57,7 @@ const EditPolicySystemsTab = ({
   return (
     <SystemsTable
       apiEndpoint="systems"
-      columns={[
-        Columns.Name,
-        Columns.inventoryColumn('tags'),
-        Columns.OperatingSystem(),
-      ]}
+      columns={[Columns.Name, Columns.Tags, Columns.OperatingSystem()]}
       prependComponent={<PrependComponent osMajorVersion={os_major_version} />}
       emptyStateComponent={<EmptyState osMajorVersion={os_major_version} />}
       compact
