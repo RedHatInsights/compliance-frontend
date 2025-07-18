@@ -12,7 +12,7 @@ const TopFailedRulesSection = ({ rulesData, styles }) => {
   return (
     <React.Fragment>
       <Content style={styles.sectionHeader}>Top failed rules</Content>
-      <Table borders={false}>
+      <Table borders={false} style={{ width: '100%' }}>
         <Thead>
           <Tr>
             <Th style={styles.header}>ID</Th>
