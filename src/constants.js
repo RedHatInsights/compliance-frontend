@@ -81,3 +81,33 @@ export const policiesDataMapper = {
 export const unsupportedSystemWarningMessage =
   'This system was using an incompatible version of the SSG at the time this report was generated. ' +
   'Assessment of rules failed/passed on this system is a best-guess effort and may not be accurate.';
+
+export const reportsPopoverData = {
+  headerContent: 'Reports',
+  bodyContent:
+    'These reports show how compliant your systems are against a specific policy.',
+  bodyLink:
+    'https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html-single/' +
+    'generating_compliance_service_reports/' +
+    'index#assembly-compl-uploading-current-data-systems',
+};
+
+export const policiesPopoverData = {
+  headerContent: 'About SCAP policies',
+  bodyContent:
+    "Customize OpenSCAP policies based on your organization's compliance requirements.",
+  bodyLink:
+    'https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html-single/' +
+    'assessing_and_monitoring_security_policy_compliance_of_rhel_systems/' +
+    'index#compliance-managing-policies_intro-compliance',
+};
+
+export const systemsPopoverData = {
+  headerContent: 'Systems list',
+  bodyContent:
+    'This list shows systems that have the necessary packages to successfully run Insights compliance scans.',
+  bodyLink:
+    'https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html-single/' +
+    'assessing_and_monitoring_security_policy_compliance_of_rhel_systems/' +
+    'index#compliance-getting-started_intro-compliance',
+};
