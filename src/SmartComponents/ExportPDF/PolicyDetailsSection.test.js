@@ -4,6 +4,7 @@ import '@testing-library/jest-dom';
 
 import PolicyDetailsSection from './PolicyDetailsSection';
 import { fixedPercentage } from 'Utilities/TextHelper';
+import { styles } from './ReportPDFBuild';
 
 describe('PolicyDetailsSection', () => {
   const baseReportData = {
@@ -19,7 +20,9 @@ describe('PolicyDetailsSection', () => {
   };
 
   it.only('should render policy details and donut chart with all data', () => {
-    render(<PolicyDetailsSection reportData={baseReportData} />);
+    render(
+      <PolicyDetailsSection reportData={baseReportData} styles={styles} />,
+    );
 
     expect(screen.getByText('Policy details')).toBeInTheDocument();
 
@@ -71,7 +74,12 @@ describe('PolicyDetailsSection', () => {
       ...baseReportData,
       business_objective: null,
     };
-    render(<PolicyDetailsSection reportData={reportDataNullObjective} />);
+    render(
+      <PolicyDetailsSection
+        reportData={reportDataNullObjective}
+        styles={styles}
+      />,
+    );
 
     expect(screen.getByText('Business objective')).toBeInTheDocument();
     expect(screen.getByText('--')).toBeInTheDocument();

@@ -1,17 +1,18 @@
-import { StyleSheet } from '@react-pdf/renderer';
-
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-  chart_global_Fill_Color_200,
-  t_color_red_70,
+  t_global_background_color_200,
+  t_color_red_50,
   t_global_spacer_lg,
   t_global_spacer_md,
   t_global_spacer_sm,
+  t_global_spacer_xs,
   t_global_spacer_xl,
-  chart_global_FontSize_sm,
-  chart_global_FontSize_2xl,
-  chart_global_FontSize_lg,
+  t_global_font_size_sm,
+  t_global_font_size_md,
+  t_global_font_size_heading_lg,
+  t_global_font_size_heading_xl,
+  t_global_font_size_heading_md,
 } from '@patternfly/react-tokens';
 import { API_BASE_URL } from '@/constants';
 import PolicyDetailsSection from './PolicyDetailsSection';
@@ -22,13 +23,64 @@ import {
   fetchUnsupportedSystemsWithExpectedSSG,
 } from './helpers';
 
-const styles = StyleSheet.create({
+const rowBase = {
+  fontSize: t_global_font_size_sm.value,
+  paddingLeft: t_global_spacer_xs.value,
+  paddingRight: t_global_spacer_sm.value,
+  paddingTop: t_global_spacer_sm.value,
+  paddingBottom: t_global_spacer_sm.value,
+  verticalAlign: 'top',
+};
+const headerBase = {
+  fontSize: t_global_font_size_sm.value,
+  paddingLeft: t_global_spacer_xs.value,
+  paddingRight: t_global_spacer_sm.value,
+  paddingTop: t_global_spacer_sm.value,
+  paddingBottom: t_global_spacer_sm.value,
+};
+
+export const styles = {
   document: {
     paddingTop: t_global_spacer_lg.value,
     paddingLeft: t_global_spacer_xl.value,
     paddingRight: t_global_spacer_xl.value,
   },
-});
+  insightsHeader: {
+    fontSize: t_global_font_size_heading_lg.value,
+    color: t_color_red_50.value,
+  },
+  policyTitleHeader: {
+    fontSize: t_global_font_size_heading_xl.value,
+    color: t_color_red_50.value,
+    fontWeight: 'bold',
+  },
+  userNotes: {
+    fontSize: t_global_font_size_sm.value,
+    padding: t_global_spacer_sm.value,
+    paddingBottom: t_global_spacer_md.value,
+  },
+  header: headerBase,
+  noWrapHeader: {
+    ...headerBase,
+    textWrap: 'nowrap',
+  },
+  row: rowBase,
+  noWrapRow: {
+    ...rowBase,
+    textWrap: 'nowrap',
+  },
+  sectionHeader: {
+    color: t_color_red_50.value,
+    fontSize: t_global_font_size_heading_md.value,
+    marginBottom: t_global_spacer_md.value,
+  },
+  descriptionListTerm: {
+    fontSize: t_global_font_size_md.value,
+    marginTop: t_global_spacer_xs.value,
+    marginBottom: t_global_spacer_sm.value,
+    fontWeight: 'bold',
+  },
+};
 
 export const fetchData = async (createAsyncRequest, options) => {
   const requests = [];
@@ -140,36 +192,17 @@ const ReportPDFBuild = ({ asyncData }) => {
 
   return (
     <div style={styles.document}>
-      <span
-        style={{
-          fontSize: chart_global_FontSize_2xl.value,
-          color: t_color_red_70.value,
-        }}
-      >
-        Red Hat Insights
-      </span>
+      <span style={styles.insightsHeader}>Red Hat Insights</span>
       <br />
-      <span
-        style={{
-          fontSize: chart_global_FontSize_lg.value,
-          color: t_color_red_70.value,
-          fontWeight: 'bold',
-        }}
-      >
+      <span style={styles.policyTitleHeader}>
         {`Compliance: ${reportData.title}`}
       </span>
       {options.exportSettings.userNotes && (
         <>
           <br />
           <br />
-          <div style={{ backgroundColor: chart_global_Fill_Color_200.value }}>
-            <div
-              style={{
-                fontSize: chart_global_FontSize_sm.value,
-                padding: t_global_spacer_sm.value,
-                paddingBottom: t_global_spacer_md.value,
-              }}
-            >
+          <div style={{ backgroundColor: t_global_background_color_200.value }}>
+            <div style={styles.userNotes}>
               <div>User notes:</div>
               <div style={{ marginTop: t_global_spacer_sm.value }}>
                 {options.exportSettings.userNotes}
@@ -180,7 +213,7 @@ const ReportPDFBuild = ({ asyncData }) => {
       )}
       <br />
       <br />
-      <PolicyDetailsSection reportData={reportData} />
+      <PolicyDetailsSection reportData={reportData} styles={styles} />
       {options.exportSettings.nonCompliantSystems &&
         nonCompliantSystems.length > 0 && (
           <>
@@ -189,6 +222,7 @@ const ReportPDFBuild = ({ asyncData }) => {
             <SystemsTableSection
               sectionTitle={'Non-compliant systems'}
               systemsData={nonCompliantSystems}
+              styles={styles}
             />
           </>
         )}
@@ -200,6 +234,7 @@ const ReportPDFBuild = ({ asyncData }) => {
             <SystemsTableSection
               sectionTitle={'Systems with unsupported configuration'}
               systemsData={unsupportedSystems}
+              styles={styles}
             />
           </>
         )}
@@ -211,6 +246,7 @@ const ReportPDFBuild = ({ asyncData }) => {
             <SystemsTableSection
               sectionTitle={'Systems never reported'}
               systemsData={nonReportingSystems}
+              styles={styles}
             />
           </>
         )}
@@ -222,6 +258,7 @@ const ReportPDFBuild = ({ asyncData }) => {
             <SystemsTableSection
               sectionTitle={'Compliant systems'}
               systemsData={compliantSystems}
+              styles={styles}
             />
           </>
         )}
@@ -230,7 +267,7 @@ const ReportPDFBuild = ({ asyncData }) => {
           <>
             <br />
             <br />
-            <TopFailedRulesSection rulesData={topFailedRules} />
+            <TopFailedRulesSection rulesData={topFailedRules} styles={styles} />
           </>
         )}
       <br />

@@ -1,25 +1,17 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-  chart_global_FontSize_lg,
-  chart_global_FontSize_2xl,
-  t_color_red_70,
-  t_global_spacer_md,
-} from '@patternfly/react-tokens';
-import {
   DescriptionList,
   DescriptionListTerm,
   DescriptionListGroup,
   DescriptionListDescription,
-  Flex,
-  FlexItem,
   Content,
 } from '@patternfly/react-core';
 import { ChartDonut } from '@patternfly/react-charts/victory';
 import { fixedPercentage } from 'Utilities/TextHelper';
 import { paletteColors } from '@/constants';
 
-const PolicyDetailsSection = ({ reportData }) => {
+const PolicyDetailsSection = ({ reportData, styles }) => {
   const threshold = fixedPercentage(reportData.compliance_threshold);
   const businessObjective =
     reportData.business_objective === null
@@ -52,22 +44,19 @@ const PolicyDetailsSection = ({ reportData }) => {
 
   return (
     <React.Fragment>
-      <Content
-        style={{
-          color: t_color_red_70.value,
-          fontSize: chart_global_FontSize_lg.value,
-          marginBottom: t_global_spacer_md.value,
-        }}
-      >
-        Policy details
-      </Content>
-      <Flex alignItems={{ default: 'alignItemsCenter' }}>
-        <FlexItem flex={{ default: 'flex_2' }}>
+      <Content style={styles.sectionHeader}>Policy details</Content>
+      <div>
+        <div
+          style={{
+            display: 'inline-block',
+            width: '35%',
+            verticalAlign: 'top',
+            paddingRight: '20px',
+          }}
+        >
           <DescriptionList isCompact>
             <DescriptionListGroup>
-              <DescriptionListTerm
-                style={{ fontSize: chart_global_FontSize_2xl.value }}
-              >
+              <DescriptionListTerm style={styles.descriptionListTerm}>
                 Policy type
               </DescriptionListTerm>
               <DescriptionListDescription>
@@ -75,9 +64,7 @@ const PolicyDetailsSection = ({ reportData }) => {
               </DescriptionListDescription>
             </DescriptionListGroup>
             <DescriptionListGroup>
-              <DescriptionListTerm
-                style={{ fontSize: chart_global_FontSize_2xl.value }}
-              >
+              <DescriptionListTerm style={styles.descriptionListTerm}>
                 Operating system
               </DescriptionListTerm>
               <DescriptionListDescription>
@@ -85,9 +72,7 @@ const PolicyDetailsSection = ({ reportData }) => {
               </DescriptionListDescription>
             </DescriptionListGroup>
             <DescriptionListGroup>
-              <DescriptionListTerm
-                style={{ fontSize: chart_global_FontSize_2xl.value }}
-              >
+              <DescriptionListTerm style={styles.descriptionListTerm}>
                 Compliance threshold
               </DescriptionListTerm>
               <DescriptionListDescription>
@@ -95,9 +80,7 @@ const PolicyDetailsSection = ({ reportData }) => {
               </DescriptionListDescription>
             </DescriptionListGroup>
             <DescriptionListGroup>
-              <DescriptionListTerm
-                style={{ fontSize: chart_global_FontSize_2xl.value }}
-              >
+              <DescriptionListTerm style={styles.descriptionListTerm}>
                 Business objective
               </DescriptionListTerm>
               <DescriptionListDescription>
@@ -105,8 +88,14 @@ const PolicyDetailsSection = ({ reportData }) => {
               </DescriptionListDescription>
             </DescriptionListGroup>
           </DescriptionList>
-        </FlexItem>
-        <FlexItem flex={{ default: 'flex_3' }}>
+        </div>
+        <div
+          style={{
+            display: 'inline-block',
+            width: '65%',
+            verticalAlign: 'top',
+          }}
+        >
           <ChartDonut
             ariaTitle="Compliance donut chart"
             constrainToVisibleArea
@@ -132,8 +121,8 @@ const PolicyDetailsSection = ({ reportData }) => {
               top: 20,
             }}
           />
-        </FlexItem>
-      </Flex>
+        </div>
+      </div>
     </React.Fragment>
   );
 };
@@ -150,6 +139,7 @@ PolicyDetailsSection.propTypes = {
     unsupported_system_count: PropTypes.number,
     reported_system_count: PropTypes.number,
   }),
+  styles: PropTypes.object.isRequired,
 };
 
 export default PolicyDetailsSection;

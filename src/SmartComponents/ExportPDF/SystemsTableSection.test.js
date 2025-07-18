@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import SystemsTableSection from './SystemsTableSection';
+import { styles } from './ReportPDFBuild';
 
 describe('SystemsTableSection', () => {
   const mockCompliantSystems = [
@@ -73,7 +74,11 @@ describe('SystemsTableSection', () => {
 
   it('renders no table rows when rulesData is empty', () => {
     render(
-      <SystemsTableSection sectionTitle="Compliant systems" systemsData={[]} />,
+      <SystemsTableSection
+        sectionTitle="Compliant systems"
+        systemsData={[]}
+        styles={styles}
+      />,
     );
     const rows = screen.queryAllByRole('row');
     expect(rows).toHaveLength(1);
@@ -85,7 +90,13 @@ describe('SystemsTableSection', () => {
   ].forEach(({ title, data }) => {
     describe(`"${title}" are displayed correctly in the table`, () => {
       it('renders system data rows correctly', () => {
-        render(<SystemsTableSection sectionTitle={title} systemsData={data} />);
+        render(
+          <SystemsTableSection
+            sectionTitle={title}
+            systemsData={data}
+            styles={styles}
+          />,
+        );
 
         expect(
           screen.getByRole('columnheader', { name: 'Name' }),
@@ -124,6 +135,7 @@ describe('SystemsTableSection', () => {
         <SystemsTableSection
           sectionTitle="Systems with unsupported configuration"
           systemsData={mockUnsupportedSystems}
+          styles={styles}
         />,
       );
 
@@ -171,6 +183,7 @@ describe('SystemsTableSection', () => {
         <SystemsTableSection
           sectionTitle="Systems never reported"
           systemsData={mockNeverReportedSystems}
+          styles={styles}
         />,
       );
       expect(
