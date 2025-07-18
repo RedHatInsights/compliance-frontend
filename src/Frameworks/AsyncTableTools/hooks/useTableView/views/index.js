@@ -1,7 +1,7 @@
 import React from 'react';
 import { ListIcon, TreeviewIcon } from '@patternfly/react-icons';
 import { Spinner } from '@patternfly/react-core';
-import NoResultsTable from 'Utilities/hooks/useTableTools/Components/NoResultsTable';
+import NoResultsTable from '@/Frameworks/AsyncTableTools/components/NoResultsTable';
 import { treeColumns, getOnTreeSelect } from './helpers';
 import rowsBuilder from './rowsBuilder';
 import treeChopper from './treeChopper';

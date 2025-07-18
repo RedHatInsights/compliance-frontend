@@ -1,4 +1,4 @@
-import { emptyRows } from 'Utilities/hooks/useTableTools/Components/NoResultsTable';
+import { emptyRows } from '@/Frameworks/AsyncTableTools/components/NoResultsTable';
 import { buildRows } from './helpers';
 
 /**

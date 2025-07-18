@@ -1,5 +1,5 @@
 import { stringToId } from '@/Frameworks/AsyncTableTools/hooks/useFilterConfig/helpers';
-import filters from 'Utilities/hooks/useTableTools/__fixtures__/filters';
+import filters from '@/Frameworks/AsyncTableTools/__fixtures__/legacy/filters';
 
 import { filtersSerialiser, sortSerialiser } from './serialisers';
 
