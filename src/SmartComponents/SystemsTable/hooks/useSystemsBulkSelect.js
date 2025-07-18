@@ -32,7 +32,7 @@ const useSystemsBulkSelect = ({
         ...itemIdsOnPage.find(({ id: itemId }) => id === itemId),
       }));
 
-      itemCache.current = undefined;
+      itemCache.current = selectedItems;
       dispatch(setDisabledSelection(false));
 
       if (typeof onSelect === 'function') {
@@ -69,7 +69,7 @@ const useSystemsBulkSelect = ({
 
   return {
     ...bulkSelect,
-    selectedItemCache: itemCache,
+    selectedItemCache: itemCache.current || [],
     markEntitySelected,
   };
 };

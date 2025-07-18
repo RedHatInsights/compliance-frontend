@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import pAll from 'p-all';
+import { isObject } from 'Utilities/helpers';
 
 const CONCURRENT_QUEUE_REQUESTS = 2;
 
@@ -38,7 +39,7 @@ const useComplianceFetchExtras = ({ fetch, fetchBatched }) => {
 
   const fetchQueue = useCallback(
     async (queue) => {
-      if (typeof queue === 'object') {
+      if (isObject(queue)) {
         return await fetchNamedQueue(queue);
       } else {
         return await pAll(
@@ -70,7 +71,7 @@ const useComplianceFetchExtras = ({ fetch, fetchBatched }) => {
 
   const fetchBatchedQueue = useCallback(
     async (queue) => {
-      if (typeof queue === 'object') {
+      if (isObject(queue)) {
         return await fetchBatchedNamedQueue(queue);
       } else {
         return await pAll(
