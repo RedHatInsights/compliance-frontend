@@ -4,12 +4,12 @@ import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import CompliancePageHeader from './CompliancePageHeader';
 
-
 describe('CompliancePageHeader', () => {
   const mockMainTitle = 'My Compliance Policy';
   const mockPopoverData = {
     headerContent: 'About My Compliance Policy',
-    bodyContent: 'This policy helps ensure your systems meet specific compliance requirements.',
+    bodyContent:
+      'This policy helps ensure your systems meet specific compliance requirements.',
     bodyLink: 'https://docs.example.com/compliance-policy',
   };
 
@@ -18,7 +18,7 @@ describe('CompliancePageHeader', () => {
       <CompliancePageHeader
         mainTitle={mockMainTitle}
         popoverData={mockPopoverData}
-      />
+      />,
     );
 
     expect(screen.getByText(mockMainTitle)).toBeInTheDocument();
@@ -29,7 +29,7 @@ describe('CompliancePageHeader', () => {
       <CompliancePageHeader
         mainTitle={mockMainTitle}
         popoverData={mockPopoverData}
-      />
+      />,
     );
 
     const questionIcon = screen.getByTestId('compliance-header-popover-icon');
