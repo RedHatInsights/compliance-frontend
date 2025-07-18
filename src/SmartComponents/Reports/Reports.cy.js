@@ -1,3 +1,4 @@
+/* eslint-disable testing-library/no-node-access */
 import Reports from './Reports';
 import { init } from 'Store';
 import { buildReports } from '../../__factories__/reports';

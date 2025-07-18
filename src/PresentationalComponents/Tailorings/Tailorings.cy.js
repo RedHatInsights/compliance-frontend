@@ -1,3 +1,4 @@
+/* eslint-disable testing-library/no-node-access */
 import React from 'react';
 import { init } from 'Store';
 import Tailorings from './Tailorings';
