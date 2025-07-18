@@ -1,7 +1,4 @@
 import React from 'react';
-import PageHeader, {
-  PageHeaderTitle,
-} from '@redhat-cloud-services/frontend-components/PageHeader';
 import { Spinner } from '@patternfly/react-core';
 import {
   ReportsTable,
@@ -12,12 +9,9 @@ import {
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
 import useReports from 'Utilities/hooks/api/useReports';
 import useReportsOS from 'Utilities/hooks/api/useReportsOs';
+import CompliancePageHeader from 'PresentationalComponents/CompliancePageHeader/CompliancePageHeader';
+import { reportsPopoverData } from '@/constants';
 
-const ReportsHeader = () => (
-  <PageHeader>
-    <PageHeaderTitle title="Reports" />
-  </PageHeader>
-);
 const REPORTS_FILTER = 'with_reported_systems = true';
 
 const Reports = () => {
@@ -53,7 +47,10 @@ const Reports = () => {
 
   return (
     <React.Fragment>
-      <ReportsHeader />
+      <CompliancePageHeader
+        mainTitle={'Reports'}
+        popoverData={reportsPopoverData}
+      />
       <section className="pf-v5-c-page__main-section">
         <StateViewWithError
           stateValues={{

@@ -1,8 +1,5 @@
 import React from 'react';
 import { Grid, Spinner } from '@patternfly/react-core';
-import PageHeader, {
-  PageHeaderTitle,
-} from '@redhat-cloud-services/frontend-components/PageHeader';
 import {
   ErrorPage,
   PoliciesTable,
@@ -13,6 +10,8 @@ import usePolicies from 'Utilities/hooks/api/usePolicies';
 import CreateLink from 'SmartComponents/CompliancePolicies/components/CreateLink';
 import ComplianceEmptyState from 'PresentationalComponents/ComplianceEmptyState';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
+import CompliancePageHeader from 'PresentationalComponents/CompliancePageHeader/CompliancePageHeader';
+import { policiesPopoverData } from '@/constants';
 
 const CompliancePolicies = () => {
   // Async table needs info about total policy count before mounting
@@ -38,9 +37,10 @@ const CompliancePolicies = () => {
 
   return (
     <React.Fragment>
-      <PageHeader className="page-header">
-        <PageHeaderTitle title="SCAP policies" />
-      </PageHeader>
+      <CompliancePageHeader
+        mainTitle={'SCAP policies'}
+        popoverData={policiesPopoverData}
+      />
       <section className="pf-v6-c-page__main-section">
         <StateView
           stateValues={{

@@ -1,13 +1,12 @@
 import React from 'react';
 import { Alert } from '@patternfly/react-core';
-import PageHeader, {
-  PageHeaderTitle,
-} from '@redhat-cloud-services/frontend-components/PageHeader';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 import { StateViewPart, StateViewWithError } from 'PresentationalComponents';
 import { SystemsTable } from 'SmartComponents';
 import * as Columns from '../SystemsTable/Columns';
 import usePolicies from 'Utilities/hooks/api/usePolicies';
+import CompliancePageHeader from 'PresentationalComponents/CompliancePageHeader/CompliancePageHeader';
+import { systemsPopoverData } from '@/constants';
 
 const ComplianceSystems = () => {
   const navigateToInventory = useNavigate('inventory');
@@ -16,9 +15,10 @@ const ComplianceSystems = () => {
 
   return (
     <React.Fragment>
-      <PageHeader className="page-header">
-        <PageHeaderTitle title="Systems" />
-      </PageHeader>
+      <CompliancePageHeader
+        mainTitle={'Systems'}
+        popoverData={systemsPopoverData}
+      />
       <section className="pf-v6-c-page__main-section">
         <StateViewWithError stateValues={{ error, data: policies, loading }}>
           <StateViewPart stateKey="data">
