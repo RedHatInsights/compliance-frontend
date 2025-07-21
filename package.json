@@ -24,7 +24,7 @@
     "@redhat-cloud-services/frontend-components-utilities": "^6.0.0",
     "@redhat-cloud-services/javascript-clients-shared": "^2.0.0",
     "@sentry/webpack-plugin": "^2.22.6",
-    "@unleash/proxy-client-react": "^3.5.0",
+    "@unleash/proxy-client-react": "^5.0.0",
     "axios": "^1.7.7",
     "linkify-html": "^4.3.1",
     "linkifyjs": "^4.3.1",
