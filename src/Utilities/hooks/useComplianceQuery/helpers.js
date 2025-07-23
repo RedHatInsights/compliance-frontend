@@ -25,7 +25,7 @@ export const paramsWithFilters = (fetchParams, params) => {
   }
 };
 
-export const compileResult = (fetchResult, params) => {
+export const defaultCompileResult = (fetchResult, params) => {
   const data = fetchResult.data?.data || fetchResult.data;
   const meta = fetchResult.data?.meta;
 
@@ -51,5 +51,25 @@ export const hasRequiredParams = (requiredParams, params = {}) => {
     return (paramsToCheck || []).every((param) =>
       Object.keys(params).includes(param),
     );
+  }
+};
+
+const plainCompileResult = (fetchResult) => fetchResult;
+
+export const fetchResult = async (
+  fn,
+  params,
+  convertToArray,
+  compileResult = plainCompileResult,
+) => {
+  const convertedParams =
+    (convertToArray && !Array.isArray(params)
+      ? convertToArray(params)
+      : params) || [];
+
+  if (Array.isArray(convertedParams)) {
+    return compileResult(await fn(...convertedParams), params);
+  } else {
+    return compileResult(await fn(convertedParams), params);
   }
 };
