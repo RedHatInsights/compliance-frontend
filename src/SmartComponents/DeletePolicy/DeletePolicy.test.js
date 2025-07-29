@@ -1,4 +1,3 @@
-/* eslint-disable testing-library/no-node-access */
 import { act, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
