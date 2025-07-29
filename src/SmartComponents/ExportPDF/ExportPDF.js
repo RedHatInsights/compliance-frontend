@@ -15,7 +15,7 @@ import useReport from 'Utilities/hooks/api/useReport';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import { exportNotifications } from './constants';
 
-export const ReportDownload = () => {
+export const ExportPDF = () => {
   const addNotification = useAddNotification();
   const { report_id: reportId } = useParams();
   const [loadingPDF, setLoadingPDF] = useState(false);
@@ -113,4 +113,4 @@ export const ReportDownload = () => {
   );
 };
 
-export default ReportDownload;
+export default ExportPDF;
