@@ -83,7 +83,7 @@ export const unsupportedSystemWarningMessage =
   'Assessment of rules failed/passed on this system is a best-guess effort and may not be accurate.';
 
 export const reportsPopoverData = {
-  headerContent: 'Reports',
+  headerContent: 'About compliance reports',
   bodyContent:
     'These reports show how compliant your systems are against a specific policy.',
   bodyLink:
