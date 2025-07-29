@@ -27,6 +27,7 @@ export const policies = (policies) => ({
 export const ssgVersions = (ssgVersions) => ({
   type: conditionalFilterType.checkbox,
   label: 'SSG Version',
+  filterAttribute: 'security_guide_version',
   items: ssgVersions.map((ssgVersion) => ({
     label: ssgVersion,
     value: ssgVersion,
@@ -36,6 +37,18 @@ export const ssgVersions = (ssgVersions) => ({
 export const compliant = {
   type: conditionalFilterType.checkbox,
   label: 'Compliance',
+  filterSerialiser: (_filterConfig, values) =>
+    values
+      .map((value) => {
+        if (value === 'compliant' || value === 'non-compliant') {
+          return `(compliant = ${value === 'compliant'})`;
+        }
+
+        if (value === 'not-supported') {
+          return '(supported = false)';
+        }
+      })
+      .join(' OR '),
   items: [
     {
       label: 'Compliant',
@@ -52,6 +65,13 @@ export const compliant = {
 export const complianceScore = {
   type: conditionalFilterType.checkbox,
   label: 'Compliance score',
+  filterSerialiser: (_filterConfig, values) =>
+    values
+      .map((value) => {
+        const scoreRange = value.split('-');
+        return `(score >= ${scoreRange[0]} and score < ${scoreRange[1]})`;
+      })
+      .join(' OR '),
   items: [
     { label: '90 - 100%', value: '90-101' },
     { label: '70 - 89%', value: '70-90' },
@@ -105,6 +125,7 @@ const UnknownSeverity = () => (
 export const severity = {
   type: conditionalFilterType.checkbox,
   label: 'Failed rule severity',
+  filterAttribute: 'failed_rule_severity',
   items: [
     { label: <HighSeverity />, value: 'high' },
     { label: <MediumSeverity />, value: 'medium' },
