@@ -11,7 +11,7 @@ jest.mock(
   '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate',
   () => jest.fn(() => jest.fn()),
 );
-jest.mock('SmartComponents/ReportDownload/hooks/useExportSettings', () =>
+jest.mock('./hooks/useExportSettings', () =>
   jest.fn(() => ({
     exportSettings: {},
     setExportSetting: jest.fn(),

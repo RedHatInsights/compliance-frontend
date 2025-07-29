@@ -9,8 +9,8 @@ import {
 } from 'PresentationalComponents';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 import { useAddNotification } from '@redhat-cloud-services/frontend-components-notifications/hooks';
-import ExportPDFForm from 'SmartComponents/ReportDownload/Components/ExportPDFForm';
-import useExportSettings from 'SmartComponents/ReportDownload/hooks/useExportSettings';
+import ExportPDFForm from './Components/ExportPDFForm';
+import useExportSettings from './hooks/useExportSettings';
 import useReport from 'Utilities/hooks/api/useReport';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import { exportNotifications } from './constants';

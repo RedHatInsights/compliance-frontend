@@ -9,8 +9,6 @@ import {
   PDFExportDownload,
 } from './Cells';
 
-jest.mock('Utilities/hooks/useFeatureFlag', () => () => false);
-
 describe('ReportsTable Cells', () => {
   it('expect to render Name cell', () => {
     const defaultProps = {

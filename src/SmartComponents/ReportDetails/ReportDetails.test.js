@@ -10,7 +10,6 @@ jest.mock('Utilities/hooks/useDocumentTitle', () => ({
   useTitleEntity: () => ({}),
   setTitle: () => ({}),
 }));
-jest.mock('Utilities/hooks/useFeatureFlag', () => () => false);
 
 const reportsData = buildReport();
 

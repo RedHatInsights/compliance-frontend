@@ -8,7 +8,6 @@ import {
   LinkButton,
 } from 'PresentationalComponents';
 import ReportChart from '../../SmartComponents/ReportDetails/Components/ReportChart';
-import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
 
 export const Name = (report) => (
   <Content>
@@ -50,11 +49,8 @@ CompliantSystems.propTypes = {
 };
 
 export const PDFExportDownload = ({ id }) => {
-  const isPDFGeneratorEnabled = useFeatureFlag('compliance.pdf_generator');
   const basePath = `/reports/${id}`;
-  const downloadUrl = isPDFGeneratorEnabled
-    ? `${basePath}/pdfv2`
-    : `${basePath}/pdf`;
+  const downloadUrl = `${basePath}/pdf`;
 
   return (
     <Link
