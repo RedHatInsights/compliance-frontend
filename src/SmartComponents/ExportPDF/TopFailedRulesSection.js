@@ -32,7 +32,7 @@ const TopFailedRulesSection = ({ rulesData, styles }) => {
                 fontSize: t_global_font_size_sm.value,
               }}
             >
-              <Td style={styles.noWrapRow}>{item.identifier.label}</Td>
+              <Td style={styles.noWrapRow}>{item.identifier?.label || '--'}</Td>
               <Td style={styles.row}>{stringToSentenceCase(item.title)}</Td>
               <Td style={styles.row}>{capitalizeWord(item.severity)}</Td>
               <Td style={styles.row}>{item.count}</Td>
