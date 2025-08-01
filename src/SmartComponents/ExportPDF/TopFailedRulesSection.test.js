@@ -50,4 +50,22 @@ describe('TopFailedRulesSection', () => {
       expect(screen.getByText(rule.count)).toBeInTheDocument();
     });
   });
+  it('renders top failed rules when identifier label is missing', () => {
+    const mockRulesDataMissingIdentifier = [
+      {
+        identifier: null,
+        title: 'rule without identifier',
+        severity: 'critical',
+        count: 10,
+      },
+    ];
+    render(
+      <TopFailedRulesSection
+        rulesData={mockRulesDataMissingIdentifier}
+        styles={styles}
+      />,
+    );
+    expect(screen.getByText('Top failed rules')).toBeInTheDocument();
+    expect(screen.getByText('--')).toBeInTheDocument();
+  });
 });
