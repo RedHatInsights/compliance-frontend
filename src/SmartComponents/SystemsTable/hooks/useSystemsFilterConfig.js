@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useDeepCompareEffect } from 'use-deep-compare';
 import debounce from '@redhat-cloud-services/frontend-components-utilities/debounce';
-import useFilterConfig from '@/Frameworks/AsyncTableTools/hooks/useFilterConfig';
+import { useFilterConfig } from 'bastilian-tabletools';
 import { filtersSerialiser } from 'PresentationalComponents/ComplianceTable/serialisers';
 import * as filters from '../Filters';
 
