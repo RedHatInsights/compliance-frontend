@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { useDeepCompareEffect } from 'use-deep-compare';
 import debounce from '@redhat-cloud-services/frontend-components-utilities/debounce';
@@ -10,16 +11,20 @@ const useSystemsFilterConfig = ({
   inventory,
 }) => {
   const dispatch = useDispatch();
-  const filterConfig = useFilterConfig({
+  const filterConfig = useMemo(
+    () => [
+      filters.name,
+      ...(policies?.length ? [filters.policies(policies)] : []),
+      ...(ssgVersions?.length ? [filters.ssgVersions(ssgVersions)] : []),
+      ...(compliant ? [filters.compliant, filters.complianceScore] : []),
+      ...(severity ? [filters.severity] : []),
+    ],
+    [ssgVersions, policies, compliant, severity],
+  );
+  const filterConfigReturn = useFilterConfig({
     serialisers: { filters: filtersSerialiser },
     filters: {
-      filterConfig: [
-        filters.name,
-        ...(policies?.length ? [filters.policies(policies)] : []),
-        ...(ssgVersions?.length ? [filters.ssgVersions(ssgVersions)] : []),
-        ...(compliant ? [filters.compliant, filters.complianceScore] : []),
-        ...(severity ? [filters.severity] : []),
-      ],
+      filterConfig,
     },
   });
 
@@ -38,7 +43,7 @@ const useSystemsFilterConfig = ({
     debounceResetPage();
   }, [filterConfig.activeFilters]);
 
-  return filterConfig;
+  return filterConfigReturn;
 };
 
 export default useSystemsFilterConfig;
