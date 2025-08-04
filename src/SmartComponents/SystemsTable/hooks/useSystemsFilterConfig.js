@@ -41,7 +41,7 @@ const useSystemsFilterConfig = ({
 
   useDeepCompareEffect(() => {
     debounceResetPage();
-  }, [filterConfig.activeFilters]);
+  }, [filterConfigReturn.activeFilters]);
 
   return filterConfigReturn;
 };
