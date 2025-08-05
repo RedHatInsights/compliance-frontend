@@ -34,7 +34,6 @@ import ReportChart from './Components/ReportChart';
 import '@/Charts.scss';
 import './ReportDetails.scss';
 import TabTitleWithData from 'SmartComponents/ReportDetails/Components/TabTitleWithData';
-import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
 
 const ReportDetails = ({ route }) => {
   const { report_id } = useParams();
@@ -54,7 +53,6 @@ const ReportDetails = ({ route }) => {
     reportTitle = report.title;
     pageTitle = `Report: ${reportTitle}`;
   }
-  const isPDFGeneratorEnabled = useFeatureFlag('compliance.pdf_generator');
 
   useTitleEntity(route, reportTitle);
 
@@ -97,11 +95,7 @@ const ReportDetails = ({ route }) => {
             >
               <Link
                 state={{ report }}
-                to={
-                  isPDFGeneratorEnabled
-                    ? `/reports/${report?.id}/pdfv2`
-                    : `/reports/${report?.id}/pdf`
-                }
+                to={`/reports/${report?.id}/pdf`}
                 className="pf-v5-u-mr-md"
                 Component={LinkButton}
                 componentProps={{
