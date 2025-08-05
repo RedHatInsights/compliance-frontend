@@ -26,7 +26,7 @@
     "@unleash/proxy-client-react": "^3.5.0",
     "axios": "^1.7.7",
     "linkify-html": "^4.3.1",
-    "linkifyjs": "^4.3.1",
+    "linkifyjs": "^4.3.2",
     "p-all": "^5.0.0",
     "p-map": "^7.0.2",
     "react": "^18.2.0",
