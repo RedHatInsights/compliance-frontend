@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import {
   propTypes as reduxFormPropTypes,
   reduxForm,
@@ -95,6 +95,19 @@ export const EditPolicySystems = ({
       `os_minor_version ^ (${osMinorVersions.join(' ')}) AND ` +
       `profile_ref_id !^ (${profile.ref_id})`
     : '';
+
+  useEffect(() => {
+    if (selectedSystems.length === 0) {
+      change('systems', []);
+      change(
+        'osMinorVersionCounts',
+        osMinorVersions.map((version) => ({
+          osMinorVersion: version,
+          count: 0,
+        })),
+      );
+    }
+  }, [selectedSystems, change, osMinorVersions]);
 
   return (
     <React.Fragment>
