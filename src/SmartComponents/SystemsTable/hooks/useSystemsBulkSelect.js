@@ -1,6 +1,6 @@
 import { useEffect, useCallback, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import useBulkSelect from '@/Frameworks/AsyncTableTools/hooks/useBulkSelect';
+import { useBulkSelect } from 'bastilian-tabletools';
 import { setDisabledSelection } from 'Store/Actions/SystemActions';
 
 const useSystemsBulkSelect = ({

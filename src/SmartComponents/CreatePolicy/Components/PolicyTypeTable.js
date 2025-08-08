@@ -23,8 +23,7 @@ const PolicyTypeTable = ({
       title: 'Supported OS versions',
       transforms: [fitContent],
       sortable: 'os_minor_versions',
-      renderFunc: (_data, _id, profile) =>
-        profile.supportedOsVersions.join(', '),
+      Component: (profile) => profile.supportedOsVersions.join(', '),
     },
   ];
 

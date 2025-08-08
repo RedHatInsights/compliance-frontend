@@ -1,6 +1,6 @@
 import propTypes from 'prop-types';
 import { MemoryRouter } from 'react-router-dom';
-import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
+import { TableStateProvider } from 'bastilian-tabletools';
 import { Provider } from 'react-redux';
 import { init } from 'Store';
 

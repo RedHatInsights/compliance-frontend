@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 import propTypes from 'prop-types';
 import { Grid } from '@patternfly/react-core';
-import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
-import { useFullTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
+import { TableStateProvider } from 'bastilian-tabletools';
+import { useFullTableState } from 'bastilian-tabletools';
 import { RulesTable } from 'PresentationalComponents';
 import useTailoringsData from '../hooks/useTailoringsData';
 import useSecurityGuideData from '../hooks/useSecurityGuideData';
