@@ -1,8 +1,8 @@
 import React from 'react';
 import { Content } from '@patternfly/react-core';
 import propTypes from 'prop-types';
-import { SystemsTable } from 'SmartComponents';
-import * as Columns from '../SystemsTable/Columns';
+import SystemsTable from 'SmartComponents/SystemsTable/SystemsTable';
+import * as Columns from 'SmartComponents/SystemsTable/Columns';
 
 const EmptyState = ({ osMajorVersion }) => (
   <div data-testid="empty-state">

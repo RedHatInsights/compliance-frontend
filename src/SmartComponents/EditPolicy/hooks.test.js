@@ -1,5 +1,7 @@
 import { renderHook, act, waitFor } from '@testing-library/react';
 import { useOnSave } from './hooks';
+import TestWrapper from 'Utilities/TestWrapper';
+
 import useAssignRules from 'Utilities/hooks/api/useAssignRules';
 import useAssignSystems from 'Utilities/hooks/api/useAssignSystems';
 import useTailorings from 'Utilities/hooks/api/useTailorings';
@@ -42,11 +44,15 @@ describe('useOnSave', function () {
       fetch: jest.fn(() => Promise.resolve()),
     });
 
-    const { result } = renderHook(() =>
-      useOnSave(policy, updatedPolicy, {
-        onSave: onSaveCallBack,
-        onError: onErrorCallback,
-      }),
+    const { result } = renderHook(
+      () =>
+        useOnSave(policy, updatedPolicy, {
+          onSave: onSaveCallBack,
+          onError: onErrorCallback,
+        }),
+      {
+        wrapper: TestWrapper,
+      },
     );
     const [, onSave] = result.current;
 
@@ -66,11 +72,15 @@ describe('useOnSave', function () {
       }),
     });
 
-    const { result } = renderHook(() =>
-      useOnSave(policy, updatedPolicy, {
-        onSave: onSaveCallBack,
-        onError: onErrorCallback,
-      }),
+    const { result } = renderHook(
+      () =>
+        useOnSave(policy, updatedPolicy, {
+          onSave: onSaveCallBack,
+          onError: onErrorCallback,
+        }),
+      {
+        wrapper: TestWrapper,
+      },
     );
     const [, onSave] = result.current;
     act(() => {

@@ -9,12 +9,12 @@ import {
   StateViewWithError,
   StateViewPart,
 } from 'PresentationalComponents';
+import usePolicy from 'Utilities/hooks/api/usePolicy';
+import useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
+import usePolicySystems from 'Utilities/hooks/api/usePolicySystems';
+import useAssignedRules from './hooks/useAssignedRules';
 import EditPolicyForm from './EditPolicyForm';
 import { useOnSave } from './hooks';
-import usePolicy from 'Utilities/hooks/api/usePolicy';
-import useAssignedRules from './hooks/useAssignedRules';
-import useAssignedSystems from './hooks/useAssignedSystems';
-import useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
 
 const EditPolicy = ({ route }) => {
   const navigate = useNavigate();
@@ -33,9 +33,9 @@ const EditPolicy = ({ route }) => {
   } = useSupportedProfiles({
     params: {
       filter: `os_major_version=${policy?.os_major_version}`,
-      limit: 100,
     },
-    skip: policyLoading || !policy?.os_major_version,
+    batched: true,
+    skip: !policy,
   });
 
   const securityGuide = supportedProfiles?.find(
@@ -45,22 +45,17 @@ const EditPolicy = ({ route }) => {
   const supportedOsVersions = securityGuide?.os_minor_versions || [];
 
   const { assignedRuleIds, assignedRulesLoading } = useAssignedRules(policyId);
-  const { assignedSystems, assignedSystemsLoading } = useAssignedSystems(
-    policyId,
-    policy,
-    policyLoading,
-  );
+  const {
+    data: { data: assignedSystems } = {},
+    loading: assignedSystemsLoading,
+  } = usePolicySystems({
+    params: { policyId },
+    batched: true,
+  });
 
   const [updatedPolicy, setUpdatedPolicy] = useState(null);
-  const [systemsDataLoading, setIsSystemsDataLoading] = useState(false);
 
-  const saveDisabled =
-    !updatedPolicy ||
-    policyLoading ||
-    supportedProfilesLoading ||
-    assignedRulesLoading ||
-    assignedSystemsLoading ||
-    systemsDataLoading;
+  const saveEnabled = !updatedPolicy || assignedRulesLoading;
 
   const onSaveCallback = (isClose) =>
     navigate(
@@ -99,12 +94,12 @@ const EditPolicy = ({ route }) => {
   };
   const actions = [
     <Button
-      isDisabled={saveDisabled}
+      isDisabled={saveEnabled}
       key="save"
       ouiaId="EditPolicySaveButton"
       variant="primary"
       spinnerAriaValueText="Saving"
-      isLoading={isSaving || systemsDataLoading}
+      isLoading={isSaving}
       onClick={onSave}
     >
       Save
@@ -158,7 +153,6 @@ const EditPolicy = ({ route }) => {
               setRuleValues,
               supportedOsVersions,
               securityGuide,
-              setIsSystemsDataLoading,
             }}
           />
         </StateViewPart>

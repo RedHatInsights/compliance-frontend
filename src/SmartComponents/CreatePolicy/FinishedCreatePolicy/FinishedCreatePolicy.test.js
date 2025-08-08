@@ -1,5 +1,5 @@
-import TestWrapper from '@redhat-cloud-services/frontend-components-utilities/TestingUtils/JestUtils/TestWrapper';
 import { render, renderHook } from '@testing-library/react';
+import TestWrapper from 'Utilities/TestWrapper';
 import FinishedCreatePolicy, { useUpdatePolicy } from './FinishedCreatePolicy';
 import useCreatePolicy from '../../../Utilities/hooks/api/useCreatePolicy';
 import useAssignRules from '../../../Utilities/hooks/api/useAssignRules';
@@ -17,11 +17,9 @@ jest.mock('../../../Utilities/hooks/api/useUpdateTailoring');
 
 describe('FinishedCreatePolicy', () => {
   it('renders the base component with update policy callback', () => {
-    render(
-      <TestWrapper>
-        <FinishedCreatePolicy />
-      </TestWrapper>,
-    );
+    render(<FinishedCreatePolicy />, {
+      wrapper: TestWrapper,
+    });
 
     expect(FinishedCreatePolicyBase).toHaveBeenCalledWith(
       { updatePolicy: expect.anything() },
@@ -79,7 +77,9 @@ describe('useUpdatePolicy', () => {
   };
 
   it('calls create policy with the submitted data', async () => {
-    const { result } = renderHook(() => useUpdatePolicy());
+    const { result } = renderHook(() => useUpdatePolicy(), {
+      wrapper: TestWrapper,
+    });
 
     await result.current(undefined, policyDataToSubmit, onProgress);
 
@@ -99,7 +99,9 @@ describe('useUpdatePolicy', () => {
   });
 
   it('assigns systems', async () => {
-    const { result } = renderHook(() => useUpdatePolicy());
+    const { result } = renderHook(() => useUpdatePolicy(), {
+      wrapper: TestWrapper,
+    });
 
     await result.current(undefined, policyDataToSubmit, onProgress);
 
@@ -113,7 +115,9 @@ describe('useUpdatePolicy', () => {
   });
 
   it('fetches tailorings and adds rules to these tailorings', async () => {
-    const { result } = renderHook(() => useUpdatePolicy());
+    const { result } = renderHook(() => useUpdatePolicy(), {
+      wrapper: TestWrapper,
+    });
 
     await result.current(undefined, policyDataToSubmit, onProgress);
 
@@ -138,7 +142,9 @@ describe('useUpdatePolicy', () => {
   });
 
   it('updates value overrides when there are any', async () => {
-    const { result } = renderHook(() => useUpdatePolicy());
+    const { result } = renderHook(() => useUpdatePolicy(), {
+      wrapper: TestWrapper,
+    });
 
     await result.current(
       undefined,
@@ -161,7 +167,9 @@ describe('useUpdatePolicy', () => {
   });
 
   it('updates progress', async () => {
-    const { result } = renderHook(() => useUpdatePolicy());
+    const { result } = renderHook(() => useUpdatePolicy(), {
+      wrapper: TestWrapper,
+    });
 
     await result.current(undefined, policyDataToSubmit, onProgress);
 

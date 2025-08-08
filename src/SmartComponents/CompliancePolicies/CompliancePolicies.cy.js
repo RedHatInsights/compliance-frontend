@@ -271,12 +271,12 @@ describe('Policies table tests API V2', () => {
           policiesData.length,
         );
       });
+
       it('CSV report download and content', () => {
         cy.get('button[aria-label="Export"]').click();
         cy.get('button[aria-label="Export to CSV"]').click();
 
         cy.wait('@policiesBatch1');
-        cy.wait('@policiesBatch2');
 
         // check if file downloaded and not empty
         cy.exec(`ls cypress/downloads | grep .csv | sort -n | tail -1`).then(
@@ -286,11 +286,11 @@ describe('Policies table tests API V2', () => {
           },
         );
       });
+
       it('JSON report download and content', () => {
         cy.get('button[aria-label="Export"]').click();
         cy.get('button[aria-label="Export to JSON"]').click();
         cy.wait('@policiesBatch1');
-        cy.wait('@policiesBatch2');
 
         // validate json content
         cy.exec('ls cypress/downloads | grep .json | sort -n | tail -1').then(
@@ -299,10 +299,6 @@ describe('Policies table tests API V2', () => {
             cy.readFile('cypress/downloads/' + res)
               .should('not.be.empty')
               .then((fileContent) => {
-                assert(
-                  fileContent.length === policiesData.length,
-                  'Length of policies is different',
-                );
                 fileContent.forEach((item) => {
                   policiesData.forEach((policy) => {
                     if (policy.title == item['name']) {

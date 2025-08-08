@@ -1,19 +1,16 @@
-import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import TestWrapper from '@/Utilities/TestWrapper';
-import PolicyDetails from '@/SmartComponents/PolicyDetails/PolicyDetails';
-import usePolicy from '../../Utilities/hooks/api/usePolicy';
-import { buildPolicies } from '../../__factories__/policies';
-import usePolicyOsVersionCounts from '../../Utilities/hooks/api/usePolicyOsVersionCounts';
+import { render, screen } from '@testing-library/react';
+import TestWrapper from 'Utilities/TestWrapper';
+import { buildPolicies } from '@/__factories__/policies';
+import usePolicy from 'Utilities/hooks/api/usePolicy';
+import usePolicyOsVersionCounts from 'Utilities/hooks/usePolicyOsVersionCounts';
+import useUpdateTailoring from 'Utilities/hooks/api/useUpdateTailoring';
+import PolicyDetails from './PolicyDetails';
 
-jest.mock('../../Utilities/hooks/useDocumentTitle');
-jest.mock('../../PresentationalComponents/Tailorings/Tailorings');
-jest.mock('../../Utilities/hooks/api/usePolicy');
-jest.mock('./PolicySystemsTab');
-jest.mock(
-  '../../PresentationalComponents/PolicyDetailsDescription/PolicyDetailsDescription',
-);
-jest.mock('../../Utilities/hooks/api/usePolicyOsVersionCounts');
+jest.mock('Utilities/hooks/useDocumentTitle');
+jest.mock('Utilities/hooks/api/usePolicy');
+jest.mock('Utilities/hooks/usePolicyOsVersionCounts');
+jest.mock('Utilities/hooks/api/useUpdateTailoring');
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useParams: () => ({ policy_id: 'some-policy-id' }),
@@ -22,6 +19,10 @@ jest.mock('react-router-dom', () => ({
 describe('PolicyDetails', () => {
   const fixturePolicy = buildPolicies(1)[0];
 
+  beforeAll(() => {
+    useUpdateTailoring.mockReturnValue({ fetch: jest.fn() });
+  });
+
   it('renders without error', () => {
     usePolicy.mockReturnValue({
       data: {
@@ -29,11 +30,10 @@ describe('PolicyDetails', () => {
       },
       loading: false,
     });
-    render(
-      <TestWrapper>
-        <PolicyDetails />
-      </TestWrapper>,
-    );
+
+    render(<PolicyDetails />, {
+      wrapper: TestWrapper,
+    });
 
     screen.getByRole('heading', {
       name: fixturePolicy.title,

@@ -1,18 +1,25 @@
+import React from 'react';
 import propTypes from 'prop-types';
 import { MemoryRouter } from 'react-router-dom';
-import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Provider } from 'react-redux';
 import { init } from 'Store';
+import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
 
+const queryClient = new QueryClient();
+
+// TODO Remove TableStateProvider when moving to tabletools package
 const TestWrapper = ({ children, routes, store: propStore }) => {
   const store = init().getStore();
 
   return (
-    <MemoryRouter {...(routes ? { initialEntries: routes } : {})}>
-      <TableStateProvider>
-        <Provider store={propStore || store}>{children}</Provider>
-      </TableStateProvider>
-    </MemoryRouter>
+    <QueryClientProvider client={queryClient}>
+      <MemoryRouter {...(routes ? { initialEntries: routes } : {})}>
+        <TableStateProvider>
+          <Provider store={propStore || store}>{children}</Provider>
+        </TableStateProvider>
+      </MemoryRouter>
+    </QueryClientProvider>
   );
 };
 
