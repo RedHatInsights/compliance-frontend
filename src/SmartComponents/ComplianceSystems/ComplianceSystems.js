@@ -32,25 +32,50 @@ const ComplianceSystems = () => {
               }
             />
             <SystemsTable
-              isFullView
-              columns={[
-                Columns.customName(
+              defaultFilter="assigned_or_scanned = true"
+              columns={({
+                displayName,
+                OS,
+                // policies,
+                tags,
+                workspace,
+                lastSeen,
+              }) => {
+                return [
                   {
-                    showLink: true,
+                    ...displayName,
+                    componentProps: { showLink: true },
                   },
-                  { sortable: ['display_name'] },
-                ),
-                Columns.Workspaces,
-                Columns.Tags,
-                Columns.OS(),
-                Columns.Policies,
-                Columns.Updated,
-              ]}
-              defaultFilter="assigned_or_scanned=true"
-              filters={{
-                policies,
-                groups: true,
+                  workspace,
+                  tags,
+                  OS,
+                  // policies,
+                  lastSeen,
+                ];
               }}
+              filters={(inventoryFilters, complianceFilters) => {
+                const {
+                  policies: policiesFilter,
+                  groups: complianceGroupsFilter,
+                } = complianceFilters;
+                const { groups } = inventoryFilters;
+
+                return [
+                  {
+                    ...policiesFilter,
+                    items: policies,
+                  },
+                  { ...groups, ...complianceGroupsFilter },
+                ];
+              }}
+              options={(
+                inventoryDefaultTableOptions,
+                complianceDefaultTableToolsOptions,
+              ) => ({
+                ...inventoryDefaultTableOptions,
+                ...complianceDefaultTableToolsOptions,
+                onSelect: true,
+              })}
               actions={[
                 {
                   title: 'View in inventory',
@@ -58,7 +83,6 @@ const ComplianceSystems = () => {
                     navigateToInventory('/' + id),
                 },
               ]}
-              onSelect={true}
             />
           </StateViewPart>
         </StateViewWithError>

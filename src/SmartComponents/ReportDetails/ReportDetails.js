@@ -156,31 +156,37 @@ const ReportDetails = ({ route }) => {
                   }
                 >
                   <SystemsTable
-                    isFullView
-                    remediationsEnabled
                     apiEndpoint="reportTestResults"
-                    ignoreOsMajorVersion
                     reportId={report_id}
-                    filters={{
-                      ssgVersions,
-                      compliant: true,
-                      severity: true,
-                      groups: true,
-                    }}
-                    columns={[
-                      Columns.customDisplay({
-                        showLink: true,
-                        showOsInfo: true,
-                        idProperty: 'system_id',
-                        sortBy: ['display_name'],
-                      }),
-                      Columns.Workspaces,
-                      Columns.Tags,
-                      Columns.SsgVersion(true),
-                      Columns.FailedRules(true),
-                      Columns.ComplianceScore(true),
-                      Columns.LastScanned,
+                    columns={({
+                      name,
+                      tags,
+                      workspaces,
+                      ssgVersion,
+                      complianceScore,
+                      lastScanned,
+                    }) => [
+                      {
+                        ...name,
+                        // TODO this should be a tabletools feature
+                        componentProps: { showLink: true, showOsInfo: true },
+                      },
+                      workspaces,
+                      tags,
+                      ssgVersion,
+                      complianceScore,
+                      lastScanned,
                     ]}
+                    filters={({ name, policies, groups, ssgVersions }) => [
+                      name,
+                      policies,
+                      groups,
+                      ssgVersions,
+                    ]}
+                    // TODO replace with dedicatedAction in options
+                    remediationsEnabled
+                    // TODO replace with tableProps
+                    isFullView
                   />
                 </Tab>
 
@@ -201,30 +207,21 @@ const ReportDetails = ({ route }) => {
                 >
                   <SystemsTable
                     apiEndpoint="reportSystems"
-                    isFullView
-                    columns={[
-                      Columns.customName(
-                        {
-                          showLink: true,
-                          showOsInfo: true,
-                        },
-                        {
-                          sortBy: ['display_name'],
-                        },
-                      ),
-                      Columns.inventoryColumn('groups', {
-                        requiresDefault: true,
-                        sortBy: ['groups'],
-                      }),
-                      Columns.inventoryColumn('tags'),
-                      Columns.LastScanned,
-                    ]}
-                    defaultFilter={'never_reported = true'}
-                    ignoreOsMajorVersion
-                    filters={{
-                      groups: true,
-                    }}
                     reportId={report_id}
+                    defaultFilter={{ never_reported: true }}
+                    columns={({ name, tags, workspaces, lastScanned }) => [
+                      {
+                        ...name,
+                        // TODO this should be a tabletools feature
+                        componentProps: { showLink: true, showOsInfo: true },
+                      },
+                      workspaces,
+                      tags,
+                      lastScanned,
+                    ]}
+                    filters={({ groups }) => [groups]}
+                    // TODO what does this even do?
+                    isFullView
                   />
                 </Tab>
               </Tabs>

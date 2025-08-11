@@ -43,7 +43,6 @@ const useSystemsQueries = ({
     () => ({
       params,
       skip: true,
-      useTableState: true,
     }),
     [params],
   );
@@ -74,77 +73,6 @@ const useSystemsQueries = ({
     [emptyStateComponent, defaultFilter],
   );
 
-  const fetchSystems = useCallback(
-    async ({
-      sortBy: inventorySortBy,
-      per_page: perPage,
-      page,
-      filters,
-      ...params
-    } = {}) => {
-      inventoryFiltersCache.current = { filters, sortBy: inventorySortBy };
-      const filter = inventoryFiltersSerialiser(filters, ignoreOsMajorVersion);
-      const sortBy = inventorySortSerialiser(inventorySortBy, columns);
-
-      try {
-        const result = await fetch({
-          ...params,
-          ...paginationSerialiser({ perPage, page }),
-          ...(filter ? { filter } : {}),
-          ...(sortBy ? { sortBy } : {}),
-        });
-        resultCache.current = result;
-
-        setIsEmptyState(result);
-        setIsLoaded(true);
-        setTotal(result?.meta?.total || 0);
-
-        return result;
-      } catch (e) {
-        setIsLoaded(true);
-        setError(e);
-      }
-    },
-    [fetch, columns, setIsEmptyState, ignoreOsMajorVersion],
-  );
-
-  const fetchSystemsBatched = useCallback(
-    async (params) => {
-      const { filters, sortBy: inventorySortBy } =
-        inventoryFiltersCache?.current || {};
-      const filter = inventoryFiltersSerialiser(filters);
-      const sortBy = inventorySortSerialiser(inventorySortBy, columns);
-
-      return await fetchBatched({
-        ...params,
-        filter,
-        sortBy,
-      });
-    },
-    [fetchBatched, columns],
-  );
-
-  const systemsExporter = useCallback(
-    async (params) => {
-      const { filters, sortBy: inventorySortBy } =
-        inventoryFiltersCache?.current || {};
-      const filter = inventoryFiltersSerialiser(filters);
-      const sortBy = inventorySortSerialiser(inventorySortBy, columns);
-      const exportableItems = await exporter({
-        ...params,
-        filter,
-        sortBy,
-      });
-
-      if (selectedIds?.length) {
-        return exportableItems.filter(({ id }) => selectedIds.includes(id));
-      } else {
-        return exportableItems;
-      }
-    },
-    [exporter, columns, selectedIds],
-  );
-
   const fetchOperatingSystemsAsOsObjects = useCallback(
     async (params) => {
       const { filters, sortBy: inventorySortBy } =
@@ -165,15 +93,10 @@ const useSystemsQueries = ({
   );
 
   return {
-    fetchSystems,
-    fetchSystemsBatched,
-    systemsExporter,
+    fetchSystems: fetch,
+    fetchSystemsBatched: fetchBatched,
+    systemsExporter: exporter,
     fetchOperatingSystems: fetchOperatingSystemsAsOsObjects,
-    resultCache,
-    total,
-    isLoaded,
-    isEmpty,
-    error,
   };
 };
 

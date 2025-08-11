@@ -54,6 +54,7 @@ const mapData = ({
 }) => ({
   ...rest,
   name,
+  display_name: name,
   osMajorVersion,
   osMinorVersion,
   insightsId,

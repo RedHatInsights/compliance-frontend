@@ -9,6 +9,9 @@ const appName = packageJson[bundle].appname;
 
 // TODO Move to fec webpack config similar to LOCAL_APPS
 const routes = {
+  '/apps/inventory': {
+    host: 'http://localhost:8003',
+  },
   ...(process.env.LOCAL_APIS && process.env.LOCAL_APIS !== ''
     ? localRoutesFor('/api', process.env.LOCAL_APIS)
     : {}),
@@ -52,7 +55,7 @@ module.exports = {
     exposes: {
       './RootApp': resolve(
         __dirname,
-        `/src/${process.env.NODE_ENV !== 'production' ? 'Dev' : ''}AppEntry`
+        `/src/${process.env.NODE_ENV !== 'production' ? 'Dev' : ''}AppEntry`,
       ),
       './SystemDetail': resolve(__dirname, '/src/Modules/ComplianceDetails'),
       './ReportPDFBuild': resolve(
