@@ -5,6 +5,7 @@ import {
   reduxForm,
   formValueSelector,
   propTypes as reduxFormPropTypes,
+  stopAsyncValidation,
 } from 'redux-form';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
@@ -22,15 +23,41 @@ import {
   ProfileThresholdField,
   PolicyBusinessObjectiveTooltip,
 } from 'PresentationalComponents';
+import usePolicies from 'Utilities/hooks/api/usePolicies';
 
-export const EditPolicyDetails = ({ change, profile, refId }) => {
+export const EditPolicyDetails = ({
+  change,
+  profile,
+  refId,
+  name,
+  dispatch,
+}) => {
+  const { data: policies, loading } = usePolicies({
+    params: {
+      filter: `os_major_version=${profile.os_major_version} AND title="${name}"`,
+    },
+    skip: !name,
+  });
+
+  useEffect(() => {
+    if (policies && policies.data.length > 0) {
+      dispatch(
+        stopAsyncValidation('policyForm', {
+          name: 'A policy with this name already exists',
+        }),
+      );
+    } else {
+      dispatch(stopAsyncValidation('policyForm', null));
+    }
+  }, [policies, loading, name, dispatch]);
+
   useEffect(() => {
     if (profile && profile.ref_id !== refId) {
       change('name', `${profile.title}`);
       change('refId', `${profile.ref_id}`);
       change('description', `${profile.description}`);
     }
-  }, [profile]);
+  }, [profile, refId, change]);
 
   return (
     <React.Fragment>
@@ -93,7 +120,9 @@ const selector = formValueSelector('policyForm');
 EditPolicyDetails.propTypes = {
   profile: propTypes.object,
   refId: propTypes.string,
+  name: propTypes.string,
   change: reduxFormPropTypes.change,
+  dispatch: reduxFormPropTypes.dispatch,
 };
 
 const mapStateToProps = (state) => {
@@ -101,6 +130,7 @@ const mapStateToProps = (state) => {
   return {
     profile,
     refId: selector(state, 'refId'),
+    name: selector(state, 'name'),
     initialValues: {
       name: `${profile.title}`,
       refId: `${profile.ref_id}`,
@@ -118,5 +148,6 @@ export default compose(
     form: 'policyForm',
     destroyOnUnmount: false,
     forceUnregisterOnUnmount: true,
+    asyncBlurFields: ['name'],
   }),
 )(EditPolicyDetails);

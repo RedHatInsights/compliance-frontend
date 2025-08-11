@@ -20,7 +20,13 @@ export const thresholdValid = (threshold) => {
   );
 };
 
-export const validateDetailsPage = (name, refId, complianceThreshold) =>
+export const validateDetailsPage = (
+  name,
+  refId,
+  complianceThreshold,
+  formHasAsyncErrors,
+) =>
+  !formHasAsyncErrors ||
   !name ||
   !refId ||
   !complianceThreshold ||

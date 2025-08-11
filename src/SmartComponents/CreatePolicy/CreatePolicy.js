@@ -29,6 +29,7 @@ export const CreatePolicyForm = ({
   selectedRuleRefIds,
   systemIds,
   reset,
+  formHasAsyncErrors,
 }) => {
   const enableHostless = useFeatureFlag('image-builder.compliance.enabled');
   const navigate = useNavigate();
@@ -72,7 +73,12 @@ export const CreatePolicyForm = ({
       name: 'Details',
       component: <EditPolicyDetails />,
       canJumpTo: stepIdReached >= 2,
-      enableNext: validateDetailsPage(name, refId, complianceThreshold),
+      enableNext: validateDetailsPage(
+        name,
+        refId,
+        complianceThreshold,
+        formHasAsyncErrors,
+      ),
     },
     {
       id: 3,
@@ -148,6 +154,7 @@ CreatePolicyForm.propTypes = {
   selectedRuleRefIds: propTypes.arrayOf(propTypes.string),
   systemIds: propTypes.arrayOf(propTypes.string),
   reset: propTypes.func,
+  formHasAsyncErrors: propTypes.bool,
 };
 
 CreatePolicyForm.defaultProps = {
@@ -169,4 +176,6 @@ export default connect((state) => ({
   refId: selector(state, 'refId'),
   selectedRuleRefIds: selector(state, 'selectedRuleRefIds'),
   systemIds: selector(state, 'systems'),
+  formHasAsyncErrors:
+    state.form.policyForm?.asyncErrors === undefined ? true : false,
 }))(CreatePolicy);
