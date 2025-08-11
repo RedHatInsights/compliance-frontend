@@ -26,7 +26,7 @@ export const validateDetailsPage = (
   complianceThreshold,
   formHasAsyncErrors,
 ) =>
-  !formHasAsyncErrors ||
+  formHasAsyncErrors ||
   !name ||
   !refId ||
   !complianceThreshold ||

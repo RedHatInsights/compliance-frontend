@@ -177,5 +177,5 @@ export default connect((state) => ({
   selectedRuleRefIds: selector(state, 'selectedRuleRefIds'),
   systemIds: selector(state, 'systems'),
   formHasAsyncErrors:
-    state.form.policyForm?.asyncErrors === undefined ? true : false,
+    state.form.policyForm?.asyncErrors === undefined ? false : true,
 }))(CreatePolicy);

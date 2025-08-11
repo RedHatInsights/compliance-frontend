@@ -19,7 +19,11 @@ describe('validations', () => {
   });
 
   it('expect to validate the second page if name and refId are set', () => {
-    expect(validateDetailsPage('a', 'b', 100)).toBe(true);
+    expect(validateDetailsPage('a', 'b', 100, false)).toBe(true);
+  });
+
+  it('expect not to validate the second page if async error present', () => {
+    expect(validateDetailsPage('a', 'b', 100, true)).toBe(false);
   });
 
   it('expect not to validate the second page if threshold to high', () => {
