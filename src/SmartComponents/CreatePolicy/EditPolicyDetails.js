@@ -32,15 +32,16 @@ export const EditPolicyDetails = ({
   name,
   dispatch,
 }) => {
-  const { data: policies, loading } = usePolicies({
+  const { data: totalPolicies, loading } = usePolicies({
     params: {
       filter: `os_major_version=${profile.os_major_version} AND title="${name}"`,
     },
+    onlyTotal: true,
     skip: !name,
   });
 
   useEffect(() => {
-    if (policies && policies.data.length > 0) {
+    if (totalPolicies && totalPolicies > 0) {
       dispatch(
         stopAsyncValidation('policyForm', {
           name: 'A policy with this name already exists',
@@ -49,7 +50,7 @@ export const EditPolicyDetails = ({
     } else {
       dispatch(stopAsyncValidation('policyForm', null));
     }
-  }, [policies, loading, name, dispatch]);
+  }, [totalPolicies, loading, name, dispatch]);
 
   useEffect(() => {
     if (profile && profile.ref_id !== refId) {
