@@ -29,15 +29,11 @@ import { SystemsTable } from 'SmartComponents';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import useReport from 'Utilities/hooks/api/useReport';
 import useReportTestResultsSG from 'Utilities/hooks/api/useReportTestResultsSG';
-
+import * as Columns from '../SystemsTable/Columns';
+import ReportChart from './Components/ReportChart';
 import '@/Charts.scss';
 import './ReportDetails.scss';
-import TabTitleWithData from './Components/TabTitleWithData';
-import ReportChart from './Components/ReportChart';
-import {
-  neverReportedSystemsTableColumns,
-  reportedSystemTableColumns,
-} from './constants';
+import TabTitleWithData from 'SmartComponents/ReportDetails/Components/TabTitleWithData';
 
 const ReportDetails = ({ route }) => {
   const { report_id } = useParams();
@@ -72,7 +68,7 @@ const ReportDetails = ({ route }) => {
         <PageHeader>
           <ReportDetailsContentLoader />
         </PageHeader>
-        <section className="pf-v6-c-page__main-section">
+        <section className="pf-v5-c-page__main-section">
           <EmptyState>
             <Spinner />
           </EmptyState>
@@ -100,7 +96,7 @@ const ReportDetails = ({ route }) => {
               <Link
                 state={{ report }}
                 to={`/reports/${report?.id}/pdf`}
-                className="pf-v6-u-mr-md"
+                className="pf-v5-u-mr-md"
                 Component={LinkButton}
                 componentProps={{
                   variant: 'primary',
@@ -136,11 +132,11 @@ const ReportDetails = ({ route }) => {
             </GridItem>
           </Grid>
         </PageHeader>
-        <section className="pf-v6-c-page__main-section">
+        <section className="pf-v5-c-page__main-section">
           <Grid hasGutter>
             <GridItem span={12}>
               <Tabs
-                className="pf-m-light pf-v6-c-table"
+                className="pf-m-light pf-v5-c-table"
                 activeKey={tab}
                 onSelect={handleTabSelect}
                 mountOnEnter
@@ -160,18 +156,37 @@ const ReportDetails = ({ route }) => {
                   }
                 >
                   <SystemsTable
-                    isFullView
-                    remediationsEnabled
                     apiEndpoint="reportTestResults"
-                    ignoreOsMajorVersion
                     reportId={report_id}
-                    filters={{
+                    columns={({
+                      name,
+                      tags,
+                      workspaces,
+                      ssgVersion,
+                      complianceScore,
+                      lastScanned,
+                    }) => [
+                      {
+                        ...name,
+                        // TODO this should be a tabletools feature
+                        componentProps: { showLink: true, showOsInfo: true },
+                      },
+                      workspaces,
+                      tags,
+                      ssgVersion,
+                      complianceScore,
+                      lastScanned,
+                    ]}
+                    filters={({ name, policies, groups, ssgVersions }) => [
+                      name,
+                      policies,
+                      groups,
                       ssgVersions,
-                      compliant: true,
-                      severity: true,
-                      groups: true,
-                    }}
-                    columns={reportedSystemTableColumns}
+                    ]}
+                    // TODO replace with dedicatedAction in options
+                    remediationsEnabled
+                    // TODO replace with tableProps
+                    isFullView
                   />
                 </Tab>
 
@@ -192,14 +207,21 @@ const ReportDetails = ({ route }) => {
                 >
                   <SystemsTable
                     apiEndpoint="reportSystems"
-                    isFullView
-                    columns={neverReportedSystemsTableColumns}
-                    defaultFilter={'never_reported = true'}
-                    ignoreOsMajorVersion
-                    filters={{
-                      groups: true,
-                    }}
                     reportId={report_id}
+                    defaultFilter={{ never_reported: true }}
+                    columns={({ name, tags, workspaces, lastScanned }) => [
+                      {
+                        ...name,
+                        // TODO this should be a tabletools feature
+                        componentProps: { showLink: true, showOsInfo: true },
+                      },
+                      workspaces,
+                      tags,
+                      lastScanned,
+                    ]}
+                    filters={({ groups }) => [groups]}
+                    // TODO what does this even do?
+                    isFullView
                   />
                 </Tab>
               </Tabs>

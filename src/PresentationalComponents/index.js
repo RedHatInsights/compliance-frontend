@@ -48,3 +48,4 @@ export { default as ComplianceRoute } from './ComplianceRoute/ComplianceRoute';
 export { default as ComplianceTable } from './ComplianceTable/ComplianceTable';
 export { default as Tailorings } from './Tailorings/Tailorings';
 export { default as ComplianceRemediationButton } from './ComplianceRemediationButton/ComplianceRemediationButton';
+export { default as InventorySystemsTable } from './InventorySystemsTable/InventorySystemsTable';
