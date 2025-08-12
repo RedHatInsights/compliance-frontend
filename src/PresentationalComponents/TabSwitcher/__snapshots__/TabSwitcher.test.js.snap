@@ -29,10 +29,11 @@ exports[`RoutedTabSwitcher expect to set systems as activeKey 1`] = `
 exports[`RoutedTabs expect to render first tab 1`] = `
 <DocumentFragment>
   <div
-    class="pf-v6-c-tabs"
+    class="pf-v6-c-tabs pf-m-animate-current pf-m-initializing-accent"
     data-ouia-component-id="OUIA-Generated-Tabs-1"
     data-ouia-component-type="PF6/Tabs"
     data-ouia-safe="true"
+    style="--pf-v6-c-tabs--link-accent--length: 0px; --pf-v6-c-tabs--link-accent--start: 0px;"
   >
     <ul
       class="pf-v6-c-tabs__list"
@@ -97,10 +98,11 @@ exports[`RoutedTabs expect to render first tab 1`] = `
 exports[`RoutedTabs expect to render second tab 1`] = `
 <DocumentFragment>
   <div
-    class="pf-v6-c-tabs"
+    class="pf-v6-c-tabs pf-m-animate-current pf-m-initializing-accent"
     data-ouia-component-id="OUIA-Generated-Tabs-2"
     data-ouia-component-type="PF6/Tabs"
     data-ouia-safe="true"
+    style="--pf-v6-c-tabs--link-accent--length: 0px; --pf-v6-c-tabs--link-accent--start: 0px;"
   >
     <ul
       class="pf-v6-c-tabs__list"
