@@ -1,10 +1,9 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import { formValueSelector, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 import { Wizard } from '@patternfly/react-core/deprecated';
-import usePolicies from 'Utilities/hooks/api/usePolicies';
 import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
 import CreateSCAPPolicy from './CreateSCAPPolicy';
 import { default as EditPolicyRules } from './EditPolicyProfilesRules/EditPolicyProfilesRules';
@@ -30,7 +29,7 @@ export const CreatePolicyForm = ({
   systemIds,
   reset,
 }) => {
-  const enableHostless = useFeatureFlag('image-builder.compliance.enabled');
+  const allowNoSystems = useFeatureFlag('image-builder.compliance.enabled');
   const navigate = useNavigate();
   const [stepIdReached, setStepIdReached] = useState(1);
   const resetAnchor = () => {
@@ -50,15 +49,6 @@ export const CreatePolicyForm = ({
     reset();
     navigate('/scappolicies');
   };
-
-  const { data: policiesTotal } = usePolicies({
-    onlyTotal: true,
-  });
-
-  const allowNoSystems = useMemo(
-    () => enableHostless && policiesTotal === 0,
-    [policiesTotal, enableHostless],
-  );
 
   const steps = [
     {
