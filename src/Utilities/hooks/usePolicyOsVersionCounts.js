@@ -1,13 +1,18 @@
 import { useEffect, useState } from 'react';
-import usePolicySystems from './usePolicySystems';
-import usePolicySystemsOS from './usePolicySystemsOS';
+import usePolicySystems from './api/usePolicySystems';
+import usePolicySystemsOS from './api/usePolicySystemsOS';
 
 const usePolicyOsVersionCounts = (policyId) => {
   const [counts, setCounts] = useState(null);
   const { fetch: fetchPolicySystemsOS } = usePolicySystemsOS({
+    params: { policyId },
     skip: true,
   });
   const { fetch: fetchPolicySystems } = usePolicySystems({
+    params: {
+      policyId,
+    },
+    onlyTotal: true,
     skip: true,
   });
 
@@ -15,23 +20,15 @@ const usePolicyOsVersionCounts = (policyId) => {
     const getCounts = async () => {
       try {
         const newCounts = {};
-        const { data: versions } = await fetchPolicySystemsOS(
-          { policyId },
-          false,
-        );
+        const { data: versions } = await fetchPolicySystemsOS();
 
         for (const version of versions) {
           const minor = version.split('.')[1];
-          const policySystemsResponse = await fetchPolicySystems(
-            {
-              policyId,
-              limit: 1,
-              filter: `(os_minor_version = ${minor})`,
-            },
-            false,
-          );
+          const { data: total } = await fetchPolicySystems({
+            filter: `(os_minor_version = ${minor})`,
+          });
 
-          newCounts[minor] = policySystemsResponse.meta.total;
+          newCounts[minor] = total;
         }
 
         setCounts(newCounts);
@@ -41,9 +38,7 @@ const usePolicyOsVersionCounts = (policyId) => {
     };
 
     getCounts();
-    // TODO: investigate why proper dependencies list results in infinite requests
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [policyId]);
+  }, [policyId, fetchPolicySystemsOS, fetchPolicySystems]);
 
   return counts;
 };

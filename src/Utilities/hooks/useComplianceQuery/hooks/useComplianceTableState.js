@@ -9,6 +9,7 @@ const useComplianceTableState = (useTableState, paramsOption) => {
     pagination: { offset, limit } = {},
     sort: sortBy,
   } = serialisedTableState || {};
+
   const params = useDeepCompareMemo(() => {
     if (!Array.isArray(paramsOption)) {
       const allParams = paramsWithFilters(paramsOption, {

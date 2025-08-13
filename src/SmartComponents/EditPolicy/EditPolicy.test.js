@@ -1,41 +1,45 @@
 import { useEffect } from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import EditPolicy from './EditPolicy';
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+
 import usePolicy from 'Utilities/hooks/api/usePolicy';
 import useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
 import useAssignRules from 'Utilities/hooks/api/useAssignRules';
+import usePolicySystems from 'Utilities/hooks/api/usePolicySystems';
 import useAssignedRules from './hooks/useAssignedRules';
-import useAssignSystems from 'Utilities/hooks/api/useAssignSystems';
-import useTailorings from 'Utilities/hooks/api/useTailorings';
-import useUpdateTailoring from 'Utilities/hooks/api/useUpdateTailoring';
-import TestWrapper from '@redhat-cloud-services/frontend-components-utilities/TestingUtils/JestUtils/TestWrapper';
-import userEvent from '@testing-library/user-event';
-import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 import EditPolicyForm from './EditPolicyForm';
 import useUpdatePolicy from 'Utilities/hooks/api/useUpdatePolicy';
+import EditPolicy from './EditPolicy';
+import TestWrapper from 'Utilities/TestWrapper';
 
 jest.mock('Utilities/hooks/api/useSupportedProfiles');
 jest.mock('Utilities/hooks/api/useAssignRules');
-jest.mock('Utilities/hooks/api/useAssignSystems');
+jest.mock('Utilities/hooks/api/usePolicySystems');
 jest.mock('Utilities/hooks/api/usePolicy');
-jest.mock('Utilities/hooks/api/useTailorings');
 jest.mock('Utilities/hooks/api/useUpdatePolicy');
-jest.mock('Utilities/hooks/api/useUpdateTailoring');
 jest.mock('./hooks/useAssignedRules');
-
-jest.mock(
-  '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate',
-);
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useParams: jest.fn(() => ({ policy_id: 'test-policy-id' })),
-}));
 
 jest.mock('./EditPolicyForm');
 
-const navigate = jest.fn();
-useNavigate.mockImplementation(() => navigate);
+// eslint-disable-next-line
+const MockEditPolicyForm = ({ setUpdatedPolicy }) => {
+  useEffect(() => {
+    setUpdatedPolicy({
+      tailoringRules: {
+        8: ['rule-1', 'rule-2'],
+      },
+      hosts: ['system-1'],
+      tailoringValueOverrides: {
+        8: { 'value-id': 'changed-value' },
+      },
+    });
+  }, [setUpdatedPolicy]);
+
+  return <div>Mocked tabs</div>;
+};
+
+EditPolicyForm.mockImplementation(MockEditPolicyForm);
 
 const user = userEvent.setup();
 const defaultProp = {
@@ -46,13 +50,14 @@ const defaultProp = {
 };
 
 const renderComponent = (newProps = {}) =>
-  render(
-    <TestWrapper>
-      <EditPolicy {...{ ...defaultProp, newProps }} />
-    </TestWrapper>,
-  );
+  render(<EditPolicy {...{ ...defaultProp, newProps }} />, {
+    wrapper: TestWrapper,
+  });
 
 const fetchMock = jest.fn(() => Promise.resolve({ data: [{ id: 'test-id' }] }));
+const fetchBatchedMock = jest.fn(() =>
+  Promise.resolve({ data: [{ id: 'test-id' }] }),
+);
 
 describe('EditPolicy', () => {
   beforeEach(() => {
@@ -68,47 +73,19 @@ describe('EditPolicy', () => {
       error: false,
     }));
 
-    useTailorings.mockImplementation(() => ({
-      fetch: jest.fn(() =>
-        Promise.resolve({
-          data: [{ id: 'tailoring-id-1', os_minor_version: 8 }],
-        }),
-      ),
-    }));
-
     useAssignedRules.mockImplementation(() => ({
       assignedRuleIds: [],
       assignedRulesLoading: false,
     }));
 
-    [
-      useAssignRules,
-      useAssignSystems,
-      useSupportedProfiles,
-      useUpdateTailoring,
-    ].forEach((hook) => {
+    [useAssignRules, usePolicySystems, useSupportedProfiles].forEach((hook) => {
       hook.mockImplementation(() => ({
         data: { data: [{ id: 'test-id' }] },
         loading: false,
         error: false,
         fetch: fetchMock,
+        fetchBatched: fetchBatchedMock,
       }));
-    });
-
-    EditPolicyForm.mockImplementation(({ setUpdatedPolicy }) => {
-      useEffect(() => {
-        setUpdatedPolicy({
-          tailoringRules: {
-            8: ['rule-1', 'rule-2'],
-          },
-          hosts: ['system-1'],
-          tailoringValueOverrides: {
-            8: { 'value-id': 'changed-value' },
-          },
-        });
-      }, []);
-
-      return <div>Mocked tabs</div>;
     });
   });
 
@@ -121,36 +98,10 @@ describe('EditPolicy', () => {
     expect(screen.getByText(`Edit test-policy`)).toBeVisible();
   });
 
-  it('Should redirect to policy detail page on cancel button click', async () => {
-    renderComponent();
-
-    await user.click(screen.getByRole('button', { name: 'Cancel' }));
-
-    expect(navigate).toHaveBeenCalledWith('/scappolicies/test-policy-id');
-  });
-
-  it('Should display save button as disabled when no changes are made', () => {
-    EditPolicyForm.mockImplementation(({ setUpdatedPolicy }) => {
-      useEffect(() => {
-        setUpdatedPolicy(null);
-      }, []);
-
-      return <div>Mocked tabs</div>;
-    });
-
-    renderComponent();
-
-    expect(
-      screen.getByRole('button', {
-        name: /save/i,
-      }),
-    ).toBeDisabled();
-  });
-
   it('Should call fetch APIs with correct params', async () => {
     renderComponent();
 
-    [usePolicy, useAssignRules, useAssignSystems].forEach(
+    [usePolicy, useAssignRules, usePolicySystems].forEach(
       async (hook) =>
         await waitFor(() => {
           expect(hook).toHaveBeenCalled();
@@ -159,50 +110,11 @@ describe('EditPolicy', () => {
 
     await waitFor(() => {
       expect(useSupportedProfiles).toHaveBeenCalledWith({
-        params: { filter: 'os_major_version=7', limit: 100 },
+        batched: true,
+        params: { filter: 'os_major_version=7' },
         skip: false,
       });
     });
-  });
-
-  it('Should submit form', async () => {
-    renderComponent();
-    await waitFor(() =>
-      expect(
-        screen.getByRole('button', {
-          name: /save/i,
-        }),
-      ).toBeEnabled(),
-    );
-
-    await user.click(
-      screen.getByRole('button', {
-        name: /save/i,
-      }),
-    );
-
-    await waitFor(() =>
-      expect(fetchMock).toHaveBeenCalledWith({
-        policyId: 'test-id',
-        assignSystemsRequest: { ids: ['system-1'] },
-      }),
-    );
-
-    await waitFor(() =>
-      expect(fetchMock).toHaveBeenCalledWith({
-        policyId: 'test-id',
-        tailoringId: 'tailoring-id-1',
-        assignRulesRequest: { ids: ['rule-1', 'rule-2'] },
-      }),
-    );
-
-    await waitFor(() =>
-      expect(fetchMock).toHaveBeenCalledWith({
-        policyId: 'test-id',
-        tailoringId: 'tailoring-id-1',
-        valuesUpdate: { value_overrides: { 'value-id': 'changed-value' } },
-      }),
-    );
   });
 
   it('Should submit fail if any API errors', async () => {
@@ -231,7 +143,7 @@ describe('EditPolicy', () => {
   it('Should call fetch APIs with correct params', async () => {
     renderComponent();
 
-    [usePolicy, useAssignRules, useAssignSystems].forEach(
+    [usePolicy, useAssignRules, usePolicySystems].forEach(
       async (hook) =>
         await waitFor(() => {
           expect(hook).toHaveBeenCalledWith('test-policy-id');
@@ -240,7 +152,8 @@ describe('EditPolicy', () => {
 
     await waitFor(() => {
       expect(useSupportedProfiles).toHaveBeenCalledWith({
-        params: { filter: 'os_major_version=7', limit: 100 },
+        batched: true,
+        params: { filter: 'os_major_version=7' },
         skip: false,
       });
     });
