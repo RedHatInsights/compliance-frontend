@@ -25,14 +25,17 @@ export const validateDetailsPage = (
   refId,
   complianceThreshold,
   formHasAsyncErrors,
-) =>
-  formHasAsyncErrors ||
-  !name ||
-  !refId ||
-  !complianceThreshold ||
-  !thresholdValid(complianceThreshold)
-    ? false
-    : true;
+  detailsStepLoaded,
+) => {
+  return (
+    detailsStepLoaded &&
+    !formHasAsyncErrors &&
+    !!name &&
+    !!refId &&
+    !!complianceThreshold &&
+    thresholdValid(complianceThreshold)
+  );
+};
 
 export const validateRulesPage = (selectedRuleRefIds) =>
   selectedRuleRefIds?.length > 0;

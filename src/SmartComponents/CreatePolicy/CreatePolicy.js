@@ -30,6 +30,7 @@ export const CreatePolicyForm = ({
   systemIds,
   reset,
   formHasAsyncErrors,
+  detailsStepLoaded,
 }) => {
   const enableHostless = useFeatureFlag('image-builder.compliance.enabled');
   const navigate = useNavigate();
@@ -78,6 +79,7 @@ export const CreatePolicyForm = ({
         refId,
         complianceThreshold,
         formHasAsyncErrors,
+        detailsStepLoaded,
       ),
     },
     {
@@ -154,6 +156,7 @@ CreatePolicyForm.propTypes = {
   selectedRuleRefIds: propTypes.arrayOf(propTypes.string),
   systemIds: propTypes.arrayOf(propTypes.string),
   reset: propTypes.func,
+  detailsStepLoaded: propTypes.bool,
   formHasAsyncErrors: propTypes.bool,
 };
 
@@ -176,6 +179,7 @@ export default connect((state) => ({
   refId: selector(state, 'refId'),
   selectedRuleRefIds: selector(state, 'selectedRuleRefIds'),
   systemIds: selector(state, 'systems'),
+  detailsStepLoaded: selector(state, 'detailsStepLoaded'),
   formHasAsyncErrors:
     state.form.policyForm?.asyncErrors === undefined ? false : true,
 }))(CreatePolicy);

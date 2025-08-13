@@ -15,23 +15,27 @@ describe('validations', () => {
   });
 
   it('expect not to validate the second page if name or refId are not set', () => {
-    expect(validateDetailsPage(null, null, 100)).toBe(false);
+    expect(validateDetailsPage(null, null, 100, false, true)).toBe(false);
   });
 
   it('expect to validate the second page if name and refId are set', () => {
-    expect(validateDetailsPage('a', 'b', 100, false)).toBe(true);
+    expect(validateDetailsPage('a', 'b', 100, false, true)).toBe(true);
   });
 
   it('expect not to validate the second page if async error present', () => {
-    expect(validateDetailsPage('a', 'b', 100, true)).toBe(false);
+    expect(validateDetailsPage('a', 'b', 100, true, true)).toBe(false);
+  });
+
+  it('expect not to validate the second page if waiting on async request', () => {
+    expect(validateDetailsPage('a', 'b', 100, false, false)).toBe(false);
   });
 
   it('expect not to validate the second page if threshold to high', () => {
-    expect(validateDetailsPage('a', 'b', 300)).toBe(false);
+    expect(validateDetailsPage('a', 'b', 300, false, true)).toBe(false);
   });
 
   it('expect not to validate the second page if one of name and refId are not set', () => {
-    expect(validateDetailsPage('a', null, 100)).toBe(false);
-    expect(validateDetailsPage(null, 'b', 100)).toBe(false);
+    expect(validateDetailsPage('a', null, 100, false, true)).toBe(false);
+    expect(validateDetailsPage(null, 'b', 100, false, true)).toBe(false);
   });
 });
