@@ -28,6 +28,8 @@ export const CreatePolicyForm = ({
   selectedRuleRefIds,
   systemIds,
   reset,
+  formHasAsyncErrors,
+  detailsStepLoaded,
 }) => {
   const allowNoSystems = useFeatureFlag('image-builder.compliance.enabled');
   const navigate = useNavigate();
@@ -62,7 +64,13 @@ export const CreatePolicyForm = ({
       name: 'Details',
       component: <EditPolicyDetails />,
       canJumpTo: stepIdReached >= 2,
-      enableNext: validateDetailsPage(name, refId, complianceThreshold),
+      enableNext: validateDetailsPage(
+        name,
+        refId,
+        complianceThreshold,
+        formHasAsyncErrors,
+        detailsStepLoaded,
+      ),
     },
     {
       id: 3,
@@ -137,6 +145,8 @@ CreatePolicyForm.propTypes = {
   selectedRuleRefIds: propTypes.arrayOf(propTypes.string),
   systemIds: propTypes.arrayOf(propTypes.string),
   reset: propTypes.func,
+  detailsStepLoaded: propTypes.bool,
+  formHasAsyncErrors: propTypes.bool,
 };
 
 const CreatePolicy = reduxForm({
@@ -154,4 +164,7 @@ export default connect((state) => ({
   refId: selector(state, 'refId'),
   selectedRuleRefIds: selector(state, 'selectedRuleRefIds'),
   systemIds: selector(state, 'systems'),
+  detailsStepLoaded: selector(state, 'detailsStepLoaded'),
+  formHasAsyncErrors:
+    state.form.policyForm?.asyncErrors === undefined ? false : true,
 }))(CreatePolicy);
