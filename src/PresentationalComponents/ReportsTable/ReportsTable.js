@@ -54,10 +54,10 @@ const ReportsTable = ({
 };
 
 ReportsTable.propTypes = {
-  reports: propTypes.array.isRequired,
+  reports: propTypes.array,
   total: propTypes.number,
   loading: propTypes.bool,
-  operatingSystems: propTypes.array.isRequired,
+  operatingSystems: propTypes.array,
   options: propTypes.object,
 };
 

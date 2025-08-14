@@ -55,7 +55,7 @@ const EditPolicyProfilesRules = ({
   } = useProfileRuleIds({
     profileRefId,
     osMajorVersion,
-    osMinorVersions: osMinorVersionCounts.map(
+    osMinorVersions: osMinorVersionCounts?.map(
       ({ osMinorVersion }) => osMinorVersion,
     ),
     skip: skipFetchingProfileRuleIds,

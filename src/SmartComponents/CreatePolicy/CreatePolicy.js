@@ -1,10 +1,9 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import { formValueSelector, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 import { Wizard } from '@patternfly/react-core/deprecated';
-import usePolicies from 'Utilities/hooks/api/usePolicies';
 import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
 import CreateSCAPPolicy from './CreateSCAPPolicy';
 import { default as EditPolicyRules } from './EditPolicyProfilesRules/EditPolicyProfilesRules';
@@ -32,7 +31,7 @@ export const CreatePolicyForm = ({
   formHasAsyncErrors,
   detailsStepLoaded,
 }) => {
-  const enableHostless = useFeatureFlag('image-builder.compliance.enabled');
+  const allowNoSystems = useFeatureFlag('image-builder.compliance.enabled');
   const navigate = useNavigate();
   const [stepIdReached, setStepIdReached] = useState(1);
   const resetAnchor = () => {
@@ -52,15 +51,6 @@ export const CreatePolicyForm = ({
     reset();
     navigate('/scappolicies');
   };
-
-  const { data: policiesTotal } = usePolicies({
-    onlyTotal: true,
-  });
-
-  const allowNoSystems = useMemo(
-    () => enableHostless && policiesTotal === 0,
-    [policiesTotal, enableHostless],
-  );
 
   const steps = [
     {
@@ -148,7 +138,6 @@ CreatePolicyForm.propTypes = {
   complianceThreshold: propTypes.string,
   businessObjective: propTypes.object,
   dispatch: propTypes.func,
-  isOpen: propTypes.bool,
   name: propTypes.string,
   onWizardFinish: propTypes.func,
   profile: propTypes.string,
@@ -158,10 +147,6 @@ CreatePolicyForm.propTypes = {
   reset: propTypes.func,
   detailsStepLoaded: propTypes.bool,
   formHasAsyncErrors: propTypes.bool,
-};
-
-CreatePolicyForm.defaultProps = {
-  isOpen: false,
 };
 
 const CreatePolicy = reduxForm({

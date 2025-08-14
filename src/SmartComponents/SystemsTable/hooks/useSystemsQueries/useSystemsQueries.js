@@ -1,7 +1,6 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { paginationSerialiser } from 'PresentationalComponents/ComplianceTable/serialisers';
 import { useFullTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
-
 import useComplianceQuery from 'Utilities/hooks/useComplianceQuery';
 import { convertToArray, osApiEndpoints } from './constants';
 import {
@@ -32,7 +31,7 @@ const useSystemsQueries = ({
 
   const params = useMemo(
     () => ({
-      filter: defaultFilter,
+      ...(defaultFilter ? { filter: defaultFilter } : {}),
       ...(reportId ? { reportId } : {}),
       ...(policyId ? { policyId } : {}),
     }),
@@ -41,7 +40,7 @@ const useSystemsQueries = ({
 
   const complianceQueryDefaults = useMemo(
     () => ({
-      params,
+      ...(Object.keys(params).length ? { params } : {}),
       skip: true,
       useTableState: true,
     }),
@@ -85,14 +84,15 @@ const useSystemsQueries = ({
       inventoryFiltersCache.current = { filters, sortBy: inventorySortBy };
       const filter = inventoryFiltersSerialiser(filters, ignoreOsMajorVersion);
       const sortBy = inventorySortSerialiser(inventorySortBy, columns);
+      const allParams = {
+        ...params,
+        ...paginationSerialiser({ perPage, page }),
+        ...(filter ? { filter } : {}),
+        ...(sortBy ? { sortBy } : {}),
+      };
 
       try {
-        const result = await fetch({
-          ...params,
-          ...paginationSerialiser({ perPage, page }),
-          ...(filter ? { filter } : {}),
-          ...(sortBy ? { sortBy } : {}),
-        });
+        const result = await fetch(allParams);
         resultCache.current = result;
 
         setIsEmptyState(result);

@@ -5,6 +5,7 @@ import EditPolicyDetailsInline from './EditPolicyDetailsInline';
 import { usePermissionsWithContext } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 import useUpdatePolicy from 'Utilities/hooks/api/useUpdatePolicy';
 import { TextArea } from '@patternfly/react-core';
+import TestWrapper from 'Utilities/TestWrapper';
 
 jest.mock('@redhat-cloud-services/frontend-components-utilities/RBACHook');
 jest.mock('Utilities/hooks/api/useUpdatePolicy');
@@ -39,7 +40,9 @@ describe('EditPolicyDetailsInline', () => {
   };
 
   it('Renders the component with default props', () => {
-    render(<EditPolicyDetailsInline {...defaultProps} />);
+    render(<EditPolicyDetailsInline {...defaultProps} />, {
+      wrapper: TestWrapper,
+    });
     expect(screen.getByText('Test Label')).toBeInTheDocument();
     expect(screen.getByText('Test Text Closed')).toBeInTheDocument();
   });
@@ -50,12 +53,16 @@ describe('EditPolicyDetailsInline', () => {
       isLoading: false,
     }));
 
-    render(<EditPolicyDetailsInline {...defaultProps} />);
+    render(<EditPolicyDetailsInline {...defaultProps} />, {
+      wrapper: TestWrapper,
+    });
     expect(screen.queryByRole('button')).not.toBeInTheDocument();
   });
 
   it('Open and save edits works', async () => {
-    render(<EditPolicyDetailsInline {...defaultProps} />);
+    render(<EditPolicyDetailsInline {...defaultProps} />, {
+      wrapper: TestWrapper,
+    });
 
     const pencilButton = screen.getByRole('button');
     fireEvent.click(pencilButton);
@@ -71,7 +78,9 @@ describe('EditPolicyDetailsInline', () => {
   });
 
   it('Cancels edits when the cancel button is clicked', async () => {
-    render(<EditPolicyDetailsInline {...defaultProps} />);
+    render(<EditPolicyDetailsInline {...defaultProps} />, {
+      wrapper: TestWrapper,
+    });
 
     const pencilButton = screen.getByRole('button');
     fireEvent.click(pencilButton);
@@ -90,7 +99,9 @@ describe('EditPolicyDetailsInline', () => {
   });
 
   it('Save button disabled on invalid threshold input', () => {
-    render(<EditPolicyDetailsInline {...defaultProps} />);
+    render(<EditPolicyDetailsInline {...defaultProps} />, {
+      wrapper: TestWrapper,
+    });
     const pencilButton = screen.getByRole('button');
     fireEvent.click(pencilButton);
 
@@ -118,9 +129,12 @@ describe('EditPolicyDetailsInline', () => {
       Component: TextArea,
       label: 'Policy description',
       propertyName: 'description',
+      'aria-label': 'TextArea',
     };
 
-    render(<EditPolicyDetailsInline {...props} />);
+    render(<EditPolicyDetailsInline {...props} />, {
+      wrapper: TestWrapper,
+    });
     expect(screen.getByText('Test description')).toBeInTheDocument();
 
     const pencilButton = screen.getByRole('button');

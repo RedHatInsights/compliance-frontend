@@ -25,7 +25,7 @@ const ErrorPage = ({ error }) => {
 };
 
 ErrorPage.propTypes = {
-  error: propTypes.object,
+  error: propTypes.any,
 };
 
 export default ErrorPage;

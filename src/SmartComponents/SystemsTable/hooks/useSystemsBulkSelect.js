@@ -7,6 +7,7 @@ const useSystemsBulkSelect = ({
   fetchSystemsBatched,
   onSelect,
   resultCache,
+  setIsSystemsDataLoading,
   ...bulkSelectOptions
 }) => {
   const dispatch = useDispatch();
@@ -15,14 +16,17 @@ const useSystemsBulkSelect = ({
 
   const itemIdsInTable = useCallback(async () => {
     itemCache.current = undefined;
+    setIsSystemsDataLoading(true);
     dispatch(setDisabledSelection(true));
 
     const results = await fetchSystemsBatched();
     const items = results?.data;
     itemCache.current = items;
 
+    setIsSystemsDataLoading(false);
+
     return items.map(({ id }) => id);
-  }, [fetchSystemsBatched, dispatch]);
+  }, [fetchSystemsBatched, dispatch, setIsSystemsDataLoading]);
 
   const onSelectCallback = useCallback(
     (selectedIds) => {

@@ -1,69 +1,46 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import useTailorings from 'Utilities/hooks/api/useTailorings';
 import useTailoringRules from '../../../Utilities/hooks/api/useTailoringRules';
-import useFetchTotalBatched from '../../../Utilities/hooks/useFetchTotalBatched';
 
 const useAssignedRules = (policyId) => {
   const [assignedRuleIds, setAssignedRuleIds] = useState(null); // we want to explicitly set this to null, so that bulk select properly sets what is preselected items
   const [assignedRuleIdsLoading, setAssignedRuleIdsLoading] = useState(true);
 
-  const { data: { data: tailoringsData } = {}, loading: tailoringsLoading } =
+  const { data: { data: tailorings } = {}, loading: tailoringsLoading } =
     useTailorings({
-      params: { policyId },
+      params: { policyId, filter: 'NOT(null? os_minor_version)' },
     });
-  const { fetch: fetchTailoringRules } = useTailoringRules({ skip: true });
-
-  const fetchBatched = useCallback(
-    async (offset, limit, { policyId, tailoringId }) =>
-      fetchTailoringRules(
-        [
-          policyId,
-          tailoringId,
-          undefined,
-          limit,
-          offset,
-          true, // fetch IDs only
-        ],
-        false,
-      ),
-    [fetchTailoringRules],
-  );
-
-  const { fetch: fetchTailoringRulesBatched } = useFetchTotalBatched(
-    fetchBatched,
-    {
-      batchSize: 60,
-      skip: true,
-    },
-  );
+  const { fetchBatchedQueue: fetchTailoringRules } = useTailoringRules({
+    params: { policyId, idsOnly: true },
+    skip: true,
+  });
 
   useEffect(() => {
     const fillTailoringRules = async () => {
-      let rules = {};
-
-      const nonCanonicalTailorings = tailoringsData.filter(
-        ({ os_minor_version }) => os_minor_version !== null,
+      const rulesQueue = Object.fromEntries(
+        tailorings.map(({ os_minor_version, id: tailoringId }) => [
+          os_minor_version,
+          { tailoringId },
+        ]),
       );
 
-      for (const tailoring of nonCanonicalTailorings) {
-        const { data: receivedTailoringRules } =
-          await fetchTailoringRulesBatched({
-            // TODO: investigate why it's not stable with the dev server
-            policyId,
-            tailoringId: tailoring.id,
-          });
-        rules[tailoring.os_minor_version] = receivedTailoringRules
-          .flat()
-          .map(({ id }) => id);
-      }
+      const rules = Object.fromEntries(
+        Object.entries(await fetchTailoringRules(rulesQueue)).map(
+          ([os_minor_version, { data: rulesData }]) => [
+            os_minor_version,
+            rulesData.map(({ id }) => id),
+          ],
+        ),
+      );
+
       setAssignedRuleIds(rules);
       setAssignedRuleIdsLoading(false);
     };
 
-    if (tailoringsLoading === false && tailoringsData !== undefined) {
+    if (tailoringsLoading === false && tailorings !== undefined) {
       fillTailoringRules();
     }
-  }, [fetchTailoringRulesBatched, policyId, tailoringsData, tailoringsLoading]);
+  }, [fetchTailoringRules, tailorings, tailoringsLoading]);
 
   return {
     assignedRuleIds,

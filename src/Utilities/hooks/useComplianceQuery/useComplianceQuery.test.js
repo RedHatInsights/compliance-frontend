@@ -1,157 +1,178 @@
-import { renderHook, act, waitFor } from '@testing-library/react';
+import { renderHook, waitFor } from '@testing-library/react';
 import { useSerialisedTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
-import usePagination from '@/Frameworks/AsyncTableTools/hooks/usePagination';
-import {
-  paginationSerialiser,
-  sortSerialiser,
-} from '@/PresentationalComponents/ComplianceTable/serialisers';
-import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
-import useTableSort from '@/Frameworks/AsyncTableTools/hooks/useTableSort';
-import useQuery from '../useQuery';
+
+import TestWrapper from 'Utilities/TestWrapper';
+import useComplianceApi from 'Utilities/hooks/useComplianceApi';
+
 import useComplianceQuery from './useComplianceQuery';
 
-const wrapper = ({ children }) => (
-  <TableStateProvider>{children}</TableStateProvider>
-);
-
-jest.mock('../useQuery');
-
-const useTableStateHelper = ({ query: queryOptions } = {}) => {
-  const paginate = usePagination({
-    pagination: true,
-    page: 1,
-    perPage: 10,
-    total: 50,
-    serialisers: { pagination: paginationSerialiser },
-  });
-
-  const columns = [
-    { title: 'Name', sortable: 'name' },
-    { title: 'Systems', sortable: 'systems' },
-  ];
-  const sort = useTableSort(columns, {
-    sortBy: { index: 1, direction: 'asc' },
-    serialisers: { sort: sortSerialiser },
-  });
-  const query = useComplianceQuery('policy', {
-    useTableState: true,
-    ...(queryOptions || {}),
-  });
-  const serialisedState = useSerialisedTableState();
-
-  return {
-    query,
-    serialisedState,
-    paginate,
-    sort,
-  };
-};
-
-const defaultUseQueryOptions = {
-  params: expect.anything(),
-  compileResult: expect.anything(),
-};
-
-const mockUseQuery = jest.fn(() => {
-  return { data: [], loading: false, error: undefined };
-});
+jest.mock('Utilities/hooks/useComplianceApi');
+jest.mock('@/Frameworks/AsyncTableTools/hooks/useTableState');
 
 describe('useComplianceQuery', () => {
-  beforeEach(() => {
-    useQuery.mockImplementation(mockUseQuery);
-    jest.clearAllMocks();
-  });
-
-  it('verifies pagination', async () => {
-    const { result } = renderHook(() => useTableStateHelper(), {
-      wrapper,
-    });
-
-    await waitFor(() =>
-      expect(mockUseQuery).toHaveBeenCalledWith(
-        expect.anything(),
-        expect.objectContaining({ skip: true }),
-      ),
-    );
-
-    await act(() =>
-      result.current.paginate.toolbarProps.pagination.onSetPage(undefined, 2),
-    );
-
-    await waitFor(() =>
-      expect(mockUseQuery).toHaveBeenCalledWith(
-        expect.anything(),
-        expect.objectContaining({
-          ...defaultUseQueryOptions,
-          params: expect.objectContaining({
-            limit: 10,
-            offset: 10,
-          }),
-        }),
-      ),
-    );
-
-    await act(() =>
-      result.current.paginate.toolbarProps.pagination.onPerPageSelect(null, 50),
-    );
-
-    await waitFor(() =>
-      expect(mockUseQuery).toHaveBeenCalledWith(
-        expect.anything(),
-        expect.objectContaining({
-          ...defaultUseQueryOptions,
-          params: expect.objectContaining({ limit: 50 }),
-        }),
-      ),
-    );
-  });
-
-  it('verifies sorting', async () => {
-    const { result } = renderHook(() => useTableStateHelper(), {
-      wrapper,
-    });
-
-    await waitFor(() =>
-      expect(mockUseQuery).toHaveBeenCalledWith(
-        expect.anything(),
-        expect.objectContaining({ skip: true }),
-      ),
-    );
-
-    await act(() => result.current.sort.tableProps.onSort(null, 1, 'desc'));
-
-    await waitFor(() =>
-      expect(mockUseQuery).toHaveBeenCalledWith(
-        expect.anything(),
-        expect.objectContaining({
-          params: expect.objectContaining({ sortBy: 'systems:desc' }),
-        }),
-      ),
-    );
-  });
-
-  it('properly set skip when batch is enabled', async () => {
-    renderHook(
-      () => useTableStateHelper({ query: { batched: true, skip: true } }),
-      {
-        wrapper,
+  const apiMock = jest.fn(() => ({
+    data: {
+      data: [],
+      meta: {
+        total: 0,
       },
-    );
+    },
+  }));
 
-    await waitFor(() =>
-      expect(mockUseQuery).toHaveBeenCalledWith(
-        expect.anything(),
-        expect.objectContaining({ skip: true }),
-      ),
-    );
+  beforeEach(() => {
+    jest.clearAllMocks();
+    useComplianceApi.mockReturnValue(apiMock);
+    useSerialisedTableState.mockReturnValue({});
+  });
 
-    await waitFor(() =>
-      expect(mockUseQuery).toHaveBeenCalledWith(
-        expect.anything(),
-        expect.objectContaining({
-          skip: true,
-        }),
-      ),
+  it('returns data, loading, error, etc.', async () => {
+    const { result } = renderHook(() => useComplianceQuery(), {
+      wrapper: TestWrapper,
+    });
+
+    await waitFor(() => expect(result.current?.data?.data).toEqual([]));
+
+    expect(result.current).toEqual(
+      expect.objectContaining({
+        data: { data: [], meta: { total: 0 } },
+        error: null,
+        loading: false,
+        fetch: expect.anything(),
+        fetchBatched: expect.anything(),
+        refetch: expect.anything(),
+      }),
     );
+  });
+
+  describe('useTableState: true', () => {
+    it('uses the table pagination state', async () => {
+      useSerialisedTableState.mockReturnValue({
+        pagination: { offset: 0, limit: 10 },
+      });
+
+      renderHook(
+        () =>
+          useComplianceQuery('policies', {
+            useTableState: true,
+          }),
+        {
+          wrapper: TestWrapper,
+        },
+      );
+
+      await waitFor(() =>
+        expect(apiMock).toHaveBeenCalledWith(
+          expect.objectContaining({
+            limit: 10,
+            offset: 0,
+          }),
+        ),
+      );
+    });
+
+    it('uses the table sorting state', async () => {
+      useSerialisedTableState.mockReturnValue({
+        sort: 'systems:asc',
+      });
+
+      renderHook(
+        () =>
+          useComplianceQuery('policies', {
+            useTableState: true,
+          }),
+        {
+          wrapper: TestWrapper,
+        },
+      );
+
+      await waitFor(() =>
+        expect(apiMock).toHaveBeenCalledWith(
+          expect.objectContaining({
+            sortBy: 'systems:asc',
+          }),
+        ),
+      );
+    });
+
+    it('uses the table filter state', async () => {
+      useSerialisedTableState.mockReturnValue({
+        filters: 'name = test',
+      });
+
+      renderHook(
+        () =>
+          useComplianceQuery('policies', {
+            useTableState: true,
+          }),
+        {
+          wrapper: TestWrapper,
+        },
+      );
+
+      await waitFor(() =>
+        expect(apiMock).toHaveBeenCalledWith(
+          expect.objectContaining({
+            filter: 'name = test',
+          }),
+        ),
+      );
+    });
+
+    it('merges filters from options and state', async () => {
+      useSerialisedTableState.mockReturnValue({
+        filters: 'name = test',
+      });
+
+      renderHook(
+        () =>
+          useComplianceQuery('policies', {
+            useTableState: true,
+            params: {
+              filter: 'host = 1',
+            },
+          }),
+        {
+          wrapper: TestWrapper,
+        },
+      );
+
+      await waitFor(() =>
+        expect(apiMock).toHaveBeenCalledWith(
+          expect.objectContaining({
+            filter: '(host = 1) AND (name = test)',
+          }),
+        ),
+      );
+    });
+
+    it('merges filters from options and state, and fetch call params', async () => {
+      useSerialisedTableState.mockReturnValue({
+        filters: 'name = test',
+      });
+
+      const { result } = renderHook(
+        () =>
+          useComplianceQuery('policies', {
+            useTableState: true,
+            skip: true,
+            params: {
+              filter: 'host = 1',
+            },
+          }),
+        {
+          wrapper: TestWrapper,
+        },
+      );
+
+      await result.current.fetch({ filter: 'host = 2' });
+
+      await waitFor(() =>
+        expect(apiMock).toHaveBeenCalledWith(
+          expect.objectContaining({
+            filter: '((host = 1) AND (name = test)) AND (host = 2)',
+          }),
+        ),
+      );
+    });
   });
 });

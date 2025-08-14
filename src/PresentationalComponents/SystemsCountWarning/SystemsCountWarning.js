@@ -19,7 +19,7 @@ WithOptionalToolTip.propTypes = {
   children: propTypes.node,
 };
 
-const SystemsCountWarning = ({ count, variant }) => {
+const SystemsCountWarning = ({ count, variant = 'compact' }) => {
   let text;
 
   switch (variant) {
@@ -43,10 +43,6 @@ const SystemsCountWarning = ({ count, variant }) => {
       <WarningText>{text}</WarningText>
     </WithOptionalToolTip>
   );
-};
-
-SystemsCountWarning.defaultProps = {
-  variant: 'compact',
 };
 
 SystemsCountWarning.propTypes = {

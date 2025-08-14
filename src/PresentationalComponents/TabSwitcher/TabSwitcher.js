@@ -36,7 +36,7 @@ TabSwitcher.propTypes = {
 };
 
 // Routed Plain switcher that can be used with PatternFly tabs
-export const RoutedTabSwitcher = ({ children, defaultTab, level }) => {
+export const RoutedTabSwitcher = ({ children, defaultTab, level = 0 }) => {
   const { currentAnchor } = useAnchorLevels(defaultTab, level);
 
   return <TabSwitcher activeKey={currentAnchor}>{children}</TabSwitcher>;
@@ -48,16 +48,12 @@ RoutedTabSwitcher.propTypes = {
   level: propTypes.number,
 };
 
-RoutedTabSwitcher.defaultProps = {
-  level: 0,
-};
-
 // Allows to use full PatternFly tabs and switch them using the URL hash
 // It can be used with filled tabs (EditPolicyForm) or just tab "buttons" (PolicyDetails)
 export const RoutedTabs = ({
   children,
   defaultTab,
-  level,
+  level = 0,
   ouiaId,
   ...props
 }) => {
@@ -90,10 +86,6 @@ export const RoutedTabs = ({
       {children}
     </Tabs>
   );
-};
-
-RoutedTabs.defaultProps = {
-  level: 0,
 };
 
 RoutedTabs.propTypes = {

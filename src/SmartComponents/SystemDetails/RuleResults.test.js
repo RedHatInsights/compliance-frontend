@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import RuleResultsWrapper from './RuleResults';
 import useReportRuleResults from 'Utilities/hooks/api/useReportRuleResults';
@@ -41,17 +41,23 @@ describe('RuleResults', () => {
       fetchAllIds,
     }));
     render(<RuleResultsWrapper reportTestResult={reportTestResult} />);
-    screen
-      .getByRole('button', {
-        name: /0 selected/i,
-      })
-      .click();
 
-    await waitFor(() => {
-      expect(screen.getByText('Select all (11 items)')).toBeInTheDocument();
+    await screen.findByText(testResults[0].title);
+
+    act(() => {
+      screen
+        .getByRole('button', {
+          name: /0 selected/i,
+        })
+        .click();
     });
 
-    screen.getByText('Select all (11 items)').click();
-    expect(fetchAllIds).toHaveBeenCalled();
+    await screen.findByText('Select all (11 items)');
+
+    act(() => {
+      screen.getByText('Select all (11 items)').click();
+    });
+
+    await waitFor(() => expect(fetchAllIds).toHaveBeenCalled());
   });
 });
