@@ -66,13 +66,13 @@ PrependComponent.propTypes = {
   osMajorVersion: propTypes.string,
 };
 
-const useOnSelect = (change, countOsMinorVersions) => {
+const useOnSelect = (change) => {
   const onSelect = useCallback(
     (newSelectedSystems) => {
       change('systems', newSelectedSystems);
       change('osMinorVersionCounts', countOsMinorVersions(newSelectedSystems));
     },
-    [change, countOsMinorVersions],
+    [change],
   );
 
   return onSelect;
@@ -82,23 +82,24 @@ export const EditPolicySystems = ({
   profile,
   change,
   osMajorVersion,
+  osMinorVersionCounts,
   selectedSystems = [],
   allowNoSystems,
 }) => {
-  const onSelect = useOnSelect(change, countOsMinorVersions);
-  const osMinorVersions = profile.supportedOsVersions.map(
-    (version) => version.split('.')[1],
-  );
+  const onSelect = useOnSelect(change);
 
-  const defaultFilter = osMajorVersion
-    ? `os_major_version = ${osMajorVersion} AND ` +
-      `os_minor_version ^ (${osMinorVersions.join(' ')}) AND ` +
-      `profile_ref_id !^ (${profile.ref_id})`
-    : '';
+  const defaultFilter =
+    osMajorVersion && osMinorVersionCounts
+      ? `os_major_version = ${osMajorVersion} AND ` +
+        `os_minor_version ^ (${osMinorVersionCounts.map(({ osMinorVersion }) => osMinorVersion).join(' ')}) AND ` +
+        `profile_ref_id !^ (${profile.ref_id})`
+      : '';
 
   useEffect(() => {
-    if (selectedSystems.length === 0) {
-      change('systems', []);
+    if (!osMinorVersionCounts) {
+      const osMinorVersions = profile.supportedOsVersions.map(
+        (version) => version.split('.')[1],
+      );
       change(
         'osMinorVersionCounts',
         osMinorVersions.map((version) => ({
@@ -107,7 +108,7 @@ export const EditPolicySystems = ({
         })),
       );
     }
-  }, [selectedSystems, change, osMinorVersions]);
+  }, [change, osMinorVersionCounts, profile]);
 
   return (
     <React.Fragment>
