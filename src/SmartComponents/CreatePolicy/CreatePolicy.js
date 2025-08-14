@@ -130,7 +130,6 @@ CreatePolicyForm.propTypes = {
   complianceThreshold: propTypes.string,
   businessObjective: propTypes.object,
   dispatch: propTypes.func,
-  isOpen: propTypes.bool,
   name: propTypes.string,
   onWizardFinish: propTypes.func,
   profile: propTypes.string,
@@ -138,10 +137,6 @@ CreatePolicyForm.propTypes = {
   selectedRuleRefIds: propTypes.arrayOf(propTypes.string),
   systemIds: propTypes.arrayOf(propTypes.string),
   reset: propTypes.func,
-};
-
-CreatePolicyForm.defaultProps = {
-  isOpen: false,
 };
 
 const CreatePolicy = reduxForm({

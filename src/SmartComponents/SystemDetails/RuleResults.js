@@ -44,7 +44,6 @@ const RuleResults = ({ reportTestResult }) => {
     <RulesTable
       activeFilters={activeFilters}
       ansibleSupportFilter
-      showFailedCounts
       rules={rules.map((rule) => ({ ...rule, itemId: rule.rule_id }))}
       columns={columns}
       policyId={reportTestResult.report_id}

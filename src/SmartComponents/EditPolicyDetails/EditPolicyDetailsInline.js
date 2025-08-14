@@ -107,7 +107,7 @@ const EditPolicyDetailsInline = ({
             icon={<PencilAltIcon />}
             onClick={handleToggle}
             variant="plain"
-            style={{ 'margin-left': '5px' }}
+            style={{ marginLeft: '5px' }}
             ouiaId="InlineEditPencil"
           />
         )}
@@ -156,7 +156,7 @@ const EditPolicyDetailsInline = ({
                   isLoading={isSaving}
                   onClick={() => onSave()}
                   style={{
-                    'margin-left': '5px',
+                    marginLeft: '5px',
                     color: validThreshold
                       ? 'var(--pf-t--global--background--color--primary--default)'
                       : 'var(--pf-v6-c-button--disabled--Color)',
@@ -181,7 +181,7 @@ const EditPolicyDetailsInline = ({
                   aria-label="Cancel edits"
                   ouiaId="CancelEdits"
                   onClick={handleCloseEdit}
-                  style={{ 'margin-left': '5px' }}
+                  style={{ marginLeft: '5px' }}
                 />
               </div>
             </div>
@@ -214,7 +214,7 @@ EditPolicyDetailsInline.propTypes = {
   showTextUnderInline: propTypes.string,
   textUnderInline: propTypes.string,
   typeOfInput: propTypes.string,
-  Component: propTypes.node,
+  Component: propTypes.elementType,
   refetch: propTypes.func,
   style: propTypes.object,
 };

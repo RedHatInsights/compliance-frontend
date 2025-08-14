@@ -46,8 +46,4 @@ SystemPoliciesAndRules.propTypes = {
   hidePassed: propTypes.bool,
 };
 
-SystemPoliciesAndRules.defaultProps = {
-  loading: true,
-};
-
 export default SystemPoliciesAndRules;

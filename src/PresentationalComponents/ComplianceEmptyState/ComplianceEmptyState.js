@@ -14,7 +14,7 @@ import { Spinner } from '@redhat-cloud-services/frontend-components/Spinner';
 import { ErrorCard } from 'PresentationalComponents';
 import usePolicies from 'Utilities/hooks/api/usePolicies';
 
-const ComplianceEmptyState = ({ title, mainButton }) => {
+const ComplianceEmptyState = ({ title = 'No policies', mainButton }) => {
   const { data, error, loading } = usePolicies({ params: { limit: 1 } });
   const policiesCount = data?.meta?.total || 0;
 
@@ -61,7 +61,19 @@ const ComplianceEmptyState = ({ title, mainButton }) => {
         </Content>
       </EmptyStateBody>
       <EmptyStateFooter>
-        <EmptyStateActions>{mainButton}</EmptyStateActions>
+        <EmptyStateActions>
+          {mainButton ? (
+            mainButton
+          ) : (
+            <Button
+              variant="primary"
+              component="a"
+              href="/insights/compliance/scappolicies"
+            >
+              Create new policy
+            </Button>
+          )}
+        </EmptyStateActions>
         <EmptyStateActions>
           <Button
             variant="link"
@@ -84,19 +96,6 @@ const ComplianceEmptyState = ({ title, mainButton }) => {
 ComplianceEmptyState.propTypes = {
   title: propTypes.string,
   mainButton: propTypes.object,
-};
-
-ComplianceEmptyState.defaultProps = {
-  title: 'No policies',
-  mainButton: (
-    <Button
-      variant="primary"
-      component="a"
-      href="/insights/compliance/scappolicies"
-    >
-      Create new policy
-    </Button>
-  ),
 };
 
 export default ComplianceEmptyState;

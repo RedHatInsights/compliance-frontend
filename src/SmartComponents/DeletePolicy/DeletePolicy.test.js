@@ -1,4 +1,4 @@
-import { act, render, screen } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { useLocation } from 'react-router-dom';
 import TestWrapper from 'Utilities/TestWrapper';
@@ -33,7 +33,7 @@ describe('DeletePolicy', () => {
     apiInstance.deletePolicy = mockDelete;
   });
 
-  it('expect to render a modal and delete a policy', () => {
+  it('expect to render a modal and delete a policy', async () => {
     render(
       <TestWrapper>
         <DeletePolicy />
@@ -56,10 +56,12 @@ describe('DeletePolicy', () => {
         .click();
     });
 
-    act(() => {
-      screen.getByRole('button', { name: 'delete' }).click();
-    });
+    await waitFor(() =>
+      expect(screen.getByRole('button', { name: 'delete' })).toBeEnabled(),
+    );
 
-    expect(mockDelete).toHaveBeenCalled();
+    screen.getByRole('button', { name: 'delete' }).click();
+
+    await waitFor(() => expect(mockDelete).toHaveBeenCalled());
   });
 });

@@ -1,4 +1,4 @@
-import { renderHook, act } from '@testing-library/react';
+import { renderHook, act, waitFor } from '@testing-library/react';
 import { Name } from '../../Columns';
 import useComplianceApi from 'Utilities/hooks/useComplianceApi';
 import TestWrapper from 'Utilities/TestWrapper';
@@ -47,9 +47,11 @@ describe('useSystemsQueries', () => {
         { wrapper: TestWrapper },
       );
 
-      await result.current.fetchSystems();
+      act(() => {
+        result.current.fetchSystems();
+      });
 
-      expect(apiMock).toHaveBeenCalled();
+      await waitFor(() => expect(apiMock).toHaveBeenCalled());
     });
 
     it('passes on params', async () => {
@@ -64,16 +66,20 @@ describe('useSystemsQueries', () => {
         { wrapper: TestWrapper },
       );
 
-      await act(async () => await result.current.fetchSystems(testParams));
+      act(() => {
+        result.current.fetchSystems(testParams);
+      });
 
-      expect(apiMock).toHaveBeenCalledWith(
-        undefined,
-        undefined,
-        10,
-        0,
-        undefined,
-        'display_name:asc',
-        'display_name ~ "test-id"',
+      await waitFor(() =>
+        expect(apiMock).toHaveBeenCalledWith(
+          undefined,
+          undefined,
+          10,
+          0,
+          undefined,
+          'display_name:asc',
+          'display_name ~ "test-id"',
+        ),
       );
     });
 
@@ -88,16 +94,20 @@ describe('useSystemsQueries', () => {
         { wrapper: TestWrapper },
       );
 
-      await act(async () => await result.current.fetchSystems(testParams));
+      act(() => {
+        result.current.fetchSystems(testParams);
+      });
 
-      expect(apiMock).toHaveBeenCalledWith(
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        '(policyId = "testId") AND (display_name ~ "test")',
+      await waitFor(() =>
+        expect(apiMock).toHaveBeenCalledWith(
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          '(policyId = "testId") AND (display_name ~ "test")',
+        ),
       );
     });
   });
