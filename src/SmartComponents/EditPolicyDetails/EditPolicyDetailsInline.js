@@ -214,7 +214,7 @@ EditPolicyDetailsInline.propTypes = {
   showTextUnderInline: propTypes.string,
   textUnderInline: propTypes.string,
   typeOfInput: propTypes.string,
-  Component: propTypes.node,
+  Component: propTypes.elementType,
   refetch: propTypes.func,
   style: propTypes.object,
 };
