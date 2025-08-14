@@ -12,6 +12,7 @@ describe('ReduxFormTextInput', () => {
       },
       'aria-label': 'text-input',
       additionalProp: 'Prop1',
+      meta: { error: undefined },
     };
     render(<ReduxFormTextInput {...field} />);
 
@@ -28,12 +29,28 @@ describe('ReduxFormTextInput', () => {
       'aria-label': 'text-input',
       defaultValue: 'Default Value',
       additionalProp: 'Prop1',
+      meta: { error: undefined },
     };
     render(<ReduxFormTextInput {...field} />);
 
     expect(screen.getByLabelText('text-input').value).toEqual(
       field.defaultValue,
     );
+  });
+
+  it('expect to render with error', () => {
+    const field = {
+      input: {
+        onChange: jest.fn(),
+        value: 'Value',
+      },
+      'aria-label': 'text-input',
+      additionalProp: 'Prop1',
+      meta: { error: 'Something wrong happened!' },
+    };
+    render(<ReduxFormTextInput {...field} />);
+
+    expect(screen.getByText('Something wrong happened!')).toBeInTheDocument();
   });
 });
 

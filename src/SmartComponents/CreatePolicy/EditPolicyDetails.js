@@ -5,6 +5,7 @@ import {
   reduxForm,
   formValueSelector,
   propTypes as reduxFormPropTypes,
+  stopAsyncValidation,
 } from 'redux-form';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
@@ -22,15 +23,46 @@ import {
   ProfileThresholdField,
   PolicyBusinessObjectiveTooltip,
 } from 'PresentationalComponents';
+import usePolicies from 'Utilities/hooks/api/usePolicies';
 
-export const EditPolicyDetails = ({ change, profile, refId }) => {
+export const EditPolicyDetails = ({
+  change,
+  profile,
+  refId,
+  name,
+  dispatch,
+}) => {
+  const { data: totalPolicies, loading } = usePolicies({
+    params: {
+      filter: `os_major_version=${profile.os_major_version} AND title="${name}"`,
+    },
+    onlyTotal: true,
+    skip: !name,
+  });
+
   useEffect(() => {
-    if (profile && profile.ref_id !== refId) {
-      change('name', `${profile.title}`);
-      change('refId', `${profile.ref_id}`);
-      change('description', `${profile.description}`);
+    if (loading) {
+      change('detailsStepLoaded', false);
+      return;
     }
-  }, [profile]);
+    if (totalPolicies !== undefined) {
+      if (profile && profile.ref_id !== refId) {
+        change('name', `${profile.title}`);
+        change('refId', `${profile.ref_id}`);
+        change('description', `${profile.description}`);
+      }
+      if (totalPolicies > 0) {
+        dispatch(
+          stopAsyncValidation('policyForm', {
+            name: 'A policy with this name already exists',
+          }),
+        );
+      } else {
+        dispatch(stopAsyncValidation('policyForm', null));
+      }
+      change('detailsStepLoaded', true);
+    }
+  }, [totalPolicies, loading, profile, refId, change, dispatch]);
 
   return (
     <React.Fragment>
@@ -93,7 +125,10 @@ const selector = formValueSelector('policyForm');
 EditPolicyDetails.propTypes = {
   profile: propTypes.object,
   refId: propTypes.string,
+  name: propTypes.string,
   change: reduxFormPropTypes.change,
+  dispatch: reduxFormPropTypes.dispatch,
+  detailsStepLoaded: propTypes.bool,
 };
 
 const mapStateToProps = (state) => {
@@ -101,6 +136,8 @@ const mapStateToProps = (state) => {
   return {
     profile,
     refId: selector(state, 'refId'),
+    name: selector(state, 'name'),
+    detailsStepLoaded: selector(state, 'detailsStepLoaded'),
     initialValues: {
       name: `${profile.title}`,
       refId: `${profile.ref_id}`,

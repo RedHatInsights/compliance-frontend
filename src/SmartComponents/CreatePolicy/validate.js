@@ -20,13 +20,22 @@ export const thresholdValid = (threshold) => {
   );
 };
 
-export const validateDetailsPage = (name, refId, complianceThreshold) =>
-  !name ||
-  !refId ||
-  !complianceThreshold ||
-  !thresholdValid(complianceThreshold)
-    ? false
-    : true;
+export const validateDetailsPage = (
+  name,
+  refId,
+  complianceThreshold,
+  formHasAsyncErrors,
+  detailsStepLoaded,
+) => {
+  return (
+    detailsStepLoaded &&
+    !formHasAsyncErrors &&
+    !!name &&
+    !!refId &&
+    !!complianceThreshold &&
+    thresholdValid(complianceThreshold)
+  );
+};
 
 export const validateRulesPage = (selectedRuleRefIds) =>
   selectedRuleRefIds?.length > 0;
