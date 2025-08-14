@@ -1,18 +1,13 @@
 import React from 'react';
 import { Spinner } from '@patternfly/react-core';
-import {
-  ReportsTable,
-  StateViewPart,
-  StateViewWithError,
-  ReportsEmptyState,
-} from 'PresentationalComponents';
-import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
+import { TableStateProvider } from 'bastilian-tabletools';
 import useReports from 'Utilities/hooks/api/useReports';
 import useReportsOS from 'Utilities/hooks/api/useReportsOs';
-import CompliancePageHeader from 'PresentationalComponents/CompliancePageHeader/CompliancePageHeader';
-import { reportsPopoverData } from '@/constants';
+import { StateViewPart, StateViewWithError } from 'PresentationalComponents';
 
-const REPORTS_FILTER = 'with_reported_systems = true';
+import { CompliancePageHeader } from '~/_components';
+
+import { REPORTS_FILTER, reportsPopoverData } from './constants';
 
 const Reports = () => {
   // Required for correctly showing empty state
@@ -25,13 +20,15 @@ const Reports = () => {
     onlyTotal: true,
     params: { filter: REPORTS_FILTER },
   });
+
   const {
     data: { data: operatingSystems } = {},
     loading: reportsOSLoading,
     error: reportsOSError,
   } = useReportsOS();
+
   const {
-    data: { data: reportsData, meta: { total } = {} } = {},
+    data: { data: reports, meta: { total } = {} } = {},
     error: reportsError,
     loading: reportsLoading,
     exporter,
@@ -40,10 +37,9 @@ const Reports = () => {
     useTableState: true,
     batch: { batchSize: 10 },
   });
+
   const loading = totalReportsLoading || reportsOSLoading;
   const error = totalReportsError || reportsOSError || reportsError;
-  const showTable =
-    totalReports !== undefined && operatingSystems !== undefined && !error;
 
   return (
     <React.Fragment>
@@ -56,18 +52,18 @@ const Reports = () => {
           stateValues={{
             error,
             loading,
-            showTable: showTable,
+            data: !loading,
           }}
         >
           <StateViewPart stateKey="loading">
             <Spinner />
           </StateViewPart>
-          <StateViewPart stateKey="showTable">
+          <StateViewPart stateKey="data">
             {totalReports === 0 ? (
               <ReportsEmptyState />
             ) : (
               <ReportsTable
-                reports={reportsData}
+                reports={reports}
                 operatingSystems={operatingSystems}
                 total={total}
                 loading={reportsLoading}

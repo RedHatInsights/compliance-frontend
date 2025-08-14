@@ -23,7 +23,8 @@
           "Mutations": ["./src/Mutations"],
           "Mutations/*": ["./src/Mutations/*"],
           "Utilities/*": ["./src/Utilities/*"],
-          "@/*": ["./src/*"]
+          "@/*": ["./src/*"],
+          "~*": ["./src/*"]
         }
     },
     "include": [
