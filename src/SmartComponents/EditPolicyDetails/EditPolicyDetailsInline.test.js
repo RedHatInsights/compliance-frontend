@@ -129,6 +129,7 @@ describe('EditPolicyDetailsInline', () => {
       Component: TextArea,
       label: 'Policy description',
       propertyName: 'description',
+      'aria-label': 'TextArea',
     };
 
     render(<EditPolicyDetailsInline {...props} />, {

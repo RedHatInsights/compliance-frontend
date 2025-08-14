@@ -19,7 +19,6 @@ const ExampleDetailsRow = ({ item }) => {
 
 describe('treeChopper', function () {
   it('should return rows for a tree table', () => {
-    console.log(exampleItems);
     const rows = treeChopper(exampleItems, columns, {
       tableTree,
       expandable: {
