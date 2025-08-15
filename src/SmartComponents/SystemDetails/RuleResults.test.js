@@ -7,8 +7,6 @@ import { buildTestResults } from '@/__factories__/ruleResults';
 
 jest.mock('Utilities/hooks/api/useReportRuleResults', () => jest.fn());
 
-const fetchAllIds = jest.fn();
-
 describe('RuleResults', () => {
   const reportTestResult = {
     id: 'test-id',
@@ -31,6 +29,10 @@ describe('RuleResults', () => {
   it('renders Select all in bulk select dropdown', async () => {
     const testResults = buildTestResults(11);
 
+    const fetchAllIds = jest.fn(() => ({
+      data: testResults.map(({ id }) => id),
+    }));
+
     useReportRuleResults.mockImplementation(() => ({
       data: {
         data: testResults.slice(0, 10),
@@ -38,7 +40,7 @@ describe('RuleResults', () => {
       },
       loading: false,
       error: null,
-      fetchAllIds,
+      fetchBatched: fetchAllIds,
     }));
     render(<RuleResultsWrapper reportTestResult={reportTestResult} />);
 
