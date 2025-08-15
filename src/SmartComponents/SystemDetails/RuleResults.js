@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import propTypes from 'prop-types';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
 import useReportRuleResults from 'Utilities/hooks/api/useReportRuleResults';
@@ -17,7 +17,7 @@ const RuleResults = ({ reportTestResult }) => {
   const {
     data: ruleResults,
     exporter,
-    fetchAllIds,
+    fetchBatched,
   } = useReportRuleResults({
     params: {
       testResultId,
@@ -25,6 +25,12 @@ const RuleResults = ({ reportTestResult }) => {
     },
     useTableState: true,
   });
+
+  const fetchAllIds = useCallback(
+    async (...args) =>
+      (await fetchBatched(...args)).data.map(({ rule_id }) => rule_id),
+    [fetchBatched],
+  );
 
   const transformRules = (ruleResults, reportTestResult) => {
     return ruleResults !== undefined
