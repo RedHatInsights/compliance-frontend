@@ -6,10 +6,10 @@ import NoReportsState from './NoReportsState';
 import useSystem from 'Utilities/hooks/api/useSystem';
 import { Bullseye, Spinner } from '@patternfly/react-core';
 
-const EmptyState = ({ inventoryId, system }) => {
+const EmptyState = ({ inventoryId: systemId, system }) => {
   // request system data in case Inventory details Compliance opened
   const { data: { data } = {} } = useSystem({
-    params: [inventoryId],
+    params: { systemId },
     skip: system,
   });
   const policiesCount = system?.policies.length ?? data?.policies.length;
