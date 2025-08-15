@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/RedHatInsights/frontend-components/refs/heads/master/packages/config-utils/src/feo/spec/frontend-crd.schema.json
 apiVersion: template.openshift.io/v1
 kind: Template
 metadata:
@@ -18,27 +19,82 @@ objects:
         paths:
           - /apps/compliance
       image: ${IMAGE}:${IMAGE_TAG}
-      navItems:
-        - expandable: true
+      feoConfigEnabled: true
+      serviceTiles:
+        - id: compliance # there is no such id in chrome-service
+          section: security
+          group: rhel
           title: Compliance
-          routes:
-          - appId: compliance
-            href: /insights/compliance/reports
-            product: Red Hat Insights
-            title: Reports
-          - appId: compliance
-            href: /insights/compliance/scappolicies
-            product: Red Hat Insights
-            title: SCAP Policies
-          - appId: compliance
-            href: /insights/compliance/systems
-            product: Red Hat Insights
-            title: Systems
+          href: /insights/compliance/reports
+          description: Evaluate your Red Hat Enterprise systems compliance with security or regulatory standards.
+          icon: InsightsIcon
+      searchEntries:
+        - id: RHEL.compliance.reports
+          title: Reports - Compliance
+          href: /insights/compliance/reports
+          description: Evaluate your Red Hat Enterprise systems compliance with security or regulatory standards.
+          alt_title:
+            - rules
+            - rule
+        - id: RHEL.compliance.policies
+          title: SCAP Policies - Compliance
+          href: /insights/compliance/scappolicies
+          description: Manage SCAP policies for your Red Hat Enterprise systems.
+          alt_title:
+            - security
+            - policies
+            - SCAP
+            - policy
+            - insights
+            - regulatory
+            - regulations
+            - OpenSCAP
+            - PCI
+            - HIPAA
+            - DSS
+            - CSI
+            - C2S
+            - DISA STIG
+            - PCI-DSS
+            - NIST
+            - OSPP
+      bundleSegments:
+        - segmentId: security
+          bundleId: insights
+          position: 500
+          navItems:
+            - id: security
+              title: security
+              expandable: true
+              routes:
+                - id: compliance
+                  title: Compliance
+                  expandable: true
+                  routes:
+                    - id: complianceReports
+                      title: Reports
+                      href: /insights/compliance/reports
+                      product: Red Hat Insights
+                      icon: InsightsIcon
+                    - id: scapPolicies
+                      title: SCAP Policies
+                      href: /insights/compliance/scappolicies
+                      product: Red Hat Insights
+                    - id: complianceSystems
+                      title: Systems
+                      href: /insights/compliance/systems
+                      product: Red Hat Insights
       module:
-        manifestLocation: "/apps/compliance/fed-mods.json"
+        manifestLocation: /apps/compliance/fed-mods.json
+        analytics:
+          APIKey: "apRCg9V6oMXCcnTingqRYW6m1er4hkCW"
+        config:
+          supportCaseData:
+            product: Red Hat Insights
+            version: Compliance
         modules:
-          - id: "compliance"
-            module: "./RootApp"
+          - id: compliance
+            module: ./RootApp
             routes:
               - pathname: /insights/compliance
 
