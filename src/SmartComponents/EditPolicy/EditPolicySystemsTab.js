@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Content } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import SystemsTable from 'SmartComponents/SystemsTable/SystemsTable';
 import * as Columns from 'SmartComponents/SystemsTable/Columns';
+
+const systemTableColumns = [
+  Columns.Name,
+  Columns.Tags,
+  Columns.OperatingSystem(),
+];
 
 const EmptyState = ({ osMajorVersion }) => (
   <div data-testid="empty-state">
@@ -48,16 +54,19 @@ const EditPolicySystemsTab = ({
 }) => {
   const { os_major_version } = policy;
 
-  const defaultFilter =
-    os_major_version &&
-    `os_major_version = ${os_major_version} AND os_minor_version ^ (${supportedOsVersions.join(
-      ' ',
-    )})`;
+  const defaultFilter = useMemo(
+    () =>
+      os_major_version &&
+      `os_major_version = ${os_major_version} AND os_minor_version ^ (${supportedOsVersions.join(
+        ' ',
+      )})`,
+    [os_major_version, supportedOsVersions],
+  );
 
   return (
     <SystemsTable
       apiEndpoint="systems"
-      columns={[Columns.Name, Columns.Tags, Columns.OperatingSystem()]}
+      columns={systemTableColumns}
       prependComponent={<PrependComponent osMajorVersion={os_major_version} />}
       emptyStateComponent={<EmptyState osMajorVersion={os_major_version} />}
       compact
