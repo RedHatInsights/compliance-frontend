@@ -75,7 +75,7 @@ describe('EmptyState for systemDetails', () => {
     );
 
     expect(useSystem).toHaveBeenCalledWith({
-      params: ['123'],
+      params: { systemId: '123' },
       skip: { insights_id: '123', policies: [] }, // Ensure correct 'skip' value
     });
 
@@ -121,7 +121,7 @@ describe('EmptyState for systemDetails', () => {
     );
 
     expect(useSystem).toHaveBeenCalledWith({
-      params: ['123'],
+      params: { systemId: '123' },
       skip: { insights_id: '123', policies: [{}] }, // Ensure correct 'skip' value
     });
 
