@@ -4,7 +4,10 @@ import { init } from 'Store';
 import { buildPolicies } from '../../__factories__/policies';
 import { interceptBatchRequest } from '../../../cypress/utils/interceptors';
 import getRequestParams from '../../../cypress/utils/requestParams';
-import getComparisonMessage from '../../../cypress/utils/getComparisonMessage';
+import {
+  itemsPerPage,
+  changePagination,
+} from '@redhat-cloud-services/frontend-components-utilities/TestingUtils/CypressUtils/PaginationUtils';
 
 const mountComponent = () => {
   cy.mountWithContext(CompliancePolicies, { store: init().getStore() });
@@ -40,7 +43,6 @@ describe('Policies table tests API V2', () => {
     });
     describe('defaults', () => {
       it('The table renders with data', () => {
-        cy.wait('@getPolicies');
         cy.get('table').should('have.length', 1);
 
         const policyNames = policiesResp.data.map((item) => item.title);
@@ -49,27 +51,21 @@ describe('Policies table tests API V2', () => {
           expect(Cypress.$(item).text()).to.eq(policyNames[index]);
         });
       });
-      it('Shows correct total item count', () => {
-        cy.wait('@getPolicies');
-        cy.ouiaType('PF6/Pagination', 'div')
-          .first()
-          .get('.pf-v6-c-menu-toggle__text')
-          .find('b')
-          .eq(1)
-          .should('have.text', policiesData.length);
-      });
     });
 
     describe('Table column sorting', () => {
-      it('Sort by Name', () => {
-        cy.wait('@getPolicies');
-        cy.get('th[data-label="Name"]')
-          .invoke('attr', 'aria-sort')
-          .should('eq', 'ascending');
+      const columnsToTest = [
+        { label: 'Name', apiKey: 'title' },
+        { label: 'Operating system', apiKey: 'os_major_version' },
+        { label: 'Systems', apiKey: 'total_system_count' },
+        { label: 'Business objective', apiKey: 'business_objective' },
+        { label: 'Compliance threshold', apiKey: 'compliance_threshold' },
+      ];
 
+      const checkSorting = (label, apiKey, direction) => {
         cy.intercept(
           `/api/compliance/v2/policies?${getRequestParams({
-            sortBy: 'title:desc',
+            sortBy: `${apiKey}:${direction}`,
           })}`,
           {
             statusCode: 200,
@@ -77,139 +73,30 @@ describe('Policies table tests API V2', () => {
           },
         ).as('getSortedPolicies');
 
-        cy.sortTableColumn('Name', 'descending');
-        cy.checkAPISorting('@getSortedPolicies', 'title', 'desc');
-      });
-
-      it('Sort by Operating system', () => {
-        cy.wait('@getPolicies');
-
-        cy.intercept(
-          `/api/compliance/v2/policies?${getRequestParams({
-            sortBy: 'os_major_version:asc',
-          })}`,
-          {
-            statusCode: 200,
-            body: policiesResp,
-          },
-        ).as('getSortedPolicies');
-
-        cy.sortTableColumn('Operating system', 'ascending');
-        cy.checkAPISorting('@getSortedPolicies', 'os_major_version', 'asc');
-
-        cy.intercept(
-          `/api/compliance/v2/policies?${getRequestParams({
-            sortBy: 'os_major_version:desc',
-          })}`,
-          {
-            statusCode: 200,
-            body: policiesResp,
-          },
-        ).as('getSortedPolicies');
-
-        cy.sortTableColumn('Operating system', 'descending');
-        cy.checkAPISorting('@getSortedPolicies', 'os_major_version', 'desc');
-      });
-
-      it('Sort by Systems count', () => {
-        cy.wait('@getPolicies');
-        cy.intercept(
-          `/api/compliance/v2/policies?${getRequestParams({
-            sortBy: 'total_system_count:asc',
-          })}`,
-          {
-            statusCode: 200,
-            body: policiesResp,
-          },
-        ).as('getSortedPolicies');
-
-        cy.sortTableColumn('Systems', 'ascending');
-        cy.checkAPISorting('@getSortedPolicies', 'total_system_count', 'asc');
-
-        cy.intercept(
-          `/api/compliance/v2/policies?${getRequestParams({
-            sortBy: 'total_system_count:desc',
-          })}`,
-          {
-            statusCode: 200,
-            body: policiesResp,
-          },
-        ).as('getSortedPolicies');
-
-        cy.sortTableColumn('Systems', 'descending');
-        cy.checkAPISorting('@getSortedPolicies', 'total_system_count', 'desc');
-      });
-
-      it('Sort by Business objective', () => {
-        cy.wait('@getPolicies');
-        cy.intercept(
-          `/api/compliance/v2/policies?${getRequestParams({
-            sortBy: 'business_objective:asc',
-          })}`,
-          {
-            statusCode: 200,
-            body: policiesResp,
-          },
-        ).as('getSortedPolicies');
-
-        cy.sortTableColumn('Business objective', 'ascending');
-        cy.checkAPISorting('@getSortedPolicies', 'business_objective', 'asc');
-
-        cy.intercept(
-          `/api/compliance/v2/policies?${getRequestParams({
-            sortBy: 'business_objective:desc',
-          })}`,
-          {
-            statusCode: 200,
-            body: policiesResp,
-          },
-        ).as('getSortedPolicies');
-
-        cy.sortTableColumn('Business objective', 'descending');
-        cy.checkAPISorting('@getSortedPolicies', 'business_objective', 'desc');
-      });
-
-      it('Sort by Threshold', () => {
-        cy.wait('@getPolicies');
-        cy.intercept(
-          `/api/compliance/v2/policies?${getRequestParams({
-            sortBy: 'compliance_threshold:asc',
-          })}`,
-          {
-            statusCode: 200,
-            body: policiesResp,
-          },
-        ).as('getSortedPolicies');
-
-        cy.sortTableColumn('Compliance threshold', 'ascending');
-        cy.checkAPISorting('@getSortedPolicies', 'compliance_threshold', 'asc');
-
-        cy.intercept(
-          `/api/compliance/v2/policies?${getRequestParams({
-            sortBy: 'compliance_threshold:desc',
-          })}`,
-          {
-            statusCode: 200,
-            body: policiesResp,
-          },
-        ).as('getSortedPolicies');
-
-        cy.sortTableColumn('Compliance threshold', 'descending');
-        cy.checkAPISorting(
-          '@getSortedPolicies',
-          'compliance_threshold',
-          'desc',
+        cy.sortTableColumn(
+          label,
+          direction === 'asc' ? 'ascending' : 'descending',
         );
+        cy.checkAPISorting('@getSortedPolicies', apiKey, direction);
+      };
+
+      columnsToTest.forEach(({ label, apiKey }) => {
+        it(`Sort by ${label}`, () => {
+          if (label === 'Name') {
+            cy.get('th[data-label="Name"]')
+              .invoke('attr', 'aria-sort')
+              .should('eq', 'ascending');
+          } else {
+            checkSorting(label, apiKey, 'asc');
+          }
+          checkSorting(label, apiKey, 'desc');
+        });
       });
     });
 
     describe('Table pagination', () => {
       it('Set per page elements', () => {
-        cy.wait('@getPolicies');
-        cy.ouiaType('PF6/Toolbar', 'div')
-          .ouiaType('PF6/Pagination', 'div')
-          .ouiaType('PF6/MenuToggle', 'button')
-          .should('contain', `1 - 10 of ${policiesData.length}`);
+        itemsPerPage(policiesData.length);
 
         const perPageOptions = [20, 50, 100];
         perPageOptions.forEach((perPageValue) => {
@@ -229,14 +116,7 @@ describe('Policies table tests API V2', () => {
             },
           ).as('getPaginatedPolicies');
 
-          cy.ouiaType('PF6/Toolbar', 'div')
-            .ouiaType('PF6/Pagination', 'div')
-            .ouiaType('PF6/MenuToggle', 'button')
-            .click();
-
-          cy.get('button[role="menuitem"]')
-            .contains(`${perPageValue} per page`)
-            .click();
+          changePagination(perPageValue);
 
           cy.wait('@getPaginatedPolicies')
             .its('request.url')
@@ -257,7 +137,6 @@ describe('Policies table tests API V2', () => {
 
     describe('Export download', () => {
       beforeEach(() => {
-        cy.wait('@getPolicies');
         interceptBatchRequest(
           'policies',
           0,
@@ -271,12 +150,10 @@ describe('Policies table tests API V2', () => {
           policiesData.length,
         );
       });
+
       it('CSV report download and content', () => {
         cy.get('button[aria-label="Export"]').click();
         cy.get('button[aria-label="Export to CSV"]').click();
-
-        cy.wait('@policiesBatch1');
-        cy.wait('@policiesBatch2');
 
         // check if file downloaded and not empty
         cy.exec(`ls cypress/downloads | grep .csv | sort -n | tail -1`).then(
@@ -286,65 +163,33 @@ describe('Policies table tests API V2', () => {
           },
         );
       });
+
       it('JSON report download and content', () => {
         cy.get('button[aria-label="Export"]').click();
         cy.get('button[aria-label="Export to JSON"]').click();
-        cy.wait('@policiesBatch1');
-        cy.wait('@policiesBatch2');
 
         // validate json content
         cy.exec('ls cypress/downloads | grep .json | sort -n | tail -1').then(
           function (result) {
-            let res = result.stdout;
-            cy.readFile('cypress/downloads/' + res)
+            let latestJsonFile = result.stdout;
+            cy.readFile('cypress/downloads/' + latestJsonFile)
               .should('not.be.empty')
+              .and('have.length', policiesData.length)
               .then((fileContent) => {
-                assert(
-                  fileContent.length === policiesData.length,
-                  'Length of policies is different',
+                const policiesDataMap = new Map(
+                  policiesData.map((policy) => [policy.title, policy]),
                 );
-                fileContent.forEach((item) => {
-                  policiesData.forEach((policy) => {
-                    if (policy.title == item['name']) {
-                      assert(
-                        `RHEL ${policy.os_major_version}` ===
-                          item['operatingSystem'],
-                        getComparisonMessage(
-                          'OS',
-                          policy.os_major_version,
-                          item['operatingSystem'],
-                        ),
-                      );
-                      assert(
-                        policy.total_system_count === item['systems'],
-                        getComparisonMessage(
-                          'Systems',
-                          policy.total_system_count,
-                          item['systems'],
-                        ),
-                      );
-                      const businessObj = policy.business_objective
-                        ? policy.business_objective
-                        : '--';
-                      assert(
-                        businessObj === item['businessObjective'],
-                        getComparisonMessage(
-                          'BO',
-                          businessObj,
-                          item['businessObjective'],
-                        ),
-                      );
-                      assert(
-                        `${policy.compliance_threshold}%` ==
-                          item['complianceThreshold'],
-                        getComparisonMessage(
-                          'Threshold',
-                          `${policy.compliance_threshold}%`,
-                          item['complianceThreshold'],
-                        ),
-                      );
-                    }
-                  });
+                fileContent.forEach((policyFromJSON) => {
+                  const foundPolicy = policiesDataMap.get(policyFromJSON.name);
+                  expect(foundPolicy).to.exist;
+                  const expectedPolicy = {
+                    name: foundPolicy.title,
+                    operatingSystem: `RHEL ${foundPolicy.os_major_version}`,
+                    systems: foundPolicy.total_system_count,
+                    businessObjective: foundPolicy.business_objective || '--',
+                    complianceThreshold: `${foundPolicy.compliance_threshold}%`,
+                  };
+                  expect(policyFromJSON).to.deep.equal(expectedPolicy);
                 });
               });
           },
@@ -354,7 +199,6 @@ describe('Policies table tests API V2', () => {
 
     describe('Filter table', () => {
       it('Find report by Name', () => {
-        cy.wait('@getPolicies');
         const policyTitle = policiesData[0].title;
         cy.intercept(
           `/api/compliance/v2/policies?${getRequestParams({
@@ -382,51 +226,41 @@ describe('Policies table tests API V2', () => {
           );
         cy.get('td[data-label="Name"]')
           .should('have.length', 1)
-          .first()
-          .contains(policyTitle);
+          .and('contain.text', policyTitle);
       });
     });
 
     describe('Manage columns', () => {
       it('Manage reports columns', () => {
-        // TODO pf/react-core 5.4.0 seems to have broken `ouiaId`s
-        // cy.ouiaId('BulkActionsToggle', 'button').click();
-        cy.ouiaId('PrimaryToolbar', 'div')
-          .get('button[aria-label="kebab dropdown toggle"]')
-          .click();
+        const tableColumns = [
+          'Operating system',
+          'Systems',
+          'Business objective',
+          'Compliance threshold',
+        ];
+        const openManageColumns = () => {
+          cy.ouiaId('BulkActionsToggle', 'button').click();
+          cy.ouiaType('PF6/DropdownItem', 'li')
+            .contains('Manage columns')
+            .should('be.visible')
+            .click();
+        };
 
-        cy.ouiaType('PF6/DropdownItem', 'li')
-          .contains('Manage columns')
-          .should('be.visible')
-          .click();
-        cy.get('input[checked]')
-          .not('[disabled]')
-          .each(($checkbox) => {
-            cy.wrap($checkbox).click();
-          });
+        openManageColumns();
+        cy.get('input[checked]').not('[disabled]').click({ multiple: true });
         cy.ouiaId('ColumnManagementModal-save-button', 'button').click();
 
-        cy.get('th[data-label="Operating system"]').should('not.exist');
-        cy.get('th[data-label="Systems"]').should('not.exist');
-        cy.get('th[data-label="Business objective"]').should('not.exist');
-        cy.get('th[data-label="Compliance threshold"]').should('not.exist');
+        tableColumns.forEach((column) => {
+          cy.get(`th[data-label="${column}"]`).should('not.exist');
+        });
 
-        //cy.ouiaId('BulkActionsToggle', 'button').click();
-        cy.ouiaId('PrimaryToolbar', 'div')
-          .get('button[aria-label="kebab dropdown toggle"]')
-          .click();
-
-        cy.ouiaType('PF6/DropdownItem', 'li')
-          .contains('Manage columns')
-          .should('be.visible')
-          .click();
+        openManageColumns();
         cy.get('button').contains('Select all').click();
         cy.ouiaId('ColumnManagementModal-save-button', 'button').click();
 
-        cy.get('th[data-label="Operating system"]').should('exist');
-        cy.get('th[data-label="Systems"]').should('exist');
-        cy.get('th[data-label="Business objective"]').should('exist');
-        cy.get('th[data-label="Compliance threshold"]').should('exist');
+        tableColumns.forEach((column) => {
+          cy.get(`th[data-label="${column}"]`).should('exist');
+        });
       });
     });
   });
