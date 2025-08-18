@@ -21,7 +21,7 @@
     "@redhat-cloud-services/frontend-components-remediations": "^4.0.16",
     "@redhat-cloud-services/frontend-components-utilities": "^7.0.3",
     "@redhat-cloud-services/javascript-clients-shared": "^2.0.0",
-    "@sentry/webpack-plugin": "^2.23.1",
+    "@sentry/webpack-plugin": "^4.1.1",
     "@tanstack/react-query": "^5.82.0",
     "@unleash/proxy-client-react": "^3.6.0",
     "axios": "^1.11.0",
