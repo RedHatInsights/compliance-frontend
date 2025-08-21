@@ -110,6 +110,19 @@ const policiesRoutes = [
     modal: true,
   },
   {
+    path: 'scappolicies/:policy_id/import-rules',
+    title: `$entityTitle - ${defaultPoliciesTitle}`,
+    defaultTitle: defaultPoliciesTitle,
+    requiredPermissions: [...defaultPermissions, 'compliance:policy:update'],
+    component: lazy(
+      () =>
+        import(
+          /* webpackChunkName: "ImportRules" */ 'SmartComponents/ImportRules/ImportRules'
+        ),
+    ),
+    modal: true,
+  },
+  {
     path: 'scappolicies/:policy_id/delete',
     title: `Delete policy - ${defaultPoliciesTitle}`,
     requiredPermissions: [...defaultPermissions, 'compliance:policy:delete'],

@@ -123,6 +123,7 @@ const useComplianceQuery = (
     queryFn: (_queryContext, ...args) => fetchApi(...args),
     enabled: !(batched ? true : skip),
     refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
     ...useQueryOptions,
   });
 
