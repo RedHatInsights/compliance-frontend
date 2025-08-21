@@ -8,6 +8,7 @@ const SystemPoliciesAndRules = ({
   systemId,
   reportTestResults,
   hidePassed,
+  remediationsEnabled,
 }) => {
   // FYI: test result ID and policy ID are not the same, but test result ID only identifies each tab here.
   const [selectedPolicy, setSelectedPolicy] = useState(
@@ -32,6 +33,7 @@ const SystemPoliciesAndRules = ({
               systemId={systemId}
               reportTestResult={reportTestResult}
               hidePassed={hidePassed}
+              remediationsEnabled={remediationsEnabled}
             />
           </Tab>
         ))}
@@ -44,6 +46,7 @@ SystemPoliciesAndRules.propTypes = {
   systemId: propTypes.string.isRequired,
   reportTestResults: propTypes.array.isRequired,
   hidePassed: propTypes.bool,
+  remediationsEnabled: propTypes.bool,
 };
 
 export default SystemPoliciesAndRules;
