@@ -1,4 +1,5 @@
 import { useCallback, useMemo } from 'react';
+import { useDeepCompareCallback } from 'use-deep-compare';
 import { addSortableTransform, columnOffset } from './helpers';
 import useTableState, { useRawTableState } from '../useTableState';
 import { TABLE_STATE_NAMESPACE } from './constants';
@@ -35,10 +36,10 @@ import { TABLE_STATE_NAMESPACE } from './constants';
  */
 const useTableSort = (columns, options = {}) => {
   const { sortBy: initialSortBy, serialisers, onSort: onSortOption } = options;
-  const serialiser = useCallback(
+  // TODO Apply this to tabletools package
+  const serialiser = useDeepCompareCallback(
     (state) => options.serialisers.sort(state, columns),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [JSON.stringify(columns), JSON.stringify(options.serialisers)],
+    [columns],
   );
 
   const { tableView } = useRawTableState() || {};
