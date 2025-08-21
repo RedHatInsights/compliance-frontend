@@ -61,10 +61,10 @@ objects:
       bundleSegments:
         - segmentId: security
           bundleId: insights
-          position: 500
+          position: 600
           navItems:
             - id: security
-              title: security
+              title: Security
               expandable: true
               routes:
                 - id: compliance
