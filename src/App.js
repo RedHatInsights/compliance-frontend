@@ -15,7 +15,7 @@ const App = (props) => {
   const chrome = useChrome();
 
   useEffect(() => {
-    chrome.hideGlobalFilter();
+    chrome.hideGlobalFilter(true);
   }, [chrome]);
 
   return (
