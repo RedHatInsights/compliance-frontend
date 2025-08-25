@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import useComplianceTableDefaults from 'Utilities/hooks/useComplianceTableDefaults';
-import { emptyRows } from '@/Frameworks/AsyncTableTools/components/NoResultsTable';
+import { emptyRows } from 'PresentationalComponents/NoResultsTable/NoResultsTable';
 import { ComplianceTable as TableToolsTable } from 'PresentationalComponents';
 import columns, { exportableColumns, PDFExportDownload } from './Columns';
 import {

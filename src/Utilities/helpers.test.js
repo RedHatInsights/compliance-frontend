@@ -8,9 +8,7 @@ import {
   capitalizeWord,
   stringToSentenceCase,
 } from './helpers';
-import items, {
-  severityLevels,
-} from '@/Frameworks/AsyncTableTools/__fixtures__/legacy/items';
+import items, { severityLevels } from '@/__fixtures__/legacy/items';
 
 describe('uniq', () => {
   it('should deduplicate items', () => {

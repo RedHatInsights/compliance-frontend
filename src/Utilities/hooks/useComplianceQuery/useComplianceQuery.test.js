@@ -1,13 +1,11 @@
 import { renderHook, waitFor } from '@testing-library/react';
-import { useSerialisedTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
-
-import TestWrapper from 'Utilities/TestWrapper';
+import { useSerialisedTableState } from 'bastilian-tabletools';
 import useComplianceApi from 'Utilities/hooks/useComplianceApi';
-
+import TestWrapper from 'Utilities/TestWrapper';
 import useComplianceQuery from './useComplianceQuery';
 
 jest.mock('Utilities/hooks/useComplianceApi');
-jest.mock('@/Frameworks/AsyncTableTools/hooks/useTableState');
+jest.mock('bastilian-tabletools');
 
 describe('useComplianceQuery', () => {
   const apiMock = jest.fn(() => ({

@@ -49,7 +49,7 @@ describe('RuleResults', () => {
     act(() => {
       screen
         .getByRole('button', {
-          name: /0 selected/i,
+          name: /Select all/i,
         })
         .click();
     });

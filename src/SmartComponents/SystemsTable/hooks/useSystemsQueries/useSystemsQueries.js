@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { paginationSerialiser } from 'PresentationalComponents/ComplianceTable/serialisers';
-import { useFullTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
+import { useFullTableState } from 'bastilian-tabletools';
 import useComplianceQuery from 'Utilities/hooks/useComplianceQuery';
 import { convertToArray, osApiEndpoints } from './constants';
 import {

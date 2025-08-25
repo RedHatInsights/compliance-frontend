@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { useDeepCompareEffect } from 'use-deep-compare';
 import debounce from '@redhat-cloud-services/frontend-components-utilities/debounce';
-import useFilterConfig from '@/Frameworks/AsyncTableTools/hooks/useFilterConfig';
+import { useFilterConfig, useSerialisedTableState } from 'bastilian-tabletools';
 import { filtersSerialiser } from 'PresentationalComponents/ComplianceTable/serialisers';
 import * as filters from '../Filters';
 
@@ -11,6 +11,7 @@ const useSystemsFilterConfig = ({
   inventory,
 }) => {
   const dispatch = useDispatch();
+  const serialiseredTableState = useSerialisedTableState();
   const filterConfig = useMemo(
     () => [
       filters.name,
@@ -41,7 +42,7 @@ const useSystemsFilterConfig = ({
 
   useDeepCompareEffect(() => {
     debounceResetPage();
-  }, [filterConfigReturn.activeFilters]);
+  }, [serialiseredTableState]);
 
   return filterConfigReturn;
 };

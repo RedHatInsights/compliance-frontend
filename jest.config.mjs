@@ -15,7 +15,7 @@ export default {
   setupFiles: ['<rootDir>/config/setupTests.js'],
   roots: ['<rootDir>/src/'],
   transformIgnorePatterns: [
-    'node_modules/(?!(uuid|p-all|p-map|aggregate-error|indent-string|clean-stack))',
+    'node_modules/(?!(uuid|p-all|p-map|aggregate-error|indent-string|clean-stack|bastilian-tabletools))',
   ],
   moduleNameMapper: {
     '\\.(css|scss|svg)$': 'identity-obj-proxy',
