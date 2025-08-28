@@ -7,15 +7,15 @@ import useSystem from 'Utilities/hooks/api/useSystem';
 import { Bullseye, Spinner } from '@patternfly/react-core';
 
 const EmptyState = ({ inventoryId: systemId, system, connectedToInsights }) => {
-  // // request system data in case Inventory details Compliance opened
+  // request system data in case Inventory details Compliance opened
   const { data: { data } = {}, loading: systemLoading } = useSystem({
     params: { systemId },
-    skip: !system && !connectedToInsights,
+    skip: !system && connectedToInsights === false,
   });
 
   const policiesCount = system?.policies.length ?? data?.policies.length;
 
-  if (!connectedToInsights) {
+  if (connectedToInsights === false) {
     return <NotConnected />;
   }
 

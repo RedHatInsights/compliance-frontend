@@ -15,16 +15,16 @@ export const Details = ({
   ...props
 }) => {
   const { testResults, testResultsLoading } = useTestResults(inventoryId, {
-    skip: !connectedToInsights,
+    skip: connectedToInsights === false,
   });
 
   return (
     <div className="ins-c-compliance__scope">
-      {testResultsLoading && connectedToInsights ? (
+      {testResultsLoading && connectedToInsights !== false ? (
         <Bullseye>
           <Spinner />
         </Bullseye>
-      ) : testResults?.length === 0 || !connectedToInsights ? (
+      ) : testResults?.length === 0 || connectedToInsights === false ? (
         <EmptyState
           inventoryId={inventoryId}
           system={system}
