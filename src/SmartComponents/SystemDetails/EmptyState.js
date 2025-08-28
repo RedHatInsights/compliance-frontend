@@ -6,25 +6,25 @@ import NoReportsState from './NoReportsState';
 import useSystem from 'Utilities/hooks/api/useSystem';
 import { Bullseye, Spinner } from '@patternfly/react-core';
 
-const EmptyState = ({ inventoryId: systemId, system }) => {
-  // request system data in case Inventory details Compliance opened
-  const { data: { data } = {} } = useSystem({
+const EmptyState = ({ inventoryId: systemId, system, connectedToInsights }) => {
+  // // request system data in case Inventory details Compliance opened
+  const { data: { data } = {}, loading: systemLoading } = useSystem({
     params: { systemId },
-    skip: system,
+    skip: !system && !connectedToInsights,
   });
-  const policiesCount = system?.policies.length ?? data?.policies.length;
-  const insightsId = system?.insights_id || data?.insights_id;
 
-  if (!system && !data) {
+  const policiesCount = system?.policies.length ?? data?.policies.length;
+
+  if (!connectedToInsights) {
+    return <NotConnected />;
+  }
+
+  if (systemLoading === true) {
     return (
       <Bullseye>
         <Spinner />
       </Bullseye>
     );
-  }
-
-  if (!insightsId) {
-    return <NotConnected />;
   }
 
   if (policiesCount === 0) {
@@ -37,6 +37,7 @@ const EmptyState = ({ inventoryId: systemId, system }) => {
 EmptyState.propTypes = {
   inventoryId: propTypes.string,
   system: propTypes.object,
+  connectedToInsights: propTypes.bool,
 };
 
 export default EmptyState;

@@ -7,18 +7,29 @@ import useTestResults from './useTestResults';
 import SystemPoliciesAndRules from './SystemPoliciesAndRules';
 import EmptyState from './EmptyState';
 
-export const Details = ({ inventoryId, hidePassed, system, ...props }) => {
-  const { testResults, testResultsLoading } = useTestResults(inventoryId);
+export const Details = ({
+  inventoryId,
+  hidePassed,
+  system,
+  connectedToInsights,
+  ...props
+}) => {
+  const { testResults, testResultsLoading } = useTestResults(inventoryId, {
+    skip: !connectedToInsights,
+  });
 
   return (
     <div className="ins-c-compliance__scope">
-      {testResultsLoading ? (
+      {testResultsLoading && connectedToInsights ? (
         <Bullseye>
           <Spinner />
         </Bullseye>
-      ) : testResults.length === 0 ? (
-        // we render no policy cards nor rules table if there are no reporting policies
-        <EmptyState inventoryId={inventoryId} system={system} />
+      ) : testResults?.length === 0 || !connectedToInsights ? (
+        <EmptyState
+          inventoryId={inventoryId}
+          system={system}
+          connectedToInsights={connectedToInsights}
+        />
       ) : (
         <SystemPoliciesAndRules
           {...props}
@@ -35,6 +46,7 @@ Details.propTypes = {
   inventoryId: propTypes.string,
   hidePassed: propTypes.bool,
   system: propTypes.object,
+  connectedToInsights: propTypes.bool,
 };
 
 export default Details;
