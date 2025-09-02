@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { paginationSerialiser } from 'PresentationalComponents/ComplianceTable/serialisers';
-import { useFullTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
+import { useFullTableState } from 'bastilian-tabletools';
 import useComplianceQuery from 'Utilities/hooks/useComplianceQuery';
 import { convertToArray, osApiEndpoints } from './constants';
 import {
@@ -20,7 +20,7 @@ const useSystemsQueries = ({
   ignoreOsMajorVersion,
 } = {}) => {
   const osApiEndpoint = osApiEndpoints[apiEndpoint];
-  const resultCache = useRef();
+  const [resultCache, setResultCache] = useState();
   const inventoryFiltersCache = useRef();
   const [isEmpty, setIsEmpty] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -93,7 +93,7 @@ const useSystemsQueries = ({
 
       try {
         const result = await fetch(allParams);
-        resultCache.current = result;
+        setResultCache(result);
 
         setIsEmptyState(result);
         setIsLoaded(true);

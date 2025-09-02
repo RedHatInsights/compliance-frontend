@@ -11,7 +11,7 @@ import useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
 import { RulesTable } from 'PresentationalComponents';
 import EditRulesButtonToolbarItem from 'SmartComponents/PolicyDetails/EditRulesButtonToolbarItem';
 import { Spinner } from '@patternfly/react-core';
-import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
+import { TableStateProvider } from 'bastilian-tabletools';
 
 const NoTailorings = ({ policy, columns }) => {
   const DedicatedAction = () => <EditRulesButtonToolbarItem policy={policy} />;

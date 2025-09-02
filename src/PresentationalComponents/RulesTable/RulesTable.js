@@ -23,10 +23,9 @@ import defaultColumns from './Columns';
  *  @param   {boolean}            [props.remediationsEnabled]  Enables the "RemediationButton"
  *  @param   {boolean}            [props.ansibleSupportFilter] Enables the ansible filter
  *  @param   {boolean}            [props.selectedFilter]       Enables the "Selected Only" filter
- *  @param   {Array}              [props.selectedRules]        An array of rule IDs currently selected
- *  @param   {Array}              [props.preselected]          An array of rule IDs set as initial selection
+ *  @param   {Array}              [props.selectedRules]        An array of rule IDs selected
  *  @param   {boolean}            [props.hidePassed]           Enables a default filter to only show failed rules.
- *  @param   {object}             [props.options ]             AsyncTableTools options
+ *  @param   {object}             [props.options ]             TableToolsTable options
  *  @param   {string}             [props.activeFilters]        Default filter
  *  @param   {object}             [props.ruleValues]           An object of values to show for certain rule values
  *  @param   {Array}              [props.valueDefinitions]     An array of value definitons available for rules in the table
@@ -38,22 +37,23 @@ import defaultColumns from './Columns';
  *  @param   {Function}           [props.onSelect]             A function called when a selection action is performed
  *  @param   {string}             [props.defaultTableView]     A table view to show by default ("row" or "tree") // TODO we should use the table options directly
  *
+ *  @param                        props.loading
  *  @returns {React.ReactElement}
  *
  *  @category Compliance
  *
  */
 const RulesTable = ({
+  loading,
   rules,
   ruleTree,
   policyId,
   policyName,
   columns = defaultColumns,
-  remediationsEnabled = true,
+  remediationsEnabled,
   ansibleSupportFilter = false,
   selectedFilter = false, // TODO this is potentially obsolete.
   selectedRules: selectedRulesProp = [],
-  preselected,
   hidePassed = false,
   options,
   activeFilters,
@@ -121,6 +121,7 @@ const RulesTable = ({
   return (
     <ComplianceTable
       aria-label="Rules Table"
+      loading={loading}
       items={rules}
       columns={columns}
       isStickyHeader
@@ -157,7 +158,6 @@ const RulesTable = ({
           : {}),
         onSelect: (onSelect || remediationsEnabled) && setSelectedRules,
         selected: selectedRules,
-        preselected: preselected,
         detailsComponent: DetailsRow,
         selectedFilter,
         dedicatedAction: DedicatedAction,
@@ -171,6 +171,7 @@ const RulesTable = ({
 };
 
 RulesTable.propTypes = {
+  loading: propTypes.bool,
   rules: propTypes.array,
   ruleTree: propTypes.array,
   policyId: propTypes.string,
@@ -179,7 +180,6 @@ RulesTable.propTypes = {
   remediationsEnabled: propTypes.bool,
   ansibleSupportFilter: propTypes.bool,
   selectedRules: propTypes.array,
-  preselected: propTypes.array,
   selectedFilter: propTypes.bool,
   columns: propTypes.array,
   options: propTypes.object,

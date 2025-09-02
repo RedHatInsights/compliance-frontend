@@ -1,6 +1,7 @@
-import { useEffect, useCallback, useRef } from 'react';
+import { useCallback, useRef, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
-import useBulkSelect from '@/Frameworks/AsyncTableTools/hooks/useBulkSelect';
+import { useBulkSelect } from 'bastilian-tabletools';
+import xor from 'lodash/xor';
 import { setDisabledSelection } from 'Store/Actions/SystemActions';
 
 const useSystemsBulkSelect = ({
@@ -8,45 +9,60 @@ const useSystemsBulkSelect = ({
   onSelect,
   resultCache,
   setIsSystemsDataLoading,
+  selected,
   ...bulkSelectOptions
 }) => {
   const dispatch = useDispatch();
   const itemCache = useRef();
-  const itemIdsOnPage = resultCache?.current?.data?.map(({ id }) => id);
+  const itemIdsOnPage = useMemo(
+    () => resultCache?.data?.map(({ id }) => id),
+    [resultCache],
+  );
 
   const itemIdsInTable = useCallback(async () => {
     itemCache.current = undefined;
-    setIsSystemsDataLoading(true);
+    setIsSystemsDataLoading?.(true);
     dispatch(setDisabledSelection(true));
 
     const results = await fetchSystemsBatched();
     const items = results?.data;
     itemCache.current = items;
 
-    setIsSystemsDataLoading(false);
+    setIsSystemsDataLoading?.(false);
 
     return items.map(({ id }) => id);
   }, [fetchSystemsBatched, dispatch, setIsSystemsDataLoading]);
 
   const onSelectCallback = useCallback(
     (selectedIds) => {
-      const selectedItems = selectedIds.map((id) => ({
-        id,
-        ...resultCache.current?.data?.find(({ id: itemId }) => id === itemId),
-        ...itemIdsOnPage.find(({ id: itemId }) => id === itemId),
-      }));
+      if (selectedIds.length === 0 || xor(selectedIds, selected).length) {
+        const selectedItems = selectedIds.map((id) => ({
+          id,
+          ...resultCache.data?.find(({ id: itemId }) => id === itemId),
+          ...itemIdsOnPage?.find(({ id: itemId }) => id === itemId),
+        }));
 
-      itemCache.current = selectedItems;
-      dispatch(setDisabledSelection(false));
+        // Ensures rows are marked as selected in the inventory table
+        dispatch({
+          type: 'SELECT_ENTITIES',
+          payload: {
+            selected: selectedIds,
+          },
+        });
 
-      if (typeof onSelect === 'function') {
-        onSelect?.(selectedItems);
+        itemCache.current = selectedItems;
+        dispatch(setDisabledSelection(false));
+
+        if (typeof onSelect === 'function') {
+          onSelect?.(selectedItems);
+        }
       }
     },
-    [dispatch, onSelect, itemIdsOnPage, resultCache],
+    [dispatch, onSelect, itemIdsOnPage, resultCache, selected],
   );
 
   const bulkSelect = useBulkSelect({
+    selected,
     ...(onSelect ? { onSelect: onSelectCallback } : {}),
     itemIdsInTable,
     itemIdsOnPage,
@@ -60,16 +76,6 @@ const useSystemsBulkSelect = ({
     }),
     [bulkSelect],
   );
-
-  // Ensures rows are marked as selected in the inventory table
-  useEffect(() => {
-    dispatch({
-      type: 'SELECT_ENTITIES',
-      payload: {
-        selected: bulkSelect?.tableView.selected,
-      },
-    });
-  }, [dispatch, bulkSelect?.tableView.selected]);
 
   return {
     ...bulkSelect,

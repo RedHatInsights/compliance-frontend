@@ -1,5 +1,4 @@
 import { fitContent } from '@patternfly/react-table';
-import { renderComponent } from 'Utilities/helpers';
 import {
   Name as NameCell,
   OperatingSystem as OperatingSystemCell,
@@ -14,7 +13,7 @@ export const Name = {
     width: 60,
   },
   exportKey: 'title',
-  renderFunc: renderComponent(NameCell),
+  Component: NameCell,
 };
 
 export const OperatingSystem = {
@@ -25,7 +24,7 @@ export const OperatingSystem = {
     width: 20,
   },
   renderExport: ({ os_major_version }) => `RHEL ${os_major_version} `,
-  renderFunc: renderComponent(OperatingSystemCell),
+  Component: OperatingSystemCell,
 };
 
 export const CompliantSystems = {
@@ -42,12 +41,12 @@ export const CompliantSystems = {
         ? ` | ${unsupported_system_count} unsupported`
         : ''
     }`,
-  renderFunc: renderComponent(CompliantSystemsCell),
+  Component: CompliantSystemsCell,
 };
 
 export const PDFExportDownload = {
   title: '',
-  renderFunc: renderComponent(PDFExportDownloadCell),
+  Component: PDFExportDownloadCell,
   manageable: false,
 };
 

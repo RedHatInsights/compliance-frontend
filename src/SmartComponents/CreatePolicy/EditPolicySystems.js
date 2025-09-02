@@ -96,19 +96,17 @@ export const EditPolicySystems = ({
       : '';
 
   useEffect(() => {
-    if (!osMinorVersionCounts) {
-      const osMinorVersions = profile.supportedOsVersions.map(
-        (version) => version.split('.')[1],
-      );
-      change(
-        'osMinorVersionCounts',
-        osMinorVersions.map((version) => ({
-          osMinorVersion: version,
-          count: 0,
-        })),
-      );
-    }
-  }, [change, osMinorVersionCounts, profile]);
+    const osMinorVersions = profile.supportedOsVersions.map(
+      (version) => version.split('.')[1],
+    );
+    change(
+      'osMinorVersionCounts',
+      osMinorVersions.map((version) => ({
+        osMinorVersion: version,
+        count: 0,
+      })),
+    );
+  }, [change, profile]);
 
   return (
     <React.Fragment>

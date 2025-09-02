@@ -1,7 +1,7 @@
 import React from 'react';
 import { RebootingIcon } from '@patternfly/react-icons';
 import propTypes from 'prop-types';
-import useStateCallbacks from '@/Frameworks/AsyncTableTools/hooks/useTableState/hooks/useStateCallbacks';
+import { useStateCallbacks } from 'bastilian-tabletools';
 
 const ResetRules = () => {
   const callbacks = useStateCallbacks();

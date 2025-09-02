@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Switch } from '@patternfly/react-core';
-import useTableState from '@/Frameworks/AsyncTableTools/hooks/useTableState';
+import { useTableState } from 'bastilian-tabletools';
 
 const SecurityGuideRulesToggle = () => {
   const [selectedOnly, setSelectedOnly] = useTableState(

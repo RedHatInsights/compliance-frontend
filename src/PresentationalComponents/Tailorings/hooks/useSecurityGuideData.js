@@ -73,6 +73,8 @@ const useSecurityGuideData = ({
   });
 
   return {
+    rulesLoading,
+    ruleTreeLoading,
     loading:
       rulesLoading ||
       ruleTreeLoading ||
