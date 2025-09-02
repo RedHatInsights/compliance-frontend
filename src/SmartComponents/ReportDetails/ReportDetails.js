@@ -72,7 +72,7 @@ const ReportDetails = ({ route }) => {
         <PageHeader>
           <ReportDetailsContentLoader />
         </PageHeader>
-        <section className="pf-v5-c-page__main-section">
+        <section className="pf-v6-c-page__main-section">
           <EmptyState>
             <Spinner />
           </EmptyState>
@@ -100,7 +100,7 @@ const ReportDetails = ({ route }) => {
               <Link
                 state={{ report }}
                 to={`/reports/${report?.id}/pdf`}
-                className="pf-v5-u-mr-md"
+                className="pf-v6-u-mr-md"
                 Component={LinkButton}
                 componentProps={{
                   variant: 'primary',
@@ -136,11 +136,11 @@ const ReportDetails = ({ route }) => {
             </GridItem>
           </Grid>
         </PageHeader>
-        <section className="pf-v5-c-page__main-section">
+        <section className="pf-v6-c-page__main-section">
           <Grid hasGutter>
             <GridItem span={12}>
               <Tabs
-                className="pf-m-light pf-v5-c-table"
+                className="pf-m-light pf-v6-c-table"
                 activeKey={tab}
                 onSelect={handleTabSelect}
                 mountOnEnter
