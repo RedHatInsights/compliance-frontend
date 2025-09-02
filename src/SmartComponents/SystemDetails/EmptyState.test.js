@@ -12,11 +12,11 @@ describe('EmptyState for systemDetails', () => {
     useSystem.mockImplementation(() => ({
       data: { data: undefined },
       error: undefined,
-      loading: undefined,
+      loading: true,
     }));
     render(
       <TestWrapper>
-        <EmptyState inventoryId={'123'} />
+        <EmptyState inventoryId={'123'} connectedToInsights={true} />
       </TestWrapper>,
     );
 
@@ -28,13 +28,13 @@ describe('EmptyState for systemDetails', () => {
 
   it('expect to render NotConnected component', () => {
     useSystem.mockImplementation(() => ({
-      data: { data: { display_name: 'foo', policies: [], insights_id: '' } },
+      data: { data: undefined },
       error: undefined,
       loading: undefined,
     }));
     render(
       <TestWrapper>
-        <EmptyState inventoryId={'123'} />
+        <EmptyState inventoryId={'123'} connectedToInsights={false} />
       </TestWrapper>,
     );
 
@@ -51,7 +51,7 @@ describe('EmptyState for systemDetails', () => {
     }));
     render(
       <TestWrapper>
-        <EmptyState inventoryId={'123'} />
+        <EmptyState inventoryId={'123'} connectedToInsights={true} />
       </TestWrapper>,
     );
 
@@ -64,19 +64,21 @@ describe('EmptyState for systemDetails', () => {
 
   it('expect to render NoPoliciesState component for Compliance SystemDetails', () => {
     useSystem.mockImplementation(() => ({}));
+    const connectedToInsights = true;
 
     render(
       <TestWrapper>
         <EmptyState
           inventoryId={'123'}
           system={{ insights_id: '123', policies: [] }}
+          connectedToInsights={connectedToInsights}
         />
       </TestWrapper>,
     );
 
     expect(useSystem).toHaveBeenCalledWith({
       params: { systemId: '123' },
-      skip: { insights_id: '123', policies: [] }, // Ensure correct 'skip' value
+      skip: { insights_id: '123', policies: [] } && connectedToInsights,
     });
 
     expect(
@@ -86,7 +88,7 @@ describe('EmptyState for systemDetails', () => {
     ).toBeInTheDocument();
   });
 
-  it('expect to render NoReportsState component', () => {
+  it('expect to render NoReportsState component Inventory details', () => {
     useSystem.mockImplementation(() => ({
       data: {
         data: { display_name: 'foo', policies: [{}, {}], insights_id: '123' },
@@ -96,7 +98,7 @@ describe('EmptyState for systemDetails', () => {
     }));
     render(
       <TestWrapper>
-        <EmptyState inventoryId={'123'} />
+        <EmptyState inventoryId={'123'} connectedToInsights={true} />
       </TestWrapper>,
     );
 
@@ -108,21 +110,23 @@ describe('EmptyState for systemDetails', () => {
     ).toBeInTheDocument();
   });
 
-  it('expect to render NoReportsState component', () => {
+  it('expect to render NoReportsState component Compliance details', () => {
     useSystem.mockImplementation(() => ({}));
+    const connectedToInsights = true;
 
     render(
       <TestWrapper>
         <EmptyState
           inventoryId={'123'}
           system={{ insights_id: '123', policies: [{}] }}
+          connectedToInsights={connectedToInsights}
         />
       </TestWrapper>,
     );
 
     expect(useSystem).toHaveBeenCalledWith({
       params: { systemId: '123' },
-      skip: { insights_id: '123', policies: [{}] }, // Ensure correct 'skip' value
+      skip: { insights_id: '123', policies: [{}] } && connectedToInsights,
     });
 
     expect(screen.getByText('No results reported')).toBeInTheDocument();

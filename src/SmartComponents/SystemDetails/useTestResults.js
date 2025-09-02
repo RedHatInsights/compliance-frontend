@@ -3,12 +3,13 @@ import useSystemReports from 'Utilities/hooks/api/useSystemReports';
 import useReportTestResults from 'Utilities/hooks/api/useReportTestResults';
 
 // custom hook to fetch test results for a system
-const useTestResults = (systemId) => {
+const useTestResults = (systemId, { skip = false } = {}) => {
   const [testResultsLoading, setTestResultsLoading] = useState(true);
   const [testResults, setTestResults] = useState();
   const { data: { data: reports } = {}, loading: reportsLoading } =
     useSystemReports({
       params: { systemId },
+      skip: skip,
     });
   const { fetchBatchedQueue: fetchReportTestResults } = useReportTestResults({
     skip: true,
