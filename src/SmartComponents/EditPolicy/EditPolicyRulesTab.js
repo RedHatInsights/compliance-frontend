@@ -188,7 +188,6 @@ export const EditPolicyRulesTab = ({
           onSelect={handleSelect}
           showResetButton
           selected={selectedRules}
-          preselected={assignedRuleIds}
           additionalRules={additionalRules}
           enableSecurityGuideRulesToggle
           selectedVersionCounts={selectedVersionCounts}

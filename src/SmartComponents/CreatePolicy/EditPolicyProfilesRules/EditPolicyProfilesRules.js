@@ -223,8 +223,10 @@ const EditPolicyProfilesRules = ({
                 ouiaId="RHELVersions"
                 onSelect={onSelect}
                 showResetButton
-                selected={selected}
-                preselected={preselected}
+                selected={{
+                  ...selected,
+                  ...preselected,
+                }}
                 enableSecurityGuideRulesToggle
                 rulesPageLink={true}
                 valueOverrides={valueOverrides}

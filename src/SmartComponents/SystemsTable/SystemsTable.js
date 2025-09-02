@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { Spinner } from '@patternfly/react-core';
 import { InventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
-import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
+import { TableStateProvider } from 'bastilian-tabletools';
 import {
   ComplianceRemediationButton,
   ErrorPage,
@@ -75,7 +75,7 @@ export const SystemsTable = ({
   } = useSystemsBulkSelect({
     total,
     onSelect: onSelect || remediationsEnabled,
-    preselected: preselectedSystems,
+    selected: preselectedSystems,
     fetchSystemsBatched,
     resultCache,
     setIsSystemsDataLoading,

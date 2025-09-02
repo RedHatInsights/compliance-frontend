@@ -1,4 +1,3 @@
-/* eslint-disable testing-library/no-node-access */
 import React from 'react';
 import { init } from 'Store';
 import Tailorings from './Tailorings';
@@ -120,7 +119,6 @@ describe('Tailorings - Tailorings on Edit policy', () => {
         onSelect: cy.spy().as('onSelect'), // rule selection
         showResetButton: true,
         selected: preselected, // { 8: ["id1", "id2"], 7: {}...}
-        preselected: preselected, // { 8: ["id1", "id2"], 7: {}...}
         additionalRules: additionalRules, // { 8: ["id1", "id2"], 7: []...}
         enableSecurityGuideRulesToggle: true,
         selectedVersionCounts: selectedSystemsCount, // { 8: 10, 7: 5...}

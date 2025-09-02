@@ -74,7 +74,7 @@ It is also possible to only show "profiles", which is used in the "Create Policy
 
 ## Selection
 
-To set a selection for each tab a "preselected" object can be provided, where the key can be either an ID of a tailoring, or a OS minor version.
+To set a selection for each tab a "selected" object can be provided, where the key can be either an ID of a tailoring, or a OS minor version.
 
 ```
  <Tailorings
@@ -98,7 +98,7 @@ To set a selection for each tab a "preselected" object can be provided, where th
     profileId: 'XYZ-ABC',
    },
  ]}
- preselected={{
+ selected={{
   "2": ['RULE_ID1', 'RULE_ID2']
   "1": ['RULE_ID11', 'RULE_ID5']
  }}
@@ -137,7 +137,7 @@ It will also allow editing the values if a `onValueSave` is provided. It will sh
       profileId: 'XYZ-ABC',
     },
   ]}
-  preselected={{
+  selected={{
     "2": ['RULE_ID1', 'RULE_ID2']
     "1": ['RULE_ID11', 'RULE_ID5']
   }}

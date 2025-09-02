@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import propTypes from 'prop-types';
 import { Badge, Flex, FlexItem, Spinner, Tab } from '@patternfly/react-core';
 import {
@@ -31,7 +31,6 @@ import NoTailorings from './NoTailorings';
  *  @param   {Function}           [props.onValueOverrideSave]            Callback function called when a value of a rule is saved
  *  @param   {Function}           [props.onSelect]                       Callback function called when any selection is made
  *  @param   {object}             [props.selected]
- *  @param   {object}             [props.preselected]                    An object containing the preselection of rules for each tab
  *  @param   {boolean}            [props.enableSecurityGuideRulesToggle] Will enable the "Only Selected" toggle. When a policy with tailorings is shown and the toggle is enabled it will request rule data from the tailoring, with it disabled it will load rule data from the security guide. If a profile is provided it will load rules either from the profile, if the toggle is enabled, otherwise from the security guide.
  *  @param   {object}             [props.selectedVersionCounts]          An object containing minor version as a key and count as a value. Helps to render the system count badge in tab headers.
  *  @param   {object}             [props.valueOverrides]
@@ -57,7 +56,6 @@ const Tailorings = ({
   onValueOverrideSave,
   onSelect,
   selected,
-  preselected,
   showResetButton,
   enableSecurityGuideRulesToggle,
   selectedVersionCounts,
@@ -90,10 +88,15 @@ const Tailorings = ({
     })) || []),
   ];
 
-  const onValueSave = (...valueParams) =>
-    onValueOverrideSave?.(policy, ...valueParams);
+  const onValueSave = useCallback(
+    (...valueParams) => onValueOverrideSave?.(policy, ...valueParams),
+    [onValueOverrideSave, policy],
+  );
 
-  const onSelectTailoring = (...tabParams) => onSelect?.(policy, ...tabParams);
+  const onSelectTailoring = useCallback(
+    (...tabParams) => onSelect?.(policy, ...tabParams),
+    [onSelect, policy],
+  );
 
   return (
     <StateViewWithError
@@ -159,9 +162,6 @@ const Tailorings = ({
                     showResetButton: showResetButton,
                     selected:
                       selected?.[tab.id] || selected?.[tab.os_minor_version],
-                    preselected:
-                      preselected?.[tab.id] ||
-                      preselected?.[tab.os_minor_version],
                     additionalRules:
                       additionalRules?.[tab.id] ||
                       additionalRules?.[tab.os_minor_version],
@@ -208,7 +208,6 @@ Tailorings.propTypes = {
   onSelect: propTypes.func,
   showResetButton: propTypes.bool,
   selected: propTypes.object,
-  preselected: propTypes.object,
   enableSecurityGuideRulesToggle: propTypes.bool,
   selectedVersionCounts: propTypes.object,
   valueOverrides: propTypes.object,

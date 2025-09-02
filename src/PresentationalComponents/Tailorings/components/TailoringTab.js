@@ -1,13 +1,19 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import propTypes from 'prop-types';
 import { Grid } from '@patternfly/react-core';
-import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
-import { useFullTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
+import {
+  TableStateProvider,
+  useFullTableState,
+  useStateCallbacks,
+} from 'bastilian-tabletools';
+
 import { RulesTable } from 'PresentationalComponents';
+
 import useTailoringsData from '../hooks/useTailoringsData';
 import useSecurityGuideData from '../hooks/useSecurityGuideData';
 import useSecurityGuideProfileData from '../hooks/useSecurityGuideProfileData';
 import { prepareTreeTable, prepareRules, skips } from '../helpers';
+
 import TabHeader from './TabHeader';
 import SecurityGuideRulesToggle from './SecurityGuideRulesToggle';
 
@@ -35,7 +41,6 @@ import SecurityGuideRulesToggle from './SecurityGuideRulesToggle';
  *  @param   {Function}           [props.onValueOverrideSave]            **deprecated** We should be using setRuleValues instead
  *  @param   {Function}           [props.onSelect]                       A callback called when a selection is made
  *  @param   {object}             [props.selected]                       An array of currently selected IDs
- *  @param   {object}             [props.preselected]                    An array of rule IDs to select
  *  @param   {string}             [props.skipProfile]
  *  @param                        [props.additionalRules]
  *  @param                        [props.valueOverrides]
@@ -64,7 +69,6 @@ const TailoringTab = ({
   onValueOverrideSave,
   onSelect,
   selected,
-  preselected,
   additionalRules,
   enableSecurityGuideRulesToggle,
   skipProfile,
@@ -73,12 +77,20 @@ const TailoringTab = ({
 }) => {
   const tableState = useFullTableState();
   const openRuleGroups = tableState?.tableState?.['open-items'];
+  // TODO the _default is a hack. There is a bug in tabletools that needs to be fixed to not retur `default`
+  const {
+    tableState: {
+      tableView,
+      filters: { default: _default, ...filters } = {},
+    } = {},
+  } = tableState || {};
+  const { current: { setView } = {} } = useStateCallbacks() || {};
+
   const groupFilter = useMemo(() => {
-    return tableState?.tableState?.tableView === 'tree' &&
-      openRuleGroups?.length > 0
+    return tableView === 'tree' && openRuleGroups?.length > 0
       ? `rule_group_id ^ (${openRuleGroups.map((id) => `${id}`).join(' ')})`
       : undefined;
-  }, [tableState, openRuleGroups]);
+  }, [tableView, openRuleGroups]);
 
   const securityGuideId = securityGuideIdProp || tailoring?.security_guide_id;
   const shouldSkip = skips({
@@ -91,6 +103,8 @@ const TailoringTab = ({
   });
 
   const {
+    ruleTreeLoading: securityGuideRuleTreeLoading,
+    rulesLoading: securityGuideRulesLoading,
     data: {
       securityGuide,
       ruleGroups,
@@ -119,6 +133,8 @@ const TailoringTab = ({
   });
 
   const {
+    rulesLoading: tailoringRulesLoading,
+    ruleTreeLoading: tailoringsRuleTreeLoading,
     data: { ruleTree: tailoringRuleTree, rules: tailoringRules },
     fetchAllIds: fetchAllTailoringRuleIds,
     exporter: tailoringRulesExporter,
@@ -175,24 +191,45 @@ const TailoringTab = ({
   );
 
   // TODO we might want to consider making this more explicit and also add SSG profile exporter and ids call
-  const exporter = async () =>
-    tailoring && policy
-      ? await tailoringRulesExporter()
-      : await securityGuideRulesExporter();
+  const exporter = useCallback(
+    async () =>
+      tailoring && policy
+        ? await tailoringRulesExporter()
+        : await securityGuideRulesExporter(),
+    [tailoring, policy, tailoringRulesExporter, securityGuideRulesExporter],
+  );
 
-  const itemIdsInTable = async () =>
-    tailoring && policy
-      ? await fetchAllTailoringRuleIds()
-      : await fetchAllSecurityGuideRuleIds();
+  const itemIdsInTable = useCallback(
+    async () =>
+      tailoring && policy
+        ? await fetchAllTailoringRuleIds()
+        : await fetchAllSecurityGuideRuleIds(),
+    [tailoring, policy, fetchAllTailoringRuleIds, fetchAllSecurityGuideRuleIds],
+  );
 
-  const onValueSave = (_policyId, ...valueParams) =>
-    onValueOverrideSave(tailoring || osMinorVersion, ...valueParams);
+  const onValueSave = useCallback(
+    (_policyId, ...valueParams) =>
+      onValueOverrideSave(tailoring || osMinorVersion, ...valueParams),
+    [tailoring, osMinorVersion, onValueOverrideSave],
+  );
 
-  const onSelectRule = (...ruleParams) =>
-    onSelect?.(
-      tailoring || { ...securityGuide?.data, os_minor_version: osMinorVersion },
-      ...ruleParams,
-    );
+  const onSelectRule = useCallback(
+    (...ruleParams) =>
+      onSelect?.(
+        tailoring || {
+          ...securityGuide?.data,
+          os_minor_version: osMinorVersion,
+        },
+        ...ruleParams,
+      ),
+    [onSelect, osMinorVersion, securityGuide, tailoring],
+  );
+
+  useEffect(() => {
+    if (Object.keys(filters || {}).length && tableView === 'tree') {
+      setView?.('rows');
+    }
+  }, [filters, setView, tableView]);
 
   return (
     <>
@@ -216,6 +253,11 @@ const TailoringTab = ({
         )}
       </Grid>
       <RulesTable
+        loading={
+          tableView === 'rows'
+            ? securityGuideRulesLoading || tailoringRulesLoading
+            : securityGuideRuleTreeLoading || tailoringsRuleTreeLoading
+        }
         policyId={policy?.id}
         securityGuideId={tailoring?.security_guide_id || securityGuideId}
         total={rules?.meta?.total}
@@ -229,7 +271,6 @@ const TailoringTab = ({
         onValueOverrideSave={onValueSave}
         onSelect={onSelect ? onSelectRule : undefined}
         selectedRules={selected}
-        preselected={preselected}
         options={{
           exporter,
           itemIdsInTable,
@@ -271,7 +312,6 @@ TailoringTab.propTypes = {
   onValueOverrideSave: propTypes.func,
   showResetButton: propTypes.bool,
   selected: propTypes.array,
-  preselected: propTypes.array,
   enableSecurityGuideRulesToggle: propTypes.bool,
   skipProfile: propTypes.string,
   additionalRules: propTypes.object,
