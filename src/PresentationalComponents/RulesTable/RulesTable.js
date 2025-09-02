@@ -50,7 +50,7 @@ const RulesTable = ({
   policyId,
   policyName,
   columns = defaultColumns,
-  remediationsEnabled = true,
+  remediationsEnabled,
   ansibleSupportFilter = false,
   selectedFilter = false, // TODO this is potentially obsolete.
   selectedRules: selectedRulesProp = [],

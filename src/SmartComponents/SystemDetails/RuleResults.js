@@ -5,7 +5,7 @@ import useReportRuleResults from 'Utilities/hooks/api/useReportRuleResults';
 import { RulesTable } from 'PresentationalComponents';
 import columns from './Columns';
 
-const RuleResults = ({ reportTestResult }) => {
+const RuleResults = ({ reportTestResult, remediationsEnabled }) => {
   // Enable default filter
   const activeFilters = {
     'rule-state': ['failed'],
@@ -62,7 +62,7 @@ const RuleResults = ({ reportTestResult }) => {
       total={ruleResults?.meta?.total}
       defaultTableView="rows"
       onSelect={true}
-      remediationsEnabled
+      remediationsEnabled={remediationsEnabled}
       reportTestResult={reportTestResult}
       skipValueDefinitions={true}
       options={{
@@ -75,7 +75,7 @@ const RuleResults = ({ reportTestResult }) => {
 };
 
 RuleResults.propTypes = {
-  hidePassed: propTypes.bool,
+  remediationsEnabled: propTypes.bool,
   reportTestResult: propTypes.object,
 };
 

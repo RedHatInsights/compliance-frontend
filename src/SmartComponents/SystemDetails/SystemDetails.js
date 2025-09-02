@@ -52,7 +52,12 @@ const SystemDetails = ({ route }) => {
           <InventoryDetails inventoryId={inventoryId} />
         </PageHeader>
         <PageSection hasBodyWrapper={false}>
-          <Details hidePassed inventoryId={inventoryId} system={data} />
+          <Details
+            hidePassed
+            inventoryId={inventoryId}
+            system={data}
+            remediationsEnabled
+          />
         </PageSection>
       </StateViewPart>
       <StateViewPart stateKey="loading">
