@@ -52,7 +52,7 @@ const Reports = () => {
         mainTitle={'Reports'}
         popoverData={reportsPopoverData}
       />
-      <section className="pf-v5-c-page__main-section">
+      <section className="pf-v6-c-page__main-section">
         <StateViewWithError
           stateValues={{
             error,

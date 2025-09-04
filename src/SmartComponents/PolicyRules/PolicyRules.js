@@ -79,7 +79,7 @@ const PolicyDefaultRules = () => {
         benchmarkVersion={securityGuideData?.data?.version}
         osMajorVersion={securityGuideData?.data?.os_major_version}
       />
-      <div className="pf-v5-u-p-xl" style={{ background: '#fff' }}>
+      <div className="pf-v6-u-p-xl" style={{ background: '#fff' }}>
         <RulesTable
           policyId={profileId}
           securityGuideId={securityGuideId}
