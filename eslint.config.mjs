@@ -1,3 +1,4 @@
+import { defineConfig, globalIgnores } from 'eslint/config';
 import fecPlugin from '@redhat-cloud-services/eslint-config-redhat-cloud-services';
 import tsParser from '@typescript-eslint/parser';
 import pluginCypress from 'eslint-plugin-cypress/flat';
@@ -5,10 +6,11 @@ import jestDom from 'eslint-plugin-jest-dom';
 import jsdoc from 'eslint-plugin-jsdoc';
 import reactHooks from 'eslint-plugin-react-hooks';
 import testingLibrary from 'eslint-plugin-testing-library';
-import { defineConfig, globalIgnores } from 'eslint/config';
+import pluginQuery from '@tanstack/eslint-plugin-query';
 import tseslint from 'typescript-eslint';
 
 export default defineConfig([
+  ...pluginQuery.configs['flat/recommended'],
   globalIgnores(['node_modules/*', 'static/*', 'dist/*', 'docs/*']),
   fecPlugin,
   pluginCypress.configs.recommended,
