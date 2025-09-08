@@ -69,10 +69,11 @@ PrependComponent.propTypes = {
 const useOnSelect = (change, profile) => {
   const onSelect = useCallback(
     (newSelectedSystems) => {
-      let foo = countOsMinorVersions(newSelectedSystems, profile);
-      console.log('DEBUG foo', foo);
       change('systems', newSelectedSystems);
-      change('osMinorVersionCounts', foo);
+      change(
+        'osMinorVersionCounts',
+        countOsMinorVersions(newSelectedSystems, profile),
+      );
     },
     [change, profile],
   );
