@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import {
   propTypes as reduxFormPropTypes,
   reduxForm,
@@ -66,13 +66,15 @@ PrependComponent.propTypes = {
   osMajorVersion: propTypes.string,
 };
 
-const useOnSelect = (change) => {
+const useOnSelect = (change, profile) => {
   const onSelect = useCallback(
     (newSelectedSystems) => {
+      let foo = countOsMinorVersions(newSelectedSystems, profile);
+      console.log('DEBUG foo', foo);
       change('systems', newSelectedSystems);
-      change('osMinorVersionCounts', countOsMinorVersions(newSelectedSystems));
+      change('osMinorVersionCounts', foo);
     },
-    [change],
+    [change, profile],
   );
 
   return onSelect;
@@ -82,31 +84,17 @@ export const EditPolicySystems = ({
   profile,
   change,
   osMajorVersion,
-  osMinorVersionCounts,
   selectedSystems = [],
   allowNoSystems,
 }) => {
-  const onSelect = useOnSelect(change);
+  const onSelect = useOnSelect(change, profile);
 
   const defaultFilter =
-    osMajorVersion && osMinorVersionCounts
+    osMajorVersion && profile.os_minor_versions
       ? `os_major_version = ${osMajorVersion} AND ` +
-        `os_minor_version ^ (${osMinorVersionCounts.map(({ osMinorVersion }) => osMinorVersion).join(' ')}) AND ` +
+        `os_minor_version ^ (${profile.os_minor_versions.map((osMinorVersion) => osMinorVersion).join(' ')}) AND ` +
         `profile_ref_id !^ (${profile.ref_id})`
       : '';
-
-  useEffect(() => {
-    const osMinorVersions = profile.supportedOsVersions.map(
-      (version) => version.split('.')[1],
-    );
-    change(
-      'osMinorVersionCounts',
-      osMinorVersions.map((version) => ({
-        osMinorVersion: version,
-        count: 0,
-      })),
-    );
-  }, [change, profile]);
 
   return (
     <React.Fragment>
