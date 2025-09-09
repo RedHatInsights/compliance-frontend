@@ -62,7 +62,7 @@ export const useUpdatePolicy = () => {
 
       const { id: newPolicyId } = createPolicyResponse.data;
 
-      if (hosts) {
+      if (hosts && hosts.length > 0) {
         await assignSystems([
           newPolicyId,
           undefined,
