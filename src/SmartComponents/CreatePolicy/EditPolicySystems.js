@@ -86,7 +86,6 @@ export const EditPolicySystems = ({
   change,
   osMajorVersion,
   selectedSystems = [],
-  allowNoSystems,
 }) => {
   const onSelect = useOnSelect(change, profile);
 
@@ -107,9 +106,7 @@ export const EditPolicySystems = ({
           <SystemsTable
             apiEndpoint="systems"
             prependComponent={
-              allowNoSystems ? undefined : (
-                <PrependComponent osMajorVersion={osMajorVersion} />
-              )
+              <PrependComponent osMajorVersion={osMajorVersion} />
             }
             emptyStateComponent={<EmptyState osMajorVersion={osMajorVersion} />}
             columns={[
@@ -147,7 +144,6 @@ EditPolicySystems.propTypes = {
   osMinorVersionCounts: propTypes.array,
   selectedSystems: propTypes.array,
   change: reduxFormPropTypes.change,
-  allowNoSystems: propTypes.bool,
 };
 
 const selector = formValueSelector('policyForm');
