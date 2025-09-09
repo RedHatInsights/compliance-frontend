@@ -39,11 +39,3 @@ export const validateDetailsPage = (
 
 export const validateRulesPage = (selectedRuleRefIds) =>
   selectedRuleRefIds?.length > 0;
-
-export const validateSystemsPage = (systemIds, allowNoSystems) => {
-  if (allowNoSystems) {
-    return true;
-  } else {
-    return systemIds?.length > 0;
-  }
-};
