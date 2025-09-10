@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import xor from 'lodash/xor';
+import { xor, isEqual } from 'lodash';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { useDeepCompareEffect } from 'use-deep-compare';
@@ -103,22 +103,20 @@ const EditPolicyProfilesRules = ({
       );
 
       if (updatedSelectedRuleRefIds.length === 0) {
-        if (newSelectedRuleIds.length === 0) {
-          return;
-        }
-
-        updatedSelectedRuleRefIds.push({
-          osMinorVersion,
-          ruleRefIds: newSelectedRuleIds,
-        });
-      } else {
-        const index = updatedSelectedRuleRefIds.findIndex(
-          ({ osMinorVersion: _osMinorVersion }) =>
-            _osMinorVersion === osMinorVersion,
-        );
-
-        updatedSelectedRuleRefIds[index].ruleRefIds = newSelectedRuleIds;
+        return;
       }
+
+      const index = updatedSelectedRuleRefIds.findIndex(
+        ({ osMinorVersion: _osMinorVersion }) =>
+          _osMinorVersion === osMinorVersion,
+      );
+
+      if (
+        isEqual(updatedSelectedRuleRefIds[index].ruleRefIds, newSelectedRuleIds)
+      ) {
+        return;
+      }
+      updatedSelectedRuleRefIds[index].ruleRefIds = newSelectedRuleIds;
       change('selectedRuleRefIds', updatedSelectedRuleRefIds);
     },
     [change, selectedRuleRefIds],
@@ -154,7 +152,7 @@ const EditPolicyProfilesRules = ({
         ...newSelectedRuleRefIds,
       ]);
     }
-  }, [change, osMinorVersionCounts, profilesAndRuleIds, selectedRuleRefIds]);
+  }, [change, osMinorVersionCounts, profilesAndRuleIds]);
 
   const onValueOverrideSave = (
     _policy,
