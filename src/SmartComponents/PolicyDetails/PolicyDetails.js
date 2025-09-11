@@ -4,15 +4,16 @@ import { useParams } from 'react-router-dom';
 import {
   Breadcrumb,
   BreadcrumbItem,
+  Flex,
   Grid,
   GridItem,
   Tab,
   PageSection,
+  Spinner,
 } from '@patternfly/react-core';
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
-import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import {
   PolicyDetailsDescription,
   PolicyDetailsContentLoader,
@@ -23,6 +24,7 @@ import {
   RoutedTabs,
   BreadcrumbLinkItem,
   Tailorings,
+  LinkButton,
 } from 'PresentationalComponents';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import '@/Charts.scss';
@@ -75,7 +77,17 @@ export const PolicyDetails = ({ route }) => {
   const policy = data?.profile;
 
   useTitleEntity(route, policy?.name);
-  const DedicatedAction = () => <EditRulesButtonToolbarItem policy={policy} />;
+  const DedicatedAction = () => (
+    <Flex columnGap={{ default: 'columnGapSm' }}>
+      <EditRulesButtonToolbarItem policy={policy} />
+      <LinkButton
+        to={`/scappolicies/${policyId}/import-rules`}
+        variant="secondary"
+      >
+        Import rules
+      </LinkButton>
+    </Flex>
+  );
 
   return (
     <StateViewWithError
