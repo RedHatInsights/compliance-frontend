@@ -15,6 +15,8 @@ jest.mock('./helpers', () => ({
   fetchUnsupportedSystemsWithExpectedSSG: jest.fn(),
 }));
 
+jest.mock('Utilities/hooks/useFeatureFlag', () => () => true);
+
 import {
   fetchPaginatedList,
   fetchUnsupportedSystemsWithExpectedSSG,
@@ -320,10 +322,15 @@ describe('ReportPDFBuild', () => {
     },
   };
 
-  it('should render basic report details and Red Hat Insights title', () => {
-    render(<ReportPDFBuild asyncData={mockAsyncData} />);
+  it('should render basic report details and Red Hat Lightspeed title', () => {
+    render(
+      <ReportPDFBuild
+        asyncData={mockAsyncData}
+        additionalData={{ isLightspeedEnabled: true }}
+      />,
+    );
 
-    expect(screen.getByText('Red Hat Insights')).toBeInTheDocument();
+    expect(screen.getByText('Red Hat Lightspeed')).toBeInTheDocument();
     expect(
       screen.getByText(`Compliance: ${mockReportData.title}`),
     ).toBeInTheDocument();
@@ -351,9 +358,14 @@ describe('ReportPDFBuild', () => {
         },
       },
     };
-    render(<ReportPDFBuild asyncData={mockAsyncDataModified} />);
+    render(
+      <ReportPDFBuild
+        asyncData={mockAsyncDataModified}
+        additionalData={{ isLightspeedEnabled: true }}
+      />,
+    );
 
-    expect(screen.getByText('Red Hat Insights')).toBeInTheDocument();
+    expect(screen.getByText('Red Hat Lightspeed')).toBeInTheDocument();
     expect(
       screen.getByText(`Compliance: ${mockReportData.title}`),
     ).toBeInTheDocument();
@@ -386,9 +398,14 @@ describe('ReportPDFBuild', () => {
         },
       },
     };
-    render(<ReportPDFBuild asyncData={fullAsyncData} />);
+    render(
+      <ReportPDFBuild
+        asyncData={fullAsyncData}
+        additionalData={{ isLightspeedEnabled: true }}
+      />,
+    );
 
-    expect(screen.getByText('Red Hat Insights')).toBeInTheDocument();
+    expect(screen.getByText('Red Hat Lightspeed')).toBeInTheDocument();
     expect(
       screen.getByText(`Compliance: ${mockReportData.title}`),
     ).toBeInTheDocument();

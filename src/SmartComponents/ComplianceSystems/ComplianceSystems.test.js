@@ -7,6 +7,7 @@ import { buildPolicies } from '../../__factories__/policies';
 
 jest.mock('Utilities/hooks/api/usePolicies', () => jest.fn());
 const policiesData = buildPolicies(2);
+jest.mock('Utilities/hooks/useFeatureFlag', () => () => true);
 
 describe('ComplianceSystems', () => {
   it('expect to render inventory table when policies are loaded', () => {

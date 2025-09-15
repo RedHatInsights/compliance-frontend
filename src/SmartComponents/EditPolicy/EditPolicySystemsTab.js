@@ -3,6 +3,7 @@ import { Content } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import SystemsTable from 'SmartComponents/SystemsTable/SystemsTable';
 import * as Columns from 'SmartComponents/SystemsTable/Columns';
+import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
 
 const systemTableColumns = [
   Columns.Name,
@@ -10,21 +11,25 @@ const systemTableColumns = [
   Columns.OperatingSystem(),
 ];
 
-const EmptyState = ({ osMajorVersion }) => (
-  <div data-testid="empty-state">
-    <Content className="pf-v6-u-mb-md">
-      <Content component="p">
-        You do not have any <b>RHEL {osMajorVersion}</b> systems connected to
-        Insights and enabled for Compliance.
+const EmptyState = ({ osMajorVersion }) => {
+  const isLightspeedEnabled = useFeatureFlag('platform.lightspeed-rebrand');
+  const serviceName = isLightspeedEnabled ? 'Red Hat Lightspeed' : 'Insights';
+  return (
+    <div data-testid="empty-state">
+      <Content className="pf-v6-u-mb-md">
+        <Content component="p">
+          You do not have any <b>RHEL {osMajorVersion}</b> systems connected to
+          {serviceName} and enabled for Compliance.
+        </Content>
       </Content>
-    </Content>
-    <Content className="pf-v6-u-mb-md">
-      <Content component="p">
-        Connect RHEL {osMajorVersion} systems to Insights.
+      <Content className="pf-v6-u-mb-md">
+        <Content component="p">
+          Connect RHEL {osMajorVersion} systems to {serviceName}.
+        </Content>
       </Content>
-    </Content>
-  </div>
-);
+    </div>
+  );
+};
 
 EmptyState.propTypes = {
   osMajorVersion: propTypes.string,

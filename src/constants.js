@@ -102,12 +102,11 @@ export const policiesPopoverData = {
     'index#compliance-managing-policies_intro-compliance',
 };
 
-export const systemsPopoverData = {
+export const systemsPopoverData = (serviceName) => ({
   headerContent: 'Systems list',
-  bodyContent:
-    'This list shows systems that have the necessary packages to successfully run Insights compliance scans.',
+  bodyContent: `This list shows systems that have the necessary packages to successfully run ${serviceName} compliance scans.`,
   bodyLink:
     'https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html-single/' +
     'assessing_and_monitoring_security_policy_compliance_of_rhel_systems/' +
     'index#compliance-getting-started_intro-compliance',
-};
+});

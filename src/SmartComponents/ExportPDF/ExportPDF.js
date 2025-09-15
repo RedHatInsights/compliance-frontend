@@ -14,8 +14,11 @@ import useExportSettings from './hooks/useExportSettings';
 import useReport from 'Utilities/hooks/api/useReport';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import { exportNotifications } from './constants';
+import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
 
 export const ExportPDF = () => {
+  const isLightspeedEnabled = useFeatureFlag('platform.lightspeed-rebrand');
+
   const addNotification = useAddNotification();
   const { report_id: reportId } = useParams();
   const [loadingPDF, setLoadingPDF] = useState(false);
@@ -50,6 +53,9 @@ export const ExportPDF = () => {
           fetchDataParams: {
             reportId: reportId,
             exportSettings: exportSettings,
+          },
+          additionalData: {
+            isLightspeedEnabled: isLightspeedEnabled,
           },
         },
       });
