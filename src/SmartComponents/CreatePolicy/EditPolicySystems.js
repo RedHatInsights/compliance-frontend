@@ -18,32 +18,37 @@ import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { countOsMinorVersions } from 'Store/Reducers/SystemStore';
 import * as Columns from '../SystemsTable/Columns';
+import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
 
-const EmptyState = ({ osMajorVersion }) => (
-  <React.Fragment>
-    <Content className="pf-v6-u-mb-md">
-      <Content component="p">
-        You do not have any <b>RHEL {osMajorVersion}</b> systems connected to
-        Insights and enabled for Compliance.
-        <br />
-        Policies must be created with at least one system.
+const EmptyState = ({ osMajorVersion }) => {
+  const isLightspeedEnabled = useFeatureFlag('platform.lightspeed-rebrand');
+  const serviceName = isLightspeedEnabled ? 'Red Hat Lightspeed' : 'Insights';
+  return (
+    <React.Fragment>
+      <Content className="pf-v6-u-mb-md">
+        <Content component="p">
+          You do not have any <b>RHEL {osMajorVersion}</b> systems connected to
+          {serviceName} and enabled for Compliance.
+          <br />
+          Policies must be created with at least one system.
+        </Content>
       </Content>
-    </Content>
-    <Content className="pf-v6-u-mb-md">
-      <Content component="p">
-        Choose a different RHEL version, or connect <b>RHEL {osMajorVersion}</b>{' '}
-        systems to Insights.
+      <Content className="pf-v6-u-mb-md">
+        <Content component="p">
+          Choose a different RHEL version, or connect{' '}
+          <b>RHEL {osMajorVersion}</b> systems to {serviceName}.
+        </Content>
       </Content>
-    </Content>
-    <WizardContextConsumer>
-      {({ goToStepById }) => (
-        <Button onClick={() => goToStepById(1)}>
-          Choose a different RHEL version
-        </Button>
-      )}
-    </WizardContextConsumer>
-  </React.Fragment>
-);
+      <WizardContextConsumer>
+        {({ goToStepById }) => (
+          <Button onClick={() => goToStepById(1)}>
+            Choose a different RHEL version
+          </Button>
+        )}
+      </WizardContextConsumer>
+    </React.Fragment>
+  );
+};
 
 EmptyState.propTypes = {
   osMajorVersion: propTypes.string,

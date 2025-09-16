@@ -181,7 +181,7 @@ export const fetchData = async (createAsyncRequest, options) => {
   return { data: data, options };
 };
 
-const ReportPDFBuild = ({ asyncData }) => {
+const ReportPDFBuild = ({ asyncData, additionalData }) => {
   const { data, options } = asyncData.data;
   const reportData = data[0].report_details;
   const topFailedRules = data[1].top_failed_rules;
@@ -189,10 +189,13 @@ const ReportPDFBuild = ({ asyncData }) => {
   const nonCompliantSystems = data[3].non_compliant_systems;
   const nonReportingSystems = data[4].non_reporting_systems;
   const unsupportedSystems = data[5].unsupported_systems;
+  const { isLightspeedEnabled } = additionalData;
 
   return (
     <div style={styles.document}>
-      <span style={styles.insightsHeader}>Red Hat Insights</span>
+      <span style={styles.insightsHeader}>
+        Red Hat {isLightspeedEnabled ? 'Lightspeed' : 'Insights'}
+      </span>
       <br />
       <span style={styles.policyTitleHeader}>
         {`Compliance: ${reportData.title}`}
@@ -277,6 +280,7 @@ const ReportPDFBuild = ({ asyncData }) => {
 
 ReportPDFBuild.propTypes = {
   asyncData: PropTypes.object,
+  additionalData: PropTypes.object,
 };
 
 export default ReportPDFBuild;
