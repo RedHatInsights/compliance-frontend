@@ -1,7 +1,6 @@
 import { useCallback, useRef, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { useBulkSelect } from 'bastilian-tabletools';
-import xor from 'lodash/xor';
 import { setDisabledSelection } from 'Store/Actions/SystemActions';
 
 const useSystemsBulkSelect = ({
@@ -35,30 +34,28 @@ const useSystemsBulkSelect = ({
 
   const onSelectCallback = useCallback(
     (selectedIds) => {
-      if (selectedIds.length === 0 || xor(selectedIds, selected).length) {
-        const selectedItems = selectedIds.map((id) => ({
-          id,
-          ...resultCache.data?.find(({ id: itemId }) => id === itemId),
-          ...itemIdsOnPage?.find(({ id: itemId }) => id === itemId),
-        }));
+      const selectedItems = selectedIds.map((id) => ({
+        id,
+        ...resultCache?.data?.find(({ id: itemId }) => id === itemId),
+        ...itemIdsOnPage?.find(({ id: itemId }) => id === itemId),
+      }));
 
-        // Ensures rows are marked as selected in the inventory table
-        dispatch({
-          type: 'SELECT_ENTITIES',
-          payload: {
-            selected: selectedIds,
-          },
-        });
+      // Ensures rows are marked as selected in the inventory table
+      dispatch({
+        type: 'SELECT_ENTITIES',
+        payload: {
+          selected: selectedIds,
+        },
+      });
 
-        itemCache.current = selectedItems;
-        dispatch(setDisabledSelection(false));
+      itemCache.current = selectedItems;
+      dispatch(setDisabledSelection(false));
 
-        if (typeof onSelect === 'function') {
-          onSelect?.(selectedItems);
-        }
+      if (typeof onSelect === 'function') {
+        onSelect?.(selectedItems);
       }
     },
-    [dispatch, onSelect, itemIdsOnPage, resultCache, selected],
+    [dispatch, onSelect, itemIdsOnPage, resultCache],
   );
 
   const bulkSelect = useBulkSelect({

@@ -4,7 +4,6 @@ import { formValueSelector, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 import { Wizard } from '@patternfly/react-core/deprecated';
-import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
 import CreateSCAPPolicy from './CreateSCAPPolicy';
 import { default as EditPolicyRules } from './EditPolicyProfilesRules/EditPolicyProfilesRules';
 import EditPolicySystems from './EditPolicySystems';
@@ -16,7 +15,6 @@ import {
   validateSecurityGuidePage,
   validateDetailsPage,
   validateRulesPage,
-  validateSystemsPage,
 } from './validate';
 
 export const CreatePolicyForm = ({
@@ -26,12 +24,10 @@ export const CreatePolicyForm = ({
   profile,
   refId,
   selectedRuleRefIds,
-  systemIds,
   reset,
   formHasAsyncErrors,
   detailsStepLoaded,
 }) => {
-  const allowNoSystems = useFeatureFlag('image-builder.compliance.enabled');
   const navigate = useNavigate();
   const [stepIdReached, setStepIdReached] = useState(1);
   const resetAnchor = () => {
@@ -75,16 +71,14 @@ export const CreatePolicyForm = ({
     {
       id: 3,
       name: 'Systems',
-      component: <EditPolicySystems allowNoSystems={allowNoSystems} />,
+      component: <EditPolicySystems />,
       canJumpTo: stepIdReached >= 3,
-      enableNext: validateSystemsPage(systemIds, allowNoSystems),
     },
     {
       id: 4,
       name: 'Rules',
       component: <EditPolicyRules />,
-      canJumpTo:
-        validateSystemsPage(systemIds, allowNoSystems) && stepIdReached >= 4,
+      canJumpTo: stepIdReached >= 4,
       enableNext: validateRulesPage(selectedRuleRefIds),
     },
     {
@@ -92,18 +86,14 @@ export const CreatePolicyForm = ({
       name: 'Review',
       component: <ReviewCreatedPolicy />,
       nextButtonText: 'Finish',
-      canJumpTo:
-        validateRulesPage(selectedRuleRefIds) &&
-        validateSystemsPage(systemIds, allowNoSystems) &&
-        stepIdReached >= 5,
+      canJumpTo: validateRulesPage(selectedRuleRefIds) && stepIdReached >= 5,
     },
     {
       id: 6,
       name: 'Finished',
       component: <FinishedCreatePolicy onWizardFinish={onClose} />,
       isFinishedStep: true,
-      canJumpTo:
-        validateSystemsPage(systemIds, allowNoSystems) && stepIdReached >= 6,
+      canJumpTo: stepIdReached >= 6,
     },
   ];
 

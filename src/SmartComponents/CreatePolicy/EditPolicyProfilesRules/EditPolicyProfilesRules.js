@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import xor from 'lodash/xor';
+import { xor, isEqual } from 'lodash';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { useDeepCompareEffect } from 'use-deep-compare';
@@ -116,8 +116,14 @@ const EditPolicyProfilesRules = ({
           ({ osMinorVersion: _osMinorVersion }) =>
             _osMinorVersion === osMinorVersion,
         );
-
-        updatedSelectedRuleRefIds[index].ruleRefIds = newSelectedRuleIds;
+        if (
+          isEqual(
+            updatedSelectedRuleRefIds[index].ruleRefIds,
+            newSelectedRuleIds,
+          )
+        ) {
+          return;
+        }
       }
       change('selectedRuleRefIds', updatedSelectedRuleRefIds);
     },

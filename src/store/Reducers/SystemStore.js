@@ -35,9 +35,15 @@ export const entitiesReducer = () =>
     }),
   });
 
-export const mapCountOsMinorVersions = (systems) => {
-  if (!systems) {
-    return {};
+export const mapCountOsMinorVersions = (systems, profile) => {
+  if (!systems || systems.length === 0) {
+    return profile.os_minor_versions.reduce((acc, version) => {
+      acc[version] = {
+        osMinorVersion: version,
+        count: 0,
+      };
+      return acc;
+    }, {});
   }
 
   return systems.reduce((acc, { osMinorVersion }) => {
@@ -52,7 +58,7 @@ export const mapCountOsMinorVersions = (systems) => {
   }, {});
 };
 
-export const countOsMinorVersions = (systems) =>
-  Object.values(mapCountOsMinorVersions(systems)).sort(
+export const countOsMinorVersions = (systems, profile) =>
+  Object.values(mapCountOsMinorVersions(systems, profile)).sort(
     sortingByProp('osMinorVersion', 'desc'),
   );
