@@ -36,7 +36,7 @@ const useSystemsBulkSelect = ({
     (selectedIds) => {
       const selectedItems = selectedIds.map((id) => ({
         id,
-        ...resultCache.data?.find(({ id: itemId }) => id === itemId),
+        ...resultCache?.data?.find(({ id: itemId }) => id === itemId),
         ...itemIdsOnPage?.find(({ id: itemId }) => id === itemId),
       }));
 
