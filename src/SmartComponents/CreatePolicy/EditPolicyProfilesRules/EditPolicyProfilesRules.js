@@ -124,6 +124,7 @@ const EditPolicyProfilesRules = ({
         ) {
           return;
         }
+        updatedSelectedRuleRefIds[index].ruleRefIds = newSelectedRuleIds;
       }
       change('selectedRuleRefIds', updatedSelectedRuleRefIds);
     },
