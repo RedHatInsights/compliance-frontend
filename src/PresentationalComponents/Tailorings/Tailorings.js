@@ -131,14 +131,11 @@ const Tailorings = ({
                         }}
                       />
                     </FlexItem>
-                    {typeof selectedVersionCounts?.[tab.os_minor_version] !==
-                      'undefined' && (
-                      <FlexItem>
-                        <Badge isRead>
-                          {` ${selectedVersionCounts[tab.os_minor_version]} `}
-                        </Badge>
-                      </FlexItem>
-                    )}
+                    <FlexItem>
+                      <Badge isRead>
+                        {` ${selectedVersionCounts[tab.os_minor_version] || 0} `}
+                      </Badge>
+                    </FlexItem>
                   </Flex>
                 }
                 ouiaId={`RHEL ${tab.os_major_version}.${tab.os_minor_version}`}
