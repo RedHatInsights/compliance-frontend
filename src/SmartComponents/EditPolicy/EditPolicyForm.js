@@ -44,12 +44,17 @@ const EditPolicyForm = ({
 
   const handleSystemSelect = useCallback(
     (newSelectedSystems) => {
+      // On some renderings we get system ids without os_minor_version
       const newOsMinorVersions = [
         ...new Set(
-          newSelectedSystems.map(
-            (system) => system.os_minor_version ?? system.osMinorVersion,
-          ),
-        ), // get unique values
+          newSelectedSystems
+            .filter(
+              (system) =>
+                system.os_minor_version != null ||
+                system.osMinorVersion != null,
+            )
+            .map((system) => system.os_minor_version ?? system.osMinorVersion),
+        ),
       ];
 
       const hasNewOsMinorVersions =

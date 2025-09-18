@@ -108,14 +108,15 @@ export const EditPolicyRulesTab = ({
         },
       };
     });
-
     setSelectedRules((prev) => ({
       ...prev,
       ...profilesRuleIds?.reduce((prevRuleIds, profile) => {
         return {
           ...prevRuleIds,
           [Number(profile.osMinorVersion)]:
-            prev?.[profile.osMinorVersion] || profile.ruleIds,
+            prev?.[profile.osMinorVersion].length > 0
+              ? prev?.[profile.osMinorVersion]
+              : profile.ruleIds,
         };
       }, {}),
     }));
@@ -151,12 +152,15 @@ export const EditPolicyRulesTab = ({
       stateValues={{
         data:
           policy &&
-          selectedOsMinorVersions.length > 0 &&
+          (selectedOsMinorVersions.length > 0 ||
+            tailoringOsMinorVersions.length > 0) &&
           (shouldSkipProfiles || (profilesRuleIds && !profilesRuleIdsLoading)),
         loading:
           assignedSystemCount === undefined ||
           (nonTailoringOsMinorVersions.length > 0 && profilesRuleIdsLoading),
-        empty: selectedOsMinorVersions.length === 0,
+        empty:
+          selectedOsMinorVersions.length === 0 &&
+          tailoringOsMinorVersions.length === 0,
         error: profilesRuleIdsError, // TODO: add the state view for error
       }}
     >
