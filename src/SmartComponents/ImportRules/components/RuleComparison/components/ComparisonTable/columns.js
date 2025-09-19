@@ -1,5 +1,5 @@
 import React from 'react';
-import { nowrap, cellWidth } from '@patternfly/react-table';
+import { nowrap } from '@patternfly/react-table';
 
 import RuleCell from './components/RuleCell';
 import ProfileVersionCell from './components/ProfileVersionCell';

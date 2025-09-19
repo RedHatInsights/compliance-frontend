@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import propTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import {
@@ -17,6 +17,7 @@ import useImportRulesData from './hooks/useImportRulesData';
 import useComparisonConditions from './hooks/useComparisonConditions';
 import useTailoringRuleSelection from './hooks/useTailoringRuleSelection';
 import useSaveTailoring from './hooks/useSaveTailoring';
+import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 
 const ImportRules = () => {
   const { policy_id: policyId } = useParams();
@@ -48,6 +49,10 @@ const ImportRules = () => {
     selection,
   });
   const isSaveDisabled = !selection || isEqual(initialSelection, selection);
+  const navigate = useNavigate();
+  const onClose = () => {
+    navigate(-1);
+  };
 
   const loading = importRulesDataLoading;
   const error = importRulesDataError || initialSelectionError;
@@ -69,6 +74,8 @@ const ImportRules = () => {
       }}
       isSaveDisabled={isSaveDisabled}
       onSave={onSave}
+      onClose={onClose}
+      onCancel={onClose}
     >
       <Content component={ContentVariants.p}>
         Select which minor RHEL version you would like to import the tailored

@@ -20,6 +20,7 @@ const ImportRulesModal = ({
   <ComplianceModal
     isOpen
     variant={ModalVariant.medium}
+    onClose={onCancel}
     actions={[
       <Button
         key="save"
@@ -34,7 +35,7 @@ const ImportRulesModal = ({
         key="cancel"
         ouiaId="DeleteReportCancelButton"
         variant="secondary"
-        onClick={() => onCancel?.()}
+        onClick={() => onCancel()}
       >
         Cancel
       </Button>,
