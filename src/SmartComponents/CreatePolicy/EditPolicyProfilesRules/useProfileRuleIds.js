@@ -85,39 +85,37 @@ const useProfileRuleIds = ({
 
   useDeepCompareEffectNoCheck(() => {
     const fetchMinorOsRuleIds = async () => {
-      const profilesAndRuleIdsUpdated = structuredClone(
-        profilesAndRuleIds || [],
-      );
+      const profilesAndRuleIdsUpdated = [];
 
-      for (const osMinorVersion of osMinorVersions) {
-        if (
-          profilesAndRuleIdsUpdated.find(
-            ({ osMinorVersion: _osMinorVersion }) =>
-              _osMinorVersion === osMinorVersion,
-          ) !== undefined
-        )
-          continue; // skip this version since already fetched
-        const profileAndIds =
-          await fetchProfilesAndIdsForMinorVersion(osMinorVersion);
+      for (const osMinorVersion of osMinorVersions || []) {
+        const cachedProfile = profilesAndRuleIds?.find(
+          ({ osMinorVersion: _osMinorVersion }) =>
+            _osMinorVersion === osMinorVersion,
+        );
+        if (cachedProfile) {
+          profilesAndRuleIdsUpdated.push(cachedProfile);
+        } else {
+          const profileAndIds =
+            await fetchProfilesAndIdsForMinorVersion(osMinorVersion);
 
-        if (profileAndIds?.length) {
-          const [securityGuideId, profileId, ruleIds] = profileAndIds;
+          if (profileAndIds?.length) {
+            const [securityGuideId, profileId, ruleIds] = profileAndIds;
 
-          profilesAndRuleIdsUpdated.push({
-            osMajorVersion,
-            osMinorVersion,
-            securityGuideId,
-            profileId,
-            ruleIds,
-          });
+            profilesAndRuleIdsUpdated.push({
+              osMajorVersion,
+              osMinorVersion,
+              securityGuideId,
+              profileId,
+              ruleIds,
+            });
+          }
         }
       }
 
       mounted.current && setProfilesAndRuleIds(profilesAndRuleIdsUpdated);
       setLoading(undefined);
     };
-
-    if (osMinorVersions?.length && !skip) {
+    if (!skip) {
       setLoading(true);
       fetchMinorOsRuleIds();
     }

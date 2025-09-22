@@ -39,7 +39,7 @@ const skipProfiles = ({
           skipValueDefinitions: hasNoOpenItems,
         },
         profile: {
-          skipRules: true,
+          skipRules: !profileId,
           skipRuleTree: true,
         },
         tailoring: {
@@ -55,8 +55,8 @@ const skipProfiles = ({
           skipValueDefinitions: hasNoOpenItems,
         },
         profile: {
-          skipRules: true,
-          skipRuleTree: true,
+          skipRules: !profileId || hasNoOpenItems,
+          skipRuleTree: !profileId,
         },
         tailoring: {
           skipRules: !tailoring || hasNoOpenItems,
