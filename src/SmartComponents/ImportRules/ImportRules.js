@@ -51,7 +51,9 @@ const ImportRules = () => {
 
   const onSave = useSaveTailoring({
     policyId,
+    osMinorVersion,
     selection,
+    tailorings,
   });
   const isSaveDisabled = !selection || !osMinorVersion;
 
