@@ -1,9 +1,10 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
-const RuleCell = ({ title, identifier: { label } }) => (
+const RuleCell = ({ title, identifier }) => (
   <>
-    {label}: {title}
+    {identifier?.label && `${identifier.label}: `}
+    {title}
   </>
 );
 

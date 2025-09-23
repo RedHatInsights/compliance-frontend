@@ -1,10 +1,25 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState, useEffect } from 'react';
 
-const useComparisonConditions = ({ tailorings, securityGuideProfile }) => {
+const useComparisonConditions = ({
+  tailorings,
+  securityGuideProfile,
+  preSelectedTargetVersion,
+}) => {
   const [comparisonConditions, setComparisonConditions] = useState({});
+
+  useEffect(() => {
+    if (preSelectedTargetVersion && tailorings?.length > 0) {
+      setComparisonConditions({
+        osMinorVersion: preSelectedTargetVersion,
+      });
+    }
+  }, [preSelectedTargetVersion, tailorings]);
 
   const onComparisonSettingsChange = useCallback((setting, value) => {
     setComparisonConditions((currentComparisonConditions) => ({
+      ['osMinorVersion']: preSelectedTargetVersion
+        ? preSelectedTargetVersion
+        : undefined,
       ...(setting !== 'tailoringId' ? currentComparisonConditions : {}),
       [setting]: value,
     }));

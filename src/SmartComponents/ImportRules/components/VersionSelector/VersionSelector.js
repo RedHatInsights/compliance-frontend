@@ -13,6 +13,7 @@ const VersionSelector = ({
   securityGuideProfile,
   values: { tailoringId, osMinorVersion },
   onChange,
+  preSelectedTargetVersion,
 }) => {
   const versionsToCopy = useMemo(
     () => optionsFromTailorings(tailorings),
@@ -27,8 +28,9 @@ const VersionSelector = ({
       optionsFromSecurityGuideProfileVersions(
         securityGuideProfile,
         selectedOsMinorVersion,
+        preSelectedTargetVersion,
       ),
-    [securityGuideProfile, selectedOsMinorVersion],
+    [securityGuideProfile, selectedOsMinorVersion, preSelectedTargetVersion],
   );
 
   return (
@@ -39,7 +41,7 @@ const VersionSelector = ({
             <VersionSelect
               label="Copy and import rules from"
               aria-label="Import version selection"
-              placeholder="Choose version to import rules from"
+              placeholder="Select a RHEL version"
               options={versionsToCopy}
               value={tailoringId}
               onChange={(tailoringId) => onChange?.('tailoringId', tailoringId)}
@@ -49,10 +51,10 @@ const VersionSelector = ({
         <Flex flex={{ default: 'flex_1' }}>
           <FlexItem>
             <VersionSelect
-              isDisabled={!tailoringId}
+              isDisabled={!tailoringId || preSelectedTargetVersion}
               label="Paste and apply rules to"
               aria-label="Apply version selection"
-              placeholder="Choose version to apply rules to"
+              placeholder="Select a RHEL version"
               value={osMinorVersion}
               onChange={(osMinorVersion) =>
                 onChange?.('osMinorVersion', osMinorVersion)
@@ -72,6 +74,7 @@ VersionSelector.propTypes = {
   canSelectVersionToApply: propTypes.bool,
   values: propTypes.object,
   onChange: propTypes.func,
+  preSelectedTargetVersion: propTypes.number,
 };
 
 export default VersionSelector;

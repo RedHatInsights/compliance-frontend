@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import {
   Content,
   ContentVariants,
@@ -19,6 +19,9 @@ import useSaveTailoring from './hooks/useSaveTailoring';
 
 const ImportRules = () => {
   const { policy_id: policyId } = useParams();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const preSelectedTargetVersion = queryParams.get('target_version');
 
   const {
     loading: importRulesDataLoading,
@@ -32,7 +35,11 @@ const ImportRules = () => {
     sourceVersion,
     targetVersion,
     onComparisonSettingsChange,
-  } = useComparisonConditions({ tailorings, securityGuideProfile });
+  } = useComparisonConditions({
+    tailorings,
+    securityGuideProfile,
+    preSelectedTargetVersion,
+  });
 
   const {
     loading: initialSelectionLoading,
@@ -80,6 +87,7 @@ const ImportRules = () => {
         securityGuideProfile={securityGuideProfile}
         values={{ tailoringId, osMinorVersion }}
         onChange={onComparisonSettingsChange}
+        preSelectedTargetVersion={preSelectedTargetVersion}
       />
 
       {policy && tailoringToCompare && osMinorVersion && (

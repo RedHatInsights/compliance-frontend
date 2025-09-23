@@ -145,7 +145,10 @@ const Tailorings = ({
 
   const alertActions = (os_minor_version) => (
     <React.Fragment>
-      <LinkButton to={`/scappolicies/${policy.id}/import-rules`} variant="link">
+      <LinkButton
+        to={`/scappolicies/${policy.id}/import-rules?target_version=${os_minor_version}`}
+        variant="link"
+      >
         Copy and import previous rules
       </LinkButton>
       <Button
