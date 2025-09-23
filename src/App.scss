@@ -18,7 +18,7 @@
 }
 
 .upload-instructions {
-    background: white
+    background: var(--pf-v6-global--BackgroundColor--100)
 }
 
 .policy-details-button {
@@ -57,14 +57,14 @@ button.pf-v6-c-button.pf-m-tertiary {
   &.wizard-os-button {
     padding: 30px;
     margin-right: 15px;
-    --pf-v6-c-button--m-tertiary--focus--BorderColor: #06c;
-    --pf-v6-c-button--m-tertiary--hover--BorderColor: #06c;
+    --pf-v6-c-button--m-tertiary--focus--BorderColor: var(--pf-v6-global--primary-color--100);
+    --pf-v6-c-button--m-tertiary--hover--BorderColor: var(--pf-v6-global--primary-color--100);
   }
 
   &.active-wizard-os-button {
     font-weight: bold;
-    color: #06c;
-    --pf-v6-c-button--m-tertiary--BorderColor: #06c;
+    color: var(--pf-v6-global--primary-color--100);
+    --pf-v6-c-button--m-tertiary--BorderColor: var(--pf-v6-global--primary-color--100);
     --pf-v6-c-button--BorderWidth: 2px;
   }
 }
@@ -103,7 +103,7 @@ button[data-ouia-component-id="InlineEditReset"] {
 }
 
 .ins-c-primary-toolbar__group-filter button.ins-c-osfilter__os-filter-button {
-  background: #FFF;
+  background: var(--pf-v6-global--BackgroundColor--100);
 
   label {
     cursor: default;
@@ -114,7 +114,7 @@ button[data-ouia-component-id="InlineEditReset"] {
   }
 
   .ins-c-osfilter__no-os {
-    color: #000;
+    color: var(--pf-v6-global--Color--100);
   }
 }
 .reports-table {
