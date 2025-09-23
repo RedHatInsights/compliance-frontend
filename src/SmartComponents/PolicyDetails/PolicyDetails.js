@@ -1,18 +1,19 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import {
   Breadcrumb,
   BreadcrumbItem,
+  Flex,
   Grid,
   GridItem,
   Tab,
   PageSection,
+  Spinner,
 } from '@patternfly/react-core';
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
-import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import {
   PolicyDetailsDescription,
   PolicyDetailsContentLoader,
@@ -23,8 +24,10 @@ import {
   RoutedTabs,
   BreadcrumbLinkItem,
   Tailorings,
+  LinkButton,
 } from 'PresentationalComponents';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
+
 import '@/Charts.scss';
 import PolicySystemsTab from './PolicySystemsTab';
 import './PolicyDetails.scss';
@@ -48,6 +51,8 @@ const dataMap = {
 };
 
 export const PolicyDetails = ({ route }) => {
+  // TODO Replace with actual feature flag;
+  const enableImportRules = false;
   const defaultTab = 'details';
   const { policy_id: policyId } = useParams();
   const {
@@ -75,7 +80,23 @@ export const PolicyDetails = ({ route }) => {
   const policy = data?.profile;
 
   useTitleEntity(route, policy?.name);
-  const DedicatedAction = () => <EditRulesButtonToolbarItem policy={policy} />;
+  const DedicatedAction = useMemo(
+    // eslint-disable-next-line react/display-name
+    () => () => (
+      <Flex columnGap={{ default: 'columnGapSm' }}>
+        <EditRulesButtonToolbarItem policy={policy} />
+        {enableImportRules && (
+          <LinkButton
+            to={`/scappolicies/${policyId}/import-rules`}
+            variant="secondary"
+          >
+            Import rules
+          </LinkButton>
+        )}
+      </Flex>
+    ),
+    [enableImportRules, policy, policyId],
+  );
 
   return (
     <StateViewWithError
