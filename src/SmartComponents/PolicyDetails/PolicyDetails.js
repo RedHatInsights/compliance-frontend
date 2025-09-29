@@ -60,6 +60,7 @@ export const PolicyDetails = ({ route }) => {
     error,
     loading,
     refetch,
+    query,
   } = usePolicy({ params: { policyId } });
   const versionCounts = usePolicyOsVersionCounts(policyId);
   const data = queryData
@@ -74,7 +75,7 @@ export const PolicyDetails = ({ route }) => {
   const saveValueOverrides = useSaveValueOverrides();
   const saveToPolicy = async (...args) => {
     await saveValueOverrides(...args);
-    refetch?.();
+    query?.();
   };
 
   const policy = data?.profile;

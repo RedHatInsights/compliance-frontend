@@ -13,7 +13,7 @@ jest.mock('Utilities/hooks/api/useUpdatePolicy');
 describe('EditPolicyDetailsInline', () => {
   beforeEach(() => {
     useUpdatePolicy.mockReturnValue({
-      fetch: jest.fn(() => Promise.resolve()),
+      query: jest.fn(() => Promise.resolve()),
     });
     usePermissionsWithContext.mockImplementation(() => ({
       hasAccess: true,

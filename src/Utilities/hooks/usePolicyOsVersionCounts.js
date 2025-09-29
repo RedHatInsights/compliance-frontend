@@ -4,11 +4,11 @@ import usePolicySystemsOS from './api/usePolicySystemsOS';
 
 const usePolicyOsVersionCounts = (policyId) => {
   const [counts, setCounts] = useState(null);
-  const { fetch: fetchPolicySystemsOS } = usePolicySystemsOS({
+  const { query: fetchPolicySystemsOS } = usePolicySystemsOS({
     params: { policyId },
     skip: true,
   });
-  const { fetch: fetchPolicySystems } = usePolicySystems({
+  const { query: fetchPolicySystems } = usePolicySystems({
     params: {
       policyId,
     },

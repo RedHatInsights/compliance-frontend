@@ -25,7 +25,6 @@ const useSecurityGuideProfileData = ({
     data: rules,
     loading: profileRulesLoading,
     error: profileRulesError,
-    fetchAllIds,
     exporter,
   } = useProfileRules({
     params: {
@@ -45,7 +44,6 @@ const useSecurityGuideProfileData = ({
       ...(!skipRules ? { rules } : {}),
       ...(!skipRuleTree ? { ruleTree } : {}),
     },
-    fetchAllIds,
     exporter,
   };
 };

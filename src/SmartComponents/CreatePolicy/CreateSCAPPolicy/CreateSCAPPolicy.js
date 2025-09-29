@@ -47,7 +47,7 @@ const CreateSCAPPolicy = ({
     error: availableProfilesError,
   } = useSupportedProfiles({
     params: {
-      filter: `os_major_version=${selectedOsMajorVersion}`,
+      filters: `os_major_version=${selectedOsMajorVersion}`,
     },
     useTableState: true,
     skip: selectedOsMajorVersion === undefined,
