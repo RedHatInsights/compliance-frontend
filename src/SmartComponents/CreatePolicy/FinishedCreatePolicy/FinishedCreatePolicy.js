@@ -9,12 +9,12 @@ import useTailorings from 'Utilities/hooks/api/useTailorings';
 import useUpdateTailoring from 'Utilities/hooks/api/useUpdateTailoring';
 
 export const useUpdatePolicy = () => {
-  const { fetch: createPolicy } = useCreatePolicy({ skip: true });
-  const { fetch: assignRules } = useAssignRules({ skip: true });
-  const { fetch: assignSystems } = useAssignSystems({ skip: true });
-  const { fetch: fetchTailorings } = useTailorings({ skip: true });
-  const { fetch: updateTailoring } = useUpdateTailoring({ skip: true }); // to update value overrides
-  const { fetchQueue: createTailorings } = useCreateTailoring();
+  const { query: createPolicy } = useCreatePolicy({ skip: true });
+  const { query: assignRules } = useAssignRules({ skip: true });
+  const { query: assignSystems } = useAssignSystems({ skip: true });
+  const { query: fetchTailorings } = useTailorings({ skip: true });
+  const { query: updateTailoring } = useUpdateTailoring({ skip: true }); // to update value overrides
+  const { fetchQueue: createTailorings } = useCreateTailoring({ skip: true });
 
   const updatedPolicy = useCallback(
     async (
@@ -43,31 +43,24 @@ export const useUpdatePolicy = () => {
           onProgress(++progress / expectedUpdates);
         }
       };
-
-      const createPolicyResponse = await createPolicy(
-        [
-          undefined,
-          {
-            title: name,
-            description,
-            business_objective: businessObjective,
-            compliance_threshold: complianceThreshold,
-            profile_id: cloneFromProfileId,
-          },
-        ],
-        false,
-      );
-
+      const createPolicyResponse = await createPolicy({
+        policy: {
+          title: name,
+          description,
+          business_objective: businessObjective,
+          compliance_threshold: complianceThreshold,
+          profile_id: cloneFromProfileId,
+        },
+      });
       dispatchProgress();
 
       const { id: newPolicyId } = createPolicyResponse.data;
 
       if (hosts && hosts.length > 0) {
-        await assignSystems([
-          newPolicyId,
-          undefined,
-          { ids: hosts.map(({ id }) => id) },
-        ]);
+        await assignSystems({
+          policyId: newPolicyId,
+          assignSystemsRequest: { ids: hosts.map(({ id }) => id) },
+        });
       } else {
         const tailoringsToCreate = minorVersions.map((os_minor_version) => ({
           policyId: newPolicyId,
@@ -79,14 +72,10 @@ export const useUpdatePolicy = () => {
 
       dispatchProgress();
 
-      const fetchPolicyResponse = await fetchTailorings(
-        [
-          newPolicyId,
-          undefined,
-          100 /** to ensure we fetch all tailorings at once */,
-        ],
-        false,
-      );
+      const fetchPolicyResponse = await fetchTailorings({
+        policyId: newPolicyId,
+        limit: 100 /* to ensure we fetch all tailorings at once */,
+      });
       const tailorings = fetchPolicyResponse.data;
 
       dispatchProgress();
@@ -97,17 +86,13 @@ export const useUpdatePolicy = () => {
             Number(osMinorVersion) === tailoring.os_minor_version,
         ).ruleRefIds;
 
-        await assignRules(
-          [
-            newPolicyId,
-            tailoring.id,
-            undefined,
-            {
-              ids: rulesToAssign,
-            },
-          ],
-          false,
-        );
+        await assignRules({
+          policyId: newPolicyId,
+          tailoringId: tailoring.id,
+          assignRulesRequest: {
+            ids: rulesToAssign,
+          },
+        });
 
         dispatchProgress();
       }
@@ -122,6 +107,7 @@ export const useUpdatePolicy = () => {
         ) {
           continue;
         }
+
         await updateTailoring({
           policyId: newPolicyId,
           tailoringId: tailoring.id,

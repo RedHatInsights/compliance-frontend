@@ -54,7 +54,6 @@ export const PolicyDetails = ({ route }) => {
   const saveValueOverrides = useSaveValueOverrides();
   const saveToPolicy = async (...args) => {
     await saveValueOverrides(...args);
-    refetch?.();
   };
 
   const resetValueOverrides = useResetValueOverrides(policyId, refetch);
