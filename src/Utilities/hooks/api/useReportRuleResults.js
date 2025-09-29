@@ -6,8 +6,8 @@ const convertToArray = ({
   limit,
   offset,
   idsOnly,
-  sortBy,
-  filter,
+  sort,
+  filters,
 }) => [
   testResultId,
   reportId,
@@ -15,8 +15,8 @@ const convertToArray = ({
   limit,
   offset,
   idsOnly,
-  sortBy,
-  filter,
+  sort,
+  filters,
 ];
 
 const useReportRuleResults = (options) =>

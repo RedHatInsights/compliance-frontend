@@ -1,12 +1,12 @@
 import useComplianceQuery from '../useComplianceQuery';
 
-const convertToArray = ({ limit, offset, idsOnly, sortBy, filter }) => [
+const convertToArray = ({ limit, offset, idsOnly, sort, filters }) => [
   undefined, // xRHIDENTITY
   limit,
   offset,
   idsOnly,
-  sortBy,
-  filter,
+  sort,
+  filters,
 ];
 
 const useSupportedProfiles = (options) =>

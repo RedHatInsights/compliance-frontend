@@ -4,7 +4,7 @@ const convertToArray = (params) => {
   if (Array.isArray(params)) {
     return params;
   } else {
-    const { securityGuideId, limit, offset, idsOnly, sortBy, filter } = params;
+    const { securityGuideId, limit, offset, idsOnly, sort, filters } = params;
 
     return [
       securityGuideId,
@@ -12,8 +12,8 @@ const convertToArray = (params) => {
       limit,
       offset,
       idsOnly,
-      sortBy,
-      filter,
+      sort,
+      filters,
     ];
   }
 };

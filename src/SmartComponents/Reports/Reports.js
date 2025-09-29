@@ -24,7 +24,7 @@ const Reports = () => {
     loading: totalReportsLoading,
   } = useReports({
     onlyTotal: true,
-    params: { filter: REPORTS_FILTER },
+    params: { filters: REPORTS_FILTER },
   });
   const {
     data: { data: operatingSystems } = {},
@@ -37,7 +37,7 @@ const Reports = () => {
     loading: reportsLoading,
     exporter,
   } = useReports({
-    params: { filter: REPORTS_FILTER },
+    params: { filters: REPORTS_FILTER },
     useTableState: true,
     batch: { batchSize: 10 },
   });

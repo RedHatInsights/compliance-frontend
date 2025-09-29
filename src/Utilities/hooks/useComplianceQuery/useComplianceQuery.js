@@ -5,6 +5,9 @@ import useComplianceApi from 'Utilities/hooks/useComplianceApi';
 import useComplianceTableState from './hooks/useComplianceTableState';
 import useComplianceFetchExtras from './hooks/useComplianceFetchExtras';
 import useComplianceFetchApi from './hooks/useComplianceFetchApi';
+import { useQueryWithUtilities } from 'bastilian-tabletools';
+import { useCallback } from 'react';
+import { end } from '@patternfly/react-core/dist/esm/helpers/Popper/thirdparty/popper-core';
 
 /**
  *  @typedef {object} useComplianceQueryParams
@@ -86,7 +89,7 @@ import useComplianceFetchApi from './hooks/useComplianceFetchApi';
 const useComplianceQuery = (
   endpoint,
   {
-    params: paramsOption,
+    params: paramsOption = [],
     useTableState = false,
     batched = false,
     skip: skipOption,
@@ -99,67 +102,148 @@ const useComplianceQuery = (
 ) => {
   // TODO refactor useComplianceQuery to centralise "convertToArray" functions
   const apiEndpoint = useComplianceApi(endpoint);
-  const { params, hasState } = useComplianceTableState(
-    useTableState,
-    paramsOption,
-  );
-  const skip = !!(useTableState && !hasState) || !!skipOption;
+  // const { params, hasState } = useComplianceTableState(
+  //   useTableState,
+  //   paramsOption,
+  // );
+  // console.log("DEBUG params", params)
+  // const skip = !!(useTableState && !hasState) || !!skipOption;
 
-  const { fetchApi, fetchForBatch } = useComplianceFetchApi({
+  // console.log("DEBUG endpoint", endpoint)
+  if (endpoint === 'reports') {
+    console.log("DEBUG params", { paramsOption, useTableState, batched, skipOption, batch, onlyTotal, convertToArray,useQueryOptions, compileResult })
+  }
+  // if (endpoint === 'reportRuleResults') {
+  //   console.log("DEBUG paramsOptions", paramsOption)
+  //   console.log("DEBUG skipOption", skipOption)
+  // }
+
+  const fetchApi = useComplianceFetchApi({
     apiEndpoint,
-    params,
+    params: paramsOption,
     convertToArray,
     onlyTotal,
     compileResult,
   });
+  const myCoolParams = convertToArray(paramsOption);
+  // console.log("DEBUG myCoolParams", myCoolParams)
+
+  // const fetchFn = useCallback(
+  //   async (params) => {
+  //     console.log("DEBUG params", params)
+  //     const convertedParams =
+  //     (convertToArray && Object.keys(params).length !== 0 && !Array.isArray(params)
+  //       ? convertToArray(params)
+  //       : []);
+      
+  //     console.log("DEBUG convertedParams", convertedParams)
+  
+  //     const { data } = await apiEndpoint(...(convertedParams || []));
+
+  //     return data;
+  //   },
+  //   [endpoint],
+  // );
+
+  // exporter
+  // itemIdsInTable
+  // itemIdsOnPage
+  // items
+  // loading
+  // query
+  // queryBatchedQueue
+  // queryQueue
+  // queryTotalBatched
+  // result
+  const resp = useQueryWithUtilities({
+    // fetchFn: (_queryContext, ...args) => fetchApi(...args),
+    fetchFn: fetchApi,
+    queryKey: [endpoint, ...myCoolParams],
+    enabled: !skipOption,
+    batched: batched,
+    useTableState: useTableState,
+    params: paramsOption,
+    queue: batched,
+    // ...useQueryOptions,
+    tableQueries: {
+      itemIdsOnPageSelect: () => [], // workaround for data.map bug
+    }
+  })
 
   const {
-    data: queryData,
+    result: queryData,
     error: queryError,
-    isFetching: queryLoading,
-    refetch: queryRefetch,
-  } = useQuery({
-    queryKey: [endpoint, params],
-    queryFn: (_queryContext, ...args) => fetchApi(...args),
-    enabled: !(batched ? true : skip),
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-    ...useQueryOptions,
-  });
+    loading: queryLoading,
+    query: query,
+    queryTotalBatched,
+    queryQueue,
+    queryBatchedQueue,
+    itemIdsInTable,
+    exporter,
+  } = resp;
+  // console.log("DEBUG resp", resp)
 
-  const {
-    loading: batchedLoading,
-    data: batchedData,
-    error: batchedError,
-    fetch: fetchBatched,
-  } = useFetchTotalBatched(fetchForBatch, {
-    skip: !batched ? true : skip,
-    ...batch,
-  });
-
-  const extras = useComplianceFetchExtras({
-    fetch: fetchApi,
-    fetchBatched,
-    params,
-  });
 
   return {
-    ...(batched
-      ? {
-          data: batchedData,
-          error: batchedError,
-          loading: batchedLoading,
-        }
-      : {
-          data: queryData,
-          error: queryError,
-          loading: queryLoading,
-        }),
+    data: queryData,
+    error: queryError,
+    loading: queryLoading,
+    query: query,
+    queryTotalBatched: queryTotalBatched,  // is it correct?
     fetch: fetchApi,
-    fetchBatched,
-    refetch: queryRefetch,
-    ...extras,
+    fetchBatchedQueue: queryBatchedQueue,  // is it correct?
+    fetchQueue: queryQueue, // is it correct?
+    exporter: exporter,
+    fetchAllIds: itemIdsInTable, // is it correct? or should it be itemIdsOnPage?
   };
+  
+  // const {
+  //   data: queryData,
+  //   error: queryError,
+  //   isFetching: queryLoading,
+  //   refetch: queryRefetch,
+  // } = useQuery({
+  //   queryKey: [endpoint, params],
+  //   queryFn: (_queryContext, ...args) => fetchApi(...args),
+  //   enabled: !(batched ? true : skip),
+  //   refetchOnWindowFocus: false,
+  //   refetchOnReconnect: false,
+  //   ...useQueryOptions,
+  // });
+
+  // const {
+  //   loading: batchedLoading,
+  //   data: batchedData,
+  //   error: batchedError,
+  //   fetch: fetchBatched,
+  // } = useFetchTotalBatched(fetchForBatch, {
+  //   skip: !batched ? true : skip,
+  //   ...batch,
+  // });
+
+  // const extras = useComplianceFetchExtras({
+  //   fetch: fetchApi,
+  //   fetchBatched,
+  //   params,
+  // });
+
+  // return {
+  //   ...(batched
+  //     ? {
+  //         data: batchedData,
+  //         error: batchedError,
+  //         loading: batchedLoading,
+  //       }
+  //     : {
+  //         data: queryData,
+  //         error: queryError,
+  //         loading: queryLoading,
+  //       }),
+  //   fetch: fetchApi,
+  //   fetchBatched,
+  //   refetch: queryRefetch,
+  //   ...extras,
+  // };
 };
 
 export default useComplianceQuery;

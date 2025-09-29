@@ -5,16 +5,16 @@ const convertToArray = ({
   limit,
   offset,
   idsOnly,
-  sortBy,
-  filter,
+  sort,
+  filters,
 }) => [
   systemId,
   undefined, // xRHIDENTITY
   limit,
   offset,
   idsOnly,
-  sortBy,
-  filter,
+  sort,
+  filters,
 ];
 
 const useSystemReports = (options) =>

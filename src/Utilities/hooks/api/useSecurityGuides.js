@@ -4,15 +4,15 @@ const convertToArray = (params) => {
   if (Array.isArray(params)) {
     return params;
   } else {
-    const { limit, offset, idsOnly, sortBy, filter } = params;
+    const { limit, offset, idsOnly, sort, filters } = params;
 
     return [
       undefined, // xRHIDENTITY
       limit,
       offset,
       idsOnly,
-      sortBy,
-      filter,
+      sort,
+      filters,
     ];
   }
 };
