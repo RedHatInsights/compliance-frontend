@@ -33,24 +33,12 @@ const useProfileRuleIds = ({
     skip: true,
   });
 
-  const { fetch: fetchProfileRules } = useProfileRules({
+  const { queryTotalBatched: fetchProfileRules } = useProfileRules({
     params: { idsOnly: true },
+    batched: true,
+    totalBatched: { batchSize: 100 },
     skip: true,
   });
-
-  const fetchProfileRulesForBatch = useCallback(
-    async (offset, limit, params) =>
-      await fetchProfileRules({ limit, offset, ...params }),
-    [fetchProfileRules],
-  );
-  const { fetch: fetchRulesBatched } = useFetchTotalBatched(
-    fetchProfileRulesForBatch,
-    {
-      batchSize: 100,
-      skip: true,
-      withMeta: true,
-    },
-  );
 
   const fetchProfilesAndIdsForMinorVersion = useCallback(
     async (osMinorVersion) => {
@@ -64,7 +52,7 @@ const useProfileRuleIds = ({
         const securityGuideId = ssg.id;
         const profileId = (await fetchProfiles({ securityGuideId })).data[0].id;
         const ruleIds = (
-          await fetchRulesBatched({ securityGuideId, profileId })
+          await fetchProfileRules({ securityGuideId, profileId })
         ).data?.map(({ id }) => id);
 
         return [securityGuideId, profileId, ruleIds];
@@ -76,7 +64,7 @@ const useProfileRuleIds = ({
     },
     [
       osMajorVersion,
-      fetchRulesBatched,
+      fetchProfileRules,
       fetchSecurityGuide,
       profileRefId,
     ],

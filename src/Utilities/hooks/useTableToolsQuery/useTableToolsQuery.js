@@ -17,6 +17,7 @@ const useTableToolsQuery = (
     convertToArray,
     // useQueryOptions = {},
     // compileResult,
+    totalBatched,
   } = {},
 ) => {
   const apiEndpoint = useComplianceApi(endpoint);
@@ -65,6 +66,7 @@ const useTableToolsQuery = (
     params: paramsOption,
     // queue: batched,
     combineParamsWithTableState,
+    totalBatched,
     // ...useQueryOptions,
     // tableQueries: {
     //   itemIdsOnPageSelect: () => [], // workaround for data.map bug
