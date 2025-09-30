@@ -37,7 +37,7 @@ const usePolicyOsVersionCounts = (policyId) => {
     };
 
     getCounts();
-  }, [policyId, fetchPolicySystemsOS, fetchPolicySystems]);
+  }, [policyId, fetchPolicySystemsOS]);
 
   return counts;
 };

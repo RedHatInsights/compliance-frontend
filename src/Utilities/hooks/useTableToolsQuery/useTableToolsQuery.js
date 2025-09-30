@@ -63,7 +63,7 @@ const useTableToolsQuery = (
     batched: batched,
     useTableState: useTableState,
     params: paramsOption,
-    queue: batched,
+    // queue: batched,
     combineParamsWithTableState,
     // ...useQueryOptions,
     // tableQueries: {
