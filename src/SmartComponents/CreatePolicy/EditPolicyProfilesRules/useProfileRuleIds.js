@@ -76,7 +76,6 @@ const useProfileRuleIds = ({
     },
     [
       osMajorVersion,
-      fetchProfiles,
       fetchRulesBatched,
       fetchSecurityGuide,
       profileRefId,
