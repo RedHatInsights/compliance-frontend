@@ -1,9 +1,9 @@
 import useComplianceQuery from '../useComplianceQuery';
 
-export const convertToArray = ({ policyId, filters }) => [
+export const convertToArray = ({ policyId, filter }) => [
   policyId,
   undefined, // xRHIDENTITY
-  filters,
+  filter,
 ];
 
 const usePolicySystemsOS = (options) =>

@@ -1,8 +1,8 @@
 import useComplianceQuery from '../useComplianceQuery';
 
-const convertToArray = ({ filters }) => [
+const convertToArray = ({ filter }) => [
   undefined, // xRHIDENTITY
-  filters,
+  filter,
 ];
 
 const useSecurityGuidesOS = (options) =>

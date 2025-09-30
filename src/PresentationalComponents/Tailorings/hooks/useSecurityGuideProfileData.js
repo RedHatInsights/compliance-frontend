@@ -31,7 +31,7 @@ const useSecurityGuideProfileData = ({
     params: {
       securityGuideId,
       profileId,
-      filters: groupFilter,
+      filter: groupFilter,
     },
     skip: skipRules,
     batched: tableView === 'tree',

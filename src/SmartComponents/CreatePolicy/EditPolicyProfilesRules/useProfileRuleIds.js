@@ -19,7 +19,7 @@ const useProfileRuleIds = ({
     params: {
       limit: 1,
       idsOnly: true,
-      sort: 'version:desc',
+      sortBy: 'version:desc',
     },
     skip: true,
   });
@@ -28,7 +28,7 @@ const useProfileRuleIds = ({
     params: {
       limit: 1,
       idsOnly: true,
-      filters: `ref_id=${profileRefId}`,
+      filter: `ref_id=${profileRefId}`,
     },
     skip: true,
   });

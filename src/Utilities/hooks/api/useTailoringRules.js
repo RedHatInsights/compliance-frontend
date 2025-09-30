@@ -6,8 +6,8 @@ const convertToArray = ({
   limit,
   offset,
   idsOnly,
-  sort,
-  filters,
+  sortBy,
+  filter,
 }) => [
   policyId,
   tailoringId,
@@ -15,8 +15,8 @@ const convertToArray = ({
   limit,
   offset,
   idsOnly,
-  sort,
-  filters,
+  sortBy,
+  filter,
 ];
 
 // TODO investigate why this endpoint requires direct arguments and does not recognise the params object.

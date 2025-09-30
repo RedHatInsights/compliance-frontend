@@ -10,8 +10,8 @@ const convertToArray = (params) => {
       limit,
       offset,
       idsOnly,
-      sort,
-      filters,
+      sortBy,
+      filter,
     } = params;
 
     return [
@@ -21,8 +21,8 @@ const convertToArray = (params) => {
       limit,
       offset,
       idsOnly,
-      sort,
-      filters,
+      sortBy,
+      filter,
     ];
   }
 };

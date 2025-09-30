@@ -24,7 +24,7 @@ const Reports = () => {
     loading: totalReportsLoading,
   } = useReports({
     onlyTotal: true,
-    params: { filters: REPORTS_FILTER },
+    params: { filter: REPORTS_FILTER },
   });
   const {
     data: { data: operatingSystems } = {},
