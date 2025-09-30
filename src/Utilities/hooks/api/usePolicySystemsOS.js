@@ -1,4 +1,4 @@
-import useComplianceQuery from '../useComplianceQuery';
+import useTableToolsQuery from '../useTableToolsQuery';
 
 export const convertToArray = ({ policyId, filter }) => [
   policyId,
@@ -7,6 +7,6 @@ export const convertToArray = ({ policyId, filter }) => [
 ];
 
 const usePolicySystemsOS = (options) =>
-  useComplianceQuery('policySystemsOS', { ...options, convertToArray });
+  useTableToolsQuery('policySystemsOS', { ...options, convertToArray });
 
 export default usePolicySystemsOS;
