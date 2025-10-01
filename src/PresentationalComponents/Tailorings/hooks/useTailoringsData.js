@@ -28,7 +28,7 @@ const useTailoringsData = ({
     params: {
       policyId,
       tailoringId,
-      filter: groupFilter,
+      ...(groupFilter && { filters: groupFilter }),
     },
     skip: skipRules,
     batched: tableView === 'tree',

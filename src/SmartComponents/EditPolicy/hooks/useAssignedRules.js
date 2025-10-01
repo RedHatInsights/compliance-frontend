@@ -40,7 +40,7 @@ const useAssignedRules = (policyId) => {
     if (tailoringsLoading === false && tailorings !== undefined) {
       fillTailoringRules();
     }
-  }, [fetchTailoringRules, tailorings, tailoringsLoading]);
+  }, [tailorings, tailoringsLoading]);
 
   return {
     assignedRuleIds,
