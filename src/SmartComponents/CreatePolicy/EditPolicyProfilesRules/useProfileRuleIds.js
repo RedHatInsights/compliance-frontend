@@ -4,7 +4,6 @@ import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect';
 import useSecurityGuides from 'Utilities/hooks/api/useSecurityGuides';
 import useProfiles from 'Utilities/hooks/api/useProfiles';
 import useProfileRules from 'Utilities/hooks/api/useProfileRules';
-import useFetchTotalBatched from 'Utilities/hooks/useFetchTotalBatched';
 
 const useProfileRuleIds = ({
   profileRefId,
@@ -19,7 +18,7 @@ const useProfileRuleIds = ({
     params: {
       limit: 1,
       idsOnly: true,
-      sortBy: 'version:desc',
+      sort: 'version:desc',
     },
     skip: true,
   });
@@ -44,7 +43,7 @@ const useProfileRuleIds = ({
     async (osMinorVersion) => {
       const ssg = (
         await fetchSecurityGuide({
-          filter: `os_major_version=${osMajorVersion} AND supported_profile=${profileRefId}:${osMinorVersion}`,
+          filters: `os_major_version=${osMajorVersion} AND supported_profile=${profileRefId}:${osMinorVersion}`,
         })
       )?.data?.[0];
 
