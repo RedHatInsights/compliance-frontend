@@ -16,7 +16,7 @@ const useSavePolicy = ({ id: policyId } = {}, updatedPolicyHostsAndRules) => {
     tailoringValueOverrides,
   } = updatedPolicyHostsAndRules || {};
   const params = { policyId };
-  const { fetchBatched: fetchTailorings } = useTailorings({
+  const { queryTotalBatched: fetchTailorings } = useTailorings({
     params,
     skip: true,
   });

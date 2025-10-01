@@ -1,9 +1,14 @@
 import useComplianceApi from 'Utilities/hooks/useComplianceApi';
 
 import { useQueryWithUtilities } from 'bastilian-tabletools';
-import { useCallback } from 'react';
-import { compileTotalResult, defaultCompileResult, paramsWithFilters, fetchResult, TOTAL_REQUEST_PARAMS } from './helpers';
-
+import { useCallback, useMemo } from 'react';
+import {
+  compileTotalResult,
+  defaultCompileResult,
+  paramsWithFilters,
+  fetchResult,
+  TOTAL_REQUEST_PARAMS,
+} from './helpers';
 
 const useTableToolsQuery = (
   endpoint,
@@ -35,10 +40,13 @@ const useTableToolsQuery = (
         onlyTotal ? compileTotalResult : defaultCompileResult,
       );
     },
-    [apiEndpoint, paramsOption, convertToArray, onlyTotal, defaultCompileResult],
+    [apiEndpoint, paramsOption, convertToArray, onlyTotal],
   );
 
-  const myCoolParams = convertToArray(paramsOption);
+  const myCoolParams = useMemo(
+    () => convertToArray(paramsOption),
+    [convertToArray, paramsOption],
+  );
 
   const combineParamsWithTableState = useCallback(
     (tableStateParams, additionalParams) => {
@@ -71,7 +79,7 @@ const useTableToolsQuery = (
     // tableQueries: {
     //   itemIdsOnPageSelect: () => [], // workaround for data.map bug
     // }
-  })
+  });
 
   const {
     result: queryData,
@@ -85,17 +93,16 @@ const useTableToolsQuery = (
     exporter,
     // items,
   } = resp;
-  console.log("DEBUG resp", resp)
-
+  console.log('DEBUG resp', resp);
 
   return {
     data: queryData,
     error: queryError,
     loading: queryLoading,
     query: query,
-    queryTotalBatched: queryTotalBatched,  // is it correct?
+    queryTotalBatched: queryTotalBatched, // is it correct?
     fetch: fetchApi,
-    fetchBatchedQueue: queryBatchedQueue,  // is it correct?
+    fetchBatchedQueue: queryBatchedQueue, // is it correct?
     fetchQueue: queryQueue, // is it correct?
     exporter: exporter,
     fetchAllIds: itemIdsInTable, // is it correct? or should it be itemIdsOnPage?

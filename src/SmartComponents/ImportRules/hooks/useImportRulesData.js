@@ -32,7 +32,7 @@ const useImportRulesData = ({ policyId }) => {
   } = useTailorings({
     params: {
       policyId,
-      filter: 'NOT(null? os_minor_version)',
+      filters: 'NOT(null? os_minor_version)',
       skip: !policy,
     },
   });

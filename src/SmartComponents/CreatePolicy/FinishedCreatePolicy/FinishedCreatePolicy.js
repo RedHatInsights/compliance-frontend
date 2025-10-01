@@ -7,12 +7,13 @@ import useAssignRules from 'Utilities/hooks/api/useAssignRules';
 import useAssignSystems from 'Utilities/hooks/api/useAssignSystems';
 import useTailorings from 'Utilities/hooks/api/useTailorings';
 import useUpdateTailoring from 'Utilities/hooks/api/useUpdateTailoring';
+import { policy } from '@redhat-cloud-services/compliance-client';
 
 export const useUpdatePolicy = () => {
   const { fetch: createPolicy } = useCreatePolicy({ skip: true });
   const { fetch: assignRules } = useAssignRules({ skip: true });
   const { fetch: assignSystems } = useAssignSystems({ skip: true });
-  const { fetch: fetchTailorings } = useTailorings({ skip: true });
+  const { query: fetchTailorings } = useTailorings({ skip: true });
   const { fetch: updateTailoring } = useUpdateTailoring({ skip: true }); // to update value overrides
   const { fetchQueue: createTailorings } = useCreateTailoring();
 
@@ -79,14 +80,10 @@ export const useUpdatePolicy = () => {
 
       dispatchProgress();
 
-      const fetchPolicyResponse = await fetchTailorings(
-        [
-          newPolicyId,
-          undefined,
-          100 /** to ensure we fetch all tailorings at once */,
-        ],
-        false,
-      );
+      const fetchPolicyResponse = await fetchTailorings({
+        policyId: newPolicyId,
+        limit: 100 /* to ensure we fetch all tailorings at once */,
+      });
       const tailorings = fetchPolicyResponse.data;
 
       dispatchProgress();
@@ -136,7 +133,7 @@ export const useUpdatePolicy = () => {
     [
       createPolicy,
       assignSystems,
-      fetchTailorings,
+      // fetchTailorings,
       assignRules,
       updateTailoring,
     ],
