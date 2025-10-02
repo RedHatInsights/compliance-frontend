@@ -9,7 +9,7 @@ import useTailorings from 'Utilities/hooks/api/useTailorings';
 import useUpdateTailoring from 'Utilities/hooks/api/useUpdateTailoring';
 
 export const useUpdatePolicy = () => {
-  const { fetch: createPolicy } = useCreatePolicy({ skip: true });
+  const { query: createPolicy } = useCreatePolicy({ skip: true });
   const { query: assignRules } = useAssignRules({ skip: true });
   const { query: assignSystems } = useAssignSystems({ skip: true });
   const { query: fetchTailorings } = useTailorings({ skip: true });
@@ -43,21 +43,15 @@ export const useUpdatePolicy = () => {
           onProgress(++progress / expectedUpdates);
         }
       };
-
-      const createPolicyResponse = await createPolicy(
-        [
-          undefined,
-          {
-            title: name,
-            description,
-            business_objective: businessObjective,
-            compliance_threshold: complianceThreshold,
-            profile_id: cloneFromProfileId,
-          },
-        ],
-        false,
-      );
-
+      const createPolicyResponse = await createPolicy({
+        policy: {
+          title: name,
+          description,
+          business_objective: businessObjective,
+          compliance_threshold: complianceThreshold,
+          profile_id: cloneFromProfileId,
+        }
+      });
       dispatchProgress();
 
       const { id: newPolicyId } = createPolicyResponse.data;

@@ -6,7 +6,7 @@ const convertToArray = ({ policyId, tailoringCreate }) => [
   tailoringCreate,
 ];
 
-const useCreatePolicy = (options) =>
+const useCreateTailoring = (options) =>
   useComplianceMutation('createTailoring', { ...options, convertToArray });
 
-export default useCreatePolicy;
+export default useCreateTailoring;
