@@ -14,7 +14,7 @@ const useSaveTailoring = ({
     params: { policyId },
     skip: true,
   });
-  const { fetch: createTailorings } = useCreateTailoring({
+  const { queue: createTailorings } = useCreateTailoring({
     params: { policyId },
   });
 

@@ -14,7 +14,7 @@ export const useUpdatePolicy = () => {
   const { query: assignSystems } = useAssignSystems({ skip: true });
   const { query: fetchTailorings } = useTailorings({ skip: true });
   const { fetch: updateTailoring } = useUpdateTailoring({ skip: true }); // to update value overrides
-  const { fetchQueue: createTailorings } = useCreateTailoring();
+  const { fetchQueue: createTailorings } = useCreateTailoring({ skip: true });
 
   const updatedPolicy = useCallback(
     async (
@@ -50,7 +50,7 @@ export const useUpdatePolicy = () => {
           business_objective: businessObjective,
           compliance_threshold: complianceThreshold,
           profile_id: cloneFromProfileId,
-        }
+        },
       });
       dispatchProgress();
 
@@ -60,7 +60,7 @@ export const useUpdatePolicy = () => {
         await assignSystems({
           policyId: newPolicyId,
           assignSystemsRequest: { ids: hosts.map(({ id }) => id) },
-        })
+        });
       } else {
         const tailoringsToCreate = minorVersions.map((os_minor_version) => ({
           policyId: newPolicyId,
@@ -91,7 +91,7 @@ export const useUpdatePolicy = () => {
           tailoringId: tailoring.id,
           assignRulesRequest: {
             ids: rulesToAssign,
-          }
+          },
         });
 
         dispatchProgress();
