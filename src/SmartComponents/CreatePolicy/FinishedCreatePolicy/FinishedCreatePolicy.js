@@ -7,7 +7,6 @@ import useAssignRules from 'Utilities/hooks/api/useAssignRules';
 import useAssignSystems from 'Utilities/hooks/api/useAssignSystems';
 import useTailorings from 'Utilities/hooks/api/useTailorings';
 import useUpdateTailoring from 'Utilities/hooks/api/useUpdateTailoring';
-import { policy } from '@redhat-cloud-services/compliance-client';
 
 export const useUpdatePolicy = () => {
   const { fetch: createPolicy } = useCreatePolicy({ skip: true });

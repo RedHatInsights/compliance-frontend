@@ -61,12 +61,7 @@ const useProfileRuleIds = ({
         );
       }
     },
-    [
-      osMajorVersion,
-      fetchProfileRules,
-      fetchSecurityGuide,
-      profileRefId,
-    ],
+    [osMajorVersion, fetchProfileRules, fetchSecurityGuide, profileRefId],
   );
 
   useDeepCompareEffectNoCheck(() => {

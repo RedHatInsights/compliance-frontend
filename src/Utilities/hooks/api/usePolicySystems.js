@@ -1,6 +1,14 @@
 import useTableToolsQuery from '../useTableToolsQuery';
 
-export const convertToArray = ({ policyId, tags, limit, offset, idsOnly, sort, filters }) => [
+export const convertToArray = ({
+  policyId,
+  tags,
+  limit,
+  offset,
+  idsOnly,
+  sort,
+  filters,
+}) => [
   policyId,
   undefined, // xRHIDENTITY
   tags,

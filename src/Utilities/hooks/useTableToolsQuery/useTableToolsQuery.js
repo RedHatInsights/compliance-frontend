@@ -43,7 +43,7 @@ const useTableToolsQuery = (
     [apiEndpoint, paramsOption, convertToArray, onlyTotal],
   );
 
-  const myCoolParams = useMemo(
+  const convertedParams = useMemo(
     () => convertToArray(paramsOption),
     [convertToArray, paramsOption],
   );
@@ -67,7 +67,7 @@ const useTableToolsQuery = (
 
   const resp = useQueryWithUtilities({
     fetchFn: fetchApi,
-    queryKey: [endpoint, ...myCoolParams],
+    queryKey: [endpoint, ...convertedParams],
     enabled: !skipOption,
     batched: batched,
     useTableState: useTableState,
@@ -93,18 +93,18 @@ const useTableToolsQuery = (
     exporter,
     // items,
   } = resp;
-  console.log('DEBUG resp', resp);
+  // console.log('DEBUG resp', resp);
 
   return {
     data: queryData,
     error: queryError,
     loading: queryLoading,
-    query: query,
-    queryTotalBatched: queryTotalBatched, // is it correct?
+    query,
+    queryTotalBatched,
     fetch: fetchApi,
-    fetchBatchedQueue: queryBatchedQueue, // is it correct?
-    fetchQueue: queryQueue, // is it correct?
-    exporter: exporter,
+    fetchBatchedQueue: queryBatchedQueue,
+    fetchQueue: queryQueue,
+    exporter,
     fetchAllIds: itemIdsInTable, // is it correct? or should it be itemIdsOnPage?
   };
 };

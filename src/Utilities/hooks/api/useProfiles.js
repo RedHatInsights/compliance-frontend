@@ -1,6 +1,13 @@
 import useTableToolsQuery from '../useTableToolsQuery';
 
-const convertToArray = ({ securityGuideId, limit, offset, idsOnly, sortBy, filter }) => [
+const convertToArray = ({
+  securityGuideId,
+  limit,
+  offset,
+  idsOnly,
+  sortBy,
+  filter,
+}) => [
   securityGuideId,
   undefined, // xRHIDENTITY
   limit,
