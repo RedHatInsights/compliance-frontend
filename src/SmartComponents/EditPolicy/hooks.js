@@ -21,7 +21,7 @@ const useSavePolicy = ({ id: policyId } = {}, updatedPolicyHostsAndRules) => {
     skip: true,
   });
   const { fetchQueue: assignRules } = useAssignRules({ params });
-  const { fetch: assignSystems } = useAssignSystems({ params });
+  const { query: assignSystems } = useAssignSystems({ params });
   const { fetch: updatePolicy } = useUpdatePolicy({ params });
   const { fetchQueue: updateTailorings } = useUpdateTailoring({ params });
 

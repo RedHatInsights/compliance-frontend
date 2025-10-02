@@ -11,7 +11,7 @@ import useUpdateTailoring from 'Utilities/hooks/api/useUpdateTailoring';
 export const useUpdatePolicy = () => {
   const { fetch: createPolicy } = useCreatePolicy({ skip: true });
   const { query: assignRules } = useAssignRules({ skip: true });
-  const { fetch: assignSystems } = useAssignSystems({ skip: true });
+  const { query: assignSystems } = useAssignSystems({ skip: true });
   const { query: fetchTailorings } = useTailorings({ skip: true });
   const { fetch: updateTailoring } = useUpdateTailoring({ skip: true }); // to update value overrides
   const { fetchQueue: createTailorings } = useCreateTailoring();
@@ -63,11 +63,10 @@ export const useUpdatePolicy = () => {
       const { id: newPolicyId } = createPolicyResponse.data;
 
       if (hosts && hosts.length > 0) {
-        await assignSystems([
-          newPolicyId,
-          undefined,
-          { ids: hosts.map(({ id }) => id) },
-        ]);
+        await assignSystems({
+          policyId: newPolicyId,
+          assignSystemsRequest: { ids: hosts.map(({ id }) => id) },
+        })
       } else {
         const tailoringsToCreate = minorVersions.map((os_minor_version) => ({
           policyId: newPolicyId,
@@ -128,7 +127,7 @@ export const useUpdatePolicy = () => {
     [
       createPolicy,
       assignSystems,
-      // fetchTailorings,
+      fetchTailorings,
       assignRules,
       updateTailoring,
     ],
