@@ -1,4 +1,4 @@
-import useComplianceQuery from '../useComplianceQuery';
+import useTableToolsQuery from '../useTableToolsQuery';
 
 const convertToArray = ({ policyId, tailoringId, assignRulesRequest }) => [
   policyId,
@@ -8,6 +8,6 @@ const convertToArray = ({ policyId, tailoringId, assignRulesRequest }) => [
 ];
 
 const useAssignRules = (options) =>
-  useComplianceQuery('assignRules', { ...options, skip: true, convertToArray });
+  useTableToolsQuery('assignRules', { ...options, skip: true, convertToArray });
 
 export default useAssignRules;
