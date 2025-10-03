@@ -13,7 +13,7 @@ export const useUpdatePolicy = () => {
   const { query: assignRules } = useAssignRules({ skip: true });
   const { query: assignSystems } = useAssignSystems({ skip: true });
   const { query: fetchTailorings } = useTailorings({ skip: true });
-  const { fetch: updateTailoring } = useUpdateTailoring({ skip: true }); // to update value overrides
+  const { query: updateTailoring } = useUpdateTailoring({ skip: true }); // to update value overrides
   const { fetchQueue: createTailorings } = useCreateTailoring({ skip: true });
 
   const updatedPolicy = useCallback(
