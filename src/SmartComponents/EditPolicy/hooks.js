@@ -22,7 +22,7 @@ const useSavePolicy = ({ id: policyId } = {}, updatedPolicyHostsAndRules) => {
   });
   const { fetchQueue: assignRules } = useAssignRules({ params });
   const { query: assignSystems } = useAssignSystems({ params });
-  const { fetch: updatePolicy } = useUpdatePolicy({ params });
+  const { query: updatePolicy } = useUpdatePolicy({ params });
   const { fetchQueue: updateTailorings } = useUpdateTailoring({ params });
 
   const save = async () => {
