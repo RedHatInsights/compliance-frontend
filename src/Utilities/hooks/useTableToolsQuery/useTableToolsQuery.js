@@ -1,19 +1,20 @@
 import useComplianceApi from 'Utilities/hooks/useComplianceApi';
+import { useDeepCompareMemo, useDeepCompareCallback } from 'use-deep-compare';
 
 import { useQueryWithUtilities } from 'bastilian-tabletools';
-import { useCallback, useMemo } from 'react';
 import {
   compileTotalResult,
   defaultCompileResult,
   paramsWithFilters,
   fetchResult,
   TOTAL_REQUEST_PARAMS,
+  combineParamsWithTableState,
 } from './helpers';
 
 const useTableToolsQuery = (
   endpoint,
   {
-    params: paramsOption = [],
+    params: paramsOption = {},
     useTableState = false,
     batched = false,
     skip: skipOption,
@@ -22,12 +23,12 @@ const useTableToolsQuery = (
     convertToArray,
     // useQueryOptions = {},
     // compileResult,
-    totalBatched,
+    totalBatched = {},
   } = {},
 ) => {
   const apiEndpoint = useComplianceApi(endpoint);
 
-  const fetchApi = useCallback(
+  const fetchApi = useDeepCompareCallback(
     async (fetchParams = {}) => {
       const allParams = paramsWithFilters(
         { ...paramsOption, ...(onlyTotal ? TOTAL_REQUEST_PARAMS : {}) },
@@ -43,43 +44,31 @@ const useTableToolsQuery = (
     [apiEndpoint, paramsOption, convertToArray, onlyTotal],
   );
 
-  const convertedParams = useMemo(
-    () => convertToArray(paramsOption),
-    [convertToArray, paramsOption],
+  const queryOptions = useDeepCompareMemo(
+    () => ({
+      fetchFn: fetchApi,
+      queryKey: [endpoint],
+      enabled: !skipOption,
+      batched,
+      useTableState,
+      params: paramsOption,
+      combineParamsWithTableState,
+      totalBatched,
+      // ...useQueryOptions,
+      // tableQueries: {
+      //   itemIdsOnPageSelect: () => [], // workaround for data.map bug
+      // }
+    }),
+    [
+      fetchApi,
+      endpoint,
+      skipOption,
+      batched,
+      useTableState,
+      paramsOption,
+      totalBatched,
+    ],
   );
-
-  const combineParamsWithTableState = useCallback(
-    (tableStateParams, additionalParams) => {
-      const tableFilters = tableStateParams?.filters;
-      const optionFilters = additionalParams?.filters;
-
-      const combinedParams = {
-        ...(tableStateParams ? tableStateParams : {}),
-        ...(additionalParams ? additionalParams : {}),
-      };
-      if (tableFilters && optionFilters) {
-        combinedParams.filters = `${tableFilters} AND ${optionFilters}`;
-      }
-      return combinedParams;
-    },
-    [],
-  );
-
-  const resp = useQueryWithUtilities({
-    fetchFn: fetchApi,
-    queryKey: [endpoint, ...convertedParams],
-    enabled: !skipOption,
-    batched: batched,
-    useTableState: useTableState,
-    params: paramsOption,
-    // queue: batched,
-    combineParamsWithTableState,
-    totalBatched,
-    // ...useQueryOptions,
-    // tableQueries: {
-    //   itemIdsOnPageSelect: () => [], // workaround for data.map bug
-    // }
-  });
 
   const {
     result: queryData,
@@ -91,9 +80,7 @@ const useTableToolsQuery = (
     queryBatchedQueue,
     itemIdsInTable,
     exporter,
-    // items,
-  } = resp;
-  // console.log('DEBUG resp', resp);
+  } = useQueryWithUtilities(queryOptions);
 
   return {
     data: queryData,
@@ -101,7 +88,6 @@ const useTableToolsQuery = (
     loading: queryLoading,
     query,
     queryTotalBatched,
-    fetch: fetchApi,
     fetchBatchedQueue: queryBatchedQueue,
     fetchQueue: queryQueue,
     exporter,

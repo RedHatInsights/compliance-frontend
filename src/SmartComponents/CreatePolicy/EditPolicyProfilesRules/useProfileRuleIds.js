@@ -14,7 +14,7 @@ const useProfileRuleIds = ({
   const mounted = useRef(true);
   const [profilesAndRuleIds, setProfilesAndRuleIds] = useState();
   const [loading, setLoading] = useState(true);
-  const { fetch: fetchSecurityGuide } = useSecurityGuides({
+  const { query: fetchSecurityGuide } = useSecurityGuides({
     params: {
       limit: 1,
       idsOnly: true,
@@ -23,7 +23,7 @@ const useProfileRuleIds = ({
     skip: true,
   });
 
-  const { fetch: fetchProfiles } = useProfiles({
+  const { query: fetchProfiles } = useProfiles({
     params: {
       limit: 1,
       idsOnly: true,
@@ -61,7 +61,13 @@ const useProfileRuleIds = ({
         );
       }
     },
-    [osMajorVersion, fetchProfileRules, fetchSecurityGuide, profileRefId],
+    [
+      osMajorVersion,
+      fetchProfileRules,
+      fetchSecurityGuide,
+      profileRefId,
+      fetchProfiles,
+    ],
   );
 
   useDeepCompareEffectNoCheck(() => {

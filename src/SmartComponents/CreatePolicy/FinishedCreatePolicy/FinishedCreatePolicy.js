@@ -107,6 +107,7 @@ export const useUpdatePolicy = () => {
         ) {
           continue;
         }
+
         await updateTailoring({
           policyId: newPolicyId,
           tailoringId: tailoring.id,
@@ -124,6 +125,7 @@ export const useUpdatePolicy = () => {
       fetchTailorings,
       assignRules,
       updateTailoring,
+      createTailorings,
     ],
   );
 

@@ -71,3 +71,20 @@ export const fetchResult = async (
   const convertedParams = convertToArray(params);
   return compileResult(await fn(...convertedParams), params);
 };
+
+export const combineParamsWithTableState = (
+  tableStateParams,
+  additionalParams,
+) => {
+  const tableFilters = tableStateParams?.filters;
+  const optionFilters = additionalParams?.filters;
+
+  const combinedParams = {
+    ...(tableStateParams ? tableStateParams : {}),
+    ...(additionalParams ? additionalParams : {}),
+  };
+  if (tableFilters && optionFilters) {
+    combinedParams.filters = `${tableFilters} AND ${optionFilters}`;
+  }
+  return combinedParams;
+};
