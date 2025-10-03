@@ -1,15 +1,15 @@
-import useComplianceQuery from '../useComplianceQuery';
+import useTableToolsQuery from '../useTableToolsQuery';
 
-const convertToArray = ({ limit, offset, idsOnly, sortBy, filter }) => [
+const convertToArray = ({ limit, offset, idsOnly, sort, filters }) => [
   undefined, // xRHIDENTITY
   limit,
   offset,
   idsOnly,
-  sortBy,
-  filter,
+  sort,
+  filters,
 ];
 
 const useReports = (options) =>
-  useComplianceQuery('reports', { ...options, convertToArray });
+  useTableToolsQuery('reports', { ...options, convertToArray });
 
 export default useReports;

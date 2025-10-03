@@ -19,7 +19,7 @@ const RuleResults = ({ reportTestResult, remediationsEnabled }) => {
     error,
     data: ruleResults,
     exporter,
-    fetchBatched,
+    queryTotalBatched: fetchBatched,
   } = useReportRuleResults({
     params: {
       testResultId,

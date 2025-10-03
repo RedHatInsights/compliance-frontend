@@ -1,21 +1,13 @@
-import useComplianceQuery from '../useComplianceQuery';
+import useTableToolsQuery from '../useTableToolsQuery';
 
-const convertToArray = (params) => {
-  if (Array.isArray(params)) {
-    return params;
-  } else {
-    const { policyId, assignSystemsRequest } = params;
-
-    return [
-      policyId,
-      undefined, // xRHIDENTITY,
-      assignSystemsRequest,
-    ];
-  }
-};
+const convertToArray = ({ policyId, assignSystemsRequest }) => [
+  policyId,
+  undefined, // xRHIDENTITY,
+  assignSystemsRequest,
+];
 
 const useAssignSystems = (options) =>
-  useComplianceQuery('assignSystems', {
+  useTableToolsQuery('assignSystems', {
     ...options,
     skip: true,
     convertToArray,

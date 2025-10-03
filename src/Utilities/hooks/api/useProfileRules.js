@@ -1,34 +1,26 @@
-import useComplianceQuery from '../useComplianceQuery';
+import useTableToolsQuery from '../useTableToolsQuery';
 
-const convertToArray = (params) => {
-  if (Array.isArray(params)) {
-    return params;
-  } else {
-    const {
-      securityGuideId,
-      profileId,
-      limit,
-      offset,
-      idsOnly,
-      sortBy,
-      filter,
-    } = params;
-
-    return [
-      securityGuideId,
-      profileId,
-      undefined, // xRHIDENTITY
-      limit,
-      offset,
-      idsOnly,
-      sortBy,
-      filter,
-    ];
-  }
-};
+const convertToArray = ({
+  securityGuideId,
+  profileId,
+  limit,
+  offset,
+  idsOnly,
+  sort,
+  filters,
+}) => [
+  securityGuideId,
+  profileId,
+  undefined, // xRHIDENTITY
+  limit,
+  offset,
+  idsOnly,
+  sort,
+  filters,
+];
 
 const useProfileRules = (options) =>
-  useComplianceQuery('profileRules', {
+  useTableToolsQuery('profileRules', {
     ...options,
     requiredParams: ['profileId', 'securityGuideId'],
     convertToArray,
