@@ -5,7 +5,6 @@ import { useQueryWithUtilities } from 'bastilian-tabletools';
 import {
   compileTotalResult,
   defaultCompileResult,
-  paramsWithFilters,
   fetchResult,
   TOTAL_REQUEST_PARAMS,
   combineParamsWithTableState,
@@ -31,13 +30,13 @@ const useTableToolsQuery = (
 
   const fetchApi = useDeepCompareCallback(
     async (fetchParams = {}) => {
-      const allParams = paramsWithFilters(
-        { ...paramsOption, ...(onlyTotal ? TOTAL_REQUEST_PARAMS : {}) },
-        fetchParams,
-      );
+      const allFetchParams = {
+        ...fetchParams,
+        ...(onlyTotal ? TOTAL_REQUEST_PARAMS : {}),
+      };
       return await fetchResult(
         apiEndpoint,
-        allParams,
+        allFetchParams,
         convertToArray,
         onlyTotal ? compileTotalResult : defaultCompileResult,
       );

@@ -25,7 +25,7 @@ const usePolicyOsVersionCounts = (policyId) => {
         for (const version of versions) {
           const minor = version.split('.')[1];
           const totalSystemsCount = await fetchPolicySystems({
-            filter: `(os_minor_version = ${minor})`,
+            filters: `(os_minor_version = ${minor})`,
           });
           newCounts[minor] = totalSystemsCount;
         }

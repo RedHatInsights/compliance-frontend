@@ -53,7 +53,7 @@ const useSecurityGuideData = ({
   } = useRules({
     params: {
       securityGuideId,
-      filters: groupFilter,
+      ...(groupFilter && { filters: groupFilter }),
     },
     skip: skipRules,
     batched: tableView === 'tree',
