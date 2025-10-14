@@ -22,6 +22,7 @@ const ComplianceRemediationButton = ({
   return (
     <RemediationRemediationButton
       isDisabled={reportTestResults?.length === 0 || !canFetch || isLoading}
+      hasSelected={reportTestResults?.length > 0}
       onRemediationCreated={(result) => {
         addNotification(result.getNotification());
       }}
