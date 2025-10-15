@@ -7,35 +7,17 @@ import * as Columns from '../SystemsTable/Columns';
 import usePolicies from 'Utilities/hooks/api/usePolicies';
 import CompliancePageHeader from 'PresentationalComponents/CompliancePageHeader/CompliancePageHeader';
 import { systemsPopoverData } from '@/constants';
-import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
-
-const systemTableColumns = [
-  Columns.customName(
-    {
-      showLink: true,
-    },
-    { sortable: ['display_name'] },
-  ),
-  Columns.Workspaces,
-  Columns.Tags,
-  Columns.OS(),
-  Columns.Policies,
-  Columns.Updated,
-];
 
 const ComplianceSystems = () => {
   const navigateToInventory = useNavigate('inventory');
   const { data, error, loading } = usePolicies();
   const policies = data?.data;
 
-  const isLightspeedEnabled = useFeatureFlag('platform.lightspeed-rebrand');
-  const serviceName = isLightspeedEnabled ? 'Red Hat Lightspeed' : 'Insights';
-
   return (
     <React.Fragment>
       <CompliancePageHeader
         mainTitle={'Systems'}
-        popoverData={systemsPopoverData(serviceName)}
+        popoverData={systemsPopoverData}
       />
       <section className="pf-v6-c-page__main-section">
         <StateViewWithError stateValues={{ error, data: policies, loading }}>
@@ -50,13 +32,51 @@ const ComplianceSystems = () => {
               }
             />
             <SystemsTable
-              isFullView
-              columns={systemTableColumns}
-              defaultFilter="assigned_or_scanned=true"
-              filters={{
-                policies,
-                groups: true,
+              compact
+              defaultFilter="assigned_or_scanned = true"
+              columns={({
+                displayName,
+                OS,
+                // policies,
+                tags,
+                workspace,
+                lastSeen,
+              }) => {
+                return [
+                  {
+                    ...displayName,
+                    componentProps: { showLink: true },
+                  },
+                  workspace,
+                  tags,
+                  OS,
+                  // policies,
+                  lastSeen,
+                ];
               }}
+              filters={(inventoryFilters, complianceFilters) => {
+                const {
+                  policies: policiesFilter,
+                  groups: complianceGroupsFilter,
+                } = complianceFilters;
+                const { groups } = inventoryFilters;
+
+                return [
+                  {
+                    ...policiesFilter,
+                    items: policies,
+                  },
+                  { ...groups, ...complianceGroupsFilter },
+                ];
+              }}
+              options={(
+                inventoryDefaultTableOptions,
+                complianceDefaultTableToolsOptions,
+              ) => ({
+                ...inventoryDefaultTableOptions,
+                ...complianceDefaultTableToolsOptions,
+                onSelect: true,
+              })}
               actions={[
                 {
                   title: 'View in inventory',
@@ -64,7 +84,6 @@ const ComplianceSystems = () => {
                     navigateToInventory('/' + id),
                 },
               ]}
-              onSelect={true}
             />
           </StateViewPart>
         </StateViewWithError>

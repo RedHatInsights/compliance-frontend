@@ -1,6 +1,7 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { paginationSerialiser } from 'PresentationalComponents/ComplianceTable/serialisers';
 import { useFullTableState } from 'bastilian-tabletools';
+
 import useComplianceQuery from 'Utilities/hooks/useComplianceQuery';
 import { convertToArray, osApiEndpoints } from './constants';
 import {
@@ -20,7 +21,7 @@ const useSystemsQueries = ({
   ignoreOsMajorVersion,
 } = {}) => {
   const osApiEndpoint = osApiEndpoints[apiEndpoint];
-  const [resultCache, setResultCache] = useState();
+  const resultCache = useRef();
   const inventoryFiltersCache = useRef();
   const [isEmpty, setIsEmpty] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -31,7 +32,7 @@ const useSystemsQueries = ({
 
   const params = useMemo(
     () => ({
-      ...(defaultFilter ? { filter: defaultFilter } : {}),
+      filter: defaultFilter,
       ...(reportId ? { reportId } : {}),
       ...(policyId ? { policyId } : {}),
     }),
@@ -40,9 +41,8 @@ const useSystemsQueries = ({
 
   const complianceQueryDefaults = useMemo(
     () => ({
-      ...(Object.keys(params).length ? { params } : {}),
+      params,
       skip: true,
-      useTableState: true,
     }),
     [params],
   );
@@ -73,78 +73,6 @@ const useSystemsQueries = ({
     [emptyStateComponent, defaultFilter],
   );
 
-  const fetchSystems = useCallback(
-    async ({
-      sortBy: inventorySortBy,
-      per_page: perPage,
-      page,
-      filters,
-      ...params
-    } = {}) => {
-      inventoryFiltersCache.current = { filters, sortBy: inventorySortBy };
-      const filter = inventoryFiltersSerialiser(filters, ignoreOsMajorVersion);
-      const sortBy = inventorySortSerialiser(inventorySortBy, columns);
-      const allParams = {
-        ...params,
-        ...paginationSerialiser({ perPage, page }),
-        ...(filter ? { filter } : {}),
-        ...(sortBy ? { sortBy } : {}),
-      };
-
-      try {
-        const result = await fetch(allParams);
-        setResultCache(result);
-
-        setIsEmptyState(result);
-        setIsLoaded(true);
-        setTotal(result?.meta?.total || 0);
-
-        return result;
-      } catch (e) {
-        setIsLoaded(true);
-        setError(e);
-      }
-    },
-    [fetch, columns, setIsEmptyState, ignoreOsMajorVersion],
-  );
-
-  const fetchSystemsBatched = useCallback(
-    async (params) => {
-      const { filters, sortBy: inventorySortBy } =
-        inventoryFiltersCache?.current || {};
-      const filter = inventoryFiltersSerialiser(filters);
-      const sortBy = inventorySortSerialiser(inventorySortBy, columns);
-
-      return await fetchBatched({
-        ...params,
-        filter,
-        sortBy,
-      });
-    },
-    [fetchBatched, columns],
-  );
-
-  const systemsExporter = useCallback(
-    async (params) => {
-      const { filters, sortBy: inventorySortBy } =
-        inventoryFiltersCache?.current || {};
-      const filter = inventoryFiltersSerialiser(filters);
-      const sortBy = inventorySortSerialiser(inventorySortBy, columns);
-      const exportableItems = await exporter({
-        ...params,
-        filter,
-        sortBy,
-      });
-
-      if (selectedIds?.length) {
-        return exportableItems.filter(({ id }) => selectedIds.includes(id));
-      } else {
-        return exportableItems;
-      }
-    },
-    [exporter, columns, selectedIds],
-  );
-
   const fetchOperatingSystemsAsOsObjects = useCallback(
     async (params) => {
       const { filters, sortBy: inventorySortBy } =
@@ -165,15 +93,10 @@ const useSystemsQueries = ({
   );
 
   return {
-    fetchSystems,
-    fetchSystemsBatched,
-    systemsExporter,
+    fetchSystems: fetch,
+    fetchSystemsBatched: fetchBatched,
+    systemsExporter: exporter,
     fetchOperatingSystems: fetchOperatingSystemsAsOsObjects,
-    resultCache,
-    total,
-    isLoaded,
-    isEmpty,
-    error,
   };
 };
 

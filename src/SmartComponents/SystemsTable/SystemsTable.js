@@ -1,187 +1,132 @@
-import React, { useLayoutEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-import { Spinner } from '@patternfly/react-core';
-import { InventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
+import React, { useMemo } from 'react';
+import propTypes from 'prop-types';
 import { TableStateProvider } from 'bastilian-tabletools';
+import { ErrorPage, InventorySystemsTable } from 'PresentationalComponents';
+
 import {
-  ComplianceRemediationButton,
-  ErrorPage,
-  StateView,
-  StateViewPart,
-} from 'PresentationalComponents';
-import {
-  useGetEntities,
-  useSystemsQueries,
-  useSystemsBulkSelect,
-  useSystemsFilterConfig,
-  useSystemsExport,
-} from './hooks';
-import { defaultOnLoad, mergedColumns } from './helpers';
+  defaultFiltersFunction,
+  defaultColumnsFunction,
+  defaultOptionsFunction,
+} from './helpers';
+import { OS } from './Columns';
+// import * as defaultComplianceSystemsFilters from './Filters';
+import { useSystemsQueries } from './hooks';
 
 export const SystemsTable = ({
   apiEndpoint = 'systems',
-  columns,
   defaultFilter,
+  // TODO Maybe these could be replaced by params? filter? ish thing
   reportId,
   policyId,
-  filters: { groups: showGroupsFilter = false, ...filters } = {},
+  columns = defaultColumnsFunction,
+  // filters = defaultFiltersFunction,
+  options,
   enableExport = true,
+  // TODO replacssssss
   compact,
-  remediationsEnabled,
-  emptyStateComponent,
-  prependComponent,
-  preselectedSystems,
-  onSelect,
-  noSystemsTable,
-  dedicatedAction,
-  ignoreOsMajorVersion,
-  setIsSystemsDataLoading,
-  ...inventoryTableProps
+  // This is not an "EmptyState" component
+  // emptyStateComponent: EmptyStateComponent,
+  prependComponent: PrependComponent,
+  noSystemsTable: NoSystemsTable,
 }) => {
-  const inventory = useRef(null);
-  const dispatch = useDispatch();
-
-  const { toolbarProps: conditionalFilter } = useSystemsFilterConfig({
-    filters,
-    inventory,
-  });
-
+  // We might want to switch to using the `loading`, `data` and `error` states instead.
+  // We could expose TanStack useQuery's returns to determine if it is the first request and show the "empty state" instead.
   const {
+    // TODO These need to be functions handling a serialisedTableState and not InventoryTables params stuff
     fetchSystems,
-    fetchOperatingSystems,
+    // fetchOperatingSystems,
+    // fetchSystemsTags,
     systemsExporter,
     fetchSystemsBatched,
-    resultCache,
-    isLoaded,
-    isEmpty,
-    total,
-    error,
   } = useSystemsQueries({
     apiEndpoint,
     policyId,
     reportId,
     defaultFilter,
-    columns,
-    emptyStateComponent,
-    ignoreOsMajorVersion,
   });
 
-  const {
-    tableProps: bulkSelectTableProps,
-    toolbarProps: bulkSelectToolBarProps,
-    selectedItemCache,
-    markEntitySelected,
-  } = useSystemsBulkSelect({
-    total,
-    onSelect: onSelect || remediationsEnabled,
-    selected: preselectedSystems,
-    fetchSystemsBatched,
-    resultCache,
-    setIsSystemsDataLoading,
-  });
+  // TODO make this nicer
+  const ErrorComponent = useMemo(
+    () =>
+      // eslint-disable-next-line
+      function ErrorState({ error }) {
+        return (
+          <>
+            <PrependComponent />
+            <ErrorPage error={error} />
+          </>
+        );
+      },
+    [PrependComponent],
+  );
 
-  const getEntities = useGetEntities(fetchSystems, {
-    markEntitySelected,
-  });
+  const defaultComplianceSystemsTableOptions = useMemo(
+    () => ({
+      // TODO Add some feature to allow hiding the PrimaryToolbar on error
+      ErrorState: ErrorComponent,
+      EmptyState: NoSystemsTable,
+      itemIdsInTable: fetchSystemsBatched,
+      ...(enableExport ? { exporter: systemsExporter } : {}),
+    }),
+    [
+      ErrorComponent,
+      NoSystemsTable,
+      enableExport,
+      systemsExporter,
+      fetchSystemsBatched,
+    ],
+  );
 
-  const exportConfig = useSystemsExport({
-    exporter: systemsExporter,
-    columns,
-    total,
-  });
-
-  const noError = error === undefined && !isEmpty;
-  const empty = emptyStateComponent && isEmpty ? true : undefined;
-
-  // Resets the Inventory to a loading state
-  // and prevents previously shown columns and rows to appear
-  useLayoutEffect(() => {
-    dispatch({
-      type: 'INVENTORY_INIT',
-    });
-  }, [dispatch]);
-
+  // TODO combine inventory and compliance filters and columns before calling the functions
   return (
-    <StateView
-      stateValues={{
-        error,
-        noError,
-        empty,
-      }}
-    >
-      <StateViewPart stateKey="error">
-        {!!prependComponent && prependComponent}
-        <ErrorPage error={error} />
-      </StateViewPart>
-      <StateViewPart stateKey="empty">{emptyStateComponent}</StateViewPart>
-      <StateViewPart stateKey="noError">
-        {!!prependComponent && isLoaded && prependComponent}
-        <InventoryTable
-          ref={inventory}
-          showTags
-          disableDefaultColumns
-          columns={mergedColumns(columns)}
-          noSystemsTable={noSystemsTable}
-          fallback={<Spinner />}
-          getEntities={getEntities}
-          fetchCustomOSes={fetchOperatingSystems}
-          hideFilters={{
-            all: true,
-            operatingSystem: false,
-            tags: false,
-            hostGroupFilter: !showGroupsFilter,
-          }}
-          onLoad={defaultOnLoad(columns)}
-          tableProps={{
-            // TODO There must be a bug in the Inventory
-            onSelect: undefined,
-            ...bulkSelectTableProps,
-            isStickyHeader: true,
-          }}
-          {...(compact ? { variant: 'compact' } : {})}
-          {...bulkSelectToolBarProps}
-          {...conditionalFilter}
-          {...{
-            ...(remediationsEnabled && {
-              dedicatedAction: (
-                <ComplianceRemediationButton
-                  reportId={reportId}
-                  reportTestResults={selectedItemCache}
-                />
-              ),
-            }),
-          }}
-          {...(dedicatedAction ? { dedicatedAction: dedicatedAction } : {})}
-          {...(enableExport && { exportConfig })}
-          {...inventoryTableProps}
-        />
-      </StateViewPart>
-    </StateView>
+    <>
+      {PrependComponent && <PrependComponent />}
+      <InventorySystemsTable
+        items={async (...args) => {
+          const result = await fetchSystems(...args);
+
+          return [result.data, result.meta.total];
+        }}
+        columns={(inventoryColumns) =>
+          columns({
+            ...inventoryColumns,
+            OS: {
+              title: 'Operating system',
+              Component: ({ osMajorVersion, osMinorVersion }) =>
+                `${osMajorVersion}.${osMinorVersion}`,
+            },
+          })
+        }
+        filters={({ displayName }) => ({
+          filterConfig: [displayName],
+        })}
+        options={(inventoryTableToolsTableOptions) =>
+          options(
+            inventoryTableToolsTableOptions,
+            defaultComplianceSystemsTableOptions,
+          )
+        }
+        {...{
+          ...(compact ? { variant: 'compact' } : {}),
+          isStickyHeader: true,
+        }}
+      />
+    </>
   );
 };
 
 SystemsTable.propTypes = {
-  apiEndpoint: PropTypes.string.isRequired,
-  columns: PropTypes.array.isRequired,
-  policies: PropTypes.array,
-  policyId: PropTypes.string,
-  enableExport: PropTypes.bool,
-  compact: PropTypes.bool,
-  remediationsEnabled: PropTypes.bool,
-  defaultFilter: PropTypes.string,
-  emptyStateComponent: PropTypes.node,
-  prependComponent: PropTypes.node,
-  preselectedSystems: PropTypes.array,
-  onSelect: PropTypes.func,
-  noSystemsTable: PropTypes.node,
-  ssgVersions: PropTypes.array,
-  dedicatedAction: PropTypes.object,
-  ruleSeverityFilter: PropTypes.bool,
-  filters: PropTypes.object,
-  ignoreOsMajorVersion: PropTypes.bool,
-  reportId: PropTypes.string,
-  setIsSystemsDataLoading: PropTypes.func,
+  apiEndpoint: propTypes.string,
+  defaultFilter: propTypes.object,
+  reportId: propTypes.string,
+  policyId: propTypes.string,
+  columns: propTypes.func,
+  filters: propTypes.func,
+  options: propTypes.func,
+  enableExport: propTypes.bool,
+  compact: propTypes.bool,
+  prependComponent: propTypes.node,
+  noSystemsTable: propTypes.node,
 };
 
 const SystemsTableWithTableState = (props) => (
