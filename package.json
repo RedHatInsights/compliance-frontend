@@ -6,7 +6,7 @@
     "appname": "compliance"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.2",
+    "@babel/runtime": "^7.28.4",
     "@patternfly/patternfly": "^6.3.1",
     "@patternfly/react-charts": "^8.3.1",
     "@patternfly/react-component-groups": "^6.3.0",
@@ -24,7 +24,7 @@
     "@sentry/webpack-plugin": "^2.23.1",
     "@tanstack/react-query": "^5.86.0",
     "@unleash/proxy-client-react": "^3.6.0",
-    "axios": "^1.11.0",
+    "axios": "^1.12.2",
     "bastilian-tabletools": "^2.14.0",
     "linkify-html": "^4.3.2",
     "linkifyjs": "^4.3.2",
@@ -71,7 +71,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.28.0",
+    "@babel/core": "^7.28.4",
     "@babel/plugin-transform-runtime": "^7.28.0",
     "@babel/preset-env": "^7.28.0",
     "@babel/preset-react": "^7.27.1",
@@ -89,7 +89,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/react": "^18.3.23",
     "babel-loader": "^10.0.0",
-    "babel-plugin-istanbul": "^7.0.0",
+    "babel-plugin-istanbul": "^7.0.1",
     "better-docs": "^2.7.3",
     "css-loader": "^7.1.2",
     "cypress": "^15.4.0",
