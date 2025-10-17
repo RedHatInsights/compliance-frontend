@@ -8,7 +8,6 @@ import {
 
 export const useIssuesFetch = ({
   reportId,
-
   reportTestResults,
   selectedRuleResultIds,
 }) => {

@@ -1,4 +1,4 @@
-import useComplianceQuery from '../useComplianceQuery';
+import useTableToolsQuery from '../useTableToolsQuery';
 
 export const convertToArray = ({
   reportId,
@@ -6,8 +6,8 @@ export const convertToArray = ({
   limit,
   offset,
   idsOnly,
-  sortBy,
-  filter,
+  sort,
+  filters,
 }) => [
   reportId,
   undefined, // xRHIDENTITY
@@ -15,11 +15,15 @@ export const convertToArray = ({
   limit,
   offset,
   idsOnly,
-  sortBy,
-  filter,
+  sort,
+  filters,
 ];
 
 const useReportTestResults = (options) =>
-  useComplianceQuery('reportTestResults', { ...options, convertToArray });
+  useTableToolsQuery('reportTestResults', {
+    ...options,
+    requiredParams: 'reportId',
+    convertToArray,
+  });
 
 export default useReportTestResults;
