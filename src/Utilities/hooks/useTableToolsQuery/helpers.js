@@ -56,7 +56,7 @@ export const combineParamsWithTableState = (
     ...(additionalParams || {}),
   };
   if (tableFilters && optionFilters) {
-    combinedParams.filters = `${tableFilters} AND ${optionFilters}`;
+    combinedParams.filters = `(${tableFilters}) AND (${optionFilters})`;
   }
   return combinedParams;
 };

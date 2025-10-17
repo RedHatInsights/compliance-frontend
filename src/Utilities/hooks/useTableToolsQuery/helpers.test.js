@@ -88,7 +88,7 @@ describe('useTableToolsQuery helpers', () => {
     expect(result).toEqual({
       page: 1,
       limit: 10,
-      filters: 'name="foo" AND with_reported_systems=true',
+      filters: '(name="foo") AND (with_reported_systems=true)',
     });
   });
 
