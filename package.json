@@ -22,7 +22,7 @@
     "@redhat-cloud-services/frontend-components-utilities": "^7.0.5",
     "@redhat-cloud-services/javascript-clients-shared": "^2.0.0",
     "@sentry/webpack-plugin": "^2.23.1",
-    "@tanstack/react-query": "^5.86.0",
+    "@tanstack/react-query": "^5.90.5",
     "@unleash/proxy-client-react": "^3.6.0",
     "axios": "^1.12.2",
     "bastilian-tabletools": "^2.14.0",
