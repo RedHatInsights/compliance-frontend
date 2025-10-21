@@ -35,7 +35,7 @@ const reportsRoutes = [
   {
     path: 'reports/:report_id/delete',
     title: `Delete report - ${defaultReportTitle}`,
-    requiredPermissions: [...defaultPermissions, 'compliance:report:delete'],
+    requiredPermissions: [...defaultPermissions, 'compliance:policy:delete'],
     component: lazy(
       () =>
         import(
@@ -100,7 +100,7 @@ const policiesRoutes = [
     path: 'scappolicies/:policy_id/edit',
     title: `$entityTitle - ${defaultPoliciesTitle}`,
     defaultTitle: defaultPoliciesTitle,
-    requiredPermissions: [...defaultPermissions, 'compliance:policy:update'],
+    requiredPermissions: [...defaultPermissions, 'compliance:policy:write'],
     component: lazy(
       () =>
         import(
@@ -113,7 +113,7 @@ const policiesRoutes = [
     path: 'scappolicies/:policy_id/import-rules',
     title: `$entityTitle - ${defaultPoliciesTitle}`,
     defaultTitle: defaultPoliciesTitle,
-    requiredPermissions: [...defaultPermissions, 'compliance:policy:update'],
+    requiredPermissions: [...defaultPermissions, 'compliance:policy:write'],
     component: lazy(
       () =>
         import(
