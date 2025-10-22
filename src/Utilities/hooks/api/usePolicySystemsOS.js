@@ -1,9 +1,10 @@
 import useTableToolsQuery from '../useTableToolsQuery';
 
-export const convertToArray = ({ policyId, filters }) => [
+export const convertToArray = ({ policyId, filters, filter }) => [
   policyId,
   undefined, // xRHIDENTITY
-  filters,
+  // support both 'filters' and 'filter' keys until Inventory migrated to tabletools
+  filters || filter,
 ];
 
 const usePolicySystemsOS = (options) =>

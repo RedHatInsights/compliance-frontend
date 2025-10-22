@@ -8,16 +8,20 @@ export const convertToArray = ({
   idsOnly,
   sort,
   filters,
-}) => [
-  policyId,
-  undefined, // xRHIDENTITY
-  tags,
-  limit,
-  offset,
-  idsOnly,
-  sort,
-  filters,
-];
+  filter,
+}) => {
+  return [
+    policyId,
+    undefined, // xRHIDENTITY
+    tags,
+    limit,
+    offset,
+    idsOnly,
+    sort,
+    // support both 'filters' and 'filter' keys until Inventory migrated to tabletools
+    filters || filter,
+  ];
+};
 
 const usePolicySystems = (options) =>
   useTableToolsQuery('policySystems', {
