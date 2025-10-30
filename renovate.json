@@ -26,7 +26,6 @@
     },
     {
       "description": "Automerge build-tools submodule updates",
-      "matchManagers": ["git-submodules"],
       "matchPackageNames": ["build-tools"],
       "matchUpdateTypes": ["digest"],
       "automerge": true,
