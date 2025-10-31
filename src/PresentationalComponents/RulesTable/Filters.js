@@ -74,7 +74,7 @@ const RULE_STATE_FILTER_CONFIG = {
 export const policiesFilterConfig = (policies) => ({
   type: conditionalFilterType.checkbox,
   label: 'Policy',
-  items: policies.map((policy) => ({ label: policy.name, value: policy.id })),
+  items: policies.map((policy) => ({ label: policy.title, value: policy.id })),
   filter: (rules, values) =>
     filterRulesWithAllValues(
       rules,

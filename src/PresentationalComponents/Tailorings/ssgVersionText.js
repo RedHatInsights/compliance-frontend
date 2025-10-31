@@ -7,7 +7,7 @@ import OsVersionText from './osVersionText';
 
 export const SSGVersionText = ({ profile, newOsMinorVersion }) => (
   <Content component={ContentVariants.p}>
-    SSG version: {profile?.benchmark.version}{' '}
+    SSG version: {profile?.securityGuide.version}{' '}
     <Popover
       position="right"
       bodyContent={<SSGPopoverBody {...{ profile, newOsMinorVersion }} />}
