@@ -25,18 +25,22 @@
       "platformAutomerge": true
     },
     {
-      "description": "Automerge build-tools submodule updates",
-      "matchPackageNames": ["build-tools"],
-      "matchUpdateTypes": ["digest"],
-      "automerge": true,
-      "platformAutomerge": true
-    },
-    {
       "description": "Disable all npm dependency updates",
       "matchManagers": ["npm"],
       "enabled": false
     }
   ],
+  "git-submodules": {
+    "packageRules": [
+      {
+        "description": "Automerge build-tools submodule updates",
+        "matchPackageNames": ["build-tools"],
+        "matchUpdateTypes": ["digest"],
+        "automerge": true,
+        "platformAutomerge": true
+      }
+    ]
+  },
   "tekton": {
     "enabled": true,
     "packageRules": [
