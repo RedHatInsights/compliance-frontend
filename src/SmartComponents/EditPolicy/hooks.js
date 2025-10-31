@@ -11,8 +11,8 @@ const useSavePolicy = ({ id: policyId } = {}, updatedPolicyHostsAndRules) => {
     hosts,
     tailoringRules,
     description,
-    businessObjective,
-    complianceThreshold,
+    business_objective,
+    compliance_threshold,
     tailoringValueOverrides,
   } = updatedPolicyHostsAndRules || {};
   const params = { policyId };
@@ -63,12 +63,12 @@ const useSavePolicy = ({ id: policyId } = {}, updatedPolicyHostsAndRules) => {
       }
     }
 
-    if (description || businessObjective || complianceThreshold) {
+    if (description || business_objective || compliance_threshold) {
       await updatePolicy({
         policyUpdate: {
           description,
-          business_objective: businessObjective?.title ?? '--',
-          compliance_threshold: parseFloat(complianceThreshold),
+          business_objective: business_objective ?? '--',
+          compliance_threshold: parseFloat(compliance_threshold),
         },
       });
     }

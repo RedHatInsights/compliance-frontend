@@ -22,13 +22,13 @@ const PolicySystemsTab = ({ policy }) => {
       ]}
       policyId={policy.id}
       noSystemsTable={
-        policy?.hosts?.length === 0 || policy?.totalHostCount === 0 ? (
+        policy.total_system_count === 0 ? (
           <NoSystemsTableWithWarning />
         ) : (
           <NoResultsTable kind="systems" />
         )
       }
-      complianceThreshold={policy.complianceThreshold}
+      complianceThreshold={policy.compliance_threshold}
       dedicatedAction={<EditSystemsButtonToolbarItem policy={policy} />}
       ignoreOsMajorVersion
     />
@@ -38,11 +38,8 @@ const PolicySystemsTab = ({ policy }) => {
 PolicySystemsTab.propTypes = {
   policy: propTypes.shape({
     id: propTypes.string.isRequired,
-    complianceThreshold: propTypes.string.isRequired,
-    osMajorVersion: propTypes.string.isRequired,
-    hosts: propTypes.array.isRequired,
-    refId: propTypes.string.isRequired,
-    totalHostCount: propTypes.number,
+    compliance_threshold: propTypes.string.isRequired,
+    total_system_count: propTypes.number.isRequired,
   }),
   dedicatedAction: propTypes.object,
   systemTableProps: propTypes.object,

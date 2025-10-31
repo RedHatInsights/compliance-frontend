@@ -1,9 +1,6 @@
-// with REST API implementation
 import React from 'react';
 import { Grid, GridItem } from '@patternfly/react-core';
 import SystemPolicyCardPresentational from 'PresentationalComponents/SystemPolicyCard';
-import dataSerialiser from 'Utilities/dataSerialiser';
-import { dataMap } from './constants';
 import propTypes from 'prop-types';
 
 export const SystemPolicyCards = ({ reportTestResults }) => (
@@ -11,7 +8,7 @@ export const SystemPolicyCards = ({ reportTestResults }) => (
     {reportTestResults.map((testResult) => (
       <GridItem sm={12} md={12} lg={6} xl={4} key={testResult.report_id}>
         <SystemPolicyCardPresentational
-          policy={dataSerialiser({ ...testResult }, dataMap)}
+          policy={testResult}
           style={{ height: '100%' }}
         />
       </GridItem>

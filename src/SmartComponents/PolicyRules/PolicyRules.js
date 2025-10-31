@@ -76,7 +76,7 @@ const PolicyDefaultRules = () => {
     <>
       <PolicyRulesHeader
         name={profileData?.data?.title}
-        benchmarkVersion={securityGuideData?.data?.version}
+        securityGuideVersion={securityGuideData?.data?.version}
         osMajorVersion={securityGuideData?.data?.os_major_version}
       />
       <div className="pf-v6-u-p-xl" style={{ background: '#fff' }}>

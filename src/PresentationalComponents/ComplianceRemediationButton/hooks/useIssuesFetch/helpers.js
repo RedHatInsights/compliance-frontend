@@ -11,9 +11,9 @@ const isSelected =
   ({ rule_id }) =>
     selectedRuleIds !== undefined ? selectedRuleIds.includes(rule_id) : true;
 
-export const isReportTestResultSupported = (reportTestResult) =>
-  reportTestResult?.supported ||
-  reportTestResult?.testResultProfiles?.[0]?.supported;
+export const isReportTestResultSupported = (reportTestResult) => {
+  return reportTestResult?.supported;
+};
 
 export const buildFetchQueue = (reportTestResults) =>
   reportTestResults

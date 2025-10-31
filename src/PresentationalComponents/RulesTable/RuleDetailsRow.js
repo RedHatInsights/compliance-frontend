@@ -13,7 +13,7 @@ import RuleValueEdit from './components/RuleValueEdit';
 
 const RuleDetailsRow = ({ item: rule, onValueChange, onRuleValueReset }) => {
   const {
-    refId,
+    ref_id: refId,
     description,
     identifier,
     references,

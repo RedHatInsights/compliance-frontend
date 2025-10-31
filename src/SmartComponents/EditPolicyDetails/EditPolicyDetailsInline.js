@@ -74,13 +74,10 @@ const EditPolicyDetailsInline = ({
     // setDirty(false);
   };
 
-  const constructData =
-    propertyName === 'businessObjective'
-      ? { ...copiedData, [propertyName]: { title: value } }
-      : {
-          ...copiedData,
-          [propertyName]: value,
-        };
+  const constructData = {
+    ...copiedData,
+    [propertyName]: value,
+  };
 
   const [isSaving, onSave] = useOnSavePolicyDetails(policy, constructData, {
     onSave: handleSaveEdit,

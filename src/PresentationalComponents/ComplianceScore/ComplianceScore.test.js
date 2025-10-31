@@ -6,8 +6,7 @@ import ComplianceScore from './ComplianceScore';
 describe('auxiliary functions to reducer', () => {
   it('should show a danger icon if the host is not compliant', () => {
     const system = {
-      rulesPassed: 30,
-      rulesFailed: 300,
+      failed_rule_count: 300,
       score: 10,
       supported: true,
       compliant: false,
@@ -19,7 +18,7 @@ describe('auxiliary functions to reducer', () => {
 
   it('should show 0% score instead if the system score is 0', () => {
     const system = {
-      rulesFailed: 300,
+      failed_rule_count: 300,
       score: 0,
       supported: true,
       compliant: false,
@@ -31,7 +30,7 @@ describe('auxiliary functions to reducer', () => {
 
   it('should show a success icon if the host is compliant', () => {
     const system = {
-      rulesFailed: 3,
+      failed_rule_count: 3,
       score: 91,
       supported: true,
       profiles: [{ compliant: true }, { compliant: true }],
