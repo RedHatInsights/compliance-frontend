@@ -15,14 +15,14 @@ import CompliantIcon from './components/CompliantIcon';
 
 const SystemPolicyCard = ({ policy, style }) => {
   const {
-    rulesFailed,
+    failed_rule_count: failedRuleCount,
     compliant,
-    lastScanned,
+    end_time: lastScanned,
     score,
-    benchmark: { version: ssgVersion },
+    security_guide_version: ssgVersion,
     supported,
-    name,
-    policyType,
+    title,
+    profile_title: profileTitle,
   } = policy;
   const passedPercentage = ((value, fixed = 0, withPercent = true) =>
     Number(value).toFixed(fixed) + (withPercent ? '%' : ''))(score);
@@ -38,7 +38,7 @@ const SystemPolicyCard = ({ policy, style }) => {
             className="margin-bottom-top-none"
             component={ContentVariants.h4}
           >
-            <Truncate text={name} length={110} {...truncateDefaults} />
+            <Truncate text={title} length={110} {...truncateDefaults} />
           </Content>
           <Content
             ouiaId="PolicyCardType"
@@ -47,7 +47,7 @@ const SystemPolicyCard = ({ policy, style }) => {
             }}
             component={ContentVariants.small}
           >
-            <Truncate text={policyType} length={110} {...truncateDefaults} />
+            <Truncate text={profileTitle} length={110} {...truncateDefaults} />
           </Content>
         </Content>
         <div className="margin-bottom-md">
@@ -56,7 +56,7 @@ const SystemPolicyCard = ({ policy, style }) => {
             ouiaId="PolicyCardFailedRulesScore"
             component={ContentVariants.small}
           >
-            {rulesFailed} rule{rulesFailed === 1 ? '' : 's'} failed{' '}
+            {failedRuleCount} rule{failedRuleCount === 1 ? '' : 's'} failed{' '}
             <Tooltip
               position="bottom"
               maxWidth="22em"
@@ -108,15 +108,13 @@ const SystemPolicyCard = ({ policy, style }) => {
 
 SystemPolicyCard.propTypes = {
   policy: PropTypes.shape({
-    rulesPassed: PropTypes.number,
-    rulesFailed: PropTypes.number,
+    failed_rule_count: PropTypes.number,
     score: PropTypes.number,
-    lastScanned: PropTypes.string,
-    refId: PropTypes.string,
-    name: PropTypes.string,
-    policyType: PropTypes.string,
+    security_guide_version: PropTypes.string,
+    end_time: PropTypes.string,
+    title: PropTypes.string,
+    profile_title: PropTypes.string,
     compliant: PropTypes.bool,
-    benchmark: PropTypes.object,
     supported: PropTypes.bool,
   }),
   style: PropTypes.object,

@@ -7,19 +7,15 @@ describe('SystemPolicyCard component', () => {
   const currentTime = new Date();
   currentTime.setMonth(currentTime.getMonth() - 6);
   const policy = {
-    rulesPassed: 30,
-    rulesFailed: 10,
+    failed_rule_count: 10,
     score: 75,
-    lastScanned: currentTime.toISOString(),
-    refId: 'xccdf_org.ssgproject.content_profile_pci-dss',
-    name: 'PCI-DSS Policy',
-    policyType: 'PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7',
+    end_time: currentTime.toISOString(),
+    ref_id: 'xccdf_org.ssgproject.content_profile_pci-dss',
+    title: 'PCI-DSS Policy',
+    profile_title: 'PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7',
     compliant: false,
     supported: true,
-    benchmark: { version: '0.1.45' },
-    policy: {
-      name: 'PCI-DSS Policy',
-    },
+    security_guide_version: '0.1.45',
   };
 
   it('should render non compliant policy', () => {

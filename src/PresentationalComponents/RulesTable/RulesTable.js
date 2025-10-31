@@ -94,7 +94,7 @@ const RulesTable = ({
     function Row(props) {
       const item = {
         ...(props?.item || {}), // eslint-disable-line react/prop-types
-        profile: { id: policyId, name: policyName },
+        policyId,
       };
 
       return props?.item?.loaded || skipValueDefinitions ? ( // eslint-disable-line react/prop-types

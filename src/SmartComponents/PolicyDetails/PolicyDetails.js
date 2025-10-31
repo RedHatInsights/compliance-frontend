@@ -33,22 +33,9 @@ import PolicySystemsTab from './PolicySystemsTab';
 import './PolicyDetails.scss';
 import useSaveValueOverrides from './hooks/useSaveValueOverrides';
 import usePolicy from 'Utilities/hooks/api/usePolicy';
-import dataSerialiser from 'Utilities/dataSerialiser';
 import usePolicyOsVersionCounts from 'Utilities/hooks/usePolicyOsVersionCounts';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 import EditRulesButtonToolbarItem from './EditRulesButtonToolbarItem';
-
-const dataMap = {
-  id: ['id', 'policy.id'],
-  title: 'name',
-  description: 'description',
-  business_objective: 'businessObjective.title',
-  compliance_threshold: 'complianceThreshold',
-  total_system_count: 'totalHostCount',
-  os_major_version: 'osMajorVersion',
-  profile_title: ['policy.name', 'policyType'],
-  ref_id: 'refId',
-};
 
 export const PolicyDetails = ({ route }) => {
   // TODO Replace with actual feature flag;
@@ -56,20 +43,12 @@ export const PolicyDetails = ({ route }) => {
   const defaultTab = 'details';
   const { policy_id: policyId } = useParams();
   const {
-    data: { data: queryData } = {},
+    data: { data: policy } = {},
     error,
     loading,
     refetch,
   } = usePolicy({ params: { policyId } });
   const versionCounts = usePolicyOsVersionCounts(policyId);
-  const data = queryData
-    ? {
-        profile: {
-          ...dataSerialiser(queryData, dataMap),
-          policy: { profiles: [] },
-        },
-      }
-    : {};
 
   const saveValueOverrides = useSaveValueOverrides();
   const saveToPolicy = async (...args) => {
@@ -77,9 +56,7 @@ export const PolicyDetails = ({ route }) => {
     refetch?.();
   };
 
-  const policy = data?.profile;
-
-  useTitleEntity(route, policy?.name);
+  useTitleEntity(route, policy?.title);
   const DedicatedAction = useMemo(
     // eslint-disable-next-line react/display-name
     () => () => (
@@ -119,11 +96,11 @@ export const PolicyDetails = ({ route }) => {
                 <BreadcrumbLinkItem to="/scappolicies">
                   SCAP policies
                 </BreadcrumbLinkItem>
-                <BreadcrumbItem isActive>{policy.name}</BreadcrumbItem>
+                <BreadcrumbItem isActive>{policy.title}</BreadcrumbItem>
               </Breadcrumb>
               <Grid gutter="lg">
                 <GridItem xl2={11} xl={10} lg={12} md={12} sm={12}>
-                  <PageHeaderTitle title={policy.name} />
+                  <PageHeaderTitle title={policy.title} />
                 </GridItem>
               </Grid>
               <RoutedTabs

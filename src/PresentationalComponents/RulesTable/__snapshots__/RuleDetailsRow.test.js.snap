@@ -7,7 +7,7 @@ exports[`RuleDetailsRow expect to render without error 1`] = `
   >
     <div
       class="pf-v6-l-stack"
-      id="rule-description-rule-child-row-xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime"
+      id="rule-description-rule-child-row-xccdf_org.ssgproject.content_rule_sebool_polyinstantiation_enabled"
       style="margin-bottom: var(--pf-t--global--spacer--md);"
     >
       <div
@@ -29,43 +29,77 @@ exports[`RuleDetailsRow expect to render without error 1`] = `
       <div
         class="pf-v6-l-stack__item pf-m-fill"
       >
-        If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -w /etc/localtime -p wa -k audit_time_rules If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -w /etc/localtime -p wa -k audit_time_rules The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport and should always be used.
+        By default, the SELinux boolean polyinstantiation_enabled is disabled. This setting should be configured to . To set the polyinstantiation_enabled SELinux boolean, run the following command: $ sudo setsebool -P polyinstantiation_enabled
       </div>
     </div>
     <div
       class="pf-v6-l-stack"
-      id="rule-identifiers-references-rule-child-row-xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime"
+      id="rule-identifiers-references-rule-child-row-xccdf_org.ssgproject.content_rule_sebool_polyinstantiation_enabled"
       style="margin-bottom: var(--pf-t--global--spacer--md);"
     >
       <div
         class="pf-v6-l-grid"
-      />
-    </div>
-    <div
-      class="pf-v6-l-stack"
-      id="rule-rationale-rule-child-row-xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime"
-      style="margin-bottom: var(--pf-t--global--spacer--lg);"
-    >
-      <div
-        class="pf-v6-l-stack__item"
-        style="margin-bottom: var(--pf-t--global--spacer--xs);"
       >
-        <h5
-          class="pf-v6-c-content--h5 pf-c-form__label"
-          data-ouia-component-id="OUIA-Generated-Content-2"
-          data-ouia-component-type="PF6/Content"
-          data-ouia-safe="true"
-          data-pf-content="true"
+        <div
+          class="pf-v6-l-grid__item pf-m-2-col"
         >
-          <b>
-            Rationale
-          </b>
-        </h5>
-      </div>
-      <div
-        class="pf-v6-l-stack__item pf-m-fill"
-      >
-        Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.
+          <h5
+            class="pf-v6-c-content--h5 pf-c-form__label"
+            data-ouia-component-id="OUIA-Generated-Content-2"
+            data-ouia-component-type="PF6/Content"
+            data-ouia-safe="true"
+            data-pf-content="true"
+            style="margin-bottom: var(--pf-t--global--spacer--xs);"
+          >
+            <b>
+              Identifier
+            </b>
+          </h5>
+          <p
+            class="pf-v6-c-content--p"
+            data-ouia-component-id="OUIA-Generated-Content-3"
+            data-ouia-component-type="PF6/Content"
+            data-ouia-safe="true"
+            data-pf-content="true"
+          >
+            <a
+              href="https://nvd.nist.gov/cce/index.cfm"
+              target="_blank"
+            >
+              CCE-84230-2
+            </a>
+          </p>
+        </div>
+        <div
+          class="pf-v6-l-grid__item pf-m-10-col"
+        >
+          <h5
+            class="pf-v6-c-content--h5 pf-c-form__label"
+            data-ouia-component-id="OUIA-Generated-Content-4"
+            data-ouia-component-type="PF6/Content"
+            data-ouia-safe="true"
+            data-pf-content="true"
+            style="margin-bottom: var(--pf-t--global--spacer--xs);"
+          >
+            <b>
+              References
+            </b>
+          </h5>
+          <p
+            class="pf-v6-c-content--p"
+            data-ouia-component-id="OUIA-Generated-Content-5"
+            data-ouia-component-type="PF6/Content"
+            data-ouia-safe="true"
+            data-pf-content="true"
+          >
+            <a
+              href="http://www.ssi.gouv.fr/administration/bonnes-pratiques/"
+              target="_blank"
+            >
+              BP28(R39)
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   </div>

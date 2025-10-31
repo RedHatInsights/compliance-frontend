@@ -11,7 +11,6 @@ import {
   LastScanned as LastScannedCell,
   Policies as PoliciesCell,
   SSGVersions as SsgVersionCell,
-  lastScanned,
   operatingSystemString,
   OperatingSystem as OperatingSystemCell,
   CustomDisplay as CustomDisplayCell,
@@ -41,7 +40,9 @@ export const Name = compileColumnRenderFunc({
   props: {
     width: 40,
   },
-  renderExport: (system) => `${system.name} (${operatingSystemString(system)})`,
+  renderExport: (system) =>
+    `${system.display_name} (${operatingSystemString(system)})`,
+
   cell: NameCell,
 });
 
@@ -70,16 +71,11 @@ export const SsgVersion = () =>
   compileColumnRenderFunc({
     title: 'SSG version',
     transforms: [nowrap],
-    exportKey: 'testResultProfiles',
     sortable: 'security_guide_version',
     key: 'ssg_version',
-    renderExport: (testResultProfiles) =>
-      testResultProfiles
-        .map(
-          ({ supported, benchmark: { version } }) =>
-            `${!supported ? '!' : ''}${version}`,
-        )
-        .join(', '),
+    renderExport: ({ security_guide_version, supported }) => {
+      return supported ? security_guide_version : `!${security_guide_version}`;
+    },
     cell: SsgVersionCell,
   });
 
@@ -88,7 +84,7 @@ export const Policies = {
   transforms: [nowrap],
   key: 'policies',
   exportKey: 'policies',
-  renderExport: (policies) => policies.map(({ name }) => name).join(', '),
+  renderExport: (policies) => policies.map(({ title }) => title).join(', '),
   props: {
     width: 40,
     ...disableSorting,
@@ -100,14 +96,11 @@ export const FailedRules = () =>
   compileColumnRenderFunc({
     title: 'Failed rules',
     key: 'failedRules',
-    exportKey: 'rulesFailed',
+    exportKey: 'failed_rule_count',
     transforms: [nowrap],
     sortable: 'failed_rule_count',
     props: {
       width: 5,
-    },
-    renderExport: (profiles) => {
-      return profiles;
     },
     renderFunc: renderComponent(FailedRulesCell),
     cell: FailedRulesCell,
@@ -122,8 +115,8 @@ export const ComplianceScore = () =>
     props: {
       width: 5,
     },
-    renderExport: ({ testResultProfiles }) =>
-      complianceScoreString(testResultProfiles[0]),
+    renderExport: ({ score, supported, compliant }) =>
+      complianceScoreString({ score, supported, compliant }),
     cell: ComplianceScoreCell,
   });
 
@@ -131,12 +124,11 @@ export const LastScanned = {
   title: 'Last scanned',
   key: 'lastScanned',
   transforms: [nowrap],
-  exportKey: 'testResultProfiles',
+  exportKey: 'end_time',
   props: {
     width: 10,
     ...disableSorting,
   },
-  renderExport: (testResultProfiles) => lastScanned(testResultProfiles),
   renderFunc: renderComponent(LastScannedCell),
 };
 
