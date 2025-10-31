@@ -18,7 +18,8 @@ const PolicyRulesHeader = ({ name, securityGuideVersion, osMajorVersion }) => {
           description for
           <b> {name} policy</b> operating on
           <br />
-          <b>RHEL {osMajorVersion}</b> - <b>SSG version: {securityGuideVersion}</b>
+          <b>RHEL {osMajorVersion}</b> -{' '}
+          <b>SSG version: {securityGuideVersion}</b>
         </Content>
         <Content component="p">
           Rule selection must be made in the policy modal
