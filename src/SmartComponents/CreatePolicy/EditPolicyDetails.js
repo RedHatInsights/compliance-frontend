@@ -142,7 +142,6 @@ const mapStateToProps = (state) => {
       name: `${profile.title}`,
       refId: `${profile.ref_id}`,
       description: `${profile.description}`,
-      benchmark: selector(state, 'benchmark'),
       osMajorVersion: selector(state, 'osMajorVersion'),
       profile: selector(state, 'profile'),
     },

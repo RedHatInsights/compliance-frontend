@@ -6,7 +6,7 @@ import PageHeader, {
 import { Content } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 
-const PolicyRulesHeader = ({ name, benchmarkVersion, osMajorVersion }) => {
+const PolicyRulesHeader = ({ name, securityGuideVersion, osMajorVersion }) => {
   return (
     <PageHeader className="pf-v5-u-pt-xl pf-v5-u-pl-xl">
       <PageHeaderTitle
@@ -18,7 +18,8 @@ const PolicyRulesHeader = ({ name, benchmarkVersion, osMajorVersion }) => {
           description for
           <b> {name} policy</b> operating on
           <br />
-          <b>RHEL {osMajorVersion}</b> - <b>SSG version: {benchmarkVersion}</b>
+          <b>RHEL {osMajorVersion}</b> -{' '}
+          <b>SSG version: {securityGuideVersion}</b>
         </Content>
         <Content component="p">
           Rule selection must be made in the policy modal
@@ -31,6 +32,6 @@ export default PolicyRulesHeader;
 
 PolicyRulesHeader.propTypes = {
   name: propTypes.string,
-  benchmarkVersion: propTypes.string,
+  securityGuideVersion: propTypes.string,
   osMajorVersion: propTypes.string,
 };

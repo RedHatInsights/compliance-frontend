@@ -43,7 +43,7 @@ const TabHeader = ({
                 tailoring?.os_major_version || securityGuide?.osMajorVersion,
               osMinorVersion:
                 tailoring?.os_minor_version || securityGuide?.osMinorVersion,
-              benchmark: {
+              securityGuide: {
                 version:
                   tailoring?.security_guide_version || securityGuide?.version,
               },

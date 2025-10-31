@@ -15,11 +15,7 @@ const RuleValueEdit = ({
   onValueChange,
   // onRuleValueReset
 }) => {
-  const {
-    valueDefinitions,
-    profile: { id: policyId },
-    ruleValues,
-  } = rule;
+  const { valueDefinitions, policyId, ruleValues } = rule;
   const [isOpen, setIsOpen] = useState(false);
   const enableAllEdit = valueDefinitions.length === 1;
 

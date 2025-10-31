@@ -40,44 +40,6 @@ export const backgroundColors = {
   light300: '#f0f0f0', //'--pf-global--BackgroundColor--light-300',
 };
 
-export const systemsDataMapper = {
-  display_name: 'name',
-  culled_timestamp: 'culled_timestamp',
-  os_major_version: 'osMajorVersion',
-  os_minor_version: 'osMinorVersion',
-  stale_timestamp: 'stale_timestamp',
-  stale_warning_timestamp: 'stale_warning_timestamp',
-  policies: 'policies',
-  groups: 'groups',
-  id: 'id',
-  insights_id: 'insightsId',
-  tags: 'tags',
-  updated: 'updated',
-};
-
-export const testResultsDataMapper = {
-  display_name: 'name',
-  os_major_version: 'osMajorVersion',
-  os_minor_version: 'osMinorVersion',
-  groups: 'groups',
-  id: 'id',
-  insights_id: 'insightsId',
-  tags: 'tags',
-  updated: 'updated',
-  score: ['complianceScore', 'score'],
-  failed_rule_count: 'rulesFailed',
-  security_guide_version: 'version',
-  supported: 'supported',
-  end_time: 'lastScanned',
-  system_id: 'system_id',
-  compliant: 'compliant',
-};
-
-export const policiesDataMapper = {
-  title: 'name',
-  id: 'id',
-};
-
 export const unsupportedSystemWarningMessage =
   'This system was using an incompatible version of the SSG at the time this report was generated. ' +
   'Assessment of rules failed/passed on this system is a best-guess effort and may not be accurate.';
