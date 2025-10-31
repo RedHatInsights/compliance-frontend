@@ -8,7 +8,6 @@ import {
 
 export const useIssuesFetch = ({
   reportId,
-
   reportTestResults,
   selectedRuleResultIds,
 }) => {
@@ -32,8 +31,14 @@ export const useIssuesFetch = ({
     return compileRemediatonData(ruleRestults, selectedRuleResultIds);
   }, [fetchBatchedQueue, reportTestResults, selectedRuleResultIds]);
 
+  const canFetch = reportTestResults?.filter(
+    (reportTestResult) =>
+      isReportTestResultSupported(reportTestResult) &&
+      reportTestResult?.rulesFailed > 0,
+  ).length;
+
   return {
-    canFetch: reportTestResults?.filter(isReportTestResultSupported).length,
+    canFetch,
     isLoading,
     fetchIssues,
   };
