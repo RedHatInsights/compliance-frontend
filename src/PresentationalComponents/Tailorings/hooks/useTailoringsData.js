@@ -28,11 +28,16 @@ const useTailoringsData = ({
     params: {
       policyId,
       tailoringId,
-      filter: groupFilter,
+      ...(groupFilter && { filters: groupFilter }),
     },
     skip: skipRules,
     batched: tableView === 'tree',
     useTableState: true,
+    useQueryOptions: {
+      extraParams: {
+        itemIdsInTable: { idsOnly: true },
+      },
+    },
   });
 
   return {

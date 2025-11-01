@@ -1,24 +1,17 @@
-import useComplianceQuery from '../useComplianceQuery';
+import useTableToolsQuery from '../useTableToolsQuery';
 
-const convertToArray = (params) => {
-  if (Array.isArray(params)) {
-    return params;
-  } else {
-    const { policyId, tailoringId, valuesUpdate } = params;
-
-    return [
-      policyId,
-      tailoringId,
-      undefined, // xRHIDENTITY,
-      valuesUpdate,
-    ];
-  }
-};
+const convertToArray = ({ policyId, tailoringId, valuesUpdate }) => [
+  policyId,
+  tailoringId,
+  undefined, // xRHIDENTITY,
+  valuesUpdate,
+];
 
 const useUpdateTailoring = (options) =>
-  useComplianceQuery('updateTailoring', {
-    skip: true,
+  useTableToolsQuery('updateTailoring', {
     ...options,
+    requiredParams: ['policyId', 'tailoringId'],
+    skip: true,
     convertToArray,
   });
 
