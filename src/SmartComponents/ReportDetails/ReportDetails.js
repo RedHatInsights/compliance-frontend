@@ -182,10 +182,7 @@ const ReportDetails = ({ route }) => {
                   title={
                     <TabTitleWithData
                       text="Never reported"
-                      data={
-                        report?.assigned_system_count -
-                        report?.reported_system_count
-                      }
+                      data={report?.never_reported_system_count}
                       isLoading={loading}
                     />
                   }
