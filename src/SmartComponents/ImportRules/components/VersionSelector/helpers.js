@@ -8,11 +8,16 @@ export const optionsFromTailorings = (tailorings) =>
 export const optionsFromSecurityGuideProfileVersions = (
   securityGuideProfile,
   selectedVersion,
+  preSelectedMinorVersion,
 ) =>
   securityGuideProfile?.os_minor_versions
-    .filter((version) => version !== selectedVersion)
-    .map((osMinorVersion) => ({
-      label: `RHEL ${securityGuideProfile.os_major_version}.${osMinorVersion}`,
-      value: osMinorVersion,
+    .filter(
+      (version) =>
+        version > selectedVersion ||
+        version === Number(preSelectedMinorVersion),
+    )
+    .map((currentMinorVersion) => ({
+      label: `RHEL ${securityGuideProfile.os_major_version}.${currentMinorVersion}`,
+      value: currentMinorVersion,
       ssgVersion: securityGuideProfile.security_guide_version,
     }));

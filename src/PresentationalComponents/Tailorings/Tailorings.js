@@ -1,7 +1,16 @@
 import React, { useCallback } from 'react';
 import propTypes from 'prop-types';
-import { Badge, Flex, FlexItem, Spinner, Tab } from '@patternfly/react-core';
 import {
+  Alert,
+  Badge,
+  Button,
+  Flex,
+  FlexItem,
+  Spinner,
+  Tab,
+} from '@patternfly/react-core';
+import {
+  LinkButton,
   RoutedTabs,
   StateViewWithError,
   StateViewPart,
@@ -11,6 +20,8 @@ import OsVersionText from './osVersionText';
 import TailoringTab from './components/TailoringTab';
 import { eventKey } from './helpers';
 import NoTailorings from './NoTailorings';
+import { useAddNotification } from '@redhat-cloud-services/frontend-components-notifications/hooks';
+import useCreateTailoring from 'Utilities/hooks/api/useCreateTailoring';
 
 // TODO Systems count on tabs -> may need API change
 // TODO defaultTab  defaultTab={getDefaultTab(tailorings, defaultTab)}
@@ -39,6 +50,9 @@ import NoTailorings from './NoTailorings';
  *  @param                        props.skipProfile
  *  @param                        props.additionalRules
  *  @param                        [props.showResetButton]                Enables reset rules button
+ *  @param                        props.rulePortingAlert
+ *  @param                        props.onTailoringCreated
+ *  @param                        props.enableImportRules
  *  @returns {React.ReactElement}
  *
  *  @category Compliance
@@ -62,12 +76,18 @@ const Tailorings = ({
   valueOverrides,
   skipProfile,
   additionalRules,
+  rulePortingAlert,
+  onTailoringCreated,
+  enableImportRules,
   ...rulesTableProps
 }) => {
+  const addNotification = useAddNotification();
+  const { fetch: createTailoring } = useCreateTailoring({ skip: true });
   const {
     data: tailoringsData,
     loading: tailoringsLoading,
     error: tailoringsError,
+    // refetch: refetchTailorings,
   } = useTailorings({
     params: {
       policyId: policy?.id,
@@ -87,6 +107,9 @@ const Tailorings = ({
       isSecurityGuide: true,
     })) || []),
   ];
+  const sortedTabs = [...tabs].sort(
+    (a, b) => b.os_minor_version - a.os_minor_version,
+  );
 
   const onValueSave = useCallback(
     (...valueParams) => onValueOverrideSave?.(policy, ...valueParams),
@@ -98,11 +121,51 @@ const Tailorings = ({
     [onSelect, policy],
   );
 
+  const createPolicyTailoring = async (policy, osMinorVersion) => {
+    try {
+      const tailoringToCreate = {
+        policyId: policy.id,
+        tailoringCreate: { os_minor_version: osMinorVersion },
+      };
+      await createTailoring(tailoringToCreate);
+      addNotification({
+        variant: 'success',
+        title: `Created rules for policy "${policy.name}" minor version ${osMinorVersion}`,
+      });
+      onTailoringCreated?.();
+      // refetchTailorings();
+    } catch (e) {
+      addNotification({
+        variant: 'danger',
+        title: 'Error creating rules for policy',
+        description: e?.message,
+      });
+    }
+  };
+
+  const alertActions = (os_minor_version) => (
+    <React.Fragment>
+      <LinkButton
+        to={`/scappolicies/${policy.id}/import-rules?target_version=${os_minor_version}`}
+        variant="link"
+      >
+        Copy and import previous rules
+      </LinkButton>
+      <Button
+        variant="link"
+        component="a"
+        onClick={() => createPolicyTailoring(policy, os_minor_version)}
+      >
+        Use default rules
+      </Button>
+    </React.Fragment>
+  );
+
   return (
     <StateViewWithError
       stateValues={{
         error: tailoringsError,
-        data: tabs && (tailoringsData || profiles),
+        data: sortedTabs && (tailoringsData || profiles),
         loading: tailoringsLoading,
       }}
     >
@@ -110,13 +173,13 @@ const Tailorings = ({
         <Spinner />
       </StateViewPart>
       <StateViewPart stateKey="data">
-        {tabs.length > 0 ? (
+        {sortedTabs.length > 0 ? (
           <RoutedTabs
             ouiaId={ouiaId}
             level={level}
-            defaultTab={eventKey(tabs[0])}
+            defaultTab={eventKey(sortedTabs[0])}
           >
-            {tabs?.map((tab) => (
+            {sortedTabs?.map((tab) => (
               <Tab
                 key={eventKey(tab)}
                 eventKey={eventKey(tab)}
@@ -140,6 +203,17 @@ const Tailorings = ({
                 }
                 ouiaId={`RHEL ${tab.os_major_version}.${tab.os_minor_version}`}
               >
+                {rulePortingAlert && !!tab.isSecurityGuide && (
+                  <Alert
+                    variant="warning"
+                    title={`Action needed: Update ${policy.name} rules`}
+                    actionLinks={alertActions(tab.os_minor_version)}
+                  >
+                    Due to the minor RHEL version update, you need to select how
+                    you want RHEL {policy.osMajorVersion}.{tab.os_minor_version}{' '}
+                    rules to operate.
+                  </Alert>
+                )}
                 <TailoringTab
                   {...{
                     ...(tab.isSecurityGuide
@@ -181,6 +255,8 @@ Tailorings.propTypes = {
   columns: propTypes.arrayOf(propTypes.object),
   policy: propTypes.shape({
     id: propTypes.string,
+    name: propTypes.string,
+    osMajorVersion: propTypes.number,
   }),
   profiles: propTypes.arrayOf(
     propTypes.shape({
@@ -210,6 +286,9 @@ Tailorings.propTypes = {
   valueOverrides: propTypes.object,
   skipProfile: propTypes.string,
   additionalRules: propTypes.object,
+  rulePortingAlert: propTypes.bool,
+  onTailoringCreated: propTypes.func,
+  enableImportRules: propTypes.bool,
 };
 
 export default Tailorings;

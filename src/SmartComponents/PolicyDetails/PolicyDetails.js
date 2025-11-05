@@ -37,6 +37,10 @@ import dataSerialiser from 'Utilities/dataSerialiser';
 import usePolicyOsVersionCounts from 'Utilities/hooks/usePolicyOsVersionCounts';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 import EditRulesButtonToolbarItem from './EditRulesButtonToolbarItem';
+import useProfileRuleIds from 'SmartComponents/CreatePolicy/EditPolicyProfilesRules/useProfileRuleIds';
+import useTailorings from 'Utilities/hooks/api/useTailorings';
+import useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
+import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
 
 const dataMap = {
   id: ['id', 'policy.id'],
@@ -51,8 +55,7 @@ const dataMap = {
 };
 
 export const PolicyDetails = ({ route }) => {
-  // TODO Replace with actual feature flag;
-  const enableImportRules = false;
+  const enableImportRules = useFeatureFlag('compliance.rule_porting');
   const defaultTab = 'details';
   const { policy_id: policyId } = useParams();
   const {
@@ -71,13 +74,50 @@ export const PolicyDetails = ({ route }) => {
       }
     : {};
 
+  const policy = data?.profile;
+
+  // fetch tailorings for the policy to get existing lastest minor version
+  const { data: tailoringsData, refetch: refetchTailorings } = useTailorings({
+    params: {
+      policyId: policyId,
+      filter: 'NOT(null? os_minor_version)',
+      sortBy: 'os_minor_version:desc',
+    },
+    skip: !policyId || !enableImportRules,
+  });
+  const tailoringOSMinorVersions =
+    tailoringsData?.data?.map((t) => t.os_minor_version) || [];
+  // fetch supported profile for the policy to get all supported minor versions
+  const { data: profilesData } = useSupportedProfiles({
+    params: {
+      filter: `os_major_version=${queryData?.os_major_version} AND ref_id=${queryData?.ref_id}`,
+    },
+    skip: !queryData || !enableImportRules,
+  });
+  const supportedOSMinorVersions =
+    profilesData?.data?.[0]?.os_minor_versions ?? undefined;
+
+  // identify higher minor versions than the existing tailoring to show rule porting option
+  const maxTailoringVersion = Math.max(...tailoringOSMinorVersions);
+  const higherVersions = supportedOSMinorVersions?.filter(
+    (version) => version > maxTailoringVersion,
+  );
+
+  const {
+    profilesAndRuleIds: profilesRuleIds,
+    loading: profilesRuleIdsLoading,
+  } = useProfileRuleIds({
+    profileRefId: queryData?.ref_id,
+    osMajorVersion: queryData?.os_major_version,
+    osMinorVersions: higherVersions,
+    skip: !queryData || !higherVersions || !enableImportRules,
+  });
+
   const saveValueOverrides = useSaveValueOverrides();
   const saveToPolicy = async (...args) => {
     await saveValueOverrides(...args);
     refetch?.();
   };
-
-  const policy = data?.profile;
 
   useTitleEntity(route, policy?.name);
   const DedicatedAction = useMemo(
@@ -143,20 +183,28 @@ export const PolicyDetails = ({ route }) => {
                 </ContentTab>
                 <ContentTab eventKey="rules">
                   <PageSection hasBodyWrapper={false}>
-                    <Tailorings
-                      ouiaId="RHELVersions"
-                      columns={[
-                        Columns.Name,
-                        Columns.Severity,
-                        Columns.Remediation,
-                      ]}
-                      policy={policy}
-                      level={1}
-                      DedicatedAction={DedicatedAction}
-                      onValueOverrideSave={saveToPolicy}
-                      selectedVersionCounts={versionCounts}
-                      skipProfile="policy-details"
-                    />
+                    {profilesRuleIdsLoading && enableImportRules ? (
+                      <Spinner />
+                    ) : (
+                      <Tailorings
+                        ouiaId="RHELVersions"
+                        columns={[
+                          Columns.Name,
+                          Columns.Severity,
+                          Columns.Remediation,
+                        ]}
+                        policy={policy}
+                        profiles={profilesRuleIds}
+                        level={1}
+                        DedicatedAction={DedicatedAction}
+                        onValueOverrideSave={saveToPolicy}
+                        selectedVersionCounts={versionCounts}
+                        skipProfile="policy-details"
+                        rulePortingAlert={enableImportRules ? true : false}
+                        onTailoringCreated={refetchTailorings}
+                        enableImportRules
+                      />
+                    )}
                   </PageSection>
                 </ContentTab>
                 <ContentTab eventKey="systems">
