@@ -48,10 +48,10 @@ const useDonutChart = (report) => {
     reported_system_count: testResultSystemCount = 0,
     unsupported_system_count: unsupportedSystemCount = 0,
     assigned_system_count: totalSystemCount = 0,
+    never_reported_system_count: neverReportedSystemCount = 0,
     percent_compliant: compliancePercentage = 0,
   } = report;
 
-  const notReportingSystemCount = totalSystemCount - testResultSystemCount;
   const nonCompliantSystemCount =
     testResultSystemCount - compliantSystemCount - unsupportedSystemCount;
 
@@ -60,7 +60,7 @@ const useDonutChart = (report) => {
     { x: 'Compliant', y: compliantSystemCount },
     { x: 'Non-compliant', y: nonCompliantSystemCount },
     { x: 'Unsupported', y: unsupportedSystemCount },
-    { x: 'Not reporting', y: notReportingSystemCount },
+    { x: 'Not reporting', y: neverReportedSystemCount },
   ];
   const chartColorScale = (totalSystemCount === 0 && [
     paletteColors.black100,

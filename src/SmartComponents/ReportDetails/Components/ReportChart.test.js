@@ -15,6 +15,7 @@ describe('ReportChart', () => {
       reported_system_count: 7,
       unsupported_system_count: 2,
       compliant_system_count: 4,
+      never_reported_system_count: 3,
       percent_compliant: 40,
     };
 
@@ -30,6 +31,7 @@ describe('ReportChart', () => {
       reported_system_count: 5,
       unsupported_system_count: 0,
       compliant_system_count: 4,
+      never_reported_system_count: 0,
       percent_compliant: 80,
     };
 
