@@ -1,20 +1,12 @@
-import useComplianceQuery from '../useComplianceQuery';
+import useTableToolsQuery from '../useTableToolsQuery';
 
-const convertToArray = (params) => {
-  if (Array.isArray(params)) {
-    return params;
-  } else {
-    const { policyId } = params;
-
-    return [
-      policyId,
-      undefined, // xRHIDENTITY
-    ];
-  }
-};
+const convertToArray = ({ policyId }) => [
+  policyId,
+  undefined, // xRHIDENTITY
+];
 
 const usePolicy = (options) =>
-  useComplianceQuery('policy', {
+  useTableToolsQuery('policy', {
     ...options,
     requiredParams: 'policyId',
     convertToArray,

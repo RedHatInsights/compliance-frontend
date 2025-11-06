@@ -16,13 +16,13 @@ const useSavePolicy = ({ id: policyId } = {}, updatedPolicyHostsAndRules) => {
     tailoringValueOverrides,
   } = updatedPolicyHostsAndRules || {};
   const params = { policyId };
-  const { fetchBatched: fetchTailorings } = useTailorings({
+  const { queryTotalBatched: fetchTailorings } = useTailorings({
     params,
     skip: true,
   });
   const { fetchQueue: assignRules } = useAssignRules({ params });
-  const { fetch: assignSystems } = useAssignSystems({ params });
-  const { fetch: updatePolicy } = useUpdatePolicy({ params });
+  const { query: assignSystems } = useAssignSystems({ params });
+  const { query: updatePolicy } = useUpdatePolicy({ params });
   const { fetchQueue: updateTailorings } = useUpdateTailoring({ params });
 
   const save = async () => {
