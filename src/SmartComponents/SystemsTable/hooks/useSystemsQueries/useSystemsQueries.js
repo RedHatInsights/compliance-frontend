@@ -7,7 +7,6 @@ import {
   buildOSObjects,
   inventoryFiltersSerialiser,
   inventorySortSerialiser,
-  compileResult,
 } from './helpers';
 
 const useSystemsQueries = ({
@@ -50,7 +49,6 @@ const useSystemsQueries = ({
   const { fetch, fetchBatched, exporter } = useComplianceQuery(apiEndpoint, {
     ...complianceQueryDefaults,
     convertToArray: convertToArray[apiEndpoint],
-    compileResult,
   });
 
   const { fetch: fetchOperatingSystems } = useComplianceQuery(osApiEndpoint, {

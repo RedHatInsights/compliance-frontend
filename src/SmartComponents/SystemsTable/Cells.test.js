@@ -9,36 +9,40 @@ import {
   FailedRules,
   ComplianceScore,
   LastScanned,
+  lastScanned,
 } from './Cells';
 import { systems } from '@/__fixtures__/systems.js';
-const testSystem = systems[0].node;
+import { policies } from '@/__fixtures__/policies.js';
+const testSystem = systems[0];
 
 describe('Name', () => {
   it('returns the name', () => {
     render(<Name {...testSystem} />);
 
-    expect(screen.getByText(testSystem.name)).toBeInTheDocument();
+    expect(screen.getByText(testSystem.display_name)).toBeInTheDocument();
   });
 });
 
 describe('SSGVersions', () => {
   it('returns', () => {
-    render(<SSGVersions {...testSystem} />);
+    render(<SSGVersions security_guide_version="0.14.3" supported={true} />);
 
     expect(screen.getByText(/0\.14\.3/)).toBeInTheDocument();
   });
 
-  it('returns no error without testResultProfiles', () => {
-    render(<SSGVersions {...testSystem} testResultProfiles={[]} />);
+  it('returns no error without security_guide_version', () => {
+    render(<SSGVersions security_guide_version={null} supported={true} />);
     expect(screen.getByText('Unknown')).toBeInTheDocument();
   });
 });
 
 describe('Policies', () => {
   it('returns the system policies', () => {
-    render(<Policies {...testSystem} />);
+    render(<Policies policies={policies} />);
 
-    expect(screen.getByText('HIPAA Policy')).toBeInTheDocument();
+    const expectedText = `${policies[0].title}, ${policies[1].title}`;
+    expect(screen.getByText(new RegExp(expectedText))).toBeInTheDocument();
+    expect(screen.getByText('Read more')).toBeInTheDocument();
   });
 });
 
@@ -46,20 +50,17 @@ describe('FailedRules', () => {
   it('returns the amount of failed rules', () => {
     render(
       <TestWrapper>
-        <FailedRules
-          system_id={testSystem.id}
-          rulesFailed={testSystem.testResultProfiles[0].rulesFailed}
-        />
+        <FailedRules system_id={testSystem.id} failed_rule_count={28} />
       </TestWrapper>,
     );
 
     expect(screen.getByText('28')).toBeInTheDocument();
   });
 
-  it('returns no error without testResultProfiles', () => {
+  it('returns no error without failed rules', () => {
     render(
       <TestWrapper>
-        <FailedRules {...testSystem} rulesFailed={0} />
+        <FailedRules system_id={testSystem.id} failed_rule_count={0} />
       </TestWrapper>,
     );
 
@@ -69,34 +70,44 @@ describe('FailedRules', () => {
 
 describe('ComplianceScore', () => {
   it('returns', () => {
-    render(<ComplianceScore {...testSystem} />);
+    render(<ComplianceScore score={40} supported={true} compliant={false} />);
 
     expect(screen.getByText('40%')).toBeInTheDocument();
-  });
-
-  it('returns no error without testResultProfiles', () => {
-    render(<ComplianceScore {...testSystem} testResultProfiles={[]} />);
-
-    expect(screen.getByText('N/A')).toBeInTheDocument();
   });
 });
 
 describe('LastScanned', () => {
   it('returns the relative date the system was last scanned', () => {
-    render(<LastScanned {...testSystem} />);
+    render(<LastScanned end_time="2018-03-16T03:44:05.923774Z" />);
 
-    expect(screen.getByText('6 years ago')).toBeInTheDocument();
+    expect(screen.getByText('8 years ago')).toBeInTheDocument();
   });
 
   it('returns NEVER', () => {
-    render(<LastScanned {...testSystem} testResultProfiles={undefined} />);
+    render(<LastScanned end_time={null} />);
 
     expect(screen.getByText('Never')).toBeInTheDocument();
   });
 
-  it('returns no error without testResultProfiles', () => {
-    render(<LastScanned {...testSystem} testResultProfiles={[]} />);
+  it('returns no error without end_time', () => {
+    render(<LastScanned end_time={undefined} />);
 
     expect(screen.getByText('Never')).toBeInTheDocument();
+  });
+});
+
+describe('lastScanned helper function', () => {
+  it('returns a Date object for valid date string', () => {
+    const dateString = '2018-03-16T03:44:05.923774Z';
+    const result = lastScanned(dateString);
+    const date = new Date(dateString);
+    expect(result).toBeInstanceOf(Date);
+    expect(result).toEqual(date);
+  });
+
+  it('returns "Never" for invalid date string', () => {
+    expect(lastScanned(null)).toBe('Never');
+    expect(lastScanned(undefined)).toBe('Never');
+    expect(lastScanned('invalid-date')).toBe('Never');
   });
 });

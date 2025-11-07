@@ -84,7 +84,11 @@ const CreateSCAPPolicy = ({
           </Content>
         </Content>
         <Form>
-          <FormGroup label="Operating system" isRequired fieldId="benchmark">
+          <FormGroup
+            label="Operating system"
+            isRequired
+            fieldId="security-guide"
+          >
             {(data?.availableOsMajorVersions || []).map((osMajorVersion) => (
               <Tile
                 key={`rhel${osMajorVersion}-select`}

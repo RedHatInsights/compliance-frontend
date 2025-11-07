@@ -18,7 +18,11 @@ jest.mock('Utilities/hooks/api/useTailorings');
 jest.mock('Utilities/hooks/api/useUpdatePolicy');
 
 describe('useOnSave', function () {
-  const policy = {};
+  const policy = {
+    id: 'policy-123',
+    description: 'Initial description',
+    compliance_threshold: '90.0',
+  };
   const updatedPolicy = { description: 'Foo' };
   const onSaveCallBack = jest.fn();
   const onErrorCallback = jest.fn();
@@ -90,5 +94,40 @@ describe('useOnSave', function () {
     await waitFor(() => expect(onErrorCallback).toHaveBeenCalled());
 
     expect(onSaveCallBack).not.toHaveBeenCalled();
+  });
+
+  it('useSavePolicy update policy attributes', async () => {
+    const mockUpdatePolicy = jest.fn(() => Promise.resolve());
+    useUpdatePolicy.mockReturnValue({
+      fetch: mockUpdatePolicy,
+    });
+
+    const updatedPolicyWithBusinessObjective = {
+      ...policy,
+      description: 'New description',
+    };
+
+    const { result } = renderHook(
+      () =>
+        useOnSave(policy, updatedPolicyWithBusinessObjective, {
+          onSave: onSaveCallBack,
+        }),
+      { wrapper: TestWrapper },
+    );
+
+    const [, onSave] = result.current;
+    act(() => {
+      onSave();
+    });
+
+    await waitFor(() => expect(onSaveCallBack).toHaveBeenCalled());
+
+    expect(mockUpdatePolicy).toHaveBeenCalledWith({
+      policyUpdate: {
+        description: 'New description',
+        business_objective: '--',
+        compliance_threshold: 90,
+      },
+    });
   });
 });

@@ -13,7 +13,7 @@ jest.mock('./hooks', () => ({
 // TODO: implement EditPolicyForm tests for REST
 describe.skip('EditPolicyForm', () => {
   const policy = {
-    ...policies.edges[0].node,
+    ...policies[0],
     supportedOsVersions: ['7.8', '7.9'],
   };
   const mocks = [

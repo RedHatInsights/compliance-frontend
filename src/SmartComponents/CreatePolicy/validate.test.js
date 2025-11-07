@@ -1,15 +1,15 @@
 import { validateSecurityGuidePage, validateDetailsPage } from './validate.js';
 
 describe('validations', () => {
-  it('expect not to validate the first page if benchmark or profile are not set', () => {
+  it('expect not to validate the first page if OS major version or profile are not set', () => {
     expect(validateSecurityGuidePage(null, null)).toBe(false);
   });
 
-  it('expect to validate the first page if benchmark and profile are set', () => {
+  it('expect to validate the first page if OS major version and profile are set', () => {
     expect(validateSecurityGuidePage('a', 'b')).toBe(true);
   });
 
-  it('expect not to validate the first page if one of benchmark and profile are not set', () => {
+  it('expect not to validate the first page if one of OS major version and profile are not set', () => {
     expect(validateSecurityGuidePage('a', null)).toBe(false);
     expect(validateSecurityGuidePage(null, 'b')).toBe(false);
   });

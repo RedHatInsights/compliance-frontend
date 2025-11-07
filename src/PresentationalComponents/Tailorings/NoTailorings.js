@@ -17,7 +17,7 @@ const NoTailorings = ({ policy, columns }) => {
   const DedicatedAction = () => <EditRulesButtonToolbarItem policy={policy} />;
   const { data: profilesData } = useSupportedProfiles({
     params: {
-      filter: `os_major_version=${policy.osMajorVersion} AND ref_id=${policy.refId}`,
+      filter: `os_major_version=${policy.os_major_version} AND ref_id=${policy.ref_id}`,
     },
     skip: !policy,
   });
@@ -68,7 +68,7 @@ const NoTailorings = ({ policy, columns }) => {
         </Content>
       </PageSection>
       <RulesTable
-        policyId={policy?.id}
+        policyId={policy.id}
         securityGuideId={securityGuideId}
         total={total}
         rules={rulesData}

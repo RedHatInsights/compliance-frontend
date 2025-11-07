@@ -33,8 +33,7 @@ export const useIssuesFetch = ({
 
   const canFetch = reportTestResults?.filter(
     (reportTestResult) =>
-      (isReportTestResultSupported(reportTestResult) &&
-        reportTestResult?.rulesFailed > 0) ||
+      isReportTestResultSupported(reportTestResult) &&
       reportTestResult?.failed_rule_count > 0,
   ).length;
 
