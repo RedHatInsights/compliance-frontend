@@ -182,7 +182,6 @@ export const EditPolicyRulesTab = ({
           profiles={profilesRuleIds}
           resetLink
           rulesPageLink
-          selectedFilter
           remediationsEnabled={false}
           columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
           level={1}
