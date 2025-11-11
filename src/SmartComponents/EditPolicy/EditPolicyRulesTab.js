@@ -180,7 +180,6 @@ export const EditPolicyRulesTab = ({
         <Tailorings
           policy={policy}
           profiles={profilesRuleIds}
-          resetLink
           rulesPageLink
           remediationsEnabled={false}
           columns={[Columns.Name, Columns.Severity, Columns.Remediation]}

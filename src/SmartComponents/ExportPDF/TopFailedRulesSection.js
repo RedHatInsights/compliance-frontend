@@ -48,7 +48,7 @@ TopFailedRulesSection.propTypes = {
   rulesData: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string,
-      identifier: PropTypes.node,
+      identifier: PropTypes.object,
       severity: PropTypes.string,
       count: PropTypes.number,
     }),

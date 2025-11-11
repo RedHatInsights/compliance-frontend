@@ -36,21 +36,19 @@ import useComplianceFetchApi from './hooks/useComplianceFetchApi';
  *
  * Hook to use a Compliance REST API v2 endpoint with useQuery. Optionally support for using the serialised table state if a `<TableStateProvider/>` is available.
  *
- *  @param   {Function}                 endpoint                 String of the javascript-clients export for the needed endpoint
- *  @param   {object}                   [options]                Options for useComplianceQuery & useQuery
- *  @param   {useComplianceQueryParams} [options.params]         API endpoint params
- *  @param   {boolean}                  [options.useTableState]  Use the serialised table state
- *  @param   {boolean}                  [options.batched]        Wether or not requests should be batched
- *  @param   {boolean}                  [options.skip]           Wether or not to skip the request
- *  @param   {object}                   [options.batch]          Options to be passed to the useFetchTotalBatched
- *  @param   {boolean}                  [options.onlyTotal]      Enables a predefined "compileResult" function for the useQuery to only return the meta.total as the `data`
- *  @param   {Array | string}           [options.requiredParams] Parameters required for the endpoint. The request will be "skipped" until all parameters are provided.
+ *  @param   {Function}                 endpoint                  String of the javascript-clients export for the needed endpoint
+ *  @param   {object}                   [options]                 Options for useComplianceQuery & useQuery
+ *  @param   {useComplianceQueryParams} [options.params]          API endpoint params
+ *  @param   {boolean}                  [options.useTableState]   Use the serialised table state
+ *  @param   {boolean}                  [options.batched]         Wether or not requests should be batched
+ *  @param   {boolean}                  [options.skip]            Wether or not to skip the request
+ *  @param   {object}                   [options.batch]           Options to be passed to the useFetchTotalBatched
+ *  @param   {boolean}                  [options.onlyTotal]       Enables a predefined "compileResult" function for the useQuery to only return the meta.total as the `data`
+ *  @param   {Function}                 [options.convertToArray]  Function to convert API parameters to an array format
+ *  @param   {Function}                 [options.compileResult]   Function to compile/transform the result before returning
+ *  @param   {object}                   [options.useQueryOptions] Additional options to pass to the underlying useQuery hook
  *
- *  @param                              options.convertArray
- *  @param                              options.convertToArray
- *  @param                              options.compileResult
- *  @param                              options.useQueryOptions
- *  @returns {useComplianceQueryReturn}                          An object containing a data, loading and error state, as well as a fetch and fetchBatched function.
+ *  @returns {useComplianceQueryReturn}                           An object containing a data, loading and error state, as well as a fetch and fetchBatched function.
  *
  *  @category Compliance
  *  @subcategory Hooks

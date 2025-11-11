@@ -40,7 +40,7 @@ const ComplianceRoute = (props) => {
 
   useEffect(() => {
     isCurrent && !requiresTitleEntity && setTitle(title);
-  }, []);
+  }, [isCurrent, requiresTitleEntity, setTitle, title]);
 
   return requiredPermissions ? (
     <WithPermission requiredPermissions={requiredPermissions}>

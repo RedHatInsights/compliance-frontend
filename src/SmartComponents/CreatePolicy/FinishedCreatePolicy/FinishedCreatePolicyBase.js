@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
+import useDeepCompareEffect from 'use-deep-compare-effect';
 import propTypes from 'prop-types';
 import {
   Button,
@@ -54,17 +55,17 @@ export const FinishedCreatePolicyBase = ({
   const [errors, setErrors] = useState(null);
   const [failed, setFailed] = useState(false);
 
-  const onProgress = (progress) => {
+  const onProgress = useCallback((progress) => {
     setPercent(progress * 100);
-  };
+  }, []);
 
-  const submitForm = () => {
+  useDeepCompareEffect(() => {
     const newPolicy = {
       cloneFromProfileId,
       description,
       name,
       complianceThreshold,
-      businessObjective: businessObjective,
+      businessObjective,
       hosts: systems,
       selectedRuleRefIds,
       valueOverrides,
@@ -96,11 +97,19 @@ export const FinishedCreatePolicyBase = ({
           description: error.message,
         });
       });
-  };
-
-  useEffect(() => {
-    submitForm();
-  }, []);
+  }, [
+    cloneFromProfileId,
+    description,
+    name,
+    complianceThreshold,
+    businessObjective,
+    systems,
+    selectedRuleRefIds,
+    valueOverrides,
+    updatePolicy,
+    addNotification,
+    onProgress,
+  ]);
 
   return (
     <Bullseye>

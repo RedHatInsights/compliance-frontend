@@ -23,30 +23,27 @@ import SecurityGuideRulesToggle from './SecurityGuideRulesToggle';
  *
  *  @param   {object}             [props]                                React component props
  *  @param   {object}             [props.policy]                         A policy object from the API
- *  @param   {string}             [props.policy.id]                      The id used to fetch
  *  @param   {object}             [props.tailoring]                      A tailoring object from the API
- *  @param   {string}             [props.tailoring.id]                   A tailorings ID used to fetch the associated rules, rule groups, and value definitions for
  *  @param   {string}             [props.securityGuideId]                The ID for a security guide that the profile should be queried with
  *  @param   {string}             [props.profileId]                      The ID for a specific profile the rules should fetched for
  *  @param   {string}             [props.osMajorVersion]                 A specific major OS version the profile should be queried with
  *  @param   {string}             [props.osMinorVersion]                 A specific minor OS versions that the profile should be for
  *  @param   {Array}              [props.columns]                        A set of RulesTable columns the table should show
  *  @param   {boolean}            [props.enableSecurityGuideRulesToggle] This enabled the "Selected Only" toggle to appear and allows fetching the security guide rule set for the matching profile
- *  @param                        [props.systemCount]
- *  @param                        [props.rulesPageLink]
- *  @param   {object}             props.rulesTableProps                  React component props to be passed on to the RulesTable component in the tab
- *  @param                        props.resetLink
+ *  @param   {number}             [props.systemCount]                    The count of systems associated with this tailoring
+ *  @param   {boolean}            [props.rulesPageLink]                  Flag to show link to the rules page
+ *  @param   {object}             [props.rulesTableProps]                React component props to be passed on to the RulesTable component in the tab
  *  @param   {Function}           [props.setRuleValues]                  A callback called when a custom rule value is saved
  *  @param   {Function}           [props.onRuleValueReset]               A callback called when values for a rule are reset
  *  @param   {Function}           [props.onValueOverrideSave]            **deprecated** We should be using setRuleValues instead
  *  @param   {Function}           [props.onSelect]                       A callback called when a selection is made
  *  @param   {object}             [props.selected]                       An array of currently selected IDs
- *  @param   {string}             [props.skipProfile]
- *  @param                        [props.additionalRules]
- *  @param                        [props.valueOverrides]
- *  @param                        [props.showResetButton]                Enables reset rules button
+ *  @param   {string}             [props.skipProfile]                    Defines the view to identify what API requests should be skipped
+ *  @param   {Array}              [props.additionalRules]                Additional rules to include in the table
+ *  @param   {object}             [props.valueOverrides]                 An object containing value overrides for rules
+ *  @param   {boolean}            [props.showResetButton]                Enables reset rules button
  *
- *  @returns {React.ReactElement}
+ *  @returns {React.ReactElement}                                        A TailoringTab component
  *
  *  @category Compliance
  *  @tutorial how-to-use-tailorings
@@ -62,7 +59,6 @@ const TailoringTab = ({
   columns,
   systemCount,
   rulesTableProps,
-  resetLink,
   rulesPageLink,
   setRuleValues,
   onRuleValueReset,
@@ -247,7 +243,6 @@ const TailoringTab = ({
             profileId={profileId || tailoring.profile_id}
             rulesPageLink={rulesPageLink}
             showResetButton={showResetButton}
-            resetLink={resetLink}
             systemCount={systemCount}
           />
         )}
@@ -305,7 +300,6 @@ TailoringTab.propTypes = {
   onSelect: propTypes.func,
   systemCount: propTypes.number,
   rulesTableProps: propTypes.object,
-  resetLink: propTypes.bool,
   rulesPageLink: propTypes.bool,
   setRuleValues: propTypes.func,
   onRuleValueReset: propTypes.func,

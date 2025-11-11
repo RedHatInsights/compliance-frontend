@@ -139,6 +139,7 @@ export const useUpdatePolicy = () => {
       fetchTailorings,
       assignRules,
       updateTailoring,
+      createTailorings,
     ],
   );
 

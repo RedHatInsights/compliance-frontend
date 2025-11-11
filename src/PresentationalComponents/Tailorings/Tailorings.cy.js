@@ -107,7 +107,6 @@ describe('Tailorings - Tailorings on Edit policy', () => {
       {
         policy: policy,
         profiles: undefined, // TODO: add profile to test
-        resetLink: true,
         rulesPageLink: true,
         remediationsEnabled: false,
         columns: [Columns.Name, Columns.Severity, Columns.Remediation],

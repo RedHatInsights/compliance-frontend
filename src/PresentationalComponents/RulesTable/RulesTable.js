@@ -31,9 +31,9 @@ import defaultColumns from './Columns';
  *  @param   {Function}           [props.onValueOverrideSave]  A funciton called when a value is saved
  *  @param   {Function}           [props.onSelect]             A function called when a selection action is performed
  *  @param   {string}             [props.defaultTableView]     A table view to show by default ("row" or "tree") // TODO we should use the table options directly
+ *  @param   {boolean}            [props.loading]              Loading state indicator for the table
  *
- *  @param                        props.loading
- *  @returns {React.ReactElement}
+ *  @returns {React.ReactElement}                              A RulesTable component
  *
  *  @category Compliance
  *
@@ -100,12 +100,7 @@ const RulesTable = ({
     }
 
     return Row;
-  }, [
-    policyId,
-    onValueOverrideSave,
-    onRuleValueReset,
-    skipValueDefinitions,
-  ]);
+  }, [policyId, onValueOverrideSave, onRuleValueReset, skipValueDefinitions]);
 
   return (
     <ComplianceTable
