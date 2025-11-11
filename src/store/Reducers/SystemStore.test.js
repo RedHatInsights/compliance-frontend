@@ -3,11 +3,11 @@ import { mapCountOsMinorVersions, countOsMinorVersions } from './SystemStore';
 describe('mapCountOsMinorVersions', () => {
   it('maps host counts by osMinorVersion', () => {
     const systems = [
-      { osMinorVersion: 10 },
-      { osMinorVersion: 1 },
-      { osMinorVersion: 9 },
-      { osMinorVersion: 9 },
-      { osMinorVersion: 0 },
+      { os_minor_version: 10 },
+      { os_minor_version: 1 },
+      { os_minor_version: 9 },
+      { os_minor_version: 9 },
+      { os_minor_version: 0 },
       {},
     ];
     expect(mapCountOsMinorVersions(systems)).toEqual({
@@ -22,11 +22,11 @@ describe('mapCountOsMinorVersions', () => {
 describe('countOsMinorVersions', () => {
   it('gathers unique OS minor versions sorted', () => {
     const systems = [
-      { osMinorVersion: 10 },
-      { osMinorVersion: 1 },
-      { osMinorVersion: 9 },
-      { osMinorVersion: 9 },
-      { osMinorVersion: 0 },
+      { os_minor_version: 10 },
+      { os_minor_version: 1 },
+      { os_minor_version: 9 },
+      { os_minor_version: 9 },
+      { os_minor_version: 0 },
       {},
     ];
     expect(countOsMinorVersions(systems)).toEqual([
