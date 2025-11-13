@@ -46,10 +46,10 @@ export const mapCountOsMinorVersions = (systems, profile) => {
     }, {});
   }
 
-  return systems.reduce((acc, { osMinorVersion }) => {
-    if (osMinorVersion !== undefined && osMinorVersion !== null) {
-      (acc[osMinorVersion] = acc[osMinorVersion] || {
-        osMinorVersion,
+  return systems.reduce((acc, { os_minor_version }) => {
+    if (os_minor_version !== undefined && os_minor_version !== null) {
+      (acc[os_minor_version] = acc[os_minor_version] || {
+        osMinorVersion: os_minor_version,
         count: 0,
       }).count++;
     }
