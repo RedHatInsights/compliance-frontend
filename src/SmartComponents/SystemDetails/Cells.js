@@ -7,6 +7,7 @@ import {
 } from '@patternfly/react-icons';
 import RemediationCell from '@/PresentationalComponents/RemediationCell/RemediationCell';
 import { Policy, Severity } from '@/PresentationalComponents/RulesTable/Cells';
+import { FAILED_RULE_STATES } from '@/constants';
 
 const ruleResultProps = {
   title: propTypes.string,
@@ -19,7 +20,7 @@ export const Rule = ({ title, result = 'pass' }) => {
   return (
     <Content
       style={{
-        ...(result === 'fail'
+        ...(FAILED_RULE_STATES.includes(result)
           ? {
               fontWeight: 'bold',
               color: 'var(--pf-t--global--color--status--danger--100)',
