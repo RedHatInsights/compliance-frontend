@@ -1,7 +1,4 @@
-import sortBy from 'lodash/sortBy';
 import { uniq } from 'Utilities/helpers';
-
-const sortByPrecedence = (issues) => sortBy(issues, ['precedence']);
 
 const isRemediatable = ({ result, remediation_issue_id }) =>
   result === 'fail' && !!remediation_issue_id;
@@ -30,13 +27,7 @@ export const compileRemediatonData = (ruleResults, selectedRuleIds) => {
       .reduce(
         (
           remediationResult,
-          {
-            id: rule_id,
-            remediation_issue_id,
-            system_id,
-            description,
-            precedence,
-          },
+          { rule_id, remediation_issue_id, system_id, description, precedence },
         ) => ({
           ...remediationResult,
           [rule_id]: {
@@ -61,8 +52,6 @@ export const compileRemediatonData = (ruleResults, selectedRuleIds) => {
 
   return {
     systems,
-    issues: sortByPrecedence(remediatableIssues).map(
-      ({ precedence: _precedence, ...issue }) => issue,
-    ),
+    issues: remediatableIssues,
   };
 };
