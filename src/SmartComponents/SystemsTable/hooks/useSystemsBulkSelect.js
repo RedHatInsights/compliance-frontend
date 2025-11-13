@@ -34,11 +34,25 @@ const useSystemsBulkSelect = ({
 
   const onSelectCallback = useCallback(
     (selectedIds) => {
-      const selectedItems = selectedIds.map((id) => ({
-        id,
-        ...resultCache?.data?.find(({ id: itemId }) => id === itemId),
-        ...itemIdsOnPage?.find(({ id: itemId }) => id === itemId),
-      }));
+      const cacheMap = new Map(
+        itemCache.current?.map((item) => [item.id, item]) ?? [],
+      );
+
+      const resultMap = new Map(
+        resultCache?.data?.map(({ id, ...rest }) => [id, rest]) ?? [],
+      );
+
+      const selectedItems = selectedIds.map((id) => {
+        const cached = cacheMap.get(id);
+        if (cached) {
+          return cached;
+        }
+
+        return {
+          id,
+          ...resultMap.get(id),
+        };
+      });
 
       // Ensures rows are marked as selected in the inventory table
       dispatch({
@@ -55,7 +69,7 @@ const useSystemsBulkSelect = ({
         onSelect?.(selectedItems);
       }
     },
-    [dispatch, onSelect, itemIdsOnPage, resultCache],
+    [dispatch, onSelect, resultCache, itemCache],
   );
 
   const bulkSelect = useBulkSelect({
