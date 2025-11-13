@@ -85,7 +85,6 @@ const EditPolicySystemsTab = ({
 
 EditPolicySystemsTab.propTypes = {
   policy: propTypes.object,
-  newRuleTabs: propTypes.bool,
   onSystemSelect: propTypes.func,
   selectedSystems: propTypes.array,
   supportedOsVersions: propTypes.array,

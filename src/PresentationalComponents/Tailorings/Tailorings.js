@@ -30,16 +30,16 @@ import NoTailorings from './NoTailorings';
  *  @param   {string}             [props.ouiaId]                         OuiaId to pass to the PatternFly Table
  *  @param   {Function}           [props.onValueOverrideSave]            Callback function called when a value of a rule is saved
  *  @param   {Function}           [props.onSelect]                       Callback function called when any selection is made
- *  @param   {object}             [props.selected]
+ *  @param   {object}             [props.selected]                       An object containing currently selected rule IDs
  *  @param   {boolean}            [props.enableSecurityGuideRulesToggle] Will enable the "Only Selected" toggle. When a policy with tailorings is shown and the toggle is enabled it will request rule data from the tailoring, with it disabled it will load rule data from the security guide. If a profile is provided it will load rules either from the profile, if the toggle is enabled, otherwise from the security guide.
  *  @param   {object}             [props.selectedVersionCounts]          An object containing minor version as a key and count as a value. Helps to render the system count badge in tab headers.
- *  @param   {object}             [props.valueOverrides]
- *  @param                        [props.rulesPageLink]
+ *  @param   {object}             [props.valueOverrides]                 An object containing value overrides for rules
+ *  @param   {boolean}            [props.rulesPageLink]                  Flag to show link to the rules page
+ *  @param   {string}             [props.skipProfile]                    Defines the view to identify what API requests should be skipped
+ *  @param   {Array}              [props.additionalRules]                Additional rules to include in the table
+ *  @param   {boolean}            [props.showResetButton]                Enables reset rules button
  *
- *  @param                        props.skipProfile
- *  @param                        props.additionalRules
- *  @param                        [props.showResetButton]                Enables reset rules button
- *  @returns {React.ReactElement}
+ *  @returns {React.ReactElement}                                        A Tailorings component
  *
  *  @category Compliance
  *  @tutorial how-to-use-tailorings
@@ -196,7 +196,6 @@ Tailorings.propTypes = {
   }),
   level: propTypes.number,
   ouiaId: propTypes.string,
-  resetLink: propTypes.bool,
   rulesPageLink: propTypes.bool,
   setRuleValues: propTypes.func,
   ruleValues: propTypes.array,

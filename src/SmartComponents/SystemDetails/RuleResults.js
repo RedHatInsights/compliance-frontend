@@ -58,7 +58,6 @@ const RuleResults = ({ reportTestResult, remediationsEnabled }) => {
       rules={rules.map((rule) => ({ ...rule, itemId: rule.rule_id }))}
       columns={columns}
       policyId={reportTestResult.report_id}
-      policyName={reportTestResult.title}
       total={ruleResults?.meta?.total}
       defaultTableView="rows"
       onSelect={true}

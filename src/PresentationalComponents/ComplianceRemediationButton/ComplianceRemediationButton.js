@@ -9,7 +9,6 @@ const ComplianceRemediationButton = ({
   reportId,
   reportTestResults,
   selectedRuleResultIds,
-  onRemediationCreated,
   ...buttonProps
 }) => {
   const addNotification = useAddNotification();
@@ -43,7 +42,6 @@ ComplianceRemediationButton.propTypes = {
   reportId: propTypes.string,
   reportTestResults: propTypes.arrayOf(propTypes.object),
   selectedRuleResultIds: propTypes.arrayOf(propTypes.string),
-  onRemediationCreated: propTypes.func,
 };
 
 export default ComplianceRemediationButton;

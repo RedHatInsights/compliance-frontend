@@ -18,27 +18,22 @@ import defaultColumns from './Columns';
  *  @param   {number}             [props.total]                The overall total number of rules available to go through
  *  @param   {object}             [props.ruleTree]             A table tree to show the rules in. If provided it will enable the "table view" toggle
  *  @param   {string}             [props.policyId]             A policy ID used for remediations and as profile for rules
- *  @param   {string}             [props.policyName]           A policy name used in the profile of rule items
  *  @param   {object}             [props.reportTestResult]     A report test result used for the remediatons button
  *  @param   {boolean}            [props.remediationsEnabled]  Enables the "RemediationButton"
  *  @param   {boolean}            [props.ansibleSupportFilter] Enables the ansible filter
- *  @param   {boolean}            [props.selectedFilter]       Enables the "Selected Only" filter
  *  @param   {Array}              [props.selectedRules]        An array of rule IDs selected
  *  @param   {boolean}            [props.hidePassed]           Enables a default filter to only show failed rules.
  *  @param   {object}             [props.options ]             TableToolsTable options
  *  @param   {string}             [props.activeFilters]        Default filter
- *  @param   {object}             [props.ruleValues]           An object of values to show for certain rule values
- *  @param   {Array}              [props.valueDefinitions]     An array of value definitons available for rules in the table
  *  @param   {boolean}            [props.skipValueDefinitions] TODO
  *  @param   {Function}           [props.onRuleValueReset]     A function called when a rule value is reset
  *  @param   {React.ReactElement} [props.DedicatedAction]      A dedicated action to show in the table
- *  @param   {object}             [props.valueOverrides]       An object of rule values // TODO we should make the name of this more consistent
  *  @param   {Function}           [props.onValueOverrideSave]  A funciton called when a value is saved
  *  @param   {Function}           [props.onSelect]             A function called when a selection action is performed
  *  @param   {string}             [props.defaultTableView]     A table view to show by default ("row" or "tree") // TODO we should use the table options directly
+ *  @param   {boolean}            [props.loading]              Loading state indicator for the table
  *
- *  @param                        props.loading
- *  @returns {React.ReactElement}
+ *  @returns {React.ReactElement}                              A RulesTable component
  *
  *  @category Compliance
  *
@@ -48,17 +43,13 @@ const RulesTable = ({
   rules,
   ruleTree,
   policyId,
-  policyName,
   columns = defaultColumns,
   remediationsEnabled,
   ansibleSupportFilter = false,
-  selectedFilter = false, // TODO this is potentially obsolete.
   selectedRules: selectedRulesProp = [],
   hidePassed = false,
   options,
   activeFilters,
-  ruleValues,
-  valueDefinitions,
   skipValueDefinitions,
   onRuleValueReset,
   DedicatedAction,
@@ -67,7 +58,6 @@ const RulesTable = ({
   onSelect,
   defaultTableView = 'tree',
   reportTestResult,
-  valueOverrides,
   ...rulesTableProps
 }) => {
   const complianceTableDefaults = useComplianceTableDefaults();
@@ -110,13 +100,7 @@ const RulesTable = ({
     }
 
     return Row;
-  }, [
-    policyId,
-    policyName,
-    onValueOverrideSave,
-    onRuleValueReset,
-    skipValueDefinitions,
-  ]);
+  }, [policyId, onValueOverrideSave, onRuleValueReset, skipValueDefinitions]);
 
   return (
     <ComplianceTable
@@ -159,7 +143,6 @@ const RulesTable = ({
         onSelect: (onSelect || remediationsEnabled) && setSelectedRules,
         selected: selectedRules,
         detailsComponent: DetailsRow,
-        selectedFilter,
         dedicatedAction: DedicatedAction,
         ...(remediationsEnabled ? { dedicatedAction: remediationAction } : {}),
         total,
@@ -175,29 +158,21 @@ RulesTable.propTypes = {
   rules: propTypes.array,
   ruleTree: propTypes.array,
   policyId: propTypes.string,
-  policyName: propTypes.string,
   hidePassed: propTypes.bool,
   remediationsEnabled: propTypes.bool,
   ansibleSupportFilter: propTypes.bool,
   selectedRules: propTypes.array,
-  selectedFilter: propTypes.bool,
   columns: propTypes.array,
   options: propTypes.object,
   activeFilters: propTypes.object,
-  ruleValues: propTypes.object,
   onRuleValueReset: propTypes.func,
   DedicatedAction: propTypes.node,
-  valueDefinitions: propTypes.shape({
-    data: propTypes.any,
-    loading: propTypes.bool.isRequired,
-  }),
   skipValueDefinitions: propTypes.bool,
   onValueOverrideSave: propTypes.func,
   onSelect: propTypes.oneOf([propTypes.func, propTypes.bool]),
   total: propTypes.number,
   defaultTableView: propTypes.string,
   reportTestResult: propTypes.object,
-  valueOverrides: propTypes.object,
 };
 
 export default RulesTable;

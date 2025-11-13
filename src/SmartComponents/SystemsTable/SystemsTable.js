@@ -164,7 +164,6 @@ export const SystemsTable = ({
 SystemsTable.propTypes = {
   apiEndpoint: PropTypes.string.isRequired,
   columns: PropTypes.array.isRequired,
-  policies: PropTypes.array,
   policyId: PropTypes.string,
   enableExport: PropTypes.bool,
   compact: PropTypes.bool,
@@ -175,9 +174,7 @@ SystemsTable.propTypes = {
   preselectedSystems: PropTypes.array,
   onSelect: PropTypes.func,
   noSystemsTable: PropTypes.node,
-  ssgVersions: PropTypes.array,
   dedicatedAction: PropTypes.object,
-  ruleSeverityFilter: PropTypes.bool,
   filters: PropTypes.object,
   ignoreOsMajorVersion: PropTypes.bool,
   reportId: PropTypes.string,

@@ -31,8 +31,9 @@ const TabSwitcher = ({ children, activeKey: currentAnchor, defaultTab }) => {
 };
 
 TabSwitcher.propTypes = {
-  activeTab: propTypes.number,
   children: propTypes.node,
+  currentAnchor: propTypes.string,
+  defaultTab: propTypes.string,
 };
 
 // Routed Plain switcher that can be used with PatternFly tabs
