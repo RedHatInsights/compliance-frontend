@@ -11,6 +11,8 @@ export const API_BASE_URL = '/api/compliance/v2';
 
 export const SEVERITY_LEVELS = ['high', 'medium', 'low', 'unknown'];
 
+export const FAILED_RULE_STATES = ['error', 'fail', 'unknown', 'fixed'];
+
 import {
   chart_color_black_100,
   chart_color_black_200,

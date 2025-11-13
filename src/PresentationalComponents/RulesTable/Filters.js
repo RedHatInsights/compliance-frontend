@@ -5,6 +5,7 @@ import {
   LowSeverity,
   UnknownSeverity,
 } from './components/SeverityIcons';
+import { FAILED_RULE_STATES } from '@/constants';
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/ConditionalFilter';
 
 const filterRulesWithAllValues = (rules, values, valueCheck) =>
@@ -13,19 +14,6 @@ const filterRulesWithAllValues = (rules, values, valueCheck) =>
       values.map((value) => valueCheck(rule, value)).filter((v) => !!v).length >
       0,
   );
-
-const anyFilterApply = (rules, values, valueCheck) => {
-  let filteredRules = [];
-  rules.forEach((rule) => {
-    if (
-      values.map((value) => valueCheck(rule, value)).filter((v) => !!v).length >
-      0
-    ) {
-      filteredRules.push(rule);
-    }
-  });
-  return filteredRules;
-};
 
 const BASE_FILTER_CONFIGURATION = [
   {
@@ -49,7 +37,7 @@ const BASE_FILTER_CONFIGURATION = [
 
 const RULE_STATE_REST_SERIALISER = {
   passed: 'pass',
-  failed: 'fail',
+  failed: FAILED_RULE_STATES,
 };
 
 const RULE_STATE_FILTER_CONFIG = {
@@ -59,16 +47,13 @@ const RULE_STATE_FILTER_CONFIG = {
     { label: 'Passed rules', value: 'passed' },
     { label: 'Failed rules', value: 'failed' },
   ],
-  filterSerialiser: (_filterConfig, values) =>
-    `(${values
-      .map((value) => `result = ${RULE_STATE_REST_SERIALISER[value]}`)
-      .join(' OR ')})`,
-  filter: (rules, values) =>
-    anyFilterApply(
-      rules,
-      values,
-      (rule, value) => rule.compliant === (value === 'passed'),
-    ),
+  filterSerialiser: (_filterConfig, values) => {
+    const serializedValues = values.flatMap((value) => {
+      const apiValue = RULE_STATE_REST_SERIALISER[value];
+      return Array.isArray(apiValue) ? apiValue : [apiValue];
+    });
+    return `result ^ (${serializedValues.join(' ')})`;
+  },
 };
 
 export const policiesFilterConfig = (policies) => ({
