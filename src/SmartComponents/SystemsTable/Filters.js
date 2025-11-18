@@ -184,9 +184,9 @@ export const group = {
 };
 
 export const tags = {
-  id: 'tagsFilters',
-  filterSerialiser: (_filterConfig, tagsFilters) =>
-    (tagsFilters || []).flatMap((tagFilter) =>
+  id: 'tagFilters',
+  filterSerialiser: (_filterConfig, tagFilters) =>
+    (tagFilters || []).flatMap((tagFilter) =>
       tagFilter.values.map(
         (tag) =>
           `${encodeURIComponent(tagFilter.key)}/${encodeURIComponent(

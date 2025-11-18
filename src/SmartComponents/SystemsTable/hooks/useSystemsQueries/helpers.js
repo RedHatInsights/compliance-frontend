@@ -9,13 +9,20 @@ const mapSortKey = (sortByKey) =>
 export const inventoryFiltersSerialiser = (
   inventoryFilterState = {},
   ignoreOsMajorVersion,
-) =>
-  filtersSerialiser(inventoryFilterState, [
+) => {
+  const { tagFilters, ...otherFilters } = inventoryFilterState;
+  const filter = filtersSerialiser(otherFilters, [
     filters.name,
     filters.os(ignoreOsMajorVersion),
     filters.group,
-    filters.tags,
   ]);
+
+  const tags = tagFilters
+    ? filters.tags.filterSerialiser(filters.tags, tagFilters)
+    : undefined;
+
+  return { filter, tags };
+};
 
 export const inventorySortSerialiser = (
   { key: sortByKey, direction } = {},
