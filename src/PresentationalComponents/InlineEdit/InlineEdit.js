@@ -6,6 +6,8 @@ import {
   Content,
   TextInput,
   ContentVariants,
+  HelperText,
+  HelperTextItem,
 } from '@patternfly/react-core';
 import { CheckIcon, TimesIcon, PencilAltIcon } from '@patternfly/react-icons';
 import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
@@ -28,6 +30,7 @@ const InlineEdit = ({
   // const [dirty, setDirty] = useState(false);
   const [value, setValue] = useState(() => valueProp || defaultValue);
   const [valid, setValid] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [open, setOpen] = useState(() => isOpen || false);
   const [saving, setSaving] = useState(false);
 
@@ -36,10 +39,18 @@ const InlineEdit = ({
 
     if (newValue !== value) {
       // setDirty(true);
-      setValid(validate?.(newValue) ?? true);
+      if (validate) {
+        const result = validate(newValue);
+        setValid(result.valid);
+        setErrorMessage(result.errorMessage);
+      } else {
+        setValid(true);
+        setErrorMessage(null);
+      }
     } else {
       // setDirty(false);
       setValid(null);
+      setErrorMessage(null);
     }
   };
 
@@ -85,6 +96,13 @@ const InlineEdit = ({
                 onChange={(_, v) => onChange(v)}
                 {...props}
               />
+              {errorMessage && (
+                <HelperText>
+                  <HelperTextItem variant="error">
+                    {errorMessage}
+                  </HelperTextItem>
+                </HelperText>
+              )}
             </div>
             <div
               className="pf-v6-c-inline-edit__group pf-v6-m-action-group pf-v6-m-icon-group"

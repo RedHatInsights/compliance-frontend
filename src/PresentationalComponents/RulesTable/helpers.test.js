@@ -1,48 +1,69 @@
 import { validatorFor, disableEdit } from './helpers';
 
 describe('validatorFor', () => {
-  describe('Number validator', () => {
-    const validator = validatorFor({
-      value_type: 'number',
+  describe('Number validation', () => {
+    const valueDefinition = { value_type: 'number' };
+    const validate = validatorFor(valueDefinition);
+
+    it('should return valid true and no error message for valid numbers', () => {
+      expect(validate('123')).toEqual({
+        valid: true,
+        errorMessage: null,
+      });
+      expect(validate('0')).toEqual({
+        valid: true,
+        errorMessage: null,
+      });
     });
 
-    it('should return true if inputs are numbers or strings in numbers', () => {
-      expect(
-        [0, 1, 2, '3', 4, '5', '6'].every((num) => validator(num)),
-      ).toBeTruthy();
-    });
-
-    it('should return false if inputs are strings and not numbers', () => {
-      expect(validator('foo')).toBe(false);
-    });
-  });
-
-  describe('Boolean validator', () => {
-    const validator = validatorFor({
-      value_type: 'boolean',
-    });
-
-    it('should return true for "true" and "false" strings', () => {
-      expect(validator('true')).toBe(true);
-      expect(validator('false')).toBe(true);
-    });
-
-    it('should return false for other strings', () => {
-      expect(validator('foo')).toBe(false);
-      expect(validator('1')).toBe(false);
-      expect(validator('0')).toBe(false);
+    it('should return valid false and error message for invalid values', () => {
+      expect(validate('abc')).toEqual({
+        valid: false,
+        errorMessage: 'Value must be a number',
+      });
+      expect(validate('12.5')).toEqual({
+        valid: false,
+        errorMessage: 'Value must be a number',
+      });
     });
   });
 
-  describe('String validator', () => {
-    const validator = validatorFor({
-      value_type: 'string',
+  describe('Boolean validation', () => {
+    const valueDefinition = { value_type: 'boolean' };
+    const validate = validatorFor(valueDefinition);
+
+    it('should return valid true and no error message for valid booleans', () => {
+      expect(validate('true')).toEqual({
+        valid: true,
+        errorMessage: null,
+      });
+      expect(validate('false')).toEqual({
+        valid: true,
+        errorMessage: null,
+      });
     });
 
-    it('should return true for any string', () => {
-      expect(validator('any string')).toBe(true);
-      expect(validator('123')).toBe(true);
-      expect(validator('')).toBe(true);
+    it('should return valid false and error message for invalid values', () => {
+      expect(validate('yes')).toEqual({
+        valid: false,
+        errorMessage: 'Value must be either "true" or "false"',
+      });
+    });
+  });
+
+  describe('String validation', () => {
+    const valueDefinition = { value_type: 'string' };
+    const validate = validatorFor(valueDefinition);
+
+    it('should return valid true and no error message for any string', () => {
+      expect(validate('any string')).toEqual({
+        valid: true,
+        errorMessage: null,
+      });
+      expect(validate('')).toEqual({
+        valid: true,
+        errorMessage: null,
+      });
     });
   });
 });
