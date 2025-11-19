@@ -14,9 +14,15 @@ const validators = {
   number: (value) => {
     return /^\d*$/.test(value);
   },
+  boolean: (value) => {
+    return ['true', 'false'].includes(value);
+  },
+  string: () => {
+    return true;
+  },
 };
 
 export const validatorFor = (valueDefinition) =>
-  validators[valueDefinition?.type] || (() => true);
+  validators[valueDefinition?.value_type] || (() => true);
 
 export const disableEdit = (value) => /(\n|\r|\\n|\\r)/.test(value);

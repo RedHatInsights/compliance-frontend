@@ -36,7 +36,7 @@ const InlineEdit = ({
 
     if (newValue !== value) {
       // setDirty(true);
-      setValid(validate?.(newValue) || true);
+      setValid(validate?.(newValue) ?? true);
     } else {
       // setDirty(false);
       setValid(null);

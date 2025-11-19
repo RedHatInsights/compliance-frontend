@@ -3,7 +3,7 @@ import { validatorFor, disableEdit } from './helpers';
 describe('validatorFor', () => {
   describe('Number validator', () => {
     const validator = validatorFor({
-      type: 'number',
+      value_type: 'number',
     });
 
     it('should return true if inputs are numbers or strings in numbers', () => {
@@ -13,9 +13,36 @@ describe('validatorFor', () => {
     });
 
     it('should return false if inputs are strings and not numbers', () => {
-      expect(['blub', 'blob', 'blab'].every((num) => validator(num))).toBe(
-        false,
-      );
+      expect(validator('foo')).toBe(false);
+    });
+  });
+
+  describe('Boolean validator', () => {
+    const validator = validatorFor({
+      value_type: 'boolean',
+    });
+
+    it('should return true for "true" and "false" strings', () => {
+      expect(validator('true')).toBe(true);
+      expect(validator('false')).toBe(true);
+    });
+
+    it('should return false for other strings', () => {
+      expect(validator('foo')).toBe(false);
+      expect(validator('1')).toBe(false);
+      expect(validator('0')).toBe(false);
+    });
+  });
+
+  describe('String validator', () => {
+    const validator = validatorFor({
+      value_type: 'string',
+    });
+
+    it('should return true for any string', () => {
+      expect(validator('any string')).toBe(true);
+      expect(validator('123')).toBe(true);
+      expect(validator('')).toBe(true);
     });
   });
 });
