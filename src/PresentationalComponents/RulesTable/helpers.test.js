@@ -1,21 +1,69 @@
 import { validatorFor, disableEdit } from './helpers';
 
 describe('validatorFor', () => {
-  describe('Number validator', () => {
-    const validator = validatorFor({
-      type: 'number',
+  describe('Number validation', () => {
+    const valueDefinition = { value_type: 'number' };
+    const validate = validatorFor(valueDefinition);
+
+    it('should return valid true and no error message for valid numbers', () => {
+      expect(validate('123')).toEqual({
+        valid: true,
+        errorMessage: null,
+      });
+      expect(validate('0')).toEqual({
+        valid: true,
+        errorMessage: null,
+      });
     });
 
-    it('should return true if inputs are numbers or strings in numbers', () => {
-      expect(
-        [0, 1, 2, '3', 4, '5', '6'].every((num) => validator(num)),
-      ).toBeTruthy();
+    it('should return valid false and error message for invalid values', () => {
+      expect(validate('abc')).toEqual({
+        valid: false,
+        errorMessage: 'Value must be a number',
+      });
+      expect(validate('12.5')).toEqual({
+        valid: false,
+        errorMessage: 'Value must be a number',
+      });
+    });
+  });
+
+  describe('Boolean validation', () => {
+    const valueDefinition = { value_type: 'boolean' };
+    const validate = validatorFor(valueDefinition);
+
+    it('should return valid true and no error message for valid booleans', () => {
+      expect(validate('true')).toEqual({
+        valid: true,
+        errorMessage: null,
+      });
+      expect(validate('false')).toEqual({
+        valid: true,
+        errorMessage: null,
+      });
     });
 
-    it('should return false if inputs are strings and not numbers', () => {
-      expect(['blub', 'blob', 'blab'].every((num) => validator(num))).toBe(
-        false,
-      );
+    it('should return valid false and error message for invalid values', () => {
+      expect(validate('yes')).toEqual({
+        valid: false,
+        errorMessage: 'Value must be either "true" or "false"',
+      });
+    });
+  });
+
+  describe('String validation', () => {
+    const valueDefinition = { value_type: 'string' };
+    const validate = validatorFor(valueDefinition);
+
+    it('should return valid true and no error message for any string', () => {
+      expect(validate('any string')).toEqual({
+        valid: true,
+        errorMessage: null,
+      });
+      expect(validate('')).toEqual({
+        valid: true,
+        errorMessage: null,
+      });
     });
   });
 });
