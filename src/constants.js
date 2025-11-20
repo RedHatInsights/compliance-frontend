@@ -51,9 +51,7 @@ export const reportsPopoverData = {
   bodyContent:
     'These reports show how compliant your systems are against a specific policy.',
   bodyLink:
-    'https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html-single/' +
-    'generating_compliance_service_reports/' +
-    'index#assembly-compl-uploading-current-data-systems',
+    'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/generating_compliance_service_reports/assembly-compl-uploading-current-data-systems',
 };
 
 export const policiesPopoverData = {
@@ -61,16 +59,12 @@ export const policiesPopoverData = {
   bodyContent:
     "Customize OpenSCAP policies based on your organization's compliance requirements.",
   bodyLink:
-    'https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html-single/' +
-    'assessing_and_monitoring_security_policy_compliance_of_rhel_systems/' +
-    'index#compliance-managing-policies_intro-compliance',
+    'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/compliance-managing-policies_intro-compliance',
 };
 
 export const systemsPopoverData = (serviceName) => ({
   headerContent: 'Systems list',
   bodyContent: `This list shows systems that have the necessary packages to successfully run ${serviceName} compliance scans.`,
   bodyLink:
-    'https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html-single/' +
-    'assessing_and_monitoring_security_policy_compliance_of_rhel_systems/' +
-    'index#compliance-getting-started_intro-compliance',
+    'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/compliance-getting-started_intro-compliance',
 });

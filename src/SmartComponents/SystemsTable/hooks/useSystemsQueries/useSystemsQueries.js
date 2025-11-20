@@ -80,12 +80,16 @@ const useSystemsQueries = ({
       ...params
     } = {}) => {
       inventoryFiltersCache.current = { filters, sortBy: inventorySortBy };
-      const filter = inventoryFiltersSerialiser(filters, ignoreOsMajorVersion);
+      const { filter, tags } = inventoryFiltersSerialiser(
+        filters,
+        ignoreOsMajorVersion,
+      );
       const sortBy = inventorySortSerialiser(inventorySortBy, columns);
       const allParams = {
         ...params,
         ...paginationSerialiser({ perPage, page }),
         ...(filter ? { filter } : {}),
+        ...(tags?.length ? { tags } : {}),
         ...(sortBy ? { sortBy } : {}),
       };
 
@@ -110,13 +114,14 @@ const useSystemsQueries = ({
     async (params) => {
       const { filters, sortBy: inventorySortBy } =
         inventoryFiltersCache?.current || {};
-      const filter = inventoryFiltersSerialiser(filters);
+      const { filter, tags } = inventoryFiltersSerialiser(filters);
       const sortBy = inventorySortSerialiser(inventorySortBy, columns);
 
       return await fetchBatched({
         ...params,
-        filter,
-        sortBy,
+        ...(filter ? { filter } : {}),
+        ...(tags?.length ? { tags } : {}),
+        ...(sortBy ? { sortBy } : {}),
       });
     },
     [fetchBatched, columns],
@@ -126,12 +131,13 @@ const useSystemsQueries = ({
     async (params) => {
       const { filters, sortBy: inventorySortBy } =
         inventoryFiltersCache?.current || {};
-      const filter = inventoryFiltersSerialiser(filters);
+      const { filter, tags } = inventoryFiltersSerialiser(filters);
       const sortBy = inventorySortSerialiser(inventorySortBy, columns);
       const exportableItems = await exporter({
         ...params,
-        filter,
-        sortBy,
+        ...(filter ? { filter } : {}),
+        ...(tags?.length ? { tags } : {}),
+        ...(sortBy ? { sortBy } : {}),
       });
 
       if (selectedIds?.length) {
@@ -147,13 +153,14 @@ const useSystemsQueries = ({
     async (params) => {
       const { filters, sortBy: inventorySortBy } =
         inventoryFiltersCache?.current || {};
-      const filter = inventoryFiltersSerialiser(filters);
+      const { filter, tags } = inventoryFiltersSerialiser(filters);
       const sortBy = inventorySortSerialiser(inventorySortBy, columns);
       const operatingSystems = (
         await fetchOperatingSystems({
           ...params,
-          filter,
-          sortBy,
+          ...(filter ? { filter } : {}),
+          ...(tags?.length ? { tags } : {}),
+          ...(sortBy ? { sortBy } : {}),
         })
       )?.data;
 
