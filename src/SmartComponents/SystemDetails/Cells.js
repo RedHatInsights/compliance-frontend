@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Content, Icon } from '@patternfly/react-core';
+import { Content, ContentVariants, Icon } from '@patternfly/react-core';
 import {
   CheckCircleIcon,
   ExclamationCircleIcon,
@@ -11,12 +11,13 @@ import { FAILED_RULE_STATES } from '@/constants';
 
 const ruleResultProps = {
   title: propTypes.string,
+  identifier: propTypes.object,
   severity: propTypes.string,
   result: propTypes.string,
   remediation_issue_id: propTypes.string,
 };
 
-export const Rule = ({ title, result = 'pass' }) => {
+export const Rule = ({ title, identifier, result = 'pass' }) => {
   return (
     <Content
       style={{
@@ -29,6 +30,19 @@ export const Rule = ({ title, result = 'pass' }) => {
       }}
     >
       {title}
+      {identifier ? (
+        <Content
+          style={{
+            fontWeight: 'normal',
+            color: 'var(--pf-t--global--text--color--200)',
+          }}
+          component={ContentVariants.small}
+        >
+          {identifier.label}
+        </Content>
+      ) : (
+        ''
+      )}
     </Content>
   );
 };
