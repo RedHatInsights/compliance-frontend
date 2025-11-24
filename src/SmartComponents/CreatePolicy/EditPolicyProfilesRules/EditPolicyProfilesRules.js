@@ -188,6 +188,25 @@ const EditPolicyProfilesRules = ({
     closeInlineEdit();
   };
 
+  const onRuleValueReset = (osMinorVersion, ruleValues) => {
+    let valueOverridesUpdated = structuredClone(valueOverrides);
+
+    Object.keys(ruleValues).forEach((ruleId) => {
+      if (valueOverridesUpdated?.[osMinorVersion]?.[ruleId] !== undefined) {
+        delete valueOverridesUpdated[osMinorVersion][ruleId];
+      }
+    });
+
+    if (
+      valueOverridesUpdated?.[osMinorVersion] &&
+      Object.keys(valueOverridesUpdated[osMinorVersion]).length === 0
+    ) {
+      delete valueOverridesUpdated[osMinorVersion];
+    }
+
+    change('valueOverrides', valueOverridesUpdated);
+  };
+
   return !preselected ? (
     <Bullseye>
       <Spinner />
@@ -238,6 +257,7 @@ const EditPolicyProfilesRules = ({
                 rulesPageLink={true}
                 valueOverrides={valueOverrides}
                 onValueOverrideSave={onValueOverrideSave}
+                onRuleValueReset={onRuleValueReset}
                 selectedVersionCounts={osMinorVersionCounts.reduce(
                   (prev, cur) => ({
                     ...prev,

@@ -146,6 +146,35 @@ export const EditPolicyRulesTab = ({
     [setUpdatedPolicy],
   );
 
+  const onRuleValueReset = useCallback(
+    (osMinorVersion, ruleValues) => {
+      setUpdatedPolicy((prev) => {
+        const valueOverridesUpdated = structuredClone(
+          prev?.tailoringValueOverrides || {},
+        );
+
+        Object.keys(ruleValues).forEach((ruleId) => {
+          if (valueOverridesUpdated?.[osMinorVersion]?.[ruleId] !== undefined) {
+            delete valueOverridesUpdated[osMinorVersion][ruleId];
+          }
+        });
+
+        if (
+          valueOverridesUpdated?.[osMinorVersion] &&
+          Object.keys(valueOverridesUpdated[osMinorVersion]).length === 0
+        ) {
+          delete valueOverridesUpdated[osMinorVersion];
+        }
+
+        return {
+          ...prev,
+          tailoringValueOverrides: valueOverridesUpdated,
+        };
+      });
+    },
+    [setUpdatedPolicy],
+  );
+
   const assignedSystemCount = policy?.total_system_count;
   return (
     <StateView
@@ -186,6 +215,7 @@ export const EditPolicyRulesTab = ({
           level={1}
           ouiaId="RHELVersions"
           onValueOverrideSave={setRuleValues}
+          onRuleValueReset={onRuleValueReset}
           valueOverrides={updatedPolicy?.tailoringValueOverrides}
           onSelect={handleSelect}
           showResetButton

@@ -32,6 +32,7 @@ import '@/Charts.scss';
 import PolicySystemsTab from './PolicySystemsTab';
 import './PolicyDetails.scss';
 import useSaveValueOverrides from './hooks/useSaveValueOverrides';
+import useResetValueOverrides from './hooks/useResetValueOverrides';
 import usePolicy from 'Utilities/hooks/api/usePolicy';
 import usePolicyOsVersionCounts from 'Utilities/hooks/usePolicyOsVersionCounts';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
@@ -55,6 +56,8 @@ export const PolicyDetails = ({ route }) => {
     await saveValueOverrides(...args);
     refetch?.();
   };
+
+  const resetValueOverrides = useResetValueOverrides(policyId, refetch);
 
   useTitleEntity(route, policy?.title);
   const DedicatedAction = useMemo(
@@ -131,6 +134,7 @@ export const PolicyDetails = ({ route }) => {
                       level={1}
                       DedicatedAction={DedicatedAction}
                       onValueOverrideSave={saveToPolicy}
+                      onRuleValueReset={resetValueOverrides}
                       selectedVersionCounts={versionCounts}
                       skipProfile="policy-details"
                     />
