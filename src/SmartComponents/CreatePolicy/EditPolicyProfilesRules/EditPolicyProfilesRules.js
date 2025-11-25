@@ -23,6 +23,7 @@ import {
 } from '@/PresentationalComponents';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 import useProfileRuleIds from './useProfileRuleIds';
+import { resetRuleValueOverrides } from '@/Utilities/helpers';
 
 const EditPolicyProfilesRules = ({
   profile,
@@ -189,20 +190,11 @@ const EditPolicyProfilesRules = ({
   };
 
   const onRuleValueReset = (osMinorVersion, ruleValues) => {
-    let valueOverridesUpdated = structuredClone(valueOverrides);
-
-    Object.keys(ruleValues).forEach((ruleId) => {
-      if (valueOverridesUpdated?.[osMinorVersion]?.[ruleId] !== undefined) {
-        delete valueOverridesUpdated[osMinorVersion][ruleId];
-      }
-    });
-
-    if (
-      valueOverridesUpdated?.[osMinorVersion] &&
-      Object.keys(valueOverridesUpdated[osMinorVersion]).length === 0
-    ) {
-      delete valueOverridesUpdated[osMinorVersion];
-    }
+    const valueOverridesUpdated = resetRuleValueOverrides(
+      valueOverrides,
+      osMinorVersion,
+      ruleValues,
+    );
 
     change('valueOverrides', valueOverridesUpdated);
   };

@@ -48,7 +48,7 @@ const useResetValueOverrides = (policyId, refetch) => {
 
         refetch?.();
       } catch (error) {
-        console.log(error);
+        console.error(error);
         addNotification({
           variant: 'danger',
           title: 'Error resetting rule value',

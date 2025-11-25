@@ -14,6 +14,7 @@ import Tailorings from '@/PresentationalComponents/Tailorings/Tailorings';
 import useProfileRuleIds from '../CreatePolicy/EditPolicyProfilesRules/useProfileRuleIds';
 import useTailorings from 'Utilities/hooks/api/useTailorings';
 import useDeepCompareEffect from 'use-deep-compare-effect';
+import { resetRuleValueOverrides } from '@/Utilities/helpers';
 
 const EditPolicyRulesTabEmptyState = () => (
   <EmptyState headingLevel="h5" titleText="No rules can be configured">
@@ -149,22 +150,11 @@ export const EditPolicyRulesTab = ({
   const onRuleValueReset = useCallback(
     (osMinorVersion, ruleValues) => {
       setUpdatedPolicy((prev) => {
-        const valueOverridesUpdated = structuredClone(
+        const valueOverridesUpdated = resetRuleValueOverrides(
           prev?.tailoringValueOverrides || {},
+          osMinorVersion,
+          ruleValues,
         );
-
-        Object.keys(ruleValues).forEach((ruleId) => {
-          if (valueOverridesUpdated?.[osMinorVersion]?.[ruleId] !== undefined) {
-            delete valueOverridesUpdated[osMinorVersion][ruleId];
-          }
-        });
-
-        if (
-          valueOverridesUpdated?.[osMinorVersion] &&
-          Object.keys(valueOverridesUpdated[osMinorVersion]).length === 0
-        ) {
-          delete valueOverridesUpdated[osMinorVersion];
-        }
 
         return {
           ...prev,
