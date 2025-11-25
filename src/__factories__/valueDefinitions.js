@@ -6,13 +6,13 @@ const buildValueDefinitions = (length, itemIds = []) => {
   return [...Array(count)].map((_, index) => {
     const valueType = faker.helpers.arrayElement([
       'string',
-      'integer',
+      'number',
       'boolean',
     ]);
     let defaultValue;
 
     switch (valueType) {
-      case 'integer':
+      case 'number':
         defaultValue = faker.number.int({ min: 1, max: 100 }).toString();
         break;
       case 'boolean':
