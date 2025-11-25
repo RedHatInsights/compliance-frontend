@@ -29,6 +29,7 @@ import NoTailorings from './NoTailorings';
  *  @param   {number}             [props.level]                          Sets the level of the tab in the URL anchor
  *  @param   {string}             [props.ouiaId]                         OuiaId to pass to the PatternFly Table
  *  @param   {Function}           [props.onValueOverrideSave]            Callback function called when a value of a rule is saved
+ *  @param   {Function}           [props.onRuleValueReset]               Callback function called when a value of a rule is reset
  *  @param   {Function}           [props.onSelect]                       Callback function called when any selection is made
  *  @param   {object}             [props.selected]                       An object containing currently selected rule IDs
  *  @param   {boolean}            [props.enableSecurityGuideRulesToggle] Will enable the "Only Selected" toggle. When a policy with tailorings is shown and the toggle is enabled it will request rule data from the tailoring, with it disabled it will load rule data from the security guide. If a profile is provided it will load rules either from the profile, if the toggle is enabled, otherwise from the security guide.
@@ -54,6 +55,7 @@ const Tailorings = ({
   ouiaId,
   rulesPageLink,
   onValueOverrideSave,
+  onRuleValueReset,
   onSelect,
   selected,
   showResetButton,
@@ -133,7 +135,7 @@ const Tailorings = ({
                     </FlexItem>
                     <FlexItem>
                       <Badge isRead>
-                        {` ${selectedVersionCounts[tab.os_minor_version] || 0} `}
+                        {` ${selectedVersionCounts?.[tab.os_minor_version] || 0} `}
                       </Badge>
                     </FlexItem>
                   </Flex>
@@ -155,6 +157,7 @@ const Tailorings = ({
                     rulesTableProps,
                     skipProfile,
                     onValueOverrideSave: onValueSave,
+                    onRuleValueReset: onRuleValueReset,
                     ...(onSelect ? { onSelect: onSelectTailoring } : {}),
                     showResetButton: showResetButton,
                     selected:

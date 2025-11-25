@@ -14,6 +14,7 @@ import Tailorings from '@/PresentationalComponents/Tailorings/Tailorings';
 import useProfileRuleIds from '../CreatePolicy/EditPolicyProfilesRules/useProfileRuleIds';
 import useTailorings from 'Utilities/hooks/api/useTailorings';
 import useDeepCompareEffect from 'use-deep-compare-effect';
+import { resetRuleValueOverrides } from '@/Utilities/helpers';
 
 const EditPolicyRulesTabEmptyState = () => (
   <EmptyState headingLevel="h5" titleText="No rules can be configured">
@@ -146,6 +147,24 @@ export const EditPolicyRulesTab = ({
     [setUpdatedPolicy],
   );
 
+  const onRuleValueReset = useCallback(
+    (osMinorVersion, ruleValues) => {
+      setUpdatedPolicy((prev) => {
+        const valueOverridesUpdated = resetRuleValueOverrides(
+          prev?.tailoringValueOverrides || {},
+          osMinorVersion,
+          ruleValues,
+        );
+
+        return {
+          ...prev,
+          tailoringValueOverrides: valueOverridesUpdated,
+        };
+      });
+    },
+    [setUpdatedPolicy],
+  );
+
   const assignedSystemCount = policy?.total_system_count;
   return (
     <StateView
@@ -186,6 +205,7 @@ export const EditPolicyRulesTab = ({
           level={1}
           ouiaId="RHELVersions"
           onValueOverrideSave={setRuleValues}
+          onRuleValueReset={onRuleValueReset}
           valueOverrides={updatedPolicy?.tailoringValueOverrides}
           onSelect={handleSelect}
           showResetButton

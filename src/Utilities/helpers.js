@@ -47,3 +47,26 @@ export const stringToSentenceCase = (string) => {
 
 export const isObject = (value) =>
   typeof value === 'object' && value !== null && !Array.isArray(value);
+
+export const resetRuleValueOverrides = (
+  valueOverrides,
+  osMinorVersion,
+  ruleValues,
+) => {
+  const valueOverridesUpdated = structuredClone(valueOverrides);
+
+  Object.keys(ruleValues).forEach((ruleId) => {
+    if (valueOverridesUpdated?.[osMinorVersion]?.[ruleId] !== undefined) {
+      delete valueOverridesUpdated[osMinorVersion][ruleId];
+    }
+  });
+
+  if (
+    valueOverridesUpdated?.[osMinorVersion] &&
+    Object.keys(valueOverridesUpdated[osMinorVersion]).length === 0
+  ) {
+    delete valueOverridesUpdated[osMinorVersion];
+  }
+
+  return valueOverridesUpdated;
+};

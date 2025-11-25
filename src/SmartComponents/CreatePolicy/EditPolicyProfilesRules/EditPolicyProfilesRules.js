@@ -23,6 +23,7 @@ import {
 } from '@/PresentationalComponents';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 import useProfileRuleIds from './useProfileRuleIds';
+import { resetRuleValueOverrides } from '@/Utilities/helpers';
 
 const EditPolicyProfilesRules = ({
   profile,
@@ -188,6 +189,16 @@ const EditPolicyProfilesRules = ({
     closeInlineEdit();
   };
 
+  const onRuleValueReset = (osMinorVersion, ruleValues) => {
+    const valueOverridesUpdated = resetRuleValueOverrides(
+      valueOverrides,
+      osMinorVersion,
+      ruleValues,
+    );
+
+    change('valueOverrides', valueOverridesUpdated);
+  };
+
   return !preselected ? (
     <Bullseye>
       <Spinner />
@@ -238,6 +249,7 @@ const EditPolicyProfilesRules = ({
                 rulesPageLink={true}
                 valueOverrides={valueOverrides}
                 onValueOverrideSave={onValueOverrideSave}
+                onRuleValueReset={onRuleValueReset}
                 selectedVersionCounts={osMinorVersionCounts.reduce(
                   (prev, cur) => ({
                     ...prev,

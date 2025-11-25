@@ -209,6 +209,16 @@ const TailoringTab = ({
     [tailoring, osMinorVersion, onValueOverrideSave],
   );
 
+  const onValueReset = useCallback(
+    (ruleValues, valueDefinitions) =>
+      onRuleValueReset?.(
+        tailoring?.os_minor_version || osMinorVersion,
+        ruleValues,
+        valueDefinitions,
+      ),
+    [onRuleValueReset, tailoring, osMinorVersion],
+  );
+
   const onSelectRule = useCallback(
     (...ruleParams) =>
       onSelect?.(
@@ -262,7 +272,7 @@ const TailoringTab = ({
         remediationsEnabled={false}
         columns={columns}
         setRuleValues={setRuleValues}
-        onRuleValueReset={onRuleValueReset}
+        onRuleValueReset={onValueReset}
         onValueOverrideSave={onValueSave}
         onSelect={onSelect ? onSelectRule : undefined}
         selectedRules={selected}
@@ -289,6 +299,7 @@ TailoringTab.propTypes = {
     id: propTypes.string,
     profile_id: propTypes.string,
     security_guide_id: propTypes.string,
+    os_minor_version: propTypes.string,
     value_overrides: propTypes.array,
   }),
   securityGuideId: propTypes.string,
