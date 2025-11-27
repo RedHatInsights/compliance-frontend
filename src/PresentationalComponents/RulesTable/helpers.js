@@ -7,7 +7,7 @@ export const checkForNonDefaultValues = (values, valueDefinitions) =>
         valueDefinition.refId === valueId || valueDefinition.id === valueId,
     );
 
-    return value !== valueDefinition?.defaultValue;
+    return value !== valueDefinition?.default_value;
   });
 
 const validators = {
