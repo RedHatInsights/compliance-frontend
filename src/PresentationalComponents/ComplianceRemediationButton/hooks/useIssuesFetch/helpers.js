@@ -8,8 +8,8 @@ const isRemediatable = ({ result, remediation_issue_id }) =>
 
 const isSelected =
   (selectedRuleIds) =>
-  ({ rule_id }) =>
-    selectedRuleIds !== undefined ? selectedRuleIds.includes(rule_id) : true;
+  ({ id }) =>
+    selectedRuleIds !== undefined ? selectedRuleIds.includes(id) : true;
 
 export const isReportTestResultSupported = (reportTestResult) => {
   return reportTestResult?.supported;
@@ -30,7 +30,13 @@ export const compileRemediatonData = (ruleResults, selectedRuleIds) => {
       .reduce(
         (
           remediationResult,
-          { rule_id, remediation_issue_id, system_id, description, precedence },
+          {
+            id: rule_id,
+            remediation_issue_id,
+            system_id,
+            description,
+            precedence,
+          },
         ) => ({
           ...remediationResult,
           [rule_id]: {

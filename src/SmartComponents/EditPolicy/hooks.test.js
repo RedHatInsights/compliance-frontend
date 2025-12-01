@@ -30,12 +30,14 @@ describe('useOnSave', function () {
   beforeEach(() => {
     onSaveCallBack.mockReset();
     onErrorCallback.mockReset();
-    useAssignRules.mockReturnValue({ fetch: jest.fn(() => Promise.resolve()) });
+    useAssignRules.mockReturnValue({
+      fetchQueue: jest.fn(() => Promise.resolve()),
+    });
     useAssignSystems.mockReturnValue({
-      fetch: jest.fn(() => Promise.resolve()),
+      query: jest.fn(() => Promise.resolve()),
     });
     useTailorings.mockReturnValue({
-      fetch: jest.fn(() => Promise.resolve({ data: [] })),
+      queryTotalBatched: jest.fn(() => Promise.resolve({ data: [] })),
     });
   });
 
@@ -45,7 +47,7 @@ describe('useOnSave', function () {
 
   it('returns a function to call with a policy and updated policy', async () => {
     useUpdatePolicy.mockReturnValue({
-      fetch: jest.fn(() => Promise.resolve()),
+      query: jest.fn(() => Promise.resolve()),
     });
 
     const { result } = renderHook(
@@ -71,7 +73,7 @@ describe('useOnSave', function () {
 
   it('returns a function to call with a policy and updated policy and can raise an error', async () => {
     useUpdatePolicy.mockReturnValue({
-      fetch: jest.fn(() => {
+      query: jest.fn(() => {
         return Promise.reject(new Error('Update failed'));
       }),
     });
@@ -99,7 +101,7 @@ describe('useOnSave', function () {
   it('useSavePolicy update policy attributes', async () => {
     const mockUpdatePolicy = jest.fn(() => Promise.resolve());
     useUpdatePolicy.mockReturnValue({
-      fetch: mockUpdatePolicy,
+      query: mockUpdatePolicy,
     });
 
     const updatedPolicyWithBusinessObjective = {

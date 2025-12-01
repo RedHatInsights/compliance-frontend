@@ -1,20 +1,16 @@
-import useComplianceQuery from '../useComplianceQuery';
+import useTableToolsQuery from '../useTableToolsQuery';
 
-const convertToArray = (params) => {
-  if (Array.isArray(params)) {
-    return params;
-  } else {
-    const { securityGuideId, profileId } = params;
-
-    return [
-      securityGuideId,
-      profileId,
-      undefined, // xRHIDENTITY
-    ];
-  }
-};
+const convertToArray = ({ securityGuideId, profileId }) => [
+  securityGuideId,
+  profileId,
+  undefined, // xRHIDENTITY
+];
 
 const useProfileTree = (options) =>
-  useComplianceQuery('profileTree', { ...options, convertToArray });
+  useTableToolsQuery('profileTree', {
+    ...options,
+    requiredParams: ['securityGuideId', 'profileId'],
+    convertToArray,
+  });
 
 export default useProfileTree;

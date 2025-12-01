@@ -1,15 +1,15 @@
-import useComplianceQuery from '../useComplianceQuery';
+import useTableToolsQuery from '../useTableToolsQuery';
 
-const convertToArray = ({ limit, offset, idsOnly, sortBy, filter }) => [
+const convertToArray = ({ limit, offset, idsOnly, sort, filters }) => [
   undefined, // xRHIDENTITY
   limit,
   offset,
   idsOnly,
-  sortBy,
-  filter,
+  sort,
+  filters,
 ];
 
 const useSupportedProfiles = (options) =>
-  useComplianceQuery('supportedProfiles', { ...options, convertToArray });
+  useTableToolsQuery('supportedProfiles', { ...options, convertToArray });
 
 export default useSupportedProfiles;

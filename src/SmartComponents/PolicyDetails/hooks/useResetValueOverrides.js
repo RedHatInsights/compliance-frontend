@@ -4,8 +4,8 @@ import useTailorings from 'Utilities/hooks/api/useTailorings';
 import { useAddNotification } from '@redhat-cloud-services/frontend-components-notifications/hooks';
 
 const useResetValueOverrides = (policyId, refetch) => {
-  const { fetch: updateTailoring } = useUpdateTailoring({ skip: true });
-  const { fetch: fetchTailorings } = useTailorings({ skip: true });
+  const { query: updateTailoring } = useUpdateTailoring({ skip: true });
+  const { query: fetchTailorings } = useTailorings({ skip: true });
   const addNotification = useAddNotification();
 
   const resetValueOverrides = useCallback(
@@ -13,7 +13,7 @@ const useResetValueOverrides = (policyId, refetch) => {
       try {
         const tailoringsResponse = await fetchTailorings({
           policyId,
-          filter: `os_minor_version=${osMinorVersion}`,
+          filters: `os_minor_version=${osMinorVersion}`,
         });
         const tailoring = tailoringsResponse.data[0];
         const tailoringId = tailoring?.id;
