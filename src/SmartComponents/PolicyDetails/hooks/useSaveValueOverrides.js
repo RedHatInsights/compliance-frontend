@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import useUpdateTailoring from 'Utilities/hooks/api/useUpdateTailoring';
 
 const useSaveValueOverrides = () => {
-  const { fetch: submit } = useUpdateTailoring();
+  const { query: submit } = useUpdateTailoring();
   const saveValueOverrides = useCallback(
     async (policy, tailoring, valueDefintion, newValue) => {
       const { id: policyId } = policy;

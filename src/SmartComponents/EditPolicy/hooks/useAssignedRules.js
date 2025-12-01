@@ -8,7 +8,7 @@ const useAssignedRules = (policyId) => {
 
   const { data: { data: tailorings } = {}, loading: tailoringsLoading } =
     useTailorings({
-      params: { policyId, filter: 'NOT(null? os_minor_version)' },
+      params: { policyId, filters: 'NOT(null? os_minor_version)' },
     });
   const { fetchBatchedQueue: fetchTailoringRules } = useTailoringRules({
     params: { policyId, idsOnly: true },

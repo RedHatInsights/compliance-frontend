@@ -1,11 +1,11 @@
-import useComplianceQuery from '../useComplianceQuery';
+import useTableToolsQuery from '../useTableToolsQuery';
 
-const convertToArray = ({ filter }) => [
+const convertToArray = ({ filters }) => [
   undefined, // xRHIDENTITY
-  filter,
+  filters,
 ];
 
 const useReportsOS = (options) =>
-  useComplianceQuery('reportsOS', { ...options, convertToArray });
+  useTableToolsQuery('reportsOS', { ...options, convertToArray });
 
 export default useReportsOS;

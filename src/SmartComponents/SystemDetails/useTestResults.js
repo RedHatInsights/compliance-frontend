@@ -11,16 +11,16 @@ const useTestResults = (systemId, { skip = false } = {}) => {
       params: { systemId },
       skip: skip,
     });
-  const { fetchBatchedQueue: fetchReportTestResults } = useReportTestResults({
+  const { fetchQueue: fetchReportTestResults } = useReportTestResults({
     skip: true,
   });
 
   useEffect(() => {
     const collectTestResults = async () => {
-      const filter = `system_id=${systemId}`;
+      const filters = `system_id=${systemId}`;
       const fetchQueue = reports.map(({ id: reportId }) => ({
         reportId,
-        filter,
+        filters,
       }));
       const fetchQueueResults = (await fetchReportTestResults(fetchQueue))
         .map(({ meta, data }) => {
