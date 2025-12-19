@@ -33,7 +33,7 @@ const EditPolicy = ({ route }) => {
     loading: supportedProfilesLoading,
   } = useSupportedProfiles({
     params: {
-      filters: `os_major_version=${policy?.os_major_version}`,
+      filter: `os_major_version=${policy?.os_major_version}`,
     },
     batched: true,
     skip: !policy,

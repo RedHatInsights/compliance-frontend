@@ -43,11 +43,11 @@ describe('useUpdatePolicy', () => {
   let fetchTailorings = jest.fn(() => fetchTailoringsResponse);
   let updateTailoring = jest.fn();
 
-  useCreatePolicy.mockImplementation(() => ({ query: createPolicy }));
-  useAssignRules.mockImplementation(() => ({ query: assignRules }));
-  useAssignSystems.mockImplementation(() => ({ query: assignSystems }));
-  useTailorings.mockImplementation(() => ({ query: fetchTailorings }));
-  useUpdateTailoring.mockImplementation(() => ({ query: updateTailoring }));
+  useCreatePolicy.mockImplementation(() => ({ fetch: createPolicy }));
+  useAssignRules.mockImplementation(() => ({ fetch: assignRules }));
+  useAssignSystems.mockImplementation(() => ({ fetch: assignSystems }));
+  useTailorings.mockImplementation(() => ({ fetch: fetchTailorings }));
+  useUpdateTailoring.mockImplementation(() => ({ fetch: updateTailoring }));
 
   const onProgress = jest.fn();
 
@@ -83,15 +83,19 @@ describe('useUpdatePolicy', () => {
 
     await result.current(undefined, policyDataToSubmit, onProgress);
 
-    expect(createPolicy).toHaveBeenCalledWith({
-      policy: {
-        business_objective: policyDataToSubmit.businessObjective,
-        compliance_threshold: policyDataToSubmit.complianceThreshold,
-        description: policyDataToSubmit.description,
-        profile_id: policyDataToSubmit.cloneFromProfileId,
-        title: policyDataToSubmit.name,
-      },
-    });
+    expect(createPolicy).toHaveBeenCalledWith(
+      [
+        undefined, // X-RH identity
+        {
+          business_objective: policyDataToSubmit.businessObjective,
+          compliance_threshold: policyDataToSubmit.complianceThreshold,
+          description: policyDataToSubmit.description,
+          profile_id: policyDataToSubmit.cloneFromProfileId,
+          title: policyDataToSubmit.name,
+        },
+      ],
+      false, // to return response data
+    );
   });
 
   it('assigns systems', async () => {
@@ -101,12 +105,13 @@ describe('useUpdatePolicy', () => {
 
     await result.current(undefined, policyDataToSubmit, onProgress);
 
-    expect(assignSystems).toHaveBeenCalledWith({
-      assignSystemsRequest: {
+    expect(assignSystems).toHaveBeenCalledWith([
+      createdPolicyId,
+      undefined, // X-RH identity
+      {
         ids: policyDataToSubmit.hosts.map(({ id }) => id),
       },
-      policyId: createdPolicyId,
-    });
+    ]);
   });
 
   it('fetches tailorings and adds rules to these tailorings', async () => {
@@ -116,18 +121,24 @@ describe('useUpdatePolicy', () => {
 
     await result.current(undefined, policyDataToSubmit, onProgress);
 
-    expect(fetchTailorings).toHaveBeenCalledWith({
-      limit: 100,
-      policyId: createdPolicyId,
-    });
+    expect(fetchTailorings).toHaveBeenCalledWith(
+      [
+        createdPolicyId,
+        undefined, // X-RH identity
+        100,
+      ],
+      false, // to return response data
+    );
 
-    expect(assignRules).toHaveBeenCalledWith({
-      assignRulesRequest: {
-        ids: policyDataToSubmit.selectedRuleRefIds[0].ruleRefIds,
-      },
-      policyId: createdPolicyId,
-      tailoringId: createdTailoringId,
-    });
+    expect(assignRules).toHaveBeenCalledWith(
+      [
+        createdPolicyId,
+        createdTailoringId,
+        undefined,
+        { ids: policyDataToSubmit.selectedRuleRefIds[0].ruleRefIds },
+      ],
+      false,
+    );
   });
 
   it('updates value overrides when there are any', async () => {

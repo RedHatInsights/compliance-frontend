@@ -1,24 +1,25 @@
-import useTableToolsQuery from '../useTableToolsQuery';
+import useComplianceQuery from '../useComplianceQuery';
 
-const convertToArray = ({
-  policyId,
-  limit,
-  offset,
-  idsOnly,
-  sort,
-  filters,
-}) => [
-  policyId,
-  undefined, // xRHIDENTITY
-  limit,
-  offset,
-  idsOnly,
-  sort,
-  filters,
-];
+const convertToArray = (params) => {
+  if (Array.isArray(params)) {
+    return params;
+  } else {
+    const { policyId, limit, offset, idsOnly, sortBy, filter } = params;
+
+    return [
+      policyId,
+      undefined, // xRHIDENTITY
+      limit,
+      offset,
+      idsOnly,
+      sortBy,
+      filter,
+    ];
+  }
+};
 
 const useTailorings = (options) =>
-  useTableToolsQuery('tailorings', {
+  useComplianceQuery('tailorings', {
     ...options,
     requiredParams: 'policyId',
     convertToArray,

@@ -1,24 +1,24 @@
-import useTableToolsQuery from '../useTableToolsQuery';
+import useComplianceQuery from '../useComplianceQuery';
 
 const convertToArray = ({
   systemId,
   limit,
   offset,
   idsOnly,
-  sort,
-  filters,
+  sortBy,
+  filter,
 }) => [
   systemId,
   undefined, // xRHIDENTITY
   limit,
   offset,
   idsOnly,
-  sort,
-  filters,
+  sortBy,
+  filter,
 ];
 
 const useSystemReports = (options) =>
-  useTableToolsQuery('systemReports', {
+  useComplianceQuery('systemReports', {
     ...options,
     requiredParams: 'systemId',
     convertToArray,

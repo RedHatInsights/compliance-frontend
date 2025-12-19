@@ -20,10 +20,6 @@ export const convertToArray = ({
 ];
 
 const useReportSystems = (options) =>
-  useComplianceQuery('reportSystems', {
-    ...options,
-    requiredParams: 'reportId',
-    convertToArray,
-  });
+  useComplianceQuery('reportSystems', { ...options, convertToArray });
 
 export default useReportSystems;

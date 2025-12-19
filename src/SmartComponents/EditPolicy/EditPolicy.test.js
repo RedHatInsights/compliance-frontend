@@ -62,7 +62,7 @@ const fetchBatchedMock = jest.fn(() =>
 describe('EditPolicy', () => {
   beforeEach(() => {
     useUpdatePolicy.mockReturnValue({
-      query: jest.fn(() => Promise.resolve()),
+      fetch: jest.fn(() => Promise.resolve()),
     });
 
     usePolicy.mockImplementation(() => ({
@@ -96,6 +96,25 @@ describe('EditPolicy', () => {
   it('Should have proper modal title', () => {
     renderComponent();
     expect(screen.getByText(`Edit test-policy`)).toBeVisible();
+  });
+
+  it('Should call fetch APIs with correct params', async () => {
+    renderComponent();
+
+    [usePolicy, useAssignRules, usePolicySystems].forEach(
+      async (hook) =>
+        await waitFor(() => {
+          expect(hook).toHaveBeenCalled();
+        }),
+    );
+
+    await waitFor(() => {
+      expect(useSupportedProfiles).toHaveBeenCalledWith({
+        batched: true,
+        params: { filter: 'os_major_version=7' },
+        skip: false,
+      });
+    });
   });
 
   it('Should submit fail if any API errors', async () => {
@@ -134,7 +153,7 @@ describe('EditPolicy', () => {
     await waitFor(() => {
       expect(useSupportedProfiles).toHaveBeenCalledWith({
         batched: true,
-        params: { filters: 'os_major_version=7' },
+        params: { filter: 'os_major_version=7' },
         skip: false,
       });
     });

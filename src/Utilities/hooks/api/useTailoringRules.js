@@ -1,4 +1,4 @@
-import useTableToolsQuery from '../useTableToolsQuery';
+import useComplianceQuery from '../useComplianceQuery';
 
 const convertToArray = ({
   policyId,
@@ -6,8 +6,8 @@ const convertToArray = ({
   limit,
   offset,
   idsOnly,
-  sort,
-  filters,
+  sortBy,
+  filter,
 }) => [
   policyId,
   tailoringId,
@@ -15,15 +15,12 @@ const convertToArray = ({
   limit,
   offset,
   idsOnly,
-  sort,
-  filters,
+  sortBy,
+  filter,
 ];
 
+// TODO investigate why this endpoint requires direct arguments and does not recognise the params object.
 const useTailoringRules = (options) =>
-  useTableToolsQuery('tailoringRules', {
-    ...options,
-    requiredParams: ['policyId', 'tailoringId'],
-    convertToArray,
-  });
+  useComplianceQuery('tailoringRules', { ...options, convertToArray });
 
 export default useTailoringRules;

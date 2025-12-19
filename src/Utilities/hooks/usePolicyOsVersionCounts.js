@@ -4,11 +4,11 @@ import usePolicySystemsOS from './api/usePolicySystemsOS';
 
 const usePolicyOsVersionCounts = (policyId) => {
   const [counts, setCounts] = useState(null);
-  const { query: fetchPolicySystemsOS } = usePolicySystemsOS({
+  const { fetch: fetchPolicySystemsOS } = usePolicySystemsOS({
     params: { policyId },
     skip: true,
   });
-  const { query: fetchPolicySystems } = usePolicySystems({
+  const { fetch: fetchPolicySystems } = usePolicySystems({
     params: {
       policyId,
     },
@@ -25,7 +25,7 @@ const usePolicyOsVersionCounts = (policyId) => {
         for (const version of versions) {
           const minor = version.split('.')[1];
           const totalSystemsCount = await fetchPolicySystems({
-            filters: `(os_minor_version = ${minor})`,
+            filter: `(os_minor_version = ${minor})`,
           });
           newCounts[minor] = totalSystemsCount;
         }

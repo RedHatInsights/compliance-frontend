@@ -4,6 +4,7 @@ import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect';
 import useSecurityGuides from 'Utilities/hooks/api/useSecurityGuides';
 import useProfiles from 'Utilities/hooks/api/useProfiles';
 import useProfileRules from 'Utilities/hooks/api/useProfileRules';
+import useFetchTotalBatched from 'Utilities/hooks/useFetchTotalBatched';
 
 const useProfileRuleIds = ({
   profileRefId,
@@ -14,36 +15,48 @@ const useProfileRuleIds = ({
   const mounted = useRef(true);
   const [profilesAndRuleIds, setProfilesAndRuleIds] = useState();
   const [loading, setLoading] = useState(true);
-  const { query: fetchSecurityGuide } = useSecurityGuides({
+  const { fetch: fetchSecurityGuide } = useSecurityGuides({
     params: {
       limit: 1,
       idsOnly: true,
-      sort: 'version:desc',
+      sortBy: 'version:desc',
     },
     skip: true,
   });
 
-  const { query: fetchProfiles } = useProfiles({
+  const { fetch: fetchProfiles } = useProfiles({
     params: {
       limit: 1,
       idsOnly: true,
-      filters: `ref_id=${profileRefId}`,
+      filter: `ref_id=${profileRefId}`,
     },
     skip: true,
   });
 
-  const { queryTotalBatched: fetchProfileRules } = useProfileRules({
+  const { fetch: fetchProfileRules } = useProfileRules({
     params: { idsOnly: true },
-    batched: true,
-    batch: { batchSize: 100 },
     skip: true,
   });
+
+  const fetchProfileRulesForBatch = useCallback(
+    async (offset, limit, params) =>
+      await fetchProfileRules({ limit, offset, ...params }),
+    [fetchProfileRules],
+  );
+  const { fetch: fetchRulesBatched } = useFetchTotalBatched(
+    fetchProfileRulesForBatch,
+    {
+      batchSize: 100,
+      skip: true,
+      withMeta: true,
+    },
+  );
 
   const fetchProfilesAndIdsForMinorVersion = useCallback(
     async (osMinorVersion) => {
       const ssg = (
         await fetchSecurityGuide({
-          filters: `os_major_version=${osMajorVersion} AND supported_profile=${profileRefId}:${osMinorVersion}`,
+          filter: `os_major_version=${osMajorVersion} AND supported_profile=${profileRefId}:${osMinorVersion}`,
         })
       )?.data?.[0];
 
@@ -51,7 +64,7 @@ const useProfileRuleIds = ({
         const securityGuideId = ssg.id;
         const profileId = (await fetchProfiles({ securityGuideId })).data[0].id;
         const ruleIds = (
-          await fetchProfileRules({ securityGuideId, profileId })
+          await fetchRulesBatched({ securityGuideId, profileId })
         ).data?.map(({ id }) => id);
 
         return [securityGuideId, profileId, ruleIds];
@@ -63,10 +76,10 @@ const useProfileRuleIds = ({
     },
     [
       osMajorVersion,
-      fetchProfileRules,
+      fetchProfiles,
+      fetchRulesBatched,
       fetchSecurityGuide,
       profileRefId,
-      fetchProfiles,
     ],
   );
 

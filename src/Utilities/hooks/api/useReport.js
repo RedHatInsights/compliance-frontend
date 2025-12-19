@@ -1,4 +1,4 @@
-import useTableToolsQuery from '../useTableToolsQuery';
+import useComplianceQuery from '../useComplianceQuery';
 
 const convertToArray = ({ reportId }) => [
   reportId,
@@ -6,7 +6,7 @@ const convertToArray = ({ reportId }) => [
 ];
 
 const useReport = (options) =>
-  useTableToolsQuery('report', {
+  useComplianceQuery('report', {
     ...options,
     requiredParams: 'reportId',
     convertToArray,

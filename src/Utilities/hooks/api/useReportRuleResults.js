@@ -1,4 +1,4 @@
-import useTableToolsQuery from '../useTableToolsQuery';
+import useComplianceQuery from '../useComplianceQuery';
 
 const convertToArray = ({
   testResultId,
@@ -6,8 +6,8 @@ const convertToArray = ({
   limit,
   offset,
   idsOnly,
-  sort,
-  filters,
+  sortBy,
+  filter,
 }) => [
   testResultId,
   reportId,
@@ -15,14 +15,13 @@ const convertToArray = ({
   limit,
   offset,
   idsOnly,
-  sort,
-  filters,
+  sortBy,
+  filter,
 ];
 
 const useReportRuleResults = (options) =>
-  useTableToolsQuery('reportRuleResults', {
+  useComplianceQuery('reportRuleResults', {
     ...options,
-    requiredParams: ['testResultId', 'reportId'],
     convertToArray,
   });
 

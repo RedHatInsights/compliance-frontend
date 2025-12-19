@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import propTypes from 'prop-types';
 import { TableStateProvider } from 'bastilian-tabletools';
 import useReportRuleResults from 'Utilities/hooks/api/useReportRuleResults';
@@ -19,19 +19,20 @@ const RuleResults = ({ reportTestResult, remediationsEnabled }) => {
     error,
     data: ruleResults,
     exporter,
-    fetchAllIds: fetchAllRuleResultIds,
+    fetchBatched,
   } = useReportRuleResults({
     params: {
       testResultId,
       reportId,
     },
     useTableState: true,
-    useQueryOptions: {
-      extraParams: {
-        itemIdsInTable: { idsOnly: true },
-      },
-    },
   });
+
+  const fetchAllIds = useCallback(
+    async (...args) =>
+      (await fetchBatched(...args)).data.map(({ rule_id }) => rule_id),
+    [fetchBatched],
+  );
 
   // TODO clean up and make columns use new object properties
   const transformRules = (ruleResults, reportTestResult) => {
@@ -54,7 +55,7 @@ const RuleResults = ({ reportTestResult, remediationsEnabled }) => {
       error={error}
       activeFilters={activeFilters}
       ansibleSupportFilter
-      rules={rules.map((rule) => ({ ...rule, itemId: rule.id }))}
+      rules={rules.map((rule) => ({ ...rule, itemId: rule.rule_id }))}
       columns={columns}
       policyId={reportTestResult.report_id}
       total={ruleResults?.meta?.total}
@@ -65,7 +66,7 @@ const RuleResults = ({ reportTestResult, remediationsEnabled }) => {
       skipValueDefinitions={true}
       options={{
         exporter,
-        itemIdsInTable: fetchAllRuleResultIds,
+        itemIdsInTable: fetchAllIds,
       }}
       // TODO: provide ruleTree
     />

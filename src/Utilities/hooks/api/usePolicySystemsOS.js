@@ -1,17 +1,12 @@
-import useTableToolsQuery from '../useTableToolsQuery';
+import useComplianceQuery from '../useComplianceQuery';
 
-export const convertToArray = ({ policyId, filters, filter }) => [
+export const convertToArray = ({ policyId, filter }) => [
   policyId,
   undefined, // xRHIDENTITY
-  // support both 'filters' and 'filter' keys until Inventory migrated to tabletools
-  filters || filter,
+  filter,
 ];
 
 const usePolicySystemsOS = (options) =>
-  useTableToolsQuery('policySystemsOS', {
-    ...options,
-    requiredParams: 'policyId',
-    convertToArray,
-  });
+  useComplianceQuery('policySystemsOS', { ...options, convertToArray });
 
 export default usePolicySystemsOS;

@@ -1,16 +1,20 @@
-import useTableToolsQuery from '../useTableToolsQuery';
+import useComplianceQuery from '../useComplianceQuery';
 
-const convertToArray = ({ policyId, tailoringId }) => [
-  policyId,
-  tailoringId,
-  undefined, // xRHIDENTITY
-];
+const convertToArray = (params) => {
+  if (Array.isArray(params)) {
+    return params;
+  } else {
+    const { policyId, tailoringId } = params;
+
+    return [
+      policyId,
+      tailoringId,
+      undefined, // xRHIDENTITY
+    ];
+  }
+};
 
 const useTailoringRuleTree = (options) =>
-  useTableToolsQuery('tailoringRuleTree', {
-    ...options,
-    requiredParams: ['policyId', 'tailoringId'],
-    convertToArray,
-  });
+  useComplianceQuery('tailoringRuleTree', { ...options, convertToArray });
 
 export default useTailoringRuleTree;

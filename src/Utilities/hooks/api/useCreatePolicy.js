@@ -1,4 +1,4 @@
-import useTableToolsQuery from '../useTableToolsQuery';
+import useComplianceQuery from '../useComplianceQuery';
 
 const convertToArray = ({ policy }) => [
   undefined, // xRHIDENTITY
@@ -6,6 +6,6 @@ const convertToArray = ({ policy }) => [
 ];
 
 const useCreatePolicy = (options) =>
-  useTableToolsQuery('createPolicy', { ...options, convertToArray });
+  useComplianceQuery('createPolicy', { ...options, convertToArray });
 
 export default useCreatePolicy;

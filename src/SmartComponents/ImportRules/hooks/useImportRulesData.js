@@ -15,7 +15,7 @@ const useImportRulesData = ({ policyId }) => {
     loading: supportedProfilesLoading,
   } = useSupportedProfiles({
     params: {
-      filters: `os_major_version=${policy?.os_major_version}`,
+      filter: `os_major_version=${policy?.os_major_version}`,
     },
     batched: true,
     skip: !policy,
@@ -32,7 +32,7 @@ const useImportRulesData = ({ policyId }) => {
   } = useTailorings({
     params: {
       policyId,
-      filters: 'NOT(null? os_minor_version)',
+      filter: 'NOT(null? os_minor_version)',
       skip: !policy,
     },
   });

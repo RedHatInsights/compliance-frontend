@@ -1,11 +1,11 @@
-import useTableToolsQuery from '../useTableToolsQuery';
+import useComplianceQuery from '../useComplianceQuery';
 
-const convertToArray = ({ filters }) => [
+const convertToArray = ({ filter }) => [
   undefined, // xRHIDENTITY
-  filters,
+  filter,
 ];
 
 const useSecurityGuidesOS = (options) =>
-  useTableToolsQuery('securityGuidesOS', { ...options, convertToArray });
+  useComplianceQuery('securityGuidesOS', { ...options, convertToArray });
 
 export default useSecurityGuidesOS;

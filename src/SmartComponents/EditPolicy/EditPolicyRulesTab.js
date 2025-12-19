@@ -86,7 +86,7 @@ export const EditPolicyRulesTab = ({
   const { data: { data: tailoringsData } = {} } = useTailorings({
     params: {
       policyId: policy.id,
-      filters: 'NOT(null? os_minor_version)',
+      filter: 'NOT(null? os_minor_version)',
     },
   });
 

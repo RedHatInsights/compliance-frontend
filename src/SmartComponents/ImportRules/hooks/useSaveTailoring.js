@@ -10,11 +10,11 @@ const useSaveTailoring = ({
 }) => {
   const navigate = useInsightsNavigate();
 
-  const { query: assignRules } = useAssignRules({
+  const { fetch: assignRules } = useAssignRules({
     params: { policyId },
     skip: true,
   });
-  const { queue: createTailorings } = useCreateTailoring({
+  const { fetch: createTailorings } = useCreateTailoring({
     params: { policyId },
   });
 

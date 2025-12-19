@@ -200,7 +200,7 @@ const ComplianceRoutes = () => {
     } catch (e) {
       console.log(e);
     }
-  }, []);
+  }, [hasSystems]);
 
   return !hasSystems ? (
     <AsyncComponent

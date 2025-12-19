@@ -1,14 +1,21 @@
-import useTableToolsQuery from '../useTableToolsQuery';
+import useComplianceQuery from '../useComplianceQuery';
 
-const convertToArray = ({ securityGuideId }) => [
-  securityGuideId,
-  undefined, // xRHIDENTITY
-];
+const convertToArray = (params) => {
+  if (Array.isArray(params)) {
+    return params;
+  } else {
+    const { securityGuideId } = params;
+
+    return [
+      securityGuideId,
+      undefined, // xRHIDENTITY
+    ];
+  }
+};
 
 const useSecurityGuideRuleTree = (options = {}) =>
-  useTableToolsQuery('securityGuideRuleTree', {
+  useComplianceQuery('securityGuideRuleTree', {
     ...options,
-    requiredParams: 'securityGuideId',
     convertToArray,
   });
 

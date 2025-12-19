@@ -28,9 +28,10 @@ describe('RuleResults', () => {
 
   it('renders Select all in bulk select dropdown', async () => {
     const testResults = buildTestResults(11);
-    const fetchAllIds = jest.fn(() =>
-      Promise.resolve(testResults.map(({ id }) => id)),
-    );
+
+    const fetchAllIds = jest.fn(() => ({
+      data: testResults.map(({ id }) => id),
+    }));
 
     useReportRuleResults.mockImplementation(() => ({
       data: {
@@ -39,7 +40,7 @@ describe('RuleResults', () => {
       },
       loading: false,
       error: null,
-      fetchAllIds: fetchAllIds,
+      fetchBatched: fetchAllIds,
     }));
     render(<RuleResultsWrapper reportTestResult={reportTestResult} />);
 

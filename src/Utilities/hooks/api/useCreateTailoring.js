@@ -1,4 +1,4 @@
-import useTableToolsQuery from '../useTableToolsQuery';
+import { useComplianceMutation } from '../useComplianceQuery';
 
 const convertToArray = ({ policyId, tailoringCreate }) => [
   policyId,
@@ -6,11 +6,7 @@ const convertToArray = ({ policyId, tailoringCreate }) => [
   tailoringCreate,
 ];
 
-const useCreateTailoring = (options) =>
-  useTableToolsQuery('createTailoring', {
-    ...options,
-    requiredParams: 'policyId',
-    convertToArray,
-  });
+const useCreatePolicy = (options) =>
+  useComplianceMutation('createTailoring', { ...options, convertToArray });
 
-export default useCreateTailoring;
+export default useCreatePolicy;

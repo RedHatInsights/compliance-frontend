@@ -25,12 +25,13 @@ const useSecurityGuideProfileData = ({
     data: rules,
     loading: profileRulesLoading,
     error: profileRulesError,
+    fetchAllIds,
     exporter,
   } = useProfileRules({
     params: {
       securityGuideId,
       profileId,
-      ...(groupFilter && { filters: groupFilter }),
+      filter: groupFilter,
     },
     skip: skipRules,
     batched: tableView === 'tree',
@@ -44,6 +45,7 @@ const useSecurityGuideProfileData = ({
       ...(!skipRules ? { rules } : {}),
       ...(!skipRuleTree ? { ruleTree } : {}),
     },
+    fetchAllIds,
     exporter,
   };
 };
