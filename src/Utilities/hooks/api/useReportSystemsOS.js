@@ -1,13 +1,13 @@
-import useTableToolsQuery from '../useTableToolsQuery';
+import useComplianceQuery from '../useComplianceQuery';
 
-export const convertToArray = ({ reportId, filters }) => [
+export const convertToArray = ({ reportId, filter }) => [
   reportId,
   undefined, // xRHIDENTITY
-  filters,
+  filter,
 ];
 
 const useReportSystemsOS = (options) =>
-  useTableToolsQuery('reportSystemsOS', {
+  useComplianceQuery('reportSystemsOS', {
     ...options,
     requiredParams: 'reportId',
     convertToArray,
