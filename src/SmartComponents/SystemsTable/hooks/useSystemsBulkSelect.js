@@ -9,6 +9,7 @@ const useSystemsBulkSelect = ({
   resultCache,
   setIsSystemsDataLoading,
   selected,
+  preselectedItems = [],
   ...bulkSelectOptions
 }) => {
   const dispatch = useDispatch();
@@ -42,10 +43,19 @@ const useSystemsBulkSelect = ({
         resultCache?.data?.map(({ id, ...rest }) => [id, rest]) ?? [],
       );
 
+      const preselectedMap = new Map(
+        preselectedItems?.map((item) => [item.id, item]) ?? [],
+      );
+
       const selectedItems = selectedIds.map((id) => {
         const cached = cacheMap.get(id);
         if (cached) {
           return cached;
+        }
+
+        const preselected = preselectedMap.get(id);
+        if (preselected) {
+          return preselected;
         }
 
         return {
@@ -69,7 +79,7 @@ const useSystemsBulkSelect = ({
         onSelect?.(selectedItems);
       }
     },
-    [dispatch, onSelect, resultCache, itemCache],
+    [dispatch, onSelect, preselectedItems, resultCache, itemCache],
   );
 
   const bulkSelect = useBulkSelect({
