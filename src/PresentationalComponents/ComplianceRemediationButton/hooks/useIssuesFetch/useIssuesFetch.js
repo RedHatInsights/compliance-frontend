@@ -13,7 +13,11 @@ export const useIssuesFetch = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { fetchBatchedQueue } = useReportRuleResults({
-    params: { reportId, filters: 'result=fail' },
+    params: {
+      reportId,
+      filters: 'result=fail AND remediation_available=true',
+      sort: 'precedence:asc',
+    },
     skip: true,
   });
 
