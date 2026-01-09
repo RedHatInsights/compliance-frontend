@@ -3,7 +3,7 @@ import { sortingByProp } from 'Utilities/helpers';
 import * as ActionTypes from '../Types';
 
 const selectRows = (rows, selected) =>
-  rows.map((row) => ({
+  (rows ?? []).map((row) => ({
     ...row,
     selected: selected.includes(row.id),
   }));
