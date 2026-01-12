@@ -54,6 +54,7 @@ const EditPolicySystemsTab = ({
   policy,
   onSystemSelect,
   selectedSystems,
+  preselectedItems,
   supportedOsVersions,
   setIsSystemsDataLoading,
 }) => {
@@ -77,6 +78,7 @@ const EditPolicySystemsTab = ({
       compact
       defaultFilter={defaultFilter}
       preselectedSystems={selectedSystems}
+      preselectedItems={preselectedItems}
       onSelect={onSystemSelect}
       setIsSystemsDataLoading={setIsSystemsDataLoading}
     />
@@ -87,6 +89,7 @@ EditPolicySystemsTab.propTypes = {
   policy: propTypes.object,
   onSystemSelect: propTypes.func,
   selectedSystems: propTypes.array,
+  preselectedItems: propTypes.array,
   supportedOsVersions: propTypes.array,
   setIsSystemsDataLoading: propTypes.func,
 };

@@ -26,56 +26,41 @@ const EditPolicyForm = ({
   supportedOsVersions,
   setIsSystemsDataLoading,
 }) => {
-  const [selectedOsMinorVersions, setSelectedOsMinorVersions] = useState([
-    ...new Set(assignedSystems.map((system) => system.os_minor_version)),
-  ]);
-  const [selectedVersionCounts, setSelectedVersionCounts] = useState(
-    getCounts(assignedSystems.map((system) => system.os_minor_version)),
-  );
-  const [newRulesAlert, setNewRulesAlert] = useNewRulesAlertState(false);
-
-  const [selectedSystems, setSelectedSystems] = useState(
-    assignedSystems?.map((system) => system.id),
-  );
   const preUsedOsMinorVersions = useMemo(
     () => assignedSystems.map((system) => system.os_minor_version),
     [assignedSystems],
   );
 
+  const [selectedOsMinorVersions, setSelectedOsMinorVersions] = useState(() => [
+    ...new Set(preUsedOsMinorVersions),
+  ]);
+  const [selectedVersionCounts, setSelectedVersionCounts] = useState(() =>
+    getCounts(preUsedOsMinorVersions),
+  );
+  const [selectedSystems, setSelectedSystems] = useState(() =>
+    assignedSystems?.map((system) => system.id),
+  );
+  const [newRulesAlert, setNewRulesAlert] = useNewRulesAlertState(false);
+
   const handleSystemSelect = useCallback(
     (newSelectedSystems) => {
-      // On some renderings we get system ids without os_minor_version
-      const newOsMinorVersions = [
-        ...new Set(
-          newSelectedSystems
-            .filter(
-              (system) =>
-                system.os_minor_version != null ||
-                system.osMinorVersion != null,
-            )
-            .map((system) => system.os_minor_version ?? system.osMinorVersion),
-        ),
-      ];
+      const osMinorVersions = newSelectedSystems.map(
+        (system) => system.os_minor_version,
+      );
+      const uniqueVersions = [...new Set(osMinorVersions)];
 
-      const hasNewOsMinorVersions =
-        newOsMinorVersions.filter(
-          (osMinorVersion) => !preUsedOsMinorVersions.includes(osMinorVersion),
-        ).length > 0;
+      const hasNewOsMinorVersion = uniqueVersions.some(
+        (version) => !preUsedOsMinorVersions.includes(version),
+      );
 
       setUpdatedPolicy((prev) => ({
         ...prev,
         hosts: newSelectedSystems.map((system) => system.id),
       }));
-      setNewRulesAlert(hasNewOsMinorVersions);
-      setSelectedOsMinorVersions(newOsMinorVersions);
-      setSelectedVersionCounts(
-        getCounts(
-          newSelectedSystems.map(
-            (system) => system.osMinorVersion ?? system.os_minor_version,
-          ),
-        ),
-      );
+      setNewRulesAlert(hasNewOsMinorVersion);
       setSelectedSystems(newSelectedSystems.map((system) => system.id));
+      setSelectedOsMinorVersions(uniqueVersions);
+      setSelectedVersionCounts(getCounts(osMinorVersions));
     },
     [preUsedOsMinorVersions, setNewRulesAlert, setUpdatedPolicy],
   );
@@ -106,6 +91,7 @@ const EditPolicyForm = ({
           <EditPolicySystemsTab
             policy={policy}
             selectedSystems={selectedSystems}
+            preselectedItems={assignedSystems}
             onSystemSelect={handleSystemSelect}
             supportedOsVersions={supportedOsVersions}
             setIsSystemsDataLoading={setIsSystemsDataLoading}
