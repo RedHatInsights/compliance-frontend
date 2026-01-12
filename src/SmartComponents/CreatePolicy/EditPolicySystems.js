@@ -71,16 +71,21 @@ PrependComponent.propTypes = {
   osMajorVersion: propTypes.string,
 };
 
-const useOnSelect = (change, profile) => {
+const useOnSelect = (change, profile, existingSystems) => {
   const onSelect = useCallback(
     (newSelectedSystems) => {
-      change('systems', newSelectedSystems);
+      const existingById = new Map(existingSystems.map((s) => [s.id, s]));
+      const mergedSystems = newSelectedSystems.map(
+        (system) => existingById.get(system.id) || system,
+      );
+
+      change('systems', mergedSystems);
       change(
         'osMinorVersionCounts',
-        countOsMinorVersions(newSelectedSystems, profile),
+        countOsMinorVersions(mergedSystems, profile),
       );
     },
-    [change, profile],
+    [change, profile, existingSystems],
   );
 
   return onSelect;
@@ -92,7 +97,7 @@ export const EditPolicySystems = ({
   osMajorVersion,
   selectedSystems = [],
 }) => {
-  const onSelect = useOnSelect(change, profile);
+  const onSelect = useOnSelect(change, profile, selectedSystems);
 
   const defaultFilter =
     osMajorVersion && profile.os_minor_versions

@@ -103,30 +103,28 @@ const EditPolicyProfilesRules = ({
         selectedRuleRefIds || [],
       );
 
-      if (updatedSelectedRuleRefIds.length === 0) {
-        if (newSelectedRuleIds.length === 0) {
-          return;
-        }
+      const index = updatedSelectedRuleRefIds.findIndex(
+        ({ osMinorVersion: _osMinorVersion }) =>
+          _osMinorVersion === osMinorVersion,
+      );
 
+      if (index === -1) {
+        if (newSelectedRuleIds.length === 0) return;
         updatedSelectedRuleRefIds.push({
           osMinorVersion,
           ruleRefIds: newSelectedRuleIds,
         });
       } else {
-        const index = updatedSelectedRuleRefIds.findIndex(
-          ({ osMinorVersion: _osMinorVersion }) =>
-            _osMinorVersion === osMinorVersion,
-        );
         if (
           isEqual(
             updatedSelectedRuleRefIds[index].ruleRefIds,
             newSelectedRuleIds,
           )
-        ) {
+        )
           return;
-        }
         updatedSelectedRuleRefIds[index].ruleRefIds = newSelectedRuleIds;
       }
+
       change('selectedRuleRefIds', updatedSelectedRuleRefIds);
     },
     [change, selectedRuleRefIds],
