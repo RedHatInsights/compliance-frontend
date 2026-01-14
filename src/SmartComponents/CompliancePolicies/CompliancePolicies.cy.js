@@ -388,17 +388,13 @@ describe('Policies table tests API V2', () => {
 
     describe('Manage columns', () => {
       it('Manage reports columns', () => {
-        // TODO pf/react-core 5.4.0 seems to have broken `ouiaId`s
-        // cy.ouiaId('BulkActionsToggle', 'button').click();
-        cy.ouiaId('PrimaryToolbar', 'div')
-          .get('button[aria-label="kebab dropdown toggle"]')
-          .click();
+        cy.ouiaId('BulkActionsToggle', 'button').click();
 
         cy.ouiaType('PF6/DropdownItem', 'li')
           .contains('Manage columns')
           .should('be.visible')
           .click();
-        cy.get('input[checked]')
+        cy.get('li input[checked]')
           .not('[disabled]')
           .each(($checkbox) => {
             cy.wrap($checkbox).click();
@@ -410,15 +406,12 @@ describe('Policies table tests API V2', () => {
         cy.get('th[data-label="Business objective"]').should('not.exist');
         cy.get('th[data-label="Compliance threshold"]').should('not.exist');
 
-        //cy.ouiaId('BulkActionsToggle', 'button').click();
-        cy.ouiaId('PrimaryToolbar', 'div')
-          .get('button[aria-label="kebab dropdown toggle"]')
-          .click();
-
+        cy.ouiaId('BulkActionsToggle', 'button').click();
         cy.ouiaType('PF6/DropdownItem', 'li')
           .contains('Manage columns')
           .should('be.visible')
           .click();
+        cy.ouiaId('BulkSelect-toggle', 'button').click();
         cy.get('button').contains('Select all').click();
         cy.ouiaId('ColumnManagementModal-save-button', 'button').click();
 
