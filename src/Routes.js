@@ -85,6 +85,18 @@ const policiesRoutes = [
     modal: true,
   },
   {
+    path: 'scappolicies/new-ddf',
+    title: defaultPoliciesTitle,
+    requiredPermissions: [...defaultPermissions, 'compliance:policy:create'],
+    component: lazy(
+      () =>
+        import(
+          /* webpackChunkName: "CreatePolicyDDF" */ 'SmartComponents/CreatePolicyDDF'
+        ),
+    ),
+    modal: true,
+  },
+  {
     path: 'scappolicies/:policy_id',
     title: `$entityTitle - ${defaultPoliciesTitle}`,
     requiredPermissions: [...defaultPermissions, 'compliance:policy:read'],
