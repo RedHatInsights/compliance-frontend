@@ -14,6 +14,7 @@
     "@patternfly/react-icons": "^6.4.0",
     "@patternfly/react-table": "^6.4.0",
     "@patternfly/react-tokens": "^6.4.0",
+    "@project-kessel/react-kessel-access-check": "^0.1.0",
     "@redhat-cloud-services/compliance-client": "^3.0.1",
     "@redhat-cloud-services/frontend-components": "^7.0.5",
     "@redhat-cloud-services/frontend-components-config-utilities": "^4.6.0",
