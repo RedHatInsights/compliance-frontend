@@ -19,7 +19,6 @@ import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 // import Prompt from '@redhat-cloud-services/frontend-components/Prompt';
 import { useOnSave as useOnSavePolicyDetails } from '../EditPolicy/hooks';
 import { thresholdValid } from '../CreatePolicy/validate';
-import { usePermissionsWithContext } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 
 const EditPolicyDetailsInline = ({
   text,
@@ -34,19 +33,12 @@ const EditPolicyDetailsInline = ({
   Component = TextInput,
   refetch,
   style,
+  hasEditPermission,
   ...props
 }) => {
   const copiedData = policy;
   // TODO Re-enable when there is a alternative to Prompt
   // const [dirty, setDirty] = useState(false);
-
-  const { hasAccess, isLoading } = usePermissionsWithContext(
-    ['compliance:policy:write'],
-    false,
-    false,
-  );
-
-  const hasPermission = !isLoading && hasAccess;
 
   const [value, setValue] = useState(text);
   const [validThreshold, setValidThreshold] = useState(true);
@@ -99,7 +91,7 @@ const EditPolicyDetailsInline = ({
     <FormGroup className="pf-v6-c-inline-edit pf-v6-m-inline-editable">
       <Content component={ContentVariants.h5}>
         {label}
-        {hasPermission && (
+        {hasEditPermission && (
           <Button
             icon={<PencilAltIcon />}
             onClick={handleToggle}
@@ -214,6 +206,7 @@ EditPolicyDetailsInline.propTypes = {
   Component: propTypes.elementType,
   refetch: propTypes.func,
   style: propTypes.object,
+  hasEditPermission: propTypes.bool.isRequired,
 };
 
 export default EditPolicyDetailsInline;

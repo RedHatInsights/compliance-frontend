@@ -9,12 +9,8 @@ jest.mock('bastilian-tabletools');
 
 describe('useComplianceQuery', () => {
   const apiMock = jest.fn(() => ({
-    data: {
-      data: [],
-      meta: {
-        total: 0,
-      },
-    },
+    data: [],
+    meta: { total: 0 },
   }));
 
   beforeEach(() => {

@@ -7,6 +7,9 @@ import useSystem from 'Utilities/hooks/api/useSystem';
 
 jest.mock('Utilities/hooks/api/useSystem', () => jest.fn());
 jest.mock('Utilities/hooks/useFeatureFlag', () => () => true);
+jest.mock('Utilities/hooks/usePermissionCheck', () => ({
+  useKesselPermissions: jest.fn(() => ({ hasAccess: true, isLoading: false })),
+}));
 
 describe('EmptyState for systemDetails', () => {
   it('expect to render loading state while waiting for data', () => {

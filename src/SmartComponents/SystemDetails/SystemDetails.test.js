@@ -19,6 +19,10 @@ jest.mock('Utilities/hooks/useDocumentTitle', () => ({
 }));
 
 jest.mock('Utilities/hooks/api/useSystem', () => jest.fn());
+jest.mock('Utilities/hooks/useFeatureFlag', () => () => true);
+jest.mock('Utilities/hooks/usePermissionCheck', () => ({
+  useKesselPermissions: jest.fn(() => ({ hasAccess: true, isLoading: false })),
+}));
 
 describe('SystemDetails', () => {
   it('expect to render Inventory Details Wrapper', () => {

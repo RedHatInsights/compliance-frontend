@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
-exports[`WithPermission expect to render "No permissions" with no access 1`] = `
+exports[`WithPermission isKesselEnabled=false - expect to render "No permissions" with no access 1`] = `
 <DocumentFragment>
   <div
     class="pf-v6-c-empty-state"
@@ -77,11 +77,98 @@ exports[`WithPermission expect to render "No permissions" with no access 1`] = `
 </DocumentFragment>
 `;
 
-exports[`WithPermission expect to render nothing when hidden and no access 1`] = `<DocumentFragment />`;
+exports[`WithPermission isKesselEnabled=false - expect to render nothing when hidden and no access 1`] = `<DocumentFragment />`;
 
-exports[`WithPermission expect to render nothing when loading 1`] = `<DocumentFragment />`;
+exports[`WithPermission isKesselEnabled=false - expect to render nothing when loading 1`] = `<DocumentFragment />`;
 
-exports[`WithPermission expect to render without error 1`] = `
+exports[`WithPermission isKesselEnabled=false - expect to render without error 1`] = `
+<DocumentFragment>
+  NEEDS PERMISSION
+</DocumentFragment>
+`;
+
+exports[`WithPermission isKesselEnabled=true - expect to render "No permissions" with no access 1`] = `
+<DocumentFragment>
+  <div
+    class="pf-v6-c-empty-state"
+    data-ouia-component-id="UnauthorizedAccess"
+  >
+    <div
+      class="pf-v6-c-empty-state__content"
+    >
+      <div
+        class="pf-v6-c-empty-state__header"
+      >
+        <div
+          class="pf-v6-c-empty-state__icon"
+        >
+          <svg
+            aria-hidden="true"
+            class="pf-v6-svg"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            viewBox="0 0 448 512"
+            width="1em"
+          >
+            <path
+              d="M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z"
+            />
+          </svg>
+        </div>
+        <div
+          class="pf-v6-c-empty-state__title"
+        >
+          <h5
+            class="pf-v6-c-empty-state__title-text"
+          >
+            You do not have access to Compliance
+          </h5>
+        </div>
+      </div>
+      <div
+        class="pf-v6-c-empty-state__body"
+        data-ouia-component-id="UnauthorizedAccess-body"
+      >
+        Contact your organization administrator(s) for more information or visit 
+        <a
+          href="./iam/my-user-access"
+        >
+          My User Access
+        </a>
+         to learn more about your permissions.
+      </div>
+      <div
+        class="pf-v6-c-empty-state__footer"
+        data-ouia-component-id="UnauthorizedAccess-footer"
+      >
+        <a
+          class="pf-v6-c-button pf-m-primary"
+          data-ouia-component-id="UnauthorizedAccess-home-button"
+          data-ouia-component-type="PF6/Button"
+          data-ouia-safe="true"
+          href="."
+        >
+          <span
+            class="pf-v6-c-button__text"
+          >
+            Go to landing page
+          </span>
+        </a>
+        <div
+          class="pf-v6-c-empty-state__actions"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`WithPermission isKesselEnabled=true - expect to render nothing when hidden and no access 1`] = `<DocumentFragment />`;
+
+exports[`WithPermission isKesselEnabled=true - expect to render nothing when loading 1`] = `<DocumentFragment />`;
+
+exports[`WithPermission isKesselEnabled=true - expect to render without error 1`] = `
 <DocumentFragment>
   NEEDS PERMISSION
 </DocumentFragment>

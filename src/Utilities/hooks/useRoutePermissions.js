@@ -1,13 +1,17 @@
-import { usePermissionsWithContext } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 import { findRouteByPath } from '@/Routes';
+import {
+  useRbacV1Permissions,
+  useKesselPermissions,
+} from 'Utilities/hooks/usePermissionCheck';
 
-const useRoutePermissions = (to) => {
+export const useRoutePermissionsRbacV1 = (to) => {
   const route = findRouteByPath(to);
-  return usePermissionsWithContext(
-    route?.requiredPermissions || [],
-    false,
-    false,
-  );
+  const requiredPermissions = route?.requiredPermissions || [];
+  return useRbacV1Permissions(requiredPermissions);
 };
 
-export default useRoutePermissions;
+export const useRoutePermissionsKessel = (to) => {
+  const route = findRouteByPath(to);
+  const requiredPermissions = route?.requiredPermissions || [];
+  return useKesselPermissions(requiredPermissions);
+};
