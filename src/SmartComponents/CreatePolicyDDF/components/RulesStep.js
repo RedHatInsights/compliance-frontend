@@ -1,7 +1,5 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { xor, isEqual } from 'lodash';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
 import { useDeepCompareEffect } from 'use-deep-compare';
 import {
   Bullseye,
@@ -12,10 +10,10 @@ import {
 } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import {
-  formValueSelector,
-  reduxForm,
-  propTypes as reduxFormPropTypes,
-} from 'redux-form';
+  useFormApi,
+  useFieldApi,
+  FormSpy,
+} from '@data-driven-forms/react-form-renderer';
 import {
   StateViewPart,
   StateViewWithError,
@@ -25,14 +23,16 @@ import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 import useProfileRuleIds from 'Utilities/hooks/useProfileRuleIds';
 import { resetRuleValueOverrides } from '@/Utilities/helpers';
 
-const EditPolicyProfilesRules = ({
+const RulesStepContent = ({
   profile,
   selectedRuleRefIds,
-  change,
-  osMajorVersion,
   osMinorVersionCounts,
   valueOverrides = {},
+  input,
 }) => {
+  const { change } = useFormApi();
+  const osMajorVersion = profile?.os_major_version;
+
   const selected =
     selectedRuleRefIds &&
     (selectedRuleRefIds || []).reduce(
@@ -61,6 +61,14 @@ const EditPolicyProfilesRules = ({
     ),
     skip: skipFetchingProfileRuleIds,
   });
+
+  useEffect(() => {
+    if (profilesAndRuleIds) {
+      input.onChange({ isValid: true });
+    } else {
+      input.onChange(undefined);
+    }
+  }, [profilesAndRuleIds, input]);
 
   const preselected =
     profilesAndRuleIds !== undefined
@@ -138,7 +146,7 @@ const EditPolicyProfilesRules = ({
             (entry) => entry.osMinorVersion === osMinorVersion,
           )
         ) {
-          return accum; // Avoid overriding selection
+          return accum;
         }
         const refIdsPerMinorVersion = profilesAndRuleIds?.find(
           ({ osMinorVersion: profileOsMinorVersion }) =>
@@ -263,10 +271,8 @@ const EditPolicyProfilesRules = ({
   );
 };
 
-EditPolicyProfilesRules.propTypes = {
+RulesStepContent.propTypes = {
   profile: propTypes.object,
-  change: reduxFormPropTypes.change,
-  osMajorVersion: propTypes.string,
   osMinorVersionCounts: propTypes.arrayOf(
     propTypes.shape({
       osMinorVersion: propTypes.number,
@@ -275,21 +281,27 @@ EditPolicyProfilesRules.propTypes = {
   ),
   selectedRuleRefIds: propTypes.array,
   valueOverrides: propTypes.object,
+  input: propTypes.shape({
+    onChange: propTypes.func.isRequired,
+  }).isRequired,
 };
 
-const selector = formValueSelector('policyForm');
+const RulesStep = (props) => {
+  const { input } = useFieldApi(props);
 
-export default compose(
-  connect((state) => ({
-    profile: selector(state, 'profile'),
-    osMajorVersion: selector(state, 'osMajorVersion'),
-    osMinorVersionCounts: selector(state, 'osMinorVersionCounts'),
-    selectedRuleRefIds: selector(state, 'selectedRuleRefIds'),
-    valueOverrides: selector(state, 'valueOverrides'),
-  })),
-  reduxForm({
-    form: 'policyForm',
-    destroyOnUnmount: false,
-    forceUnregisterOnUnmount: true,
-  }),
-)(EditPolicyProfilesRules);
+  return (
+    <FormSpy subscription={{ values: true }}>
+      {({ values }) => (
+        <RulesStepContent
+          profile={values.profile}
+          osMinorVersionCounts={values.osMinorVersionCounts}
+          selectedRuleRefIds={values.selectedRuleRefIds}
+          valueOverrides={values.valueOverrides}
+          input={input}
+        />
+      )}
+    </FormSpy>
+  );
+};
+
+export default RulesStep;

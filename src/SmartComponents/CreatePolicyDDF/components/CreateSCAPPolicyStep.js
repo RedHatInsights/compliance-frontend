@@ -1,12 +1,9 @@
-import React from 'react';
-import propTypes from 'prop-types';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
 import {
-  formValueSelector,
-  reduxForm,
-  propTypes as reduxFormPropTypes,
-} from 'redux-form';
+  useFormApi,
+  useFieldApi,
+  FormSpy,
+} from '@data-driven-forms/react-form-renderer';
 import {
   Form,
   FormGroup,
@@ -16,6 +13,7 @@ import {
 } from '@patternfly/react-core';
 import { Tile } from '@patternfly/react-core/deprecated';
 import { TableStateProvider } from 'bastilian-tabletools';
+import propTypes from 'prop-types';
 import useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
 import useSecurityGuidesOS from 'Utilities/hooks/api/useSecurityGuidesOS';
 import {
@@ -33,11 +31,19 @@ const serialiseOsVersions = (profiles = []) =>
     ),
   }));
 
-const CreateSCAPPolicy = ({
+const CreateSCAPPolicyStepContent = ({
   selectedOsMajorVersion,
   selectedProfile,
-  change,
+  input,
 }) => {
+  const { change } = useFormApi();
+
+  useEffect(() => {
+    input.onChange(
+      selectedOsMajorVersion && selectedProfile ? { isValid: true } : undefined,
+    );
+  }, [selectedOsMajorVersion, selectedProfile, input]);
+
   const {
     data: { data: availableOsMajorVersions } = {},
     error: availableOsMajorVersionsError,
@@ -57,6 +63,7 @@ const CreateSCAPPolicy = ({
     useTableState: true,
     skip: selectedOsMajorVersion === undefined,
   });
+
   const profilesData =
     availableProfiles && serialiseOsVersions(availableProfiles);
 
@@ -107,7 +114,7 @@ const CreateSCAPPolicy = ({
               />
             ))}
           </FormGroup>
-          {selectedOsMajorVersion ? (
+          {selectedOsMajorVersion && (
             <FormGroup
               isRequired
               labelHelp={<PolicyTypeTooltip />}
@@ -126,8 +133,6 @@ const CreateSCAPPolicy = ({
                 total={total}
               />
             </FormGroup>
-          ) : (
-            <React.Fragment />
           )}
         </Form>
       </StateViewPart>
@@ -135,32 +140,30 @@ const CreateSCAPPolicy = ({
   );
 };
 
-CreateSCAPPolicy.propTypes = {
-  change: reduxFormPropTypes.change,
-  selectedProfile: propTypes.object,
+CreateSCAPPolicyStepContent.propTypes = {
   selectedOsMajorVersion: propTypes.string,
+  selectedProfile: propTypes.object,
+  input: propTypes.shape({
+    onChange: propTypes.func.isRequired,
+  }).isRequired,
 };
 
-const CreateSCAPPolicyTableStateProvider = (props) => {
+const CreateSCAPPolicyStep = (props) => {
+  const { input } = useFieldApi(props);
+
   return (
-    <TableStateProvider>
-      <CreateSCAPPolicy {...props} />
-    </TableStateProvider>
+    <FormSpy subscription={{ values: true }}>
+      {({ values }) => (
+        <TableStateProvider>
+          <CreateSCAPPolicyStepContent
+            selectedOsMajorVersion={values.osMajorVersion}
+            selectedProfile={values.profile}
+            input={input}
+          />
+        </TableStateProvider>
+      )}
+    </FormSpy>
   );
 };
 
-const selector = formValueSelector('policyForm');
-
-const CreateSCAPPolicyWithRedux = compose(
-  connect((state) => ({
-    selectedProfile: selector(state, 'profile'),
-    selectedOsMajorVersion: selector(state, 'osMajorVersion'),
-  })),
-  reduxForm({
-    form: 'policyForm',
-    destroyOnUnmount: false,
-    forceUnregisterOnUnmount: true,
-  }),
-)(CreateSCAPPolicyTableStateProvider);
-
-export { CreateSCAPPolicyWithRedux, CreateSCAPPolicyTableStateProvider };
+export default CreateSCAPPolicyStep;
