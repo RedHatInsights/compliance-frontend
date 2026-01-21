@@ -13,7 +13,6 @@ const schema = {
         submit: 'Finish',
       },
       fields: [
-        // ===== STEP 1: Create SCAP Policy =====
         {
           name: 'step-create-scap-policy',
           title: 'Create SCAP policy',
@@ -37,7 +36,6 @@ const schema = {
             },
           ],
         },
-        // ===== STEP 2: Details =====
         {
           name: 'step-details',
           title: 'Details',
@@ -61,7 +59,6 @@ const schema = {
             },
           ],
         },
-        // ===== STEP 3: Systems =====
         {
           name: 'step-systems',
           title: 'Systems',
@@ -73,7 +70,6 @@ const schema = {
             },
           ],
         },
-        // ===== STEP 4: Rules =====
         {
           name: 'step-rules',
           title: 'Rules',
@@ -97,16 +93,25 @@ const schema = {
             },
           ],
         },
-        // ===== STEP 5: Review =====
         {
           name: 'step-review',
           title: 'Review',
-          nextStep: undefined,
+          nextStep: 'step-finished',
           fields: [
             {
               component: 'review-step',
               name: 'review-intro',
               label: 'Review your SCAP policy before finishing.',
+            },
+          ],
+        },
+        {
+          name: 'step-finished',
+          isProgressAfterSubmissionStep: true,
+          fields: [
+            {
+              component: 'finished-step',
+              name: 'finished-content',
             },
           ],
         },

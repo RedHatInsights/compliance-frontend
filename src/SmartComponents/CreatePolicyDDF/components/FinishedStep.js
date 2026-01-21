@@ -77,7 +77,7 @@ const FinishedStep = ({ values, onClose }) => {
 
       const cloneFromProfileId = profile.id;
       const minorVersions = selectedRuleRefIds.map(
-        ({ osMinorVersion }) => osMinorVersion
+        ({ osMinorVersion }) => osMinorVersion,
       );
       const expectedUpdates =
         3 + minorVersions.length + Object.keys(valueOverrides).length;
@@ -88,7 +88,6 @@ const FinishedStep = ({ values, onClose }) => {
       };
 
       try {
-        // 1. Create the policy
         const createPolicyResponse = await createPolicy({
           policy: {
             title: name,
@@ -102,7 +101,6 @@ const FinishedStep = ({ values, onClose }) => {
 
         const { id: newPolicyId } = createPolicyResponse.data;
 
-        // 2. Assign systems or create tailorings
         if (systems && systems.length > 0) {
           await assignSystems({
             policyId: newPolicyId,
@@ -117,7 +115,6 @@ const FinishedStep = ({ values, onClose }) => {
         }
         dispatchProgress();
 
-        // 3. Fetch tailorings
         const fetchPolicyResponse = await fetchTailorings({
           policyId: newPolicyId,
           limit: 100,
@@ -125,11 +122,10 @@ const FinishedStep = ({ values, onClose }) => {
         const tailorings = fetchPolicyResponse.data;
         dispatchProgress();
 
-        // 4. Assign rules to each tailoring
         for (const tailoring of tailorings) {
           const rulesToAssign = selectedRuleRefIds.find(
             ({ osMinorVersion }) =>
-              Number(osMinorVersion) === tailoring.os_minor_version
+              Number(osMinorVersion) === tailoring.os_minor_version,
           ).ruleRefIds;
 
           await assignRules({
@@ -142,7 +138,6 @@ const FinishedStep = ({ values, onClose }) => {
           dispatchProgress();
         }
 
-        // 5. Update tailorings with value overrides
         for (const tailoring of tailorings) {
           const tailoringValueOverrides =
             valueOverrides[tailoring.os_minor_version];
@@ -162,7 +157,6 @@ const FinishedStep = ({ values, onClose }) => {
           dispatchProgress();
         }
 
-        // Success!
         setPercent(100);
         setMessage();
         addNotification({
