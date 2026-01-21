@@ -79,7 +79,7 @@ const policiesRoutes = [
     component: lazy(
       () =>
         import(
-          /* webpackChunkName: "CreatePolicy" */ 'SmartComponents/CreatePolicy/CreatePolicy'
+          /* webpackChunkName: "CreatePolicy" */ 'SmartComponents/CreatePolicy/CreatePolicyWrapper'
         ),
     ),
     modal: true,
