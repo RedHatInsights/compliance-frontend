@@ -18,9 +18,12 @@ import { Tile } from '@patternfly/react-core/deprecated';
 import { TableStateProvider } from 'bastilian-tabletools';
 import useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
 import useSecurityGuidesOS from 'Utilities/hooks/api/useSecurityGuidesOS';
-import { StateViewPart, StateViewWithError } from 'PresentationalComponents';
-import PolicyTypesTable from '../Components/PolicyTypeTable';
-import PolicyTypeTooltip from '../Components/PolicyTypeTooltip';
+import {
+  StateViewPart,
+  StateViewWithError,
+  PolicyTypesTable,
+  PolicyTypeTooltip,
+} from 'PresentationalComponents';
 
 const serialiseOsVersions = (profiles = []) =>
   profiles.map((profile) => ({

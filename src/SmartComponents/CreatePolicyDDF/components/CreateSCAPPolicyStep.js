@@ -12,9 +12,12 @@ import { TableStateProvider } from 'bastilian-tabletools';
 import propTypes from 'prop-types';
 import useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
 import useSecurityGuidesOS from 'Utilities/hooks/api/useSecurityGuidesOS';
-import { StateViewPart, StateViewWithError } from 'PresentationalComponents';
-import PolicyTypesTable from 'SmartComponents/CreatePolicy/Components/PolicyTypeTable';
-import PolicyTypeTooltip from 'SmartComponents/CreatePolicy/Components/PolicyTypeTooltip';
+import {
+  StateViewPart,
+  StateViewWithError,
+  PolicyTypesTable,
+  PolicyTypeTooltip,
+} from 'PresentationalComponents';
 
 const serialiseOsVersions = (profiles = []) =>
   profiles.map((profile) => ({
