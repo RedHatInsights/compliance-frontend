@@ -79,19 +79,7 @@ const policiesRoutes = [
     component: lazy(
       () =>
         import(
-          /* webpackChunkName: "CreatePolicy" */ 'SmartComponents/CreatePolicy/CreatePolicy'
-        ),
-    ),
-    modal: true,
-  },
-  {
-    path: 'scappolicies/new-ddf',
-    title: defaultPoliciesTitle,
-    requiredPermissions: [...defaultPermissions, 'compliance:policy:create'],
-    component: lazy(
-      () =>
-        import(
-          /* webpackChunkName: "CreatePolicyDDF" */ 'SmartComponents/CreatePolicyDDF'
+          /* webpackChunkName: "CreatePolicy" */ 'SmartComponents/CreatePolicy/CreatePolicyWrapper'
         ),
     ),
     modal: true,
