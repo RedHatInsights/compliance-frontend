@@ -22,7 +22,7 @@ import {
   Tailorings,
 } from '@/PresentationalComponents';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
-import useProfileRuleIds from './useProfileRuleIds';
+import useProfileRuleIds from 'Utilities/hooks/useProfileRuleIds';
 import { resetRuleValueOverrides } from '@/Utilities/helpers';
 
 const EditPolicyProfilesRules = ({

@@ -11,7 +11,7 @@ import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import { StateView, StateViewPart } from 'PresentationalComponents';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 import Tailorings from '@/PresentationalComponents/Tailorings/Tailorings';
-import useProfileRuleIds from '../CreatePolicy/EditPolicyProfilesRules/useProfileRuleIds';
+import useProfileRuleIds from 'Utilities/hooks/useProfileRuleIds';
 import useTailorings from 'Utilities/hooks/api/useTailorings';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 import { resetRuleValueOverrides } from '@/Utilities/helpers';
