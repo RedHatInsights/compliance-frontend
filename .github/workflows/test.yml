@@ -1,9 +1,9 @@
 name: Test runner
 on:
   push:
-    branches: ['master']
+    branches: ['master', 'hotfix']
   pull_request:
-    branches: ['master']
+    branches: ['master', 'hotfix']
 jobs:
   test:
     runs-on: ubuntu-latest
