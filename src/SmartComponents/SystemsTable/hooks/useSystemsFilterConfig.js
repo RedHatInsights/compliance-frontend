@@ -41,6 +41,9 @@ const useSystemsFilterConfig = ({
   }, 150);
 
   useDeepCompareEffect(() => {
+    if (!serialiseredTableState?.filters) {
+      return;
+    }
     debounceResetPage();
   }, [serialiseredTableState]);
 
