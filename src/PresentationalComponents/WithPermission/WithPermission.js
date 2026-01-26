@@ -4,7 +4,7 @@ import { usePermissionsWithContext } from '@redhat-cloud-services/frontend-compo
 import { useSelfAccessCheck } from '@project-kessel/react-kessel-access-check';
 import { NotAuthorized } from '@redhat-cloud-services/frontend-components/NotAuthorized';
 import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
-import { useDefaultWorkspace } from 'Utilities/hooks/useKesselWorkspaces';
+import { useFetchDefaultWorkspaceId } from 'Utilities/hooks/useKesselWorkspaces';
 
 /**
  * Wrapper component to either render a component if required permissions are met,
@@ -54,7 +54,8 @@ const useRbacV1 = (requiredPermissions) => {
 };
 
 const useKessel = (requiredPermissions) => {
-  const { workspaceId, isLoading: workspaceLoading } = useDefaultWorkspace();
+  const { workspaceId, isLoading: workspaceLoading } =
+    useFetchDefaultWorkspaceId();
 
   const resources = workspaceId
     ? mapPermissionsToKessel(requiredPermissions, workspaceId)
@@ -73,6 +74,7 @@ const useKessel = (requiredPermissions) => {
 
   const { data, loading, error } = useSelfAccessCheck(checkParams);
   if (workspaceId) {
+    console.log('DEBUG workspaceId', workspaceId);
     console.log('DEBUG checkParams', checkParams);
     console.log('DEBUG isSingleResource', isSingleResource);
     console.log('DEBUG data', data);
