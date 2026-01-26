@@ -16,7 +16,7 @@ const NewRulesAlert = () => {
       title="You selected a system that has a release version previously not included in this policy."
       actionLinks={
         <AlertActionLink
-          onClick={() => navigate({ ...location, hash: '#rules' })}
+          onClick={() => navigate({ to: location.pathname, hash: 'rules' })}
         >
           Open rule editing
         </AlertActionLink>
