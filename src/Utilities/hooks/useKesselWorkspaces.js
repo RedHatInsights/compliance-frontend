@@ -4,10 +4,10 @@ const RBAC_API_BASE_V2 = '/api/rbac/v2';
 
 export const useKesselWorkspaces = (options = {}) => {
   return useQuery({
-    queryKey: ['workspaces'],
+    queryKey: ['workspaces', options.type],
     queryFn: async () => {
       const response = await fetch(
-        `${RBAC_API_BASE_V2}/workspaces/?limit=1000&type=default`,
+        `${RBAC_API_BASE_V2}/workspaces/?limit=1000&type=${options.type ?? 'all'}`,
       );
       if (!response.ok) {
         throw new Error('Failed to fetch workspaces');
@@ -19,8 +19,12 @@ export const useKesselWorkspaces = (options = {}) => {
   });
 };
 
-export const useDefaultWorkspace = () => {
-  const { data: workspaces, isLoading, error } = useKesselWorkspaces();
+export const useFetchDefaultWorkspaceId = () => {
+  const {
+    data: workspaces,
+    isLoading,
+    error,
+  } = useKesselWorkspaces({ type: 'default' });
   const defaultWorkspace = workspaces?.[0];
 
   return {

@@ -7,7 +7,7 @@ import { RBACProvider } from '@redhat-cloud-services/frontend-components/RBACPro
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
 import { AccessCheck } from '@project-kessel/react-kessel-access-check';
-import { API_BASE_URL } from '@/constants';
+import { KESSEL_API_BASE_URL } from '@/constants';
 
 import Routes from './Routes';
 import './App.scss';
@@ -27,7 +27,7 @@ const App = (props) => {
       {isKesselEnabled ? (
         <AccessCheck.Provider
           baseUrl={window.location.origin}
-          apiPath={API_BASE_URL}
+          apiPath={KESSEL_API_BASE_URL}
         >
           <NotificationsProvider>
             <Routes childProps={props} />
