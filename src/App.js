@@ -16,7 +16,7 @@ const queryClient = new QueryClient();
 
 const App = (props) => {
   const chrome = useChrome();
-  const isKesselEnabled = useFeatureFlag('hbi.kessel-migration');
+  const isKesselEnabled = useFeatureFlag('compliance.kessel_enabled');
 
   useEffect(() => {
     chrome.hideGlobalFilter(true);

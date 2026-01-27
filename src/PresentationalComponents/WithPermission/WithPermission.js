@@ -122,7 +122,7 @@ const WithPermission = ({
   requiredPermissions = [],
   hide = false,
 }) => {
-  const isKesselEnabled = useFeatureFlag('hbi.kessel-migration');
+  const isKesselEnabled = useFeatureFlag('compliance.kessel_enabled');
   console.log('DEBUG isKesselEnabled', isKesselEnabled);
 
   const renderContent = ({ hasAccess, isLoading }) => {
