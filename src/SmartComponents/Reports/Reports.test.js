@@ -12,6 +12,7 @@ import Reports from './Reports.js';
 jest.mock('Utilities/hooks/api/usePolicies', () => jest.fn());
 jest.mock('Utilities/hooks/api/useReports', () => jest.fn());
 jest.mock('Utilities/hooks/api/useReportsOs', () => jest.fn());
+jest.mock('Utilities/hooks/useFeatureFlag');
 
 describe('Reports', () => {
   it('expect to render an error on total request', () => {

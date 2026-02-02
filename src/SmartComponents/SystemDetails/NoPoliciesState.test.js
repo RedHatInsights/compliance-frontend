@@ -4,6 +4,8 @@ import TestWrapper from '@/Utilities/TestWrapper';
 
 import NoPoliciesState from './NoPoliciesState';
 
+jest.mock('Utilities/hooks/useFeatureFlag');
+
 describe('NoPoliciesState', () => {
   it('renders a note with a system having no policies', () => {
     render(

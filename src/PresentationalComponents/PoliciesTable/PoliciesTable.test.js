@@ -7,6 +7,8 @@ import { buildPolicies } from '../../__factories__/policies';
 
 import { PoliciesTable } from './PoliciesTable.js';
 
+jest.mock('Utilities/hooks/useFeatureFlag');
+
 const policies = buildPolicies(10);
 
 describe('PoliciesTable', () => {

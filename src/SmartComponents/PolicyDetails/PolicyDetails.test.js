@@ -15,6 +15,7 @@ jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useParams: () => ({ policy_id: 'some-policy-id' }),
 }));
+jest.mock('Utilities/hooks/useFeatureFlag');
 
 describe('PolicyDetails', () => {
   const fixturePolicy = buildPolicies(1)[0];

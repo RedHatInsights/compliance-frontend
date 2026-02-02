@@ -14,6 +14,7 @@ TestWrapper.propTypes = { children: propTypes.node };
 
 const policiesData = buildPolicies(11);
 jest.mock('Utilities/hooks/api/usePolicies', () => jest.fn());
+jest.mock('Utilities/hooks/useFeatureFlag');
 
 describe('CompliancePolicies', () => {
   it('expect to render without error', () => {
