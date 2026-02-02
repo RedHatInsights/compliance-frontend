@@ -1,13 +1,12 @@
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
-import useRoutePermissions from 'Utilities/hooks/useRoutePermissions';
 
-const useActionResolver = () => {
+const useActionResolver = ({ deletePermission, editPermission }) => {
   const navigate = useNavigate();
 
   const { hasAccess: hasDeleteAccess, isLoading: isDeleteAccessLoading } =
-    useRoutePermissions(`/scappolicies/XYZ/delete`);
+    deletePermission;
   const { hasAccess: hasEditAccess, isLoading: isEditAccessLoading } =
-    useRoutePermissions(`/scappolicies/XYZ/edit`);
+    editPermission;
 
   return () => [
     {

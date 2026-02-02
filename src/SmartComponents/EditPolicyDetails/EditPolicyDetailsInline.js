@@ -19,9 +19,27 @@ import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 // import Prompt from '@redhat-cloud-services/frontend-components/Prompt';
 import { useOnSave as useOnSavePolicyDetails } from '../EditPolicy/hooks';
 import { thresholdValid } from '../CreatePolicy/validate';
-import { usePermissionsWithContext } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
+import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
+import {
+  useRbacV1Permissions,
+  useKesselPermissions,
+} from 'Utilities/hooks/usePermissionCheck';
 
-const EditPolicyDetailsInline = ({
+const REQUIRED_PERMISSIONS = ['compliance:policy:write'];
+
+const RbacV1Permission = ({ children }) => {
+  const { hasAccess, isLoading } = useRbacV1Permissions(REQUIRED_PERMISSIONS);
+  const hasPermission = !isLoading && hasAccess;
+  return children({ hasPermission });
+};
+
+const KesselPermission = ({ children }) => {
+  const { hasAccess, isLoading } = useKesselPermissions(REQUIRED_PERMISSIONS);
+  const hasPermission = !isLoading && hasAccess;
+  return children({ hasPermission });
+};
+
+const EditPolicyDetailsInlineContent = ({
   text,
   policy,
   variant,
@@ -34,19 +52,12 @@ const EditPolicyDetailsInline = ({
   Component = TextInput,
   refetch,
   style,
+  hasPermission,
   ...props
 }) => {
   const copiedData = policy;
   // TODO Re-enable when there is a alternative to Prompt
   // const [dirty, setDirty] = useState(false);
-
-  const { hasAccess, isLoading } = usePermissionsWithContext(
-    ['compliance:policy:write'],
-    false,
-    false,
-  );
-
-  const hasPermission = !isLoading && hasAccess;
 
   const [value, setValue] = useState(text);
   const [validThreshold, setValidThreshold] = useState(true);
@@ -198,6 +209,41 @@ const EditPolicyDetailsInline = ({
         message="You have unsaved changes on this page. Are you sure you want to leave?"
       /> */}
     </FormGroup>
+  );
+};
+
+EditPolicyDetailsInlineContent.propTypes = {
+  text: propTypes.string,
+  variant: propTypes.string,
+  policy: propTypes.object,
+  propertyName: propTypes.string,
+  inlineClosedText: propTypes.string,
+  label: propTypes.string,
+  showTextUnderInline: propTypes.string,
+  textUnderInline: propTypes.string,
+  typeOfInput: propTypes.string,
+  Component: propTypes.elementType,
+  refetch: propTypes.func,
+  style: propTypes.object,
+  hasPermission: propTypes.bool,
+};
+
+const EditPolicyDetailsInline = (props) => {
+  const isKesselEnabled = useFeatureFlag('compliance.kessel_enabled');
+
+  const PermissionProvider = isKesselEnabled
+    ? KesselPermission
+    : RbacV1Permission;
+
+  return (
+    <PermissionProvider>
+      {({ hasPermission }) => (
+        <EditPolicyDetailsInlineContent
+          {...props}
+          hasPermission={hasPermission}
+        />
+      )}
+    </PermissionProvider>
   );
 };
 
