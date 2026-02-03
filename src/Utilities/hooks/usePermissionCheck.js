@@ -20,7 +20,12 @@ export const mapPermissionsToKessel = (permissions, workspaceId) =>
         console.warn(`No Kessel mapping for: ${perm}`);
         return null;
       }
-      return { id: workspaceId, type: 'workspace', relation };
+      return {
+        id: workspaceId,
+        type: 'workspace',
+        relation,
+        reporter: { type: 'rbac' },
+      };
     })
     .filter(Boolean);
 
@@ -45,7 +50,11 @@ export const useKesselPermissions = (requiredPermissions) => {
 
   const checkParams = isSingleResource
     ? {
-        resource: { id: resources[0].id, type: resources[0].type },
+        resource: {
+          id: resources[0].id,
+          type: resources[0].type,
+          reporter: resources[0].reporter,
+        },
         relation: resources[0].relation,
       }
     : { resources: resources };
