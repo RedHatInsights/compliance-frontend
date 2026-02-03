@@ -43,6 +43,7 @@ const WithPermission = ({
   hide = false,
 }) => {
   const isKesselEnabled = useFeatureFlag('compliance.kessel_enabled');
+  console.log('DEBUG isKesselEnabled', isKesselEnabled);
 
   return isKesselEnabled ? (
     <WithKesselPermission requiredPermissions={requiredPermissions} hide={hide}>
