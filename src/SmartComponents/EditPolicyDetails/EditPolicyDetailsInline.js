@@ -210,7 +210,10 @@ EditPolicyDetailsInlineContent.propTypes = {
 };
 
 const EditPolicyDetailsInline = ({ hasEditPermission, ...props }) => (
-  <EditPolicyDetailsInlineContent {...props} hasPermission={hasEditPermission} />
+  <EditPolicyDetailsInlineContent
+    {...props}
+    hasPermission={hasEditPermission}
+  />
 );
 
 EditPolicyDetailsInline.propTypes = {

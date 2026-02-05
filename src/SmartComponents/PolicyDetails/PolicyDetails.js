@@ -179,7 +179,9 @@ export const PolicyDetails = ({ route }) => {
   return (
     <PolicyDetailsContent
       route={route}
-      usePermissionsHook={isKesselEnabled ? useKesselPermissions : useRbacV1Permissions}
+      usePermissionsHook={
+        isKesselEnabled ? useKesselPermissions : useRbacV1Permissions
+      }
     />
   );
 };
