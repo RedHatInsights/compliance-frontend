@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { usePermissionsWithContext } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 import { useSelfAccessCheck } from '@project-kessel/react-kessel-access-check';
 import { useFetchDefaultWorkspaceId } from 'Utilities/hooks/useKesselWorkspaces';
@@ -9,7 +10,6 @@ export const PERMISSION_MAP = {
   'compliance:policy:delete': 'compliance_policy_remove',
   'compliance:system:read': 'compliance_system_view', // compliance_system_view_assigned
   'compliance:report:read': 'compliance_report_view',
-  // 'compliance:*:*': 'compliance_all_all',
 };
 
 export const mapPermissionsToKessel = (permissions, workspaceId) =>
@@ -42,22 +42,29 @@ export const useKesselPermissions = (requiredPermissions) => {
   const { workspaceId, isLoading: workspaceLoading } =
     useFetchDefaultWorkspaceId();
 
-  const resources = workspaceId
-    ? mapPermissionsToKessel(requiredPermissions, workspaceId)
-    : [];
+  const resources = useMemo(
+    () =>
+      workspaceId
+        ? mapPermissionsToKessel(requiredPermissions, workspaceId)
+        : [],
+    [workspaceId, requiredPermissions],
+  );
 
   const isSingleResource = resources.length === 1;
 
-  const checkParams = isSingleResource
-    ? {
+  const checkParams = useMemo(() => {
+    if (isSingleResource) {
+      return {
         resource: {
           id: resources[0].id,
           type: resources[0].type,
           reporter: resources[0].reporter,
         },
         relation: resources[0].relation,
-      }
-    : { resources: resources };
+      };
+    }
+    return { resources };
+  }, [isSingleResource, resources]);
 
   const { data, loading, error } = useSelfAccessCheck(checkParams);
   if (workspaceId) {
