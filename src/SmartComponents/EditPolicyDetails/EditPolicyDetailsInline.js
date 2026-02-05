@@ -19,25 +19,6 @@ import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 // import Prompt from '@redhat-cloud-services/frontend-components/Prompt';
 import { useOnSave as useOnSavePolicyDetails } from '../EditPolicy/hooks';
 import { thresholdValid } from '../CreatePolicy/validate';
-import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
-import {
-  useRbacV1Permissions,
-  useKesselPermissions,
-} from 'Utilities/hooks/usePermissionCheck';
-
-const REQUIRED_PERMISSIONS = ['compliance:policy:write'];
-
-const RbacV1Permission = ({ children }) => {
-  const { hasAccess, isLoading } = useRbacV1Permissions(REQUIRED_PERMISSIONS);
-  const hasPermission = !isLoading && hasAccess;
-  return children({ hasPermission });
-};
-
-const KesselPermission = ({ children }) => {
-  const { hasAccess, isLoading } = useKesselPermissions(REQUIRED_PERMISSIONS);
-  const hasPermission = !isLoading && hasAccess;
-  return children({ hasPermission });
-};
 
 const EditPolicyDetailsInlineContent = ({
   text,
@@ -228,24 +209,9 @@ EditPolicyDetailsInlineContent.propTypes = {
   hasPermission: propTypes.bool,
 };
 
-const EditPolicyDetailsInline = (props) => {
-  const isKesselEnabled = useFeatureFlag('compliance.kessel_enabled');
-
-  const PermissionProvider = isKesselEnabled
-    ? KesselPermission
-    : RbacV1Permission;
-
-  return (
-    <PermissionProvider>
-      {({ hasPermission }) => (
-        <EditPolicyDetailsInlineContent
-          {...props}
-          hasPermission={hasPermission}
-        />
-      )}
-    </PermissionProvider>
-  );
-};
+const EditPolicyDetailsInline = ({ hasEditPermission, ...props }) => (
+  <EditPolicyDetailsInlineContent {...props} hasPermission={hasEditPermission} />
+);
 
 EditPolicyDetailsInline.propTypes = {
   text: propTypes.string,
@@ -260,6 +226,7 @@ EditPolicyDetailsInline.propTypes = {
   Component: propTypes.elementType,
   refetch: propTypes.func,
   style: propTypes.object,
+  hasEditPermission: propTypes.bool.isRequired,
 };
 
 export default EditPolicyDetailsInline;
