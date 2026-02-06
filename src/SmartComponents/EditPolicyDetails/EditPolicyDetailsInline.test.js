@@ -43,9 +43,12 @@ describe('EditPolicyDetailsInline', () => {
   };
 
   it('Renders the component with default props', () => {
-    render(<EditPolicyDetailsInline {...defaultProps} />, {
-      wrapper: TestWrapper,
-    });
+    render(
+      <EditPolicyDetailsInline {...defaultProps} hasEditPermission={true} />,
+      {
+        wrapper: TestWrapper,
+      },
+    );
     expect(screen.getByText('Test Label')).toBeInTheDocument();
     expect(screen.getByText('Test Text Closed')).toBeInTheDocument();
   });
@@ -63,9 +66,12 @@ describe('EditPolicyDetailsInline', () => {
   });
 
   it('Open and save edits works', async () => {
-    render(<EditPolicyDetailsInline {...defaultProps} />, {
-      wrapper: TestWrapper,
-    });
+    render(
+      <EditPolicyDetailsInline {...defaultProps} hasEditPermission={true} />,
+      {
+        wrapper: TestWrapper,
+      },
+    );
 
     const pencilButton = screen.getByRole('button');
     fireEvent.click(pencilButton);
@@ -81,9 +87,12 @@ describe('EditPolicyDetailsInline', () => {
   });
 
   it('Cancels edits when the cancel button is clicked', async () => {
-    render(<EditPolicyDetailsInline {...defaultProps} />, {
-      wrapper: TestWrapper,
-    });
+    render(
+      <EditPolicyDetailsInline {...defaultProps} hasEditPermission={true} />,
+      {
+        wrapper: TestWrapper,
+      },
+    );
 
     const pencilButton = screen.getByRole('button');
     fireEvent.click(pencilButton);
@@ -102,9 +111,12 @@ describe('EditPolicyDetailsInline', () => {
   });
 
   it('Save button disabled on invalid threshold input', () => {
-    render(<EditPolicyDetailsInline {...defaultProps} />, {
-      wrapper: TestWrapper,
-    });
+    render(
+      <EditPolicyDetailsInline {...defaultProps} hasEditPermission={true} />,
+      {
+        wrapper: TestWrapper,
+      },
+    );
     const pencilButton = screen.getByRole('button');
     fireEvent.click(pencilButton);
 
@@ -135,7 +147,7 @@ describe('EditPolicyDetailsInline', () => {
       'aria-label': 'TextArea',
     };
 
-    render(<EditPolicyDetailsInline {...props} />, {
+    render(<EditPolicyDetailsInline {...props} hasEditPermission={true} />, {
       wrapper: TestWrapper,
     });
     expect(screen.getByText('Test description')).toBeInTheDocument();

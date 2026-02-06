@@ -7,16 +7,16 @@ import { RBAC_API_BASE_V2 } from '@/constants';
 
 const STALE_TIME = 5 * 60 * 1000; // could be Infinity ?
 
-
 export const useKesselWorkspaces = (options = {}) => {
   const axios = useAxiosWithPlatformInterceptors();
   const rbacClient = useMemo(
-    () => APIFactory(RBAC_API_BASE_V2, { workspacesList: listWorkspaces }, axios),
-    [axios]
+    () =>
+      APIFactory(RBAC_API_BASE_V2, { workspacesList: listWorkspaces }, axios),
+    [axios],
   );
 
   return useQuery({
-    queryKey: ['workspaces', options.type],
+    queryKey: ['workspaces', options.type, options.limit, options.name],
     queryFn: async () => {
       const response = await rbacClient.workspacesList({
         limit: options.limit ?? 1000,
