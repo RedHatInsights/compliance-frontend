@@ -40,7 +40,7 @@ export const useRbacV1Permissions = (requiredPermissions) => {
 
 export const useKesselPermissions = (requiredPermissions) => {
   const { workspaceId, isLoading: workspaceLoading } =
-    useFetchDefaultWorkspaceId({ enabled: enableWorkspaceQuery });
+    useFetchDefaultWorkspaceId();
 
 
   const resources = useMemo(
@@ -50,7 +50,6 @@ export const useKesselPermissions = (requiredPermissions) => {
         : [],
     [workspaceId, requiredPermissions],
   );
-  console.log('DEBUG resources', resources);
 
   const isSingleResource = resources.length === 1;
 
@@ -70,12 +69,12 @@ export const useKesselPermissions = (requiredPermissions) => {
 
   const { data, loading, error } = useSelfAccessCheck(checkParams);
   if (workspaceId) {
-    console.log('DEBUG workspaceId', workspaceId);
-    console.log('DEBUG checkParams', checkParams);
-    console.log('DEBUG isSingleResource', isSingleResource);
-    console.log('DEBUG data', data);
-    console.log('DEBUG loading', loading);
-    console.log('DEBUG error', error);
+    // console.log('DEBUG workspaceId', workspaceId);
+    // console.log('DEBUG checkParams', checkParams);
+    // console.log('DEBUG isSingleResource', isSingleResource);
+    // console.log('DEBUG data', data);
+    // console.log('DEBUG loading', loading);
+    // console.log('DEBUG error', error);
   }
 
   if (workspaceLoading) {

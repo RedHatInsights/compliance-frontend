@@ -3,8 +3,8 @@ import { useQuery } from '@tanstack/react-query';
 import { APIFactory } from '@redhat-cloud-services/javascript-clients-shared';
 import listWorkspaces from '@redhat-cloud-services/rbac-client/v2/WorkspacesList';
 import { useAxiosWithPlatformInterceptors } from '@redhat-cloud-services/frontend-components-utilities/interceptors';
+import { RBAC_API_BASE_V2 } from '@/constants';
 
-const RBAC_API_BASE_V2 = '/api/rbac/v2';
 
 export const useKesselWorkspaces = (options = {}) => {
   const axios = useAxiosWithPlatformInterceptors();
@@ -17,7 +17,7 @@ export const useKesselWorkspaces = (options = {}) => {
     queryKey: ['workspaces', options.type],
     queryFn: async () => {
       const response = await rbacClient.workspacesList({
-        limit: 1000,
+        limit: options.limit ?? 1000,
         offset: 0,
         type: options.type ?? 'all',
         name: options.name,
@@ -29,12 +29,12 @@ export const useKesselWorkspaces = (options = {}) => {
   });
 };
 
-export const useFetchDefaultWorkspaceId = (options = {}) => {
+export const useFetchDefaultWorkspaceId = () => {
   const {
     data: workspaces,
     isLoading,
     error,
-  } = useKesselWorkspaces({ type: 'default', ...options });
+  } = useKesselWorkspaces({ type: 'default', limit: 1 });
   const defaultWorkspace = workspaces?.[0];
 
   return {
