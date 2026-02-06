@@ -1,30 +1,40 @@
+import { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { APIFactory } from '@redhat-cloud-services/javascript-clients-shared';
+import listWorkspaces from '@redhat-cloud-services/rbac-client/v2/WorkspacesList';
+import { useAxiosWithPlatformInterceptors } from '@redhat-cloud-services/frontend-components-utilities/interceptors';
 
 const RBAC_API_BASE_V2 = '/api/rbac/v2';
 
 export const useKesselWorkspaces = (options = {}) => {
+  const axios = useAxiosWithPlatformInterceptors();
+  const rbacClient = useMemo(
+    () => APIFactory(RBAC_API_BASE_V2, { workspacesList: listWorkspaces }, axios),
+    [axios]
+  );
+
   return useQuery({
     queryKey: ['workspaces', options.type],
     queryFn: async () => {
-      const response = await fetch(
-        `${RBAC_API_BASE_V2}/workspaces/?limit=1000&type=${options.type ?? 'all'}`,
-      );
-      if (!response.ok) {
-        throw new Error('Failed to fetch workspaces');
-      }
-      const data = await response.json();
-      return data.data || [];
+      const response = await rbacClient.workspacesList({
+        limit: 1000,
+        offset: 0,
+        type: options.type ?? 'all',
+        name: options.name,
+      });
+      return response?.data?.data ?? [];
     },
     enabled: options.enabled ?? true,
+    staleTime: 5 * 60 * 1000, // TODO: check if it's a good option nere
   });
 };
 
-export const useFetchDefaultWorkspaceId = () => {
+export const useFetchDefaultWorkspaceId = (options = {}) => {
   const {
     data: workspaces,
     isLoading,
     error,
-  } = useKesselWorkspaces({ type: 'default' });
+  } = useKesselWorkspaces({ type: 'default', ...options });
   const defaultWorkspace = workspaces?.[0];
 
   return {
