@@ -2,20 +2,23 @@ import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import EditPolicyDetailsInline from './EditPolicyDetailsInline';
-import { usePermissionsWithContext } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
+import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
+import { useRbacV1Permissions } from 'Utilities/hooks/usePermissionCheck';
 import useUpdatePolicy from 'Utilities/hooks/api/useUpdatePolicy';
 import { TextArea } from '@patternfly/react-core';
 import TestWrapper from 'Utilities/TestWrapper';
 
-jest.mock('@redhat-cloud-services/frontend-components-utilities/RBACHook');
+jest.mock('Utilities/hooks/useFeatureFlag');
+jest.mock('Utilities/hooks/usePermissionCheck');
 jest.mock('Utilities/hooks/api/useUpdatePolicy');
 
 describe('EditPolicyDetailsInline', () => {
   beforeEach(() => {
+    useFeatureFlag.mockReturnValue(false);
     useUpdatePolicy.mockReturnValue({
       query: jest.fn(() => Promise.resolve()),
     });
-    usePermissionsWithContext.mockImplementation(() => ({
+    useRbacV1Permissions.mockImplementation(() => ({
       hasAccess: true,
       isLoading: false,
     }));
@@ -40,15 +43,18 @@ describe('EditPolicyDetailsInline', () => {
   };
 
   it('Renders the component with default props', () => {
-    render(<EditPolicyDetailsInline {...defaultProps} />, {
-      wrapper: TestWrapper,
-    });
+    render(
+      <EditPolicyDetailsInline {...defaultProps} hasEditPermission={true} />,
+      {
+        wrapper: TestWrapper,
+      },
+    );
     expect(screen.getByText('Test Label')).toBeInTheDocument();
     expect(screen.getByText('Test Text Closed')).toBeInTheDocument();
   });
 
   it('No pencil button when user does not have access', () => {
-    usePermissionsWithContext.mockImplementation(() => ({
+    useRbacV1Permissions.mockImplementation(() => ({
       hasAccess: false,
       isLoading: false,
     }));
@@ -60,9 +66,12 @@ describe('EditPolicyDetailsInline', () => {
   });
 
   it('Open and save edits works', async () => {
-    render(<EditPolicyDetailsInline {...defaultProps} />, {
-      wrapper: TestWrapper,
-    });
+    render(
+      <EditPolicyDetailsInline {...defaultProps} hasEditPermission={true} />,
+      {
+        wrapper: TestWrapper,
+      },
+    );
 
     const pencilButton = screen.getByRole('button');
     fireEvent.click(pencilButton);
@@ -78,9 +87,12 @@ describe('EditPolicyDetailsInline', () => {
   });
 
   it('Cancels edits when the cancel button is clicked', async () => {
-    render(<EditPolicyDetailsInline {...defaultProps} />, {
-      wrapper: TestWrapper,
-    });
+    render(
+      <EditPolicyDetailsInline {...defaultProps} hasEditPermission={true} />,
+      {
+        wrapper: TestWrapper,
+      },
+    );
 
     const pencilButton = screen.getByRole('button');
     fireEvent.click(pencilButton);
@@ -99,9 +111,12 @@ describe('EditPolicyDetailsInline', () => {
   });
 
   it('Save button disabled on invalid threshold input', () => {
-    render(<EditPolicyDetailsInline {...defaultProps} />, {
-      wrapper: TestWrapper,
-    });
+    render(
+      <EditPolicyDetailsInline {...defaultProps} hasEditPermission={true} />,
+      {
+        wrapper: TestWrapper,
+      },
+    );
     const pencilButton = screen.getByRole('button');
     fireEvent.click(pencilButton);
 
@@ -132,7 +147,7 @@ describe('EditPolicyDetailsInline', () => {
       'aria-label': 'TextArea',
     };
 
-    render(<EditPolicyDetailsInline {...props} />, {
+    render(<EditPolicyDetailsInline {...props} hasEditPermission={true} />, {
       wrapper: TestWrapper,
     });
     expect(screen.getByText('Test description')).toBeInTheDocument();

@@ -19,9 +19,8 @@ import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 // import Prompt from '@redhat-cloud-services/frontend-components/Prompt';
 import { useOnSave as useOnSavePolicyDetails } from '../EditPolicy/hooks';
 import { thresholdValid } from '../CreatePolicy/validate';
-import { usePermissionsWithContext } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 
-const EditPolicyDetailsInline = ({
+const EditPolicyDetailsInlineContent = ({
   text,
   policy,
   variant,
@@ -34,19 +33,12 @@ const EditPolicyDetailsInline = ({
   Component = TextInput,
   refetch,
   style,
+  hasPermission,
   ...props
 }) => {
   const copiedData = policy;
   // TODO Re-enable when there is a alternative to Prompt
   // const [dirty, setDirty] = useState(false);
-
-  const { hasAccess, isLoading } = usePermissionsWithContext(
-    ['compliance:policy:write'],
-    false,
-    false,
-  );
-
-  const hasPermission = !isLoading && hasAccess;
 
   const [value, setValue] = useState(text);
   const [validThreshold, setValidThreshold] = useState(true);
@@ -201,6 +193,29 @@ const EditPolicyDetailsInline = ({
   );
 };
 
+EditPolicyDetailsInlineContent.propTypes = {
+  text: propTypes.string,
+  variant: propTypes.string,
+  policy: propTypes.object,
+  propertyName: propTypes.string,
+  inlineClosedText: propTypes.string,
+  label: propTypes.string,
+  showTextUnderInline: propTypes.string,
+  textUnderInline: propTypes.string,
+  typeOfInput: propTypes.string,
+  Component: propTypes.elementType,
+  refetch: propTypes.func,
+  style: propTypes.object,
+  hasPermission: propTypes.bool,
+};
+
+const EditPolicyDetailsInline = ({ hasEditPermission, ...props }) => (
+  <EditPolicyDetailsInlineContent
+    {...props}
+    hasPermission={hasEditPermission}
+  />
+);
+
 EditPolicyDetailsInline.propTypes = {
   text: propTypes.string,
   variant: propTypes.string,
@@ -214,6 +229,7 @@ EditPolicyDetailsInline.propTypes = {
   Component: propTypes.elementType,
   refetch: propTypes.func,
   style: propTypes.object,
+  hasEditPermission: propTypes.bool.isRequired,
 };
 
 export default EditPolicyDetailsInline;

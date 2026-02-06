@@ -2,18 +2,19 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { Content } from '@patternfly/react-core';
 import { ExportIcon } from '@patternfly/react-icons';
-import {
-  GreySmallText,
-  LinkWithPermission as Link,
-  LinkButton,
-} from 'PresentationalComponents';
+import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink';
+import { GreySmallText, LinkButton } from 'PresentationalComponents';
 import ReportChart from '../../SmartComponents/ReportDetails/Components/ReportChart';
 
 export const Name = (report) => (
   <Content>
-    <Link to={`/reports/${report.id}`} style={{ marginRight: '.5rem' }}>
+    <InsightsLink
+      app="compliance"
+      to={`/reports/${report.id}`}
+      style={{ marginRight: '.5rem' }}
+    >
       {report.title}
-    </Link>
+    </InsightsLink>
     <React.Fragment>
       <GreySmallText>{report.profile_title}</GreySmallText>
     </React.Fragment>
@@ -49,22 +50,18 @@ CompliantSystems.propTypes = {
 };
 
 export const PDFExportDownload = ({ id }) => {
-  const basePath = `/reports/${id}`;
-  const downloadUrl = `${basePath}/pdf`;
+  const downloadUrl = `/reports/${id}/pdf`;
 
   return (
-    <Link
+    <LinkButton
       aria-label="Reports PDF download link"
       to={downloadUrl}
-      Component={LinkButton}
-      componentProps={{
-        className: 'pf-v6-u-mr-md',
-        variant: 'plain',
-        ouiaId: 'ReportsDownloadReportPDFLink',
-      }}
+      className="pf-v6-u-mr-md"
+      variant="plain"
+      ouiaId="ReportsDownloadReportPDFLink"
     >
       <ExportIcon />
-    </Link>
+    </LinkButton>
   );
 };
 

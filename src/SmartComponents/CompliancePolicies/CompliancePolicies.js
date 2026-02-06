@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+import PropTypes from 'prop-types';
 import { Grid, Spinner } from '@patternfly/react-core';
 import {
   ErrorPage,
@@ -12,8 +13,34 @@ import ComplianceEmptyState from 'PresentationalComponents/ComplianceEmptyState'
 import { TableStateProvider } from 'bastilian-tabletools';
 import CompliancePageHeader from 'PresentationalComponents/CompliancePageHeader/CompliancePageHeader';
 import { policiesPopoverData } from '@/constants';
+import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
+import {
+  useRbacV1Permissions,
+  useKesselPermissions,
+} from 'Utilities/hooks/usePermissionCheck';
 
-const CompliancePolicies = () => {
+const PERMISSIONS = {
+  create: ['compliance:policy:create'],
+  edit: ['compliance:policy:write'],
+  delete: ['compliance:policy:delete'],
+};
+
+const CompliancePoliciesContent = ({ usePermissionsHook }) => {
+  const createPermission = usePermissionsHook(PERMISSIONS.create);
+  const editPermission = usePermissionsHook(PERMISSIONS.edit);
+  const deletePermission = usePermissionsHook(PERMISSIONS.delete);
+
+  const hasCreatePermission =
+    !createPermission.isLoading && createPermission.hasAccess;
+
+  const CreateLinkWithPermission = useMemo(
+    () =>
+      function CreateLinkWrapper() {
+        return <CreateLink hasCreatePermission={hasCreatePermission} />;
+      },
+    [hasCreatePermission],
+  );
+
   // Async table needs info about total policy count before mounting
   // Also required for correctly showing empty state
   const {
@@ -60,7 +87,9 @@ const CompliancePolicies = () => {
               <Grid hasGutter>
                 <ComplianceEmptyState
                   title="No policies"
-                  mainButton={<CreateLink />}
+                  mainButton={
+                    <CreateLink hasCreatePermission={hasCreatePermission} />
+                  }
                 />
               </Grid>
             ) : (
@@ -68,7 +97,9 @@ const CompliancePolicies = () => {
                 policies={data}
                 total={currentTotalPolicies}
                 loading={policiesLoading}
-                DedicatedAction={CreateLink}
+                DedicatedAction={CreateLinkWithPermission}
+                deletePermission={deletePermission}
+                editPermission={editPermission}
                 options={{
                   exporter,
                 }}
@@ -78,6 +109,22 @@ const CompliancePolicies = () => {
         </StateView>
       </section>
     </React.Fragment>
+  );
+};
+
+CompliancePoliciesContent.propTypes = {
+  usePermissionsHook: PropTypes.func.isRequired,
+};
+
+const CompliancePolicies = () => {
+  const isKesselEnabled = useFeatureFlag('compliance.kessel_enabled');
+
+  return (
+    <CompliancePoliciesContent
+      usePermissionsHook={
+        isKesselEnabled ? useKesselPermissions : useRbacV1Permissions
+      }
+    />
   );
 };
 
