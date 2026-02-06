@@ -5,6 +5,8 @@ import listWorkspaces from '@redhat-cloud-services/rbac-client/v2/WorkspacesList
 import { useAxiosWithPlatformInterceptors } from '@redhat-cloud-services/frontend-components-utilities/interceptors';
 import { RBAC_API_BASE_V2 } from '@/constants';
 
+const STALE_TIME = 5 * 60 * 1000; // could be Infinity ?
+
 
 export const useKesselWorkspaces = (options = {}) => {
   const axios = useAxiosWithPlatformInterceptors();
@@ -25,7 +27,7 @@ export const useKesselWorkspaces = (options = {}) => {
       return response?.data?.data ?? [];
     },
     enabled: options.enabled ?? true,
-    staleTime: 5 * 60 * 1000, // TODO: check if it's a good option nere
+    staleTime: options.staleTime,
   });
 };
 
@@ -34,7 +36,7 @@ export const useFetchDefaultWorkspaceId = () => {
     data: workspaces,
     isLoading,
     error,
-  } = useKesselWorkspaces({ type: 'default', limit: 1 });
+  } = useKesselWorkspaces({ type: 'default', limit: 1, staleTime: STALE_TIME });
   const defaultWorkspace = workspaces?.[0];
 
   return {
