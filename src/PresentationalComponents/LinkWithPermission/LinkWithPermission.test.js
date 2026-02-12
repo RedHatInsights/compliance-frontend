@@ -2,8 +2,11 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import useRoutePermissions from 'Utilities/hooks/useRoutePermissions';
-jest.mock('Utilities/hooks/useRoutePermissions');
+import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
+import { useRbacV1Permissions } from 'Utilities/hooks/usePermissionCheck';
+
+jest.mock('Utilities/hooks/useFeatureFlag');
+jest.mock('Utilities/hooks/usePermissionCheck');
 
 import LinkWithPermission from './LinkWithPermission';
 
@@ -26,10 +29,18 @@ jest.mock('@redhat-cloud-services/frontend-components/InsightsLink', () => ({
 }));
 
 describe('LinkWithPermission', () => {
+  beforeEach(() => {
+    useFeatureFlag.mockReturnValue(false);
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('expect to render without error', () => {
     const linkText = 'Test Link';
 
-    useRoutePermissions.mockImplementation(() => ({
+    useRbacV1Permissions.mockImplementation(() => ({
       hasAccess: true,
       isLoading: false,
     }));

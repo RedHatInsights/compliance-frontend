@@ -12,7 +12,7 @@ import {
 import linkifyHtml from 'linkify-html';
 import EditPolicyDetailsInline from '../../SmartComponents/EditPolicyDetails/EditPolicyDetailsInline';
 
-const PolicyDetailsDescription = ({ policy, refetch }) => {
+const PolicyDetailsDescription = ({ policy, refetch, hasEditPermission }) => {
   const thresholdText = `${fixedPercentage(
     policy.compliance_threshold,
     1,
@@ -45,6 +45,7 @@ const PolicyDetailsDescription = ({ policy, refetch }) => {
               className="pf-v6-c-form-control pf-v6-u-w-100-on-lg"
               aria-label="editable text input"
               id="policydetails-input-threshold"
+              hasEditPermission={hasEditPermission}
             />
           </Content>
           <Content component="p">
@@ -57,6 +58,7 @@ const PolicyDetailsDescription = ({ policy, refetch }) => {
               label="Business objective"
               propertyName="business_objective"
               typeOfInput="text"
+              hasEditPermission={hasEditPermission}
             />
           </Content>
           <Content component="p">
@@ -73,6 +75,7 @@ const PolicyDetailsDescription = ({ policy, refetch }) => {
               style={{
                 minWidth: '50%',
               }}
+              hasEditPermission={hasEditPermission}
             />
           </Content>
           <Content component={ContentVariants.h5}>Operating system</Content>
@@ -93,6 +96,7 @@ const PolicyDetailsDescription = ({ policy, refetch }) => {
 PolicyDetailsDescription.propTypes = {
   policy: propTypes.object,
   refetch: propTypes.func,
+  hasEditPermission: propTypes.bool,
 };
 
 export default PolicyDetailsDescription;

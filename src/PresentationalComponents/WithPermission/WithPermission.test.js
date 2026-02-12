@@ -1,12 +1,22 @@
 import { render } from '@testing-library/react';
 import WithPermission from './WithPermission';
-import { usePermissionsWithContext } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
+import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
+import { useRbacV1Permissions } from 'Utilities/hooks/usePermissionCheck';
 
-jest.mock('@redhat-cloud-services/frontend-components-utilities/RBACHook');
+jest.mock('Utilities/hooks/useFeatureFlag');
+jest.mock('Utilities/hooks/usePermissionCheck');
 
 describe('WithPermission', () => {
+  beforeEach(() => {
+    useFeatureFlag.mockReturnValue(false);
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('expect to render without error', () => {
-    usePermissionsWithContext.mockImplementation(() => ({
+    useRbacV1Permissions.mockImplementation(() => ({
       hasAccess: true,
       isLoading: false,
     }));
@@ -18,7 +28,8 @@ describe('WithPermission', () => {
   });
 
   it('expect to render nothing when loading', () => {
-    usePermissionsWithContext.mockImplementation(() => ({
+    useRbacV1Permissions.mockImplementation(() => ({
+      hasAccess: false,
       isLoading: true,
     }));
     const { asFragment } = render(
@@ -29,7 +40,7 @@ describe('WithPermission', () => {
   });
 
   it('expect to render "No permissions" with no access', () => {
-    usePermissionsWithContext.mockImplementation(() => ({
+    useRbacV1Permissions.mockImplementation(() => ({
       hasAccess: false,
       isLoading: false,
     }));
@@ -41,7 +52,7 @@ describe('WithPermission', () => {
   });
 
   it('expect to render nothing when hidden and no access', () => {
-    usePermissionsWithContext.mockImplementation(() => ({
+    useRbacV1Permissions.mockImplementation(() => ({
       hasAccess: false,
       isLoading: false,
     }));

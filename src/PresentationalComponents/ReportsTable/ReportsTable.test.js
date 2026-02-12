@@ -12,6 +12,8 @@ import {
 import { uniq } from 'Utilities/helpers';
 import { buildReports } from '../../__factories__/reports';
 
+jest.mock('Utilities/hooks/useFeatureFlag');
+
 const reportsData = buildReports(1);
 
 describe('ReportsTable', () => {

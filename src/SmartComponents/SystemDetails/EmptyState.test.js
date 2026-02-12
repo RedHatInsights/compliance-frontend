@@ -6,7 +6,7 @@ import EmptyState from './EmptyState.js';
 import useSystem from 'Utilities/hooks/api/useSystem';
 
 jest.mock('Utilities/hooks/api/useSystem', () => jest.fn());
-jest.mock('Utilities/hooks/useFeatureFlag', () => () => true);
+jest.mock('Utilities/hooks/useFeatureFlag');
 
 describe('EmptyState for systemDetails', () => {
   it('expect to render loading state while waiting for data', () => {
@@ -40,7 +40,7 @@ describe('EmptyState for systemDetails', () => {
     );
 
     expect(
-      screen.getByText(`This system isn’t connected to Red Hat Lightspeed yet`),
+      screen.getByText(`This system isn’t connected to Insights yet`),
     ).toBeInTheDocument();
   });
 

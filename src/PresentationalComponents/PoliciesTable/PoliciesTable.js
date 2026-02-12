@@ -15,10 +15,15 @@ export const PoliciesTable = ({
   total,
   loading,
   options,
+  deletePermission,
+  editPermission,
 }) => {
   const complianceTableDefaults = useComplianceTableDefaults();
   const filters = Object.values(Filters);
-  const actionResolver = useActionResolver();
+  const actionResolver = useActionResolver({
+    deletePermission,
+    editPermission,
+  });
 
   return (
     <ComplianceTable
@@ -28,9 +33,7 @@ export const PoliciesTable = ({
       columns={columns}
       items={policies}
       isStickyHeader
-      filters={{
-        filterConfig: filters,
-      }}
+      filters={{ filterConfig: filters }}
       total={total}
       loading={loading}
       options={{
@@ -55,6 +58,14 @@ PoliciesTable.propTypes = {
   total: propTypes.number,
   loading: propTypes.bool,
   options: propTypes.object,
+  deletePermission: propTypes.shape({
+    hasAccess: propTypes.bool,
+    isLoading: propTypes.bool,
+  }),
+  editPermission: propTypes.shape({
+    hasAccess: propTypes.bool,
+    isLoading: propTypes.bool,
+  }),
 };
 
 export default PoliciesTable;

@@ -19,6 +19,7 @@ jest.mock('Utilities/hooks/useDocumentTitle', () => ({
 }));
 
 jest.mock('Utilities/hooks/api/useSystem', () => jest.fn());
+jest.mock('Utilities/hooks/useFeatureFlag');
 
 describe('SystemDetails', () => {
   it('expect to render Inventory Details Wrapper', () => {

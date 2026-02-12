@@ -4,10 +4,9 @@ import packageJson from './../package.json';
 export const APP_ID = 'compliance';
 export const DEFAULT_TITLE = 'Compliance';
 
-// TODO this will be obsolete with the api_v1 removal
-export const COMPLIANCE_API_ROOT = '/api/compliance';
-export const INVENTORY_API_ROOT = '/api/inventory/v1';
 export const API_BASE_URL = '/api/compliance/v2';
+export const KESSEL_API_BASE_URL = '/api/kessel/v1beta2';
+export const RBAC_API_BASE_V2 = '/api/rbac/v2';
 
 export const SEVERITY_LEVELS = ['high', 'medium', 'low', 'unknown'];
 

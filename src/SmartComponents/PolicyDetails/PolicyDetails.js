@@ -27,6 +27,11 @@ import {
   LinkButton,
 } from 'PresentationalComponents';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
+import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
+import {
+  useRbacV1Permissions,
+  useKesselPermissions,
+} from 'Utilities/hooks/usePermissionCheck';
 
 import '@/Charts.scss';
 import PolicySystemsTab from './PolicySystemsTab';
@@ -38,11 +43,17 @@ import usePolicyOsVersionCounts from 'Utilities/hooks/usePolicyOsVersionCounts';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 import EditRulesButtonToolbarItem from './EditRulesButtonToolbarItem';
 
-export const PolicyDetails = ({ route }) => {
+const EDIT_PERMISSIONS = ['compliance:policy:write'];
+
+const PolicyDetailsContent = ({ route, usePermissionsHook }) => {
   // TODO Replace with actual feature flag;
   const enableImportRules = false;
   const defaultTab = 'details';
   const { policy_id: policyId } = useParams();
+
+  const { hasAccess: hasEditPermission, isLoading: permissionsLoading } =
+    usePermissionsHook(EDIT_PERMISSIONS);
+
   const {
     data: { data: policy } = {},
     error,
@@ -118,7 +129,11 @@ export const PolicyDetails = ({ route }) => {
             <section className="pf-v6-c-page__main-section">
               <TabSwitcher defaultTab={defaultTab}>
                 <ContentTab eventKey="details">
-                  <PolicyDetailsDescription policy={policy} refetch={refetch} />
+                  <PolicyDetailsDescription
+                    policy={policy}
+                    refetch={refetch}
+                    hasEditPermission={!permissionsLoading && hasEditPermission}
+                  />
                 </ContentTab>
                 <ContentTab eventKey="rules">
                   <PageSection hasBodyWrapper={false}>
@@ -150,6 +165,24 @@ export const PolicyDetails = ({ route }) => {
         )}
       </StateViewPart>
     </StateViewWithError>
+  );
+};
+
+PolicyDetailsContent.propTypes = {
+  route: PropTypes.object,
+  usePermissionsHook: PropTypes.func.isRequired,
+};
+
+export const PolicyDetails = ({ route }) => {
+  const isKesselEnabled = useFeatureFlag('compliance.kessel_enabled');
+
+  return (
+    <PolicyDetailsContent
+      route={route}
+      usePermissionsHook={
+        isKesselEnabled ? useKesselPermissions : useRbacV1Permissions
+      }
+    />
   );
 };
 
