@@ -7,13 +7,24 @@ import { buildPolicies } from '../../__factories__/policies';
 
 import { PoliciesTable } from './PoliciesTable.js';
 
+jest.mock('Utilities/hooks/useFeatureFlag', () => () => true);
+
 const policies = buildPolicies(10);
+
+const defaultPermissions = {
+  deletePermission: { hasAccess: true, isLoading: false },
+  editPermission: { hasAccess: true, isLoading: false },
+};
 
 describe('PoliciesTable', () => {
   it('expect to render without error', () => {
     render(
       <TestWrapper>
-        <PoliciesTable policies={policies} />
+        <PoliciesTable
+          policies={policies}
+          deletePermission={defaultPermissions.deletePermission}
+          editPermission={defaultPermissions.editPermission}
+        />
       </TestWrapper>,
     );
     const table = screen.queryByLabelText('Policies');
@@ -28,7 +39,11 @@ describe('PoliciesTable', () => {
   it.skip('expect to render emptystate', async () => {
     render(
       <TestWrapper>
-        <PoliciesTable policies={[]} />
+        <PoliciesTable
+          policies={[]}
+          deletePermission={defaultPermissions.deletePermission}
+          editPermission={defaultPermissions.editPermission}
+        />
       </TestWrapper>,
     );
     const table = screen.queryByLabelText('Policies');
@@ -48,7 +63,11 @@ describe('PoliciesTable', () => {
 
     render(
       <TestWrapper>
-        <PoliciesTable policies={modifiedPolicies} />
+        <PoliciesTable
+          policies={modifiedPolicies}
+          deletePermission={defaultPermissions.deletePermission}
+          editPermission={defaultPermissions.editPermission}
+        />
       </TestWrapper>,
     );
     const table = screen.queryByLabelText('Policies');

@@ -12,6 +12,10 @@ import Reports from './Reports.js';
 jest.mock('Utilities/hooks/api/usePolicies', () => jest.fn());
 jest.mock('Utilities/hooks/api/useReports', () => jest.fn());
 jest.mock('Utilities/hooks/api/useReportsOs', () => jest.fn());
+jest.mock('Utilities/hooks/useFeatureFlag', () => () => true);
+jest.mock('Utilities/hooks/usePermissionCheck', () => ({
+  useKesselPermissions: jest.fn(() => ({ hasAccess: true, isLoading: false })),
+}));
 
 describe('Reports', () => {
   it('expect to render an error on total request', () => {

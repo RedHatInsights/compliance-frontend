@@ -9,21 +9,24 @@ import {
 describe('useTableToolsQuery helpers', () => {
   it('expect defaultCompileResult return correct data', () => {
     const result = defaultCompileResult({
-      data: { data: [1, 2, 3], meta: { total: 3 } },
+      data: [1, 2, 3],
+      meta: { total: 3 },
     });
     expect(result).toEqual({ data: [1, 2, 3], meta: { total: 3 } });
   });
-  it('defaultCompileResult handles fallback data structure', () => {
-    const result = defaultCompileResult({ data: [1, 2, 3] }, { page: 1 });
-
+  it('defaultCompileResult merges params into meta', () => {
+    const result = defaultCompileResult(
+      { data: [1, 2, 3], meta: { total: 3 } },
+      { page: 1 },
+    );
     expect(result).toEqual({
       data: [1, 2, 3],
-      meta: { page: 1 },
+      meta: { page: 1, total: 3 },
     });
   });
 
   it('compileTotalResult return correct data', () => {
-    const result = compileTotalResult({ data: { meta: { total: 10 } } });
+    const result = compileTotalResult({ meta: { total: 10 } });
     expect(result).toEqual(10);
   });
 

@@ -4,4 +4,6 @@ import * as complianceApi from '@redhat-cloud-services/compliance-client';
 import { API_BASE_URL } from '@/constants';
 
 // TODO Delete once all places using `apiInstance` directly have been removed
-export const apiInstance = APIFactory(API_BASE_URL, complianceApi, instance);
+export const apiInstance = APIFactory(API_BASE_URL, complianceApi, {
+  axios: instance,
+});

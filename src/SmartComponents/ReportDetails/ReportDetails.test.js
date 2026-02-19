@@ -10,6 +10,10 @@ jest.mock('Utilities/hooks/useDocumentTitle', () => ({
   useTitleEntity: () => ({}),
   setTitle: () => ({}),
 }));
+jest.mock('Utilities/hooks/useFeatureFlag', () => () => true);
+jest.mock('Utilities/hooks/usePermissionCheck', () => ({
+  useKesselPermissions: jest.fn(() => ({ hasAccess: true, isLoading: false })),
+}));
 
 const reportsData = buildReport();
 

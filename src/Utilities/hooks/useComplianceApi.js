@@ -20,7 +20,7 @@ const useComplianceApi = (endpoint) => {
   const axios = useAxiosWithPlatformInterceptors();
 
   const apiEndpoint = useMemo(() => {
-    const apiInstance = APIFactory(API_BASE_URL, complianceApi, axios);
+    const apiInstance = APIFactory(API_BASE_URL, complianceApi, { axios });
     return endpoint ? apiInstance[endpoint] : apiInstance;
   }, [axios, endpoint]);
 

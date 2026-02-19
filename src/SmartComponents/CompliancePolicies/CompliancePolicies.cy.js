@@ -44,7 +44,7 @@ describe('Policies table tests API V2', () => {
 
         const policyNames = policiesResp.data.map((item) => item.title);
 
-        cy.get('td[data-label="Name"] > div > div > a').each((item, index) => {
+        cy.get('td[data-label="Name"] > div > a').each((item, index) => {
           expect(Cypress.$(item).text()).to.eq(policyNames[index]);
         });
       });

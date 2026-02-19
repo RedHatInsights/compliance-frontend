@@ -10,16 +10,16 @@ import { ExclamationTriangleIcon } from '@patternfly/react-icons';
 
 import DateFormat from '@redhat-cloud-services/frontend-components/DateFormat';
 import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
-import {
-  ComplianceScore as PresentationalComplianceScore,
-  LinkWithPermission as Link,
-} from 'PresentationalComponents';
+import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink';
+import { ComplianceScore as PresentationalComplianceScore } from 'PresentationalComponents';
 import { unsupportedSystemWarningMessage } from '@/constants';
 
 const NEVER = 'Never';
 
 const SystemLink = ({ id, children }) => (
-  <Link to={{ pathname: `/systems/${id}` }}>{children}</Link>
+  <InsightsLink app="compliance" to={{ pathname: `/systems/${id}` }}>
+    {children}
+  </InsightsLink>
 );
 
 SystemLink.propTypes = {

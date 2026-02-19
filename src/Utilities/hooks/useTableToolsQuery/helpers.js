@@ -3,8 +3,8 @@ export const TOTAL_REQUEST_PARAMS = {
 };
 
 export const defaultCompileResult = (fetchResult, params) => {
-  const data = fetchResult.data?.data || fetchResult.data;
-  const meta = fetchResult.data?.meta;
+  const data = fetchResult?.data || fetchResult;
+  const meta = fetchResult?.meta;
 
   return {
     data,
@@ -15,8 +15,7 @@ export const defaultCompileResult = (fetchResult, params) => {
   };
 };
 
-export const compileTotalResult = (fetchResult) =>
-  fetchResult.data?.meta?.total;
+export const compileTotalResult = (fetchResult) => fetchResult?.meta?.total;
 
 export const hasRequiredParams = (requiredParams, params = {}) => {
   if (!requiredParams) {
