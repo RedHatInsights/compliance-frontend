@@ -79,7 +79,7 @@
     "@babel/preset-react": "^7.27.1",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
-    "@cypress/code-coverage": "^3.14.7",
+    "@cypress/code-coverage": "^4.0.0",
     "@cypress/react18": "^2.0.1",
     "@faker-js/faker": "^9.9.0",
     "@redhat-cloud-services/eslint-config-redhat-cloud-services": "^3.0.0",
