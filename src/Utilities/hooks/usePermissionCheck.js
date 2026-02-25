@@ -22,8 +22,11 @@ export const useRbacV1Permissions = (requiredPermissions) => {
 };
 
 export const useKesselPermissions = (requiredPermissions) => {
-  const { workspaceId, isLoading: workspaceLoading } =
-    useFetchDefaultWorkspaceId();
+  const {
+    workspaceId,
+    isLoading: workspaceLoading,
+    error: workspaceError,
+  } = useFetchDefaultWorkspaceId();
 
   const checkParams = useMemo(
     () =>
@@ -45,7 +48,7 @@ export const useKesselPermissions = (requiredPermissions) => {
     return { hasAccess: true, isLoading: false };
   }
 
-  if (!workspaceId || error) {
+  if (!workspaceId || workspaceError || error) {
     return { hasAccess: false, isLoading: false };
   }
 
