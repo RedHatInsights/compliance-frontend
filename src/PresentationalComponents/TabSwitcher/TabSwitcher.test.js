@@ -1,4 +1,5 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { useLocation } from 'react-router-dom';
 import { Tab } from '@patternfly/react-core';
 import TabSwitcher, {
@@ -96,6 +97,23 @@ describe('RoutedTabSwitcher', () => {
     );
 
     expect(asFragment()).toMatchSnapshot();
+  });
+
+  it('expect to use default tab when hash is QuickStart-style (#state=...)', () => {
+    useLocation.mockImplementation(() => ({
+      pathname:
+        '/insights/compliance/scappolicies/123?quickstart=getting-started',
+      hash: '#state=f704e23e14fd4eaeba8b2b25b9',
+    }));
+    render(
+      <RoutedTabSwitcher defaultTab="details">
+        <ContentTab eventKey="details">DETAILS</ContentTab>
+        <ContentTab eventKey="rules">RULES</ContentTab>
+        <ContentTab eventKey="systems">SYSTEMS</ContentTab>
+      </RoutedTabSwitcher>,
+    );
+
+    expect(screen.getByText('DETAILS')).toBeVisible();
   });
 });
 
