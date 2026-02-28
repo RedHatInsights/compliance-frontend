@@ -14,9 +14,13 @@ import useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
 import usePolicySystems from 'Utilities/hooks/api/usePolicySystems';
 import useAssignedRules from './hooks/useAssignedRules';
 import EditPolicyForm from './EditPolicyForm';
+import EditPolicyFormDDF from './EditPolicyFormDDF';
 import { useOnSave } from './hooks';
+import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
 
 const EditPolicy = ({ route }) => {
+  const isDDFEnabled = useFeatureFlag('compliance.data-driven-forms');
+  console.log('DEBUG isDDFEnabled', isDDFEnabled);
   const navigate = useNavigate();
   const { policy_id: policyId } = useParams();
   const location = useLocation();
@@ -148,19 +152,35 @@ const EditPolicy = ({ route }) => {
           <Spinner />
         </StateViewPart>
         <StateViewPart stateKey="data">
-          <EditPolicyForm
-            {...{
-              policy,
-              updatedPolicy,
-              setUpdatedPolicy,
-              assignedRuleIds,
-              assignedSystems,
-              setRuleValues,
-              supportedOsVersions,
-              securityGuide,
-              setIsSystemsDataLoading,
-            }}
-          />
+          {isDDFEnabled ? (
+            <EditPolicyFormDDF
+              {...{
+                policy,
+                updatedPolicy,
+                setUpdatedPolicy,
+                assignedRuleIds,
+                assignedSystems,
+                setRuleValues,
+                supportedOsVersions,
+                securityGuide,
+                setIsSystemsDataLoading,
+              }}
+            />
+          ) : (
+            <EditPolicyForm
+              {...{
+                policy,
+                updatedPolicy,
+                setUpdatedPolicy,
+                assignedRuleIds,
+                assignedSystems,
+                setRuleValues,
+                supportedOsVersions,
+                securityGuide,
+                setIsSystemsDataLoading,
+              }}
+            />
+          )}
         </StateViewPart>
       </StateViewWithError>
     </ComplianceModal>
