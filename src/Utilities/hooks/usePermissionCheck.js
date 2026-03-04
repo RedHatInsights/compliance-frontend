@@ -9,7 +9,6 @@ export const PERMISSION_MAP = {
   'compliance:policy:write': 'compliance_policy_edit',
   'compliance:policy:create': 'compliance_policy_new',
   'compliance:policy:delete': 'compliance_policy_remove',
-  'compliance:system:read': 'compliance_system_view', // compliance_system_view_assigned
   'compliance:report:read': 'compliance_report_view',
 };
 
