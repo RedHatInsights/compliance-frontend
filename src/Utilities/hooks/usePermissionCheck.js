@@ -41,6 +41,10 @@ export const useKesselPermissions = (requiredPermissions) => {
     return { hasAccess: false, isLoading: workspaceLoading };
   }
 
+  if (checkParams?.resources?.length === 0) {
+    return { hasAccess: true, isLoading: false };
+  }
+
   if (!workspaceId || error) {
     return { hasAccess: false, isLoading: false };
   }
