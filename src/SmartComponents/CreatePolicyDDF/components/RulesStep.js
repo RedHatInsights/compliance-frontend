@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { xor, isEqual } from 'lodash';
 import { useDeepCompareEffect } from 'use-deep-compare';
 import {
@@ -31,6 +31,8 @@ const RulesStepContent = ({
   input,
 }) => {
   const { change } = useFormApi();
+  const inputRef = useRef(input);
+  inputRef.current = input;
   const osMajorVersion = profile?.os_major_version;
 
   const selected =
@@ -64,11 +66,11 @@ const RulesStepContent = ({
 
   useEffect(() => {
     if (profilesAndRuleIds) {
-      input.onChange({ isValid: true });
+      inputRef.current.onChange({ isValid: true });
     } else {
-      input.onChange(undefined);
+      inputRef.current.onChange(undefined);
     }
-  }, [profilesAndRuleIds, input]);
+  }, [profilesAndRuleIds]);
 
   const preselected =
     profilesAndRuleIds !== undefined
