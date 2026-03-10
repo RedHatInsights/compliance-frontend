@@ -6,6 +6,11 @@ const { sentryWebpackPlugin } = require('@sentry/webpack-plugin');
 
 const bundle = 'insights';
 const appName = packageJson[bundle].appname;
+const isIOP = process.env.IOP === 'true';
+
+if (isIOP) {
+  packageJson.insights.appname = 'vulnerability';
+}
 
 // TODO Move to fec webpack config similar to LOCAL_APPS
 const routes = {
@@ -15,9 +20,10 @@ const routes = {
 };
 
 module.exports = {
-  appName,
-  appUrl: `/${bundle}/${appName}`,
+  appName: isIOP ? 'vulnerability' : appName,
+  appUrl: isIOP ? '/insights/vulnerability' : `/${bundle}/${appName}`,
   useProxy: process.env.PROXY === 'true',
+  ...(isIOP ? { deployment: 'assets/apps' } : {}),
   devtool: 'hidden-source-map',
   plugins: [
     ...(process.env.ENABLE_SENTRY
@@ -59,6 +65,7 @@ module.exports = {
         __dirname,
         '/src/SmartComponents/ExportPDF/ReportPDFBuild',
       ),
+      './CveListPage': resolve(__dirname, './src/SmartComponents/CompliancePolicies/CompliancePolicies'),
     },
   },
   resolve: {
