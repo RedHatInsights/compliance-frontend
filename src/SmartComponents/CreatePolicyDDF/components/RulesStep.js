@@ -238,7 +238,7 @@ const RulesStepContent = ({
           </EmptyState>
         </StateViewPart>
         <StateViewPart stateKey="data">
-          {profilesAndRuleIds &&
+          {profilesAndRuleIds && additionalRules &&
             Object.keys(preselected || {}).length ===
               osMinorVersionCounts.length && (
               <Tailorings
