@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   useFormApi,
   useFieldApi,
@@ -37,12 +37,14 @@ const CreateSCAPPolicyStepContent = ({
   input,
 }) => {
   const { change } = useFormApi();
+  const inputRef = useRef(input);
+  inputRef.current = input;
 
   useEffect(() => {
-    input.onChange(
+    inputRef.current.onChange(
       selectedOsMajorVersion && selectedProfile ? { isValid: true } : undefined,
     );
-  }, [selectedOsMajorVersion, selectedProfile, input]);
+  }, [selectedOsMajorVersion, selectedProfile]);
 
   const {
     data: { data: availableOsMajorVersions } = {},
@@ -143,26 +145,24 @@ const CreateSCAPPolicyStepContent = ({
 CreateSCAPPolicyStepContent.propTypes = {
   selectedOsMajorVersion: propTypes.string,
   selectedProfile: propTypes.object,
-  input: propTypes.shape({
-    onChange: propTypes.func.isRequired,
-  }).isRequired,
+  input: propTypes.shape({ onChange: propTypes.func.isRequired }).isRequired,
 };
 
 const CreateSCAPPolicyStep = (props) => {
   const { input } = useFieldApi(props);
 
   return (
-    <FormSpy subscription={{ values: true }}>
-      {({ values }) => (
-        <TableStateProvider>
+    <TableStateProvider>
+      <FormSpy subscription={{ values: true }}>
+        {({ values }) => (
           <CreateSCAPPolicyStepContent
             selectedOsMajorVersion={values.osMajorVersion}
             selectedProfile={values.profile}
             input={input}
           />
-        </TableStateProvider>
-      )}
-    </FormSpy>
+        )}
+      </FormSpy>
+    </TableStateProvider>
   );
 };
 

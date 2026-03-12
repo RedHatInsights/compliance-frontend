@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useCallback, useContext, useRef } from 'react';
 import propTypes from 'prop-types';
 import {
   useFormApi,
@@ -70,6 +70,8 @@ const SystemsStepContent = ({ profile, selectedSystems = [] }) => {
   const { change } = useFormApi();
   const { jumpToStep } = useContext(WizardContext);
   const osMajorVersion = profile?.os_major_version;
+  const selectedSystemsRef = useRef(selectedSystems);
+  selectedSystemsRef.current = selectedSystems;
 
   const handleGoToStep1 = useCallback(() => {
     jumpToStep(0);
@@ -77,7 +79,8 @@ const SystemsStepContent = ({ profile, selectedSystems = [] }) => {
 
   const onSelect = useCallback(
     (newSelectedSystems) => {
-      const existingById = new Map(selectedSystems.map((s) => [s.id, s]));
+      const existingSystems = selectedSystemsRef.current;
+      const existingById = new Map(existingSystems.map((s) => [s.id, s]));
       const mergedSystems = newSelectedSystems.map(
         (system) => existingById.get(system.id) || system,
       );
@@ -88,7 +91,7 @@ const SystemsStepContent = ({ profile, selectedSystems = [] }) => {
         countOsMinorVersions(mergedSystems, profile),
       );
     },
-    [change, profile, selectedSystems],
+    [change, profile],
   );
 
   const defaultFilter =
