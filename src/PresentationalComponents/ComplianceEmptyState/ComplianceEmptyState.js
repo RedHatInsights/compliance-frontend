@@ -13,6 +13,7 @@ import { CloudSecurityIcon } from '@patternfly/react-icons';
 import { Spinner } from '@redhat-cloud-services/frontend-components/Spinner';
 import { ErrorCard } from 'PresentationalComponents';
 import usePolicies from 'Utilities/hooks/api/usePolicies';
+import { emptyStateLink } from '@/constants';
 
 const ComplianceEmptyState = ({ title = 'No policies', mainButton }) => {
   const { data, error, loading } = usePolicies({ params: { limit: 1 } });
@@ -80,10 +81,7 @@ const ComplianceEmptyState = ({ title = 'No policies', mainButton }) => {
             component="a"
             target="_blank"
             rel="noopener noreferrer"
-            href={
-              `https://access.redhat.com/documentation/en-us/red_hat_insights/` +
-              `1-latest/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/index`
-            }
+            href={emptyStateLink}
           >
             Learn about OpenSCAP and Compliance
           </Button>

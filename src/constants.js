@@ -67,3 +67,6 @@ export const systemsPopoverData = (serviceName) => ({
   bodyLink:
     'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/compliance-getting-started_intro-compliance',
 });
+
+export const emptyStateLink =
+  'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/index';
