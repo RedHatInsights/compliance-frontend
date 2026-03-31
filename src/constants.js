@@ -1,12 +1,9 @@
 /* eslint max-len: 0 */
-import packageJson from './../package.json';
-
 export const APP_ID = 'compliance';
 export const DEFAULT_TITLE = 'Compliance';
 
 export const API_BASE_URL = '/api/compliance/v2';
 export const KESSEL_API_BASE_URL = '/api/kessel/v1beta2';
-export const RBAC_API_BASE_V2 = '/api/rbac/v2';
 
 export const SEVERITY_LEVELS = ['high', 'medium', 'low', 'unknown'];
 
@@ -16,15 +13,9 @@ import {
   chart_color_black_100,
   chart_color_black_200,
   chart_color_yellow_300,
-  chart_color_blue_100,
+  chart_color_orange_400,
   chart_color_blue_300,
 } from '@patternfly/react-tokens';
-
-export const API_HEADERS = {
-  'X-Insights-Compliance': packageJson.version,
-  'Content-Type': 'application/json',
-  Accept: 'application/json',
-};
 
 export const supportedConfigsLink =
   'https://access.redhat.com/articles/6644131';
@@ -32,13 +23,9 @@ export const supportedConfigsLink =
 export const paletteColors = {
   black100: chart_color_black_100.value,
   black200: chart_color_black_200.value,
-  blue100: chart_color_blue_100.value,
+  orange400: chart_color_orange_400.value,
   blue300: chart_color_blue_300.value,
   gold300: chart_color_yellow_300.value,
-};
-
-export const backgroundColors = {
-  light300: '#f0f0f0', //'--pf-global--BackgroundColor--light-300',
 };
 
 export const unsupportedSystemWarningMessage =

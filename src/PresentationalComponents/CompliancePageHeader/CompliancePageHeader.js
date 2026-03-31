@@ -3,6 +3,7 @@ import propTypes from 'prop-types';
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
+import Link from '@redhat-cloud-services/frontend-components/InsightsLink';
 import {
   Popover,
   Flex,
@@ -31,16 +32,14 @@ const CompliancePageHeader = ({ mainTitle, popoverData }) => {
                       {popoverData.bodyContent}
                     </Content>
                     <Content component={ContentVariants.p}>
-                      <a
-                        rel="noreferrer"
+                      <Link
+                        to={popoverData.bodyLink}
+                        rel="noopener noreferrer"
                         target="_blank"
-                        href={popoverData.bodyLink}
                       >
                         Learn more
-                        <Icon className="pf-v6-u-ml-xs">
-                          <ExternalLinkAltIcon />
-                        </Icon>
-                      </a>
+                        <ExternalLinkAltIcon className="pf-v6-u-ml-xs" />
+                      </Link>
                     </Content>
                   </Flex>
                 </Content>

@@ -32,7 +32,7 @@ exports[`ReportChart expect to render with 0 unsupported & 0 never reported host
               d="M-89.99477384980764,-30.429273401150716A95,95,0,0,1,-1.1300442297705369,-94.99327870980537L-1.1300442297705169,-87.99274401925855A88,88,0,0,0,-83.3368697148128,-28.265989212060408Z"
               role="presentation"
               shape-rendering="auto"
-              style="fill: #92c5f9; padding: 8px; stroke: var(--pf-v6-chart-pie--data--stroke--Color, transparent); stroke-width: 1;"
+              style="fill: #9e4a06; padding: 8px; stroke: var(--pf-v6-chart-pie--data--stroke--Color, transparent); stroke-width: 1;"
               transform="translate(115, 115)"
             />
             <path
@@ -89,7 +89,7 @@ exports[`ReportChart expect to render with 0 unsupported & 0 never reported host
       </div>
     </div>
     <div
-      class="pf-v6-l-grid__item pf-m-6-col pf-v5-u-display-flex pf-v5-u-align-items-center"
+      class="pf-v6-l-grid__item pf-m-6-col pf-v6-u-display-flex pf-v6-u-align-items-center"
       style="font-size: 0.85em; height: 100%;"
     >
       <ul
@@ -122,7 +122,7 @@ exports[`ReportChart expect to render with 0 unsupported & 0 never reported host
             class="pf-v6-c-list__item-icon"
           >
             <span
-              style="width: 10px; height: 10px; display: inline-block; background: rgb(146, 197, 249);"
+              style="width: 10px; height: 10px; display: inline-block; background: rgb(158, 74, 6);"
             >
                
             </span>
@@ -171,7 +171,7 @@ exports[`ReportChart expect to render with 2 unsupported & 3 never reported host
               d="M54.921423306252464,77.51540016032574A95,95,0,0,1,1.130044229770525,94.99327870980537L1.1300442297705258,87.99274401925855A88,88,0,0,0,50.806612256987194,71.851848625962Z"
               role="presentation"
               shape-rendering="auto"
-              style="fill: #92c5f9; padding: 8px; stroke: var(--pf-v6-chart-pie--data--stroke--Color, transparent); stroke-width: 1;"
+              style="fill: #9e4a06; padding: 8px; stroke: var(--pf-v6-chart-pie--data--stroke--Color, transparent); stroke-width: 1;"
               transform="translate(115, 115)"
             />
             <path
@@ -228,7 +228,7 @@ exports[`ReportChart expect to render with 2 unsupported & 3 never reported host
       </div>
     </div>
     <div
-      class="pf-v6-l-grid__item pf-m-6-col pf-v5-u-display-flex pf-v5-u-align-items-center"
+      class="pf-v6-l-grid__item pf-m-6-col pf-v6-u-display-flex pf-v6-u-align-items-center"
       style="font-size: 0.85em; height: 100%;"
     >
       <ul
@@ -261,7 +261,7 @@ exports[`ReportChart expect to render with 2 unsupported & 3 never reported host
             class="pf-v6-c-list__item-icon"
           >
             <span
-              style="width: 10px; height: 10px; display: inline-block; background: rgb(146, 197, 249);"
+              style="width: 10px; height: 10px; display: inline-block; background: rgb(158, 74, 6);"
             >
                
             </span>
@@ -463,7 +463,7 @@ exports[`ReportChart expect to render without error with zero counts 1`] = `
       </div>
     </div>
     <div
-      class="pf-v6-l-grid__item pf-m-6-col pf-v5-u-display-flex pf-v5-u-align-items-center"
+      class="pf-v6-l-grid__item pf-m-6-col pf-v6-u-display-flex pf-v6-u-align-items-center"
       style="font-size: 0.85em; height: 100%;"
     >
       <ul
@@ -496,7 +496,7 @@ exports[`ReportChart expect to render without error with zero counts 1`] = `
             class="pf-v6-c-list__item-icon"
           >
             <span
-              style="width: 10px; height: 10px; display: inline-block; background: rgb(146, 197, 249);"
+              style="width: 10px; height: 10px; display: inline-block; background: rgb(158, 74, 6);"
             >
                
             </span>

@@ -50,13 +50,19 @@ Rule.propTypes = ruleResultProps;
 
 export const Passed = ({ result }) =>
   result === 'pass' ? (
-    <Icon status="success">
-      <CheckCircleIcon className="ins-u-passed" />
-    </Icon>
+    <div>
+      <Icon status="success" className="pf-v6-u-mr-xs">
+        <CheckCircleIcon />
+      </Icon>
+      Passed
+    </div>
   ) : (
-    <Icon status="danger">
-      <ExclamationCircleIcon className="ins-u-failed" />
-    </Icon>
+    <div>
+      <Icon status="danger" className="pf-v6-u-mr-xs">
+        <ExclamationCircleIcon />
+      </Icon>
+      Failed
+    </div>
   );
 Passed.propTypes = ruleResultProps;
 

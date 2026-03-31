@@ -16,12 +16,18 @@ const RuleRow = ({
       ...(available_in_version &&
       !available_in_version.includes(targetVersion.ssg_version) &&
       available_in_version.includes(sourceVersion.ssg_version)
-        ? { backgroundColor: 'var(--pf-v5-global--palette--black-150)' }
+        ? {
+            backgroundColor:
+              'var(--pf-t--global--background--color--secondary--default)',
+          }
         : {}),
       ...(available_in_version &&
       available_in_version?.includes(targetVersion.ssg_version) &&
       !available_in_version?.includes(sourceVersion.ssg_version)
-        ? { backgroundColor: 'var(--pf-v5-global--palette--blue-50)' }
+        ? {
+            backgroundColor:
+              'var(--pf-t--global--color--nonstatus--blue--default)',
+          }
         : {}),
     }}
   >
