@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import propTypes from 'prop-types';
 import { useAddNotification } from '@redhat-cloud-services/frontend-components-notifications/hooks';
 import RemediationRemediationButton from '@redhat-cloud-services/frontend-components-remediations/RemediationButton';
 import useIssuesFetch from './hooks/useIssuesFetch';
 import FallbackButton from './components/FallBackButton';
+import { getComplianceRemediationTooltipMessage } from './getComplianceRemediationTooltipMessage';
 
 const ComplianceRemediationButton = ({
   reportId,
@@ -18,10 +19,16 @@ const ComplianceRemediationButton = ({
     selectedRuleResultIds,
   });
 
+  const buttonTooltipContent = useMemo(
+    () => getComplianceRemediationTooltipMessage(reportTestResults),
+    [reportTestResults],
+  );
+
   return (
     <RemediationRemediationButton
       isDisabled={reportTestResults?.length === 0 || !canFetch || isLoading}
       hasSelected={reportTestResults?.length > 0}
+      buttonTooltipContent={buttonTooltipContent}
       onRemediationCreated={(result) => {
         addNotification(result.getNotification());
       }}
