@@ -51,7 +51,9 @@ export const FinishedCreatePolicyBase = ({
 }) => {
   const addNotification = useAddNotification();
   const [percent, setPercent] = useState(0);
-  const [message, setMessage] = useState('This usually takes a minute or two.');
+  const [message, setMessage] = useState(
+    'We’re setting up your SCAP policy. Stay on this page until the process is complete',
+  );
   const [errors, setErrors] = useState(null);
   const [failed, setFailed] = useState(false);
 

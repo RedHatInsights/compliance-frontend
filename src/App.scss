@@ -50,7 +50,7 @@
 }
 
 .grey-icon {
-  color: var(--pf-v6-global--Color--200);
+  color: var(--pf-t--global--icon--color--subtle);
 }
 
 button.pf-v6-c-button.pf-m-tertiary {
@@ -80,18 +80,6 @@ button.pf-v6-c-button.pf-m-tertiary {
 .ins-c-non-bold-h2 {
   font-size: var(--pf-v6-c-content--h2--FontSize);
   font-weight: normal;
-}
-
-.ins-u-passed {
-  color: var(--pf-v6-global--success-color--200);
-}
-
-.ins-u-failed {
-  color: var(--pf-v6-global--danger-color--100);
-}
-
-.ins-u-warning {
-  color: var(--pf-v6-global--warning-color--100);
 }
 
 button[data-ouia-component-id="InlineEditPencil"],

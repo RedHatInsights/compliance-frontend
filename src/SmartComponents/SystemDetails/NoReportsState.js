@@ -14,8 +14,8 @@ const NoReportsState = ({ policiesCount }) => {
         icon={CloudSecurityIcon}
         titleText="No results reported"
         style={{
-          '--pf-v5-c-empty-state__icon--FontSize':
-            'var(--pf-v5-c-empty-state--m-xl__icon--FontSize)',
+          '--pf-v6-c-empty-state__icon--FontSize':
+            'var(--pf-v6-c-empty-state--m-xl__icon--FontSize)',
         }}
       >
         <EmptyStateBody>{bodyTextMain}</EmptyStateBody>

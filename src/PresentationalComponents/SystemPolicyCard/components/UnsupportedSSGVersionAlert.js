@@ -1,15 +1,20 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Popover, Alert } from '@patternfly/react-core';
-import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
+import {
+  OutlinedQuestionCircleIcon,
+  ExternalLinkAltIcon,
+} from '@patternfly/react-icons';
 import { supportedConfigsLink } from '@/constants';
 import { unsupportedSystemWarningMessage } from '@/constants';
+import Link from '@redhat-cloud-services/frontend-components/InsightsLink';
 
 const UnsupportedSSGVersionAlert = ({ ssgVersion, style, ...props }) => {
   const footerContent = (
-    <a target="_blank" rel="noopener noreferrer" href={supportedConfigsLink}>
+    <Link to={supportedConfigsLink} rel="noopener noreferrer" target="_blank">
       Supported SSG versions
-    </a>
+      <ExternalLinkAltIcon className="pf-v6-u-ml-xs" />
+    </Link>
   );
 
   return (

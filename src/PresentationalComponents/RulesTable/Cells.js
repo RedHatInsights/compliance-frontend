@@ -60,13 +60,19 @@ Severity.propTypes = ruleProps;
 
 export const Passed = ({ compliant }) =>
   compliant ? (
-    <Icon status="success">
-      <CheckCircleIcon />
-    </Icon>
+    <div>
+      <Icon status="success" className="pf-v6-u-mr-xs">
+        <CheckCircleIcon />
+      </Icon>
+      Passed
+    </div>
   ) : (
-    <Icon status="danger">
-      <ExclamationCircleIcon />
-    </Icon>
+    <div>
+      <Icon status="danger" className="pf-v6-u-mr-xs">
+        <ExclamationCircleIcon />
+      </Icon>
+      Failed
+    </div>
   );
 Passed.propTypes = ruleProps;
 

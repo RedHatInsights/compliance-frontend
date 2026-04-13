@@ -66,7 +66,7 @@ const useDonutChart = (report) => {
     paletteColors.black100,
   ]) || [
     paletteColors.blue300,
-    paletteColors.blue100,
+    paletteColors.orange400,
     paletteColors.gold300,
     paletteColors.black200,
   ];
