@@ -6,6 +6,10 @@ import useNavigate from '@redhat-cloud-services/frontend-components-utilities/us
 import schema from './schema';
 import componentMapper from './componentMapper';
 
+const CreatePolicyFormTemplate = (props) => (
+  <FormTemplate {...props} showFormControls={false} />
+);
+
 const CreatePolicyWizard = () => {
   const navigate = useNavigate();
 
@@ -17,9 +21,7 @@ const CreatePolicyWizard = () => {
     <FormRenderer
       schema={schema}
       componentMapper={componentMapper}
-      FormTemplate={(props) => (
-        <FormTemplate {...props} showFormControls={false} />
-      )}
+      FormTemplate={CreatePolicyFormTemplate}
       onCancel={handleCancel}
     />
   );
