@@ -88,6 +88,7 @@ const EditPolicyForm = ({
 
   return (
     <Form>
+      {newRulesAlert && <NewRulesAlert />}
       <RoutedTabs ouiaId="EditSystems" defaultTab="rules" id="policy-tabs">
         <Tab
           eventKey="rules"
@@ -116,7 +117,6 @@ const EditPolicyForm = ({
             supportedOsVersions={supportedOsVersions}
             setIsSystemsDataLoading={setIsSystemsDataLoading}
           />
-          {newRulesAlert && <NewRulesAlert />}
         </Tab>
       </RoutedTabs>
     </Form>

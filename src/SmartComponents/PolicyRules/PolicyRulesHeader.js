@@ -8,11 +8,11 @@ import propTypes from 'prop-types';
 
 const PolicyRulesHeader = ({ name, securityGuideVersion, osMajorVersion }) => {
   return (
-    <PageHeader className="pf-v5-u-pt-xl pf-v5-u-pl-xl">
+    <PageHeader className="pf-v6-u-pt-xl pf-v6-u-pl-xl">
       <PageHeaderTitle
         title={`Compliance | Default rules for ${name} policy`}
       />
-      <Content className="pf-v5-u-mb-md pf-v5-u-mt-md">
+      <Content className="pf-v6-u-mb-md pf-v6-u-mt-md">
         <Content component="p">
           This is a read-only view of the full set of rules and their
           description for

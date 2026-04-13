@@ -4,65 +4,24 @@
     }
 
     .ins-c-policy-card {
-        font-size: var(--pf-v5-global--FontSize--lg);
+        font-size: var(--pf-v6-global--FontSize--lg);
     }
 
     .ins-c-policy-card.ins-m-compliant,
     .ins-c-policy-card.ins-m-noncompliant {
-      font-size: var(--pf-v5-global--FontSize--sm);
+      font-size: var(--pf-v6-global--FontSize--sm);
       font-weight: bold;
     }
 
     .ins-c-policy-card.ins-m-compliant {
-        color: var(--pf-v5-global--success-color--200);
+        color: var(--pf-t--global--icon--color--status--success--default);
     }
 
     .ins-c-policy-card.ins-m-noncompliant {
-        color: var(--pf-v5-global--danger-color--100);
+        color: var(--pf-t--global--color--status--danger--default);
     }
 
     .ins-c-compliance-system-rule-check {
-        color: var(--pf-v5-global--success-color--200)
-    }
-
-    .margin-bottom, %margin-bottom {
-        &-none {
-            margin-bottom: 0;
-        }
-
-        &-sm {
-            margin-bottom: var(--pf-v5-global--spacer--sm);
-        }
-
-        &-md {
-            margin-bottom: var(--pf-v5-global--spacer--md);
-        }
-
-        &-lg {
-            margin-bottom: var(--pf-v5-global--spacer--lg);
-        }
-    }
-
-    .margin-top, %margin-top {
-        &-none {
-            margin-top: 0;
-        }
-
-        &-lg {
-            margin-top: var(--pf-v5-global--spacer--lg);
-        }
-    }
-
-    .margin-bottom-top-none {
-        @extend %margin-top-none;
-        @extend %margin-bottom-none;
-    }
-
-    .wrap-break-word {
-        overflow-wrap: break-word;
-    }
-
-    .compliance-rules-table td[data-label=Severity] {
-        text-transform: capitalize;
+        color: var(--pf-t--global--icon--color--status--success--default)
     }
 }

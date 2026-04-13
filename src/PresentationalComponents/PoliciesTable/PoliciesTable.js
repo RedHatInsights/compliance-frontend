@@ -21,8 +21,8 @@ export const PoliciesTable = ({
   const complianceTableDefaults = useComplianceTableDefaults();
   const filters = Object.values(Filters);
   const actionResolver = useActionResolver({
-    deletePermission,
     editPermission,
+    deletePermission,
   });
 
   return (

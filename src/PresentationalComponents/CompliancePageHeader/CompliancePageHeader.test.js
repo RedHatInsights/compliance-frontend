@@ -1,8 +1,13 @@
 import React from 'react';
+import propTypes from 'prop-types';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { MemoryRouter } from 'react-router-dom';
 import '@testing-library/jest-dom';
 import CompliancePageHeader from './CompliancePageHeader';
+
+const TestWrapper = ({ children }) => <MemoryRouter>{children}</MemoryRouter>;
+TestWrapper.propTypes = { children: propTypes.node };
 
 describe('CompliancePageHeader', () => {
   const mockMainTitle = 'My Compliance Policy';
@@ -15,10 +20,12 @@ describe('CompliancePageHeader', () => {
 
   test('renders the main title correctly', () => {
     render(
-      <CompliancePageHeader
-        mainTitle={mockMainTitle}
-        popoverData={mockPopoverData}
-      />,
+      <TestWrapper>
+        <CompliancePageHeader
+          mainTitle={mockMainTitle}
+          popoverData={mockPopoverData}
+        />
+      </TestWrapper>,
     );
 
     expect(screen.getByText(mockMainTitle)).toBeInTheDocument();
@@ -26,10 +33,12 @@ describe('CompliancePageHeader', () => {
 
   test('opens and displays popover content on icon click', async () => {
     render(
-      <CompliancePageHeader
-        mainTitle={mockMainTitle}
-        popoverData={mockPopoverData}
-      />,
+      <TestWrapper>
+        <CompliancePageHeader
+          mainTitle={mockMainTitle}
+          popoverData={mockPopoverData}
+        />
+      </TestWrapper>,
     );
 
     const questionIcon = screen.getByTestId('compliance-header-popover-icon');

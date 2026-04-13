@@ -1,9 +1,9 @@
 import React from 'react';
 import {
-  HighSeverity,
-  MediumSeverity,
-  LowSeverity,
-  UnknownSeverity,
+  HighSeverityChipIcon,
+  MediumSeverityChipIcon,
+  LowSeverityChipIcon,
+  UnknownSeverityChipIcon,
 } from './components/SeverityIcons';
 import { FAILED_RULE_STATES } from '@/constants';
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/ConditionalFilter';
@@ -27,10 +27,26 @@ const BASE_FILTER_CONFIGURATION = [
     label: 'Severity',
     filterAttribute: 'severity',
     items: [
-      { label: <HighSeverity />, value: 'high' },
-      { label: <MediumSeverity />, value: 'medium' },
-      { label: <LowSeverity />, value: 'low' },
-      { label: <UnknownSeverity />, value: 'unknown' },
+      {
+        label: 'High',
+        value: 'high',
+        chipIcon: <HighSeverityChipIcon />,
+      },
+      {
+        label: 'Medium',
+        value: 'medium',
+        chipIcon: <MediumSeverityChipIcon />,
+      },
+      {
+        label: 'Low',
+        value: 'low',
+        chipIcon: <LowSeverityChipIcon />,
+      },
+      {
+        label: 'Unknown',
+        value: 'unknown',
+        chipIcon: <UnknownSeverityChipIcon />,
+      },
     ],
   },
 ];
@@ -70,10 +86,10 @@ export const policiesFilterConfig = (policies) => ({
 
 export const ANSIBLE_SUPPORT_FILTER_CONFIG = {
   type: conditionalFilterType.checkbox,
-  label: 'Ansible support',
+  label: 'Remediation type',
   items: [
-    { label: 'Ansible remediation support', value: 'true' },
-    { label: 'No Ansible remediation support', value: 'false' },
+    { label: 'Playbook', value: 'true' },
+    { label: 'Manual', value: 'false' },
   ],
   filterSerialiser: (_filterConfig, values) =>
     `(${values

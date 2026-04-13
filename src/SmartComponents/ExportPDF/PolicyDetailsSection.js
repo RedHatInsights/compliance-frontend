@@ -37,7 +37,7 @@ const PolicyDetailsSection = ({ reportData, styles }) => {
 
   const chartColorScale = [
     paletteColors.blue300,
-    paletteColors.blue100,
+    paletteColors.orange400,
     paletteColors.gold300,
     paletteColors.black200,
   ];

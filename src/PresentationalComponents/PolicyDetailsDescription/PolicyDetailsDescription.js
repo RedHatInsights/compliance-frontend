@@ -61,7 +61,13 @@ const PolicyDetailsDescription = ({ policy, refetch, hasEditPermission }) => {
               hasEditPermission={hasEditPermission}
             />
           </Content>
-          <Content component="p">
+          <Content
+            component="p"
+            style={{
+              maxWidth: '40%',
+              overflowWrap: 'anywhere',
+            }}
+          >
             <EditPolicyDetailsInline
               policy={policy}
               refetch={refetch}
