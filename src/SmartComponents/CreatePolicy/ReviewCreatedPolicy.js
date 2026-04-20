@@ -16,10 +16,16 @@ const ReviewCreatedPolicy = ({
     <Content component={ContentVariants.h1}>Review</Content>
     <Content component="p">Review your SCAP policy before finishing.</Content>
     <Content component={ContentVariants.h3}>{name}</Content>
-    <Content component={ContentVariants.dl} className="pf-u-mt-md">
+    <Content
+      component={ContentVariants.dl}
+      className="pf-u-mt-md"
+      style={{ gridTemplateColumns: 'auto 1fr' }}
+    >
       <Content component={ContentVariants.dt}>Policy type</Content>
       <Content component={ContentVariants.dd}>{parentProfileName}</Content>
-      <Content component={ContentVariants.dt}>Compliance threshold</Content>
+      <Content component={ContentVariants.dt} className="pf-v6-u-text-nowrap">
+        Compliance threshold
+      </Content>
       <Content component={ContentVariants.dd}>{complianceThreshold}%</Content>
       {businessObjective && (
         <React.Fragment>
