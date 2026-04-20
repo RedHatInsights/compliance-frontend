@@ -7,8 +7,8 @@ const PolicyDetailsContentLoader = () => (
     width={1000}
     height={400}
     viewBox="0 0 1000 400"
-    backgroundcolor="#f3f3f3"
-    foregroundcolor="#ecebeb"
+    backgroundColor="var(--pf-t--global--background--color--secondary--default)"
+    foregroundColor="var(--pf-t--global--background--color--secondary--hover)"
   >
     <rect x="-3" y="7" rx="3" ry="3" width="760" height="19" />
     <rect x="823" y="3" rx="3" ry="3" width="67" height="29" />

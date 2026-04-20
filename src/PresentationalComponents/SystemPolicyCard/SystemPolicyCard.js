@@ -40,13 +40,7 @@ const SystemPolicyCard = ({ policy, style }) => {
           >
             <Truncate text={title} length={110} {...truncateDefaults} />
           </Content>
-          <Content
-            ouiaId="PolicyCardType"
-            style={{
-              color: 'var(pf-t--global--text--color--200)',
-            }}
-            component={ContentVariants.small}
-          >
+          <Content ouiaId="PolicyCardType" component={ContentVariants.small}>
             <Truncate text={profileTitle} length={110} {...truncateDefaults} />
           </Content>
         </Content>

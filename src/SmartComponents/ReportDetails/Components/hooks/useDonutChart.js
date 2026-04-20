@@ -1,11 +1,13 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import {
-  ChartTooltip,
-  ChartLabel,
-  ChartThemeColor,
-} from '@patternfly/react-charts/victory';
+import { ChartTooltip, ChartLabel } from '@patternfly/react-charts/victory';
 import { Icon } from '@patternfly/react-core';
+import {
+  chart_global_FontSize_2xl,
+  chart_global_FontSize_sm,
+  t_global_text_color_regular,
+  t_global_text_color_subtle,
+} from '@patternfly/react-tokens';
 import { paletteColors } from '../../../../constants';
 import { fixedPercentage } from 'Utilities/TextHelper';
 import useLegendData from './useLegendData';
@@ -91,7 +93,22 @@ const useDonutChart = (report) => {
       identifier: donutId,
       title: fixedPercentage(compliancePercentage),
       subTitle: 'Compliant',
-      themeVariant: ChartThemeColor.light,
+      titleComponent: (
+        <ChartLabel
+          style={{
+            fill: t_global_text_color_regular.var,
+            fontSize: chart_global_FontSize_2xl.value,
+          }}
+        />
+      ),
+      subTitleComponent: (
+        <ChartLabel
+          style={{
+            fill: t_global_text_color_subtle.var,
+            fontSize: chart_global_FontSize_sm.value,
+          }}
+        />
+      ),
       colorScale: chartColorScale,
       style: { fontSize: 20 },
       innerRadius: 88,
