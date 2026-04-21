@@ -323,12 +323,7 @@ describe('ReportPDFBuild', () => {
   };
 
   it('should render basic report details and Red Hat Lightspeed title', () => {
-    render(
-      <ReportPDFBuild
-        asyncData={mockAsyncData}
-        additionalData={{ isLightspeedEnabled: true }}
-      />,
-    );
+    render(<ReportPDFBuild asyncData={mockAsyncData} />);
 
     expect(screen.getByText('Red Hat Lightspeed')).toBeInTheDocument();
     expect(
@@ -358,12 +353,7 @@ describe('ReportPDFBuild', () => {
         },
       },
     };
-    render(
-      <ReportPDFBuild
-        asyncData={mockAsyncDataModified}
-        additionalData={{ isLightspeedEnabled: true }}
-      />,
-    );
+    render(<ReportPDFBuild asyncData={mockAsyncDataModified} />);
 
     expect(screen.getByText('Red Hat Lightspeed')).toBeInTheDocument();
     expect(
@@ -398,12 +388,7 @@ describe('ReportPDFBuild', () => {
         },
       },
     };
-    render(
-      <ReportPDFBuild
-        asyncData={fullAsyncData}
-        additionalData={{ isLightspeedEnabled: true }}
-      />,
-    );
+    render(<ReportPDFBuild asyncData={fullAsyncData} />);
 
     expect(screen.getByText('Red Hat Lightspeed')).toBeInTheDocument();
     expect(

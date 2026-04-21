@@ -7,7 +7,6 @@ import * as Columns from '../SystemsTable/Columns';
 import usePolicies from 'Utilities/hooks/api/usePolicies';
 import CompliancePageHeader from 'PresentationalComponents/CompliancePageHeader/CompliancePageHeader';
 import { systemsPopoverData } from '@/constants';
-import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
 
 const systemTableColumns = [
   Columns.customName(
@@ -28,14 +27,11 @@ const ComplianceSystems = () => {
   const { data, error, loading } = usePolicies();
   const policies = data?.data;
 
-  const isLightspeedEnabled = useFeatureFlag('platform.lightspeed-rebrand');
-  const serviceName = isLightspeedEnabled ? 'Red Hat Lightspeed' : 'Insights';
-
   return (
     <React.Fragment>
       <CompliancePageHeader
         mainTitle={'Systems'}
-        popoverData={systemsPopoverData(serviceName)}
+        popoverData={systemsPopoverData}
       />
       <section className="pf-v6-c-page__main-section">
         <StateViewWithError stateValues={{ error, data: policies, loading }}>

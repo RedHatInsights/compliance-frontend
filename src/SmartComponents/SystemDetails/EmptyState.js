@@ -5,10 +5,8 @@ import NoPoliciesState from './NoPoliciesState';
 import NoReportsState from './NoReportsState';
 import useSystem from 'Utilities/hooks/api/useSystem';
 import { Bullseye, Spinner } from '@patternfly/react-core';
-import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
 
 const EmptyState = ({ inventoryId: systemId, system, connectedToInsights }) => {
-  const isLightspeedEnabled = useFeatureFlag('platform.lightspeed-rebrand');
   // request system data in case Inventory details Compliance opened
   const { data: { data } = {}, loading: systemLoading } = useSystem({
     params: { systemId },
@@ -20,7 +18,7 @@ const EmptyState = ({ inventoryId: systemId, system, connectedToInsights }) => {
   if (connectedToInsights === false) {
     return (
       <NotConnected
-        titleText={`This system isn’t connected to ${isLightspeedEnabled ? 'Red Hat Lightspeed' : 'Insights'} yet`}
+        titleText={`This system isn’t connected to Red Hat Lightspeed yet`}
       />
     );
   }
