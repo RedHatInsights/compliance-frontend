@@ -22,13 +22,7 @@ import {
   ComplianceThresholdHelperText,
 } from 'PresentationalComponents';
 import usePolicies from 'Utilities/hooks/api/usePolicies';
-
-const thresholdValid = (threshold) => {
-  const parsedThreshold = parseFloat(threshold);
-  return (
-    !isNaN(parsedThreshold) && parsedThreshold <= 100 && parsedThreshold >= 0
-  );
-};
+import { thresholdValid } from 'Utilities/validation/policyThreshold';
 
 const DetailsStepContent = ({ profile, name, input }) => {
   const { change } = useFormApi();

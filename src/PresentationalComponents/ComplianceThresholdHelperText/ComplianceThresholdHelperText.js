@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { HelperText, HelperTextItem } from '@patternfly/react-core';
-import { hasMaxDecimals } from '../../SmartComponents/CreatePolicy/validate';
+import { hasMaxDecimals } from 'Utilities/validation/policyThreshold';
 
 const ComplianceThresholdHelperText = ({ threshold }) => {
   const parsedThreshold = parseFloat(threshold);
