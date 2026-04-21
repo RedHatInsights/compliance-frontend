@@ -117,7 +117,7 @@ const useComplianceQuery = (
     isFetching: queryLoading,
     refetch: queryRefetch,
   } = useQuery({
-    queryKey: [endpoint, params],
+    queryKey: [endpoint, params, fetchApi],
     queryFn: (_queryContext, ...args) => fetchApi(...args),
     enabled: !(batched ? true : skip),
     refetchOnWindowFocus: false,
