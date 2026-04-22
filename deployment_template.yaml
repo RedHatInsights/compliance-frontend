@@ -87,7 +87,8 @@ objects:
       module:
         manifestLocation: /apps/compliance/fed-mods.json
         analytics:
-          APIKey: "apRCg9V6oMXCcnTingqRYW6m1er4hkCW"
+          APIKey: apRCg9V6oMXCcnTingqRYW6m1er4hkCW
+          APIKeyDev: aMINBssUhXV1okzk7ZBaqwdTgtA0ySpg
         config:
           supportCaseData:
             product: Red Hat Insights
