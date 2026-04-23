@@ -8,6 +8,7 @@ import {
 import RemediationCell from '@/PresentationalComponents/RemediationCell/RemediationCell';
 import { Policy, Severity } from '@/PresentationalComponents/RulesTable/Cells';
 import { FAILED_RULE_STATES } from '@/constants';
+import { t_global_text_color_subtle } from '@patternfly/react-tokens';
 
 const ruleResultProps = {
   title: propTypes.string,
@@ -34,7 +35,7 @@ export const Rule = ({ title, identifier, result = 'pass' }) => {
         <Content
           style={{
             fontWeight: 'normal',
-            color: 'var(--pf-t--global--text--color--200)',
+            color: t_global_text_color_subtle.var,
           }}
           component={ContentVariants.small}
         >
