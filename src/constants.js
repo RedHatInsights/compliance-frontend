@@ -48,12 +48,12 @@ export const policiesPopoverData = {
     'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/compliance-managing-policies_intro-compliance',
 };
 
-export const systemsPopoverData = (serviceName) => ({
+export const systemsPopoverData = {
   headerContent: 'Systems list',
-  bodyContent: `This list shows systems that have the necessary packages to successfully run ${serviceName} compliance scans.`,
+  bodyContent: `This list shows systems that have the necessary packages to successfully run Red Hat Lightspeed compliance scans.`,
   bodyLink:
     'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/compliance-getting-started_intro-compliance',
-});
+};
 
 export const emptyStateLink =
   'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/index';
