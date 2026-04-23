@@ -1,5 +1,5 @@
 import { componentTypes } from '@data-driven-forms/react-form-renderer';
-import { makeStepValidityValidator } from './validate';
+import { makeStepValidityValidator } from 'Utilities/validation/stepValidator';
 
 const schema = {
   fields: [

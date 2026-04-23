@@ -1,11 +1,12 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Content, ContentVariants } from '@patternfly/react-core';
+import { t_global_text_color_subtle } from '@patternfly/react-tokens';
 
 export const GreySmallText = ({ children }) => (
   <Content
     style={{
-      color: 'var(--pf-t--global--text--color--200)',
+      color: t_global_text_color_subtle.var,
     }}
     component={ContentVariants.small}
   >

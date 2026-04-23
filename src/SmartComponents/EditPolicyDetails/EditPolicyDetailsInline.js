@@ -18,7 +18,7 @@ import {
 import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 // import Prompt from '@redhat-cloud-services/frontend-components/Prompt';
 import { useOnSave as useOnSavePolicyDetails } from '../EditPolicy/hooks';
-import { thresholdValid } from '../CreatePolicy/validate';
+import { thresholdValid } from 'Utilities/validation/policyThreshold';
 
 const EditPolicyDetailsInline = ({
   text,

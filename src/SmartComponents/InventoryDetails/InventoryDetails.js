@@ -20,7 +20,10 @@ const InventoryDetails = ({ inventoryId }) => {
       }
       inventoryId={inventoryId}
     >
-      <InventoryDetailHead fallback={<Skeleton size={SkeletonSize.md} />} />
+      <InventoryDetailHead
+        fallback={<Skeleton size={SkeletonSize.md} />}
+        DeleteWrapper={() => null}
+      />
     </DetailWrapper>
   );
 };

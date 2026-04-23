@@ -6,8 +6,8 @@ const ReportDetailsContentLoader = () => (
     height={320}
     width={1550}
     speed={2}
-    primaryColor="#f3f3f3"
-    secondaryColor="#ecebeb"
+    backgroundColor="var(--pf-t--global--background--color--secondary--default)"
+    foregroundColor="var(--pf-t--global--background--color--secondary--hover)"
   >
     <rect x="18" y="50" rx="4" ry="4" width="478" height="15" />
     <rect x="19" y="18" rx="3" ry="3" width="220" height="9" />
