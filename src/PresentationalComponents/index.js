@@ -32,7 +32,6 @@ export { default as ReportsEmptyState } from './ReportsEmptyState/ReportsEmptySt
 export { default as PolicyThresholdTooltip } from './PolicyThresholdTooltip/PolicyThresholdTooltip';
 export { default as PolicyBusinessObjectiveTooltip } from './PolicyBusinessObjectiveTooltip/PolicyBusinessObjectiveTooltip';
 export { default as PoliciesTable } from './PoliciesTable/PoliciesTable';
-export { default as ProfileThresholdField } from './ProfileThresholdField/ProfileThresholdField';
 export { default as ComplianceThresholdHelperText } from './ComplianceThresholdHelperText/ComplianceThresholdHelperText';
 export { default as SupportedSSGVersionsLink } from './SupportedSSGVersionsLink/SupportedSSGVersionsLink';
 export { default as SubPageTitle } from './SubPageTitle/SubPageTitle';
