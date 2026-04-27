@@ -93,7 +93,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/react": "^18.3.23",
     "babel-loader": "^10.0.0",
-    "babel-plugin-istanbul": "^7.0.1",
+    "babel-plugin-istanbul": "^8.0.0",
     "better-docs": "^2.7.3",
     "css-loader": "^7.1.2",
     "cypress": "^15.14.0",
