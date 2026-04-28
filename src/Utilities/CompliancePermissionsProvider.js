@@ -4,7 +4,10 @@ import { RBACContext } from '@redhat-cloud-services/frontend-components-utilitie
 import { getKesselAccessCheckParams } from '@redhat-cloud-services/frontend-components-utilities/kesselPermissions';
 import { useSelfAccessCheck } from '@project-kessel/react-kessel-access-check';
 import { useFetchDefaultWorkspaceId } from 'Utilities/hooks/useKesselWorkspaces';
-import { PERMISSION_MAP, KESSEL_PERMISSIONS_LIST } from 'Utilities/permissionConstants';
+import {
+  PERMISSION_MAP,
+  KESSEL_PERMISSIONS_LIST,
+} from 'Utilities/permissionConstants';
 import { useEnvironment } from 'Utilities/EnvironmentContext';
 
 const defaultCompliancePermissions = {
@@ -12,8 +15,9 @@ const defaultCompliancePermissions = {
   checkAccess: () => false,
 };
 
-export const CompliancePermissionsContext =
-  createContext(defaultCompliancePermissions);
+export const CompliancePermissionsContext = createContext(
+  defaultCompliancePermissions,
+);
 
 export const useCompliancePermissions = () =>
   useContext(CompliancePermissionsContext);
@@ -87,13 +91,7 @@ const HccKesselPermissions = ({ children }) => {
       }
       return relations.every((rel) => allowedByRelation.get(rel) === true);
     },
-    [
-      allowedByRelation,
-      workspaceLoading,
-      workspaceId,
-      workspaceError,
-      error,
-    ],
+    [allowedByRelation, workspaceLoading, workspaceId, workspaceError, error],
   );
 
   const isLoading = workspaceLoading || loading;

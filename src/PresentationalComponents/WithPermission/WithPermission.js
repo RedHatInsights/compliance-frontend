@@ -7,7 +7,6 @@ import { usePermissions } from 'Utilities/hooks/usePermissionCheck';
  * Wrapper that renders children when required permissions are met.
  * Otherwise shows the `NotAuthorized` page, or renders nothing when `hide` is true.
  *
- * Permissions are resolved once via {@link CompliancePermissionsProvider}.
  *
  *  @param   {object}                  props                     Component props
  *  @param   {React.ReactElement}      props.children            Component to render

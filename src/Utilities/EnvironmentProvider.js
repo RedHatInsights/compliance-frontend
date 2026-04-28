@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RBACProvider } from '@redhat-cloud-services/frontend-components/RBACProvider';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
@@ -7,6 +8,8 @@ import { AccessCheck } from '@project-kessel/react-kessel-access-check';
 import { KESSEL_API_BASE_URL } from '@/constants';
 import { EnvironmentContext } from 'Utilities/EnvironmentContext';
 import CompliancePermissionsProvider from 'Utilities/CompliancePermissionsProvider';
+
+const queryClient = new QueryClient();
 
 const noop = () => {};
 const rejectedPromise = () => Promise.reject(new Error('Not supported'));
@@ -72,7 +75,9 @@ const HccEnvironmentProvider = ({ children }) => {
   return (
     <EnvironmentContext.Provider value={envContext}>
       <HccAuthProvider isKesselEnabled={resolvedKesselEnabled}>
-        <CompliancePermissionsProvider>{children}</CompliancePermissionsProvider>
+        <CompliancePermissionsProvider>
+          {children}
+        </CompliancePermissionsProvider>
       </HccAuthProvider>
     </EnvironmentContext.Provider>
   );
@@ -114,10 +119,14 @@ IopEnvironmentProvider.propTypes = {
 
 const EnvironmentProvider = ({ children, runtime }) => {
   const resolvedRuntime = resolveRuntime(runtime);
-  return resolvedRuntime === 'iop' ? (
-    <IopEnvironmentProvider>{children}</IopEnvironmentProvider>
-  ) : (
-    <HccEnvironmentProvider>{children}</HccEnvironmentProvider>
+  return (
+    <QueryClientProvider client={queryClient}>
+      {resolvedRuntime === 'iop' ? (
+        <IopEnvironmentProvider>{children}</IopEnvironmentProvider>
+      ) : (
+        <HccEnvironmentProvider>{children}</HccEnvironmentProvider>
+      )}
+    </QueryClientProvider>
   );
 };
 
