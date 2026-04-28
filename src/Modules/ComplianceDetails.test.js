@@ -19,7 +19,7 @@ jest.mock('Utilities/hooks/api/useSystem', () =>
 );
 
 describe('ComplianceDetails (federated module)', () => {
-  it('renders correctly when connectedToInsights is true (NoPoliciesState with access-check context)', () => {
+  it('renders correctly when connectedToInsights is true (NoPoliciesState under EnvironmentProvider)', () => {
     render(
       <TestWrapper>
         <ComplianceDetails inventoryId="test-id" connectedToInsights={true} />
