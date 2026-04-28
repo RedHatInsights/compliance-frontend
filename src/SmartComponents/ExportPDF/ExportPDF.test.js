@@ -27,17 +27,23 @@ jest.mock('Utilities/hooks/api/useReport', () =>
   })),
 );
 
-jest.mock('@redhat-cloud-services/frontend-components/useChrome', () =>
-  jest.fn(() => ({
-    requestPdf: jest.fn(),
-  })),
-);
-
-jest.mock('@redhat-cloud-services/frontend-components/useChrome', () =>
-  jest.fn(() => ({
-    requestPdf: jest.fn(),
-  })),
-);
+const mockRequestPdf = jest.fn();
+jest.mock('Utilities/EnvironmentProvider', () => ({
+  __esModule: true,
+  ...jest.requireActual('Utilities/EnvironmentProvider'),
+  useEnvironment: () => ({
+    runtime: 'hcc',
+    isIop: false,
+    isHcc: true,
+    hasChrome: true,
+    authorizationProvider: 'rbac',
+    isKesselEnabled: false,
+    updateDocumentTitle: jest.fn(),
+    hideGlobalFilter: jest.fn(),
+    requestPdf: mockRequestPdf,
+    logout: jest.fn(),
+  }),
+}));
 jest.mock('Utilities/hooks/useFeatureFlag', () => () => true);
 
 describe('ExportPDF', () => {

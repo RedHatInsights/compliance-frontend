@@ -131,7 +131,6 @@ IopEnvironmentProvider.propTypes = {
 
 const EnvironmentProvider = ({ children, runtime }) => {
   const resolvedRuntime = resolveRuntime(runtime);
-  console.log('DEBUG resolvedRuntime', resolvedRuntime);
   return resolvedRuntime === 'iop' ? (
     <IopEnvironmentProvider>{children}</IopEnvironmentProvider>
   ) : (

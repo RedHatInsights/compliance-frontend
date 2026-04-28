@@ -12,7 +12,7 @@ import { useAddNotification } from '@redhat-cloud-services/frontend-components-n
 import ExportPDFForm from './Components/ExportPDFForm';
 import useExportSettings from './hooks/useExportSettings';
 import useReport from 'Utilities/hooks/api/useReport';
-import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
+import { useEnvironment } from 'Utilities/EnvironmentProvider';
 import { exportNotifications } from './constants';
 
 export const ExportPDF = () => {
@@ -32,7 +32,7 @@ export const ExportPDF = () => {
     isValid: settingsValid,
   } = useExportSettings();
 
-  const { requestPdf } = useChrome();
+  const { requestPdf } = useEnvironment();
 
   const dataFetch = async () => {
     setLoadingPDF(true);
