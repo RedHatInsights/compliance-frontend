@@ -1,32 +1,15 @@
-import React, { createContext, useContext, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { RBACProvider } from '@redhat-cloud-services/frontend-components/RBACProvider';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
 import { AccessCheck } from '@project-kessel/react-kessel-access-check';
 import { KESSEL_API_BASE_URL } from '@/constants';
+import { EnvironmentContext } from 'Utilities/EnvironmentContext';
+import CompliancePermissionsProvider from 'Utilities/CompliancePermissionsProvider';
 
 const noop = () => {};
 const rejectedPromise = () => Promise.reject(new Error('Not supported'));
-
-const defaultEnvironment = {
-  runtime: 'hcc',
-  isIop: false,
-  isHcc: true,
-  hasChrome: false,
-  authorizationProvider: 'rbac',
-  isKesselEnabled: false,
-  updateDocumentTitle: (title) => {
-    document.title = title;
-  },
-  hideGlobalFilter: noop,
-  requestPdf: rejectedPromise,
-  logout: noop,
-};
-
-export const EnvironmentContext = createContext(defaultEnvironment);
-
-export const useEnvironment = () => useContext(EnvironmentContext);
 
 const resolveRuntime = (runtime) => {
   if (runtime === 'hcc' || runtime === 'iop') {
@@ -89,7 +72,7 @@ const HccEnvironmentProvider = ({ children }) => {
   return (
     <EnvironmentContext.Provider value={envContext}>
       <HccAuthProvider isKesselEnabled={resolvedKesselEnabled}>
-        {children}
+        <CompliancePermissionsProvider>{children}</CompliancePermissionsProvider>
       </HccAuthProvider>
     </EnvironmentContext.Provider>
   );
@@ -120,7 +103,7 @@ const IopEnvironmentProvider = ({ children }) => {
 
   return (
     <EnvironmentContext.Provider value={envContext}>
-      {children}
+      <CompliancePermissionsProvider>{children}</CompliancePermissionsProvider>
     </EnvironmentContext.Provider>
   );
 };
@@ -144,3 +127,9 @@ EnvironmentProvider.propTypes = {
 };
 
 export default EnvironmentProvider;
+
+export {
+  useEnvironment,
+  EnvironmentContext,
+  defaultEnvironment,
+} from 'Utilities/EnvironmentContext';

@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import EditPolicyDetailsInline from './EditPolicyDetailsInline';
-import { useKesselPermissions } from 'Utilities/hooks/usePermissionCheck';
+import { usePermissions } from 'Utilities/hooks/usePermissionCheck';
 import useUpdatePolicy from 'Utilities/hooks/api/useUpdatePolicy';
 import { TextArea } from '@patternfly/react-core';
 import TestWrapper from 'Utilities/TestWrapper';
@@ -16,7 +16,7 @@ describe('EditPolicyDetailsInline', () => {
     useUpdatePolicy.mockReturnValue({
       query: jest.fn(() => Promise.resolve()),
     });
-    useKesselPermissions.mockImplementation(() => ({
+    usePermissions.mockImplementation(() => ({
       hasAccess: true,
       isLoading: false,
     }));
@@ -52,7 +52,7 @@ describe('EditPolicyDetailsInline', () => {
   });
 
   it('No pencil button when user does not have access', () => {
-    useKesselPermissions.mockImplementation(() => ({
+    usePermissions.mockImplementation(() => ({
       hasAccess: false,
       isLoading: false,
     }));

@@ -14,11 +14,7 @@ import ComplianceEmptyState from 'PresentationalComponents/ComplianceEmptyState'
 import { TableStateProvider } from 'bastilian-tabletools';
 import CompliancePageHeader from 'PresentationalComponents/CompliancePageHeader/CompliancePageHeader';
 import { policiesPopoverData } from '@/constants';
-import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
-import {
-  useRbacV1Permissions,
-  useKesselPermissions,
-} from 'Utilities/hooks/usePermissionCheck';
+import { usePermissions } from 'Utilities/hooks/usePermissionCheck';
 
 const PERMISSIONS = {
   create: ['compliance:policy:create'],
@@ -123,17 +119,9 @@ CompliancePoliciesContent.propTypes = {
   usePermissionsHook: PropTypes.func.isRequired,
 };
 
-const CompliancePolicies = () => {
-  const isKesselEnabled = useFeatureFlag('compliance.kessel_enabled');
-
-  return (
-    <CompliancePoliciesContent
-      usePermissionsHook={
-        isKesselEnabled ? useKesselPermissions : useRbacV1Permissions
-      }
-    />
-  );
-};
+const CompliancePolicies = () => (
+  <CompliancePoliciesContent usePermissionsHook={usePermissions} />
+);
 
 const PoliciesWithTableStateProvider = () => (
   <TableStateProvider>
