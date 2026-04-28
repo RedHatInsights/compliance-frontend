@@ -1,3 +1,4 @@
+import 'Utilities/ensureReactQueryCompat';
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -13,6 +14,30 @@ const queryClient = new QueryClient();
 
 const noop = () => {};
 const rejectedPromise = () => Promise.reject(new Error('Not supported'));
+
+function fakeInsightsChrome() {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  window.insights = window.insights || {};
+  window.insights.chrome = {
+    auth: {
+      getUser: () =>
+        Promise.resolve({
+          identity: {
+            account_number: '0',
+            user: { is_org_admin: false },
+          },
+        }),
+      logout: noop,
+      getUserPermissions: () => Promise.resolve([]),
+    },
+    hideGlobalFilter: noop,
+    updateDocumentTitle: noop,
+    getUserPermissions: () => Promise.resolve([]),
+  };
+}
 
 const resolveRuntime = (runtime) => {
   if (runtime === 'hcc' || runtime === 'iop') {
@@ -88,6 +113,8 @@ HccEnvironmentProvider.propTypes = {
 };
 
 const IopEnvironmentProvider = ({ children }) => {
+  fakeInsightsChrome();
+
   const envContext = useMemo(
     () => ({
       runtime: 'iop',

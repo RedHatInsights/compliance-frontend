@@ -65,7 +65,10 @@ module.exports = {
         __dirname,
         '/src/SmartComponents/ExportPDF/ReportPDFBuild',
       ),
-      './CveListPage': resolve(__dirname, './src/SmartComponents/CompliancePolicies/CompliancePolicies'),
+      './CveListPage': resolve(
+        __dirname,
+        './src/SmartComponents/CompliancePolicies/CompliancePoliciesIOP',
+      ),
     },
   },
   resolve: {
