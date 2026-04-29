@@ -27,11 +27,7 @@ import {
   LinkButton,
 } from 'PresentationalComponents';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
-import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
-import {
-  useRbacV1Permissions,
-  useKesselPermissions,
-} from 'Utilities/hooks/usePermissionCheck';
+import { usePermissions } from 'Utilities/hooks/usePermissionCheck';
 
 import '@/Charts.scss';
 import PolicySystemsTab from './PolicySystemsTab';
@@ -173,18 +169,9 @@ PolicyDetailsContent.propTypes = {
   usePermissionsHook: PropTypes.func.isRequired,
 };
 
-export const PolicyDetails = ({ route }) => {
-  const isKesselEnabled = useFeatureFlag('compliance.kessel_enabled');
-
-  return (
-    <PolicyDetailsContent
-      route={route}
-      usePermissionsHook={
-        isKesselEnabled ? useKesselPermissions : useRbacV1Permissions
-      }
-    />
-  );
-};
+export const PolicyDetails = ({ route }) => (
+  <PolicyDetailsContent route={route} usePermissionsHook={usePermissions} />
+);
 
 PolicyDetails.propTypes = {
   route: PropTypes.object,

@@ -1,60 +1,16 @@
 import { useMemo } from 'react';
-import { usePermissionsWithContext } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
-import { getKesselAccessCheckParams } from '@redhat-cloud-services/frontend-components-utilities/kesselPermissions';
-import { useSelfAccessCheck } from '@project-kessel/react-kessel-access-check';
-import { useFetchDefaultWorkspaceId } from 'Utilities/hooks/useKesselWorkspaces';
+import { useCompliancePermissions } from 'Utilities/CompliancePermissionsProvider';
 
-export const PERMISSION_MAP = {
-  'compliance:policy:read': 'compliance_policy_view',
-  'compliance:policy:write': 'compliance_policy_edit',
-  'compliance:policy:create': 'compliance_policy_new',
-  'compliance:policy:delete': 'compliance_policy_remove',
-  'compliance:report:read': 'compliance_report_view',
-};
+export { PERMISSION_MAP } from 'Utilities/permissionConstants';
 
-export const useRbacV1Permissions = (requiredPermissions) => {
-  const { hasAccess, isLoading } = usePermissionsWithContext(
-    requiredPermissions,
-    false,
-    false,
+export const usePermissions = (requiredPermissions) => {
+  const { checkAccess, isLoading } = useCompliancePermissions();
+
+  return useMemo(
+    () => ({
+      hasAccess: checkAccess(requiredPermissions),
+      isLoading,
+    }),
+    [checkAccess, isLoading, requiredPermissions],
   );
-  return { hasAccess, isLoading };
-};
-
-export const useKesselPermissions = (requiredPermissions) => {
-  const {
-    workspaceId,
-    isLoading: workspaceLoading,
-    error: workspaceError,
-  } = useFetchDefaultWorkspaceId();
-
-  const checkParams = useMemo(
-    () =>
-      getKesselAccessCheckParams({
-        permissionMap: PERMISSION_MAP,
-        requiredPermissions,
-        resourceIdOrIds: workspaceId,
-      }),
-    [workspaceId, requiredPermissions],
-  );
-
-  const { data, loading, error } = useSelfAccessCheck(checkParams);
-
-  if (workspaceLoading) {
-    return { hasAccess: false, isLoading: workspaceLoading };
-  }
-
-  if (checkParams?.resources?.length === 0) {
-    return { hasAccess: true, isLoading: false };
-  }
-
-  if (!workspaceId || workspaceError || error) {
-    return { hasAccess: false, isLoading: false };
-  }
-
-  const hasAccess = Array.isArray(data)
-    ? data.every((check) => check.allowed)
-    : (data?.allowed ?? false);
-
-  return { hasAccess, isLoading: loading };
 };

@@ -1,16 +1,34 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
+import { useEnvironment } from 'Utilities/EnvironmentProvider';
 
-jest.mock('@redhat-cloud-services/frontend-components/useChrome', () => ({
+jest.mock('Utilities/EnvironmentProvider', () => ({
   __esModule: true,
-  default: jest.fn(),
+  ...jest.requireActual('Utilities/EnvironmentProvider'),
+  useEnvironment: jest.fn(),
 }));
 
 import ErrorPage from './ErrorPage';
 
+const baseEnv = {
+  runtime: 'hcc',
+  isIop: false,
+  isHcc: true,
+  hasChrome: true,
+  authorizationProvider: 'rbac',
+  isKesselEnabled: false,
+  updateDocumentTitle: jest.fn(),
+  hideGlobalFilter: jest.fn(),
+  requestPdf: jest.fn(),
+  logout: jest.fn(),
+};
+
 describe('ErrorPage', () => {
+  beforeEach(() => {
+    useEnvironment.mockReturnValue({ ...baseEnv, logout: jest.fn() });
+  });
+
   it('expect to render an invalid object', () => {
     const error = {
       networkError: { statusCode: 404 },
@@ -35,13 +53,13 @@ describe('ErrorPage', () => {
 
   it('expect to render a 401 error when logged out', () => {
     const logout = jest.fn(() => 'Logout');
-    useChrome.mockImplementation(() => ({ auth: { logout } }));
+    useEnvironment.mockReturnValue({ ...baseEnv, logout });
     const error = {
       networkError: { statusCode: 401 },
       error: 'Test Error loading',
     };
     render(<ErrorPage error={error} />);
 
-    expect(logout).toHaveBeenCalled();
+    expect(logout).toHaveBeenCalledWith(true);
   });
 });

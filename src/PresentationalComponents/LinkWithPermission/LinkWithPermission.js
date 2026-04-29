@@ -3,11 +3,7 @@ import propTypes from 'prop-types';
 import { Tooltip } from '@patternfly/react-core';
 import Link from '@redhat-cloud-services/frontend-components/InsightsLink';
 import { findRouteByPath } from '@/Routes';
-import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
-import {
-  useRbacV1Permissions,
-  useKesselPermissions,
-} from 'Utilities/hooks/usePermissionCheck';
+import { usePermissions } from 'Utilities/hooks/usePermissionCheck';
 
 const NoOp = ({ children }) => children;
 NoOp.propTypes = {
@@ -86,7 +82,7 @@ LinkWithResolvedPermission.propTypes = {
   isLoading: propTypes.bool,
 };
 
-const LinkWithRbacV1Permission = ({
+const LinkWithFetchedPermission = ({
   to,
   children,
   Component,
@@ -95,7 +91,7 @@ const LinkWithRbacV1Permission = ({
 }) => {
   const route = findRouteByPath(to);
   const requiredPermissions = route?.requiredPermissions ?? [];
-  const { hasAccess, isLoading } = useRbacV1Permissions(requiredPermissions);
+  const { hasAccess, isLoading } = usePermissions(requiredPermissions);
 
   return (
     <LinkWithResolvedPermission
@@ -111,39 +107,7 @@ const LinkWithRbacV1Permission = ({
   );
 };
 
-LinkWithRbacV1Permission.propTypes = {
-  to: propTypes.oneOfType([propTypes.string, propTypes.object]),
-  children: propTypes.node,
-  Component: propTypes.oneOfType([propTypes.func, propTypes.node]),
-  componentProps: propTypes.object,
-};
-
-const LinkWithKesselPermission = ({
-  to,
-  children,
-  Component,
-  componentProps = {},
-  ...linkProps
-}) => {
-  const route = findRouteByPath(to);
-  const requiredPermissions = route?.requiredPermissions ?? [];
-  const { hasAccess, isLoading } = useKesselPermissions(requiredPermissions);
-
-  return (
-    <LinkWithResolvedPermission
-      to={to}
-      Component={Component}
-      componentProps={componentProps}
-      hasAccess={hasAccess}
-      isLoading={isLoading}
-      {...linkProps}
-    >
-      {children}
-    </LinkWithResolvedPermission>
-  );
-};
-
-LinkWithKesselPermission.propTypes = {
+LinkWithFetchedPermission.propTypes = {
   to: propTypes.oneOfType([propTypes.string, propTypes.object]),
   children: propTypes.node,
   Component: propTypes.oneOfType([propTypes.func, propTypes.node]),
@@ -169,19 +133,14 @@ LinkWithKesselPermission.propTypes = {
  *
  */
 const LinkWithPermission = (props) => {
-  const isKesselEnabled = useFeatureFlag('compliance.kessel_enabled');
   const hasResolvedPermission =
     props.hasAccess !== undefined && props.isLoading !== undefined;
 
-  if (isKesselEnabled && hasResolvedPermission) {
+  if (hasResolvedPermission) {
     return <LinkWithResolvedPermission {...props} />;
   }
 
-  return isKesselEnabled ? (
-    <LinkWithKesselPermission {...props} />
-  ) : (
-    <LinkWithRbacV1Permission {...props} />
-  );
+  return <LinkWithFetchedPermission {...props} />;
 };
 
 LinkWithPermission.propTypes = {

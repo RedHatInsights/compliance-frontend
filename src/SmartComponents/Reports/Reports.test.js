@@ -14,7 +14,7 @@ jest.mock('Utilities/hooks/api/useReports', () => jest.fn());
 jest.mock('Utilities/hooks/api/useReportsOs', () => jest.fn());
 jest.mock('Utilities/hooks/useFeatureFlag', () => () => true);
 jest.mock('Utilities/hooks/usePermissionCheck', () => ({
-  useKesselPermissions: jest.fn(() => ({ hasAccess: true, isLoading: false })),
+  usePermissions: jest.fn(() => ({ hasAccess: true, isLoading: false })),
 }));
 
 describe('Reports', () => {
