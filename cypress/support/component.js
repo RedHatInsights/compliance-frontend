@@ -22,6 +22,7 @@ import '@cypress/code-coverage/support';
 import '@patternfly/patternfly/patternfly.scss';
 import { mount } from 'cypress/react';
 import mockChrome from '../../config/mockChrome';
+import { unleashInterceptors } from '../utils/interceptors';
 
 Cypress.Commands.add('mount', mount);
 Cypress.on(
@@ -33,3 +34,7 @@ Cypress.on(
 global.window.insights = {
   chrome: mockChrome,
 };
+
+beforeEach(() => {
+  unleashInterceptors.successful();
+});
