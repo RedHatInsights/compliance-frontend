@@ -20,7 +20,7 @@ const TabHeader = ({
   showResetButton,
 }) => {
   return (
-    <Content className="pf-v6-u-mt-md">
+    <Content className="pf-v6-u-mt-md pf-v6-u-mb-md">
       <Content component={ContentVariants.h3}>
         <span className="pf-v6-u-pr-sm">
           <OsVersionText

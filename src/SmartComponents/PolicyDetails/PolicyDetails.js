@@ -8,7 +8,6 @@ import {
   Grid,
   GridItem,
   Tab,
-  PageSection,
   Spinner,
 } from '@patternfly/react-core';
 import PageHeader, {
@@ -136,7 +135,7 @@ const PolicyDetailsContent = ({ route, usePermissionsHook }) => {
                   />
                 </ContentTab>
                 <ContentTab eventKey="rules">
-                  <PageSection hasBodyWrapper={false}>
+                  <div>
                     <Tailorings
                       ouiaId="RHELVersions"
                       columns={[
@@ -152,7 +151,7 @@ const PolicyDetailsContent = ({ route, usePermissionsHook }) => {
                       selectedVersionCounts={versionCounts}
                       skipProfile="policy-details"
                     />
-                  </PageSection>
+                  </div>
                 </ContentTab>
                 <ContentTab eventKey="systems">
                   <PolicySystemsTab policy={policy} />
