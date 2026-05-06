@@ -159,7 +159,7 @@ const ReportDetails = ({ route }) => {
                     />
                   }
                 >
-                  <div className="pf-v6-u-mt-xs">
+                  <div className="pf-v6-u-mt-md">
                     <SystemsTable
                       isFullView
                       remediationsEnabled
@@ -189,7 +189,7 @@ const ReportDetails = ({ route }) => {
                     />
                   }
                 >
-                  <div className="pf-v6-u-mt-xs">
+                  <div className="pf-v6-u-mt-md">
                     <SystemsTable
                       apiEndpoint="reportSystems"
                       isFullView
