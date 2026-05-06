@@ -29,7 +29,7 @@ const SystemPoliciesAndRules = ({
               setSelectedPolicy(reportTestResult.report_id);
             }}
           >
-            <div className="pf-v6-u-mt-xs">
+            <div className="pf-v6-u-mt-md">
               <RuleResults
                 systemId={systemId}
                 reportTestResult={reportTestResult}
