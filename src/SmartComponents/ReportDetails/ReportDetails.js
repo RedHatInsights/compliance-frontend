@@ -159,20 +159,22 @@ const ReportDetails = ({ route }) => {
                     />
                   }
                 >
-                  <SystemsTable
-                    isFullView
-                    remediationsEnabled
-                    apiEndpoint="reportTestResults"
-                    ignoreOsMajorVersion
-                    reportId={report_id}
-                    filters={{
-                      ssgVersions,
-                      compliant: true,
-                      severity: true,
-                      groups: true,
-                    }}
-                    columns={reportedSystemTableColumns}
-                  />
+                  <div className="pf-v6-u-mt-md">
+                    <SystemsTable
+                      isFullView
+                      remediationsEnabled
+                      apiEndpoint="reportTestResults"
+                      ignoreOsMajorVersion
+                      reportId={report_id}
+                      filters={{
+                        ssgVersions,
+                        compliant: true,
+                        severity: true,
+                        groups: true,
+                      }}
+                      columns={reportedSystemTableColumns}
+                    />
+                  </div>
                 </Tab>
 
                 <Tab
@@ -187,17 +189,19 @@ const ReportDetails = ({ route }) => {
                     />
                   }
                 >
-                  <SystemsTable
-                    apiEndpoint="reportSystems"
-                    isFullView
-                    columns={neverReportedSystemsTableColumns}
-                    defaultFilter={'never_reported = true'}
-                    ignoreOsMajorVersion
-                    filters={{
-                      groups: true,
-                    }}
-                    reportId={report_id}
-                  />
+                  <div className="pf-v6-u-mt-md">
+                    <SystemsTable
+                      apiEndpoint="reportSystems"
+                      isFullView
+                      columns={neverReportedSystemsTableColumns}
+                      defaultFilter={'never_reported = true'}
+                      ignoreOsMajorVersion
+                      filters={{
+                        groups: true,
+                      }}
+                      reportId={report_id}
+                    />
+                  </div>
                 </Tab>
               </Tabs>
             </GridItem>

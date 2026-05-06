@@ -29,12 +29,14 @@ const SystemPoliciesAndRules = ({
               setSelectedPolicy(reportTestResult.report_id);
             }}
           >
-            <RuleResults
-              systemId={systemId}
-              reportTestResult={reportTestResult}
-              hidePassed={hidePassed}
-              remediationsEnabled={remediationsEnabled}
-            />
+            <div className="pf-v6-u-mt-md">
+              <RuleResults
+                systemId={systemId}
+                reportTestResult={reportTestResult}
+                hidePassed={hidePassed}
+                remediationsEnabled={remediationsEnabled}
+              />
+            </div>
           </Tab>
         ))}
       </Tabs>
