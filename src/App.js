@@ -8,6 +8,8 @@ import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
 import { AccessCheck } from '@project-kessel/react-kessel-access-check';
 import { KESSEL_API_BASE_URL } from '@/constants';
+import { useFlagsStatus } from '@unleash/proxy-client-react';
+import { Bullseye, Spinner } from '@patternfly/react-core';
 
 import Routes from './Routes';
 import './App.scss';
@@ -17,10 +19,19 @@ const queryClient = new QueryClient();
 const App = (props) => {
   const chrome = useChrome();
   const isKesselEnabled = useFeatureFlag('compliance.kessel_enabled');
+  const { flagsReady } = useFlagsStatus();
 
   useEffect(() => {
     chrome.hideGlobalFilter(true);
   }, [chrome]);
+
+  if (!flagsReady) {
+    return (
+      <Bullseye>
+        <Spinner size="xl" />
+      </Bullseye>
+    );
+  }
 
   return (
     <QueryClientProvider client={queryClient}>

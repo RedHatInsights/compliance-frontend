@@ -1,3 +1,11 @@
+export const unleashInterceptors = {
+  successful: (body = { toggles: [] }) =>
+    cy.intercept('GET', '**/feature_flags**', {
+      statusCode: 200,
+      body,
+    }),
+};
+
 export const interceptBatchRequest = (endpoint, offset, dataSlice, total, limit=10) => {
   cy.intercept(new RegExp(`/api/compliance/v2/${endpoint}?.*limit=${limit}.*offset=${offset}.*`), {
     statusCode: 200,
