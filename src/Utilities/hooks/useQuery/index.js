@@ -1,1 +1,1 @@
-export { apiInstance } from './helpers';
+export { getComplianceApiInstance } from './helpers';

@@ -9,6 +9,7 @@ import {
   operatingSystemFilter,
   policyComplianceFilter,
 } from './Filters';
+import { getAppConfig } from '@/config/appConfig';
 import '../../App.scss';
 
 const ReportsTable = ({
@@ -19,12 +20,16 @@ const ReportsTable = ({
   loading,
 }) => {
   const complianceTableDefaults = useComplianceTableDefaults();
+  const tableColumns = [
+    ...columns,
+    ...(getAppConfig().features.pdf ? [PDFExportDownload] : []),
+  ];
 
   return (
     <TableToolsTable
       aria-label="Reports"
       ouiaId="ReportsTable"
-      columns={[...columns, PDFExportDownload]}
+      columns={tableColumns}
       items={reports}
       total={total}
       loading={loading}
@@ -45,7 +50,7 @@ const ReportsTable = ({
           columns: exportableColumns,
         },
         pagination: true,
-        emptyRows: emptyRows('reports', columns.length),
+        emptyRows: emptyRows('reports', tableColumns.length),
         ...options,
       }}
       className={'reports-table'}

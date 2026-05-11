@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useChrome } from '@redhat-cloud-services/frontend-components/useChrome';
 
 import { DEFAULT_TITLE } from '@/constants';
+import { useComplianceChrome } from '@/platform/chrome/useComplianceChrome';
 
 export const useTitleEntity = (route, entityTitle) => {
   const location = useLocation();
@@ -16,7 +16,7 @@ export const useTitleEntity = (route, entityTitle) => {
 };
 
 const useDocumentTitle = () => {
-  const chrome = useChrome();
+  const chrome = useComplianceChrome();
 
   return (title) => {
     chrome.updateDocumentTitle(title || DEFAULT_TITLE);

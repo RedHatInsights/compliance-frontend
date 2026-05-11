@@ -20,6 +20,7 @@ import {
 import { InventoryDetails } from 'SmartComponents';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import useSystem from 'Utilities/hooks/api/useSystem';
+import { getAppConfig } from '@/config/appConfig';
 
 const PageBreadcrumb = ({ systemName }) => (
   <Breadcrumb ouiaId="SystemDetailsPathBreadcrumb">
@@ -44,6 +45,8 @@ const SystemDetails = ({ route }) => {
 
   useTitleEntity(route, systemName);
 
+  const { features } = getAppConfig();
+
   return (
     <StateViewWithError stateValues={{ error, data, loading }}>
       <StateViewPart stateKey="data">
@@ -56,7 +59,7 @@ const SystemDetails = ({ route }) => {
             hidePassed
             inventoryId={inventoryId}
             system={data}
-            remediationsEnabled
+            remediationsEnabled={features.remediations}
           />
         </PageSection>
       </StateViewPart>

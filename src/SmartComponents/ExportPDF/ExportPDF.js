@@ -12,7 +12,7 @@ import { useAddNotification } from '@redhat-cloud-services/frontend-components-n
 import ExportPDFForm from './Components/ExportPDFForm';
 import useExportSettings from './hooks/useExportSettings';
 import useReport from 'Utilities/hooks/api/useReport';
-import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
+import { useComplianceChrome } from '@/platform/chrome/useComplianceChrome';
 import { exportNotifications } from './constants';
 
 export const ExportPDF = () => {
@@ -32,14 +32,14 @@ export const ExportPDF = () => {
     isValid: settingsValid,
   } = useExportSettings();
 
-  const { requestPdf } = useChrome();
+  const chrome = useComplianceChrome();
 
   const dataFetch = async () => {
     setLoadingPDF(true);
     addNotification(exportNotifications.pending);
 
     try {
-      await requestPdf({
+      await chrome.requestPdf({
         filename: `compliance-report--${new Date()
           .toUTCString()
           .replace(/ /g, '-')}.pdf`,

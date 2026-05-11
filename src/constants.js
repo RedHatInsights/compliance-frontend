@@ -2,7 +2,6 @@
 export const APP_ID = 'compliance';
 export const DEFAULT_TITLE = 'Compliance';
 
-export const API_BASE_URL = '/api/compliance/v2';
 export const KESSEL_API_BASE_URL = '/api/kessel/v1beta2';
 
 export const SEVERITY_LEVELS = ['high', 'medium', 'low', 'unknown'];
