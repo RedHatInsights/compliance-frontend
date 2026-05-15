@@ -4,7 +4,7 @@ import { ModalVariant } from '@patternfly/react-core/deprecated';
 import { useParams } from 'react-router-dom';
 import { ComplianceModal } from 'PresentationalComponents';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
-import { apiInstance } from 'Utilities/hooks/useQuery';
+import { getComplianceApiInstance } from 'Utilities/hooks/useQuery';
 
 import { useHandleDeleteReport } from './hooks';
 /**
@@ -28,7 +28,7 @@ const DeleteReport = () => {
   };
   const deleteReport = () =>
     handleDeleteReport(
-      () => apiInstance.deleteReport(reportId),
+      () => getComplianceApiInstance().deleteReport(reportId),
       onDelete,
       onClose,
     );

@@ -1,22 +1,26 @@
 import { buildOSObject } from 'Utilities/helpers';
-import { apiInstance } from 'Utilities/hooks/useQuery';
+import { getComplianceApiInstance } from 'Utilities/hooks/useQuery';
 import * as Columns from '../SystemsTable/Columns';
 
 export const fetchReportingCustomOSes = ({ filters, reportId }) =>
-  apiInstance.reportTestResultsOS(reportId, null, filters).then(({ data }) => {
-    return {
-      results: buildOSObject(data),
-      total: data?.length || 0,
-    };
-  });
+  getComplianceApiInstance()
+    .reportTestResultsOS(reportId, null, filters)
+    .then(({ data }) => {
+      return {
+        results: buildOSObject(data),
+        total: data?.length || 0,
+      };
+    });
 
 export const fetchNeverReportedCustomOSes = ({ filters, reportId }) =>
-  apiInstance.reportSystemsOS(reportId, null, filters).then(({ data }) => {
-    return {
-      results: buildOSObject(data),
-      total: data?.length || 0,
-    };
-  });
+  getComplianceApiInstance()
+    .reportSystemsOS(reportId, null, filters)
+    .then(({ data }) => {
+      return {
+        results: buildOSObject(data),
+        total: data?.length || 0,
+      };
+    });
 
 export const reportedSystemTableColumns = [
   Columns.customDisplay({

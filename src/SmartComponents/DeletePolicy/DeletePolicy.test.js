@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { useLocation } from 'react-router-dom';
 import TestWrapper from 'Utilities/TestWrapper';
 import usePolicy from 'Utilities/hooks/api/usePolicy';
-import { apiInstance } from 'Utilities/hooks/useQuery';
+import { getComplianceApiInstance } from 'Utilities/hooks/useQuery';
 
 import DeletePolicy from './DeletePolicy.js';
 
@@ -30,7 +30,9 @@ describe('DeletePolicy', () => {
         policy,
       },
     }));
-    apiInstance.deletePolicy = mockDelete;
+    getComplianceApiInstance.mockReturnValue({
+      deletePolicy: mockDelete,
+    });
   });
 
   it('expect to render a modal and delete a policy', async () => {

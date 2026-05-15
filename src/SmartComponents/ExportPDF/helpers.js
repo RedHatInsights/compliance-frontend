@@ -1,4 +1,4 @@
-import { API_BASE_URL } from '@/constants';
+import { getComplianceApiBasePath } from '@/config/appConfig';
 
 export const fetchPaginatedList = async (
   createAsyncRequest,
@@ -13,7 +13,7 @@ export const fetchPaginatedList = async (
   const fetchPage = async (limit, offset) => {
     return await createAsyncRequest('compliance', {
       method: 'GET',
-      url: `${API_BASE_URL}/reports/${reportId}${endpointPath}`,
+      url: `${getComplianceApiBasePath()}/reports/${reportId}${endpointPath}`,
       params: { limit, offset, filter },
     });
   };
@@ -82,7 +82,7 @@ export const fetchUnsupportedSystemsWithExpectedSSG = async (
         try {
           const response = await createAsyncRequest('compliance', {
             method: 'GET',
-            url: `${API_BASE_URL}/security_guides`,
+            url: `${getComplianceApiBasePath()}/security_guides`,
             params: {
               limit: 1, // Interested in latest version
               filter: `os_major_version=${osMajorVersion} AND supported_profile=${refId}:${osMinorVersion}`,

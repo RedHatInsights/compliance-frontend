@@ -3,7 +3,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { useParams } from 'react-router-dom';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
-import { apiInstance } from 'Utilities/hooks/useQuery';
+import { getComplianceApiInstance } from 'Utilities/hooks/useQuery';
 import DeleteReport from './DeleteReport';
 
 jest.mock('react-router-dom', () => ({
@@ -27,16 +27,20 @@ describe('DeleteReport', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     useParams.mockReturnValue({ report_id: reportId });
+    getComplianceApiInstance.mockReturnValue({
+      deleteReport: jest.fn(),
+    });
   });
 
   test('renders DeleteReportRest', async () => {
-    apiInstance.deleteReport.mockResolvedValue({});
+    const deleteReport = jest.fn().mockResolvedValue({});
+    getComplianceApiInstance.mockReturnValue({ deleteReport });
 
     render(<DeleteReport />);
 
     fireEvent.click(screen.getByText('Delete report'));
 
-    expect(apiInstance.deleteReport).toHaveBeenCalledWith(reportId);
+    expect(deleteReport).toHaveBeenCalledWith(reportId);
 
     await waitFor(() => {
       expect(navigateMocked).toHaveBeenCalledWith('/reports');
@@ -45,7 +49,8 @@ describe('DeleteReport', () => {
 
   test('handles error during REST deletion', async () => {
     const error = new Error('Deletion failed');
-    apiInstance.deleteReport.mockRejectedValue(error);
+    const deleteReport = jest.fn().mockRejectedValue(error);
+    getComplianceApiInstance.mockReturnValue({ deleteReport });
 
     render(<DeleteReport />);
 

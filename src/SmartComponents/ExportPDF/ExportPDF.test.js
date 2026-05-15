@@ -27,17 +27,11 @@ jest.mock('Utilities/hooks/api/useReport', () =>
   })),
 );
 
-jest.mock('@redhat-cloud-services/frontend-components/useChrome', () =>
-  jest.fn(() => ({
+jest.mock('@/platform/chrome/useComplianceChrome', () => ({
+  useComplianceChrome: jest.fn(() => ({
     requestPdf: jest.fn(),
   })),
-);
-
-jest.mock('@redhat-cloud-services/frontend-components/useChrome', () =>
-  jest.fn(() => ({
-    requestPdf: jest.fn(),
-  })),
-);
+}));
 jest.mock('Utilities/hooks/useFeatureFlag', () => () => true);
 
 describe('ExportPDF', () => {

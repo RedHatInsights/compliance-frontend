@@ -38,8 +38,10 @@ import {
   neverReportedSystemsTableColumns,
   reportedSystemTableColumns,
 } from './constants';
+import { getAppConfig } from '@/config/appConfig';
 
 const ReportDetails = ({ route }) => {
+  const { features } = getAppConfig();
   const { report_id } = useParams();
   const {
     data: { data: report } = {},
@@ -97,18 +99,20 @@ const ReportDetails = ({ route }) => {
               lg={3}
               xl={3}
             >
-              <Link
-                state={{ report }}
-                to={`/reports/${report?.id}/pdf`}
-                className="pf-v6-u-mr-md"
-                Component={LinkButton}
-                componentProps={{
-                  variant: 'primary',
-                  ouiaId: 'ReportDetailsDownloadReportPDFLink',
-                }}
-              >
-                Download PDF
-              </Link>
+              {features.pdf && (
+                <Link
+                  state={{ report }}
+                  to={`/reports/${report?.id}/pdf`}
+                  className="pf-v6-u-mr-md"
+                  Component={LinkButton}
+                  componentProps={{
+                    variant: 'primary',
+                    ouiaId: 'ReportDetailsDownloadReportPDFLink',
+                  }}
+                >
+                  Download PDF
+                </Link>
+              )}
               <Link
                 state={{ report }}
                 to={`/reports/${report?.id}/delete`}
@@ -161,7 +165,7 @@ const ReportDetails = ({ route }) => {
                 >
                   <SystemsTable
                     isFullView
-                    remediationsEnabled
+                    remediationsEnabled={features.remediations}
                     apiEndpoint="reportTestResults"
                     ignoreOsMajorVersion
                     reportId={report_id}

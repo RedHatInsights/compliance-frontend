@@ -4,11 +4,26 @@ import AsyncComponent from '@redhat-cloud-services/frontend-components/AsyncComp
 import ErrorState from '@redhat-cloud-services/frontend-components/ErrorState';
 import axios from 'axios';
 import { ComplianceRoute } from 'PresentationalComponents';
+import { getAppConfig } from '@/config/appConfig';
 
 const defaultReportTitle = 'Reports';
 const defaultPermissions = ['compliance:*:*'];
 
-const reportsRoutes = [
+const reportPdfRoute = {
+  path: 'reports/:report_id/pdf',
+  title: `Export report - ${defaultReportTitle}`,
+  requiredPermissions: [...defaultPermissions, 'compliance:report:read'],
+  defaultTitle: defaultReportTitle,
+  modal: true,
+  component: lazy(
+    () =>
+      import(
+        /* webpackChunkName: "ReportDetails" */ 'SmartComponents/ExportPDF/ExportPDF'
+      ),
+  ),
+};
+
+const reportsRoutesBase = [
   {
     path: 'reports',
     title: defaultReportTitle,
@@ -44,20 +59,12 @@ const reportsRoutes = [
     ),
     modal: true,
   },
-  {
-    path: 'reports/:report_id/pdf',
-    title: `Export report - ${defaultReportTitle}`,
-    requiredPermissions: [...defaultPermissions, 'compliance:report:read'],
-    defaultTitle: defaultReportTitle,
-    modal: true,
-    component: lazy(
-      () =>
-        import(
-          /* webpackChunkName: "ReportDetails" */ 'SmartComponents/ExportPDF/ExportPDF'
-        ),
-    ),
-  },
 ];
+
+const getReportsRoutes = () =>
+  getAppConfig().features.pdf
+    ? [...reportsRoutesBase, reportPdfRoute]
+    : reportsRoutesBase;
 
 const defaultPoliciesTitle = 'SCAP policies';
 const policiesRoutes = [
@@ -174,11 +181,15 @@ const systemsRoutes = [
   },
 ];
 
-export const routes = [...policiesRoutes, ...reportsRoutes, ...systemsRoutes];
+export const getRoutes = () => [
+  ...policiesRoutes,
+  ...getReportsRoutes(),
+  ...systemsRoutes,
+];
 
 export const findRouteByPath = (to) => {
   const pathToMatch = typeof to === 'string' ? { pathname: to } : to;
-  return routes.find((route) =>
+  return getRoutes().find((route) =>
     matchPath({ ...route, exact: true }, pathToMatch.pathname),
   );
 };
@@ -186,8 +197,12 @@ export const findRouteByPath = (to) => {
 const INVENTORY_TOTAL_FETCH_URL = '/api/inventory/v1/hosts';
 
 const ComplianceRoutes = () => {
+  const { features } = getAppConfig();
   const [hasSystems, setHasSystems] = useState(true);
   useEffect(() => {
+    if (!features.dashboardZeroState) {
+      return;
+    }
     try {
       axios
         .get(
@@ -200,9 +215,22 @@ const ComplianceRoutes = () => {
     } catch (e) {
       console.log(e);
     }
-  }, []);
+  }, [features.dashboardZeroState]);
 
-  return !hasSystems ? (
+  const complianceRoutes = (
+    <Routes>
+      {getRoutes().map(({ path, ...route }) => (
+        <Route
+          path={path}
+          key={`route-${path.replace('/', '-')}`}
+          element={<ComplianceRoute {...{ ...route, path }} />}
+        ></Route>
+      ))}
+      <Route path="*" element={<Navigate to="reports" />} />
+    </Routes>
+  );
+
+  return !hasSystems && features.dashboardZeroState ? (
     <AsyncComponent
       appId="compliance_zero_state"
       appName="dashboard"
@@ -212,16 +240,7 @@ const ComplianceRoutes = () => {
       app="Compliance"
     />
   ) : (
-    <Routes>
-      {routes.map(({ path, ...route }) => (
-        <Route
-          path={path}
-          key={`route-${path.replace('/', '-')}`}
-          element={<ComplianceRoute {...{ ...route, path }} />}
-        ></Route>
-      ))}
-      <Route path="*" element={<Navigate to="reports" />} />
-    </Routes>
+    complianceRoutes
   );
 };
 

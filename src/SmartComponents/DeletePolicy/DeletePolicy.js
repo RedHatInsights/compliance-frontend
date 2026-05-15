@@ -11,7 +11,7 @@ import {
   StateViewPart,
 } from 'PresentationalComponents';
 import usePolicy from 'Utilities/hooks/api/usePolicy';
-import { apiInstance } from 'Utilities/hooks/useQuery';
+import { getComplianceApiInstance } from 'Utilities/hooks/useQuery';
 
 const DeletePolicy = () => {
   const addNotification = useAddNotification();
@@ -30,7 +30,7 @@ const DeletePolicy = () => {
 
   const deletePolicy = async (id) => {
     try {
-      await apiInstance.deletePolicy(id);
+      await getComplianceApiInstance().deletePolicy(id);
       addNotification({
         variant: 'success',
         title: `Deleted "${policy?.title}" and its associated reports`,
