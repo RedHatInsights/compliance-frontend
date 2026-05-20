@@ -5,13 +5,16 @@ import {
   FormSpy,
 } from '@data-driven-forms/react-form-renderer';
 import {
+  Card,
+  CardHeader,
+  CardTitle,
+  Flex,
   Form,
   FormGroup,
   Spinner,
   Content,
   ContentVariants,
 } from '@patternfly/react-core';
-import { Tile } from '@patternfly/react-core/deprecated';
 import { TableStateProvider } from 'bastilian-tabletools';
 import propTypes from 'prop-types';
 import useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
@@ -102,19 +105,39 @@ const CreateSCAPPolicyStepContent = ({
             label="Operating system"
             isRequired
             fieldId="security-guide"
+            role="radiogroup"
           >
-            {(data?.availableOsMajorVersions || []).map((osMajorVersion) => (
-              <Tile
-                key={`rhel${osMajorVersion}-select`}
-                className="pf-v6-u-mr-md"
-                title={`RHEL ${osMajorVersion}`}
-                onClick={() => {
-                  change('osMajorVersion', osMajorVersion);
-                }}
-                isSelected={selectedOsMajorVersion === osMajorVersion}
-                isStacked
-              />
-            ))}
+            <Flex spaceItems={{ default: 'spaceItemsMd' }}>
+              {(data?.availableOsMajorVersions || []).map((osMajorVersion) => (
+                <Card
+                  key={`rhel${osMajorVersion}-select`}
+                  ouiaId={`rhel${osMajorVersion}-card`}
+                  isSelectable
+                  isCompact
+                  isSelected={selectedOsMajorVersion === osMajorVersion}
+                  style={{
+                    padding: 'var(--pf-t--global--spacer--sm)',
+                    borderRadius: 'var(--pf-t--global--border--radius--medium)',
+                    '--pf-v6-c-card__actions--PaddingInlineStart': 0,
+                  }}
+                >
+                  <CardHeader
+                    selectableActions={{
+                      selectableActionId: `rhel${osMajorVersion}-input`,
+                      selectableActionAriaLabel: `RHEL ${osMajorVersion}`,
+                      name: 'os-major-version',
+                      variant: 'single',
+                      isHidden: true,
+                      onChange: () => change('osMajorVersion', osMajorVersion),
+                    }}
+                  >
+                    <CardTitle className="pf-v6-u-text-align-center">
+                      RHEL {osMajorVersion}
+                    </CardTitle>
+                  </CardHeader>
+                </Card>
+              ))}
+            </Flex>
           </FormGroup>
           {selectedOsMajorVersion && (
             <FormGroup
