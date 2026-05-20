@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFormApi } from '@data-driven-forms/react-form-renderer';
-import { Content, ContentVariants, Label } from '@patternfly/react-core';
+import { Content, ContentVariants } from '@patternfly/react-core';
 
 const ReviewStep = () => {
   const { getState } = useFormApi();
@@ -9,6 +9,10 @@ const ReviewStep = () => {
   const profile = values.profile;
   const osMajorVersion = profile?.os_major_version;
   const osMinorVersionCounts = values.osMinorVersionCounts || [];
+  const totalSystemsCount = osMinorVersionCounts.reduce(
+    (sum, { count }) => sum + count,
+    0,
+  );
 
   return (
     <Content>
@@ -41,27 +45,18 @@ const ReviewStep = () => {
 
         <Content component={ContentVariants.dt}>Systems</Content>
         <Content component={ContentVariants.dd}>
-          {osMinorVersionCounts.length > 0 ? (
-            <Content component={ContentVariants.dl}>
-              {osMinorVersionCounts.map(({ osMinorVersion, count }) => (
-                <React.Fragment key={osMinorVersion}>
-                  <Content
-                    component={ContentVariants.dt}
-                    style={{ fontWeight: 'normal' }}
-                  >
-                    RHEL {osMajorVersion}.{osMinorVersion}
-                  </Content>
-                  <Content component={ContentVariants.dd}>
-                    <Label color="grey" isCompact={true}>
-                      {count} {count > 1 ? 'systems' : 'system'}
-                    </Label>
-                  </Content>
-                </React.Fragment>
-              ))}
-            </Content>
-          ) : (
-            '—'
-          )}
+          {totalSystemsCount > 0 ? totalSystemsCount : 0}
+        </Content>
+
+        <Content component={ContentVariants.dt}>RHEL OS Versions</Content>
+        <Content component={ContentVariants.dd}>
+          {totalSystemsCount > 0
+            ? osMinorVersionCounts
+                .map(
+                  ({ osMinorVersion }) => `${osMajorVersion}.${osMinorVersion}`,
+                )
+                .join(', ')
+            : '—'}
         </Content>
       </Content>
     </Content>
