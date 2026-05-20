@@ -1,9 +1,9 @@
 import React from 'react';
 import {
-  HighSeverityChipIcon,
-  MediumSeverityChipIcon,
-  LowSeverityChipIcon,
-  UnknownSeverityChipIcon,
+  HighSeverity,
+  MediumSeverity,
+  LowSeverity,
+  UnknownSeverity,
 } from './components/SeverityIcons';
 import { FAILED_RULE_STATES } from '@/constants';
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/ConditionalFilter';
@@ -28,24 +28,20 @@ const BASE_FILTER_CONFIGURATION = [
     filterAttribute: 'severity',
     items: [
       {
-        label: 'High',
+        label: <HighSeverity />,
         value: 'high',
-        chipIcon: <HighSeverityChipIcon />,
       },
       {
-        label: 'Medium',
+        label: <MediumSeverity />,
         value: 'medium',
-        chipIcon: <MediumSeverityChipIcon />,
       },
       {
-        label: 'Low',
+        label: <LowSeverity />,
         value: 'low',
-        chipIcon: <LowSeverityChipIcon />,
       },
       {
-        label: 'Unknown',
+        label: <UnknownSeverity />,
         value: 'unknown',
-        chipIcon: <UnknownSeverityChipIcon />,
       },
     ],
   },
