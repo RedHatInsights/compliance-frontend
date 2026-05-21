@@ -16,10 +16,7 @@ jest.mock('react-router-dom', () => ({
   })),
 }));
 
-jest.mock(
-  '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate',
-  () => () => ({}),
-);
+jest.mock('@/Utilities/hooks/useComplianceNavigate', () => () => ({}));
 
 describe('TabSwitcher', () => {
   it('expect to render first tab', () => {

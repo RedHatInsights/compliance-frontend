@@ -1,6 +1,6 @@
 import React from 'react';
 import { Alert } from '@patternfly/react-core';
-import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
+import useNavigate from '@/Utilities/hooks/useComplianceNavigate';
 import { StateViewPart, StateViewWithError } from 'PresentationalComponents';
 import { SystemsTable } from 'SmartComponents';
 import * as Columns from '../SystemsTable/Columns';

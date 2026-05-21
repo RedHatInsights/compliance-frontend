@@ -11,6 +11,7 @@ const WithRbacV1Permission = ({ requiredPermissions, children, hide }) => {
   const { hasAccess, isLoading } = useRbacV1Permissions(requiredPermissions);
 
   if (isLoading) return null;
+
   return hasAccess
     ? children
     : !hide && <NotAuthorized serviceName="Compliance" />;
@@ -58,7 +59,6 @@ const WithPermission = ({
   hide = false,
 }) => {
   const isKesselEnabled = useFeatureFlag('compliance.kessel_enabled');
-  console.log('isKesselEnabled;', isKesselEnabled);
 
   return isKesselEnabled ? (
     <WithKesselPermission requiredPermissions={requiredPermissions} hide={hide}>

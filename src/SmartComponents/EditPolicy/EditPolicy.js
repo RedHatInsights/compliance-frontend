@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import { Button, Spinner } from '@patternfly/react-core';
 import { useLocation, useParams } from 'react-router-dom';
-import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
+import useNavigate from '@/Utilities/hooks/useComplianceNavigate';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import {
   ComplianceModal,

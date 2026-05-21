@@ -15,7 +15,7 @@ const AppEntry = ({ environment = 'production' }) => {
     </Provider>
   );
 
-  if (!appConfig.features.unleash) {
+  if (appConfig.features.unleashFlagProvider) {
     return (
       <FlagProvider config={staticUnleashFlagProviderConfig}>
         {inner}

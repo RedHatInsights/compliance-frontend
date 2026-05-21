@@ -1,8 +1,8 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Tooltip } from '@patternfly/react-core';
-import Link from '@redhat-cloud-services/frontend-components/InsightsLink';
 import { findRouteByPath } from '@/Routes';
+import ComplianceRouterLink from '../ComplianceLinks/ComplianceRouterLink';
 import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
 import {
   useRbacV1Permissions,
@@ -23,7 +23,7 @@ const LinkContent = ({
   hasAccess,
   isLoading,
 }) => {
-  const ComponentToRender = Component || Link;
+  const ComponentToRender = Component || ComplianceRouterLink;
   const hasPermission = !isLoading && hasAccess;
   const TooltipOrDiv = !hasPermission ? Tooltip : NoOp;
 
@@ -32,8 +32,8 @@ const LinkContent = ({
       content={<div>You do not have permissions to perform this action</div>}
     >
       <ComponentToRender
-        app="compliance"
         to={to}
+        app="compliance"
         {...componentProps}
         {...linkProps}
         isDisabled={!hasPermission}

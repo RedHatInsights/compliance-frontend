@@ -7,10 +7,7 @@ import { ExportPDF } from './ExportPDF';
 jest.mock('react-router-dom', () => ({
   useParams: jest.fn(() => ({ report_id: 'test-report-id' })),
 }));
-jest.mock(
-  '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate',
-  () => jest.fn(() => jest.fn()),
-);
+jest.mock('@/Utilities/hooks/useComplianceNavigate', () => jest.fn(() => jest.fn()));
 jest.mock('./hooks/useExportSettings', () =>
   jest.fn(() => ({
     exportSettings: {},

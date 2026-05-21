@@ -19,6 +19,7 @@ import {
   useRbacV1Permissions,
   useKesselPermissions,
 } from 'Utilities/hooks/usePermissionCheck';
+import { compliancePoliciesCreatePath } from '@/routing/compliancePaths';
 
 const PERMISSIONS = {
   create: ['compliance:policy:create'],
@@ -26,29 +27,31 @@ const PERMISSIONS = {
   delete: ['compliance:policy:delete'],
 };
 
-const createPolicyLinkProps = {
-  to: '/scappolicies/new',
-  Component: LinkButton,
-  componentProps: {
-    variant: 'primary',
-    ouiaId: 'CreateNewPolicyButton',
-  },
-};
-
 const CompliancePoliciesContent = ({ usePermissionsHook }) => {
+  const createPolicyLinkProps = {
+    to: compliancePoliciesCreatePath(),
+    Component: LinkButton,
+    componentProps: {
+      variant: 'primary',
+      ouiaId: 'CreateNewPolicyButton',
+    },
+  };
   const createPermission = usePermissionsHook(PERMISSIONS.create);
   const editPermission = usePermissionsHook(PERMISSIONS.edit);
   const deletePermission = usePermissionsHook(PERMISSIONS.delete);
 
   // Async table needs info about total policy count before mounting
   // Also required for correctly showing empty state
-  const {
-    data: totalPolicies,
-    error: totalPoliciesError,
-    loading: totalPoliciesLoading,
-  } = usePolicies({
-    onlyTotal: true,
-  });
+  // const {
+  //   data: totalPolicies,
+  //   error: totalPoliciesError,
+  //   loading: totalPoliciesLoading,
+  // } = usePolicies({
+  //   onlyTotal: true,
+  // });
+  const totalPolicies = 0;
+  const totalPoliciesError = null;
+  const totalPoliciesLoading = false;
 
   let {
     data: { data, meta: { total: currentTotalPolicies } = {} } = {},

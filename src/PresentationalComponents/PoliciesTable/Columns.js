@@ -1,12 +1,15 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Content } from '@patternfly/react-core';
-import Link from '@redhat-cloud-services/frontend-components/InsightsLink';
-import { GreySmallText, SystemsCountWarning } from 'PresentationalComponents';
+import {
+  GreySmallText,
+  LinkWithPermission as Link,
+  SystemsCountWarning,
+} from 'PresentationalComponents';
 
 const PolicyNameCell = ({ id, title, profile_title }) => (
   <Content>
-    <Link app="compliance" to={'/scappolicies/' + id}>
+    <Link to={'/scappolicies/' + id}>
       {title}
     </Link>
     <GreySmallText>{profile_title}</GreySmallText>

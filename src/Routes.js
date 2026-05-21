@@ -1,16 +1,22 @@
-import React, { lazy, useEffect, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { Route, Routes, Navigate, matchPath } from 'react-router-dom';
+import { Bullseye, Spinner } from '@patternfly/react-core';
 import AsyncComponent from '@redhat-cloud-services/frontend-components/AsyncComponent';
 import ErrorState from '@redhat-cloud-services/frontend-components/ErrorState';
 import axios from 'axios';
 import { ComplianceRoute } from 'PresentationalComponents';
 import { getAppConfig } from '@/config/appConfig';
+import { normalizePathForRouteMatch } from '@/routing/compliancePaths';
+import {
+  includeSystemsRoutes,
+  routePrefixes,
+} from '@/routing/complianceRoutePrefixes';
 
 const defaultReportTitle = 'Reports';
 const defaultPermissions = ['compliance:*:*'];
 
-const reportPdfRoute = {
-  path: 'reports/:report_id/pdf',
+const buildReportPdfRoute = (reportsPrefix) => ({
+  path: `${reportsPrefix}/:report_id/pdf`,
   title: `Export report - ${defaultReportTitle}`,
   requiredPermissions: [...defaultPermissions, 'compliance:report:read'],
   defaultTitle: defaultReportTitle,
@@ -21,11 +27,11 @@ const reportPdfRoute = {
         /* webpackChunkName: "ReportDetails" */ 'SmartComponents/ExportPDF/ExportPDF'
       ),
   ),
-};
+});
 
-const reportsRoutesBase = [
+const buildReportsRoutesBase = (reportsPrefix) => [
   {
-    path: 'reports',
+    path: `${reportsPrefix}`,
     title: defaultReportTitle,
     requiredPermissions: [...defaultPermissions, 'compliance:report:read'],
     component: lazy(
@@ -36,7 +42,7 @@ const reportsRoutesBase = [
     ),
   },
   {
-    path: 'reports/:report_id',
+    path: `${reportsPrefix}/:report_id`,
     title: `$entityTitle - ${defaultReportTitle}`,
     requiredPermissions: [...defaultPermissions, 'compliance:report:read'],
     defaultTitle: defaultReportTitle,
@@ -48,7 +54,7 @@ const reportsRoutesBase = [
     ),
   },
   {
-    path: 'reports/:report_id/delete',
+    path: `${reportsPrefix}/:report_id/delete`,
     title: `Delete report - ${defaultReportTitle}`,
     requiredPermissions: [...defaultPermissions, 'compliance:policy:delete'],
     component: lazy(
@@ -61,15 +67,19 @@ const reportsRoutesBase = [
   },
 ];
 
-const getReportsRoutes = () =>
-  getAppConfig().features.pdf
-    ? [...reportsRoutesBase, reportPdfRoute]
-    : reportsRoutesBase;
+const getReportsRoutes = () => {
+  const { reports: reportsPrefix } = routePrefixes;
+  const base = buildReportsRoutesBase(reportsPrefix);
+  return getAppConfig().features.pdf
+    ? [...base, buildReportPdfRoute(reportsPrefix)]
+    : base;
+};
 
 const defaultPoliciesTitle = 'SCAP policies';
-const policiesRoutes = [
+
+const buildPoliciesRoutes = (policiesPrefix) => [
   {
-    path: 'scappolicies',
+    path: `${policiesPrefix}`,
     title: defaultPoliciesTitle,
     requiredPermissions: [...defaultPermissions, 'compliance:policy:read'],
     component: lazy(
@@ -80,7 +90,7 @@ const policiesRoutes = [
     ),
   },
   {
-    path: 'scappolicies/new',
+    path: `${policiesPrefix}/new`,
     title: defaultPoliciesTitle,
     requiredPermissions: [...defaultPermissions, 'compliance:policy:create'],
     component: lazy(
@@ -92,7 +102,7 @@ const policiesRoutes = [
     modal: true,
   },
   {
-    path: 'scappolicies/:policy_id',
+    path: `${policiesPrefix}/:policy_id`,
     title: `$entityTitle - ${defaultPoliciesTitle}`,
     requiredPermissions: [...defaultPermissions, 'compliance:policy:read'],
     defaultTitle: defaultPoliciesTitle,
@@ -104,7 +114,7 @@ const policiesRoutes = [
     ),
   },
   {
-    path: 'scappolicies/:policy_id/edit',
+    path: `${policiesPrefix}/:policy_id/edit`,
     title: `$entityTitle - ${defaultPoliciesTitle}`,
     defaultTitle: defaultPoliciesTitle,
     requiredPermissions: [...defaultPermissions, 'compliance:policy:write'],
@@ -117,7 +127,7 @@ const policiesRoutes = [
     modal: true,
   },
   {
-    path: 'scappolicies/:policy_id/import-rules',
+    path: `${policiesPrefix}/:policy_id/import-rules`,
     title: `$entityTitle - ${defaultPoliciesTitle}`,
     defaultTitle: defaultPoliciesTitle,
     requiredPermissions: [...defaultPermissions, 'compliance:policy:write'],
@@ -130,7 +140,7 @@ const policiesRoutes = [
     modal: true,
   },
   {
-    path: 'scappolicies/:policy_id/delete',
+    path: `${policiesPrefix}/:policy_id/delete`,
     title: `Delete policy - ${defaultPoliciesTitle}`,
     requiredPermissions: [...defaultPermissions, 'compliance:policy:delete'],
     component: lazy(
@@ -142,7 +152,7 @@ const policiesRoutes = [
     modal: true,
   },
   {
-    path: 'scappolicies/:policy_id/default_ruleset/:security_guide_id?',
+    path: `${policiesPrefix}/:policy_id/default_ruleset/:security_guide_id?`,
     title: `Default policy rules - ${defaultPoliciesTitle}`,
     requiredPermissions: [...defaultPermissions, 'compliance:policy:read'],
     component: lazy(
@@ -153,6 +163,8 @@ const policiesRoutes = [
     ),
   },
 ];
+
+const getPoliciesRoutes = () => buildPoliciesRoutes(routePrefixes.policies);
 
 const defaultSystemsTitle = 'Systems';
 const systemsRoutes = [
@@ -181,20 +193,41 @@ const systemsRoutes = [
   },
 ];
 
-export const getRoutes = () => [
-  ...policiesRoutes,
-  ...getReportsRoutes(),
-  ...systemsRoutes,
-];
+export const getRoutes = () => {
+  const systems = includeSystemsRoutes ? systemsRoutes : [];
+  return [...getPoliciesRoutes(), ...getReportsRoutes(), ...systems];
+};
 
 export const findRouteByPath = (to) => {
-  const pathToMatch = typeof to === 'string' ? { pathname: to } : to;
-  return getRoutes().find((route) =>
-    matchPath({ ...route, exact: true }, pathToMatch.pathname),
+  const raw =
+    typeof to === 'string'
+      ? to
+      : to?.pathname || (typeof to?.to === 'string' ? to.to : '');
+  const normalized = normalizePathForRouteMatch(raw);
+  return getRoutes().find(
+    (route) =>
+      matchPath({ path: route.path, end: true }, normalized) ||
+      matchPath({ path: route.path, end: true }, `/${normalized}`),
   );
 };
 
 const INVENTORY_TOTAL_FETCH_URL = '/api/inventory/v1/hosts';
+
+const ComplianceRoutesSuspense = ({ children }) => (
+  <Suspense
+    fallback={
+      <Bullseye>
+        <Spinner size="xl" />
+      </Bullseye>
+    }
+  >
+    {children}
+  </Suspense>
+);
+
+const DefaultComplianceRedirect = () => (
+  <Navigate to={routePrefixes.reports} replace />
+);
 
 const ComplianceRoutes = () => {
   const { features } = getAppConfig();
@@ -226,21 +259,25 @@ const ComplianceRoutes = () => {
           element={<ComplianceRoute {...{ ...route, path }} />}
         ></Route>
       ))}
-      <Route path="*" element={<Navigate to="reports" />} />
+      <Route path="*" element={<DefaultComplianceRedirect />} />
     </Routes>
   );
 
-  return !hasSystems && features.dashboardZeroState ? (
-    <AsyncComponent
-      appId="compliance_zero_state"
-      appName="dashboard"
-      module="./AppZeroState"
-      scope="dashboard"
-      ErrorComponent={<ErrorState />}
-      app="Compliance"
-    />
-  ) : (
-    complianceRoutes
+  return (
+    <ComplianceRoutesSuspense>
+      {!hasSystems && features.dashboardZeroState ? (
+        <AsyncComponent
+          appId="compliance_zero_state"
+          appName="dashboard"
+          module="./AppZeroState"
+          scope="dashboard"
+          ErrorComponent={<ErrorState />}
+          app="Compliance"
+        />
+      ) : (
+        complianceRoutes
+      )}
+    </ComplianceRoutesSuspense>
   );
 };
 

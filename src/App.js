@@ -7,9 +7,8 @@ import { RBACProvider } from '@redhat-cloud-services/frontend-components/RBACPro
 import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
 import { AccessCheck } from '@project-kessel/react-kessel-access-check';
 import { KESSEL_API_BASE_URL } from '@/constants';
-import { getAppConfig } from '@/config/appConfig';
 import { useComplianceChrome } from '@/platform/chrome/useComplianceChrome';
-import { useFlagsStatus } from '@unleash/proxy-client-react';
+import useUnleashFlagsReady from 'Utilities/hooks/useUnleashFlagsReady';
 import { Bullseye, Spinner } from '@patternfly/react-core';
 
 import Routes from './Routes';
@@ -18,16 +17,15 @@ import './App.scss';
 const queryClient = new QueryClient();
 
 const App = (props) => {
-  const appConfig = getAppConfig();
   const chrome = useComplianceChrome();
   const isKesselEnabled = useFeatureFlag('compliance.kessel_enabled');
-  const { flagsReady } = useFlagsStatus();
+  const flagsReady = useUnleashFlagsReady();
 
   useEffect(() => {
     chrome.hideGlobalFilter(true);
   }, [chrome]);
 
-  if (appConfig.features.unleash && !flagsReady) {
+  if (!flagsReady) {
     return (
       <Bullseye>
         <Spinner size="xl" />

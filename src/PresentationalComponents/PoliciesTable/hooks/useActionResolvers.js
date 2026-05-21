@@ -1,4 +1,4 @@
-import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
+import useNavigate from '@/Utilities/hooks/useComplianceNavigate';
 
 const useActionResolver = ({ deletePermission = {}, editPermission = {} }) => {
   const navigate = useNavigate();

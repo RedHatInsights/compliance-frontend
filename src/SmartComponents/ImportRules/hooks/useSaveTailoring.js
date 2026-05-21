@@ -1,14 +1,14 @@
 import { useCallback } from 'react';
 import useCreateTailoring from 'Utilities/hooks/api/useCreateTailoring';
 import useAssignRules from 'Utilities/hooks/api/useAssignRules';
-import useInsightsNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
+import useComplianceNavigate from '@/Utilities/hooks/useComplianceNavigate';
 
 const useSaveTailoring = ({
   policyId,
   osMinorVersion: os_minor_version,
   selection,
 }) => {
-  const navigate = useInsightsNavigate();
+  const navigate = useComplianceNavigate();
 
   const { query: assignRules } = useAssignRules({
     params: { policyId },

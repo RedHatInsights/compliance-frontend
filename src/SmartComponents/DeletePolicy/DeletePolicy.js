@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { Button, Checkbox, Content, Spinner } from '@patternfly/react-core';
 import { ModalVariant } from '@patternfly/react-core/deprecated';
-import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
+import useNavigate from '@/Utilities/hooks/useComplianceNavigate';
 import { useAddNotification } from '@redhat-cloud-services/frontend-components-notifications/hooks';
 import {
   ComplianceModal,

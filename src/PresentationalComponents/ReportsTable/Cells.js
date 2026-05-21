@@ -2,19 +2,18 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { Content } from '@patternfly/react-core';
 import { ExportIcon } from '@patternfly/react-icons';
-import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink';
+import ComplianceRouterLink from 'PresentationalComponents/ComplianceLinks/ComplianceRouterLink';
 import { GreySmallText, LinkButton } from 'PresentationalComponents';
 import ReportChart from '../../SmartComponents/ReportDetails/Components/ReportChart';
 
 export const Name = (report) => (
   <Content>
-    <InsightsLink
-      app="compliance"
+    <ComplianceRouterLink
       to={`/reports/${report.id}`}
       style={{ marginRight: '.5rem' }}
     >
       {report.title}
-    </InsightsLink>
+    </ComplianceRouterLink>
     <React.Fragment>
       <GreySmallText>{report.profile_title}</GreySmallText>
     </React.Fragment>

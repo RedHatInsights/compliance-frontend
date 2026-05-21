@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
+import useNavigate from '@/Utilities/hooks/useComplianceNavigate';
 import propTypes from 'prop-types';
 import { Tabs } from '@patternfly/react-core';
 import useAnchor from 'Utilities/hooks/useAnchor';

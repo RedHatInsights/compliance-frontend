@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormRenderer } from '@data-driven-forms/react-form-renderer';
 import { FormTemplate } from '@data-driven-forms/pf4-component-mapper';
-import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
+import useNavigate from '@/Utilities/hooks/useComplianceNavigate';
 
 import schema from './schema';
 import componentMapper from './componentMapper';

@@ -3,6 +3,7 @@ import propTypes from 'prop-types';
 import { useLocation, matchPath } from 'react-router-dom';
 import { WithPermission } from 'PresentationalComponents';
 import useDocumentTitle from 'Utilities/hooks/useDocumentTitle';
+import { normalizePathForRouteMatch } from '@/routing/compliancePaths';
 
 /**
  * This is component renders "routes" in Routes.js
@@ -30,7 +31,8 @@ const ComplianceRoute = (props) => {
   } = props;
   const location = useLocation();
   const setTitle = useDocumentTitle();
-  const isCurrent = !!matchPath({ path, end: true }, location.pathname);
+  const pathForMatch = normalizePathForRouteMatch(location.pathname);
+  const isCurrent = !!matchPath({ path, end: true }, pathForMatch);
 
   const requiresTitleEntity = title.includes('$entityTitle');
   const componentProps = {

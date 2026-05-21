@@ -8,18 +8,17 @@ import { AccessCheck } from '@project-kessel/react-kessel-access-check';
 import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
 import { KESSEL_API_BASE_URL } from '@/constants';
 import { getAppConfig } from '@/config/appConfig';
-import { useFlagsStatus } from '@unleash/proxy-client-react';
+import useUnleashFlagsReady from 'Utilities/hooks/useUnleashFlagsReady';
 import { Bullseye, Spinner } from '@patternfly/react-core';
 
 const queryClient = new QueryClient();
 
 const ComplianceDetails = (props) => {
   const store = useRef(init().getStore());
-  const appConfig = getAppConfig();
   const isKesselEnabled = useFeatureFlag('compliance.kessel_enabled');
-  const { flagsReady } = useFlagsStatus();
+  const flagsReady = useUnleashFlagsReady();
 
-  if (appConfig.features.unleash && !flagsReady) {
+  if (!flagsReady) {
     return (
       <Bullseye>
         <Spinner size="xl" />

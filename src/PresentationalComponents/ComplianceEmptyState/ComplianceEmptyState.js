@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink';
+import ComplianceRouterLink from '../ComplianceLinks/ComplianceRouterLink';
 import {
   Content,
   Button,
@@ -12,11 +12,15 @@ import {
 import { CloudSecurityIcon } from '@patternfly/react-icons';
 import { Spinner } from '@redhat-cloud-services/frontend-components/Spinner';
 import { ErrorCard } from 'PresentationalComponents';
-import usePolicies from 'Utilities/hooks/api/usePolicies';
+// import usePolicies from 'Utilities/hooks/api/usePolicies';
 import { emptyStateLink } from '@/constants';
+import { complianceDocumentHref } from '@/routing/compliancePaths';
 
 const ComplianceEmptyState = ({ title = 'No policies', mainButton }) => {
-  const { data, error, loading } = usePolicies({ params: { limit: 1 } });
+  // const { data, error, loading } = usePolicies({ params: { limit: 1 } });
+  const data = { meta: { total: 0 } };
+  const error = null;
+  const loading = false;
   const policiesCount = data?.meta?.total || 0;
 
   if (loading) {
@@ -44,9 +48,9 @@ const ComplianceEmptyState = ({ title = 'No policies', mainButton }) => {
       <EmptyStateBody>
         {policiesCount > 0 ? (
           <Content>
-            <InsightsLink to="/scappolicies">
+            <ComplianceRouterLink to="/scappolicies">
               {policiesCount} {policyWord}
-            </InsightsLink>{' '}
+            </ComplianceRouterLink>{' '}
             {haveWord} been created but {haveWord} no reports.
           </Content>
         ) : (
@@ -69,7 +73,7 @@ const ComplianceEmptyState = ({ title = 'No policies', mainButton }) => {
             <Button
               variant="primary"
               component="a"
-              href="/insights/compliance/scappolicies"
+              href={complianceDocumentHref('/insights/compliance/scappolicies')}
             >
               Create new policy
             </Button>

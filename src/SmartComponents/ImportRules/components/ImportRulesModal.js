@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import propTypes from 'prop-types';
 import { Button, Bullseye, Spinner } from '@patternfly/react-core';
 import { ModalVariant } from '@patternfly/react-core/deprecated';
-import useInsightsNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
+import useComplianceNavigate from '@/Utilities/hooks/useComplianceNavigate';
 
 import {
   ComplianceModal,
@@ -19,7 +19,7 @@ const ImportRulesModal = ({
   isSaveDisabled,
   ...modalProps
 }) => {
-  const navigate = useInsightsNavigate();
+  const navigate = useComplianceNavigate();
   const navigateToPolicyRules = useCallback(() => {
     navigate(`/scappolicies/${policyId}#rules`);
   }, [policyId, navigate]);

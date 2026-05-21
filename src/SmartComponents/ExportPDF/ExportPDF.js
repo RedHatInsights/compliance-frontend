@@ -7,7 +7,7 @@ import {
   StateViewWithError,
   StateViewPart,
 } from 'PresentationalComponents';
-import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
+import useNavigate from '@/Utilities/hooks/useComplianceNavigate';
 import { useAddNotification } from '@redhat-cloud-services/frontend-components-notifications/hooks';
 import ExportPDFForm from './Components/ExportPDFForm';
 import useExportSettings from './hooks/useExportSettings';

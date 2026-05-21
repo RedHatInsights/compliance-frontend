@@ -16,11 +16,14 @@ export function readEnvTarget() {
 
 export function buildAppConfig(envTarget) {
   const isIop = envTarget === IOP;
+  const platformUnleash = !isIop;
 
   return Object.freeze({
     envTarget,
     features: Object.freeze({
-      unleash: !isIop,
+      unleash: platformUnleash,
+      staticUnleashFlags: isIop,
+      unleashFlagProvider: !isIop && !platformUnleash,
       pdf: !isIop,
       remediations: !isIop,
       dashboardZeroState: !isIop,
