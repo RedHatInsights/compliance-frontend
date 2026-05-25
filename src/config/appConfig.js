@@ -22,7 +22,6 @@ export function buildAppConfig(envTarget) {
     envTarget,
     features: Object.freeze({
       unleash: platformUnleash,
-      staticUnleashFlags: isIop,
       unleashFlagProvider: !isIop && !platformUnleash,
       pdf: !isIop,
       remediations: !isIop,

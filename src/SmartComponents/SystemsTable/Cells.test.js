@@ -15,7 +15,7 @@ import { systems } from '@/__fixtures__/systems.js';
 import { policies } from '@/__fixtures__/policies.js';
 const testSystem = systems[0];
 
-jest.mock('Utilities/hooks/useFeatureFlag', () => () => true);
+jest.mock('@/Utilities/hooks/useFeatureFlag', () => () => true);
 
 describe('Name', () => {
   it('returns the name', () => {

@@ -1,10 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
-import { resolveComplianceRouterTo } from '../../../routing/compliancePaths.iop';
+import { resolveComplianceRouterTo } from '@/Utilities/routing/compliancePaths.iop';
 
-/**
- * IoP build: react-router navigation with IoP path mapping.
- */
 const useComplianceNavigate = () => {
   const navigate = useNavigate();
 

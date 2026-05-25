@@ -9,7 +9,7 @@ import {
   PDFExportDownload,
 } from './Cells';
 
-jest.mock('Utilities/hooks/useFeatureFlag', () => () => true);
+jest.mock('@/Utilities/hooks/useFeatureFlag', () => () => true);
 
 describe('ReportsTable Cells', () => {
   it('expect to render Name cell', () => {

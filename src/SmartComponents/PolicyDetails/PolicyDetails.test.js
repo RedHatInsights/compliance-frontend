@@ -15,7 +15,7 @@ jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useParams: () => ({ policy_id: 'some-policy-id' }),
 }));
-jest.mock('Utilities/hooks/useFeatureFlag', () => () => true);
+jest.mock('@/Utilities/hooks/useFeatureFlag', () => () => true);
 jest.mock('Utilities/hooks/usePermissionCheck', () => ({
   useKesselPermissions: jest.fn(() => ({ hasAccess: true, isLoading: false })),
 }));

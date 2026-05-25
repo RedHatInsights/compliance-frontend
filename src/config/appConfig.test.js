@@ -33,7 +33,6 @@ describe('appConfig', () => {
       const p = buildAppConfig('hcc');
       expect(p.envTarget).toBe('hcc');
       expect(p.features.unleash).toBe(true);
-      expect(p.features.staticUnleashFlags).toBe(false);
       expect(p.features.unleashFlagProvider).toBe(false);
       expect(p.features.pdf).toBe(true);
       expect(p.features.remediations).toBe(true);
@@ -45,7 +44,6 @@ describe('appConfig', () => {
       const p = buildAppConfig('iop');
       expect(p.envTarget).toBe('iop');
       expect(p.features.unleash).toBe(false);
-      expect(p.features.staticUnleashFlags).toBe(true);
       expect(p.features.unleashFlagProvider).toBe(false);
       expect(p.features.pdf).toBe(false);
       expect(p.features.remediations).toBe(false);

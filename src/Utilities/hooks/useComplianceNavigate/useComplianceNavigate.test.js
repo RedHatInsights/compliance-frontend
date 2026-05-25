@@ -5,8 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import useComplianceNavigateHcc from './useComplianceNavigate.hcc';
 import useComplianceNavigateIop from './useComplianceNavigate.iop';
 
-jest.mock('@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate', () =>
-  jest.fn(),
+jest.mock(
+  '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate',
+  () => jest.fn(),
 );
 
 jest.mock('react-router-dom', () => ({

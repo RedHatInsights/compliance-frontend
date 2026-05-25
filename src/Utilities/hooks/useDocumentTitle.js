@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { DEFAULT_TITLE } from '@/constants';
-import { useComplianceChrome } from '@/platform/chrome/useComplianceChrome';
+import useComplianceChrome from '@/Utilities/hooks/useComplianceChrome';
 
 export const useTitleEntity = (route, entityTitle) => {
   const location = useLocation();

@@ -54,7 +54,9 @@ describe('resolveComplianceRouterTo (IoP build)', () => {
 
 describe('compliancePoliciesCreatePath (HCC build)', () => {
   it('returns legacy path', () => {
-    expect(compliancePoliciesCreatePathHcc()).toBe(COMPLIANCE_POLICIES_CREATE_PATH);
+    expect(compliancePoliciesCreatePathHcc()).toBe(
+      COMPLIANCE_POLICIES_CREATE_PATH,
+    );
   });
 });
 

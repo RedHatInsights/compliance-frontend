@@ -12,7 +12,7 @@ import { useAddNotification } from '@redhat-cloud-services/frontend-components-n
 import ExportPDFForm from './Components/ExportPDFForm';
 import useExportSettings from './hooks/useExportSettings';
 import useReport from 'Utilities/hooks/api/useReport';
-import { useComplianceChrome } from '@/platform/chrome/useComplianceChrome';
+import useComplianceChrome from '@/Utilities/hooks/useComplianceChrome';
 import { exportNotifications } from './constants';
 
 export const ExportPDF = () => {

@@ -7,7 +7,7 @@ import useUpdatePolicy from 'Utilities/hooks/api/useUpdatePolicy';
 import { TextArea } from '@patternfly/react-core';
 import TestWrapper from 'Utilities/TestWrapper';
 
-jest.mock('Utilities/hooks/useFeatureFlag', () => () => true);
+jest.mock('@/Utilities/hooks/useFeatureFlag', () => () => true);
 jest.mock('Utilities/hooks/usePermissionCheck');
 jest.mock('Utilities/hooks/api/useUpdatePolicy');
 

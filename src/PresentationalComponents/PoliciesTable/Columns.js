@@ -9,9 +9,7 @@ import {
 
 const PolicyNameCell = ({ id, title, profile_title }) => (
   <Content>
-    <Link to={'/scappolicies/' + id}>
-      {title}
-    </Link>
+    <Link to={'/scappolicies/' + id}>{title}</Link>
     <GreySmallText>{profile_title}</GreySmallText>
   </Content>
 );

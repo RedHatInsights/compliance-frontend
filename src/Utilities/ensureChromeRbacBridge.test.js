@@ -1,3 +1,5 @@
+/* eslint-disable rulesdir/no-chrome-api-call-from-window -- tests stub window.insights.chrome */
+
 import { ensureChromeRbacBridge } from './ensureChromeRbacBridge';
 
 describe('ensureChromeRbacBridge', () => {
@@ -27,7 +29,9 @@ describe('ensureChromeRbacBridge', () => {
       },
     };
     ensureChromeRbacBridge();
-    expect(window.insights.chrome.getUserPermissions).toBe(authGetUserPermissions);
+    expect(window.insights.chrome.getUserPermissions).toBe(
+      authGetUserPermissions,
+    );
   });
 
   it('is a no-op when auth.getUserPermissions is missing', () => {

@@ -27,7 +27,7 @@ import {
   LinkButton,
 } from 'PresentationalComponents';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
-import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
+import useFeatureFlag from '@/Utilities/hooks/useFeatureFlag';
 import {
   useRbacV1Permissions,
   useKesselPermissions,

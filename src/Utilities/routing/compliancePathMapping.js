@@ -10,8 +10,8 @@ const IOP_LEGACY_SEGMENT = {
 export const COMPLIANCE_POLICIES_CREATE_PATH = '/scappolicies/new';
 
 /**
- * @param {string} path e.g. `/reports/abc` or `scappolicies/new`
- * @returns {string} path with leading `/`
+ *  @param   {string} path e.g. `/reports/abc` or `scappolicies/new`
+ *  @returns {string}      path with leading `/`
  */
 export function mapCompliancePathForIop(path = '') {
   const withoutLeadingSlash = stripLeadingSlash(path.split('?')[0]);
@@ -34,8 +34,9 @@ export function mapCompliancePathForIop(path = '') {
 }
 
 /**
- * @param {string | import('react-router-dom').To} to
- * @param {(path: string) => string} mapPath
+ *  @param   {string | import('react-router-dom').To} to      router target
+ *  @param   {(path: string) => string}               mapPath path mapper
+ *  @returns {string | import('react-router-dom').To}         mapped router target
  */
 export function resolveRouterToWithMapper(to, mapPath) {
   if (typeof to === 'string') {

@@ -1,10 +1,7 @@
 import { useMemo } from 'react';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
-/**
- * HCC build: Insights chrome via `useChrome`, with safe optional calls.
- */
-export function useComplianceChrome() {
+const useComplianceChrome = () => {
   const chrome = useChrome();
 
   return useMemo(
@@ -16,4 +13,6 @@ export function useComplianceChrome() {
     }),
     [chrome],
   );
-}
+};
+
+export default useComplianceChrome;

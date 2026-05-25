@@ -14,12 +14,12 @@ import ComplianceEmptyState from 'PresentationalComponents/ComplianceEmptyState'
 import { TableStateProvider } from 'bastilian-tabletools';
 import CompliancePageHeader from 'PresentationalComponents/CompliancePageHeader/CompliancePageHeader';
 import { policiesPopoverData } from '@/constants';
-import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
+import useFeatureFlag from '@/Utilities/hooks/useFeatureFlag';
 import {
   useRbacV1Permissions,
   useKesselPermissions,
 } from 'Utilities/hooks/usePermissionCheck';
-import { compliancePoliciesCreatePath } from '@/routing/compliancePaths';
+import { compliancePoliciesCreatePath } from '@/Utilities/routing/compliancePaths';
 
 const PERMISSIONS = {
   create: ['compliance:policy:create'],

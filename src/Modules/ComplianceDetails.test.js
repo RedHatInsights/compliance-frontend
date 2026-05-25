@@ -8,7 +8,7 @@ jest.mock('@unleash/proxy-client-react', () => ({
   useFlagsStatus: () => ({ flagsReady: true }),
 }));
 
-jest.mock('Utilities/hooks/useFeatureFlag', () => () => true);
+jest.mock('@/Utilities/hooks/useFeatureFlag', () => () => true);
 jest.mock('../SmartComponents/SystemDetails/useTestResults', () =>
   jest.fn(() => ({
     testResultsLoading: false,

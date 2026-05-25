@@ -7,7 +7,9 @@ import { ExportPDF } from './ExportPDF';
 jest.mock('react-router-dom', () => ({
   useParams: jest.fn(() => ({ report_id: 'test-report-id' })),
 }));
-jest.mock('@/Utilities/hooks/useComplianceNavigate', () => jest.fn(() => jest.fn()));
+jest.mock('@/Utilities/hooks/useComplianceNavigate', () =>
+  jest.fn(() => jest.fn()),
+);
 jest.mock('./hooks/useExportSettings', () =>
   jest.fn(() => ({
     exportSettings: {},
@@ -24,12 +26,13 @@ jest.mock('Utilities/hooks/api/useReport', () =>
   })),
 );
 
-jest.mock('@/platform/chrome/useComplianceChrome', () => ({
-  useComplianceChrome: jest.fn(() => ({
+jest.mock('@/Utilities/hooks/useComplianceChrome', () => ({
+  __esModule: true,
+  default: jest.fn(() => ({
     requestPdf: jest.fn(),
   })),
 }));
-jest.mock('Utilities/hooks/useFeatureFlag', () => () => true);
+jest.mock('@/Utilities/hooks/useFeatureFlag', () => () => true);
 
 describe('ExportPDF', () => {
   it('renders the Compliance report modal title', () => {

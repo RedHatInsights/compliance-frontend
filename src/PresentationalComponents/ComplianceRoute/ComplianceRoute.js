@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import { useLocation, matchPath } from 'react-router-dom';
 import { WithPermission } from 'PresentationalComponents';
 import useDocumentTitle from 'Utilities/hooks/useDocumentTitle';
-import { normalizePathForRouteMatch } from '@/routing/compliancePaths';
+import { normalizePathForRouteMatch } from '@/Utilities/routing/compliancePaths';
 
 /**
  * This is component renders "routes" in Routes.js

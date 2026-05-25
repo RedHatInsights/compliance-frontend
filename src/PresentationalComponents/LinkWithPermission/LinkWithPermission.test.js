@@ -2,13 +2,13 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
+import useFeatureFlag from '@/Utilities/hooks/useFeatureFlag';
 import {
   useRbacV1Permissions,
   useKesselPermissions,
 } from 'Utilities/hooks/usePermissionCheck';
 
-jest.mock('Utilities/hooks/useFeatureFlag');
+jest.mock('@/Utilities/hooks/useFeatureFlag');
 jest.mock('Utilities/hooks/usePermissionCheck');
 
 import LinkWithPermission from './LinkWithPermission';

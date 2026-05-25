@@ -15,7 +15,7 @@ jest.mock('./helpers', () => ({
   fetchUnsupportedSystemsWithExpectedSSG: jest.fn(),
 }));
 
-jest.mock('Utilities/hooks/useFeatureFlag', () => () => true);
+jest.mock('@/Utilities/hooks/useFeatureFlag', () => () => true);
 
 import {
   fetchPaginatedList,

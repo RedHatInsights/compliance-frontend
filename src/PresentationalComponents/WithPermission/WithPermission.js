@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { NotAuthorized } from '@redhat-cloud-services/frontend-components/NotAuthorized';
-import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
+import useFeatureFlag from '@/Utilities/hooks/useFeatureFlag';
 import {
   useRbacV1Permissions,
   useKesselPermissions,

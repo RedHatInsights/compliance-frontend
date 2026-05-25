@@ -4,11 +4,11 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import NotificationsProvider from '@redhat-cloud-services/frontend-components-notifications/NotificationsProvider';
 import { RBACProvider } from '@redhat-cloud-services/frontend-components/RBACProvider';
-import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
+import useFeatureFlag from '@/Utilities/hooks/useFeatureFlag';
 import { AccessCheck } from '@project-kessel/react-kessel-access-check';
 import { KESSEL_API_BASE_URL } from '@/constants';
-import { useComplianceChrome } from '@/platform/chrome/useComplianceChrome';
-import useUnleashFlagsReady from 'Utilities/hooks/useUnleashFlagsReady';
+import useComplianceChrome from '@/Utilities/hooks/useComplianceChrome';
+import useUnleashFlagsReady from '@/Utilities/hooks/useUnleashFlagsReady';
 import { Bullseye, Spinner } from '@patternfly/react-core';
 
 import Routes from './Routes';

@@ -8,9 +8,6 @@ const bundle = 'insights';
 const appName = packageJson[bundle].appname;
 const isIOP = process.env.IOP === 'true';
 
-// IoP builds must keep appName "compliance" so static output lives under
-// /assets/apps/compliance/ (matches foreman_rh_cloud Scalprum manifest URL).
-
 const iopComplianceMount = resolve(__dirname, './src/IopComplianceMount.js');
 
 const compliancePlatform = isIOP ? 'iop' : 'hcc';
@@ -22,7 +19,7 @@ const complianceLink = resolve(
 
 const compliancePaths = resolve(
   __dirname,
-  `./src/routing/compliancePaths.${compliancePlatform}.js`,
+  `./src/Utilities/routing/compliancePaths.${compliancePlatform}.js`,
 );
 
 const useComplianceNavigate = resolve(
@@ -30,14 +27,24 @@ const useComplianceNavigate = resolve(
   `./src/Utilities/hooks/useComplianceNavigate/useComplianceNavigate.${compliancePlatform}.js`,
 );
 
+const useFeatureFlag = resolve(
+  __dirname,
+  `./src/Utilities/hooks/useFeatureFlag/useFeatureFlag.${compliancePlatform}.js`,
+);
+
+const useUnleashFlagsReady = resolve(
+  __dirname,
+  `./src/Utilities/hooks/useUnleashFlagsReady/useUnleashFlagsReady.${compliancePlatform}.js`,
+);
+
 const complianceRoutePrefixes = resolve(
   __dirname,
-  `./src/routing/complianceRoutePrefixes.${compliancePlatform}.js`,
+  `./src/Utilities/routing/complianceRoutePrefixes.${compliancePlatform}.js`,
 );
 
 const useComplianceChrome = resolve(
   __dirname,
-  `./src/platform/chrome/useComplianceChrome.${compliancePlatform}.js`,
+  `./src/Utilities/hooks/useComplianceChrome/useComplianceChrome.${compliancePlatform}.js`,
 );
 
 // IoP host registers React 16 in the default share scope. `singleton: true` lets that win.
@@ -131,10 +138,12 @@ module.exports = {
   resolve: {
     alias: {
       '@/PresentationalComponents/ComplianceLinks/complianceLink$': complianceLink,
-      '@/routing/compliancePaths$': compliancePaths,
-      '@/routing/complianceRoutePrefixes$': complianceRoutePrefixes,
+      '@/Utilities/routing/compliancePaths$': compliancePaths,
+      '@/Utilities/routing/complianceRoutePrefixes$': complianceRoutePrefixes,
       '@/Utilities/hooks/useComplianceNavigate$': useComplianceNavigate,
-      '@/platform/chrome/useComplianceChrome$': useComplianceChrome,
+      '@/Utilities/hooks/useFeatureFlag$': useFeatureFlag,
+      '@/Utilities/hooks/useUnleashFlagsReady$': useUnleashFlagsReady,
+      '@/Utilities/hooks/useComplianceChrome$': useComplianceChrome,
       ...alias,
       ...(isIOP
         ? {

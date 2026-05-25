@@ -4,7 +4,7 @@ import InvalidObject from '@redhat-cloud-services/frontend-components/InvalidObj
 import NotAuthorized from '@redhat-cloud-services/frontend-components/NotAuthorized';
 import { ErrorState } from '@redhat-cloud-services/frontend-components/ErrorState';
 
-import { useComplianceChrome } from '@/platform/chrome/useComplianceChrome';
+import useComplianceChrome from '@/Utilities/hooks/useComplianceChrome';
 
 const ErrorPage = ({ error }) => {
   const chrome = useComplianceChrome();

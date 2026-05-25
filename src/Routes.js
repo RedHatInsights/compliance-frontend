@@ -1,4 +1,5 @@
 import React, { lazy, Suspense, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { Route, Routes, Navigate, matchPath } from 'react-router-dom';
 import { Bullseye, Spinner } from '@patternfly/react-core';
 import AsyncComponent from '@redhat-cloud-services/frontend-components/AsyncComponent';
@@ -6,30 +7,16 @@ import ErrorState from '@redhat-cloud-services/frontend-components/ErrorState';
 import axios from 'axios';
 import { ComplianceRoute } from 'PresentationalComponents';
 import { getAppConfig } from '@/config/appConfig';
-import { normalizePathForRouteMatch } from '@/routing/compliancePaths';
+import { normalizePathForRouteMatch } from '@/Utilities/routing/compliancePaths';
 import {
   includeSystemsRoutes,
   routePrefixes,
-} from '@/routing/complianceRoutePrefixes';
+} from '@/Utilities/routing/complianceRoutePrefixes';
 
 const defaultReportTitle = 'Reports';
 const defaultPermissions = ['compliance:*:*'];
 
-const buildReportPdfRoute = (reportsPrefix) => ({
-  path: `${reportsPrefix}/:report_id/pdf`,
-  title: `Export report - ${defaultReportTitle}`,
-  requiredPermissions: [...defaultPermissions, 'compliance:report:read'],
-  defaultTitle: defaultReportTitle,
-  modal: true,
-  component: lazy(
-    () =>
-      import(
-        /* webpackChunkName: "ReportDetails" */ 'SmartComponents/ExportPDF/ExportPDF'
-      ),
-  ),
-});
-
-const buildReportsRoutesBase = (reportsPrefix) => [
+const buildReportsRoutes = (reportsPrefix) => [
   {
     path: `${reportsPrefix}`,
     title: defaultReportTitle,
@@ -65,15 +52,29 @@ const buildReportsRoutesBase = (reportsPrefix) => [
     ),
     modal: true,
   },
+  ...(getAppConfig().features.pdf
+    ? [
+        {
+          path: `${reportsPrefix}/:report_id/pdf`,
+          title: `Export report - ${defaultReportTitle}`,
+          requiredPermissions: [
+            ...defaultPermissions,
+            'compliance:report:read',
+          ],
+          defaultTitle: defaultReportTitle,
+          modal: true,
+          component: lazy(
+            () =>
+              import(
+                /* webpackChunkName: "ReportDetails" */ 'SmartComponents/ExportPDF/ExportPDF'
+              ),
+          ),
+        },
+      ]
+    : []),
 ];
 
-const getReportsRoutes = () => {
-  const { reports: reportsPrefix } = routePrefixes;
-  const base = buildReportsRoutesBase(reportsPrefix);
-  return getAppConfig().features.pdf
-    ? [...base, buildReportPdfRoute(reportsPrefix)]
-    : base;
-};
+const getReportsRoutes = () => buildReportsRoutes(routePrefixes.reports);
 
 const defaultPoliciesTitle = 'SCAP policies';
 
@@ -203,11 +204,10 @@ export const findRouteByPath = (to) => {
     typeof to === 'string'
       ? to
       : to?.pathname || (typeof to?.to === 'string' ? to.to : '');
-  const normalized = normalizePathForRouteMatch(raw);
-  return getRoutes().find(
-    (route) =>
-      matchPath({ path: route.path, end: true }, normalized) ||
-      matchPath({ path: route.path, end: true }, `/${normalized}`),
+  const pathname = normalizePathForRouteMatch(raw);
+  const pathnameForMatch = pathname ? `/${pathname}` : '';
+  return getRoutes().find((route) =>
+    matchPath({ path: route.path, end: true }, pathnameForMatch),
   );
 };
 
@@ -224,6 +224,10 @@ const ComplianceRoutesSuspense = ({ children }) => (
     {children}
   </Suspense>
 );
+
+ComplianceRoutesSuspense.propTypes = {
+  children: PropTypes.node,
+};
 
 const DefaultComplianceRedirect = () => (
   <Navigate to={routePrefixes.reports} replace />

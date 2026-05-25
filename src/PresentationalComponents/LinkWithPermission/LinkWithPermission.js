@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import { Tooltip } from '@patternfly/react-core';
 import { findRouteByPath } from '@/Routes';
 import ComplianceRouterLink from '../ComplianceLinks/ComplianceRouterLink';
-import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
+import useFeatureFlag from '@/Utilities/hooks/useFeatureFlag';
 import {
   useRbacV1Permissions,
   useKesselPermissions,
@@ -32,8 +32,8 @@ const LinkContent = ({
       content={<div>You do not have permissions to perform this action</div>}
     >
       <ComponentToRender
-        to={to}
         app="compliance"
+        to={to}
         {...componentProps}
         {...linkProps}
         isDisabled={!hasPermission}

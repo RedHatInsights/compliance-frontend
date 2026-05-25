@@ -4,8 +4,8 @@ import '@testing-library/jest-dom';
 
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
-import { useComplianceChrome as useComplianceChromeHcc } from './useComplianceChrome.hcc';
-import { useComplianceChrome as useComplianceChromeIop } from './useComplianceChrome.iop';
+import useComplianceChromeHcc from './useComplianceChrome.hcc';
+import useComplianceChromeIop from './useComplianceChrome.iop';
 
 jest.mock('@redhat-cloud-services/frontend-components/useChrome', () => ({
   __esModule: true,

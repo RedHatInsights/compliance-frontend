@@ -1,3 +1,5 @@
+/* eslint-disable rulesdir/no-chrome-api-call-from-window -- IoP reads Scalprum chrome from window.insights */
+
 import { useMemo } from 'react';
 
 function toComplianceChrome(rawChrome = {}) {
@@ -17,11 +19,11 @@ function toComplianceChrome(rawChrome = {}) {
   };
 }
 
-/**
- * IoP build: chrome from Scalprum bridge (no `useChrome` — separate React 18 root).
- */
-export function useComplianceChrome() {
-  const rawChrome = typeof window !== 'undefined' ? window.insights?.chrome : undefined;
+const useComplianceChrome = () => {
+  const rawChrome =
+    typeof window !== 'undefined' ? window.insights?.chrome : undefined;
 
   return useMemo(() => toComplianceChrome(rawChrome), [rawChrome]);
-}
+};
+
+export default useComplianceChrome;

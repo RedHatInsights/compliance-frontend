@@ -5,10 +5,9 @@ import Details from '../SmartComponents/SystemDetails/Details';
 import { RBACProvider } from '@redhat-cloud-services/frontend-components/RBACProvider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AccessCheck } from '@project-kessel/react-kessel-access-check';
-import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
+import useFeatureFlag from '@/Utilities/hooks/useFeatureFlag';
 import { KESSEL_API_BASE_URL } from '@/constants';
-import { getAppConfig } from '@/config/appConfig';
-import useUnleashFlagsReady from 'Utilities/hooks/useUnleashFlagsReady';
+import useUnleashFlagsReady from '@/Utilities/hooks/useUnleashFlagsReady';
 import { Bullseye, Spinner } from '@patternfly/react-core';
 
 const queryClient = new QueryClient();
