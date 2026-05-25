@@ -14,7 +14,7 @@ import { Spinner } from '@redhat-cloud-services/frontend-components/Spinner';
 import { ErrorCard } from 'PresentationalComponents';
 // import usePolicies from 'Utilities/hooks/api/usePolicies';
 import { emptyStateLink } from '@/constants';
-import { complianceDocumentHref } from '@/Utilities/routing/compliancePaths';
+import { COMPLIANCE_POLICIES_CREATE_PATH } from '@/constants';
 
 const ComplianceEmptyState = ({ title = 'No policies', mainButton }) => {
   // const { data, error, loading } = usePolicies({ params: { limit: 1 } });
@@ -70,13 +70,9 @@ const ComplianceEmptyState = ({ title = 'No policies', mainButton }) => {
           {mainButton ? (
             mainButton
           ) : (
-            <Button
-              variant="primary"
-              component="a"
-              href={complianceDocumentHref('/insights/compliance/scappolicies')}
-            >
-              Create new policy
-            </Button>
+            <ComplianceRouterLink to={COMPLIANCE_POLICIES_CREATE_PATH}>
+              <Button variant="primary">Create new policy</Button>
+            </ComplianceRouterLink>
           )}
         </EmptyStateActions>
         <EmptyStateActions>

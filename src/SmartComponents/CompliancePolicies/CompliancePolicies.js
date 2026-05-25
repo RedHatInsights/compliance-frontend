@@ -19,7 +19,7 @@ import {
   useRbacV1Permissions,
   useKesselPermissions,
 } from 'Utilities/hooks/usePermissionCheck';
-import { compliancePoliciesCreatePath } from '@/Utilities/routing/compliancePaths';
+import { COMPLIANCE_POLICIES_CREATE_PATH } from '@/constants';
 
 const PERMISSIONS = {
   create: ['compliance:policy:create'],
@@ -29,7 +29,7 @@ const PERMISSIONS = {
 
 const CompliancePoliciesContent = ({ usePermissionsHook }) => {
   const createPolicyLinkProps = {
-    to: compliancePoliciesCreatePath(),
+    to: COMPLIANCE_POLICIES_CREATE_PATH,
     Component: LinkButton,
     componentProps: {
       variant: 'primary',

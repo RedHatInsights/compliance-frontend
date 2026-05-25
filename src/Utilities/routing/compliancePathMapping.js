@@ -1,4 +1,5 @@
-const stripLeadingSlash = (s) => (s && s.startsWith('/') ? s.slice(1) : s);
+export const stripLeadingSlash = (s) =>
+  s && s.startsWith('/') ? s.slice(1) : s;
 
 const IOP_COMPLIANCE_BASE = 'insights_compliance';
 
@@ -6,8 +7,6 @@ const IOP_LEGACY_SEGMENT = {
   reports: `${IOP_COMPLIANCE_BASE}/reports`,
   scappolicies: `${IOP_COMPLIANCE_BASE}/scappolicies`,
 };
-
-export const COMPLIANCE_POLICIES_CREATE_PATH = '/scappolicies/new';
 
 /**
  *  @param   {string} path e.g. `/reports/abc` or `scappolicies/new`
