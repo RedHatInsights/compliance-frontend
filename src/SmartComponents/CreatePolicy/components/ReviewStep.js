@@ -9,10 +9,7 @@ const ReviewStep = () => {
   const profile = values.profile;
   const osMajorVersion = profile?.os_major_version;
   const osMinorVersionCounts = values.osMinorVersionCounts || [];
-  const totalSystemsCount = osMinorVersionCounts.reduce(
-    (sum, { count }) => sum + count,
-    0,
-  );
+  const totalSystemsCount = (values.systems || []).length;
 
   return (
     <Content>
@@ -44,9 +41,7 @@ const ReviewStep = () => {
         )}
 
         <Content component={ContentVariants.dt}>Systems</Content>
-        <Content component={ContentVariants.dd}>
-          {totalSystemsCount > 0 ? totalSystemsCount : 0}
-        </Content>
+        <Content component={ContentVariants.dd}>{totalSystemsCount}</Content>
 
         <Content component={ContentVariants.dt}>RHEL OS Versions</Content>
         <Content component={ContentVariants.dd}>
