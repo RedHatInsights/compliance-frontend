@@ -42,16 +42,13 @@ const CompliancePoliciesContent = ({ usePermissionsHook }) => {
 
   // Async table needs info about total policy count before mounting
   // Also required for correctly showing empty state
-  // const {
-  //   data: totalPolicies,
-  //   error: totalPoliciesError,
-  //   loading: totalPoliciesLoading,
-  // } = usePolicies({
-  //   onlyTotal: true,
-  // });
-  const totalPolicies = 0;
-  const totalPoliciesError = null;
-  const totalPoliciesLoading = false;
+  const {
+    data: totalPolicies,
+    error: totalPoliciesError,
+    loading: totalPoliciesLoading,
+  } = usePolicies({
+    onlyTotal: true,
+  });
 
   let {
     data: { data, meta: { total: currentTotalPolicies } = {} } = {},

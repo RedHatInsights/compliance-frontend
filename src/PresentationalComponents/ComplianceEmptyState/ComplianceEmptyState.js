@@ -12,15 +12,12 @@ import {
 import { CloudSecurityIcon } from '@patternfly/react-icons';
 import { Spinner } from '@redhat-cloud-services/frontend-components/Spinner';
 import { ErrorCard } from 'PresentationalComponents';
-// import usePolicies from 'Utilities/hooks/api/usePolicies';
+import usePolicies from 'Utilities/hooks/api/usePolicies';
 import { emptyStateLink } from '@/constants';
 import { COMPLIANCE_POLICIES_CREATE_PATH } from '@/constants';
 
 const ComplianceEmptyState = ({ title = 'No policies', mainButton }) => {
-  // const { data, error, loading } = usePolicies({ params: { limit: 1 } });
-  const data = { meta: { total: 0 } };
-  const error = null;
-  const loading = false;
+  const { data, error, loading } = usePolicies({ params: { limit: 1 } });
   const policiesCount = data?.meta?.total || 0;
 
   if (loading) {
