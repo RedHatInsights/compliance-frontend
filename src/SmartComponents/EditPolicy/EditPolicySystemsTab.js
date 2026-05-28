@@ -1,8 +1,9 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Content } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import SystemsTable from 'SmartComponents/SystemsTable/SystemsTable';
 import * as Columns from 'SmartComponents/SystemsTable/Columns';
+import SystemsViewToggle, { SYSTEMS_VIEW } from './SystemsViewToggle';
 
 const systemTableColumns = [
   Columns.Name,
@@ -54,7 +55,9 @@ const EditPolicySystemsTab = ({
   supportedOsVersions,
   setIsSystemsDataLoading,
 }) => {
-  const { os_major_version } = policy;
+  const { id: policyId, os_major_version } = policy;
+  const [systemsView, setSystemsView] = useState(SYSTEMS_VIEW.ALL);
+  const isAllSystemsView = systemsView === SYSTEMS_VIEW.ALL;
 
   const defaultFilter = useMemo(
     () =>
@@ -67,16 +70,29 @@ const EditPolicySystemsTab = ({
 
   return (
     <SystemsTable
-      apiEndpoint="systems"
+      key={systemsView}
+      apiEndpoint={isAllSystemsView ? 'systems' : 'policySystems'}
+      policyId={isAllSystemsView ? undefined : policyId}
       columns={systemTableColumns}
       prependComponent={<PrependComponent osMajorVersion={os_major_version} />}
-      emptyStateComponent={<EmptyState osMajorVersion={os_major_version} />}
+      emptyStateComponent={
+        isAllSystemsView ? (
+          <EmptyState osMajorVersion={os_major_version} />
+        ) : undefined
+      }
       compact
-      defaultFilter={defaultFilter}
+      defaultFilter={isAllSystemsView ? defaultFilter : undefined}
+      ignoreOsMajorVersion={!isAllSystemsView}
       preselectedSystems={selectedSystems}
       onSelect={onSystemSelect}
       setIsSystemsDataLoading={setIsSystemsDataLoading}
       enableExport={false}
+      dedicatedAction={
+        <SystemsViewToggle
+          systemsView={systemsView}
+          onSystemsViewChange={setSystemsView}
+        />
+      }
     />
   );
 };
