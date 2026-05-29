@@ -2,6 +2,7 @@
 import React from 'react';
 import { nowrap } from '@patternfly/react-table';
 import { Tooltip } from '@patternfly/react-core';
+import { DateFormat } from '@redhat-cloud-services/frontend-components/DateFormat';
 import { complianceScoreString } from 'PresentationalComponents';
 import { renderComponent } from 'Utilities/helpers';
 
@@ -178,6 +179,11 @@ export const Updated = inventoryColumn('updated', {
   title: 'Last seen',
   props: { isStatic: true },
   transforms: [nowrap],
+  renderFunc: (value) => (
+    <span className="pf-v6-u-text-nowrap">
+      <DateFormat date={value} />
+    </span>
+  ),
   renderExport: ({ updated }) => updated,
 });
 
