@@ -76,6 +76,7 @@ const EditPolicySystemsTab = ({
       preselectedSystems={selectedSystems}
       onSelect={onSystemSelect}
       setIsSystemsDataLoading={setIsSystemsDataLoading}
+      enableExport={false}
     />
   );
 };
