@@ -6,7 +6,7 @@
     "appname": "compliance"
   },
   "dependencies": {
-    "@babel/runtime": "^7.29.2",
+    "@babel/runtime": "^7.29.7",
     "@data-driven-forms/pf4-component-mapper": "^4.1.16",
     "@data-driven-forms/react-form-renderer": "^4.1.14",
     "@patternfly/patternfly": "^6.4.0",
@@ -75,10 +75,10 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.28.4",
-    "@babel/plugin-transform-runtime": "^7.28.0",
-    "@babel/preset-env": "^7.28.0",
-    "@babel/preset-react": "^7.27.1",
+    "@babel/core": "^7.29.7",
+    "@babel/plugin-transform-runtime": "^7.29.7",
+    "@babel/preset-env": "^7.29.7",
+    "@babel/preset-react": "^7.29.7",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@cypress/code-coverage": "^4.0.3",
@@ -93,7 +93,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/react": "^18.3.23",
     "babel-loader": "^10.0.0",
-    "babel-plugin-istanbul": "^7.0.1",
+    "babel-plugin-istanbul": "^8.0.0",
     "better-docs": "^2.7.3",
     "css-loader": "^7.1.2",
     "cypress": "^15.14.0",
