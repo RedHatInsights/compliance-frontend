@@ -75,7 +75,11 @@ const policiesRoutes = [
   {
     path: 'scappolicies/new',
     title: defaultPoliciesTitle,
-    requiredPermissions: [...defaultPermissions, 'compliance:policy:create'],
+    requiredPermissions: [
+      ...defaultPermissions,
+      'compliance:policy:create',
+      'compliance:policy:write',
+    ],
     component: lazy(
       () =>
         import(
