@@ -64,8 +64,8 @@ const CompliancePoliciesContent = ({ usePermissionsHook }) => {
   const createPolicyButton = (
     <LinkWithPermission
       {...createPolicyLinkProps}
-      hasAccess={createPermission.hasAccess}
-      isLoading={createPermission.isLoading}
+      hasAccess={createPermission.hasAccess && editPermission.hasAccess}
+      isLoading={createPermission.isLoading || editPermission.isLoading}
     >
       Create new policy
     </LinkWithPermission>
