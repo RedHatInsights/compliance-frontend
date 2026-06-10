@@ -16,7 +16,7 @@ exports[`RuleDetailsRow expect to render without error 1`] = `
       >
         <h5
           class="pf-v6-c-content--h5 pf-c-form__label"
-          data-ouia-component-id="OUIA-Generated-Content-1"
+          data-ouia-component-id="OUIA-Generated-Content-:r0:"
           data-ouia-component-type="PF6/Content"
           data-ouia-safe="true"
           data-pf-content="true"
@@ -45,7 +45,7 @@ exports[`RuleDetailsRow expect to render without error 1`] = `
         >
           <h5
             class="pf-v6-c-content--h5 pf-c-form__label"
-            data-ouia-component-id="OUIA-Generated-Content-2"
+            data-ouia-component-id="OUIA-Generated-Content-:r1:"
             data-ouia-component-type="PF6/Content"
             data-ouia-safe="true"
             data-pf-content="true"
@@ -57,7 +57,7 @@ exports[`RuleDetailsRow expect to render without error 1`] = `
           </h5>
           <p
             class="pf-v6-c-content--p"
-            data-ouia-component-id="OUIA-Generated-Content-3"
+            data-ouia-component-id="OUIA-Generated-Content-:r2:"
             data-ouia-component-type="PF6/Content"
             data-ouia-safe="true"
             data-pf-content="true"
@@ -75,7 +75,7 @@ exports[`RuleDetailsRow expect to render without error 1`] = `
         >
           <h5
             class="pf-v6-c-content--h5 pf-c-form__label"
-            data-ouia-component-id="OUIA-Generated-Content-4"
+            data-ouia-component-id="OUIA-Generated-Content-:r3:"
             data-ouia-component-type="PF6/Content"
             data-ouia-safe="true"
             data-pf-content="true"
@@ -87,7 +87,7 @@ exports[`RuleDetailsRow expect to render without error 1`] = `
           </h5>
           <p
             class="pf-v6-c-content--p"
-            data-ouia-component-id="OUIA-Generated-Content-5"
+            data-ouia-component-id="OUIA-Generated-Content-:r4:"
             data-ouia-component-type="PF6/Content"
             data-ouia-safe="true"
             data-pf-content="true"
