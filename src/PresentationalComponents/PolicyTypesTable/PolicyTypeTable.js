@@ -59,6 +59,7 @@ const PolicyTypeTable = ({
         emptyRows: emptyRows('policy types', columns.length),
       }}
       variant="compact"
+      tableBodyProps={{ style: { verticalAlign: 'middle' } }}
     />
   );
 };
