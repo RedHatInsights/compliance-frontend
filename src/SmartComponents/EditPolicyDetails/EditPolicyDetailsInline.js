@@ -146,9 +146,7 @@ const EditPolicyDetailsInline = ({
                   onClick={() => onSave()}
                   style={{
                     marginLeft: '5px',
-                    color: validThreshold
-                      ? 'var(--pf-t--global--background--color--primary--default)'
-                      : 'var(--pf-v6-c-button--disabled--Color)',
+                    opacity: validThreshold ? 1 : 0.4,
                   }}
                 />
               </div>
