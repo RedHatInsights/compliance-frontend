@@ -139,6 +139,7 @@
     "server:ctr": "node src/server/generateServerKey.js",
     "start": "fec dev",
     "static": "fec static",
+    "static:iop": "IOP=true FEC_STATIC=true fec static --port 8004",
     "start:proxy": "PROXY=true fec dev",
     "verify": "npm-run-all build lint test",
     "ci:verify": "npm run test:coverage",
