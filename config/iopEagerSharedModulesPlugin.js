@@ -35,9 +35,9 @@ const patchSharedModules = (root, sharedModules = {}) =>
   );
 
 /**
- * FEC registers chrome-provided MF shared modules with import:false, expecting
- * insights-chrome as host. IoP iframe has no host — patch shared modules to
- * eager local imports before DynamicRemotePlugin initializes Module Federation.
+ * FEC registers chrome-provided module federation shared modules with import:false, 
+ * expecting insights-chrome as host. IoP iframe has no host — patch shared modules 
+ * to eager local imports before DynamicRemotePlugin initializes module federation.
  */
 const installIopSharedModulesPatch = (root = process.cwd()) => {
   if (patchInstalled) {
