@@ -15,10 +15,16 @@ const TopFailedRulesSection = ({ rulesData, styles }) => {
       <Table borders={false} style={{ width: '100%' }}>
         <Thead>
           <Tr>
-            <Th style={styles.header}>ID</Th>
+            <Th modifier="fitContent" style={styles.header}>
+              ID
+            </Th>
             <Th style={styles.header}>Name</Th>
-            <Th style={styles.header}>Severity</Th>
-            <Th style={styles.noWrapHeader}>Failed systems</Th>
+            <Th modifier="fitContent" style={styles.header}>
+              Severity
+            </Th>
+            <Th modifier="nowrap" style={styles.header}>
+              Failed systems
+            </Th>
           </Tr>
         </Thead>
         <Tbody>
