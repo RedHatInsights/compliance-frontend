@@ -160,7 +160,7 @@ const DetailsStepContent = ({ profile, name, input }) => {
           fieldId="policy-threshold"
           labelHelp={<PolicyThresholdTooltip />}
           label="Compliance threshold (%)"
-          style={{ width: '60%', display: 'block' }}
+          style={{ width: '60%' }}
         >
           <TextInput
             type="number"
