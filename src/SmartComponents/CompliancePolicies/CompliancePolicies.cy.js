@@ -388,18 +388,23 @@ describe('Policies table tests API V2', () => {
 
     describe('Manage columns', () => {
       it('Manage reports columns', () => {
-        cy.ouiaId('BulkActionsToggle', 'button').click();
+        cy.wait('@getPolicies');
 
-        cy.ouiaType('PF6/DropdownItem', 'li')
-          .contains('Manage columns')
-          .should('be.visible')
-          .click();
+        cy.ouiaId('BulkActionsToggle', 'button').click();
+        cy.ouiaId('BulkActionsList').within(() => {
+          cy.ouiaType('PF6/DropdownItem', 'li')
+            .contains('Manage columns')
+            .should('be.visible')
+            .click();
+        });
+        cy.ouiaId('ColumnManagementModal').should('be.visible');
         cy.get('li input[checked]')
           .not('[disabled]')
           .each(($checkbox) => {
             cy.wrap($checkbox).click();
           });
         cy.ouiaId('ColumnManagementModal-save-button', 'button').click();
+        cy.ouiaId('ColumnManagementModal').should('not.exist');
 
         cy.get('th[data-label="Operating system"]').should('not.exist');
         cy.get('th[data-label="Systems"]').should('not.exist');
@@ -407,13 +412,17 @@ describe('Policies table tests API V2', () => {
         cy.get('th[data-label="Compliance threshold"]').should('not.exist');
 
         cy.ouiaId('BulkActionsToggle', 'button').click();
-        cy.ouiaType('PF6/DropdownItem', 'li')
-          .contains('Manage columns')
-          .should('be.visible')
-          .click();
+        cy.ouiaId('BulkActionsList').within(() => {
+          cy.ouiaType('PF6/DropdownItem', 'li')
+            .contains('Manage columns')
+            .should('be.visible')
+            .click();
+        });
+        cy.ouiaId('ColumnManagementModal').should('be.visible');
         cy.ouiaId('BulkSelect-toggle', 'button').click();
         cy.get('button').contains('Select all').click();
         cy.ouiaId('ColumnManagementModal-save-button', 'button').click();
+        cy.ouiaId('ColumnManagementModal').should('not.exist');
 
         cy.get('th[data-label="Operating system"]').should('exist');
         cy.get('th[data-label="Systems"]').should('exist');
