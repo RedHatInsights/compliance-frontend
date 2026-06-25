@@ -511,14 +511,23 @@ describe('Reports table tests', () => {
 
     describe('Manage columns', () => {
       it('Manage reports columns', () => {
+        cy.wait('@getReports');
+
         cy.ouiaId('BulkActionsToggle', 'button').click();
-        cy.ouiaType('PF6/DropdownItem', 'li').first().find('button').click();
+        cy.ouiaId('BulkActionsList').within(() => {
+          cy.ouiaType('PF6/DropdownItem', 'li')
+            .contains('Manage columns')
+            .should('be.visible')
+            .click();
+        });
+        cy.ouiaId('ColumnManagementModal').should('be.visible');
         cy.get('li input[checked]')
           .not('[disabled]')
           .each(($checkbox) => {
             cy.wrap($checkbox).click();
           });
         cy.ouiaId('ColumnManagementModal-save-button', 'button').click();
+        cy.ouiaId('ColumnManagementModal').should('not.exist');
 
         cy.get('th[data-label="Operating system"]').should('not.exist');
         cy.get('th[data-label="Systems meeting compliance"]').should(
@@ -526,10 +535,17 @@ describe('Reports table tests', () => {
         );
 
         cy.ouiaId('BulkActionsToggle', 'button').click();
-        cy.ouiaType('PF6/DropdownItem', 'li').first().find('button').click();
+        cy.ouiaId('BulkActionsList').within(() => {
+          cy.ouiaType('PF6/DropdownItem', 'li')
+            .contains('Manage columns')
+            .should('be.visible')
+            .click();
+        });
+        cy.ouiaId('ColumnManagementModal').should('be.visible');
         cy.ouiaId('BulkSelect-toggle', 'button').click();
         cy.get('button').contains('Select all').click();
         cy.ouiaId('ColumnManagementModal-save-button', 'button').click();
+        cy.ouiaId('ColumnManagementModal').should('not.exist');
 
         cy.get('th[data-label="Operating system"]', { timeout: 10000 }).should(
           'exist',
