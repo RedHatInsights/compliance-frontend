@@ -10,14 +10,17 @@ const SystemPoliciesAndRules = ({
   hidePassed,
   remediationsEnabled,
 }) => {
-  // FYI: test result ID and policy ID are not the same, but test result ID only identifies each tab here.
   const [selectedPolicy, setSelectedPolicy] = useState(
     reportTestResults[0].report_id,
   );
 
   return (
     <>
-      <SystemPolicyCards reportTestResults={reportTestResults} />
+      <SystemPolicyCards
+        reportTestResults={reportTestResults}
+        selectedPolicy={selectedPolicy}
+        onSelectPolicy={setSelectedPolicy}
+      />
       <br />
       <Tabs activeKey={selectedPolicy}>
         {reportTestResults.map((reportTestResult, idx) => (

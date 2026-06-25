@@ -1,7 +1,6 @@
 import { Passed as PassedCell, RemediationColumnCell, Rule } from './Cells';
 import {
   Passed,
-  Policy,
   Remediation,
   Severity,
 } from '@/PresentationalComponents/RulesTable/Columns';
@@ -27,10 +26,4 @@ export const RemediationSystemDetails = {
   Component: RemediationColumnCell,
 };
 
-export default [
-  Name,
-  Policy,
-  Severity,
-  PassedSystemDetails,
-  RemediationSystemDetails,
-];
+export default [Name, PassedSystemDetails, Severity, RemediationSystemDetails];
