@@ -4,15 +4,10 @@ const alias = require('./config/aliases');
 const packageJson = require('./package.json');
 const { localRoutesFor } = require('./config/helpers');
 const { sentryWebpackPlugin } = require('@sentry/webpack-plugin');
-const installIopSharedModulesPatch = require('./config/iopEagerSharedModulesPlugin');
 
 const bundle = 'insights';
 const appName = packageJson[bundle].appname;
 const isIOP = process.env.IOP === 'true';
-
-if (isIOP) {
-  installIopSharedModulesPatch(__dirname);
-}
 
 const iopAliases = isIOP
   ? {
@@ -81,6 +76,7 @@ module.exports = {
   moduleFederation: isIOP
     ? {
         exposes: {},
+        bundleChromeShared: true,
       }
     : {
         shared: [
