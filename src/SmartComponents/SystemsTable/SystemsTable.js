@@ -128,6 +128,7 @@ export const SystemsTable = ({
           fetchCustomOSes={fetchOperatingSystems}
           hideFilters={{
             all: true,
+            name: false,
             operatingSystem: false,
             tags: false,
             hostGroupFilter: !showGroupsFilter,

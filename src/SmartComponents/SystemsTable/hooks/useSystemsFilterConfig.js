@@ -14,7 +14,6 @@ const useSystemsFilterConfig = ({
   const serialiseredTableState = useSerialisedTableState();
   const filterConfig = useMemo(
     () => [
-      filters.name,
       ...(policies?.length ? [filters.policies(policies)] : []),
       ...(ssgVersions?.length ? [filters.ssgVersions(ssgVersions)] : []),
       ...(compliant ? [filters.compliant, filters.complianceScore] : []),
