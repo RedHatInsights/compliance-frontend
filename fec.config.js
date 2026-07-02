@@ -1,4 +1,5 @@
 const { resolve } = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const alias = require('./config/aliases');
 const packageJson = require('./package.json');
 const { localRoutesFor } = require('./config/helpers');
@@ -6,6 +7,24 @@ const { sentryWebpackPlugin } = require('@sentry/webpack-plugin');
 
 const bundle = 'insights';
 const appName = packageJson[bundle].appname;
+const isIOP = process.env.IOP === 'true';
+
+const iopAliases = isIOP
+  ? {
+      '@redhat-cloud-services/frontend-components/InsightsLink': resolve(
+        __dirname,
+        './src/iop/ComplianceLink.js',
+      ),
+      '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate':
+        resolve(__dirname, './src/iop/useComplianceNavigate.js'),
+      react: resolve(__dirname, 'node_modules/react'),
+      'react-dom': resolve(__dirname, 'node_modules/react-dom'),
+      'react/jsx-runtime': resolve(
+        __dirname,
+        'node_modules/react/jsx-runtime',
+      ),
+    }
+  : {};
 
 // TODO Move to fec webpack config similar to LOCAL_APPS
 const routes = {
@@ -16,10 +35,26 @@ const routes = {
 
 module.exports = {
   appName,
-  appUrl: `/${bundle}/${appName}`,
+  appUrl: isIOP ? '/' : `/${bundle}/${appName}`,
   useProxy: process.env.PROXY === 'true',
+  ...(isIOP
+    ? {
+        deployment: 'assets/apps',
+        standalone: true,
+        appEntry: resolve(__dirname, './src/iop/entry.js'),
+      }
+    : {}),
   devtool: 'hidden-source-map',
   plugins: [
+    ...(isIOP
+      ? [
+          new HtmlWebpackPlugin({
+            template: resolve(__dirname, './src/iop/index.html'),
+            inject: true,
+            chunks: ['App'],
+          }),
+        ]
+      : []),
     ...(process.env.ENABLE_SENTRY
       ? [
           sentryWebpackPlugin({
@@ -38,31 +73,39 @@ module.exports = {
         ]
       : []),
   ],
-  moduleFederation: {
-    shared: [
-      {
-        'react-router-dom': {
-          singleton: true,
-          import: false,
-          version: packageJson.dependencies['react-router-dom'],
-          requiredVersion: '>=6.0.0 <7.0.0',
+  moduleFederation: isIOP
+    ? {
+        exposes: {},
+        bundleChromeShared: true,
+      }
+    : {
+        shared: [
+          {
+            'react-router-dom': {
+              singleton: true,
+              import: false,
+              version: packageJson.dependencies['react-router-dom'],
+              requiredVersion: '>=6.0.0 <7.0.0',
+            },
+          },
+        ],
+        exposes: {
+          './RootApp': resolve(
+            __dirname,
+            `/src/${process.env.NODE_ENV !== 'production' ? 'Dev' : ''}AppEntry`,
+          ),
+          './SystemDetail': resolve(__dirname, '/src/Modules/ComplianceDetails'),
+          './ReportPDFBuild': resolve(
+            __dirname,
+            '/src/SmartComponents/ExportPDF/ReportPDFBuild',
+          ),
         },
       },
-    ],
-    exposes: {
-      './RootApp': resolve(
-        __dirname,
-        `/src/${process.env.NODE_ENV !== 'production' ? 'Dev' : ''}AppEntry`
-      ),
-      './SystemDetail': resolve(__dirname, '/src/Modules/ComplianceDetails'),
-      './ReportPDFBuild': resolve(
-        __dirname,
-        '/src/SmartComponents/ExportPDF/ReportPDFBuild',
-      ),
-    },
-  },
   resolve: {
-    alias,
+    alias: {
+      ...alias,
+      ...iopAliases,
+    },
   },
   routes,
   _unstableSpdy: true,
