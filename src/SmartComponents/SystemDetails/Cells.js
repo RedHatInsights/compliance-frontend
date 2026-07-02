@@ -6,8 +6,7 @@ import {
   ExclamationCircleIcon,
 } from '@patternfly/react-icons';
 import RemediationCell from '@/PresentationalComponents/RemediationCell/RemediationCell';
-import { Policy, Severity } from '@/PresentationalComponents/RulesTable/Cells';
-import { FAILED_RULE_STATES } from '@/constants';
+import { Severity } from '@/PresentationalComponents/RulesTable/Cells';
 import { t_global_text_color_subtle } from '@patternfly/react-tokens';
 
 const ruleResultProps = {
@@ -18,18 +17,9 @@ const ruleResultProps = {
   remediation_issue_id: propTypes.string,
 };
 
-export const Rule = ({ title, identifier, result = 'pass' }) => {
+export const Rule = ({ title, identifier }) => {
   return (
-    <Content
-      style={{
-        ...(FAILED_RULE_STATES.includes(result)
-          ? {
-              fontWeight: 'bold',
-              color: 'var(--pf-t--global--color--status--danger--100)',
-            }
-          : {}),
-      }}
-    >
+    <Content className="pf-v6-u-font-weight-bold">
       {title}
       {identifier ? (
         <Content
@@ -72,4 +62,4 @@ export const RemediationColumnCell = ({ remediation_issue_id }) => (
 );
 RemediationColumnCell.propTypes = ruleResultProps;
 
-export { Severity, Policy };
+export { Severity };

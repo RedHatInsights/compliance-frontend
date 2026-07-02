@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Card,
+  CardHeader,
   CardBody,
   CardFooter,
   Content,
@@ -13,7 +14,13 @@ import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 import UnsupportedSSGVersionAlert from './components/UnsupportedSSGVersionAlert';
 import CompliantIcon from './components/CompliantIcon';
 
-const SystemPolicyCard = ({ policy, style }) => {
+const SystemPolicyCard = ({
+  policy,
+  isClickable,
+  isClicked,
+  onClickAction,
+  selectableActionAriaLabel,
+}) => {
   const {
     failed_rule_count: failedRuleCount,
     compliant,
@@ -30,8 +37,18 @@ const SystemPolicyCard = ({ policy, style }) => {
   const truncateDefaults = { expandOnMouseOver: true, hideExpandText: true };
 
   return (
-    <Card ouiaId="PolicyCard" style={style}>
-      <CardBody>
+    <Card
+      ouiaId="PolicyCard"
+      isClickable={isClickable}
+      isClicked={isClicked}
+      style={{ height: '100%' }}
+    >
+      <CardHeader
+        selectableActions={{
+          onClickAction,
+          selectableActionAriaLabel,
+        }}
+      >
         <Content className="margin-bottom-md">
           <Content
             ouiaId="PolicyCardName"
@@ -44,6 +61,8 @@ const SystemPolicyCard = ({ policy, style }) => {
             <Truncate text={profileTitle} length={110} {...truncateDefaults} />
           </Content>
         </Content>
+      </CardHeader>
+      <CardBody>
         <div className="margin-bottom-md">
           {supported && <CompliantIcon compliant={compliant} />}
           <Content
@@ -111,7 +130,10 @@ SystemPolicyCard.propTypes = {
     compliant: PropTypes.bool,
     supported: PropTypes.bool,
   }),
-  style: PropTypes.object,
+  isClickable: PropTypes.bool,
+  isClicked: PropTypes.bool,
+  onClickAction: PropTypes.func,
+  selectableActionAriaLabel: PropTypes.string,
 };
 
 export default SystemPolicyCard;
