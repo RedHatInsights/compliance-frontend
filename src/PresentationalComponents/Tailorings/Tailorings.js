@@ -1,10 +1,11 @@
 import React, { useCallback } from 'react';
 import propTypes from 'prop-types';
-import { Badge, Flex, FlexItem, Spinner, Tab } from '@patternfly/react-core';
+import { Badge, Flex, FlexItem, Tab } from '@patternfly/react-core';
 import {
   RoutedTabs,
   StateViewWithError,
   StateViewPart,
+  CenteredSpinner,
 } from 'PresentationalComponents';
 import useTailorings from 'Utilities/hooks/api/useTailorings';
 import OsVersionText from './osVersionText';
@@ -104,12 +105,12 @@ const Tailorings = ({
     <StateViewWithError
       stateValues={{
         error: tailoringsError,
-        data: tabs && (tailoringsData || profiles),
         loading: tailoringsLoading,
+        data: !tailoringsLoading && tabs && (tailoringsData || profiles),
       }}
     >
       <StateViewPart stateKey="loading">
-        <Spinner />
+        <CenteredSpinner />
       </StateViewPart>
       <StateViewPart stateKey="data">
         {tabs.length > 0 ? (

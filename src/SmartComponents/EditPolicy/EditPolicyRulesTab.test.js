@@ -59,6 +59,9 @@ describe('EditPolicyRulesTab', () => {
       </TestWrapper>,
     );
 
-    expect(screen.queryByText('Loading...')).toBeVisible();
+    expect(screen.getByLabelText('Contents')).toHaveAttribute(
+      'aria-valuetext',
+      'Loading...',
+    );
   });
 });

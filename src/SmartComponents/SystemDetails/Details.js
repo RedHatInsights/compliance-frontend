@@ -1,7 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Bullseye } from '@patternfly/react-core';
-import { Spinner } from '@redhat-cloud-services/frontend-components/Spinner';
+import { CenteredSpinner } from 'PresentationalComponents';
 import './compliance.scss';
 import useTestResults from './useTestResults';
 import SystemPoliciesAndRules from './SystemPoliciesAndRules';
@@ -21,9 +20,7 @@ export const Details = ({
   return (
     <div className="ins-c-compliance__scope">
       {testResultsLoading && connectedToInsights !== false ? (
-        <Bullseye>
-          <Spinner />
-        </Bullseye>
+        <CenteredSpinner />
       ) : testResults?.length === 0 || connectedToInsights === false ? (
         <EmptyState
           inventoryId={inventoryId}

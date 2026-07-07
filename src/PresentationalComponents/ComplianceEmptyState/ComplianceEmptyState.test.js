@@ -21,8 +21,10 @@ describe('ComplianceEmptyState', () => {
         <ComplianceEmptyState />
       </TestWrapper>,
     );
-
-    expect(screen.getByText('Loading...')).toBeInTheDocument();
+    expect(screen.getByLabelText('Contents')).toHaveAttribute(
+      'aria-valuetext',
+      'Loading...',
+    );
   });
 
   it('expect to render error state', () => {

@@ -1,13 +1,8 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-import {
-  Content,
-  ContentVariants,
-  Skeleton,
-  Spinner,
-  Bullseye,
-} from '@patternfly/react-core';
+import { Content, ContentVariants, Skeleton } from '@patternfly/react-core';
+import { CenteredSpinner } from 'PresentationalComponents';
 
 import VersionSelector from './components/VersionSelector';
 import RuleComparison from './components/RuleComparison';
@@ -86,9 +81,7 @@ const ImportRules = () => {
         <>
           <Content component={ContentVariants.hr} />
           {initialSelectionLoading || !initialSelection || !selection ? (
-            <Bullseye>
-              <Spinner />
-            </Bullseye>
+            <CenteredSpinner />
           ) : (
             <RuleComparison
               policy={policy}

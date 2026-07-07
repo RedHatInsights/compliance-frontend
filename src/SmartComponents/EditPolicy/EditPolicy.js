@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
-import { Button, Spinner } from '@patternfly/react-core';
+import { Button } from '@patternfly/react-core';
 import { useLocation, useParams } from 'react-router-dom';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
@@ -8,6 +8,7 @@ import {
   ComplianceModal,
   StateViewWithError,
   StateViewPart,
+  CenteredSpinner,
 } from 'PresentationalComponents';
 import usePolicy from 'Utilities/hooks/api/usePolicy';
 import useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
@@ -145,7 +146,7 @@ const EditPolicy = ({ route }) => {
     >
       <StateViewWithError stateValues={statusValues}>
         <StateViewPart stateKey="loading">
-          <Spinner />
+          <CenteredSpinner />
         </StateViewPart>
         <StateViewPart stateKey="data">
           <EditPolicyForm

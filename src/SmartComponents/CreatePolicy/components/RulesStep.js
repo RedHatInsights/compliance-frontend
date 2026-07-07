@@ -1,13 +1,7 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import { xor, isEqual } from 'lodash';
 import { useDeepCompareEffect } from 'use-deep-compare';
-import {
-  Bullseye,
-  EmptyState,
-  Spinner,
-  Content,
-  ContentVariants,
-} from '@patternfly/react-core';
+import { Content, ContentVariants } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import {
   useFormApi,
@@ -18,6 +12,7 @@ import {
   StateViewPart,
   StateViewWithError,
   Tailorings,
+  CenteredSpinner,
 } from '@/PresentationalComponents';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 import useProfileRuleIds from 'Utilities/hooks/useProfileRuleIds';
@@ -208,9 +203,7 @@ const RulesStepContent = ({
   };
 
   return !preselected ? (
-    <Bullseye>
-      <Spinner />
-    </Bullseye>
+    <CenteredSpinner />
   ) : (
     <React.Fragment>
       <Content className="pf-v6-u-pb-md">
@@ -233,9 +226,7 @@ const RulesStepContent = ({
         }}
       >
         <StateViewPart stateKey="loading">
-          <EmptyState>
-            <Spinner />
-          </EmptyState>
+          <CenteredSpinner />
         </StateViewPart>
         <StateViewPart stateKey="data">
           {profilesAndRuleIds &&
