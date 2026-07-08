@@ -1,26 +1,28 @@
 import {
   buildAppConfig,
-  getEnvTargetFromPathname,
-  isRunningInIframe,
+  readEnvTarget,
   resetAppConfigForTests,
 } from './appConfig';
 
 describe('appConfig', () => {
+  const originalIop = process.env.IOP;
+
   afterEach(() => {
+    process.env.IOP = originalIop;
     resetAppConfigForTests();
   });
 
-  describe('getEnvTargetFromPathname', () => {
-    it('detects IoP from static assets path', () => {
-      expect(
-        getEnvTargetFromPathname('/assets/apps/compliance/index.html'),
-      ).toBe('iop');
+  describe('readEnvTarget', () => {
+    it('returns iop when the IoP build flag is set', () => {
+      process.env.IOP = 'true';
+
+      expect(readEnvTarget()).toBe('iop');
     });
 
-    it('defaults to hcc for console paths', () => {
-      expect(getEnvTargetFromPathname('/insights/compliance/reports')).toBe(
-        'hcc',
-      );
+    it('returns hcc for the default cloud build', () => {
+      delete process.env.IOP;
+
+      expect(readEnvTarget()).toBe('hcc');
     });
   });
 
@@ -45,11 +47,5 @@ describe('appConfig', () => {
       expect(config.api.complianceBasePath).toBe('/api/compliance/v2');
       expect(config.features.unleash).toBe(true);
     });
-  });
-});
-
-describe('isRunningInIframe', () => {
-  it('returns false in the test document', () => {
-    expect(isRunningInIframe()).toBe(false);
   });
 });
