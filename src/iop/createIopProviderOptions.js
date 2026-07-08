@@ -7,12 +7,17 @@
 export function createIopProviderOptions(payload = {}) {
   const { user = {}, permissions = [] } = payload;
 
-  const getUserPermissions = async (app) =>
-    app
-      ? permissions.filter(({ permission }) =>
-          permission?.startsWith(`${app}:`),
+  const getUserPermissions = async (app, _disableCache) => {
+    const validPermissions = permissions.filter(
+      (entry) => typeof entry?.permission === 'string',
+    );
+
+    return app
+      ? validPermissions.filter(({ permission }) =>
+          permission.startsWith(`${app}:`),
         )
-      : permissions;
+      : validPermissions;
+  };
 
   const chrome = {
     isBeta: () => false,

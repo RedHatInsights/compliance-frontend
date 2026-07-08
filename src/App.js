@@ -10,6 +10,9 @@ import useUnleashFlagsReady from 'Utilities/hooks/useUnleashFlagsReady';
 import { AccessCheck } from '@project-kessel/react-kessel-access-check';
 import { KESSEL_API_BASE_URL } from '@/constants';
 import { CenteredSpinner } from 'PresentationalComponents';
+import { getAppConfig } from '@/config/appConfig';
+import { useIopChromeContext } from '@/iop/IopChromeContext';
+import { useIopNavigationSync } from '@/iop/useIopNavigationSync';
 
 import Routes from './Routes';
 import './App.scss';
@@ -20,6 +23,10 @@ const App = (props) => {
   const chrome = useChrome();
   const isKesselEnabled = useFeatureFlag('compliance.kessel_enabled');
   const flagsReady = useUnleashFlagsReady();
+  const { permissionsEpoch } = useIopChromeContext();
+  const isIop = getAppConfig().envTarget === 'iop';
+
+  useIopNavigationSync();
 
   useEffect(() => {
     chrome.hideGlobalFilter(true);
@@ -41,7 +48,10 @@ const App = (props) => {
           </NotificationsProvider>
         </AccessCheck.Provider>
       ) : (
-        <RBACProvider appName="compliance">
+        <RBACProvider
+          key={isIop ? `iop-rbac-${permissionsEpoch}` : undefined}
+          appName="compliance"
+        >
           <NotificationsProvider>
             <Routes childProps={props} />
           </NotificationsProvider>
