@@ -5,7 +5,9 @@ import { routes } from '@/Routes';
 /**
  * IoP Foreman URL sync reads route metadata from Routes.js — not a hardcoded list.
  * Any route with `modal: true` stays in the iframe hash only; page routes sync to Foreman.
- *  @param pathname
+ *
+ *  @param   {string}           pathname Hash-router pathname from the iframe (e.g. `/scappolicies/new`).
+ *  @returns {object|undefined}          Matching route from `Routes.js`, if any.
  */
 const findExactRoute = (pathname = '') => {
   const normalized = String(pathname).replace(/^\/+/, '') || 'reports';
@@ -22,7 +24,9 @@ export function isIframeModalRoute(pathname = '') {
 /**
  * Maps an in-iframe path to the Foreman browser URL segment we sync.
  * Returns null for modal routes — Foreman URL should not change while a modal is open.
- *  @param pathname
+ *
+ *  @param   {string}      pathname Hash-router pathname from the iframe.
+ *  @returns {string|null}          Foreman app route segment, or null when the path is a modal route.
  */
 export function getForemanSyncRoute(pathname = '') {
   if (isIframeModalRoute(pathname)) {

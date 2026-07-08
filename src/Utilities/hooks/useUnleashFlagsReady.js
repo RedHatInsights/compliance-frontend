@@ -1,15 +1,6 @@
-import { useFlagsStatus } from '@unleash/proxy-client-react';
+import useUnleashFlagsReadyHcc from './useUnleashFlagsReady.hcc';
+import useUnleashFlagsReadyIop from './useUnleashFlagsReady.iop';
 
-import { getAppConfig } from '@/config/appConfig';
-
-const useUnleashFlagsReady = () => {
-  if (!getAppConfig().features.unleash) {
-    return true;
-  }
-
-  const { flagsReady } = useFlagsStatus();
-
-  return flagsReady;
-};
-
-export default useUnleashFlagsReady;
+export default process.env.IOP === 'true'
+  ? useUnleashFlagsReadyIop
+  : useUnleashFlagsReadyHcc;
