@@ -5,7 +5,7 @@ describe('createIopProviderOptions', () => {
     delete window.insights;
   });
 
-  it('exposes chrome auth and RBAC helpers on window.insights', async () => {
+  it('exposes chrome auth and RBAC helpers via Scalprum options', async () => {
     const permissions = [
       { permission: 'compliance:report:read', resourceDefinitions: [] },
       { permission: 'compliance:policy:read', resourceDefinitions: [] },
@@ -16,14 +16,16 @@ describe('createIopProviderOptions', () => {
       permissions,
     });
 
-    expect(window.insights.chrome.auth.getUser).toBeDefined();
-    expect(await window.insights.chrome.auth.getUser()).toEqual({
+    const { chrome } = options.api;
+
+    expect(chrome.auth.getUser).toBeDefined();
+    expect(await chrome.auth.getUser()).toEqual({
       identity: { user: { username: 'tester' } },
     });
 
-    const scoped = await window.insights.chrome.getUserPermissions('compliance');
+    const scoped = await chrome.getUserPermissions('compliance');
     expect(scoped).toHaveLength(2);
 
-    expect(options.api.chrome.getApp()).toBe('compliance');
+    expect(chrome.getApp()).toBe('compliance');
   });
 });

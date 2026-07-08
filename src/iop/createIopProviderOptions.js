@@ -1,13 +1,13 @@
 /**
  * ScalprumProvider options for IoP iframe — mirrors foreman_rh_cloud ScalprumContext shape.
  *
- * @param {Object} payload postMessage payload from Foreman
- * @returns {Object} ScalprumProvider props
+ *  @param   {object} payload postMessage payload from Foreman
+ *  @returns {object}         ScalprumProvider props
  */
 export function createIopProviderOptions(payload = {}) {
   const { user = {}, permissions = [] } = payload;
 
-  const getUserPermissions = async (app, _disableCache) => {
+  const getUserPermissions = async (app) => {
     const validPermissions = permissions.filter(
       (entry) => typeof entry?.permission === 'string',
     );
@@ -41,6 +41,7 @@ export function createIopProviderOptions(payload = {}) {
 
   if (typeof window !== 'undefined') {
     window.insights = window.insights || {};
+    // eslint-disable-next-line rulesdir/no-chrome-api-call-from-window
     window.insights.chrome = chrome;
   }
 

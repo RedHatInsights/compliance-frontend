@@ -186,6 +186,9 @@ const isListEndpoint = (endpoint) =>
 
 /**
  * Returns the same shape as fetchResult + compileResult for a Compliance endpoint.
+ *  @param endpoint
+ *  @param params
+ *  @param options
  */
 export function getIopMockResponse(endpoint, params = {}, options = {}) {
   const { onlyTotal } = options;
