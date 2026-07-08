@@ -12,9 +12,7 @@ import { isIframeModalRoute } from './iopForemanSyncRoute';
 const normalizeAppRoute = (appRoute = '') =>
   `/${String(appRoute).replace(/^\/+/, '')}`;
 
-/**
- * Listens for Foreman postMessage, wires Scalprum chrome/RBAC, navigates to the requested route.
- */
+// Listens for Foreman postMessage, wires Scalprum chrome/RBAC, navigates to the requested route.
 const IopBridge = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
