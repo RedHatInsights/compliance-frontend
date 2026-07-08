@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ScalprumProvider } from '@scalprum/react-core';
 import { Bullseye, Spinner } from '@patternfly/react-core';
 
 import { IOP_CHROME_INIT, IOP_COMPLIANCE_READY } from './constants';
 import { createIopProviderOptions } from './createIopProviderOptions';
+import { IopChromeContext } from './IopChromeContext';
+import { isIframeModalRoute } from './iopForemanSyncRoute';
 
 const normalizeAppRoute = (appRoute = '') =>
   `/${String(appRoute).replace(/^\/+/, '')}`;
@@ -15,7 +17,15 @@ const normalizeAppRoute = (appRoute = '') =>
  */
 const IopBridge = ({ children }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const locationRef = useRef(location.pathname);
+  const lastParentAppRouteRef = useRef(null);
   const [providerOptions, setProviderOptions] = useState(null);
+  const [permissionsEpoch, setPermissionsEpoch] = useState(0);
+  const [chromeReady, setChromeReady] = useState(false);
+  const lastPermissionsKeyRef = useRef('');
+
+  locationRef.current = location.pathname;
 
   useEffect(() => {
     const handleMessage = (event) => {
@@ -28,10 +38,31 @@ const IopBridge = ({ children }) => {
       }
 
       const { appRoute, ...payload } = event.data.payload || {};
-      setProviderOptions(createIopProviderOptions(payload));
+      const permissionsKey = JSON.stringify(payload.permissions || []);
 
-      if (appRoute) {
-        navigate(normalizeAppRoute(appRoute));
+      if (permissionsKey !== lastPermissionsKeyRef.current) {
+        lastPermissionsKeyRef.current = permissionsKey;
+        setPermissionsEpoch((current) => current + 1);
+        setProviderOptions(createIopProviderOptions(payload));
+      } else {
+        createIopProviderOptions(payload);
+      }
+
+      setChromeReady(true);
+
+      if (!appRoute || appRoute === lastParentAppRouteRef.current) {
+        return;
+      }
+
+      if (isIframeModalRoute(locationRef.current)) {
+        return;
+      }
+
+      lastParentAppRouteRef.current = appRoute;
+
+      const target = normalizeAppRoute(appRoute);
+      if (locationRef.current !== target) {
+        navigate(target);
       }
     };
 
@@ -66,7 +97,9 @@ const IopBridge = ({ children }) => {
   }
 
   return (
-    <ScalprumProvider {...providerOptions}>{children}</ScalprumProvider>
+    <IopChromeContext.Provider value={{ permissionsEpoch, chromeReady }}>
+      <ScalprumProvider {...providerOptions}>{children}</ScalprumProvider>
+    </IopChromeContext.Provider>
   );
 };
 
