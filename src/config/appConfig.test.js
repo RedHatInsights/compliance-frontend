@@ -1,35 +1,12 @@
-import {
-  buildAppConfig,
-  readEnvTarget,
-  resetAppConfigForTests,
-} from './appConfig';
+import { getAppConfigHcc } from './appConfig.hcc';
+import { getAppConfigIop } from './appConfig.iop';
 
 describe('appConfig', () => {
-  const originalIop = process.env.IOP;
+  describe('getAppConfigIop', () => {
+    it('uses insights cloud API paths and disables cloud-only features', () => {
+      const config = getAppConfigIop();
 
-  afterEach(() => {
-    process.env.IOP = originalIop;
-    resetAppConfigForTests();
-  });
-
-  describe('readEnvTarget', () => {
-    it('returns iop when the IoP build flag is set', () => {
-      process.env.IOP = 'true';
-
-      expect(readEnvTarget()).toBe('iop');
-    });
-
-    it('returns hcc for the default cloud build', () => {
-      delete process.env.IOP;
-
-      expect(readEnvTarget()).toBe('hcc');
-    });
-  });
-
-  describe('buildAppConfig', () => {
-    it('iop: uses insights cloud API paths and disables cloud-only features', () => {
-      const config = buildAppConfig('iop');
-
+      expect(config.envTarget).toBe('iop');
       expect(config.api.complianceBasePath).toBe(
         '/insights_cloud/api/compliance/v2',
       );
@@ -40,10 +17,13 @@ describe('appConfig', () => {
       expect(config.features.pdf).toBe(false);
       expect(config.features.dashboardZeroState).toBe(false);
     });
+  });
 
-    it('hcc: keeps standard cloud configuration', () => {
-      const config = buildAppConfig('hcc');
+  describe('getAppConfigHcc', () => {
+    it('keeps standard cloud configuration', () => {
+      const config = getAppConfigHcc();
 
+      expect(config.envTarget).toBe('hcc');
       expect(config.api.complianceBasePath).toBe('/api/compliance/v2');
       expect(config.features.unleash).toBe(true);
     });
