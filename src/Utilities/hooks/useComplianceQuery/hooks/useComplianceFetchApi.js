@@ -1,4 +1,6 @@
 import { useCallback } from 'react';
+import { isIopApiMocksEnabled } from 'Utilities/mocks/iopApiMocksEnabled';
+import { getIopMockResponse } from 'Utilities/mocks/getIopMockResponse';
 import {
   defaultCompileResult,
   compileTotalResult,
@@ -8,6 +10,7 @@ import {
 } from '../helpers';
 
 const useComplianceFetchApi = ({
+  endpoint,
   apiEndpoint,
   params,
   convertToArray,
@@ -22,6 +25,11 @@ const useComplianceFetchApi = ({
             { ...params, ...(onlyTotal ? TOTAL_REQUEST_PARAMS : {}) },
             fetchParams,
           );
+
+      if (isIopApiMocksEnabled()) {
+        return getIopMockResponse(endpoint, allParams, { onlyTotal });
+      }
+
       return await fetchResult(
         apiEndpoint,
         allParams,
@@ -29,7 +37,7 @@ const useComplianceFetchApi = ({
         onlyTotal ? compileTotalResult : compileResult,
       );
     },
-    [apiEndpoint, params, convertToArray, onlyTotal, compileResult],
+    [apiEndpoint, endpoint, params, convertToArray, onlyTotal, compileResult],
   );
 
   const fetchForBatch = useCallback(
