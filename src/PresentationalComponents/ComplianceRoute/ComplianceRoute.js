@@ -7,7 +7,7 @@ import useDocumentTitle from 'Utilities/hooks/useDocumentTitle';
 
 const RouteLoading = () => (
   <Bullseye>
-    <Spinner size="xl" />
+    <Spinner />
   </Bullseye>
 );
 
@@ -48,10 +48,6 @@ const ComplianceRoute = (props) => {
   useEffect(() => {
     isCurrent && !requiresTitleEntity && setTitle(title);
   }, [isCurrent, requiresTitleEntity, setTitle, title]);
-
-  if (props.modal && !isCurrent) {
-    return null;
-  }
 
   const routeContent = (
     <Suspense fallback={<RouteLoading />}>
