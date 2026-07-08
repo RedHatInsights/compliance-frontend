@@ -1,36 +1,8 @@
 const HCC = 'hcc';
 const IOP = 'iop';
 
-const IOP_STATIC_PATH_MARKER = '/assets/apps/compliance';
-
-export function getEnvTargetFromPathname(pathname = '') {
-  if (pathname.includes(IOP_STATIC_PATH_MARKER)) {
-    return IOP;
-  }
-  return HCC;
-}
-
-export function isRunningInIframe() {
-  if (typeof window === 'undefined') {
-    return false;
-  }
-  try {
-    return window.self !== window.top;
-  } catch {
-    return true;
-  }
-}
-
 export function readEnvTarget() {
-  if (typeof window === 'undefined' || !window.location?.pathname) {
-    return HCC;
-  }
-
-  if (getEnvTargetFromPathname(window.location.pathname) === IOP) {
-    return IOP;
-  }
-
-  if (isRunningInIframe()) {
+  if (process.env.IOP === 'true') {
     return IOP;
   }
 

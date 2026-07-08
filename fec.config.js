@@ -36,6 +36,7 @@ const routes = {
 module.exports = {
   appName,
   appUrl: isIOP ? '/' : `/${bundle}/${appName}`,
+  definePlugin: isIOP ? { 'process.env.IOP': JSON.stringify('true') } : {},
   useProxy: process.env.PROXY === 'true',
   ...(isIOP
     ? {
