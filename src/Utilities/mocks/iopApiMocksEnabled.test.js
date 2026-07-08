@@ -1,5 +1,6 @@
-import { buildAppConfig } from '@/config/appConfig';
 import { getAppConfig } from '@/config/appConfig';
+import { getAppConfigHcc } from '@/config/appConfig.hcc';
+import { getAppConfigIop } from '@/config/appConfig.iop';
 import { isIopApiMocksEnabled } from './iopApiMocksEnabled';
 
 jest.mock('@/config/appConfig', () => {
@@ -12,12 +13,12 @@ jest.mock('@/config/appConfig', () => {
 
 describe('isIopApiMocksEnabled', () => {
   it('is false on HCC', () => {
-    getAppConfig.mockReturnValue(buildAppConfig('hcc'));
+    getAppConfig.mockReturnValue(getAppConfigHcc());
     expect(isIopApiMocksEnabled()).toBe(false);
   });
 
   it('is true on IoP', () => {
-    getAppConfig.mockReturnValue(buildAppConfig('iop'));
+    getAppConfig.mockReturnValue(getAppConfigIop());
     expect(isIopApiMocksEnabled()).toBe(true);
   });
 });
