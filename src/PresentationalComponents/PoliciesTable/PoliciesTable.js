@@ -27,6 +27,7 @@ export const PoliciesTable = ({
 
   return (
     <ComplianceTable
+      useTableParams
       aria-label="Policies"
       ouiaId="PoliciesTable"
       className="compliance-policies-table"

@@ -22,6 +22,7 @@ const ReportsTable = ({
 
   return (
     <TableToolsTable
+      useTableParams
       aria-label="Reports"
       ouiaId="ReportsTable"
       columns={[...columns, PDFExportDownload]}
