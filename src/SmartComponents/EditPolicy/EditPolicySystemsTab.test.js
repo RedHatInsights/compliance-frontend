@@ -39,6 +39,17 @@ describe('EditPolicySystemsTab', () => {
     );
   });
 
+  it('should render a SystemsTable with perPage set to 10', () => {
+    render(<EditPolicySystemsTab {...defaultProps} />);
+
+    expect(mockSystemsTable).toHaveBeenCalledWith(
+      expect.objectContaining({
+        perPage: 10,
+      }),
+      {},
+    );
+  });
+
   it('should switch to policy systems when selected systems is chosen', () => {
     render(<EditPolicySystemsTab {...defaultProps} />);
 
