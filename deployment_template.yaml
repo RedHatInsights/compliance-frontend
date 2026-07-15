@@ -58,32 +58,27 @@ objects:
             - PCI-DSS
             - NIST
             - OSPP
-      bundleSegments:
-        - segmentId: security
-          bundleId: insights
-          position: 600
+      navigationSegments:
+        - segmentId: compliance-nav
           navItems:
-            - id: security
-              title: Security
+            - id: compliance
+              title: Compliance
               expandable: true
               routes:
-                - id: compliance
-                  title: Compliance
-                  expandable: true
-                  routes:
-                    - id: complianceReports
-                      title: Reports
-                      href: /insights/compliance/reports
-                      product: Red Hat Insights
-                      icon: InsightsIcon
-                    - id: scapPolicies
-                      title: SCAP Policies
-                      href: /insights/compliance/scappolicies
-                      product: Red Hat Insights
-                    - id: complianceSystems
-                      title: Systems
-                      href: /insights/compliance/systems
-                      product: Red Hat Insights
+                - id: complianceReports
+                  title: Reports
+                  href: /insights/compliance/reports
+                  product: Red Hat Insights
+                  icon: InsightsIcon
+                - id: scapPolicies
+                  title: SCAP Policies
+                  href: /insights/compliance/scappolicies
+                  product: Red Hat Insights
+                - id: complianceSystems
+                  title: Systems
+                  href: /insights/compliance/systems
+                  product: Red Hat Insights
+
       module:
         manifestLocation: /apps/compliance/fed-mods.json
         analytics:
