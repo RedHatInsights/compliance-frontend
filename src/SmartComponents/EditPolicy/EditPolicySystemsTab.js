@@ -80,6 +80,7 @@ const EditPolicySystemsTab = ({
           <EmptyState osMajorVersion={os_major_version} />
         ) : undefined
       }
+      sortBy={{ key: 'name', direction: 'asc' }}
       compact
       defaultFilter={isAllSystemsView ? defaultFilter : undefined}
       ignoreOsMajorVersion={!isAllSystemsView}
