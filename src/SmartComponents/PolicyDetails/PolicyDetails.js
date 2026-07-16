@@ -8,7 +8,6 @@ import {
   Grid,
   GridItem,
   Tab,
-  Spinner,
 } from '@patternfly/react-core';
 import PageHeader, {
   PageHeaderTitle,
@@ -24,6 +23,7 @@ import {
   BreadcrumbLinkItem,
   Tailorings,
   LinkButton,
+  CenteredSpinner,
 } from 'PresentationalComponents';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
@@ -96,7 +96,7 @@ const PolicyDetailsContent = ({ route, usePermissionsHook }) => {
           <PolicyDetailsContentLoader />
         </PageHeader>
         <section className="pf-v6-c-page__main-section">
-          <Spinner />
+          <CenteredSpinner />
         </section>
       </StateViewPart>
       <StateViewPart stateKey="data">

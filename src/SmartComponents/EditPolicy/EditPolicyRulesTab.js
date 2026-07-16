@@ -7,8 +7,11 @@ import {
 } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import xor from 'lodash/xor';
-import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
-import { StateView, StateViewPart } from 'PresentationalComponents';
+import {
+  StateView,
+  StateViewPart,
+  CenteredSpinner,
+} from 'PresentationalComponents';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 import Tailorings from '@/PresentationalComponents/Tailorings/Tailorings';
 import useProfileRuleIds from 'Utilities/hooks/useProfileRuleIds';
@@ -184,9 +187,7 @@ export const EditPolicyRulesTab = ({
       }}
     >
       <StateViewPart stateKey="loading">
-        <EmptyState>
-          <Spinner />
-        </EmptyState>
+        <CenteredSpinner />
       </StateViewPart>
       <StateViewPart stateKey="data">
         <Content>

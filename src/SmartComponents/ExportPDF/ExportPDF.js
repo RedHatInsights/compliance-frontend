@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Button, Spinner } from '@patternfly/react-core';
+import { Button } from '@patternfly/react-core';
 import { useParams } from 'react-router-dom';
 
 import {
   ComplianceModal,
   StateViewWithError,
   StateViewPart,
+  CenteredSpinner,
 } from 'PresentationalComponents';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 import { useAddNotification } from '@redhat-cloud-services/frontend-components-notifications/hooks';
@@ -97,7 +98,7 @@ export const ExportPDF = () => {
     >
       <StateViewWithError stateValues={{ error, data: reportData, loading }}>
         <StateViewPart stateKey="loading">
-          <Spinner />
+          <CenteredSpinner />
         </StateViewPart>
         <StateViewPart stateKey="data">
           <ExportPDFForm

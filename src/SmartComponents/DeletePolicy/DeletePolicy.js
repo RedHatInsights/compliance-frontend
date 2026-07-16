@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-import { Button, Checkbox, Content, Spinner } from '@patternfly/react-core';
+import { Button, Checkbox, Content } from '@patternfly/react-core';
 import { ModalVariant } from '@patternfly/react-core/deprecated';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 import { useAddNotification } from '@redhat-cloud-services/frontend-components-notifications/hooks';
@@ -9,6 +9,7 @@ import {
   ComplianceModal,
   StateViewWithError,
   StateViewPart,
+  CenteredSpinner,
 } from 'PresentationalComponents';
 import usePolicy from 'Utilities/hooks/api/usePolicy';
 import { apiInstance } from 'Utilities/hooks/useQuery';
@@ -77,7 +78,7 @@ const DeletePolicy = () => {
     >
       <StateViewWithError stateValues={{ error, data: policy, loading }}>
         <StateViewPart stateKey="loading">
-          <Spinner />
+          <CenteredSpinner />
         </StateViewPart>
         <StateViewPart stateKey="data">
           <Content component="p" className="policy-delete-body-text">
