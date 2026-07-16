@@ -4,10 +4,8 @@ import { useParams } from 'react-router-dom';
 import {
   Breadcrumb,
   BreadcrumbItem,
-  EmptyState,
   Grid,
   GridItem,
-  Spinner,
   Tab,
   Tabs,
 } from '@patternfly/react-core';
@@ -24,6 +22,7 @@ import {
   StateViewPart,
   SubPageTitle,
   LinkButton,
+  CenteredSpinner,
 } from 'PresentationalComponents';
 import { SystemsTable } from 'SmartComponents';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
@@ -73,9 +72,7 @@ const ReportDetails = ({ route }) => {
           <ReportDetailsContentLoader />
         </PageHeader>
         <section className="pf-v6-c-page__main-section">
-          <EmptyState>
-            <Spinner />
-          </EmptyState>
+          <CenteredSpinner />
         </section>
       </StateViewPart>
       <StateViewPart stateKey="report">

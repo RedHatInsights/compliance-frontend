@@ -4,7 +4,7 @@ import { NotConnected } from '@redhat-cloud-services/frontend-components/NotConn
 import NoPoliciesState from './NoPoliciesState';
 import NoReportsState from './NoReportsState';
 import useSystem from 'Utilities/hooks/api/useSystem';
-import { Bullseye, Spinner } from '@patternfly/react-core';
+import { CenteredSpinner } from 'PresentationalComponents';
 
 const EmptyState = ({ inventoryId: systemId, system, connectedToInsights }) => {
   // request system data in case Inventory details Compliance opened
@@ -24,11 +24,7 @@ const EmptyState = ({ inventoryId: systemId, system, connectedToInsights }) => {
   }
 
   if (systemLoading === true) {
-    return (
-      <Bullseye>
-        <Spinner />
-      </Bullseye>
-    );
+    return <CenteredSpinner />;
   }
 
   if (policiesCount === 0) {

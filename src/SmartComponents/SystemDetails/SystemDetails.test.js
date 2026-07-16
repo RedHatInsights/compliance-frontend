@@ -42,6 +42,9 @@ describe('SystemDetails', () => {
     expect(
       screen.getByLabelText('Inventory Details Wrapper'),
     ).toBeInTheDocument();
-    expect(screen.getByText('Loading...')).toBeInTheDocument();
+    expect(screen.getByLabelText('Contents')).toHaveAttribute(
+      'aria-valuetext',
+      'Loading...',
+    );
   });
 });

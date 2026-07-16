@@ -11,7 +11,6 @@ import {
   Flex,
   Form,
   FormGroup,
-  Spinner,
   Content,
   ContentVariants,
 } from '@patternfly/react-core';
@@ -24,6 +23,7 @@ import {
   StateViewWithError,
   PolicyTypesTable,
   PolicyTypeTooltip,
+  CenteredSpinner,
 } from 'PresentationalComponents';
 
 const serialiseOsVersions = (profiles = []) =>
@@ -89,7 +89,7 @@ const CreateSCAPPolicyStepContent = ({
       }}
     >
       <StateViewPart stateKey="loading">
-        <Spinner />
+        <CenteredSpinner />
       </StateViewPart>
       <StateViewPart stateKey="data">
         <Content>

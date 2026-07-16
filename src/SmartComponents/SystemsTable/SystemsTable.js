@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { Spinner } from '@patternfly/react-core';
 import { InventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
 import { TableStateProvider } from 'bastilian-tabletools';
 import {
@@ -8,6 +7,7 @@ import {
   ErrorPage,
   StateView,
   StateViewPart,
+  CenteredSpinner,
 } from 'PresentationalComponents';
 import {
   useGetEntities,
@@ -114,7 +114,7 @@ export const SystemsTable = ({
           disableDefaultColumns
           columns={mergedColumns(columns)}
           noSystemsTable={noSystemsTable}
-          fallback={<Spinner />}
+          fallback={<CenteredSpinner />}
           getEntities={getEntities}
           fetchCustomOSes={fetchOperatingSystems}
           hideFilters={{

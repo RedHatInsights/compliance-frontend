@@ -2,16 +2,15 @@ import React from 'react';
 import propTypes from 'prop-types';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink';
 import {
-  Content,
   Button,
+  Content,
   EmptyState,
   EmptyStateBody,
   EmptyStateActions,
   EmptyStateFooter,
 } from '@patternfly/react-core';
 import { CloudSecurityIcon } from '@patternfly/react-icons';
-import { Spinner } from '@redhat-cloud-services/frontend-components/Spinner';
-import { ErrorCard } from 'PresentationalComponents';
+import { ErrorCard, CenteredSpinner } from 'PresentationalComponents';
 import usePolicies from 'Utilities/hooks/api/usePolicies';
 import { emptyStateLink } from '@/constants';
 
@@ -20,7 +19,7 @@ const ComplianceEmptyState = ({ title = 'No policies', mainButton }) => {
   const policiesCount = data?.meta?.total || 0;
 
   if (loading) {
-    return <Spinner />;
+    return <CenteredSpinner />;
   }
 
   if (error) {

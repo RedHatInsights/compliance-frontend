@@ -8,7 +8,7 @@ import { AccessCheck } from '@project-kessel/react-kessel-access-check';
 import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
 import { KESSEL_API_BASE_URL } from '@/constants';
 import { useFlagsStatus } from '@unleash/proxy-client-react';
-import { Bullseye, Spinner } from '@patternfly/react-core';
+import { CenteredSpinner } from 'PresentationalComponents';
 
 const queryClient = new QueryClient();
 
@@ -18,11 +18,7 @@ const ComplianceDetails = (props) => {
   const { flagsReady } = useFlagsStatus();
 
   if (!flagsReady) {
-    return (
-      <Bullseye>
-        <Spinner size="xl" />
-      </Bullseye>
-    );
+    return <CenteredSpinner />;
   }
 
   return (

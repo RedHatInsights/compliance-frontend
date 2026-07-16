@@ -18,7 +18,11 @@ jest.mock('bastilian-tabletools', () => ({
 
 jest.mock('PresentationalComponents', () => {
   const React = require('react');
+  const CenteredSpinner = jest.requireActual(
+    'PresentationalComponents/CenteredSpinner/CenteredSpinner',
+  ).default;
   return {
+    CenteredSpinner,
     StateViewPart: ({ children }) => <>{children}</>,
     StateViewWithError: ({ stateValues, children }) => {
       if (stateValues.error) {

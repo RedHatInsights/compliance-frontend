@@ -1,10 +1,10 @@
 import React from 'react';
-import { Spinner } from '@patternfly/react-core';
 import {
   ReportsTable,
   StateViewPart,
   StateViewWithError,
   ReportsEmptyState,
+  CenteredSpinner,
 } from 'PresentationalComponents';
 import { TableStateProvider } from 'bastilian-tabletools';
 
@@ -61,7 +61,7 @@ const Reports = () => {
           }}
         >
           <StateViewPart stateKey="loading">
-            <Spinner />
+            <CenteredSpinner />
           </StateViewPart>
           <StateViewPart stateKey="showTable">
             {totalReports === 0 ? (

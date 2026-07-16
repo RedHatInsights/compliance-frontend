@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Spinner } from '@patternfly/react-core';
+import { Grid } from '@patternfly/react-core';
 import {
   ErrorPage,
   LinkButton,
@@ -8,6 +8,7 @@ import {
   PoliciesTable,
   StateView,
   StateViewPart,
+  CenteredSpinner,
 } from 'PresentationalComponents';
 import usePolicies from 'Utilities/hooks/api/usePolicies';
 import ComplianceEmptyState from 'PresentationalComponents/ComplianceEmptyState';
@@ -89,7 +90,7 @@ const CompliancePoliciesContent = ({ usePermissionsHook }) => {
             <ErrorPage error={error} />
           </StateViewPart>
           <StateViewPart stateKey="loading">
-            <Spinner />
+            <CenteredSpinner />
           </StateViewPart>
           <StateViewPart stateKey="showTable">
             {totalPolicies === 0 ? (

@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import propTypes from 'prop-types';
-import { Button, Bullseye, Spinner } from '@patternfly/react-core';
+import { Button } from '@patternfly/react-core';
 import { ModalVariant } from '@patternfly/react-core/deprecated';
 import useInsightsNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 
@@ -8,6 +8,7 @@ import {
   ComplianceModal,
   StateViewWithError,
   StateViewPart,
+  CenteredSpinner,
 } from 'PresentationalComponents';
 
 const ImportRulesModal = ({
@@ -52,9 +53,7 @@ const ImportRulesModal = ({
     >
       <StateViewWithError stateValues={stateValues}>
         <StateViewPart stateKey="loading">
-          <Bullseye>
-            <Spinner />
-          </Bullseye>
+          <CenteredSpinner />
         </StateViewPart>
         <StateViewPart stateKey="data">{children}</StateViewPart>
       </StateViewWithError>
