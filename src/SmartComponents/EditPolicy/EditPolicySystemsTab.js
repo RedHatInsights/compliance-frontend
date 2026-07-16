@@ -86,6 +86,7 @@ const EditPolicySystemsTab = ({
       preselectedSystems={selectedSystems}
       onSelect={onSystemSelect}
       setIsSystemsDataLoading={setIsSystemsDataLoading}
+      perPage={10}
       enableExport={false}
       dedicatedAction={
         <SystemsViewToggle

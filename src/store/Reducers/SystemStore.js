@@ -10,9 +10,10 @@ const selectRows = (rows, selected) =>
 
 export const entitiesReducer = () =>
   applyReducerHash({
-    ['INVENTORY_INIT']: () => ({
+    ['INVENTORY_INIT']: (_state, { payload: { perPage } = {} } = {}) => ({
       rows: [],
       total: 0,
+      perPage,
     }),
     ['RESET_PAGE']: (state) => ({
       ...state,

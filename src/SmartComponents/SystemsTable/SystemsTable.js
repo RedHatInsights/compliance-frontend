@@ -1,6 +1,5 @@
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
 import { InventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
 import { TableStateProvider } from 'bastilian-tabletools';
 import {
@@ -37,10 +36,10 @@ export const SystemsTable = ({
   dedicatedAction,
   ignoreOsMajorVersion,
   setIsSystemsDataLoading,
+  perPage,
   ...inventoryTableProps
 }) => {
   const inventory = useRef(null);
-  const dispatch = useDispatch();
 
   const { toolbarProps: conditionalFilter } = useSystemsFilterConfig({
     filters,
@@ -94,14 +93,6 @@ export const SystemsTable = ({
   const noError = error === undefined && !isEmpty;
   const empty = emptyStateComponent && isEmpty ? true : undefined;
 
-  // Resets the Inventory to a loading state
-  // and prevents previously shown columns and rows to appear
-  useLayoutEffect(() => {
-    dispatch({
-      type: 'INVENTORY_INIT',
-    });
-  }, [dispatch]);
-
   return (
     <StateView
       stateValues={{
@@ -133,7 +124,7 @@ export const SystemsTable = ({
             tags: false,
             hostGroupFilter: !showGroupsFilter,
           }}
-          onLoad={defaultOnLoad(columns)}
+          onLoad={defaultOnLoad(columns, { perPage })}
           tableProps={{
             // TODO There must be a bug in the Inventory
             onSelect: undefined,
@@ -180,6 +171,7 @@ SystemsTable.propTypes = {
   ignoreOsMajorVersion: PropTypes.bool,
   reportId: PropTypes.string,
   setIsSystemsDataLoading: PropTypes.func,
+  perPage: PropTypes.number,
 };
 
 const SystemsTableWithTableState = (props) => (
