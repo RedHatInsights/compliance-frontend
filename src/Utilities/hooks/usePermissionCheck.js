@@ -44,12 +44,12 @@ export const useKesselPermissions = (requiredPermissions) => {
     return { hasAccess: false, isLoading: workspaceLoading };
   }
 
-  if (checkParams?.resources?.length === 0) {
-    return { hasAccess: true, isLoading: false };
-  }
-
   if (!workspaceId || workspaceError || error) {
     return { hasAccess: false, isLoading: false };
+  }
+
+  if (checkParams?.resources?.length === 0) {
+    return { hasAccess: true, isLoading: false };
   }
 
   const hasAccess = Array.isArray(data)
