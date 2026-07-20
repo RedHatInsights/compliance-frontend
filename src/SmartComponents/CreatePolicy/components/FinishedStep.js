@@ -200,7 +200,7 @@ const FinishedStep = ({ values, onClose }) => {
   ]);
 
   return (
-    <Bullseye>
+    <Bullseye className="pf-v6-u-flex-1">
       <EmptyState
         headingLevel="h1"
         icon={WrenchIcon}
