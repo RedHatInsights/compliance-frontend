@@ -27,8 +27,13 @@ export const mergedColumns = (columns) => (defaultColumns) =>
   }, []);
 
 export const defaultOnLoad =
-  (columns) =>
-  ({ INVENTORY_ACTION_TYPES, mergeWithEntities }) =>
+  (columns, { perPage } = {}) =>
+  ({ INVENTORY_ACTION_TYPES, mergeWithEntities }) => {
     getRegistry().register({
       ...mergeWithEntities(entitiesReducer(INVENTORY_ACTION_TYPES, columns)),
     });
+    getRegistry().store.dispatch({
+      type: 'INVENTORY_INIT',
+      ...(perPage ? { payload: { perPage } } : {}),
+    });
+  };
