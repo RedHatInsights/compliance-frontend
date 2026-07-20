@@ -6,7 +6,7 @@ export const convertToArray = ({
   limit,
   offset,
   idsOnly,
-  sort,
+  sortBy,
   filters,
   filter,
 }) => {
@@ -17,7 +17,7 @@ export const convertToArray = ({
     limit,
     offset,
     idsOnly,
-    sort,
+    sortBy,
     // support both 'filters' and 'filter' keys until Inventory migrated to tabletools
     filters || filter,
   ];
