@@ -37,6 +37,7 @@ export const SystemsTable = ({
   ignoreOsMajorVersion,
   setIsSystemsDataLoading,
   perPage,
+  sortBy = { key: 'name', direction: 'asc' },
   ...inventoryTableProps
 }) => {
   const inventory = useRef(null);
@@ -92,6 +93,7 @@ export const SystemsTable = ({
 
   const noError = error === undefined && !isEmpty;
   const empty = emptyStateComponent && isEmpty ? true : undefined;
+  const selectionEnabled = Boolean(onSelect || remediationsEnabled);
 
   return (
     <StateView
@@ -125,8 +127,10 @@ export const SystemsTable = ({
             hostGroupFilter: !showGroupsFilter,
           }}
           onLoad={defaultOnLoad(columns, { perPage })}
+          sortBy={sortBy}
+          hasCheckbox={selectionEnabled}
           tableProps={{
-            // TODO There must be a bug in the Inventory
+            // Prevent Inventory's default checkbox onSelect; bulk select owns it
             onSelect: undefined,
             ...bulkSelectTableProps,
             isStickyHeader: true,
@@ -172,6 +176,10 @@ SystemsTable.propTypes = {
   reportId: PropTypes.string,
   setIsSystemsDataLoading: PropTypes.func,
   perPage: PropTypes.number,
+  sortBy: PropTypes.shape({
+    key: PropTypes.string,
+    direction: PropTypes.string,
+  }),
 };
 
 const SystemsTableWithTableState = (props) => (

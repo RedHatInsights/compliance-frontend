@@ -21,22 +21,6 @@ export const renderComponent = (Component, props) => (_data, _id, entity) => (
 
 export const stringToId = (string) => string.split(' ').join('-').toLowerCase();
 
-export const buildOSObject = (osVersions = []) => {
-  return osVersions
-    .filter((version) => !!version && typeof version === 'string')
-    .map((version) => {
-      const [major, minor] = version.split('.');
-      return {
-        count: 0,
-        value: {
-          name: 'RHEL',
-          major,
-          minor,
-        },
-      };
-    });
-};
-
 export const capitalizeWord = (string) =>
   string.charAt(0).toUpperCase() + string.slice(1);
 

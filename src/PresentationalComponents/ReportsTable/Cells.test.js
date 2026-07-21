@@ -36,9 +36,9 @@ describe('ReportsTable Cells', () => {
     );
   });
 
-  it('expect to render OperatingSystem cell', () => {
+  it('expect to render OS cell', () => {
     const defaultProps = {
-      os_major_version: '7',
+      os_major_version: 7,
     };
 
     render(
