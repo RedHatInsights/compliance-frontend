@@ -27,5 +27,36 @@ describe('createIopProviderOptions', () => {
     expect(scoped).toHaveLength(2);
 
     expect(chrome.getApp()).toBe('compliance');
+
+    expect(options.config.inventory).toEqual(
+      expect.objectContaining({
+        name: 'inventory',
+        manifestLocation: expect.stringContaining(
+          '/assets/apps/inventory/fed-mods.json',
+        ),
+      }),
+    );
+    expect(
+      options.pluginSDKOptions.pluginLoaderOptions.transformPluginManifest,
+    ).toEqual(expect.any(Function));
+  });
+
+  it('rewrites inventory fed-mods baseURL auto to the IoP cdn path', () => {
+    const options = createIopProviderOptions();
+    const { transformPluginManifest } =
+      options.pluginSDKOptions.pluginLoaderOptions;
+
+    const rewritten = transformPluginManifest({
+      name: 'inventory',
+      baseURL: 'auto',
+      loadScripts: ['js/inventory.js'],
+    });
+
+    expect(rewritten.baseURL).toBe(
+      `${window.location.origin}/assets/apps/inventory/`,
+    );
+    expect(rewritten.loadScripts).toEqual([
+      `${window.location.origin}/assets/apps/inventory/js/inventory.js`,
+    ]);
   });
 });
