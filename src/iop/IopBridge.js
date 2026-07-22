@@ -8,6 +8,7 @@ import { IOP_CHROME_INIT, IOP_COMPLIANCE_READY } from './constants';
 import { createIopProviderOptions } from './createIopProviderOptions';
 import { IopChromeContext } from './IopChromeContext';
 import { isIframeModalRoute } from './iopForemanSyncRoute';
+import { useIopIframeHeightReporter } from './useIopIframeHeightReporter';
 
 const normalizeAppRoute = (appRoute = '') =>
   `/${String(appRoute).replace(/^\/+/, '')}`;
@@ -25,6 +26,8 @@ const IopBridge = ({ children }) => {
   const lastPermissionsKeyRef = useRef('');
 
   locationRef.current = location.pathname;
+
+  useIopIframeHeightReporter(embedded);
 
   useEffect(() => {
     const handleMessage = (event) => {

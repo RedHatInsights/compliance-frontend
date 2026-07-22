@@ -9,6 +9,7 @@ import { buildRuleGroups } from '@/__factories__/ruleGroups';
 import buildValueDefinitions from '@/__factories__/valueDefinitions';
 import { buildSecurityGuides } from '@/__factories__/securityGuides';
 import testResultsFactory from '@/__factories__/testResults';
+import { buildTestResults } from '@/__factories__/ruleResults';
 import ruleTreeFactory from '@/__factories__/ruleTree';
 import { faker } from '@faker-js/faker';
 
@@ -54,6 +55,13 @@ export const iopMockTestResults = testResultsFactory
       created: row.end_time || new Date().toISOString(),
     };
   });
+
+// Per-rule rows for system details Rule results table (title, severity, description, …).
+export const iopMockRuleResults = buildTestResults(10).map((row, index) => ({
+  ...row,
+  remediation_issue_id:
+    index % 2 === 0 ? `ssg:rhel8|${faker.lorem.slug()}` : null,
+}));
 export const iopMockRuleTree = [
   ruleTreeFactory.build(
     {},
