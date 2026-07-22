@@ -19,7 +19,7 @@
     "@project-kessel/react-kessel-access-check": "^0.5.7",
     "@redhat-cloud-services/compliance-client": "^3.0.7",
     "@redhat-cloud-services/frontend-components": "^7.10.3",
-    "@redhat-cloud-services/frontend-components-config-utilities": "^4.12.1",
+    "@redhat-cloud-services/frontend-components-config-utilities": "^4.13.0",
     "@redhat-cloud-services/frontend-components-notifications": "^6.11.3",
     "@redhat-cloud-services/frontend-components-remediations": "^4.11.3",
     "@redhat-cloud-services/frontend-components-utilities": "^7.5.1",
