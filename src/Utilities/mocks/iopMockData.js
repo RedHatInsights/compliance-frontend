@@ -35,23 +35,25 @@ export const iopMockRules = buildRules(8);
 export const iopMockRuleGroups = buildRuleGroups(4);
 export const iopMockValueDefinitions = buildValueDefinitions(4);
 // System-level report test results (not rule_result rows from ruleResults factory).
-export const iopMockTestResults = testResultsFactory.buildList(10).map((row) => {
-  const id = faker.string.uuid();
-  return {
-    ...row,
-    id,
-    system_id: id,
-    groups: [
-      {
-        id: 'dc925b53-0bee-4ccf-b95a-4b9611362cf7',
-        name: 'Ungrouped Hosts',
-        ungrouped: true,
-      },
-    ],
-    // Inventory entities reducer keeps loaded rows only when `created` is set.
-    created: row.end_time || new Date().toISOString(),
-  };
-});
+export const iopMockTestResults = testResultsFactory
+  .buildList(10)
+  .map((row) => {
+    const id = faker.string.uuid();
+    return {
+      ...row,
+      id,
+      system_id: id,
+      groups: [
+        {
+          id: 'dc925b53-0bee-4ccf-b95a-4b9611362cf7',
+          name: 'Ungrouped Hosts',
+          ungrouped: true,
+        },
+      ],
+      // Inventory entities reducer keeps loaded rows only when `created` is set.
+      created: row.end_time || new Date().toISOString(),
+    };
+  });
 export const iopMockRuleTree = [
   ruleTreeFactory.build(
     {},
