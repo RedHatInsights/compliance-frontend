@@ -5,6 +5,7 @@ const appConfigHcc = Object.freeze({
     pdf: true,
     remediations: true,
     dashboardZeroState: true,
+    inventoryGroupsAndTags: true,
   }),
   api: Object.freeze({
     complianceBasePath: '/api/compliance/v2',

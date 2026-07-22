@@ -5,6 +5,7 @@ const appConfigIop = Object.freeze({
     pdf: false,
     remediations: false,
     dashboardZeroState: false,
+    inventoryGroupsAndTags: false,
   }),
   api: Object.freeze({
     complianceBasePath: '/insights_cloud/api/compliance/v2',
