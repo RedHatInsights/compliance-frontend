@@ -17,6 +17,7 @@ describe('appConfig', () => {
       expect(config.features.pdf).toBe(false);
       expect(config.features.remediations).toBe(false);
       expect(config.features.dashboardZeroState).toBe(false);
+      expect(config.features.inventoryGroupsAndTags).toBe(false);
     });
   });
 
@@ -28,6 +29,7 @@ describe('appConfig', () => {
       expect(config.api.complianceBasePath).toBe('/api/compliance/v2');
       expect(config.features.unleash).toBe(true);
       expect(config.features.remediations).toBe(true);
+      expect(config.features.inventoryGroupsAndTags).toBe(true);
     });
   });
 });
