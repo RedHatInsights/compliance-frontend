@@ -17,6 +17,7 @@ import {
 } from './hooks';
 import { defaultOnLoad, mergedColumns } from './helpers';
 import ComplianceInventoryTable from './ComplianceInventoryTable';
+import { getAppConfig } from '@/config/appConfig';
 
 export const SystemsTable = ({
   apiEndpoint = 'systems',
@@ -41,6 +42,8 @@ export const SystemsTable = ({
   ...inventoryTableProps
 }) => {
   const inventory = useRef(null);
+  const enableRemediations =
+    remediationsEnabled && getAppConfig().features.remediations;
 
   const { toolbarProps: conditionalFilter } = useSystemsFilterConfig({
     filters,
@@ -74,7 +77,7 @@ export const SystemsTable = ({
     markEntitySelected,
   } = useSystemsBulkSelect({
     total,
-    onSelect: onSelect || remediationsEnabled,
+    onSelect: onSelect || enableRemediations,
     selected: preselectedSystems,
     fetchSystemsBatched,
     resultCache,
@@ -139,7 +142,7 @@ export const SystemsTable = ({
           {...bulkSelectToolBarProps}
           {...conditionalFilter}
           {...{
-            ...(remediationsEnabled && {
+            ...(enableRemediations && {
               dedicatedAction: (
                 <ComplianceRemediationButton
                   reportId={reportId}
