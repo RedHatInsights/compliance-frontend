@@ -8,8 +8,9 @@ import { buildRules } from '@/__factories__/rules';
 import { buildRuleGroups } from '@/__factories__/ruleGroups';
 import buildValueDefinitions from '@/__factories__/valueDefinitions';
 import { buildSecurityGuides } from '@/__factories__/securityGuides';
-import { buildTestResults } from '@/__factories__/ruleResults';
+import testResultsFactory from '@/__factories__/testResults';
 import ruleTreeFactory from '@/__factories__/ruleTree';
+import { faker } from '@faker-js/faker';
 
 export const IOP_MOCK_POLICY_ID = policies[0].id;
 export const IOP_MOCK_REPORT_ID = 'iop-mock-report-id';
@@ -18,7 +19,10 @@ export const IOP_MOCK_NEW_POLICY_ID = 'iop-mock-new-policy-id';
 
 export const iopMockPolicies = policies;
 export const iopMockReports = buildReports(5);
-export const iopMockSystems = systems;
+export const iopMockSystems = systems.map((system) => ({
+  ...system,
+  created: system.end_time || system.created || new Date().toISOString(),
+}));
 export const iopMockSupportedProfiles = supportedProfiles;
 export const iopMockSecurityGuides = buildSecurityGuides(3);
 export const iopMockTailorings = buildTailorings(3).map((tailoring, index) => ({
@@ -30,7 +34,24 @@ export const iopMockTailorings = buildTailorings(3).map((tailoring, index) => ({
 export const iopMockRules = buildRules(8);
 export const iopMockRuleGroups = buildRuleGroups(4);
 export const iopMockValueDefinitions = buildValueDefinitions(4);
-export const iopMockTestResults = buildTestResults(10);
+// System-level report test results (not rule_result rows from ruleResults factory).
+export const iopMockTestResults = testResultsFactory.buildList(10).map((row) => {
+  const id = faker.string.uuid();
+  return {
+    ...row,
+    id,
+    system_id: id,
+    groups: [
+      {
+        id: 'dc925b53-0bee-4ccf-b95a-4b9611362cf7',
+        name: 'Ungrouped Hosts',
+        ungrouped: true,
+      },
+    ],
+    // Inventory entities reducer keeps loaded rows only when `created` is set.
+    created: row.end_time || new Date().toISOString(),
+  };
+});
 export const iopMockRuleTree = [
   ruleTreeFactory.build(
     {},

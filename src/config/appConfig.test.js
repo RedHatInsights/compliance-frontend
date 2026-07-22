@@ -15,6 +15,7 @@ describe('appConfig', () => {
       );
       expect(config.features.unleash).toBe(false);
       expect(config.features.pdf).toBe(false);
+      expect(config.features.remediations).toBe(false);
       expect(config.features.dashboardZeroState).toBe(false);
     });
   });
@@ -26,6 +27,7 @@ describe('appConfig', () => {
       expect(config.envTarget).toBe('hcc');
       expect(config.api.complianceBasePath).toBe('/api/compliance/v2');
       expect(config.features.unleash).toBe(true);
+      expect(config.features.remediations).toBe(true);
     });
   });
 });
