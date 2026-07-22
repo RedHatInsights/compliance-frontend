@@ -10,6 +10,7 @@ import {
   policyComplianceFilter,
 } from './Filters';
 import '../../App.scss';
+import { getAppConfig } from '@/config/appConfig';
 
 const ReportsTable = ({
   reports,
@@ -24,7 +25,7 @@ const ReportsTable = ({
     <TableToolsTable
       aria-label="Reports"
       ouiaId="ReportsTable"
-      columns={[...columns, PDFExportDownload]}
+      columns={[...columns, ...(getAppConfig().features.pdf ? [PDFExportDownload] : [])]}
       items={reports}
       total={total}
       loading={loading}
