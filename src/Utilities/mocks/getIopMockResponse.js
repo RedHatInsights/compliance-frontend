@@ -20,6 +20,7 @@ import {
   iopMockSystemsOs,
   iopMockTailorings,
   iopMockTestResults,
+  iopMockRuleResults,
   iopMockValueDefinitions,
   IOP_MOCK_NEW_POLICY_ID,
   IOP_MOCK_REPORT_ID,
@@ -95,6 +96,7 @@ const getRawListForEndpoint = (endpoint, params = {}) => {
     case 'valueDefinitions':
       return listPayload(iopMockValueDefinitions, params);
     case 'reportRuleResults':
+      return listPayload(iopMockRuleResults, params);
     case 'reportTestResults':
     case 'reportTestResultsSG':
       return listPayload(iopMockTestResults, params);
