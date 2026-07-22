@@ -29,6 +29,7 @@ import { SystemsTable } from 'SmartComponents';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import useReport from 'Utilities/hooks/api/useReport';
 import useReportTestResultsSG from 'Utilities/hooks/api/useReportTestResultsSG';
+import { getAppConfig } from '@/config/appConfig';
 
 import '@/Charts.scss';
 import './ReportDetails.scss';
@@ -97,6 +98,7 @@ const ReportDetails = ({ route }) => {
               lg={3}
               xl={3}
             >
+            {getAppConfig().features.pdf && (
               <Link
                 state={{ report }}
                 to={`/reports/${report?.id}/pdf`}
@@ -109,6 +111,7 @@ const ReportDetails = ({ route }) => {
               >
                 Download PDF
               </Link>
+            )}
               <Link
                 state={{ report }}
                 to={`/reports/${report?.id}/delete`}
