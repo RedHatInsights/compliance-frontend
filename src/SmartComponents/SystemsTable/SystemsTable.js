@@ -16,7 +16,7 @@ import {
   useSystemsFilterConfig,
   useSystemsExport,
 } from './hooks';
-import { defaultOnLoad, mergedColumns } from './helpers';
+import { defaultOnLoad, filterColumnsByInventoryFeatures, mergedColumns } from './helpers';
 import ComplianceInventoryTable from './ComplianceInventoryTable';
 import { getAppConfig } from '@/config/appConfig';
 
@@ -42,8 +42,15 @@ export const SystemsTable = ({
 }) => {
   const inventory = useRef(null);
   const dispatch = useDispatch();
-  const enableRemediations =
-    remediationsEnabled && getAppConfig().features.remediations;
+  const {
+    remediations: remediationsFeature,
+    inventoryGroupsAndTags,
+  } = getAppConfig().features;
+  const enableRemediations = remediationsEnabled && remediationsFeature;
+  const tableColumns = filterColumnsByInventoryFeatures(
+    columns,
+    inventoryGroupsAndTags,
+  );
 
   const { toolbarProps: conditionalFilter } = useSystemsFilterConfig({
     filters,
@@ -90,7 +97,7 @@ export const SystemsTable = ({
 
   const exportConfig = useSystemsExport({
     exporter: systemsExporter,
-    columns,
+    columns: tableColumns,
     total,
   });
 
@@ -122,9 +129,9 @@ export const SystemsTable = ({
         {!!prependComponent && isLoaded && prependComponent}
         <ComplianceInventoryTable
           ref={inventory}
-          showTags
+          showTags={inventoryGroupsAndTags}
           disableDefaultColumns
-          columns={mergedColumns(columns)}
+          columns={mergedColumns(tableColumns)}
           noSystemsTable={noSystemsTable}
           fallback={<Spinner />}
           getEntities={getEntities}
@@ -132,10 +139,10 @@ export const SystemsTable = ({
           hideFilters={{
             all: true,
             operatingSystem: false,
-            tags: false,
-            hostGroupFilter: !showGroupsFilter,
+            tags: !inventoryGroupsAndTags,
+            hostGroupFilter: !inventoryGroupsAndTags || !showGroupsFilter,
           }}
-          onLoad={defaultOnLoad(columns)}
+          onLoad={defaultOnLoad(tableColumns)}
           tableProps={{
             // TODO There must be a bug in the Inventory
             onSelect: undefined,
