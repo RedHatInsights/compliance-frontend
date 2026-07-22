@@ -6,8 +6,9 @@ import { RBACProvider } from '@redhat-cloud-services/frontend-components/RBACPro
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AccessCheck } from '@project-kessel/react-kessel-access-check';
 import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
+import useUnleashFlagsReady from 'Utilities/hooks/useUnleashFlagsReady';
 import { KESSEL_API_BASE_URL } from '@/constants';
-import { useFlagsStatus } from '@unleash/proxy-client-react';
+import { getAppConfig } from '@/config/appConfig';
 import { Bullseye, Spinner } from '@patternfly/react-core';
 
 const queryClient = new QueryClient();
@@ -15,7 +16,10 @@ const queryClient = new QueryClient();
 const ComplianceDetails = (props) => {
   const store = useRef(init().getStore());
   const isKesselEnabled = useFeatureFlag('compliance.kessel_enabled');
-  const { flagsReady } = useFlagsStatus();
+  const flagsReady = useUnleashFlagsReady();
+  const remediationsEnabled =
+    props.remediationsEnabled !== false &&
+    getAppConfig().features.remediations;
 
   if (!flagsReady) {
     return (
@@ -25,6 +29,10 @@ const ComplianceDetails = (props) => {
     );
   }
 
+  const details = (
+    <Details {...props} remediationsEnabled={remediationsEnabled} />
+  );
+
   return (
     <QueryClientProvider client={queryClient}>
       {isKesselEnabled ? (
@@ -32,15 +40,11 @@ const ComplianceDetails = (props) => {
           baseUrl={window.location.origin}
           apiPath={KESSEL_API_BASE_URL}
         >
-          <Provider store={store.current}>
-            <Details {...props} />
-          </Provider>
+          <Provider store={store.current}>{details}</Provider>
         </AccessCheck.Provider>
       ) : (
         <RBACProvider appName="compliance">
-          <Provider store={store.current}>
-            <Details {...props} />
-          </Provider>
+          <Provider store={store.current}>{details}</Provider>
         </RBACProvider>
       )}
     </QueryClientProvider>

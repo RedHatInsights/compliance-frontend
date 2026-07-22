@@ -13,17 +13,30 @@ import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink';
 import { ComplianceScore as PresentationalComplianceScore } from 'PresentationalComponents';
 import { unsupportedSystemWarningMessage } from '@/constants';
+import { getAppConfig } from '@/config/appConfig';
+import { getForemanHostComplianceHref } from '@/iop/getForemanHostComplianceHref';
 
 const NEVER = 'Never';
 
-const SystemLink = ({ id, children }) => (
-  <InsightsLink app="compliance" to={{ pathname: `/systems/${id}` }}>
-    {children}
-  </InsightsLink>
-);
+const SystemLink = ({ id, displayName, children }) => {
+  if (getAppConfig().envTarget === 'iop') {
+    return (
+      <a href={getForemanHostComplianceHref(displayName)} target="_top">
+        {children}
+      </a>
+    );
+  }
+
+  return (
+    <InsightsLink app="compliance" to={{ pathname: `/systems/${id}` }}>
+      {children}
+    </InsightsLink>
+  );
+};
 
 SystemLink.propTypes = {
   id: propTypes.string,
+  displayName: propTypes.string,
   children: propTypes.node,
 };
 
@@ -45,7 +58,9 @@ export const CustomDisplay = (props) => {
   return (
     <Content>
       {showLink ? (
-        <SystemLink {...{ id: customId }}>{customName}</SystemLink>
+        <SystemLink id={customId} displayName={customName}>
+          {customName}
+        </SystemLink>
       ) : (
         { customName }
       )}
@@ -83,7 +98,13 @@ export const Name = ({
 
   return (
     <Content>
-      {showLink ? <SystemLink {...{ id }}>{name}</SystemLink> : name}
+      {showLink ? (
+        <SystemLink id={id} displayName={name}>
+          {name}
+        </SystemLink>
+      ) : (
+        name
+      )}
 
       {hasOsInfo(osMajorVersion, osMinorVersion) && (
         <Content component={ContentVariants.small}>
@@ -162,12 +183,17 @@ Policies.propTypes = {
   policies: propTypes.array,
 };
 
-export const FailedRules = ({ system_id, failed_rule_count }) => {
-  return <SystemLink {...{ id: system_id }}>{failed_rule_count}</SystemLink>;
+export const FailedRules = ({ system_id, display_name, failed_rule_count }) => {
+  return (
+    <SystemLink id={system_id} displayName={display_name}>
+      {failed_rule_count}
+    </SystemLink>
+  );
 };
 
 FailedRules.propTypes = {
   system_id: propTypes.string,
+  display_name: propTypes.string,
   failed_rule_count: propTypes.number,
 };
 

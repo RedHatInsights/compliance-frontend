@@ -4,10 +4,7 @@ import '@testing-library/jest-dom';
 import TestWrapper from '@/Utilities/TestWrapper';
 import ComplianceDetails from './ComplianceDetails';
 
-jest.mock('@unleash/proxy-client-react', () => ({
-  useFlagsStatus: () => ({ flagsReady: true }),
-}));
-
+jest.mock('Utilities/hooks/useUnleashFlagsReady', () => () => true);
 jest.mock('Utilities/hooks/useFeatureFlag', () => () => true);
 jest.mock('../SmartComponents/SystemDetails/useTestResults', () =>
   jest.fn(() => ({

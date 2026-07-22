@@ -11,6 +11,9 @@ const appConfigIop = Object.freeze({
     complianceBasePath: '/insights_cloud/api/compliance/v2',
     inventoryBasePath: '/insights_cloud/api/inventory/v1',
   }),
+  routes: Object.freeze({
+    systemPermissions: Object.freeze(['compliance:report:read']),
+  }),
 });
 
 export function getAppConfigIop() {
