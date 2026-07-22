@@ -11,6 +11,9 @@ const appConfigHcc = Object.freeze({
     complianceBasePath: '/api/compliance/v2',
     inventoryBasePath: '/api/inventory/v1',
   }),
+  routes: Object.freeze({
+    systemPermissions: Object.freeze(['compliance:system:read']),
+  }),
 });
 
 export function getAppConfigHcc() {

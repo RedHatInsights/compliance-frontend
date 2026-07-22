@@ -168,8 +168,9 @@ const systemsRoutes = [
     title: defaultSystemsTitle,
     requiredPermissions: [
       ...defaultPermissions,
-      'compliance:system:read',
-      'compliance:policy:read',
+      // 'compliance:system:read',
+      // 'compliance:policy:read',
+      ...getAppConfig().routes.systemPermissions,
     ],
     component: lazy(
       () =>
@@ -184,8 +185,9 @@ const systemsRoutes = [
     defaultTitle: defaultSystemsTitle,
     requiredPermissions: [
       ...defaultPermissions,
-      'compliance:system:read',
-      'compliance:report:read',
+      // 'compliance:system:read',
+      // 'compliance:report:read',
+      ...getAppConfig().routes.systemPermissions,
     ],
     component: lazy(
       () =>

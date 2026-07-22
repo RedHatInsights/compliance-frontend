@@ -31,7 +31,6 @@ module.exports = {
     }),
   ],
   moduleFederation: {
-    exposes: {},
     bundleChromeShared: true,
   },
   resolve: {

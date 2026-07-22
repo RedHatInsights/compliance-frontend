@@ -21,6 +21,7 @@ const IopBridge = ({ children }) => {
   const [providerOptions, setProviderOptions] = useState(null);
   const [permissionsEpoch, setPermissionsEpoch] = useState(0);
   const [chromeReady, setChromeReady] = useState(false);
+  const [embedded, setEmbedded] = useState(null);
   const lastPermissionsKeyRef = useRef('');
 
   locationRef.current = location.pathname;
@@ -35,7 +36,8 @@ const IopBridge = ({ children }) => {
         return;
       }
 
-      const { appRoute, ...payload } = event.data.payload || {};
+      const { appRoute, embedded: nextEmbedded, ...payload } =
+        event.data.payload || {};
       const permissionsKey = JSON.stringify(payload.permissions || []);
 
       if (permissionsKey !== lastPermissionsKeyRef.current) {
@@ -44,6 +46,10 @@ const IopBridge = ({ children }) => {
         setProviderOptions(createIopProviderOptions(payload));
       } else {
         createIopProviderOptions(payload);
+      }
+
+      if (nextEmbedded !== undefined) {
+        setEmbedded(nextEmbedded || null);
       }
 
       setChromeReady(true);
@@ -95,7 +101,9 @@ const IopBridge = ({ children }) => {
   }
 
   return (
-    <IopChromeContext.Provider value={{ permissionsEpoch, chromeReady }}>
+    <IopChromeContext.Provider
+      value={{ permissionsEpoch, chromeReady, embedded }}
+    >
       <ScalprumProvider {...providerOptions}>{children}</ScalprumProvider>
     </IopChromeContext.Provider>
   );

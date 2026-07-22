@@ -13,11 +13,16 @@ import { useIopChromeContext } from './IopChromeContext';
  */
 const useIopNavigationSync = () => {
   const location = useLocation();
-  const { chromeReady } = useIopChromeContext();
+  const { chromeReady, embedded } = useIopChromeContext();
   const lastPostedRouteRef = useRef(null);
 
   useEffect(() => {
     if (!chromeReady || getAppConfig().envTarget !== 'iop') {
+      return undefined;
+    }
+
+    // host details Compliance tab owns the Foreman URL
+    if (embedded === 'host-tab') {
       return undefined;
     }
 
@@ -42,7 +47,7 @@ const useIopNavigationSync = () => {
     );
 
     return undefined;
-  }, [chromeReady, location.pathname]);
+  }, [chromeReady, embedded, location.pathname]);
 };
 
 export default useIopNavigationSync;
