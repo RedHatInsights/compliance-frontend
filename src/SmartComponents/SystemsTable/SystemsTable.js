@@ -15,7 +15,11 @@ import {
   useSystemsFilterConfig,
   useSystemsExport,
 } from './hooks';
-import { defaultOnLoad, filterColumnsByInventoryFeatures, mergedColumns } from './helpers';
+import {
+  defaultOnLoad,
+  filterColumnsByInventoryFeatures,
+  mergedColumns,
+} from './helpers';
 import ComplianceInventoryTable from './ComplianceInventoryTable';
 import { getAppConfig } from '@/config/appConfig';
 

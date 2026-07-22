@@ -36,8 +36,11 @@ const IopBridge = ({ children }) => {
         return;
       }
 
-      const { appRoute, embedded: nextEmbedded, ...payload } =
-        event.data.payload || {};
+      const {
+        appRoute,
+        embedded: nextEmbedded,
+        ...payload
+      } = event.data.payload || {};
       const permissionsKey = JSON.stringify(payload.permissions || []);
 
       if (permissionsKey !== lastPermissionsKeyRef.current) {
