@@ -18,6 +18,9 @@ describe('appConfig', () => {
       expect(config.features.remediations).toBe(false);
       expect(config.features.dashboardZeroState).toBe(false);
       expect(config.features.inventoryGroupsAndTags).toBe(false);
+      expect(config.routes.systemPermissions).toEqual([
+        'compliance:report:read',
+      ]);
     });
   });
 
@@ -30,6 +33,9 @@ describe('appConfig', () => {
       expect(config.features.unleash).toBe(true);
       expect(config.features.remediations).toBe(true);
       expect(config.features.inventoryGroupsAndTags).toBe(true);
+      expect(config.routes.systemPermissions).toEqual([
+        'compliance:system:read',
+      ]);
     });
   });
 });
