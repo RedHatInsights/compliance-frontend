@@ -4,6 +4,17 @@
  *  @param   {object} payload postMessage payload from Foreman
  *  @returns {object}         ScalprumProvider props
  */
+
+const inventoryModuleConfig = {
+  name: 'inventory',
+  manifestLocation: `${window.location.origin}/assets/apps/inventory/fed-mods.json`,
+  cdnPath: `${window.location.origin}/assets/apps/inventory/`,
+};
+
+const modulesConfig = {
+  inventory: inventoryModuleConfig,
+};
+
 export function createIopProviderOptions(payload = {}) {
   const { user = {}, permissions = [] } = payload;
 
@@ -46,7 +57,24 @@ export function createIopProviderOptions(payload = {}) {
   }
 
   return {
+    pluginSDKOptions: {
+      pluginLoaderOptions: {
+        transformPluginManifest: (manifest) => {
+          const module = modulesConfig[manifest.name];
+          if (manifest.baseURL === 'auto' && module?.cdnPath) {
+            return {
+              ...manifest,
+              baseURL: module.cdnPath,
+              loadScripts: (manifest.loadScripts || []).map(
+                (script) => `${module.cdnPath}${script}`,
+              ),
+            };
+          }
+          return manifest;
+        },
+      },
+    },
     api: { chrome },
-    config: {},
+    config: modulesConfig,
   };
 }
