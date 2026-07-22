@@ -98,20 +98,20 @@ const ReportDetails = ({ route }) => {
               lg={3}
               xl={3}
             >
-            {getAppConfig().features.pdf && (
-              <Link
-                state={{ report }}
-                to={`/reports/${report?.id}/pdf`}
-                className="pf-v6-u-mr-md"
-                Component={LinkButton}
-                componentProps={{
-                  variant: 'primary',
-                  ouiaId: 'ReportDetailsDownloadReportPDFLink',
-                }}
-              >
-                Download PDF
-              </Link>
-            )}
+              {getAppConfig().features.pdf && (
+                <Link
+                  state={{ report }}
+                  to={`/reports/${report?.id}/pdf`}
+                  className="pf-v6-u-mr-md"
+                  Component={LinkButton}
+                  componentProps={{
+                    variant: 'primary',
+                    ouiaId: 'ReportDetailsDownloadReportPDFLink',
+                  }}
+                >
+                  Download PDF
+                </Link>
+              )}
               <Link
                 state={{ report }}
                 to={`/reports/${report?.id}/delete`}

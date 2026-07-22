@@ -16,7 +16,11 @@ import {
   useSystemsFilterConfig,
   useSystemsExport,
 } from './hooks';
-import { defaultOnLoad, filterColumnsByInventoryFeatures, mergedColumns } from './helpers';
+import {
+  defaultOnLoad,
+  filterColumnsByInventoryFeatures,
+  mergedColumns,
+} from './helpers';
 import ComplianceInventoryTable from './ComplianceInventoryTable';
 import { getAppConfig } from '@/config/appConfig';
 
@@ -42,10 +46,8 @@ export const SystemsTable = ({
 }) => {
   const inventory = useRef(null);
   const dispatch = useDispatch();
-  const {
-    remediations: remediationsFeature,
-    inventoryGroupsAndTags,
-  } = getAppConfig().features;
+  const { remediations: remediationsFeature, inventoryGroupsAndTags } =
+    getAppConfig().features;
   const enableRemediations = remediationsEnabled && remediationsFeature;
   const tableColumns = filterColumnsByInventoryFeatures(
     columns,

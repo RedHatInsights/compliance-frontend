@@ -25,7 +25,10 @@ const ReportsTable = ({
     <TableToolsTable
       aria-label="Reports"
       ouiaId="ReportsTable"
-      columns={[...columns, ...(getAppConfig().features.pdf ? [PDFExportDownload] : [])]}
+      columns={[
+        ...columns,
+        ...(getAppConfig().features.pdf ? [PDFExportDownload] : []),
+      ]}
       items={reports}
       total={total}
       loading={loading}

@@ -18,8 +18,7 @@ const ComplianceDetails = (props) => {
   const isKesselEnabled = useFeatureFlag('compliance.kessel_enabled');
   const flagsReady = useUnleashFlagsReady();
   const remediationsEnabled =
-    props.remediationsEnabled !== false &&
-    getAppConfig().features.remediations;
+    props.remediationsEnabled !== false && getAppConfig().features.remediations;
 
   if (!flagsReady) {
     return (
@@ -49,6 +48,10 @@ const ComplianceDetails = (props) => {
       )}
     </QueryClientProvider>
   );
+};
+
+ComplianceDetails.propTypes = {
+  remediationsEnabled: PropTypes.bool,
 };
 
 export default ComplianceDetails;
