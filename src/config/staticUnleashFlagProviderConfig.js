@@ -11,6 +11,13 @@ export const staticUnleashFlagProviderConfig = {
       variant: { name: 'disabled', enabled: false },
       impressionData: false,
     },
+    // Inventory uses this flag
+    {
+      name: 'platform.rbac.workspaces',
+      enabled: false,
+      variant: { name: 'disabled', enabled: false },
+      impressionData: false,
+    },
   ],
   bootstrapOverride: true,
 };

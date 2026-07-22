@@ -2,7 +2,6 @@ import React, { useLayoutEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { Spinner } from '@patternfly/react-core';
-import { InventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
 import { TableStateProvider } from 'bastilian-tabletools';
 import {
   ComplianceRemediationButton,
@@ -18,6 +17,7 @@ import {
   useSystemsExport,
 } from './hooks';
 import { defaultOnLoad, mergedColumns } from './helpers';
+import ComplianceInventoryTable from './ComplianceInventoryTable';
 
 export const SystemsTable = ({
   apiEndpoint = 'systems',
@@ -117,7 +117,7 @@ export const SystemsTable = ({
       <StateViewPart stateKey="empty">{emptyStateComponent}</StateViewPart>
       <StateViewPart stateKey="noError">
         {!!prependComponent && isLoaded && prependComponent}
-        <InventoryTable
+        <ComplianceInventoryTable
           ref={inventory}
           showTags
           disableDefaultColumns
