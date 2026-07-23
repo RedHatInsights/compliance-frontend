@@ -9,17 +9,14 @@ import CompliancePageHeader from 'PresentationalComponents/CompliancePageHeader/
 import { systemsPopoverData } from '@/constants';
 
 const systemTableColumns = [
-  Columns.customName(
-    {
-      showLink: true,
-    },
-    { sortable: ['display_name'] },
-  ),
+  Columns.customName({
+    showLink: true,
+  }),
   Columns.Workspaces,
   Columns.Tags,
-  Columns.OS(),
+  Columns.OS,
   Columns.Policies,
-  Columns.Updated,
+  Columns.LastSeen,
 ];
 
 const ComplianceSystems = () => {

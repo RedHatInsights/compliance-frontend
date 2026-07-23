@@ -120,19 +120,10 @@ const SystemsStepContent = ({ profile, selectedSystems = [] }) => {
               />
             }
             columns={[
-              {
-                ...Columns.Name,
-                props: {
-                  width: 40,
-                },
-                sortBy: ['display_name'],
-              },
-              Columns.inventoryColumn('groups', {
-                requiresDefault: true,
-                sortBy: ['groups'],
-              }),
-              Columns.inventoryColumn('tags'),
-              Columns.OperatingSystem(),
+              Columns.Name,
+              Columns.Workspaces,
+              Columns.Tags,
+              Columns.OS,
             ]}
             compact
             defaultFilter={defaultFilter}
