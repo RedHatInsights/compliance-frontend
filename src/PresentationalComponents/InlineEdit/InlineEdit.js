@@ -8,9 +8,9 @@ import {
   ContentVariants,
   HelperText,
   HelperTextItem,
+  Truncate,
 } from '@patternfly/react-core';
 import { CheckIcon, TimesIcon, PencilAltIcon } from '@patternfly/react-icons';
-import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 // import Prompt from '@redhat-cloud-services/frontend-components/Prompt';
 
 const InlineEdit = ({
@@ -155,7 +155,7 @@ const InlineEdit = ({
           </>
         ) : (
           <Content className="textAreaClosedText" component={ContentVariants.p}>
-            <Truncate text={value} length={380} inline={true} />
+            <Truncate content={value || ''} maxCharsDisplayed={380} />
             {enableEdit && (
               <Button
                 icon={<PencilAltIcon />}

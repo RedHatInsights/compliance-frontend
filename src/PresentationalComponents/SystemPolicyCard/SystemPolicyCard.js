@@ -8,9 +8,9 @@ import {
   Content,
   ContentVariants,
   Tooltip,
+  Truncate,
 } from '@patternfly/react-core';
 import DateFormat from '@redhat-cloud-services/frontend-components/DateFormat';
-import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 import UnsupportedSSGVersionAlert from './components/UnsupportedSSGVersionAlert';
 import CompliantIcon from './components/CompliantIcon';
 
@@ -34,8 +34,6 @@ const SystemPolicyCard = ({
   const passedPercentage = ((value, fixed = 0, withPercent = true) =>
     Number(value).toFixed(fixed) + (withPercent ? '%' : ''))(score);
 
-  const truncateDefaults = { expandOnMouseOver: true, hideExpandText: true };
-
   return (
     <Card
       ouiaId="PolicyCard"
@@ -55,10 +53,10 @@ const SystemPolicyCard = ({
             className="margin-bottom-top-none"
             component={ContentVariants.h4}
           >
-            <Truncate text={title} length={110} {...truncateDefaults} />
+            <Truncate content={title || ''} maxCharsDisplayed={110} />
           </Content>
           <Content ouiaId="PolicyCardType" component={ContentVariants.small}>
-            <Truncate text={profileTitle} length={110} {...truncateDefaults} />
+            <Truncate content={profileTitle || ''} maxCharsDisplayed={110} />
           </Content>
         </Content>
       </CardHeader>

@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import TestWrapper from '@/Utilities/TestWrapper';
 
@@ -39,12 +40,18 @@ describe('SSGVersions', () => {
 });
 
 describe('Policies', () => {
-  it('returns the system policies', () => {
+  it('returns the system policies', async () => {
+    const user = userEvent.setup();
     render(<Policies policies={policies} />);
 
     const expectedText = `${policies[0].title}, ${policies[1].title}`;
-    expect(screen.getByText(new RegExp(expectedText))).toBeInTheDocument();
-    expect(screen.getByText('Read more')).toBeInTheDocument();
+    const truncated = screen.getByText(new RegExp(expectedText));
+    expect(truncated).toBeInTheDocument();
+
+    await user.hover(truncated.closest('.pf-v6-c-truncate'));
+    expect(await screen.findByRole('tooltip')).toHaveTextContent(
+      policies.map((p) => p.title).join(', '),
+    );
   });
 });
 
