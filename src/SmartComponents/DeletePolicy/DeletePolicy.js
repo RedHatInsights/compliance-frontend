@@ -12,7 +12,7 @@ import {
   CenteredSpinner,
 } from 'PresentationalComponents';
 import usePolicy from 'Utilities/hooks/api/usePolicy';
-import { apiInstance } from 'Utilities/hooks/useQuery';
+import useDeletePolicy from 'Utilities/hooks/api/useDeletePolicy';
 
 const DeletePolicy = () => {
   const addNotification = useAddNotification();
@@ -28,10 +28,11 @@ const DeletePolicy = () => {
     loading: loading,
     error: error,
   } = usePolicy({ params: { policyId } });
+  const { query: deletePolicyQuery } = useDeletePolicy({ skip: true });
 
-  const deletePolicy = async (id) => {
+  const deletePolicy = async () => {
     try {
-      await apiInstance.deletePolicy(id);
+      await deletePolicyQuery({ policyId });
       addNotification({
         variant: 'success',
         title: `Deleted "${policy?.title}" and its associated reports`,
@@ -62,7 +63,7 @@ const DeletePolicy = () => {
           aria-label="delete"
           isDisabled={!deleteEnabled}
           variant="danger"
-          onClick={() => deletePolicy(policy?.id)}
+          onClick={() => deletePolicy()}
         >
           Delete policy and associated reports
         </Button>,
