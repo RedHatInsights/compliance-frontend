@@ -25,28 +25,28 @@ exports[`ReportChart expect to render with 0 unsupported & 0 never reported host
               d="M1.130044229770525,-94.99327870980537A95,95,0,1,1,-90.69317959259652,-28.279801544300735L-84.0352754576017,-26.116517355210387A88,88,0,1,0,1.1300442297705258,-87.99274401925855Z"
               role="presentation"
               shape-rendering="auto"
-              style="fill: #0066cc; padding: 8px; stroke: var(--pf-v6-chart-donut--pie--data--stroke--Color, rgba(255, 255, 255, 0.0000)); stroke-width: var(--pf-v6-chart-donut--pie--data--stroke--Width, 0px);"
+              style="fill: #0066cc; padding: 8px; stroke: var(--pf-v6-chart-donut--pie--data--stroke--Color, rgb(255, 255, 255, 0.0000)); stroke-width: var(--pf-v6-chart-donut--pie--data--stroke--Width, 0px);"
               transform="translate(115, 115)"
             />
             <path
               d="M-89.99477384980764,-30.429273401150716A95,95,0,0,1,-1.1300442297705369,-94.99327870980537L-1.1300442297705169,-87.99274401925855A88,88,0,0,0,-83.3368697148128,-28.265989212060408Z"
               role="presentation"
               shape-rendering="auto"
-              style="fill: #9e4a06; padding: 8px; stroke: var(--pf-v6-chart-donut--pie--data--stroke--Color, rgba(255, 255, 255, 0.0000)); stroke-width: var(--pf-v6-chart-donut--pie--data--stroke--Width, 0px);"
+              style="fill: #9e4a06; padding: 8px; stroke: var(--pf-v6-chart-donut--pie--data--stroke--Color, rgb(255, 255, 255, 0.0000)); stroke-width: var(--pf-v6-chart-donut--pie--data--stroke--Width, 0px);"
               transform="translate(115, 115)"
             />
             <path
               d="M-1.745121688784978e-14,-95L-1.6165337748745062e-14,-88Z"
               role="presentation"
               shape-rendering="auto"
-              style="fill: #dca614; padding: 8px; stroke: var(--pf-v6-chart-donut--pie--data--stroke--Color, rgba(255, 255, 255, 0.0000)); stroke-width: var(--pf-v6-chart-donut--pie--data--stroke--Width, 0px);"
+              style="fill: #dca614; padding: 8px; stroke: var(--pf-v6-chart-donut--pie--data--stroke--Color, rgb(255, 255, 255, 0.0000)); stroke-width: var(--pf-v6-chart-donut--pie--data--stroke--Width, 0px);"
               transform="translate(115, 115)"
             />
             <path
               d="M-1.745121688784978e-14,-95L-1.6165337748745062e-14,-88Z"
               role="presentation"
               shape-rendering="auto"
-              style="fill: #e0e0e0; padding: 8px; stroke: var(--pf-v6-chart-donut--pie--data--stroke--Color, rgba(255, 255, 255, 0.0000)); stroke-width: var(--pf-v6-chart-donut--pie--data--stroke--Width, 0px);"
+              style="fill: #e0e0e0; padding: 8px; stroke: var(--pf-v6-chart-donut--pie--data--stroke--Color, rgb(255, 255, 255, 0.0000)); stroke-width: var(--pf-v6-chart-donut--pie--data--stroke--Width, 0px);"
               transform="translate(115, 115)"
             />
           </g>
@@ -171,28 +171,28 @@ exports[`ReportChart expect to render with 2 unsupported & 3 never reported host
               d="M1.130044229770525,-94.99327870980537A95,95,0,0,1,56.74987327881187,76.1869534949311L52.6350622295466,70.52340196056737A88,88,0,0,0,1.1300442297705258,-87.99274401925855Z"
               role="presentation"
               shape-rendering="auto"
-              style="fill: #0066cc; padding: 8px; stroke: var(--pf-v6-chart-donut--pie--data--stroke--Color, rgba(255, 255, 255, 0.0000)); stroke-width: var(--pf-v6-chart-donut--pie--data--stroke--Width, 0px);"
+              style="fill: #0066cc; padding: 8px; stroke: var(--pf-v6-chart-donut--pie--data--stroke--Color, rgb(255, 255, 255, 0.0000)); stroke-width: var(--pf-v6-chart-donut--pie--data--stroke--Width, 0px);"
               transform="translate(115, 115)"
             />
             <path
               d="M54.921423306252464,77.51540016032574A95,95,0,0,1,1.130044229770525,94.99327870980537L1.1300442297705258,87.99274401925855A88,88,0,0,0,50.806612256987194,71.851848625962Z"
               role="presentation"
               shape-rendering="auto"
-              style="fill: #9e4a06; padding: 8px; stroke: var(--pf-v6-chart-donut--pie--data--stroke--Color, rgba(255, 255, 255, 0.0000)); stroke-width: var(--pf-v6-chart-donut--pie--data--stroke--Width, 0px);"
+              style="fill: #9e4a06; padding: 8px; stroke: var(--pf-v6-chart-donut--pie--data--stroke--Color, rgb(255, 255, 255, 0.0000)); stroke-width: var(--pf-v6-chart-donut--pie--data--stroke--Width, 0px);"
               transform="translate(115, 115)"
             />
             <path
               d="M-1.1300442297705133,94.99327870980537A95,95,0,0,1,-89.99477384980764,30.42927340115074L-83.3368697148128,28.26598921206043A88,88,0,0,0,-1.1300442297705149,87.99274401925855Z"
               role="presentation"
               shape-rendering="auto"
-              style="fill: #dca614; padding: 8px; stroke: var(--pf-v6-chart-donut--pie--data--stroke--Color, rgba(255, 255, 255, 0.0000)); stroke-width: var(--pf-v6-chart-donut--pie--data--stroke--Width, 0px);"
+              style="fill: #dca614; padding: 8px; stroke: var(--pf-v6-chart-donut--pie--data--stroke--Color, rgb(255, 255, 255, 0.0000)); stroke-width: var(--pf-v6-chart-donut--pie--data--stroke--Width, 0px);"
               transform="translate(115, 115)"
             />
             <path
               d="M-90.69317959259651,28.279801544300756A95,95,0,0,1,-1.1300442297705369,-94.99327870980537L-1.1300442297705169,-87.99274401925855A88,88,0,0,0,-84.03527545760168,26.116517355210412Z"
               role="presentation"
               shape-rendering="auto"
-              style="fill: #e0e0e0; padding: 8px; stroke: var(--pf-v6-chart-donut--pie--data--stroke--Color, rgba(255, 255, 255, 0.0000)); stroke-width: var(--pf-v6-chart-donut--pie--data--stroke--Width, 0px);"
+              style="fill: #e0e0e0; padding: 8px; stroke: var(--pf-v6-chart-donut--pie--data--stroke--Color, rgb(255, 255, 255, 0.0000)); stroke-width: var(--pf-v6-chart-donut--pie--data--stroke--Width, 0px);"
               transform="translate(115, 115)"
             />
           </g>
@@ -437,28 +437,28 @@ exports[`ReportChart expect to render without error with zero counts 1`] = `
               d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
               role="presentation"
               shape-rendering="auto"
-              style="fill: #f2f2f2; padding: 8px; stroke: var(--pf-v6-chart-donut--pie--data--stroke--Color, rgba(255, 255, 255, 0.0000)); stroke-width: var(--pf-v6-chart-donut--pie--data--stroke--Width, 0px);"
+              style="fill: #f2f2f2; padding: 8px; stroke: var(--pf-v6-chart-donut--pie--data--stroke--Color, rgb(255, 255, 255, 0.0000)); stroke-width: var(--pf-v6-chart-donut--pie--data--stroke--Width, 0px);"
               transform="translate(115, 115)"
             />
             <path
               d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
               role="presentation"
               shape-rendering="auto"
-              style="fill: #f2f2f2; padding: 8px; stroke: var(--pf-v6-chart-donut--pie--data--stroke--Color, rgba(255, 255, 255, 0.0000)); stroke-width: var(--pf-v6-chart-donut--pie--data--stroke--Width, 0px);"
+              style="fill: #f2f2f2; padding: 8px; stroke: var(--pf-v6-chart-donut--pie--data--stroke--Color, rgb(255, 255, 255, 0.0000)); stroke-width: var(--pf-v6-chart-donut--pie--data--stroke--Width, 0px);"
               transform="translate(115, 115)"
             />
             <path
               d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
               role="presentation"
               shape-rendering="auto"
-              style="fill: #f2f2f2; padding: 8px; stroke: var(--pf-v6-chart-donut--pie--data--stroke--Color, rgba(255, 255, 255, 0.0000)); stroke-width: var(--pf-v6-chart-donut--pie--data--stroke--Width, 0px);"
+              style="fill: #f2f2f2; padding: 8px; stroke: var(--pf-v6-chart-donut--pie--data--stroke--Color, rgb(255, 255, 255, 0.0000)); stroke-width: var(--pf-v6-chart-donut--pie--data--stroke--Width, 0px);"
               transform="translate(115, 115)"
             />
             <path
               d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
               role="presentation"
               shape-rendering="auto"
-              style="fill: #f2f2f2; padding: 8px; stroke: var(--pf-v6-chart-donut--pie--data--stroke--Color, rgba(255, 255, 255, 0.0000)); stroke-width: var(--pf-v6-chart-donut--pie--data--stroke--Width, 0px);"
+              style="fill: #f2f2f2; padding: 8px; stroke: var(--pf-v6-chart-donut--pie--data--stroke--Color, rgb(255, 255, 255, 0.0000)); stroke-width: var(--pf-v6-chart-donut--pie--data--stroke--Width, 0px);"
               transform="translate(115, 115)"
             />
           </g>
