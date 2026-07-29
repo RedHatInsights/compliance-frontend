@@ -5,8 +5,9 @@ import TestWrapper from '@redhat-cloud-services/frontend-components-utilities/Te
 import useComplianceQuery from 'Utilities/hooks/useComplianceQuery';
 jest.mock('Utilities/hooks/useComplianceQuery');
 
-jest.mock('@redhat-cloud-services/frontend-components/Inventory', () => ({
-  InventoryTable: jest.fn(({ getEntities }) => {
+jest.mock('./ComplianceInventoryTable', () => ({
+  __esModule: true,
+  default: jest.fn(({ getEntities }) => {
     getEntities(10, {
       filters: {
         hostnameOrId: 'test-name',

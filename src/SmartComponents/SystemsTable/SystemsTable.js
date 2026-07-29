@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { InventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
 import { TableStateProvider } from 'bastilian-tabletools';
 import {
   ComplianceRemediationButton,
@@ -16,7 +15,13 @@ import {
   useSystemsFilterConfig,
   useSystemsExport,
 } from './hooks';
-import { defaultOnLoad, mergedColumns } from './helpers';
+import {
+  defaultOnLoad,
+  filterColumnsByInventoryFeatures,
+  mergedColumns,
+} from './helpers';
+import ComplianceInventoryTable from './ComplianceInventoryTable';
+import { getAppConfig } from '@/config/appConfig';
 
 export const SystemsTable = ({
   apiEndpoint = 'systems',
@@ -40,6 +45,15 @@ export const SystemsTable = ({
   ...inventoryTableProps
 }) => {
   const inventory = useRef(null);
+  const {
+    remediations: remediationsFeature,
+    inventoryGroupsAndTags,
+  } = getAppConfig().features;
+  const enableRemediations = remediationsEnabled && remediationsFeature;
+  const tableColumns = filterColumnsByInventoryFeatures(
+    columns,
+    inventoryGroupsAndTags,
+  );
 
   const { toolbarProps: conditionalFilter } = useSystemsFilterConfig({
     filters,
@@ -73,7 +87,7 @@ export const SystemsTable = ({
     markEntitySelected,
   } = useSystemsBulkSelect({
     total,
-    onSelect: onSelect || remediationsEnabled,
+    onSelect: onSelect || enableRemediations,
     selected: preselectedSystems,
     fetchSystemsBatched,
     resultCache,
@@ -86,7 +100,7 @@ export const SystemsTable = ({
 
   const exportConfig = useSystemsExport({
     exporter: systemsExporter,
-    columns,
+    columns: tableColumns,
     total,
   });
 
@@ -108,11 +122,11 @@ export const SystemsTable = ({
       <StateViewPart stateKey="empty">{emptyStateComponent}</StateViewPart>
       <StateViewPart stateKey="noError">
         {!!prependComponent && isLoaded && prependComponent}
-        <InventoryTable
+        <ComplianceInventoryTable
           ref={inventory}
-          showTags
+          showTags={inventoryGroupsAndTags}
           disableDefaultColumns
-          columns={mergedColumns(columns)}
+          columns={mergedColumns(tableColumns)}
           noSystemsTable={noSystemsTable}
           fallback={<CenteredSpinner />}
           getEntities={getEntities}
@@ -121,10 +135,10 @@ export const SystemsTable = ({
             all: true,
             name: false,
             operatingSystem: false,
-            tags: false,
-            hostGroupFilter: !showGroupsFilter,
+            tags: !inventoryGroupsAndTags,
+            hostGroupFilter: !inventoryGroupsAndTags || !showGroupsFilter,
           }}
-          onLoad={defaultOnLoad(columns, { perPage })}
+          onLoad={defaultOnLoad(tableColumns, { perPage })}
           tableProps={{
             // TODO There must be a bug in the Inventory
             onSelect: undefined,
@@ -135,7 +149,7 @@ export const SystemsTable = ({
           {...bulkSelectToolBarProps}
           {...conditionalFilter}
           {...{
-            ...(remediationsEnabled && {
+            ...(enableRemediations && {
               dedicatedAction: (
                 <ComplianceRemediationButton
                   reportId={reportId}
