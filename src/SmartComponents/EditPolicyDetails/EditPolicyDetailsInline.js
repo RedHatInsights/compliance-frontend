@@ -7,6 +7,7 @@ import {
   TextInput,
   ContentVariants,
   Icon,
+  Truncate,
 } from '@patternfly/react-core';
 import { TimesIcon, CheckIcon, PencilAltIcon } from '@patternfly/react-icons';
 
@@ -15,7 +16,6 @@ import {
   PolicyBusinessObjectiveTooltip,
   ComplianceThresholdHelperText,
 } from 'PresentationalComponents';
-import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 // import Prompt from '@redhat-cloud-services/frontend-components/Prompt';
 import { useOnSave as useOnSavePolicyDetails } from '../EditPolicy/hooks';
 import { thresholdValid } from 'Utilities/validation/policyThreshold';
@@ -179,7 +179,7 @@ const EditPolicyDetailsInline = ({
           </Content>
         ) : (
           <Content className="textAreaClosedText" component={ContentVariants.p}>
-            <Truncate text={text} length={380} inline={true} />
+            <Truncate content={text || ''} maxCharsDisplayed={380} />
           </Content>
         )}
       </div>

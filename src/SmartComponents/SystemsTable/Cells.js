@@ -5,11 +5,11 @@ import {
   ContentVariants,
   Tooltip,
   Icon,
+  Truncate,
 } from '@patternfly/react-core';
 import { ExclamationTriangleIcon } from '@patternfly/react-icons';
 
 import DateFormat from '@redhat-cloud-services/frontend-components/DateFormat';
-import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink';
 import { ComplianceScore as PresentationalComplianceScore } from 'PresentationalComponents';
 import { unsupportedSystemWarningMessage } from '@/constants';
@@ -150,9 +150,8 @@ export const Policies = ({ policies }) => {
   return (
     (policies || []).length && (
       <Truncate
-        inline
-        text={policies.map((p) => p.title).join(', ')}
-        length={truncateLength}
+        content={policies.map((p) => p.title).join(', ')}
+        maxCharsDisplayed={truncateLength}
       />
     )
   );
