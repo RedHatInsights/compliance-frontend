@@ -4,7 +4,7 @@ import { ModalVariant } from '@patternfly/react-core/deprecated';
 import { useParams } from 'react-router-dom';
 import { ComplianceModal } from 'PresentationalComponents';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
-import { apiInstance } from 'Utilities/hooks/useQuery';
+import useDeleteReport from 'Utilities/hooks/api/useDeleteReport';
 
 import { useHandleDeleteReport } from './hooks';
 /**
@@ -26,9 +26,10 @@ const DeleteReport = () => {
   const onDelete = () => {
     navigate('/reports');
   };
+  const { query: deleteReportQuery } = useDeleteReport({ skip: true });
   const deleteReport = () =>
     handleDeleteReport(
-      () => apiInstance.deleteReport(reportId),
+      () => deleteReportQuery({ reportId }),
       onDelete,
       onClose,
     );

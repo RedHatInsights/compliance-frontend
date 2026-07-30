@@ -115,6 +115,7 @@ export const OS = {
       <span>OS</span>
     </Tooltip>
   ),
+  original: 'Operating System',
   key: 'operatingSystem',
   dataLabel: 'OS',
   transforms: [nowrap],
