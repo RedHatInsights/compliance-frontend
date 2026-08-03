@@ -27,13 +27,16 @@ export const mergedColumns = (columns) => (defaultColumns) =>
   }, []);
 
 export const defaultOnLoad =
-  (columns, { perPage } = {}) =>
+  (columns, { perPage, sortBy } = {}) =>
   ({ INVENTORY_ACTION_TYPES, mergeWithEntities }) => {
     getRegistry().register({
       ...mergeWithEntities(entitiesReducer(INVENTORY_ACTION_TYPES, columns)),
     });
     getRegistry().store.dispatch({
       type: 'INVENTORY_INIT',
-      ...(perPage ? { payload: { perPage } } : {}),
+      payload: {
+        ...(perPage ? { perPage } : {}),
+        ...(sortBy ? { sortBy } : {}),
+      },
     });
   };
