@@ -5,11 +5,7 @@ import SystemsTable from 'SmartComponents/SystemsTable/SystemsTable';
 import * as Columns from 'SmartComponents/SystemsTable/Columns';
 import SystemsViewToggle, { SYSTEMS_VIEW } from './SystemsViewToggle';
 
-const systemTableColumns = [
-  Columns.Name,
-  Columns.Tags,
-  Columns.OperatingSystem(),
-];
+const systemTableColumns = [Columns.Name, Columns.Tags, Columns.OS];
 
 const EmptyState = ({ osMajorVersion }) => {
   return (
@@ -80,7 +76,6 @@ const EditPolicySystemsTab = ({
           <EmptyState osMajorVersion={os_major_version} />
         ) : undefined
       }
-      sortBy={{ key: 'name', direction: 'asc' }}
       compact
       defaultFilter={isAllSystemsView ? defaultFilter : undefined}
       ignoreOsMajorVersion={!isAllSystemsView}

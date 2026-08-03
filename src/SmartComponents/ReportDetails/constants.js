@@ -5,30 +5,21 @@ export const reportedSystemTableColumns = [
     showLink: true,
     showOsInfo: true,
     idProperty: 'system_id',
-    sortBy: ['display_name'],
   }),
   Columns.Workspaces,
   Columns.Tags,
-  Columns.SsgVersion(true),
-  Columns.FailedRules(true),
-  Columns.ComplianceScore(true),
+  Columns.SsgVersion,
+  Columns.FailedRules,
+  Columns.ComplianceScore,
   Columns.LastScanned,
 ];
 
 export const neverReportedSystemsTableColumns = [
-  Columns.customName(
-    {
-      showLink: true,
-      showOsInfo: true,
-    },
-    {
-      sortBy: ['display_name'],
-    },
-  ),
-  Columns.inventoryColumn('groups', {
-    requiresDefault: true,
-    sortBy: ['groups'],
+  Columns.customName({
+    showLink: true,
+    showOsInfo: true,
   }),
-  Columns.inventoryColumn('tags'),
+  Columns.Workspaces,
+  Columns.Tags,
   Columns.LastScanned,
 ];

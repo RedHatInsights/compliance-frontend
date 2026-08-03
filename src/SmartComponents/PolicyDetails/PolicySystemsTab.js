@@ -11,14 +11,11 @@ const PolicySystemsTab = ({ policy }) => {
     <SystemsTable
       apiEndpoint="policySystems"
       columns={[
-        Columns.customName(
-          {
-            showLink: true,
-          },
-          { sortBy: ['display_name'] },
-        ),
+        Columns.customName({
+          showLink: true,
+        }),
         Columns.Tags,
-        Columns.OS(),
+        Columns.OS,
       ]}
       policyId={policy.id}
       noSystemsTable={
@@ -28,7 +25,6 @@ const PolicySystemsTab = ({ policy }) => {
           <NoResultsTable kind="systems" />
         )
       }
-      complianceThreshold={policy.compliance_threshold}
       dedicatedAction={<EditSystemsButtonToolbarItem policy={policy} />}
       ignoreOsMajorVersion
     />
@@ -38,7 +34,6 @@ const PolicySystemsTab = ({ policy }) => {
 PolicySystemsTab.propTypes = {
   policy: propTypes.shape({
     id: propTypes.string.isRequired,
-    compliance_threshold: propTypes.string.isRequired,
     total_system_count: propTypes.number.isRequired,
   }),
   dedicatedAction: propTypes.object,

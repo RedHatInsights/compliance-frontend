@@ -1,5 +1,6 @@
 import { render, waitFor } from '@testing-library/react';
 import SystemsTable from './SystemsTable';
+import { InventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
 import TestWrapper from '@redhat-cloud-services/frontend-components-utilities/TestingUtils/JestUtils/TestWrapper';
 
 import useComplianceQuery from 'Utilities/hooks/useComplianceQuery';
@@ -20,7 +21,6 @@ jest.mock('@redhat-cloud-services/frontend-components/Inventory', () => ({
 const mockProps = {
   columns: ['test-column'],
   enableExport: true,
-  policies: [],
   onSelect: jest.fn(),
   ignoreOsMajorVersion: false,
   defaultFilter: 'someFilter ~ test',
@@ -38,6 +38,7 @@ const mockUseQuery = jest.fn(() => {
 describe('SystemsTable', () => {
   beforeEach(() => {
     useComplianceQuery.mockImplementation(mockUseQuery);
+    InventoryTable.mockClear();
   });
 
   it('Should connect inventory with compliance filters so that full filters are passed to bulk selection', async () => {
@@ -62,6 +63,59 @@ describe('SystemsTable', () => {
         expect.objectContaining({
           params: { filter: 'someFilter ~ test' },
         }),
+      ),
+    );
+  });
+
+  it('Should default Inventory sortBy to name ascending', async () => {
+    render(
+      <TestWrapper>
+        <SystemsTable {...mockProps} />
+      </TestWrapper>,
+    );
+
+    await waitFor(() =>
+      expect(InventoryTable).toHaveBeenCalledWith(
+        expect.objectContaining({
+          sortBy: { key: 'name', direction: 'asc' },
+        }),
+        expect.anything(),
+      ),
+    );
+  });
+
+  it('Should set hasCheckbox when selection is enabled', async () => {
+    render(
+      <TestWrapper>
+        <SystemsTable {...mockProps} />
+      </TestWrapper>,
+    );
+
+    await waitFor(() =>
+      expect(InventoryTable).toHaveBeenCalledWith(
+        expect.objectContaining({
+          hasCheckbox: true,
+        }),
+        expect.anything(),
+      ),
+    );
+  });
+
+  it('Should disable hasCheckbox when selection is not enabled', async () => {
+    const { onSelect: _onSelect, ...propsWithoutSelect } = mockProps;
+
+    render(
+      <TestWrapper>
+        <SystemsTable {...propsWithoutSelect} />
+      </TestWrapper>,
+    );
+
+    await waitFor(() =>
+      expect(InventoryTable).toHaveBeenCalledWith(
+        expect.objectContaining({
+          hasCheckbox: false,
+        }),
+        expect.anything(),
       ),
     );
   });
