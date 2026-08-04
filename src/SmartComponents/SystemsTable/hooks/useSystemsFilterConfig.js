@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useDeepCompareEffect } from 'use-deep-compare';
 import debounce from '@redhat-cloud-services/frontend-components-utilities/debounce';
@@ -12,6 +12,8 @@ const useSystemsFilterConfig = ({
 }) => {
   const dispatch = useDispatch();
   const serialiseredTableState = useSerialisedTableState();
+  const tableFilters = serialiseredTableState?.filters;
+  const isInitialFilterState = useRef(true);
   const filterConfig = useMemo(
     () => [
       ...(policies?.length ? [filters.policies(policies)] : []),
@@ -40,8 +42,13 @@ const useSystemsFilterConfig = ({
   }, 150);
 
   useDeepCompareEffect(() => {
+    if (isInitialFilterState.current) {
+      isInitialFilterState.current = false;
+      return;
+    }
+
     debounceResetPage();
-  }, [serialiseredTableState]);
+  }, [tableFilters]);
 
   return filterConfigReturn;
 };

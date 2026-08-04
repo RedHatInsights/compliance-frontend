@@ -126,7 +126,7 @@ export const SystemsTable = ({
             tags: false,
             hostGroupFilter: !showGroupsFilter,
           }}
-          onLoad={defaultOnLoad(columns, { perPage })}
+          onLoad={defaultOnLoad(columns, { perPage, sortBy })}
           sortBy={sortBy}
           hasCheckbox={selectionEnabled}
           tableProps={{
