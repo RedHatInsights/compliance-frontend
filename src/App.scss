@@ -118,3 +118,8 @@ button[data-ouia-component-id="InlineEditReset"] {
 .pf-v6-c-table__tree-view-title-cell.compliance-rule-details .pf-v6-c-table__check {
   visibility: hidden
 }
+
+[data-ouia-component-type="PF6/Select"] > .pf-v6-c-menu__content {
+  max-height: 18.75rem;
+  overflow-y: auto;
+}

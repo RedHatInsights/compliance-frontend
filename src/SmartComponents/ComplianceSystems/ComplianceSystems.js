@@ -21,7 +21,7 @@ const systemTableColumns = [
 
 const ComplianceSystems = () => {
   const navigateToInventory = useNavigate('inventory');
-  const { data, error, loading } = usePolicies();
+  const { data, error, loading } = usePolicies({ batched: true });
   const policies = data?.data;
 
   return (
