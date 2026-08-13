@@ -118,7 +118,8 @@ export const EditPolicyRulesTab = ({
         return {
           ...prevRuleIds,
           [Number(profile.osMinorVersion)]:
-            prev?.[profile.osMinorVersion].length > 0
+            Array.isArray(prev?.[profile.osMinorVersion]) &&
+            prev[profile.osMinorVersion].length > 0
               ? prev?.[profile.osMinorVersion]
               : profile.ruleIds,
         };
