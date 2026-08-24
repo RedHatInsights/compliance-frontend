@@ -7,7 +7,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AccessCheck } from '@project-kessel/react-kessel-access-check';
 import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
 import { KESSEL_API_BASE_URL } from '@/constants';
-import { useFlagsStatus } from '@unleash/proxy-client-react';
+import useUnleashFlagsReady from 'Utilities/hooks/useUnleashFlagsReady';
 import { CenteredSpinner } from 'PresentationalComponents';
 
 const queryClient = new QueryClient();
@@ -15,7 +15,7 @@ const queryClient = new QueryClient();
 const ComplianceDetails = (props) => {
   const store = useRef(init().getStore());
   const isKesselEnabled = useFeatureFlag('compliance.kessel_enabled');
-  const { flagsReady } = useFlagsStatus();
+  const flagsReady = useUnleashFlagsReady();
 
   if (!flagsReady) {
     return <CenteredSpinner />;

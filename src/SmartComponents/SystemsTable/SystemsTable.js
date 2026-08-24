@@ -16,7 +16,12 @@ import {
   useSystemsFilterConfig,
   useSystemsExport,
 } from './hooks';
-import { defaultOnLoad, mergedColumns } from './helpers';
+import {
+  defaultOnLoad,
+  filterColumnsByInventoryFeatures,
+  mergedColumns,
+} from './helpers';
+import { getAppConfig } from '@/config/appConfig';
 
 export const SystemsTable = ({
   apiEndpoint = 'systems',
@@ -27,7 +32,7 @@ export const SystemsTable = ({
   filters: { groups: showGroupsFilter = false, ...filters } = {},
   enableExport = true,
   compact,
-  remediationsEnabled,
+  remediationsEnabled: remediationsEnabledProp,
   emptyStateComponent,
   prependComponent,
   preselectedSystems,
@@ -41,6 +46,13 @@ export const SystemsTable = ({
   ...inventoryTableProps
 }) => {
   const inventory = useRef(null);
+  const { remediations: remediationsFeature, inventoryGroupsAndTags } =
+    getAppConfig().features;
+  const remediationsEnabled = remediationsEnabledProp && remediationsFeature;
+  const tableColumns = filterColumnsByInventoryFeatures(
+    columns,
+    inventoryGroupsAndTags,
+  );
 
   const { toolbarProps: conditionalFilter } = useSystemsFilterConfig({
     filters,
@@ -87,7 +99,7 @@ export const SystemsTable = ({
 
   const exportConfig = useSystemsExport({
     exporter: systemsExporter,
-    columns,
+    columns: tableColumns,
     total,
   });
 
@@ -112,9 +124,9 @@ export const SystemsTable = ({
         {!!prependComponent && isLoaded && prependComponent}
         <InventoryTable
           ref={inventory}
-          showTags
+          showTags={inventoryGroupsAndTags}
           disableDefaultColumns
-          columns={mergedColumns(columns)}
+          columns={mergedColumns(tableColumns)}
           noSystemsTable={noSystemsTable}
           fallback={<CenteredSpinner />}
           getEntities={getEntities}
@@ -123,10 +135,10 @@ export const SystemsTable = ({
             all: true,
             name: false,
             operatingSystem: false,
-            tags: false,
-            hostGroupFilter: !showGroupsFilter,
+            tags: !inventoryGroupsAndTags,
+            hostGroupFilter: !inventoryGroupsAndTags || !showGroupsFilter,
           }}
-          onLoad={defaultOnLoad(columns, { perPage, sortBy })}
+          onLoad={defaultOnLoad(tableColumns, { perPage, sortBy })}
           sortBy={sortBy}
           hasCheckbox={selectionEnabled}
           tableProps={{

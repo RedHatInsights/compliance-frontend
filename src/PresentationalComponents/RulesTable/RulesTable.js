@@ -8,6 +8,7 @@ import { ComplianceTable } from 'PresentationalComponents';
 import RuleDetailsRow from './RuleDetailsRow';
 import buildFilterConfig from './Filters';
 import defaultColumns from './Columns';
+import { getAppConfig } from '@/config/appConfig';
 
 /**
  * A component to show rules of a policy or test result.
@@ -44,7 +45,7 @@ const RulesTable = ({
   ruleTree,
   policyId,
   columns = defaultColumns,
-  remediationsEnabled,
+  remediationsEnabled: remediationsEnabledProp,
   ansibleSupportFilter = false,
   selectedRules: selectedRulesProp = [],
   hidePassed = false,
@@ -61,6 +62,8 @@ const RulesTable = ({
   ...rulesTableProps
 }) => {
   const complianceTableDefaults = useComplianceTableDefaults();
+  const remediationsEnabled =
+    remediationsEnabledProp && getAppConfig().features.remediations;
   const internalSelectedState = useState([]);
   const [selectedRules, setSelectedRules] =
     typeof onSelect === 'function'
