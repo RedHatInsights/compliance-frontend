@@ -4,6 +4,7 @@ import AsyncComponent from '@redhat-cloud-services/frontend-components/AsyncComp
 import ErrorState from '@redhat-cloud-services/frontend-components/ErrorState';
 import axios from 'axios';
 import { ComplianceRoute } from 'PresentationalComponents';
+import { getAppConfig } from '@/config/appConfig';
 
 const defaultReportTitle = 'Reports';
 const defaultPermissions = ['compliance:*:*'];
@@ -44,19 +45,26 @@ const reportsRoutes = [
     ),
     modal: true,
   },
-  {
-    path: 'reports/:report_id/pdf',
-    title: `Export report - ${defaultReportTitle}`,
-    requiredPermissions: [...defaultPermissions, 'compliance:report:read'],
-    defaultTitle: defaultReportTitle,
-    modal: true,
-    component: lazy(
-      () =>
-        import(
-          /* webpackChunkName: "ReportDetails" */ 'SmartComponents/ExportPDF/ExportPDF'
-        ),
-    ),
-  },
+  ...(getAppConfig().features.pdf
+    ? [
+        {
+          path: 'reports/:report_id/pdf',
+          title: `Export report - ${defaultReportTitle}`,
+          requiredPermissions: [
+            ...defaultPermissions,
+            'compliance:report:read',
+          ],
+          defaultTitle: defaultReportTitle,
+          modal: true,
+          component: lazy(
+            () =>
+              import(
+                /* webpackChunkName: "ReportDetails" */ 'SmartComponents/ExportPDF/ExportPDF'
+              ),
+          ),
+        },
+      ]
+    : []),
 ];
 
 const defaultPoliciesTitle = 'SCAP policies';
@@ -141,7 +149,7 @@ const policiesRoutes = [
   {
     path: 'scappolicies/:policy_id/default_ruleset/:security_guide_id?',
     title: `Default policy rules - ${defaultPoliciesTitle}`,
-    requiredPermissions: [...defaultPermissions, 'compliance:policy:read'],
+    requiredPermissions: [...defaultPermissions, 'compliance:system:read'],
     component: lazy(
       () =>
         import(
@@ -153,22 +161,32 @@ const policiesRoutes = [
 
 const defaultSystemsTitle = 'Systems';
 const systemsRoutes = [
-  {
-    path: 'systems',
-    title: defaultSystemsTitle,
-    requiredPermissions: [...defaultPermissions, 'compliance:system:read'],
-    component: lazy(
-      () =>
-        import(
-          /* webpackChunkName: "ComplianceSystems" */ 'SmartComponents/ComplianceSystems/ComplianceSystems'
-        ),
-    ),
-  },
+  ...(getAppConfig().routes.systemsRoute
+    ? [
+        {
+          path: 'systems',
+          title: defaultSystemsTitle,
+          requiredPermissions: [
+            ...defaultPermissions,
+            'compliance:system:read',
+          ],
+          component: lazy(
+            () =>
+              import(
+                /* webpackChunkName: "ComplianceSystems" */ 'SmartComponents/ComplianceSystems/ComplianceSystems'
+              ),
+          ),
+        },
+      ]
+    : []),
   {
     path: 'systems/:inventoryId',
     title: `$entityTitle - ${defaultSystemsTitle}`,
     defaultTitle: defaultSystemsTitle,
-    requiredPermissions: [...defaultPermissions, 'compliance:system:read'],
+    requiredPermissions: [
+      ...defaultPermissions,
+      ...getAppConfig().routes.systemPermissions,
+    ],
     component: lazy(
       () =>
         import(
@@ -187,16 +205,21 @@ export const findRouteByPath = (to) => {
   );
 };
 
-const INVENTORY_TOTAL_FETCH_URL = '/api/inventory/v1/hosts';
-
 const ComplianceRoutes = () => {
+  const appConfig = getAppConfig();
+  const inventoryHostsUrl = `${appConfig.api.inventoryBasePath}/hosts`;
   const [hasSystems, setHasSystems] = useState(true);
+
   useEffect(() => {
+    if (!appConfig.features.dashboardZeroState) {
+      return undefined;
+    }
+
     try {
       axios
         .get(
           // look only for RHEL systems, https://issues.redhat.com/browse/RHINENG-5929
-          `${INVENTORY_TOTAL_FETCH_URL}?page=1&per_page=1&filter[system_profile][operating_system][RHEL][version][gte]=0`,
+          `${inventoryHostsUrl}?page=1&per_page=1&filter[system_profile][operating_system][RHEL][version][gte]=0`,
         )
         .then(({ data }) => {
           setHasSystems(data.total > 0);
@@ -204,9 +227,11 @@ const ComplianceRoutes = () => {
     } catch (e) {
       console.log(e);
     }
-  }, []);
 
-  return !hasSystems ? (
+    return undefined;
+  }, [appConfig.features.dashboardZeroState, inventoryHostsUrl]);
+
+  return appConfig.features.dashboardZeroState && !hasSystems ? (
     <AsyncComponent
       appId="compliance_zero_state"
       appName="dashboard"
