@@ -20,6 +20,7 @@ import {
 import { InventoryDetails } from 'SmartComponents';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import useSystem from 'Utilities/hooks/api/useSystem';
+import { getAppConfig } from '@/config/appConfig';
 
 const PageBreadcrumb = ({ systemName }) => (
   <Breadcrumb ouiaId="SystemDetailsPathBreadcrumb">
@@ -56,7 +57,7 @@ const SystemDetails = ({ route }) => {
             hidePassed
             inventoryId={inventoryId}
             system={data}
-            remediationsEnabled
+            remediationsEnabled={getAppConfig().features.remediations}
           />
         </PageSection>
       </StateViewPart>

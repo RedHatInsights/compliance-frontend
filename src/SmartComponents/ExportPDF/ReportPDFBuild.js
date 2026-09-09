@@ -14,7 +14,7 @@ import {
   t_global_font_size_heading_xl,
   t_global_font_size_heading_md,
 } from '@patternfly/react-tokens';
-import { API_BASE_URL } from '@/constants';
+import { getAppConfig } from '@/config/appConfig';
 import PolicyDetailsSection from './PolicyDetailsSection';
 import TopFailedRulesSection from './TopFailedRulesSection';
 import SystemsTableSection from './SystemsTableSection';
@@ -91,7 +91,7 @@ export const fetchData = async (createAsyncRequest, options) => {
   // Report details
   const rawReportResponse = await createAsyncRequest('compliance', {
     method: 'GET',
-    url: `${API_BASE_URL}/reports/${reportId}`,
+    url: `${getAppConfig().api.complianceBasePath}/reports/${reportId}`,
   });
 
   osMajorVersion = rawReportResponse.data.os_major_version;
@@ -104,7 +104,7 @@ export const fetchData = async (createAsyncRequest, options) => {
     try {
       const response = await createAsyncRequest('compliance', {
         method: 'GET',
-        url: `${API_BASE_URL}/reports/${reportId}/stats`,
+        url: `${getAppConfig().api.complianceBasePath}/reports/${reportId}/stats`,
       });
       const topFailedRulesData = response.top_failed_rules;
       requests.push(Promise.resolve({ top_failed_rules: topFailedRulesData }));

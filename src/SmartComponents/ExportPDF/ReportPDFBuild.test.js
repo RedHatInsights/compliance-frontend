@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import { API_BASE_URL } from '@/constants';
+import { getAppConfig } from '@/config/appConfig';
 import { fetchData } from './ReportPDFBuild';
 
 import ReportPDFBuild from './ReportPDFBuild';
@@ -86,11 +86,11 @@ describe('fetchData', () => {
     expect(createAsyncRequest).toHaveBeenCalledTimes(2); // reportDetails & top failed rules
     expect(createAsyncRequest).toHaveBeenCalledWith('compliance', {
       method: 'GET',
-      url: `${API_BASE_URL}/reports/${mockReportId}`,
+      url: `${getAppConfig().api.complianceBasePath}/reports/${mockReportId}`,
     });
     expect(createAsyncRequest).toHaveBeenCalledWith('compliance', {
       method: 'GET',
-      url: `${API_BASE_URL}/reports/${mockReportId}/stats`,
+      url: `${getAppConfig().api.complianceBasePath}/reports/${mockReportId}/stats`,
     });
 
     expect(fetchPaginatedList).toHaveBeenCalledTimes(3);
@@ -171,7 +171,7 @@ describe('fetchData', () => {
     expect(createAsyncRequest).toHaveBeenCalledTimes(1);
     expect(createAsyncRequest).toHaveBeenCalledWith('compliance', {
       method: 'GET',
-      url: `${API_BASE_URL}/reports/${mockReportId}`,
+      url: `${getAppConfig().api.complianceBasePath}/reports/${mockReportId}`,
     });
 
     expect(fetchPaginatedList).not.toHaveBeenCalled();

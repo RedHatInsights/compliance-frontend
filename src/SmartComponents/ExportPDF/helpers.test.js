@@ -2,7 +2,7 @@ import {
   fetchPaginatedList,
   fetchUnsupportedSystemsWithExpectedSSG,
 } from './helpers';
-import { API_BASE_URL } from '@/constants';
+import { getAppConfig } from '@/config/appConfig';
 
 describe('fetchPaginatedList', () => {
   let createAsyncRequest;
@@ -45,7 +45,7 @@ describe('fetchPaginatedList', () => {
     expect(createAsyncRequest).toHaveBeenCalledTimes(1);
     expect(createAsyncRequest).toHaveBeenCalledWith('compliance', {
       method: 'GET',
-      url: `${API_BASE_URL}/reports/${reportId}${endpointPath}`,
+      url: `${getAppConfig().api.complianceBasePath}/reports/${reportId}${endpointPath}`,
       params: { limit: batchSize, offset: 0, filter },
     });
 
@@ -85,17 +85,17 @@ describe('fetchPaginatedList', () => {
 
     expect(createAsyncRequest).toHaveBeenCalledWith('compliance', {
       method: 'GET',
-      url: `${API_BASE_URL}/reports/${reportId}${endpointPath}`,
+      url: `${getAppConfig().api.complianceBasePath}/reports/${reportId}${endpointPath}`,
       params: { limit: batchSize, offset: 0, filter },
     });
     expect(createAsyncRequest).toHaveBeenCalledWith('compliance', {
       method: 'GET',
-      url: `${API_BASE_URL}/reports/${reportId}${endpointPath}`,
+      url: `${getAppConfig().api.complianceBasePath}/reports/${reportId}${endpointPath}`,
       params: { limit: batchSize, offset: batchSize, filter },
     });
     expect(createAsyncRequest).toHaveBeenCalledWith('compliance', {
       method: 'GET',
-      url: `${API_BASE_URL}/reports/${reportId}${endpointPath}`,
+      url: `${getAppConfig().api.complianceBasePath}/reports/${reportId}${endpointPath}`,
       params: { limit: batchSize, offset: 4, filter },
     });
 
@@ -226,7 +226,7 @@ describe('fetchUnsupportedSystemsWithExpectedSSG', () => {
     expect(createAsyncRequest).toHaveBeenCalledTimes(3);
     expect(createAsyncRequest).toHaveBeenCalledWith('compliance', {
       method: 'GET',
-      url: `${API_BASE_URL}/reports/${reportId}/test_results`,
+      url: `${getAppConfig().api.complianceBasePath}/reports/${reportId}/test_results`,
       params: {
         limit: 50,
         filter: `supported = false`,
@@ -235,7 +235,7 @@ describe('fetchUnsupportedSystemsWithExpectedSSG', () => {
     });
     expect(createAsyncRequest).toHaveBeenCalledWith('compliance', {
       method: 'GET',
-      url: `${API_BASE_URL}/security_guides`,
+      url: `${getAppConfig().api.complianceBasePath}/security_guides`,
       params: {
         limit: 1,
         filter: `os_major_version=${osMajorVersion} AND supported_profile=${refId}:0`,
@@ -244,7 +244,7 @@ describe('fetchUnsupportedSystemsWithExpectedSSG', () => {
     });
     expect(createAsyncRequest).toHaveBeenCalledWith('compliance', {
       method: 'GET',
-      url: `${API_BASE_URL}/security_guides`,
+      url: `${getAppConfig().api.complianceBasePath}/security_guides`,
       params: {
         limit: 1,
         filter: `os_major_version=${osMajorVersion} AND supported_profile=${refId}:1`,
