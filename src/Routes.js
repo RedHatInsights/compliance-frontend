@@ -156,7 +156,11 @@ const systemsRoutes = [
   {
     path: 'systems',
     title: defaultSystemsTitle,
-    requiredPermissions: [...defaultPermissions, 'compliance:system:read'],
+    requiredPermissions: [
+      ...defaultPermissions,
+      'compliance:system:read',
+      'compliance:policy:read',
+    ],
     component: lazy(
       () =>
         import(
@@ -168,7 +172,11 @@ const systemsRoutes = [
     path: 'systems/:inventoryId',
     title: `$entityTitle - ${defaultSystemsTitle}`,
     defaultTitle: defaultSystemsTitle,
-    requiredPermissions: [...defaultPermissions, 'compliance:system:read'],
+    requiredPermissions: [
+      ...defaultPermissions,
+      'compliance:system:read',
+      'compliance:report:read',
+    ],
     component: lazy(
       () =>
         import(
