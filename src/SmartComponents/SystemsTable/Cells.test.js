@@ -86,8 +86,17 @@ describe('ComplianceScore', () => {
 });
 
 describe('LastScanned', () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   it('returns the relative date the system was last scanned', () => {
-    render(<LastScanned end_time="2018-03-16T03:44:05.923774Z" />);
+    const lastScannedTime = '2018-03-16T03:44:05.923774Z';
+    jest
+      .spyOn(Date, 'now')
+      .mockReturnValue(new Date('2026-03-16T03:44:05.923774Z').getTime());
+
+    render(<LastScanned end_time={lastScannedTime} />);
 
     expect(screen.getByText('8 years ago')).toBeInTheDocument();
   });

@@ -8,9 +8,11 @@ import { AccessCheck } from '@project-kessel/react-kessel-access-check';
 import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
 import { KESSEL_API_BASE_URL } from '@/constants';
 import { useFlagsStatus } from '@unleash/proxy-client-react';
-import { CenteredSpinner } from 'PresentationalComponents';
+import { CenteredSpinner, WithPermission } from 'PresentationalComponents';
 
 const queryClient = new QueryClient();
+
+const TAB_PERMISSIONS = ['compliance:system:read', 'compliance:report:read'];
 
 const ComplianceDetails = (props) => {
   const store = useRef(init().getStore());
@@ -21,6 +23,14 @@ const ComplianceDetails = (props) => {
     return <CenteredSpinner />;
   }
 
+  const details = (
+    <Provider store={store.current}>
+      <WithPermission requiredPermissions={TAB_PERMISSIONS}>
+        <Details {...props} />
+      </WithPermission>
+    </Provider>
+  );
+
   return (
     <QueryClientProvider client={queryClient}>
       {isKesselEnabled ? (
@@ -28,16 +38,10 @@ const ComplianceDetails = (props) => {
           baseUrl={window.location.origin}
           apiPath={KESSEL_API_BASE_URL}
         >
-          <Provider store={store.current}>
-            <Details {...props} />
-          </Provider>
+          {details}
         </AccessCheck.Provider>
       ) : (
-        <RBACProvider appName="compliance">
-          <Provider store={store.current}>
-            <Details {...props} />
-          </Provider>
-        </RBACProvider>
+        <RBACProvider appName="compliance">{details}</RBACProvider>
       )}
     </QueryClientProvider>
   );
