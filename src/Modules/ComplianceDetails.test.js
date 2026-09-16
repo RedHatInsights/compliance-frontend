@@ -9,6 +9,10 @@ jest.mock('@unleash/proxy-client-react', () => ({
 }));
 
 jest.mock('Utilities/hooks/useFeatureFlag', () => () => true);
+jest.mock('Utilities/hooks/usePermissionCheck', () => ({
+  useKesselPermissions: jest.fn(() => ({ hasAccess: true, isLoading: false })),
+  useRbacV1Permissions: jest.fn(() => ({ hasAccess: true, isLoading: false })),
+}));
 jest.mock('../SmartComponents/SystemDetails/useTestResults', () =>
   jest.fn(() => ({
     testResultsLoading: false,
