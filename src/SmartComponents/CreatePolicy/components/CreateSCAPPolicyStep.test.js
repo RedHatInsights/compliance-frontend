@@ -242,7 +242,7 @@ describe('CreateSCAPPolicyStep', () => {
         expect(useSupportedProfiles).toHaveBeenCalledWith(
           expect.objectContaining({
             params: expect.objectContaining({
-              filters: 'os_major_version ^ (9)',
+              filters: 'os_major_version = 9',
             }),
             skip: false,
           }),
