@@ -20,6 +20,7 @@ import {
 import { InventoryDetails } from 'SmartComponents';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import useSystem from 'Utilities/hooks/api/useSystem';
+import { getAppConfig } from '@/config/appConfig';
 
 const PageBreadcrumb = ({ systemName }) => (
   <Breadcrumb ouiaId="SystemDetailsPathBreadcrumb">
@@ -35,6 +36,8 @@ PageBreadcrumb.propTypes = {
 
 const SystemDetails = ({ route }) => {
   const { inventoryId } = useParams();
+  const isIop = getAppConfig().envTarget === 'iop';
+  const remediationsEnabled = getAppConfig().features.remediations;
   let {
     data: { data } = {},
     error,
@@ -47,23 +50,27 @@ const SystemDetails = ({ route }) => {
   return (
     <StateViewWithError stateValues={{ error, data, loading }}>
       <StateViewPart stateKey="data">
-        <PageHeader>
-          <PageBreadcrumb systemName={systemName} />
-          <InventoryDetails inventoryId={inventoryId} />
-        </PageHeader>
+        {!isIop && (
+          <PageHeader>
+            <PageBreadcrumb systemName={systemName} />
+            <InventoryDetails inventoryId={inventoryId} />
+          </PageHeader>
+        )}
         <PageSection hasBodyWrapper={false}>
           <Details
             hidePassed
             inventoryId={inventoryId}
             system={data}
-            remediationsEnabled
+            remediationsEnabled={remediationsEnabled}
           />
         </PageSection>
       </StateViewPart>
       <StateViewPart stateKey="loading">
-        <PageHeader>
-          <Skeleton size={SkeletonSize.md} />
-        </PageHeader>
+        {!isIop && (
+          <PageHeader>
+            <Skeleton size={SkeletonSize.md} />
+          </PageHeader>
+        )}
       </StateViewPart>
     </StateViewWithError>
   );

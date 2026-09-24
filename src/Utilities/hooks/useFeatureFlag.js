@@ -1,7 +1,6 @@
-import { useFlag, useFlagsStatus } from '@unleash/proxy-client-react';
+import useFeatureFlagHcc from './useFeatureFlag.hcc';
+import useFeatureFlagIop from './useFeatureFlag.iop';
 
-export default (flag) => {
-  const { flagsReady } = useFlagsStatus();
-  const isFlagEnabled = useFlag(flag);
-  return flagsReady ? isFlagEnabled : undefined;
-};
+export default process.env.IOP === 'true'
+  ? useFeatureFlagIop
+  : useFeatureFlagHcc;

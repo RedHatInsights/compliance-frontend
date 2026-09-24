@@ -1,6 +1,22 @@
 import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/Registry';
 import { entitiesReducer } from 'Store/Reducers/SystemStore';
 
+const INVENTORY_GROUPS_AND_TAGS_KEYS = new Set(['groups', 'tags']);
+
+export const filterColumnsByInventoryFeatures = (
+  columns = [],
+  inventoryGroupsAndTags = true,
+) => {
+  if (inventoryGroupsAndTags) {
+    return columns;
+  }
+
+  return columns.filter((column) => {
+    const key = typeof column === 'string' ? column : column?.key;
+    return !INVENTORY_GROUPS_AND_TAGS_KEYS.has(key);
+  });
+};
+
 export const mergedColumns = (columns) => (defaultColumns) =>
   columns.reduce((prev, column) => {
     const isStringCol = typeof column === 'string';

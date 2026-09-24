@@ -6,9 +6,10 @@ import { RBACProvider } from '@redhat-cloud-services/frontend-components/RBACPro
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AccessCheck } from '@project-kessel/react-kessel-access-check';
 import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
+import useUnleashFlagsReady from 'Utilities/hooks/useUnleashFlagsReady';
 import { KESSEL_API_BASE_URL } from '@/constants';
-import { useFlagsStatus } from '@unleash/proxy-client-react';
 import { CenteredSpinner, WithPermission } from 'PresentationalComponents';
+import { getAppConfig } from '@/config/appConfig';
 
 const queryClient = new QueryClient();
 
@@ -17,7 +18,9 @@ const TAB_PERMISSIONS = ['compliance:system:read', 'compliance:report:read'];
 const ComplianceDetails = (props) => {
   const store = useRef(init().getStore());
   const isKesselEnabled = useFeatureFlag('compliance.kessel_enabled');
-  const { flagsReady } = useFlagsStatus();
+  const flagsReady = useUnleashFlagsReady();
+  const remediationsEnabled =
+    props.remediationsEnabled !== false && getAppConfig().features.remediations;
 
   if (!flagsReady) {
     return <CenteredSpinner />;
@@ -26,7 +29,7 @@ const ComplianceDetails = (props) => {
   const details = (
     <Provider store={store.current}>
       <WithPermission requiredPermissions={TAB_PERMISSIONS}>
-        <Details {...props} />
+        <Details {...props} remediationsEnabled={remediationsEnabled} />
       </WithPermission>
     </Provider>
   );
@@ -45,6 +48,10 @@ const ComplianceDetails = (props) => {
       )}
     </QueryClientProvider>
   );
+};
+
+ComplianceDetails.propTypes = {
+  remediationsEnabled: PropTypes.bool,
 };
 
 export default ComplianceDetails;
