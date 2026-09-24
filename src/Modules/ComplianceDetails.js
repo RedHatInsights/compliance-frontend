@@ -29,7 +29,7 @@ const ComplianceDetails = (props) => {
   const details = (
     <Provider store={store.current}>
       <WithPermission requiredPermissions={TAB_PERMISSIONS}>
-        <Details {...props} remediationsEnabled={remediationsEnabled}/>
+        <Details {...props} remediationsEnabled={remediationsEnabled} />
       </WithPermission>
     </Provider>
   );

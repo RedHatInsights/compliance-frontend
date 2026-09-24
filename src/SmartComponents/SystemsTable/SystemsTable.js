@@ -46,10 +46,8 @@ export const SystemsTable = ({
   ...inventoryTableProps
 }) => {
   const inventory = useRef(null);
-  const {
-    remediations: remediationsFeature,
-    inventoryGroupsAndTags,
-  } = getAppConfig().features;
+  const { remediations: remediationsFeature, inventoryGroupsAndTags } =
+    getAppConfig().features;
   const enableRemediations = remediationsEnabled && remediationsFeature;
   const tableColumns = filterColumnsByInventoryFeatures(
     columns,

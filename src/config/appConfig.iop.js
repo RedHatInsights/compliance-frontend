@@ -13,6 +13,7 @@ const appConfigIop = Object.freeze({
   }),
   routes: Object.freeze({
     systemPermissions: Object.freeze(['compliance:report:read']),
+    systemsPermissions: Object.freeze(['compliance:policy:read']),
   }),
 });
 
