@@ -58,10 +58,10 @@ const EditPolicySystemsTab = ({
   const defaultFilter = useMemo(
     () =>
       os_major_version &&
-      `os_major_version = ${os_major_version} AND os_minor_version ^ (${supportedOsVersions.join(
+      `os_major_version = ${os_major_version} AND available_for_policy_id = ${policyId} AND os_minor_version ^ (${supportedOsVersions.join(
         ' ',
       )})`,
-    [os_major_version, supportedOsVersions],
+    [os_major_version, supportedOsVersions, policyId],
   );
 
   return (
