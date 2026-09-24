@@ -32,7 +32,8 @@ describe('EditPolicySystemsTab', () => {
     expect(mockSystemsTable).toHaveBeenCalledWith(
       expect.objectContaining({
         apiEndpoint: 'systems',
-        defaultFilter: 'os_major_version = 8 AND os_minor_version ^ (1 2)',
+        defaultFilter:
+          'os_major_version = 8 AND available_for_policy_id = test-policy-id AND os_minor_version ^ (1 2)',
         policyId: undefined,
       }),
       {},
