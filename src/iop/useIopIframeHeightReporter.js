@@ -6,6 +6,7 @@ import { measureIopContentHeight } from './measureIopContentHeight';
 /**
  * Host-tab only: post the iframe content height so Foreman can size the iframe
  * and keep a single page scrollbar.
+ *  @param embedded
  */
 export const useIopIframeHeightReporter = (embedded) => {
   const lastHeightRef = useRef(null);

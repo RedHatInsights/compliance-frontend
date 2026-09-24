@@ -12,7 +12,14 @@ const appConfigHcc = Object.freeze({
     inventoryBasePath: '/api/inventory/v1',
   }),
   routes: Object.freeze({
-    systemPermissions: Object.freeze(['compliance:system:read']),
+    systemPermissions: Object.freeze([
+      'compliance:system:read',
+      'compliance:report:read',
+    ]),
+    systemsPermissions: Object.freeze([
+      'compliance:system:read',
+      'compliance:policy:read',
+    ]),
   }),
 });
 
