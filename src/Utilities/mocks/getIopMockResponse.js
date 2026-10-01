@@ -11,6 +11,7 @@ import {
   iopMockPolicySystemsOs,
   iopMockReports,
   iopMockReportsOs,
+  iopMockSecurityGuidesOs,
   iopMockRuleGroups,
   iopMockRules,
   iopMockRuleTree,
@@ -19,9 +20,13 @@ import {
   iopMockSystems,
   iopMockSystemsOs,
   iopMockTailorings,
-  iopMockTestResults,
+  iopMockReportSsgVersions,
+  iopMockReportSystemsByReportId,
+  iopMockReportTestResultsByReportId,
   iopMockRuleResults,
   iopMockValueDefinitions,
+  osVersionsForSystems,
+  systemsForReport,
   IOP_MOCK_NEW_POLICY_ID,
   IOP_MOCK_REPORT_ID,
 } from './iopMockData';
@@ -54,6 +59,20 @@ const listPayload = (items, params = {}) => ({
   meta: { total: items.length, ...params },
 });
 
+const rulesForParams = (params = {}) => {
+  const filter = params.filters || params.filter || '';
+  const match = String(filter).match(/rule_group_id \^ \(([^)]*)\)/);
+
+  if (!match) {
+    return iopMockRules;
+  }
+
+  const groupIds = new Set(match[1].split(/\s+/).filter(Boolean));
+  return iopMockRules.filter(({ rule_group_id }) =>
+    groupIds.has(rule_group_id),
+  );
+};
+
 const compileMockResult = (rawResult, params, { onlyTotal } = {}) => {
   const compileResult = onlyTotal ? compileTotalResult : defaultCompileResult;
   return compileResult(rawResult, params);
@@ -66,19 +85,27 @@ const getRawListForEndpoint = (endpoint, params = {}) => {
     case 'reports':
       return listPayload(iopMockReports, params);
     case 'reportsOS':
-    case 'reportSystemsOS':
+      return listPayload(iopMockReportsOs, params);
     case 'reportTestResultsOS':
-    case 'systemsOS':
-    case 'securityGuidesOS':
-    case 'policySystemsOS':
       return listPayload(
-        endpoint === 'policySystemsOS'
-          ? iopMockPolicySystemsOs
-          : endpoint === 'reportsOS'
-            ? iopMockReportsOs
-            : iopMockSystemsOs,
+        osVersionsForSystems(
+          systemsForReport(iopMockReportTestResultsByReportId, params.reportId),
+        ),
         params,
       );
+    case 'reportSystemsOS':
+      return listPayload(
+        osVersionsForSystems(
+          systemsForReport(iopMockReportSystemsByReportId, params.reportId),
+        ),
+        params,
+      );
+    case 'systemsOS':
+      return listPayload(iopMockSystemsOs, params);
+    case 'securityGuidesOS':
+      return listPayload(iopMockSecurityGuidesOs, params);
+    case 'policySystemsOS':
+      return listPayload(iopMockPolicySystemsOs, params);
     case 'systems':
       return listPayload(iopMockSystems, params);
     case 'supportedProfiles':
@@ -90,7 +117,7 @@ const getRawListForEndpoint = (endpoint, params = {}) => {
     case 'tailoringRules':
     case 'profileRules':
     case 'rules':
-      return listPayload(iopMockRules, params);
+      return listPayload(rulesForParams(params), params);
     case 'ruleGroups':
       return listPayload(iopMockRuleGroups, params);
     case 'valueDefinitions':
@@ -98,16 +125,21 @@ const getRawListForEndpoint = (endpoint, params = {}) => {
     case 'reportRuleResults':
       return listPayload(iopMockRuleResults, params);
     case 'reportTestResults':
+      return listPayload(
+        systemsForReport(iopMockReportTestResultsByReportId, params.reportId),
+        params,
+      );
     case 'reportTestResultsSG':
-      return listPayload(iopMockTestResults, params);
+      return listPayload(iopMockReportSsgVersions, params);
     case 'systemReports':
       return listPayload(iopMockReports, params);
     case 'reportSystems':
-      return listPayload(iopMockSystems, params);
+      return listPayload(
+        systemsForReport(iopMockReportSystemsByReportId, params.reportId),
+        params,
+      );
     case 'policySystems':
       return listPayload(iopMockSystems, params);
-    case 'policySystemsOS':
-      return listPayload(iopMockPolicySystemsOs, params);
     case 'profiles':
       return listPayload(iopMockSupportedProfiles, params);
     default:
