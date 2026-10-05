@@ -63,6 +63,7 @@ jobs:
           file: ./Dockerfile
           build-args: |
             DIST_PATH=/srv/dist
+            IOP=true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           outputs: type=image,push=${{ github.event_name != 'pull_request' }}

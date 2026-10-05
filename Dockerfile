@@ -3,7 +3,8 @@ WORKDIR /opt/app-root/src
 COPY package*.json ./
 RUN npm ci
 COPY . .
-ENV IOP=true
+ARG IOP=false
+ENV IOP=${IOP}
 RUN npm run build
 
 FROM registry.access.redhat.com/ubi9/ubi-micro:latest
