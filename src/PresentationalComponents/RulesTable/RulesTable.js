@@ -8,6 +8,7 @@ import { ComplianceTable } from 'PresentationalComponents';
 import RuleDetailsRow from './RuleDetailsRow';
 import buildFilterConfig from './Filters';
 import defaultColumns from './Columns';
+import { getAppConfig } from '@/config/appConfig';
 
 /**
  * A component to show rules of a policy or test result.
@@ -61,6 +62,8 @@ const RulesTable = ({
   ...rulesTableProps
 }) => {
   const complianceTableDefaults = useComplianceTableDefaults();
+  const enableRemediations =
+    remediationsEnabled && getAppConfig().features.remediations;
   const internalSelectedState = useState([]);
   const [selectedRules, setSelectedRules] =
     typeof onSelect === 'function'
@@ -140,11 +143,11 @@ const RulesTable = ({
               enableTreeView: true,
             }
           : {}),
-        onSelect: (onSelect || remediationsEnabled) && setSelectedRules,
+        onSelect: (onSelect || enableRemediations) && setSelectedRules,
         selected: selectedRules,
         detailsComponent: DetailsRow,
         dedicatedAction: DedicatedAction,
-        ...(remediationsEnabled ? { dedicatedAction: remediationAction } : {}),
+        ...(enableRemediations ? { dedicatedAction: remediationAction } : {}),
         total,
       }}
       total={total}
