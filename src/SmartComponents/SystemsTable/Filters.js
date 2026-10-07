@@ -136,7 +136,7 @@ export const group = {
       hostGroupFilter.length > 0
     ) {
       return `(${hostGroupFilter
-        .map((value) => `group_name = "${value}"`)
+        .map((value) => `group_id = "${value}"`)
         .join(' or ')})`;
     }
   },
