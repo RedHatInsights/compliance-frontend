@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
-import { isIopApiMocksEnabled } from 'Utilities/mocks/iopApiMocksEnabled';
-import { getIopMockResponse } from 'Utilities/mocks/getIopMockResponse';
+// import { isIopApiMocksEnabled } from 'Utilities/mocks/iopApiMocksEnabled';
+// import { getIopMockResponse } from 'Utilities/mocks/getIopMockResponse';
 import {
   defaultCompileResult,
   compileTotalResult,
@@ -26,9 +26,9 @@ const useComplianceFetchApi = ({
             fetchParams,
           );
 
-      if (isIopApiMocksEnabled()) {
-        return getIopMockResponse(endpoint, allParams, { onlyTotal });
-      }
+      // if (isIopApiMocksEnabled()) {
+      //   return getIopMockResponse(endpoint, allParams, { onlyTotal });
+      // }
 
       return await fetchResult(
         apiEndpoint,

@@ -1,6 +1,6 @@
 import useComplianceApi from 'Utilities/hooks/useComplianceApi';
-import { isIopApiMocksEnabled } from 'Utilities/mocks/iopApiMocksEnabled';
-import { getIopMockResponse } from 'Utilities/mocks/getIopMockResponse';
+// import { isIopApiMocksEnabled } from 'Utilities/mocks/iopApiMocksEnabled';
+// import { getIopMockResponse } from 'Utilities/mocks/getIopMockResponse';
 import { useDeepCompareMemo, useDeepCompareCallback } from 'use-deep-compare';
 
 import { useQueryWithUtilities } from 'bastilian-tabletools';
@@ -37,9 +37,9 @@ const useTableToolsQuery = (
         ...(onlyTotal ? TOTAL_REQUEST_PARAMS : {}),
       };
 
-      if (isIopApiMocksEnabled()) {
-        return getIopMockResponse(endpoint, allFetchParams, { onlyTotal });
-      }
+      // if (isIopApiMocksEnabled()) {
+      //   return getIopMockResponse(endpoint, allFetchParams, { onlyTotal });
+      // }
 
       return await fetchResult(
         apiEndpoint,
