@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import { init } from 'Store';
 import Details from '../SmartComponents/SystemDetails/Details';
@@ -9,6 +10,7 @@ import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
 import { KESSEL_API_BASE_URL } from '@/constants';
 import { useFlagsStatus } from '@unleash/proxy-client-react';
 import { CenteredSpinner, WithPermission } from 'PresentationalComponents';
+import { getAppConfig } from '@/config/appConfig';
 
 const queryClient = new QueryClient();
 
@@ -18,6 +20,10 @@ const ComplianceDetails = (props) => {
   const store = useRef(init().getStore());
   const isKesselEnabled = useFeatureFlag('compliance.kessel_enabled');
   const { flagsReady } = useFlagsStatus();
+  const remediationsEnabled =
+    props.remediationsEnabled !== false && getAppConfig().features.remediations
+      ? true
+      : false;
 
   if (!flagsReady) {
     return <CenteredSpinner />;
@@ -26,7 +32,7 @@ const ComplianceDetails = (props) => {
   const details = (
     <Provider store={store.current}>
       <WithPermission requiredPermissions={TAB_PERMISSIONS}>
-        <Details {...props} />
+        <Details {...props} remediationsEnabled={remediationsEnabled} />
       </WithPermission>
     </Provider>
   );
@@ -45,6 +51,10 @@ const ComplianceDetails = (props) => {
       )}
     </QueryClientProvider>
   );
+};
+
+ComplianceDetails.propTypes = {
+  remediationsEnabled: PropTypes.bool,
 };
 
 export default ComplianceDetails;
