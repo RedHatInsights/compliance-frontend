@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import { Tooltip } from '@patternfly/react-core';
 import Link from '@redhat-cloud-services/frontend-components/InsightsLink';
 import { findRouteByPath } from '@/Routes';
-import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
+import useFeatureFlag from 'Utilities/hooks/unleash/useFeatureFlag';
 import {
   useRbacV1Permissions,
   useKesselPermissions,

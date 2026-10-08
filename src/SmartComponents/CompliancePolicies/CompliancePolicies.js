@@ -15,7 +15,7 @@ import ComplianceEmptyState from 'PresentationalComponents/ComplianceEmptyState'
 import { TableStateProvider } from 'bastilian-tabletools';
 import CompliancePageHeader from 'PresentationalComponents/CompliancePageHeader/CompliancePageHeader';
 import { policiesPopoverData } from '@/constants';
-import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
+import useFeatureFlag from 'Utilities/hooks/unleash/useFeatureFlag';
 import {
   useRbacV1Permissions,
   useKesselPermissions,
