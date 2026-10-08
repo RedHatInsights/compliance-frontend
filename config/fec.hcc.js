@@ -28,6 +28,9 @@ const sentryPlugins = process.env.ENABLE_SENTRY
 module.exports = {
   ...base,
   appUrl: `/${bundle}/${appName}`,
+  definePlugin: {
+    'process.env.IOP_API_MOCKED': JSON.stringify('false'),
+  },
   plugins: sentryPlugins,
   moduleFederation: {
     shared: [

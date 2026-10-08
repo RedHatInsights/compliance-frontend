@@ -19,7 +19,12 @@ const iopAliases = {
 module.exports = {
   ...base,
   appUrl: '/',
-  definePlugin: { 'process.env.IOP': JSON.stringify('true') },
+  definePlugin: {
+    'process.env.IOP': JSON.stringify('true'),
+    'process.env.IOP_API_MOCKED': JSON.stringify(
+      process.env.IOP_API_MOCKED === 'true' ? 'true' : 'false',
+    ),
+  },
   deployment: 'assets/apps',
   standalone: true,
   appEntry: resolve(rootDir, './src/iop/entry.js'),

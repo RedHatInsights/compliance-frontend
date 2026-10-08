@@ -1,24 +1,23 @@
-import { getAppConfig } from '@/config/appConfig';
-import { getAppConfigHcc } from '@/config/appConfig.hcc';
-import { getAppConfigIop } from '@/config/appConfig.iop';
 import { isIopApiMocksEnabled } from './iopApiMocksEnabled';
 
-jest.mock('@/config/appConfig', () => {
-  const actual = jest.requireActual('@/config/appConfig');
-  return {
-    ...actual,
-    getAppConfig: jest.fn(),
-  };
-});
-
 describe('isIopApiMocksEnabled', () => {
-  it('is false on HCC', () => {
-    getAppConfig.mockReturnValue(getAppConfigHcc());
+  const original = process.env.IOP_API_MOCKED;
+
+  afterEach(() => {
+    if (original === undefined) {
+      delete process.env.IOP_API_MOCKED;
+    } else {
+      process.env.IOP_API_MOCKED = original;
+    }
+  });
+
+  it('is false unless IOP_API_MOCKED=true', () => {
+    delete process.env.IOP_API_MOCKED;
     expect(isIopApiMocksEnabled()).toBe(false);
   });
 
-  it('is true on IoP', () => {
-    getAppConfig.mockReturnValue(getAppConfigIop());
+  it('is true when IOP_API_MOCKED=true', () => {
+    process.env.IOP_API_MOCKED = 'true';
     expect(isIopApiMocksEnabled()).toBe(true);
   });
 });
