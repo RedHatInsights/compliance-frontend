@@ -3,6 +3,7 @@ import { APIFactory } from '@redhat-cloud-services/javascript-clients-shared';
 import { useAxiosWithPlatformInterceptors } from '@redhat-cloud-services/frontend-components-utilities/interceptors';
 import * as complianceApi from '@redhat-cloud-services/compliance-client';
 import { getAppConfig } from '@/config/appConfig';
+import { withForemanCsrf } from '@/iop/foremanCsrf';
 
 /**
  *
@@ -18,6 +19,13 @@ import { getAppConfig } from '@/config/appConfig';
  */
 const useComplianceApi = (endpoint) => {
   const axios = useAxiosWithPlatformInterceptors();
+
+  useEffect(() => {
+    if (getAppConfig().envTarget !== 'iop') return undefined;
+
+    const interceptor = axios.interceptors.request.use(withForemanCsrf);
+    return () => axios.interceptors.request.eject(interceptor);
+  }, [axios]);
 
   const apiEndpoint = useMemo(() => {
     const apiInstance = APIFactory(
