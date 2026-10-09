@@ -5,10 +5,10 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import NotificationsProvider from '@redhat-cloud-services/frontend-components-notifications/NotificationsProvider';
 import { RBACProvider } from '@redhat-cloud-services/frontend-components/RBACProvider';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
-import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
+import useFeatureFlag from 'Utilities/hooks/unleash/useFeatureFlag';
+import useUnleashFlagsReady from 'Utilities/hooks/unleash/useUnleashFlagsReady';
 import { AccessCheck } from '@project-kessel/react-kessel-access-check';
 import { KESSEL_API_BASE_URL } from '@/constants';
-import { useFlagsStatus } from '@unleash/proxy-client-react';
 import { CenteredSpinner } from 'PresentationalComponents';
 
 import Routes from './Routes';
@@ -19,7 +19,7 @@ const queryClient = new QueryClient();
 const App = (props) => {
   const chrome = useChrome();
   const isKesselEnabled = useFeatureFlag('compliance.kessel_enabled');
-  const { flagsReady } = useFlagsStatus();
+  const flagsReady = useUnleashFlagsReady();
 
   useEffect(() => {
     chrome.hideGlobalFilter(true);

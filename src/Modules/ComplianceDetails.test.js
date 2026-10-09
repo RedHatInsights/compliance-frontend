@@ -4,11 +4,8 @@ import '@testing-library/jest-dom';
 import TestWrapper from '@/Utilities/TestWrapper';
 import ComplianceDetails from './ComplianceDetails';
 
-jest.mock('@unleash/proxy-client-react', () => ({
-  useFlagsStatus: () => ({ flagsReady: true }),
-}));
-
-jest.mock('Utilities/hooks/useFeatureFlag', () => () => true);
+jest.mock('Utilities/hooks/unleash/useUnleashFlagsReady', () => () => true);
+jest.mock('Utilities/hooks/unleash/useFeatureFlag', () => () => true);
 jest.mock('Utilities/hooks/usePermissionCheck', () => ({
   useKesselPermissions: jest.fn(() => ({ hasAccess: true, isLoading: false })),
   useRbacV1Permissions: jest.fn(() => ({ hasAccess: true, isLoading: false })),
