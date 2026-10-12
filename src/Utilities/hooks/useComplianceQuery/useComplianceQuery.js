@@ -104,6 +104,7 @@ const useComplianceQuery = (
   const skip = !!(useTableState && !hasState) || !!skipOption;
 
   const { fetchApi, fetchForBatch } = useComplianceFetchApi({
+    endpoint,
     apiEndpoint,
     params,
     convertToArray,

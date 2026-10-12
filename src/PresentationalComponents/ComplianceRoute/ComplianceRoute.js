@@ -1,8 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import propTypes from 'prop-types';
 import { useLocation, matchPath } from 'react-router-dom';
+import { Bullseye, Spinner } from '@patternfly/react-core';
 import { WithPermission } from 'PresentationalComponents';
 import useDocumentTitle from 'Utilities/hooks/useDocumentTitle';
+
+const RouteLoading = () => (
+  <Bullseye>
+    <Spinner />
+  </Bullseye>
+);
 
 /**
  * This is component renders "routes" in Routes.js
@@ -42,12 +49,18 @@ const ComplianceRoute = (props) => {
     isCurrent && !requiresTitleEntity && setTitle(title);
   }, [isCurrent, requiresTitleEntity, setTitle, title]);
 
+  const routeContent = (
+    <Suspense fallback={<RouteLoading />}>
+      <Component {...componentProps} />
+    </Suspense>
+  );
+
   return requiredPermissions ? (
     <WithPermission requiredPermissions={requiredPermissions}>
-      <Component {...componentProps} />
+      {routeContent}
     </WithPermission>
   ) : (
-    <Component {...componentProps} />
+    routeContent
   );
 };
 
