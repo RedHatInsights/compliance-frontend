@@ -38,7 +38,7 @@ jest.mock('@redhat-cloud-services/frontend-components/useChrome', () =>
     requestPdf: jest.fn(),
   })),
 );
-jest.mock('Utilities/hooks/useFeatureFlag', () => () => true);
+jest.mock('Utilities/hooks/unleash/useFeatureFlag', () => () => true);
 
 describe('ExportPDF', () => {
   it('renders the Compliance report modal title', () => {

@@ -26,7 +26,7 @@ import {
   CenteredSpinner,
 } from 'PresentationalComponents';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
-import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
+import useFeatureFlag from 'Utilities/hooks/unleash/useFeatureFlag';
 import {
   useRbacV1Permissions,
   useKesselPermissions,

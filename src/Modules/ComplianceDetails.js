@@ -6,9 +6,9 @@ import Details from '../SmartComponents/SystemDetails/Details';
 import { RBACProvider } from '@redhat-cloud-services/frontend-components/RBACProvider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AccessCheck } from '@project-kessel/react-kessel-access-check';
-import useFeatureFlag from 'Utilities/hooks/useFeatureFlag';
+import useFeatureFlag from 'Utilities/hooks/unleash/useFeatureFlag';
+import useUnleashFlagsReady from 'Utilities/hooks/unleash/useUnleashFlagsReady';
 import { KESSEL_API_BASE_URL } from '@/constants';
-import { useFlagsStatus } from '@unleash/proxy-client-react';
 import { CenteredSpinner, WithPermission } from 'PresentationalComponents';
 import { getAppConfig } from '@/config/appConfig';
 
@@ -19,7 +19,7 @@ const TAB_PERMISSIONS = ['compliance:system:read', 'compliance:report:read'];
 const ComplianceDetails = (props) => {
   const store = useRef(init().getStore());
   const isKesselEnabled = useFeatureFlag('compliance.kessel_enabled');
-  const { flagsReady } = useFlagsStatus();
+  const flagsReady = useUnleashFlagsReady();
   const remediationsEnabled =
     props.remediationsEnabled !== false && getAppConfig().features.remediations
       ? true
