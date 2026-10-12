@@ -4,12 +4,19 @@ import '@testing-library/jest-dom';
 
 import propTypes from 'prop-types';
 import { MemoryRouter } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import CompliancePolicies from './CompliancePolicies.js';
 import usePolicies from 'Utilities/hooks/api/usePolicies';
 import { buildPolicies } from '../../__factories__/policies';
 
-const TestWrapper = ({ children }) => <MemoryRouter>{children}</MemoryRouter>;
+const queryClient = new QueryClient();
+
+const TestWrapper = ({ children }) => (
+  <QueryClientProvider client={queryClient}>
+    <MemoryRouter>{children}</MemoryRouter>
+  </QueryClientProvider>
+);
 TestWrapper.propTypes = { children: propTypes.node };
 
 const policiesData = buildPolicies(11);
