@@ -4,6 +4,8 @@ exports[`ProgressBar expect to render failed bar without error 1`] = `
 <DocumentFragment>
   <div
     class="pf-v6-c-progress pf-m-danger wizard-progress-bar"
+    data-ouia-component-type="PF6/Progress"
+    data-ouia-safe="true"
     id="finished-create-policy"
   >
     <div
@@ -65,6 +67,8 @@ exports[`ProgressBar expect to render progress bar without error 1`] = `
 <DocumentFragment>
   <div
     class="pf-v6-c-progress wizard-progress-bar"
+    data-ouia-component-type="PF6/Progress"
+    data-ouia-safe="true"
     id="finished-create-policy"
   >
     <div
@@ -109,6 +113,8 @@ exports[`ProgressBar expect to render success bar without error 1`] = `
 <DocumentFragment>
   <div
     class="pf-v6-c-progress pf-m-success wizard-progress-bar"
+    data-ouia-component-type="PF6/Progress"
+    data-ouia-safe="true"
     id="finished-create-policy"
   >
     <div
