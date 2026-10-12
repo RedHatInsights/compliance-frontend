@@ -1,15 +1,9 @@
 import React from 'react';
 import { render, screen, waitFor, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import RuleResultsWrapper from './RuleResults';
 import useReportRuleResults from 'Utilities/hooks/api/useReportRuleResults';
 import { buildTestResults } from '@/__factories__/ruleResults';
-
-const queryClient = new QueryClient();
-
-const renderRuleResults = (ui) =>
-  render(<QueryClientProvider client={queryClient}>{ui}</QueryClientProvider>);
 
 jest.mock('Utilities/hooks/api/useReportRuleResults', () => jest.fn());
 
@@ -27,9 +21,7 @@ describe('RuleResults', () => {
       error: null,
       refetch: () => {},
     }));
-    renderRuleResults(
-      <RuleResultsWrapper reportTestResult={reportTestResult} />,
-    );
+    render(<RuleResultsWrapper reportTestResult={reportTestResult} />);
 
     expect(screen.getByText(/no matching results found/i)).toBeInTheDocument();
   });
@@ -49,17 +41,14 @@ describe('RuleResults', () => {
       error: null,
       fetchAllIds: fetchAllIds,
     }));
-    renderRuleResults(
-      <RuleResultsWrapper reportTestResult={reportTestResult} />,
-    );
+    render(<RuleResultsWrapper reportTestResult={reportTestResult} />);
 
     await screen.findByText(testResults[0].title);
 
     act(() => {
       screen
         .getByRole('button', {
-          name: (_name, element) =>
-            element.getAttribute('data-ouia-component-id') === 'BulkSelect',
+          name: /Select all/i,
         })
         .click();
     });

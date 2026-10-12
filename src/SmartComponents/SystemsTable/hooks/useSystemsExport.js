@@ -24,7 +24,9 @@ export const useSystemsExport = ({ columns, exporter, total }) => {
       description: 'Reinitiate this export to try again.',
     });
 
-  const { isDisabled, exportWithFormat } = useExport({
+  const {
+    toolbarProps: { exportConfig },
+  } = useExport({
     exporter,
     columns,
     isDisabled: total === 0,
@@ -33,14 +35,7 @@ export const useSystemsExport = ({ columns, exporter, total }) => {
     onError,
   });
 
-  if (!exportWithFormat) {
-    return undefined;
-  }
-
-  return {
-    isDisabled,
-    onSelect: (_event, format) => exportWithFormat(format),
-  };
+  return exportConfig;
 };
 
 export default useSystemsExport;

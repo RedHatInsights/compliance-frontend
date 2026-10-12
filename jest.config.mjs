@@ -24,8 +24,6 @@ export default {
       'indent-string',
       'clean-stack',
       'bastilian-tabletools',
-      '@tanstack/react-pacer',
-      '@tanstack/pacer',
     ].join('|')})`,
   ],
   moduleNameMapper: {
