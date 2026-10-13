@@ -1,6 +1,21 @@
 const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+// PF5 and PF6 ship different font files under the same names. FEC emits
+// fonts/[name][ext], so the second pack overwrites the first.
+class IopDistinctFontFilenamesPlugin {
+  apply(compiler) {
+    compiler.options.module.rules.forEach((rule) => {
+      if (
+        rule.type === 'asset/resource' &&
+        rule.generator?.filename === 'fonts/[name][ext]'
+      ) {
+        rule.generator.filename = 'fonts/[name].[contenthash][ext]';
+      }
+    });
+  }
+}
+
 const base = require('./fec.base');
 const rootDir = resolve(__dirname, '..');
 
@@ -29,6 +44,7 @@ module.exports = {
   standalone: true,
   appEntry: resolve(rootDir, './src/iop/entry.js'),
   plugins: [
+    new IopDistinctFontFilenamesPlugin(),
     new HtmlWebpackPlugin({
       template: resolve(rootDir, './src/iop/index.html'),
       inject: true,
