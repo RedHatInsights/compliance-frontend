@@ -1,6 +1,7 @@
 import { useCallback, useRef, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { useBulkSelect } from 'bastilian-tabletools';
+import useTableToolsForDeprecatedTable from 'bastilian-tabletools/dist/components/DeprecatedTable/hooks/useTableToolsForDeprecatedTable';
 import { setDisabledSelection } from 'Store/Actions/SystemActions';
 
 const useSystemsBulkSelect = ({
@@ -80,16 +81,31 @@ const useSystemsBulkSelect = ({
     ...bulkSelectOptions,
   });
 
+  const { enableBulkSelect, isItemSelected } = bulkSelect;
+  const { tableProps: adaptedTableProps, toolbarProps: adaptedToolbarProps } =
+    useTableToolsForDeprecatedTable({ bulkSelect });
+
   const markEntitySelected = useCallback(
     (entity) => ({
       ...entity,
-      selected: bulkSelect?.tableView?.isItemSelected(entity.item.itemId),
+      selected: isItemSelected(entity.item.itemId),
     }),
-    [bulkSelect],
+    [isItemSelected],
   );
 
   return {
     ...bulkSelect,
+    ...(enableBulkSelect
+      ? {
+          tableProps: {
+            onSelect: adaptedTableProps.onSelect,
+            canSelectAll: adaptedTableProps.canSelectAll,
+          },
+          toolbarProps: {
+            bulkSelect: adaptedToolbarProps.bulkSelect,
+          },
+        }
+      : {}),
     selectedItemCache: itemCache.current || [],
     markEntitySelected,
   };
