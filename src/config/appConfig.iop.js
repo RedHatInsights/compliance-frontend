@@ -1,4 +1,5 @@
 import IopSystemDetailsLink from 'PresentationalComponents/SystemDetailsLink/IopSystemDetailsLink';
+import { withForemanCsrf } from '@/iop/foremanCsrf';
 
 const appConfigIop = Object.freeze({
   envTarget: 'iop',
@@ -16,6 +17,7 @@ const appConfigIop = Object.freeze({
     inventoryBasePath: '/insights_cloud/api/inventory/v1',
   }),
   systemDetailsLink: IopSystemDetailsLink,
+  requestInterceptors: Object.freeze([withForemanCsrf]),
   routes: Object.freeze({
     systemPermissions: Object.freeze(['compliance:report:read']),
     systemsPermissions: Object.freeze(['compliance:policy:read']),
