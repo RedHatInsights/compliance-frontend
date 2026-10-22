@@ -14,6 +14,7 @@ const appConfigHcc = Object.freeze({
     inventoryBasePath: '/api/inventory/v1',
   }),
   systemDetailsLink: HccSystemDetailsLink,
+  requestInterceptors: Object.freeze([]),
   routes: Object.freeze({
     systemPermissions: Object.freeze([
       'compliance:system:read',
