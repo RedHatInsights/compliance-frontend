@@ -3,6 +3,7 @@ import { getAppConfigHcc } from './appConfig.hcc';
 import { getAppConfigIop } from './appConfig.iop';
 import HccSystemDetailsLink from 'PresentationalComponents/SystemDetailsLink/HccSystemDetailsLink';
 import IopSystemDetailsLink from 'PresentationalComponents/SystemDetailsLink/IopSystemDetailsLink';
+import { withForemanCsrf } from '@/iop/foremanCsrf';
 
 describe('appConfig', () => {
   afterEach(() => {
@@ -44,6 +45,7 @@ describe('appConfig', () => {
         'compliance:policy:read',
       ]);
       expect(config.systemDetailsLink).toBe(HccSystemDetailsLink);
+      expect(config.requestInterceptors).toEqual([]);
     });
   });
 
@@ -72,6 +74,7 @@ describe('appConfig', () => {
         'compliance:policy:read',
       ]);
       expect(config.systemDetailsLink).toBe(IopSystemDetailsLink);
+      expect(config.requestInterceptors).toEqual([withForemanCsrf]);
     });
   });
 });
