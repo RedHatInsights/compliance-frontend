@@ -85,6 +85,18 @@ describe('SystemsTable', () => {
   });
 
   it('Should set hasCheckbox when selection is enabled', async () => {
+    useComplianceQuery.mockImplementation(() => ({
+      data: { data: [], meta: { total: 2 } },
+      loading: false,
+      error: undefined,
+      fetch: () => ({
+        data: [{ id: 'system-1' }],
+        meta: { total: 2 },
+      }),
+      fetchBatched: () => ({ data: [], meta: { total: 2 } }),
+      exporter: jest.fn(),
+    }));
+
     render(
       <TestWrapper>
         <SystemsTable {...mockProps} />
@@ -95,6 +107,14 @@ describe('SystemsTable', () => {
       expect(InventoryTable).toHaveBeenCalledWith(
         expect.objectContaining({
           hasCheckbox: true,
+          bulkSelect: expect.objectContaining({
+            items: expect.any(Array),
+            onSelect: expect.any(Function),
+          }),
+          tableProps: expect.objectContaining({
+            onSelect: expect.any(Function),
+            canSelectAll: false,
+          }),
         }),
         expect.anything(),
       ),

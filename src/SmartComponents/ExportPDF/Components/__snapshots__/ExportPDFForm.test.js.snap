@@ -4,10 +4,16 @@ exports[`ExportPDFForm expect to render without error 1`] = `
 <div>
   <form
     class="pf-v6-c-form"
+    data-ouia-component-id="OUIA-Generated-Form-:r0:"
+    data-ouia-component-type="PF6/Form"
+    data-ouia-safe="true"
     novalidate=""
   >
     <div
       class="pf-v6-c-form__group"
+      data-ouia-component-id="OUIA-Generated-FormGroup-:r1:"
+      data-ouia-component-type="PF6/FormGroup"
+      data-ouia-safe="true"
     >
       <div
         class="pf-v6-c-form__group-label"
@@ -29,7 +35,7 @@ exports[`ExportPDFForm expect to render without error 1`] = `
       >
         <p
           class="pf-v6-c-content--p"
-          data-ouia-component-id="OUIA-Generated-Content-:r1:"
+          data-ouia-component-id="OUIA-Generated-Content-:r3:"
           data-ouia-component-type="PF6/Content"
           data-ouia-safe="true"
           data-pf-content="true"
@@ -40,6 +46,9 @@ exports[`ExportPDFForm expect to render without error 1`] = `
     </div>
     <div
       class="pf-v6-c-form__group"
+      data-ouia-component-id="OUIA-Generated-FormGroup-:r4:"
+      data-ouia-component-type="PF6/FormGroup"
+      data-ouia-safe="true"
     >
       <div
         class="pf-v6-c-form__group-label"
@@ -67,7 +76,7 @@ exports[`ExportPDFForm expect to render without error 1`] = `
             aria-label="Non-compliant systems"
             checked=""
             class="pf-v6-c-check__input"
-            data-ouia-component-id="OUIA-Generated-Checkbox-:r4:"
+            data-ouia-component-id="OUIA-Generated-Checkbox-:r7:"
             data-ouia-component-type="PF6/Checkbox"
             data-ouia-safe="true"
             id="non-compliant-systems-export-setting"
@@ -88,7 +97,7 @@ exports[`ExportPDFForm expect to render without error 1`] = `
             aria-label="Systems with unsupported configuration"
             checked=""
             class="pf-v6-c-check__input"
-            data-ouia-component-id="OUIA-Generated-Checkbox-:r6:"
+            data-ouia-component-id="OUIA-Generated-Checkbox-:r9:"
             data-ouia-component-type="PF6/Checkbox"
             data-ouia-safe="true"
             id="unsupported-systems-export-setting"
@@ -109,7 +118,7 @@ exports[`ExportPDFForm expect to render without error 1`] = `
             aria-label="Systems never reported"
             checked=""
             class="pf-v6-c-check__input"
-            data-ouia-component-id="OUIA-Generated-Checkbox-:r8:"
+            data-ouia-component-id="OUIA-Generated-Checkbox-:rb:"
             data-ouia-component-type="PF6/Checkbox"
             data-ouia-safe="true"
             id="nonreporting-systems-export-setting"
@@ -129,7 +138,7 @@ exports[`ExportPDFForm expect to render without error 1`] = `
             aria-invalid="false"
             aria-label="Compliant systems"
             class="pf-v6-c-check__input"
-            data-ouia-component-id="OUIA-Generated-Checkbox-:ra:"
+            data-ouia-component-id="OUIA-Generated-Checkbox-:rd:"
             data-ouia-component-type="PF6/Checkbox"
             data-ouia-safe="true"
             id="compliant-systems-export-setting"
@@ -146,6 +155,9 @@ exports[`ExportPDFForm expect to render without error 1`] = `
     </div>
     <div
       class="pf-v6-c-form__group"
+      data-ouia-component-id="OUIA-Generated-FormGroup-:re:"
+      data-ouia-component-type="PF6/FormGroup"
+      data-ouia-safe="true"
     >
       <div
         class="pf-v6-c-form__group-label"
@@ -173,7 +185,7 @@ exports[`ExportPDFForm expect to render without error 1`] = `
             aria-label="Rule data to include"
             checked=""
             class="pf-v6-c-check__input"
-            data-ouia-component-id="OUIA-Generated-Checkbox-:rd:"
+            data-ouia-component-id="OUIA-Generated-Checkbox-:rh:"
             data-ouia-component-type="PF6/Checkbox"
             data-ouia-safe="true"
             id="failed-rules-export-setting"
@@ -190,6 +202,9 @@ exports[`ExportPDFForm expect to render without error 1`] = `
     </div>
     <div
       class="pf-v6-c-form__group"
+      data-ouia-component-id="OUIA-Generated-FormGroup-:ri:"
+      data-ouia-component-type="PF6/FormGroup"
+      data-ouia-safe="true"
     >
       <div
         class="pf-v6-c-form__group-label"
@@ -229,10 +244,16 @@ exports[`ExportPDFForm expect to render without error with different export sett
 <div>
   <form
     class="pf-v6-c-form"
+    data-ouia-component-id="OUIA-Generated-Form-:rk:"
+    data-ouia-component-type="PF6/Form"
+    data-ouia-safe="true"
     novalidate=""
   >
     <div
       class="pf-v6-c-form__group"
+      data-ouia-component-id="OUIA-Generated-FormGroup-:rl:"
+      data-ouia-component-type="PF6/FormGroup"
+      data-ouia-safe="true"
     >
       <div
         class="pf-v6-c-form__group-label"
@@ -254,7 +275,7 @@ exports[`ExportPDFForm expect to render without error with different export sett
       >
         <p
           class="pf-v6-c-content--p"
-          data-ouia-component-id="OUIA-Generated-Content-:rg:"
+          data-ouia-component-id="OUIA-Generated-Content-:rn:"
           data-ouia-component-type="PF6/Content"
           data-ouia-safe="true"
           data-pf-content="true"
@@ -265,6 +286,9 @@ exports[`ExportPDFForm expect to render without error with different export sett
     </div>
     <div
       class="pf-v6-c-form__group"
+      data-ouia-component-id="OUIA-Generated-FormGroup-:ro:"
+      data-ouia-component-type="PF6/FormGroup"
+      data-ouia-safe="true"
     >
       <div
         class="pf-v6-c-form__group-label"
@@ -292,7 +316,7 @@ exports[`ExportPDFForm expect to render without error with different export sett
             aria-label="Non-compliant systems"
             checked=""
             class="pf-v6-c-check__input"
-            data-ouia-component-id="OUIA-Generated-Checkbox-:rj:"
+            data-ouia-component-id="OUIA-Generated-Checkbox-:rr:"
             data-ouia-component-type="PF6/Checkbox"
             data-ouia-safe="true"
             id="non-compliant-systems-export-setting"
@@ -312,7 +336,7 @@ exports[`ExportPDFForm expect to render without error with different export sett
             aria-invalid="false"
             aria-label="Systems with unsupported configuration"
             class="pf-v6-c-check__input"
-            data-ouia-component-id="OUIA-Generated-Checkbox-:rl:"
+            data-ouia-component-id="OUIA-Generated-Checkbox-:rt:"
             data-ouia-component-type="PF6/Checkbox"
             data-ouia-safe="true"
             id="unsupported-systems-export-setting"
@@ -333,7 +357,7 @@ exports[`ExportPDFForm expect to render without error with different export sett
             aria-label="Systems never reported"
             checked=""
             class="pf-v6-c-check__input"
-            data-ouia-component-id="OUIA-Generated-Checkbox-:rn:"
+            data-ouia-component-id="OUIA-Generated-Checkbox-:rv:"
             data-ouia-component-type="PF6/Checkbox"
             data-ouia-safe="true"
             id="nonreporting-systems-export-setting"
@@ -354,7 +378,7 @@ exports[`ExportPDFForm expect to render without error with different export sett
             aria-label="Compliant systems"
             checked=""
             class="pf-v6-c-check__input"
-            data-ouia-component-id="OUIA-Generated-Checkbox-:rp:"
+            data-ouia-component-id="OUIA-Generated-Checkbox-:r11:"
             data-ouia-component-type="PF6/Checkbox"
             data-ouia-safe="true"
             id="compliant-systems-export-setting"
@@ -371,6 +395,9 @@ exports[`ExportPDFForm expect to render without error with different export sett
     </div>
     <div
       class="pf-v6-c-form__group"
+      data-ouia-component-id="OUIA-Generated-FormGroup-:r12:"
+      data-ouia-component-type="PF6/FormGroup"
+      data-ouia-safe="true"
     >
       <div
         class="pf-v6-c-form__group-label"
@@ -398,7 +425,7 @@ exports[`ExportPDFForm expect to render without error with different export sett
             aria-label="Rule data to include"
             checked=""
             class="pf-v6-c-check__input"
-            data-ouia-component-id="OUIA-Generated-Checkbox-:rs:"
+            data-ouia-component-id="OUIA-Generated-Checkbox-:r15:"
             data-ouia-component-type="PF6/Checkbox"
             data-ouia-safe="true"
             id="failed-rules-export-setting"
@@ -415,6 +442,9 @@ exports[`ExportPDFForm expect to render without error with different export sett
     </div>
     <div
       class="pf-v6-c-form__group"
+      data-ouia-component-id="OUIA-Generated-FormGroup-:r16:"
+      data-ouia-component-type="PF6/FormGroup"
+      data-ouia-safe="true"
     >
       <div
         class="pf-v6-c-form__group-label"

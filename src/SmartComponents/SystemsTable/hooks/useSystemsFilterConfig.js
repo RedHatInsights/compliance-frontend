@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useDeepCompareEffect } from 'use-deep-compare';
 import debounce from '@redhat-cloud-services/frontend-components-utilities/debounce';
 import { useFilterConfig, useSerialisedTableState } from 'bastilian-tabletools';
+import useTableToolsForDeprecatedTable from 'bastilian-tabletools/dist/components/DeprecatedTable/hooks/useTableToolsForDeprecatedTable';
 import { filtersSerialiser } from 'PresentationalComponents/ComplianceTable/serialisers';
 import * as filters from '../Filters';
 
@@ -50,7 +51,14 @@ const useSystemsFilterConfig = ({
     debounceResetPage();
   }, [tableFilters]);
 
-  return filterConfigReturn;
+  const { toolbarProps } = useTableToolsForDeprecatedTable({
+    filters: filterConfigReturn,
+  });
+
+  return {
+    ...filterConfigReturn,
+    toolbarProps,
+  };
 };
 
 export default useSystemsFilterConfig;
