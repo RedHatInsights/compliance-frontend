@@ -1,4 +1,4 @@
-import { getAppConfig } from './appConfig';
+import { getAppConfig, setIopDeployment } from './appConfig';
 import { getAppConfigHcc } from './appConfig.hcc';
 import { getAppConfigIop } from './appConfig.iop';
 import HccSystemDetailsLink from 'PresentationalComponents/SystemDetailsLink/HccSystemDetailsLink';
@@ -6,6 +6,7 @@ import IopSystemDetailsLink from 'PresentationalComponents/SystemDetailsLink/Iop
 
 describe('appConfig', () => {
   afterEach(() => {
+    setIopDeployment(true);
     jest.restoreAllMocks();
   });
 
@@ -72,6 +73,21 @@ describe('appConfig', () => {
         'compliance:policy:read',
       ]);
       expect(config.systemDetailsLink).toBe(IopSystemDetailsLink);
+    });
+
+    it('foreman copies the iop config with features', () => {
+      jest.replaceProperty(process, 'env', { ...process.env, IOP: 'true' });
+      const iopConfig = getAppConfigIop();
+
+      setIopDeployment(false);
+      const foremanConfig = getAppConfig();
+
+      expect(foremanConfig).not.toBe(iopConfig);
+      expect(foremanConfig.envTarget).toBe('iop');
+      expect(foremanConfig.features).toBe(iopConfig.features);
+      expect(foremanConfig.api).toBe(iopConfig.api);
+      expect(foremanConfig.routes).toBe(iopConfig.routes);
+      expect(foremanConfig.systemDetailsLink).toBe(iopConfig.systemDetailsLink);
     });
   });
 });
