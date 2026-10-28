@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { ScalprumProvider } from '@scalprum/react-core';
 import { Bullseye, Spinner } from '@patternfly/react-core';
 
+  import { setIopDeployment } from '@/config/appConfig';
 import { IOP_CHROME_INIT, IOP_COMPLIANCE_READY } from './constants';
 import { createIopProviderOptions } from './createIopProviderOptions';
 import { IopChromeContext } from './IopChromeContext';
@@ -42,8 +43,12 @@ const IopBridge = ({ children }) => {
       const {
         appRoute,
         embedded: nextEmbedded,
+        iop,
         ...payload
       } = event.data.payload || {};
+
+      setIopDeployment(iop);
+
       const permissionsKey = JSON.stringify(payload.permissions || []);
 
       if (permissionsKey !== lastPermissionsKeyRef.current) {
