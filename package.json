@@ -10,6 +10,7 @@
     "@data-driven-forms/pf4-component-mapper": "^4.2.0",
     "@data-driven-forms/react-form-renderer": "^4.2.0",
     "@patternfly/patternfly": "^6.7.0",
+    "@patternfly/patternfly-v5": "npm:@patternfly/patternfly@5.4.2",
     "@patternfly/react-charts": "^8.6.0",
     "@patternfly/react-component-groups": "^6.7.0",
     "@patternfly/react-core": "^6.7.0",
