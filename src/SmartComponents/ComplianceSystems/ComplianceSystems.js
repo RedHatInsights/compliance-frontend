@@ -7,6 +7,7 @@ import * as Columns from '../SystemsTable/Columns';
 import usePolicies from 'Utilities/hooks/api/usePolicies';
 import CompliancePageHeader from 'PresentationalComponents/CompliancePageHeader/CompliancePageHeader';
 import { systemsPopoverData } from '@/constants';
+import { getAppConfig } from '@/config/appConfig';
 
 const systemTableColumns = [
   Columns.customName({
@@ -23,12 +24,13 @@ const ComplianceSystems = () => {
   const navigateToInventory = useNavigate('inventory');
   const { data, error, loading } = usePolicies({ batched: true });
   const policies = data?.data;
+  const showTooltipWithDocs = getAppConfig().features.showTooltipWithDocs;
 
   return (
     <React.Fragment>
       <CompliancePageHeader
         mainTitle={'Systems'}
-        popoverData={systemsPopoverData}
+        popoverData={showTooltipWithDocs ? systemsPopoverData : undefined}
       />
       <section className="pf-v6-c-page__main-section">
         <StateViewWithError stateValues={{ error, data: policies, loading }}>

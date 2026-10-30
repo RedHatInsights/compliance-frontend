@@ -143,7 +143,9 @@ const RulesTable = ({
               enableTreeView: true,
             }
           : {}),
-        onSelect: (onSelect || enableRemediations) && setSelectedRules,
+        onSelect:
+          (typeof onSelect === 'function' || enableRemediations) &&
+          setSelectedRules,
         selected: selectedRules,
         detailsComponent: DetailsRow,
         dedicatedAction: DedicatedAction,

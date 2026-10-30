@@ -8,6 +8,8 @@ const appConfigHcc = Object.freeze({
     remediations: true,
     dashboardZeroState: true,
     inventoryGroupsAndTags: true,
+    showTooltipWithDocs: true,
+    showDefaultPolicyRulesPage: true,
   }),
   api: Object.freeze({
     complianceBasePath: '/api/compliance/v2',

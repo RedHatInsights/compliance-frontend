@@ -3,22 +3,29 @@ import propTypes from 'prop-types';
 import { Content, ContentVariants, Popover } from '@patternfly/react-core';
 import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import { SupportedSSGVersionsLink } from 'PresentationalComponents';
+import { getAppConfig } from '@/config/appConfig';
 import OsVersionText from './osVersionText';
 
-export const SSGVersionText = ({ profile, newOsMinorVersion }) => (
-  <Content component={ContentVariants.p}>
-    SSG version: {profile?.securityGuide.version}{' '}
-    <Popover
-      position="right"
-      bodyContent={<SSGPopoverBody {...{ profile, newOsMinorVersion }} />}
-      footerContent={<SupportedSSGVersionsLink />}
-    >
-      <span style={{ cursor: 'pointer' }}>
-        <OutlinedQuestionCircleIcon className="grey-icon" />
-      </span>
-    </Popover>
-  </Content>
-);
+export const SSGVersionText = ({ profile, newOsMinorVersion }) => {
+  const showTooltipWithDocs = getAppConfig().features.showTooltipWithDocs;
+
+  return (
+    <Content component={ContentVariants.p}>
+      SSG version: {profile?.securityGuide.version}{' '}
+      <Popover
+        position="right"
+        bodyContent={<SSGPopoverBody {...{ profile, newOsMinorVersion }} />}
+        {...(showTooltipWithDocs
+          ? { footerContent: <SupportedSSGVersionsLink /> }
+          : {})}
+      >
+        <span style={{ cursor: 'pointer' }}>
+          <OutlinedQuestionCircleIcon className="grey-icon" />
+        </span>
+      </Popover>
+    </Content>
+  );
+};
 
 SSGVersionText.propTypes = {
   profile: propTypes.object.isRequired,

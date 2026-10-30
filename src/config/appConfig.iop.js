@@ -8,6 +8,8 @@ const appConfigIop = Object.freeze({
     remediations: false,
     dashboardZeroState: false,
     inventoryGroupsAndTags: false,
+    showTooltipWithDocs: false,
+    showDefaultPolicyRulesPage: false,
   }),
   api: Object.freeze({
     complianceBasePath: '/insights_cloud/api/compliance/v2',

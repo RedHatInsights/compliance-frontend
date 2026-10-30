@@ -28,9 +28,9 @@ const REPORT_COUNTS = {
   assigned_system_count: 12,
   reported_system_count: 9,
   compliant_system_count: 6,
-  unsupported_system_count: 0,
+  unsupported_system_count: 1,
   never_reported_system_count: 3,
-  percent_compliant: 67,
+  percent_compliant: 75,
 };
 
 const REPORTING_ROLES = [
@@ -313,6 +313,7 @@ const buildReportSystem = ({
   minor,
   scanned,
   compliant,
+  supported = true,
 }) => {
   const id = `${report.id}-${scanned ? 'reported' : 'never'}-${index + 1}`;
 
@@ -326,7 +327,7 @@ const buildReportSystem = ({
     end_time: scanned ? '2026-02-18T14:22:00Z' : null,
     created: '2026-02-18T14:22:00Z',
     failed_rule_count: compliant ? 0 : 8 + index,
-    supported: true,
+    supported,
     score: compliant ? 97 : 61,
     compliant,
     security_guide_version: index % 2 === 0 ? '0.1.76' : '0.1.74',
@@ -347,6 +348,7 @@ export const iopMockReportTestResultsByReportId = Object.fromEntries(
         minor: index,
         scanned: true,
         compliant: index < report.compliant_system_count,
+        supported: index < REPORTING_ROLES.length - 1,
       }),
     ),
   ]),

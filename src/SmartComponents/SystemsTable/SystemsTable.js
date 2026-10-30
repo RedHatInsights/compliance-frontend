@@ -105,7 +105,7 @@ export const SystemsTable = ({
 
   const noError = error === undefined && !isEmpty;
   const empty = emptyStateComponent && isEmpty ? true : undefined;
-  const selectionEnabled = Boolean(onSelect || remediationsEnabled);
+  const selectionEnabled = Boolean(onSelect || enableRemediations);
 
   return (
     <StateView

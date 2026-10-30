@@ -32,6 +32,8 @@ describe('appConfig', () => {
         unleash: true,
         pdf: true,
         remediations: true,
+        showDefaultPolicyRulesPage: true,
+        showTooltipWithDocs: true,
         dashboardZeroState: true,
         inventoryGroupsAndTags: true,
       });
@@ -62,6 +64,8 @@ describe('appConfig', () => {
         unleash: false,
         pdf: false,
         remediations: false,
+        showDefaultPolicyRulesPage: false,
+        showTooltipWithDocs: false,
         dashboardZeroState: false,
         inventoryGroupsAndTags: false,
       });

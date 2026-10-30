@@ -12,10 +12,12 @@ import useReports from 'Utilities/hooks/api/useReports';
 import useReportsOS from 'Utilities/hooks/api/useReportsOs';
 import CompliancePageHeader from 'PresentationalComponents/CompliancePageHeader/CompliancePageHeader';
 import { reportsPopoverData } from '@/constants';
+import { getAppConfig } from '@/config/appConfig';
 
 const REPORTS_FILTER = 'with_reported_systems = true';
 
 const Reports = () => {
+  const showTooltipWithDocs = getAppConfig().features.showTooltipWithDocs;
   // Required for correctly showing empty state
   // TODO We can probably avoid this extra request by finishing the empty state implementation in the TableTools
   const {
@@ -50,7 +52,7 @@ const Reports = () => {
     <React.Fragment>
       <CompliancePageHeader
         mainTitle={'Reports'}
-        popoverData={reportsPopoverData}
+        popoverData={showTooltipWithDocs ? reportsPopoverData : undefined}
       />
       <section className="pf-v6-c-page__main-section">
         <StateViewWithError
