@@ -12,6 +12,7 @@ import OsVersionText from './osVersionText';
 import TailoringTab from './components/TailoringTab';
 import { eventKey } from './helpers';
 import NoTailorings from './NoTailorings';
+import { getAppConfig } from '@/config/appConfig';
 
 // TODO Systems count on tabs -> may need API change
 // TODO defaultTab  defaultTab={getDefaultTab(tailorings, defaultTab)}
@@ -67,6 +68,8 @@ const Tailorings = ({
   additionalRules,
   ...rulesTableProps
 }) => {
+  const showDefaultPolicyRulesPage =
+    getAppConfig().features.showDefaultPolicyRulesPage;
   const {
     data: tailoringsData,
     loading: tailoringsLoading,
@@ -166,7 +169,9 @@ const Tailorings = ({
                     additionalRules:
                       additionalRules?.[tab.id] ||
                       additionalRules?.[tab.os_minor_version],
-                    rulesPageLink: rulesPageLink,
+                    rulesPageLink: showDefaultPolicyRulesPage
+                      ? rulesPageLink
+                      : undefined,
                     valueOverrides: valueOverrides?.[tab.os_minor_version],
                   }}
                 />

@@ -23,39 +23,41 @@ const CompliancePageHeader = ({ mainTitle, popoverData }) => {
         title={
           <React.Fragment>
             {mainTitle}
-            <Popover
-              headerContent={popoverData.headerContent}
-              bodyContent={
-                <Content>
-                  <Flex direction={{ default: 'column' }}>
-                    <Content component={ContentVariants.p}>
-                      {popoverData.bodyContent}
-                    </Content>
-                    <Content component={ContentVariants.p}>
-                      <Link
-                        to={popoverData.bodyLink}
-                        rel="noopener noreferrer"
-                        target="_blank"
-                      >
-                        Learn more
-                        <ExternalLinkAltIcon className="pf-v6-u-ml-xs" />
-                      </Link>
-                    </Content>
-                  </Flex>
-                </Content>
-              }
-            >
-              <Icon data-testid="compliance-header-popover-icon">
-                <OutlinedQuestionCircleIcon
-                  className="grey-icon pf-v6-u-ml-md"
-                  style={{
-                    verticalAlign: 0,
-                    fontSize: 16,
-                    cursor: 'pointer',
-                  }}
-                />
-              </Icon>
-            </Popover>
+            {popoverData && (
+              <Popover
+                headerContent={popoverData.headerContent}
+                bodyContent={
+                  <Content>
+                    <Flex direction={{ default: 'column' }}>
+                      <Content component={ContentVariants.p}>
+                        {popoverData.bodyContent}
+                      </Content>
+                      <Content component={ContentVariants.p}>
+                        <Link
+                          to={popoverData.bodyLink}
+                          rel="noopener noreferrer"
+                          target="_blank"
+                        >
+                          Learn more
+                          <ExternalLinkAltIcon className="pf-v6-u-ml-xs" />
+                        </Link>
+                      </Content>
+                    </Flex>
+                  </Content>
+                }
+              >
+                <Icon data-testid="compliance-header-popover-icon">
+                  <OutlinedQuestionCircleIcon
+                    className="grey-icon pf-v6-u-ml-md"
+                    style={{
+                      verticalAlign: 0,
+                      fontSize: 16,
+                      cursor: 'pointer',
+                    }}
+                  />
+                </Icon>
+              </Popover>
+            )}
           </React.Fragment>
         }
       />

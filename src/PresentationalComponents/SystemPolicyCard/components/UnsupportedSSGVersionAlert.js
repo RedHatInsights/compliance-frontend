@@ -7,15 +7,17 @@ import {
 } from '@patternfly/react-icons';
 import { supportedConfigsLink } from '@/constants';
 import { unsupportedSystemWarningMessage } from '@/constants';
+import { getAppConfig } from '@/config/appConfig';
 import Link from '@redhat-cloud-services/frontend-components/InsightsLink';
 
 const UnsupportedSSGVersionAlert = ({ ssgVersion, style, ...props }) => {
-  const footerContent = (
+  const showTooltipWithDocs = getAppConfig().features.showTooltipWithDocs;
+  const footerContent = showTooltipWithDocs ? (
     <Link to={supportedConfigsLink} rel="noopener noreferrer" target="_blank">
       Supported SSG versions
       <ExternalLinkAltIcon className="pf-v6-u-ml-xs" />
     </Link>
-  );
+  ) : undefined;
 
   return (
     <Alert
@@ -28,7 +30,7 @@ const UnsupportedSSGVersionAlert = ({ ssgVersion, style, ...props }) => {
           <Popover
             position="right"
             bodyContent={unsupportedSystemWarningMessage}
-            footerContent={footerContent}
+            {...(footerContent ? { footerContent } : {})}
           >
             <OutlinedQuestionCircleIcon
               style={{

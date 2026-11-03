@@ -2,8 +2,10 @@ import React from 'react';
 import { pluralize, Content } from '@patternfly/react-core';
 import { SupportedSSGVersionsLink } from 'PresentationalComponents';
 import { paletteColors } from '../../../../constants';
+import { getAppConfig } from '@/config/appConfig';
 
 const useLegendData = (donutValues) => {
+  const showTooltipWithDocs = getAppConfig().features.showTooltipWithDocs;
   const compliantSystemCount = donutValues[0].y;
   const nonCompliantSystemCount = donutValues[1].y;
   const unsupportedSystemCount = donutValues[2].y;
@@ -49,7 +51,11 @@ const useLegendData = (donutValues) => {
                   </Content>
                 </>
               ),
-              footer: <SupportedSSGVersionsLink />,
+              ...(showTooltipWithDocs
+                ? {
+                    footer: <SupportedSSGVersionsLink />,
+                  }
+                : {}),
             },
           },
         ]

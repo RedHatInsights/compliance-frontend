@@ -20,6 +20,7 @@ import {
   useRbacV1Permissions,
   useKesselPermissions,
 } from 'Utilities/hooks/usePermissionCheck';
+import { getAppConfig } from '@/config/appConfig';
 
 const PERMISSIONS = {
   create: ['compliance:policy:create'],
@@ -40,6 +41,7 @@ const CompliancePoliciesContent = ({ usePermissionsHook }) => {
   const createPermission = usePermissionsHook(PERMISSIONS.create);
   const editPermission = usePermissionsHook(PERMISSIONS.edit);
   const deletePermission = usePermissionsHook(PERMISSIONS.delete);
+  const showTooltipWithDocs = getAppConfig().features.showTooltipWithDocs;
 
   // Async table needs info about total policy count before mounting
   // Also required for correctly showing empty state
@@ -76,7 +78,7 @@ const CompliancePoliciesContent = ({ usePermissionsHook }) => {
     <React.Fragment>
       <CompliancePageHeader
         mainTitle={'SCAP policies'}
-        popoverData={policiesPopoverData}
+        popoverData={showTooltipWithDocs ? policiesPopoverData : undefined}
       />
       <section className="pf-v6-c-page__main-section">
         <StateView

@@ -50,7 +50,10 @@ describe('RuleResults', () => {
       fetchAllIds: fetchAllIds,
     }));
     renderRuleResults(
-      <RuleResultsWrapper reportTestResult={reportTestResult} />,
+      <RuleResultsWrapper
+        reportTestResult={reportTestResult}
+        remediationsEnabled
+      />,
     );
 
     await screen.findByText(testResults[0].title);
