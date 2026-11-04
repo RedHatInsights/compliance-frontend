@@ -18,6 +18,17 @@ import { getAppConfig } from '@/config/appConfig';
  */
 const useComplianceApi = (endpoint) => {
   const axios = useAxiosWithPlatformInterceptors();
+  const requestInterceptors = getAppConfig().requestInterceptors;
+
+  useEffect(() => {
+    const ids = requestInterceptors.map((interceptor) =>
+      axios.interceptors.request.use(interceptor),
+    );
+
+    return () => {
+      ids.forEach((id) => axios.interceptors.request.eject(id));
+    };
+  }, [axios, requestInterceptors]);
 
   const apiEndpoint = useMemo(() => {
     const apiInstance = APIFactory(
