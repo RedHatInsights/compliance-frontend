@@ -21,7 +21,7 @@
     "@redhat-cloud-services/compliance-client": "^4.0.17",
     "@redhat-cloud-services/frontend-components": "^7.10.17",
     "@redhat-cloud-services/frontend-components-config-utilities": "^4.14.4",
-    "@redhat-cloud-services/frontend-components-notifications": "^6.11.18",
+    "@redhat-cloud-services/frontend-components-notifications": "^6.11.19",
     "@redhat-cloud-services/frontend-components-remediations": "^4.11.17",
     "@redhat-cloud-services/frontend-components-utilities": "^7.5.13",
     "@redhat-cloud-services/javascript-clients-shared": "^2.0.21",
