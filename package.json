@@ -18,7 +18,7 @@
     "@patternfly/react-table": "^6.7.0",
     "@patternfly/react-tokens": "^6.7.0",
     "@project-kessel/react-kessel-access-check": "^0.5.7",
-    "@redhat-cloud-services/compliance-client": "^4.0.17",
+    "@redhat-cloud-services/compliance-client": "^4.0.18",
     "@redhat-cloud-services/frontend-components": "^7.10.17",
     "@redhat-cloud-services/frontend-components-config-utilities": "^4.14.4",
     "@redhat-cloud-services/frontend-components-notifications": "^6.11.18",
