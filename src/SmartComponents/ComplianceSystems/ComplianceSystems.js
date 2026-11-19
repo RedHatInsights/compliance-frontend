@@ -8,6 +8,7 @@ import usePolicies from 'Utilities/hooks/api/usePolicies';
 import CompliancePageHeader from 'PresentationalComponents/CompliancePageHeader/CompliancePageHeader';
 import { systemsPopoverData } from '@/constants';
 import { getAppConfig } from '@/config/appConfig';
+import { getTerm } from '@/Utilities/helpers';
 
 const systemTableColumns = [
   Columns.customName({
@@ -29,7 +30,7 @@ const ComplianceSystems = () => {
   return (
     <React.Fragment>
       <CompliancePageHeader
-        mainTitle={'Systems'}
+        mainTitle={getTerm('system', { plural: true })}
         popoverData={showTooltipWithDocs ? systemsPopoverData : undefined}
       />
       <section className="pf-v6-c-page__main-section">
@@ -40,8 +41,8 @@ const ComplianceSystems = () => {
               variant="info"
               ouiaId="SystemsListIsDifferentAlert"
               title={
-                'The list of systems in this view is different than those that appear in the Inventory. ' +
-                'Only systems currently associated with or reporting against compliance policies are displayed.'
+                `The list of ${getTerm('system', { plural: true, lowercase: true })} in this view is different than those that appear in the Inventory. ` +
+                `Only ${getTerm('system', { plural: true, lowercase: true })} currently associated with or reporting against compliance policies are displayed.`
               }
             />
             <SystemsTable

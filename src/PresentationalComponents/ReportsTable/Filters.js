@@ -1,4 +1,5 @@
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/ConditionalFilter';
+import { getTerm } from '@/Utilities/helpers';
 
 export const policyNameFilter = [
   {
@@ -23,7 +24,7 @@ export const operatingSystemFilter = (operatingSystems) => [
 export const policyComplianceFilter = [
   {
     type: conditionalFilterType.checkbox,
-    label: 'Systems meeting compliance',
+    label: `${getTerm('system', { plural: true })} meeting compliance`,
     filterAttribute: 'percent_compliant',
     filterSerialiser: (_, values) =>
       `(${values

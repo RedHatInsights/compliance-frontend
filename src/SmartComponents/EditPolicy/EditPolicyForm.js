@@ -6,6 +6,7 @@ import EditPolicyRulesTab from './EditPolicyRulesTab';
 import EditPolicySystemsTab from './EditPolicySystemsTab';
 import NewRulesAlert from './components/NewRulesAlert';
 import { useNewRulesAlertState } from './hooks/index';
+import { getTerm } from '@/Utilities/helpers';
 
 const getCounts = (arr) =>
   arr.reduce(
@@ -108,7 +109,9 @@ const EditPolicyForm = ({
         <Tab
           eventKey="systems"
           ouiaId="Systems"
-          title={<TabTitleText>Systems</TabTitleText>}
+          title={
+            <TabTitleText>{getTerm('system', { plural: true })}</TabTitleText>
+          }
         >
           <EditPolicySystemsTab
             policy={policy}

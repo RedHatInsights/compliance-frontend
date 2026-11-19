@@ -3,6 +3,7 @@ import propTypes from 'prop-types';
 import { Content } from '@patternfly/react-core';
 import Link from '@redhat-cloud-services/frontend-components/InsightsLink';
 import { GreySmallText, SystemsCountWarning } from 'PresentationalComponents';
+import { getTerm } from '@/Utilities/helpers';
 
 const PolicyNameCell = ({ id, title, profile_title }) => (
   <Content>
@@ -45,7 +46,7 @@ export const OperatingSystem = {
 };
 
 export const Systems = {
-  title: 'Systems',
+  title: getTerm('system', { plural: true }),
   sortable: 'total_system_count',
   renderExport: (policy) => policy.total_system_count,
   // eslint-disable-next-line

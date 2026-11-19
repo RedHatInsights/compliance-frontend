@@ -35,8 +35,13 @@ describe('appConfig', () => {
         remediations: true,
         showDefaultPolicyRulesPage: true,
         showTooltipWithDocs: true,
+        showLinkToDocs: true,
         dashboardZeroState: true,
         inventoryGroupsAndTags: true,
+        terms: {
+          system: 'System',
+          insights: 'Red Hat Lightspeed',
+        },
       });
       expect(config.routes.systemPermissions).toEqual([
         'compliance:system:read',
@@ -68,8 +73,13 @@ describe('appConfig', () => {
         remediations: false,
         showDefaultPolicyRulesPage: false,
         showTooltipWithDocs: false,
+        showLinkToDocs: false,
         dashboardZeroState: false,
         inventoryGroupsAndTags: false,
+        terms: {
+          system: 'Host',
+          insights: 'Insights',
+        },
       });
       expect(config.routes.systemPermissions).toEqual([
         'compliance:report:read',

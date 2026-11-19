@@ -3,10 +3,12 @@ import propTypes from 'prop-types';
 import { CloudSecurityIcon } from '@patternfly/react-icons';
 import { Bullseye, EmptyState, EmptyStateBody } from '@patternfly/react-core';
 import { pluralize } from '@patternfly/react-core';
+import { getTerm } from '@/Utilities/helpers';
 
 const NoReportsState = ({ policiesCount }) => {
-  const bodyTextMain = `This system is part of ${pluralize(policiesCount, 'policy', 'policies')}, but has not returned any results.`;
-  const bodyTextSub = `Reports are returned after scanning the system using the 'insights-client --compliance' command.`;
+  const system = getTerm('system', { lowercase: true });
+  const bodyTextMain = `This ${system} is part of ${pluralize(policiesCount, 'policy', 'policies')}, but has not returned any results.`;
+  const bodyTextSub = `Reports are returned after scanning the ${system} using the 'insights-client --compliance' command.`;
   return (
     <Bullseye>
       <EmptyState

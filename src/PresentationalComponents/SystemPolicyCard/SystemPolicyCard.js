@@ -13,6 +13,7 @@ import {
 import DateFormat from '@redhat-cloud-services/frontend-components/DateFormat';
 import UnsupportedSSGVersionAlert from './components/UnsupportedSSGVersionAlert';
 import CompliantIcon from './components/CompliantIcon';
+import { getTerm } from '@/Utilities/helpers';
 
 const SystemPolicyCard = ({
   policy,
@@ -72,7 +73,7 @@ const SystemPolicyCard = ({
               position="bottom"
               maxWidth="22em"
               content={
-                'The system compliance score is calculated by OpenSCAP and ' +
+                `The ${getTerm('system', { lowercase: true })} compliance score is calculated by OpenSCAP and ` +
                 'is a normalized weighted sum of rules selected for this policy.'
               }
             >

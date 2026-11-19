@@ -16,21 +16,27 @@ import { SystemsTable } from 'SmartComponents';
 import { countOsMinorVersions } from 'Store/Reducers/SystemStore';
 import * as Columns from 'SmartComponents/SystemsTable/Columns';
 import { ArrowLeftIcon } from '@patternfly/react-icons';
+import { getTerm } from '@/Utilities/helpers';
+import { getAppConfig } from '@/config/appConfig';
 
 const EmptyState = ({ osMajorVersion, onGoToStep1 }) => {
+  const insightsTerm = getAppConfig().features.terms.insights;
   return (
     <React.Fragment>
       <Content className="pf-v6-u-mb-md">
         <Content component="p">
-          You do not have any <b>RHEL {osMajorVersion}</b> systems connected to{' '}
-          Red Hat Lightspeed and enabled for Compliance.
+          You do not have any <b>RHEL {osMajorVersion}</b>{' '}
+          {getTerm('system', { plural: true, lowercase: true })} connected to{' '}
+          {insightsTerm} and enabled for Compliance.
           <br />
         </Content>
       </Content>
       <Content className="pf-v6-u-mb-md">
         <Content component="p">
           Choose a different RHEL version, or connect{' '}
-          <b>RHEL {osMajorVersion}</b> systems to Red Hat Lightspeed.
+          <b>RHEL {osMajorVersion}</b>{' '}
+          {getTerm('system', { plural: true, lowercase: true })} to{' '}
+          {insightsTerm}.
         </Content>
         <Button
           variant="secondary"
@@ -53,10 +59,12 @@ const PrependComponent = ({ osMajorVersion }) => (
   <React.Fragment>
     <Content className="pf-v6-u-mb-md">
       <Content component="p">
-        Select which of your <b>RHEL {osMajorVersion}</b> systems should be
+        Select which of your <b>RHEL {osMajorVersion}</b>{' '}
+        {getTerm('system', { plural: true, lowercase: true })} should be
         included in this policy.
         <br />
-        Systems can be added or removed at any time.
+        {getTerm('system', { plural: true })} can be added or removed at any
+        time.
       </Content>
     </Content>
   </React.Fragment>
@@ -104,7 +112,9 @@ const SystemsStepContent = ({ profile, selectedSystems = [] }) => {
   return (
     <React.Fragment>
       <Content className="pf-v6-u-mb-md">
-        <Content component={ContentVariants.h1}>Systems</Content>
+        <Content component={ContentVariants.h1}>
+          {getTerm('system', { plural: true })}
+        </Content>
       </Content>
       <Form>
         <FormGroup>

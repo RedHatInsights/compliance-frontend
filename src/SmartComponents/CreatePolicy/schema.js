@@ -1,5 +1,6 @@
 import { componentTypes } from '@data-driven-forms/react-form-renderer';
 import { makeStepValidityValidator } from 'Utilities/validation/stepValidator';
+import { getTerm } from '@/Utilities/helpers';
 
 const schema = {
   fields: [
@@ -48,7 +49,7 @@ const schema = {
         },
         {
           name: 'step-systems',
-          title: 'Systems',
+          title: getTerm('system', { plural: true }),
           nextStep: 'step-rules',
           fields: [
             {

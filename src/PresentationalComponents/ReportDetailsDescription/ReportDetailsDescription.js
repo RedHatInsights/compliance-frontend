@@ -9,9 +9,10 @@ import {
   DescriptionListGroup,
   DescriptionListDescription,
 } from '@patternfly/react-core';
+import { getTerm } from '@/Utilities/helpers';
 
 const ReportDetailsDescription = ({ report }) => {
-  const thresholdText = `${fixedPercentage(report.compliance_threshold, 1)} of rules must be passed for a system to be labeled "Compliant"`;
+  const thresholdText = `${fixedPercentage(report.compliance_threshold, 1)} of rules must be passed for a ${getTerm('system', { lowercase: true })} to be labeled "Compliant"`;
 
   return (
     <>

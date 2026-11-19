@@ -10,7 +10,12 @@ const appConfigIop = Object.freeze({
     dashboardZeroState: false,
     inventoryGroupsAndTags: false,
     showTooltipWithDocs: false,
+    showLinkToDocs: false,
     showDefaultPolicyRulesPage: false,
+    terms: Object.freeze({
+      system: 'Host',
+      insights: 'Insights',
+    }),
   }),
   api: Object.freeze({
     complianceBasePath: '/insights_cloud/api/compliance/v2',

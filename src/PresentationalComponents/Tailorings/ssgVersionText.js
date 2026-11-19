@@ -4,6 +4,7 @@ import { Content, ContentVariants, Popover } from '@patternfly/react-core';
 import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import { SupportedSSGVersionsLink } from 'PresentationalComponents';
 import { getAppConfig } from '@/config/appConfig';
+import { getTerm } from '@/Utilities/helpers';
 import OsVersionText from './osVersionText';
 
 export const SSGVersionText = ({ profile, newOsMinorVersion }) => {
@@ -39,8 +40,9 @@ const SSGPopoverBody = ({ profile, newOsMinorVersion }) => (
       <OsVersionText {...{ profile, newOsMinorVersion }} />
     </Content>
     <Content component="p">
-      <OsVersionText {...{ profile, newOsMinorVersion }} /> systems assigned to
-      this policy will report using this rule list.
+      <OsVersionText {...{ profile, newOsMinorVersion }} />{' '}
+      {getTerm('system', { plural: true, lowercase: true })} assigned to this
+      policy will report using this rule list.
     </Content>
   </Content>
 );

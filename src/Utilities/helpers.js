@@ -1,5 +1,7 @@
 import React from 'react';
 import natsort from 'natsort';
+import { pluralize } from '@patternfly/react-core';
+import { getAppConfig } from '@/config/appConfig';
 
 export const uniq = (collection) => [...new Set(collection)];
 
@@ -54,3 +56,22 @@ export const resetRuleValueOverrides = (
 
   return valueOverridesUpdated;
 };
+
+export function getTerm(key, { plural = false, lowercase = false } = {}) {
+  const base = getAppConfig().features?.terms?.[key] ?? key;
+  const word = plural ? `${base}s` : base;
+
+  if (!lowercase) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }
+
+  return word.charAt(0).toLowerCase() + word.slice(1);
+}
+
+export function pluralizeTerm(count, key) {
+  return pluralize(
+    count,
+    getTerm(key, { lowercase: true }),
+    getTerm(key, { plural: true, lowercase: true }),
+  );
+}
