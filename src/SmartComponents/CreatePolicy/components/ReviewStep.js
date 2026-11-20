@@ -1,6 +1,7 @@
 import React from 'react';
 import { useFormApi } from '@data-driven-forms/react-form-renderer';
 import { Content, ContentVariants } from '@patternfly/react-core';
+import { getTerm } from '@/Utilities/helpers';
 
 const ReviewStep = () => {
   const { getState } = useFormApi();
@@ -40,7 +41,9 @@ const ReviewStep = () => {
           </React.Fragment>
         )}
 
-        <Content component={ContentVariants.dt}>Systems</Content>
+        <Content component={ContentVariants.dt}>
+          {getTerm('system', { plural: true })}
+        </Content>
         <Content component={ContentVariants.dd}>{totalSystemsCount}</Content>
 
         <Content component={ContentVariants.dt}>RHEL OS Versions</Content>

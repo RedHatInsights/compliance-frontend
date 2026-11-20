@@ -1,5 +1,11 @@
-.policy-details{
+.pf-v6-c-description-list.policy-details {
     padding-top: 10px;
+    --pf-v6-c-description-list--m-horizontal__term--width: max-content;
+    --pf-v6-c-description-list__term--width: max-content;
+
+    .pf-v6-c-description-list__term {
+        white-space: nowrap;
+    }
 }
 
 .report-details-button {

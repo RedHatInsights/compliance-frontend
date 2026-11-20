@@ -6,6 +6,7 @@ import {
 } from 'PresentationalComponents';
 import { ToolbarItem } from '@patternfly/react-core';
 import useAnchor from 'Utilities/hooks/useAnchor';
+import { getTerm } from '@/Utilities/helpers';
 
 const EditSystemsButtonToolbarItem = ({ policy }) => {
   const hash = useAnchor();
@@ -24,7 +25,7 @@ const EditSystemsButtonToolbarItem = ({ policy }) => {
           ouiaId: 'EditSystemsButton',
         }}
       >
-        Edit systems
+        Edit {getTerm('system', { plural: true, lowercase: true })}
       </Link>
     </ToolbarItem>
   );

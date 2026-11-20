@@ -1,4 +1,5 @@
 import { fitContent } from '@patternfly/react-table';
+import { getTerm } from '@/Utilities/helpers';
 import {
   Name as NameCell,
   OperatingSystem as OperatingSystemCell,
@@ -28,7 +29,7 @@ export const OperatingSystem = {
 };
 
 export const CompliantSystems = {
-  title: 'Systems meeting compliance',
+  title: `${getTerm('system', { plural: true })} meeting compliance`,
   transforms: [fitContent],
   sortable: 'percent_compliant',
   renderExport: ({
@@ -36,7 +37,7 @@ export const CompliantSystems = {
     compliant_system_count = 0,
     unsupported_system_count = 0,
   }) =>
-    `${compliant_system_count} of ${reported_system_count} systems${
+    `${compliant_system_count} of ${reported_system_count} ${getTerm('system', { plural: true, lowercase: true })}${
       unsupported_system_count > 0
         ? ` | ${unsupported_system_count} unsupported`
         : ''

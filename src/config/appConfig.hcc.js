@@ -9,7 +9,12 @@ const appConfigHcc = Object.freeze({
     dashboardZeroState: true,
     inventoryGroupsAndTags: true,
     showTooltipWithDocs: true,
+    showLinkToDocs: true,
     showDefaultPolicyRulesPage: true,
+    terms: Object.freeze({
+      system: 'System',
+      insights: 'Red Hat Lightspeed',
+    }),
   }),
   api: Object.freeze({
     complianceBasePath: '/api/compliance/v2',

@@ -12,6 +12,7 @@ import { RulesTable } from 'PresentationalComponents';
 import EditRulesButtonToolbarItem from 'SmartComponents/PolicyDetails/EditRulesButtonToolbarItem';
 import { Spinner } from '@patternfly/react-core';
 import { TableStateProvider } from 'bastilian-tabletools';
+import { getTerm } from '@/Utilities/helpers';
 
 const NoTailorings = ({ policy, columns }) => {
   const DedicatedAction = () => <EditRulesButtonToolbarItem policy={policy} />;
@@ -50,8 +51,9 @@ const NoTailorings = ({ policy, columns }) => {
       >
         SCAP policies created before April 19th, 2021 with rule editing will use
         the full default set of rules for the policy with the most accurate
-        benchmark for systems within the policy. Click the &quot;Edit
-        rules&quot; or &quot;Edit policy&quot; button to edit rules.
+        benchmark for {getTerm('system', { plural: true, lowercase: true })}{' '}
+        within the policy. Click the &quot;Edit rules&quot; or &quot;Edit
+        policy&quot; button to edit rules.
       </Alert>
       <PageSection hasBodyWrapper={false}>
         <Content component={ContentVariants.p}>
@@ -62,9 +64,10 @@ const NoTailorings = ({ policy, columns }) => {
           ) : (
             latestSupportedProfile?.security_guide_version
           )}
-          ). If you are using a different version of SSG for systems in this
-          policy, those rules will be different and can be viewed on the systems
-          details page.
+          ). If you are using a different version of SSG for{' '}
+          {getTerm('system', { plural: true, lowercase: true })} in this policy,
+          those rules will be different and can be viewed on the{' '}
+          {getTerm('system', { plural: true, lowercase: true })} details page.
         </Content>
       </PageSection>
       <RulesTable

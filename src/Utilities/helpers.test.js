@@ -3,6 +3,8 @@ import {
   sortingByProp,
   capitalizeWord,
   stringToSentenceCase,
+  getTerm,
+  pluralizeTerm,
 } from './helpers';
 
 describe('uniq', () => {
@@ -86,5 +88,23 @@ describe('stringToSentenceCase', () => {
   it('should apply sentence case to string', () => {
     const result = stringToSentenceCase('this Is A Test String');
     expect(result).toEqual('This is a test string');
+  });
+});
+
+describe('getTerm', () => {
+  it('getTerm returns the correct term', () => {
+    expect(getTerm('system')).toBe('System');
+    expect(getTerm('system', { plural: true })).toBe('Systems');
+    expect(getTerm('system', { lowercase: true })).toBe('system');
+    expect(getTerm('system', { plural: true, lowercase: true })).toBe(
+      'systems',
+    );
+  });
+});
+
+describe('pluralizeTerm', () => {
+  it('pluralizeTerm returns the correct pluralized term', () => {
+    expect(pluralizeTerm(1, 'system')).toBe('1 system');
+    expect(pluralizeTerm(4, 'system')).toBe('4 systems');
   });
 });

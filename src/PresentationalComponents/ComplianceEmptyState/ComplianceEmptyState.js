@@ -13,8 +13,11 @@ import { CloudSecurityIcon } from '@patternfly/react-icons';
 import { ErrorCard, CenteredSpinner } from 'PresentationalComponents';
 import usePolicies from 'Utilities/hooks/api/usePolicies';
 import { emptyStateLink } from '@/constants';
+import { getTerm } from '@/Utilities/helpers';
+import { getAppConfig } from '@/config/appConfig';
 
 const ComplianceEmptyState = ({ title = 'No policies', mainButton }) => {
+  const showLinkToDocs = getAppConfig().features.showLinkToDocs;
   const { data, error, loading } = usePolicies({ params: { limit: 1 } });
   const policiesCount = data?.meta?.total || 0;
 
@@ -23,12 +26,16 @@ const ComplianceEmptyState = ({ title = 'No policies', mainButton }) => {
   }
 
   if (error) {
-    const errorMsg = `Oops! Error loading System data: ${error}`;
+    const errorMsg = `Oops! Error loading ${getTerm('system')} data: ${error}`;
     return <ErrorCard errorMsg={errorMsg} />;
   }
 
   const policyWord = policiesCount > 1 ? 'policies' : 'policy';
   const haveWord = policiesCount > 1 ? 'have' : 'has';
+
+  const docText = showLinkToDocs
+    ? ', or read documentation about how to connect OpenSCAP to the Compliance service'
+    : '';
 
   return (
     <EmptyState
@@ -55,10 +62,7 @@ const ComplianceEmptyState = ({ title = 'No policies', mainButton }) => {
           The Compliance service uses SCAP policies to track your
           organization&#39;s adherence to compliance requirements.
         </Content>
-        <Content>
-          Get started by adding a policy, or read documentation about how to
-          connect OpenSCAP to the Compliance service.
-        </Content>
+        <Content>Get started by adding a policy{docText}.</Content>
       </EmptyStateBody>
       <EmptyStateFooter>
         <EmptyStateActions>
@@ -74,17 +78,19 @@ const ComplianceEmptyState = ({ title = 'No policies', mainButton }) => {
             </Button>
           )}
         </EmptyStateActions>
-        <EmptyStateActions>
-          <Button
-            variant="link"
-            component="a"
-            target="_blank"
-            rel="noopener noreferrer"
-            href={emptyStateLink}
-          >
-            Learn about OpenSCAP and Compliance
-          </Button>
-        </EmptyStateActions>
+        {showLinkToDocs && (
+          <EmptyStateActions>
+            <Button
+              variant="link"
+              component="a"
+              target="_blank"
+              rel="noopener noreferrer"
+              href={emptyStateLink}
+            >
+              Learn about OpenSCAP and Compliance
+            </Button>
+          </EmptyStateActions>
+        )}
       </EmptyStateFooter>
     </EmptyState>
   );

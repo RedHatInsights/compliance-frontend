@@ -1,4 +1,5 @@
 import { isReportTestResultSupported } from './hooks/useIssuesFetch/helpers';
+import { getTerm } from '@/Utilities/helpers';
 
 export const getComplianceRemediationTooltipMessage = (reportTestResults) => {
   if (!reportTestResults?.length) {
@@ -7,7 +8,7 @@ export const getComplianceRemediationTooltipMessage = (reportTestResults) => {
 
   const supported = reportTestResults.filter(isReportTestResultSupported);
   if (!supported.length) {
-    return 'Unsupported systems cannot be remediated.';
+    return `Unsupported ${getTerm('system', { plural: true, lowercase: true })} cannot be remediated.`;
   }
 
   const failedRuleCount = (r) => r.failed_rule_count ?? 0;
@@ -16,8 +17,8 @@ export const getComplianceRemediationTooltipMessage = (reportTestResults) => {
 
   if (withFailures.length === 0) {
     return supported.length === 1
-      ? 'The system is 100% compliant. No remediation is required.'
-      : 'The selected systems are 100% compliant. No remediation is required.';
+      ? `The ${getTerm('system', { lowercase: true })} is 100% compliant. No remediation is required.`
+      : `The selected ${getTerm('system', { plural: true, lowercase: true })} are 100% compliant. No remediation is required.`;
   }
 
   const hasUnsupportedSelected = reportTestResults.length > supported.length;
@@ -28,7 +29,7 @@ export const getComplianceRemediationTooltipMessage = (reportTestResults) => {
     hasSupportedMixedCompliantAndFailed ||
     (hasUnsupportedSelected && withFailures.length > 0)
   ) {
-    return 'The remediation plan includes only supported systems that failed compliance.';
+    return `The remediation plan includes only supported ${getTerm('system', { plural: true, lowercase: true })} that failed compliance.`;
   }
 
   return undefined;
