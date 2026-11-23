@@ -1,4 +1,7 @@
 import {
+  PDF_MAX_SLICE_SIZE,
+  PDF_SLICE_THRESHOLD,
+  buildReportPdfSlices,
   fetchPaginatedList,
   fetchUnsupportedSystemsWithExpectedSSG,
 } from './helpers';
@@ -164,6 +167,134 @@ describe('fetchPaginatedList', () => {
 
     expect(createAsyncRequest).toHaveBeenCalledTimes(3);
     expect(result).toEqual({ [outputKey]: [] });
+  });
+});
+
+describe('fetchPaginatedList with a range', () => {
+  const page = (offset, count, total) => ({
+    data: Array.from({ length: count }, (_, i) => ({ id: offset + i })),
+    meta: { total },
+  });
+
+  it('loads only the pages that cover the range and trims to its size', async () => {
+    const createAsyncRequest = jest.fn(async (_service, { params }) =>
+      page(params.offset, params.limit, 100),
+    );
+
+    const result = await fetchPaginatedList(
+      createAsyncRequest,
+      'r1',
+      '/items',
+      'foo=bar',
+      'items',
+      10,
+      { offset: 20, limit: 25 },
+    );
+
+    expect(
+      createAsyncRequest.mock.calls.map(([, { params }]) => params.offset),
+    ).toEqual([20, 30, 40]);
+    expect(result.items.map(({ id }) => id)).toEqual(
+      Array.from({ length: 25 }, (_, i) => 20 + i),
+    );
+  });
+
+  it('runs to the last row when the range has no limit', async () => {
+    const createAsyncRequest = jest.fn(async (_service, { params }) =>
+      page(params.offset, Math.min(params.limit, 45 - params.offset), 45),
+    );
+
+    const result = await fetchPaginatedList(
+      createAsyncRequest,
+      'r1',
+      '/items',
+      'foo=bar',
+      'items',
+      10,
+      { offset: 30 },
+    );
+
+    expect(
+      createAsyncRequest.mock.calls.map(([, { params }]) => params.offset),
+    ).toEqual([30, 40]);
+    expect(result.items).toHaveLength(15);
+  });
+});
+
+describe('buildReportPdfSlices', () => {
+  const allSettings = {
+    compliantSystems: true,
+    nonCompliantSystems: true,
+    unsupportedSystems: true,
+    nonReportingSystems: true,
+  };
+  const report = (nonCompliant, unsupported, nonReporting, compliant) => ({
+    assigned_system_count:
+      nonCompliant + unsupported + nonReporting + compliant,
+    reported_system_count: nonCompliant + unsupported + compliant,
+    compliant_system_count: compliant,
+    unsupported_system_count: unsupported,
+  });
+
+  it('sends one unsliced payload at or under the threshold', () => {
+    expect(
+      buildReportPdfSlices(report(PDF_SLICE_THRESHOLD, 0, 0, 0), allSettings),
+    ).toEqual([undefined]);
+    expect(buildReportPdfSlices(undefined, allSettings)).toEqual([undefined]);
+  });
+
+  it('ignores lists the export leaves out', () => {
+    expect(
+      buildReportPdfSlices(report(1500, 0, 0, 1500), {
+        nonCompliantSystems: true,
+      }),
+    ).toEqual([undefined]);
+  });
+
+  it('splits one large list into even slices, the last open-ended', () => {
+    const slices = buildReportPdfSlices(report(2500, 0, 0, 0), allSettings);
+
+    expect(slices).toEqual([
+      {
+        ranges: { nonCompliantSystems: { offset: 0, limit: 834 } },
+        first: true,
+        last: false,
+      },
+      {
+        ranges: { nonCompliantSystems: { offset: 834, limit: 834 } },
+        first: false,
+        last: false,
+      },
+      {
+        ranges: { nonCompliantSystems: { offset: 1668 } },
+        first: false,
+        last: true,
+      },
+    ]);
+  });
+
+  it('packs lists in print order and covers every row once', () => {
+    const slices = buildReportPdfSlices(
+      report(1200, 300, 50, 1650),
+      allSettings,
+    );
+
+    expect(slices.map(({ ranges }) => ranges)).toEqual([
+      { nonCompliantSystems: { offset: 0, limit: 800 } },
+      {
+        nonCompliantSystems: { offset: 800 },
+        unsupportedSystems: { offset: 0 },
+        nonReportingSystems: { offset: 0 },
+        compliantSystems: { offset: 0, limit: 50 },
+      },
+      { compliantSystems: { offset: 50, limit: 800 } },
+      { compliantSystems: { offset: 850 } },
+    ]);
+    slices.forEach(({ ranges }) =>
+      Object.values(ranges).forEach(({ limit }) =>
+        expect(limit ?? 0).toBeLessThanOrEqual(PDF_MAX_SLICE_SIZE),
+      ),
+    );
   });
 });
 

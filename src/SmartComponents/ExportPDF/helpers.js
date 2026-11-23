@@ -1,5 +1,59 @@
 import { API_BASE_URL } from '@/constants';
 
+export const PDF_SLICE_THRESHOLD = 2000;
+export const PDF_MAX_SLICE_SIZE = 1000;
+
+// In the order the report prints them.
+const systemLists = ({
+  assigned_system_count: assigned,
+  reported_system_count: reported,
+  compliant_system_count: compliant,
+  unsupported_system_count: unsupported,
+}) => [
+  ['nonCompliantSystems', reported - compliant - unsupported],
+  ['unsupportedSystems', unsupported],
+  ['nonReportingSystems', assigned - reported],
+  ['compliantSystems', compliant],
+];
+
+export const buildReportPdfSlices = (report = {}, exportSettings = {}) => {
+  const lists = systemLists(report).filter(
+    ([setting, count]) => exportSettings[setting] && count > 0,
+  );
+  const total = lists.reduce((sum, [, count]) => sum + count, 0);
+  if (!(total > PDF_SLICE_THRESHOLD)) {
+    return [undefined];
+  }
+
+  const sliceSize = Math.ceil(total / Math.ceil(total / PDF_MAX_SLICE_SIZE));
+  const slices = [];
+  let ranges = {};
+  let room = sliceSize;
+  lists.forEach(([setting, count]) => {
+    for (let offset = 0; offset < count;) {
+      const limit = Math.min(room, count - offset);
+      // Open-ended, so a list reaches its final row even if the count is stale.
+      ranges[setting] = offset + limit < count ? { offset, limit } : { offset };
+      offset += limit;
+      room -= limit;
+      if (room === 0) {
+        slices.push(ranges);
+        ranges = {};
+        room = sliceSize;
+      }
+    }
+  });
+  if (Object.keys(ranges).length > 0) {
+    slices.push(ranges);
+  }
+
+  return slices.map((sliceRanges, index) => ({
+    ranges: sliceRanges,
+    first: index === 0,
+    last: index === slices.length - 1,
+  }));
+};
+
 export const fetchPaginatedList = async (
   createAsyncRequest,
   reportId,
@@ -7,8 +61,10 @@ export const fetchPaginatedList = async (
   filter,
   outputKey,
   batchSize,
+  range = {},
 ) => {
   let allItems = [];
+  const start = range.offset ?? 0;
 
   const fetchPage = async (limit, offset) => {
     return await createAsyncRequest('compliance', {
@@ -19,22 +75,20 @@ export const fetchPaginatedList = async (
   };
 
   try {
-    const initialResponse = await fetchPage(batchSize, 0);
+    const initialResponse = await fetchPage(batchSize, start);
 
     const firstPageItems = initialResponse.data || [];
     allItems.push(...firstPageItems);
 
     const totalItems = initialResponse.meta?.total || 0;
-
-    if (totalItems <= batchSize) {
-      return { [outputKey]: allItems };
-    }
-
-    const totalPages = Math.ceil(totalItems / batchSize);
+    const end =
+      range.limit === undefined
+        ? totalItems
+        : Math.min(totalItems, start + range.limit);
     const pagePromises = [];
 
-    for (let pageIdx = 1; pageIdx < totalPages; pageIdx++) {
-      pagePromises.push(fetchPage(batchSize, pageIdx * batchSize));
+    for (let offset = start + batchSize; offset < end; offset += batchSize) {
+      pagePromises.push(fetchPage(batchSize, offset));
     }
 
     const batchedResults = await Promise.all(pagePromises);
@@ -44,7 +98,7 @@ export const fetchPaginatedList = async (
 
     allItems.push(...remainingItems);
 
-    return { [outputKey]: allItems };
+    return { [outputKey]: allItems.slice(0, range.limit) };
   } catch ({}) {
     return { [outputKey]: [] };
   }
@@ -55,6 +109,7 @@ export const fetchUnsupportedSystemsWithExpectedSSG = async (
   reportId,
   osMajorVersion,
   refId,
+  range,
 ) => {
   try {
     const { unsupported_systems: rawUnsupportedSystems } =
@@ -65,6 +120,7 @@ export const fetchUnsupportedSystemsWithExpectedSSG = async (
         'supported = false',
         'unsupported_systems',
         50,
+        range,
       );
 
     if (rawUnsupportedSystems.length === 0) {
