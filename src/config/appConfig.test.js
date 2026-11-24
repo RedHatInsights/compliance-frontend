@@ -78,7 +78,7 @@ describe('appConfig', () => {
         inventoryGroupsAndTags: false,
         terms: {
           system: 'Host',
-          insights: 'Insights',
+          insights: 'Red Hat Lightspeed',
         },
       });
       expect(config.routes.systemPermissions).toEqual([

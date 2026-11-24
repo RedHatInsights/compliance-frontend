@@ -14,7 +14,7 @@ const appConfigIop = Object.freeze({
     showDefaultPolicyRulesPage: false,
     terms: Object.freeze({
       system: 'Host',
-      insights: 'Insights',
+      insights: 'Red Hat Lightspeed',
     }),
   }),
   api: Object.freeze({
