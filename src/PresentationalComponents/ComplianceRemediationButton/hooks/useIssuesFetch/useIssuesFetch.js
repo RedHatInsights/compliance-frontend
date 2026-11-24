@@ -25,13 +25,6 @@ const getSecurityGuideIdsWithOverrides = (tailorings = []) =>
       .filter(Boolean),
   );
 
-const getOverrideValueDefinitionIds = (tailorings = []) =>
-  uniq(
-    tailorings.flatMap(({ value_overrides: valueOverrides = {} }) =>
-      Object.keys(valueOverrides),
-    ),
-  );
-
 const buildValueChecksByRuleId = (rules = []) =>
   rules.reduce(
     (acc, { id, value_checks: valueChecks = [] }) => ({
@@ -86,38 +79,22 @@ export const useIssuesFetch = ({
       });
 
       const securityGuideIds = getSecurityGuideIdsWithOverrides(tailorings);
-      const overrideValueDefinitionIds =
-        getOverrideValueDefinitionIds(tailorings);
-      const remediableRuleIds = uniq(
-        ruleRestults.map(({ rule_id }) => rule_id).filter(Boolean),
-      );
 
       const valueDefinitionsBySecurityGuideId = {};
       const valueChecksByRuleId = {};
 
       for (const securityGuideId of securityGuideIds) {
-        // Only fetch value definitions referenced by Tailoring overrides.
-        const valueDefinitionFilters =
-          overrideValueDefinitionIds.length > 0
-            ? {
-                filters: `id ^ (${overrideValueDefinitionIds.join(' ')})`,
-              }
-            : {};
-
+        // Value definitions for this SSG — used to map override UUIDs → var_* keys.
+        // Filterable fields are only title/ref_id (not id); fetch the full SSG set.
         const { data: valueDefinitions = [] } = await fetchValueDefinitions({
           securityGuideId,
-          ...valueDefinitionFilters,
         });
         valueDefinitionsBySecurityGuideId[securityGuideId] = valueDefinitions;
 
         // Rules provide value_checks so we can scope overrides per issue/rule.
-        if (remediableRuleIds.length > 0) {
-          const { data: rules = [] } = await fetchRules({
-            securityGuideId,
-            filters: `id ^ (${remediableRuleIds.join(' ')})`,
-          });
-          Object.assign(valueChecksByRuleId, buildValueChecksByRuleId(rules));
-        }
+        // Rules are not filterable by id; fetch the full SSG set.
+        const { data: rules = [] } = await fetchRules({ securityGuideId });
+        Object.assign(valueChecksByRuleId, buildValueChecksByRuleId(rules));
       }
 
       const systemOsMinorMap = buildSystemOsMinorMap(reportTestResults);
