@@ -1,6 +1,7 @@
 import {
   buildSystemOsMinorMap,
-  mapValueOverridesToRefIds,
+  toPlaybookVarKey,
+  mapValueOverridesToPlaybookVars,
   buildOverridesByOsMinor,
   resolveValueOverridesForSystems,
   compileRemediatonData,
@@ -22,24 +23,43 @@ describe('useIssuesFetch helpers', () => {
     });
   });
 
-  describe('mapValueOverridesToRefIds', () => {
-    it('maps UUID keys to value definition ref_ids', () => {
+  describe('toPlaybookVarKey', () => {
+    it('strips the XCCDF content_value prefix', () => {
       expect(
-        mapValueOverridesToRefIds(
+        toPlaybookVarKey(
+          'xccdf_org.ssgproject.content_value_var_accounts_maximum_age_login_defs',
+        ),
+      ).toEqual('var_accounts_maximum_age_login_defs');
+    });
+
+    it('returns short var_* keys unchanged', () => {
+      expect(toPlaybookVarKey('var_accounts_tmout')).toEqual(
+        'var_accounts_tmout',
+      );
+    });
+  });
+
+  describe('mapValueOverridesToPlaybookVars', () => {
+    const valueDefinitions = [
+      {
+        id: 'uuid-1',
+        ref_id:
+          'xccdf_org.ssgproject.content_value_var_accounts_maximum_age_login_defs',
+      },
+      {
+        id: 'uuid-2',
+        ref_id: 'xccdf_org.ssgproject.content_value_var_accounts_tmout',
+      },
+    ];
+
+    it('maps UUID keys to short playbook var_* keys', () => {
+      expect(
+        mapValueOverridesToPlaybookVars(
           {
             'uuid-1': '180',
             'uuid-2': 'true',
           },
-          [
-            {
-              id: 'uuid-1',
-              ref_id: 'var_accounts_maximum_age_login_defs',
-            },
-            {
-              id: 'uuid-2',
-              ref_id: 'var_accounts_tmout',
-            },
-          ],
+          valueDefinitions,
         ),
       ).toEqual({
         var_accounts_maximum_age_login_defs: '180',
@@ -47,9 +67,24 @@ describe('useIssuesFetch helpers', () => {
       });
     });
 
+    it('keeps only overrides for the rule value_checks', () => {
+      expect(
+        mapValueOverridesToPlaybookVars(
+          {
+            'uuid-1': '180',
+            'uuid-2': 'true',
+          },
+          valueDefinitions,
+          ['uuid-1'],
+        ),
+      ).toEqual({
+        var_accounts_maximum_age_login_defs: '180',
+      });
+    });
+
     it('throws when a UUID cannot be mapped', () => {
       expect(() =>
-        mapValueOverridesToRefIds({ 'missing-uuid': '180' }, [
+        mapValueOverridesToPlaybookVars({ 'missing-uuid': '180' }, [
           { id: 'other', ref_id: 'var_other' },
         ]),
       ).toThrow(
@@ -59,33 +94,24 @@ describe('useIssuesFetch helpers', () => {
   });
 
   describe('buildOverridesByOsMinor', () => {
-    it('builds ref_id override maps keyed by OS minor', () => {
+    it('builds UUID override maps keyed by OS minor', () => {
       expect(
-        buildOverridesByOsMinor(
-          [
-            {
-              os_minor_version: 6,
-              security_guide_id: 'sg-1',
-              value_overrides: { 'uuid-1': '180' },
-            },
-            {
-              os_minor_version: 8,
-              security_guide_id: 'sg-1',
-              value_overrides: {},
-            },
-          ],
+        buildOverridesByOsMinor([
           {
-            'sg-1': [
-              {
-                id: 'uuid-1',
-                ref_id: 'var_accounts_maximum_age_login_defs',
-              },
-            ],
+            os_minor_version: 6,
+            security_guide_id: 'sg-1',
+            value_overrides: { 'uuid-1': '180' },
           },
-        ),
+          {
+            os_minor_version: 8,
+            security_guide_id: 'sg-1',
+            value_overrides: {},
+          },
+        ]),
       ).toEqual({
         6: {
-          var_accounts_maximum_age_login_defs: '180',
+          security_guide_id: 'sg-1',
+          value_overrides: { 'uuid-1': '180' },
         },
       });
     });
@@ -93,8 +119,14 @@ describe('useIssuesFetch helpers', () => {
 
   describe('resolveValueOverridesForSystems', () => {
     const overridesByOsMinor = {
-      6: { var_accounts_maximum_age_login_defs: '180' },
-      8: { var_accounts_maximum_age_login_defs: '90' },
+      6: {
+        security_guide_id: 'sg-1',
+        value_overrides: { 'uuid-1': '180' },
+      },
+      8: {
+        security_guide_id: 'sg-1',
+        value_overrides: { 'uuid-1': '90' },
+      },
     };
 
     it('returns overrides for the systems OS minor', () => {
@@ -105,7 +137,8 @@ describe('useIssuesFetch helpers', () => {
           overridesByOsMinor,
         ),
       ).toEqual({
-        var_accounts_maximum_age_login_defs: '180',
+        security_guide_id: 'sg-1',
+        value_overrides: { 'uuid-1': '180' },
       });
     });
 
@@ -175,7 +208,7 @@ describe('useIssuesFetch helpers', () => {
       });
     });
 
-    it('attaches value_overrides when tailorings resolve for the systems', () => {
+    it('attaches only the rule-specific playbook value_overrides', () => {
       expect(
         compileRemediatonData(ruleResults, undefined, {
           systemOsMinorMap: {
@@ -184,8 +217,28 @@ describe('useIssuesFetch helpers', () => {
           },
           overridesByOsMinor: {
             6: {
-              var_accounts_maximum_age_login_defs: '180',
+              security_guide_id: 'sg-1',
+              value_overrides: {
+                'uuid-1': '180',
+                'uuid-2': 'true',
+              },
             },
+          },
+          valueDefinitionsBySecurityGuideId: {
+            'sg-1': [
+              {
+                id: 'uuid-1',
+                ref_id:
+                  'xccdf_org.ssgproject.content_value_var_accounts_maximum_age_login_defs',
+              },
+              {
+                id: 'uuid-2',
+                ref_id: 'xccdf_org.ssgproject.content_value_var_accounts_tmout',
+              },
+            ],
+          },
+          valueChecksByRuleId: {
+            'rule-1': ['uuid-1'],
           },
         }),
       ).toEqual({

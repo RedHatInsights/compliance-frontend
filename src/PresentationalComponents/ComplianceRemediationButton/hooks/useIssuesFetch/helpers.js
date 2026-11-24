@@ -1,5 +1,7 @@
 import { uniq } from 'Utilities/helpers';
 
+const CONTENT_VALUE_PREFIX = 'xccdf_org.ssgproject.content_value_';
+
 const isRemediatable = ({ result, remediation_issue_id }) =>
   result === 'fail' && !!remediation_issue_id;
 
@@ -32,10 +34,27 @@ export const buildSystemOsMinorMap = (reportTestResults = []) =>
     };
   }, {});
 
-// Returns { [ref_id]: value } by mapping ValueDefinition UUID keys to ref_ids.
-export const mapValueOverridesToRefIds = (
+// Playbooks use short keys (var_*), not full XCCDF ref_ids
+// (xccdf_org.ssgproject.content_value_var_*).
+export const toPlaybookVarKey = (refId) => {
+  if (!refId) {
+    return undefined;
+  }
+
+  if (refId.startsWith(CONTENT_VALUE_PREFIX)) {
+    return refId.slice(CONTENT_VALUE_PREFIX.length);
+  }
+
+  const shortVarMatch = refId.match(/var_[A-Za-z0-9_]+$/);
+  return shortVarMatch ? shortVarMatch[0] : refId;
+};
+
+// Returns { [var_*]: value }. Optionally limits to the rule's value_checks
+// so each issue only gets overrides for that rule.
+export const mapValueOverridesToPlaybookVars = (
   valueOverrides = {},
   valueDefinitions = [],
+  valueCheckIds = [],
 ) => {
   const definitionsById = valueDefinitions.reduce(
     (acc, definition) => ({
@@ -45,11 +64,18 @@ export const mapValueOverridesToRefIds = (
     {},
   );
 
-  return Object.entries(valueOverrides).reduce((acc, [valueId, value]) => {
-    const definition = definitionsById[valueId];
-    const refId = definition?.ref_id;
+  const allowedIds =
+    valueCheckIds.length > 0 ? new Set(valueCheckIds) : undefined;
 
-    if (!refId) {
+  return Object.entries(valueOverrides).reduce((acc, [valueId, value]) => {
+    if (allowedIds && !allowedIds.has(valueId)) {
+      return acc;
+    }
+
+    const definition = definitionsById[valueId];
+    const playbookVarKey = toPlaybookVarKey(definition?.ref_id);
+
+    if (!playbookVarKey) {
       throw new Error(
         `Unable to map value override "${valueId}" to a playbook var_* key`,
       );
@@ -57,17 +83,14 @@ export const mapValueOverridesToRefIds = (
 
     return {
       ...acc,
-      [refId]: value,
+      [playbookVarKey]: value,
     };
   }, {});
 };
 
-// Returns { [os_minor_version]: { [ref_id]: value } } — which tailored
-// values apply for each OS minor. Skips Tailorings with no overrides.
-export const buildOverridesByOsMinor = (
-  tailorings = [],
-  valueDefinitionsBySecurityGuideId = {},
-) =>
+// Returns { [os_minor_version]: { security_guide_id, value_overrides } }
+// with UUID-keyed overrides from each Tailoring.
+export const buildOverridesByOsMinor = (tailorings = []) =>
   tailorings.reduce((acc, tailoring) => {
     const {
       os_minor_version,
@@ -83,26 +106,23 @@ export const buildOverridesByOsMinor = (
       return acc;
     }
 
-    const valueDefinitions =
-      valueDefinitionsBySecurityGuideId[security_guide_id] || [];
-
     return {
       ...acc,
-      [Number(os_minor_version)]: mapValueOverridesToRefIds(
-        valueOverrides,
-        valueDefinitions,
-      ),
+      [Number(os_minor_version)]: {
+        security_guide_id,
+        value_overrides: valueOverrides,
+      },
     };
   }, {});
 
-// For an issue's systems, pick the value_overrides map to attach:
+// For an issue's systems, pick the Tailoring override entry to use:
 // 1. Look up each system's OS minor (systemOsMinorMap)
 // 2. Look up that minor's tailored values (overridesByOsMinor)
 // 3. No tailored values → undefined (don't add value_overrides)
-// 4. One map (or the same map for every minor) → return that map
+// 4. One map (or the same map for every minor) → return that entry
 // 5. Different maps on the same issue → throw (Remediations allows one
 //    value_overrides per issue). Issue ids usually differ by SSG
-//    version (OS minor) so this is mainly a safety net.
+//    version (≈ OS minor), so this is mainly a safety net.
 export const resolveValueOverridesForSystems = (
   systems = [],
   systemOsMinorMap = {},
@@ -117,8 +137,8 @@ export const resolveValueOverridesForSystems = (
   const overridesForMinors = minors
     .map((osMinorVersion) => overridesByOsMinor[osMinorVersion])
     .filter(
-      (valueOverrides) =>
-        valueOverrides && Object.keys(valueOverrides).length > 0,
+      (entry) =>
+        entry?.value_overrides && Object.keys(entry.value_overrides).length > 0,
     );
 
   if (overridesForMinors.length === 0) {
@@ -126,7 +146,9 @@ export const resolveValueOverridesForSystems = (
   }
 
   const uniqueOverrideMaps = uniq(
-    overridesForMinors.map((valueOverrides) => JSON.stringify(valueOverrides)),
+    overridesForMinors.map(({ value_overrides }) =>
+      JSON.stringify(value_overrides),
+    ),
   );
 
   if (uniqueOverrideMaps.length > 1) {
@@ -138,15 +160,33 @@ export const resolveValueOverridesForSystems = (
   return overridesForMinors[0];
 };
 
-// Attach value_overrides only when the issue's systems have tailored values.
-const attachValueOverrides = (issue, systemOsMinorMap, overridesByOsMinor) => {
-  const valueOverrides = resolveValueOverridesForSystems(
+// Attach per-rule value_overrides (short var_* keys) when the issue's
+// systems have tailored values that apply to this rule's value_checks.
+const attachValueOverrides = (
+  issue,
+  systemOsMinorMap,
+  overridesByOsMinor,
+  valueDefinitionsBySecurityGuideId,
+  valueChecksByRuleId,
+) => {
+  const overrideEntry = resolveValueOverridesForSystems(
     issue.systems,
     systemOsMinorMap,
     overridesByOsMinor,
   );
 
-  if (!valueOverrides) {
+  if (!overrideEntry) {
+    return issue;
+  }
+
+  const valueChecks = valueChecksByRuleId[issue.rule_id] || [];
+  const valueOverrides = mapValueOverridesToPlaybookVars(
+    overrideEntry.value_overrides,
+    valueDefinitionsBySecurityGuideId[overrideEntry.security_guide_id] || [],
+    valueChecks,
+  );
+
+  if (Object.keys(valueOverrides).length === 0) {
     return issue;
   }
 
@@ -157,11 +197,16 @@ const attachValueOverrides = (issue, systemOsMinorMap, overridesByOsMinor) => {
 };
 
 // Builds the Remediations dataProvider payload: { systems, issues }.
-// Optional override context adds per-issue value_overrides (var_* keys).
+// Optional context adds per-issue value_overrides (playbook var_* keys).
 export const compileRemediatonData = (
   ruleResults,
   selectedRuleIds,
-  { systemOsMinorMap = {}, overridesByOsMinor = {} } = {},
+  {
+    systemOsMinorMap = {},
+    overridesByOsMinor = {},
+    valueDefinitionsBySecurityGuideId = {},
+    valueChecksByRuleId = {},
+  } = {},
 ) => {
   const remediatableIssues = Object.values(
     ruleResults
@@ -175,6 +220,7 @@ export const compileRemediatonData = (
           ...remediationResult,
           [rule_id]: {
             id: remediation_issue_id,
+            rule_id,
             precedence,
             description,
             systems: uniq([
@@ -185,9 +231,17 @@ export const compileRemediatonData = (
         }),
         {},
       ),
-  ).map((issue) =>
-    attachValueOverrides(issue, systemOsMinorMap, overridesByOsMinor),
-  );
+  ).map((issue) => {
+    const issueWithOverrides = attachValueOverrides(
+      issue,
+      systemOsMinorMap,
+      overridesByOsMinor,
+      valueDefinitionsBySecurityGuideId,
+      valueChecksByRuleId,
+    );
+    const { rule_id: _ruleId, ...remediationIssue } = issueWithOverrides;
+    return remediationIssue;
+  });
 
   const systems = uniq(
     remediatableIssues.reduce((systemIds, { systems }) => {

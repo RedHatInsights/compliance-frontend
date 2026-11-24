@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import useReportRuleResults from 'Utilities/hooks/api/useReportRuleResults';
 import useTailorings from 'Utilities/hooks/api/useTailorings';
 import useValueDefinitions from 'Utilities/hooks/api/useValueDefinitions';
+import useRules from 'Utilities/hooks/api/useRules';
 import { uniq } from 'Utilities/helpers';
 import {
   compileRemediatonData,
@@ -11,9 +12,8 @@ import {
   buildOverridesByOsMinor,
 } from './helpers';
 
-// Returns security_guide_ids for Tailorings that have value_overrides.
-// Those ids tell us which value definitions to fetch so
-// mapValueOverridesToRefIds can map UUIDs to ref_ids.
+// Security guides that have Tailoring value_overrides — used to fetch value
+// definitions (UUID → var_*) and rules (value_checks for per-rule filtering).
 const getSecurityGuideIdsWithOverrides = (tailorings = []) =>
   uniq(
     tailorings
@@ -23,6 +23,22 @@ const getSecurityGuideIdsWithOverrides = (tailorings = []) =>
       )
       .map(({ security_guide_id }) => security_guide_id)
       .filter(Boolean),
+  );
+
+const getOverrideValueDefinitionIds = (tailorings = []) =>
+  uniq(
+    tailorings.flatMap(({ value_overrides: valueOverrides = {} }) =>
+      Object.keys(valueOverrides),
+    ),
+  );
+
+const buildValueChecksByRuleId = (rules = []) =>
+  rules.reduce(
+    (acc, { id, value_checks: valueChecks = [] }) => ({
+      ...acc,
+      [id]: valueChecks,
+    }),
+    {},
   );
 
 export const useIssuesFetch = ({
@@ -39,10 +55,16 @@ export const useIssuesFetch = ({
     },
     skip: true,
   });
-  // skip: true → do not fetch on mount; call only from fetchIssues (Plan remediation)
+  // skip: true → fetch only from fetchIssues (Plan remediation), not on mount
   const { query: fetchTailorings } = useTailorings({ skip: true });
   const { queryTotalBatched: fetchValueDefinitions } = useValueDefinitions({
     batched: true,
+    batch: { batchSize: 100 },
+    skip: true,
+  });
+  const { queryTotalBatched: fetchRules } = useRules({
+    batched: true,
+    batch: { batchSize: 100 },
     skip: true,
   });
 
@@ -57,40 +79,62 @@ export const useIssuesFetch = ({
         [],
       );
 
-      // One list for the policy (reportId === policyId). Each Tailoring is per
-      // OS minor and may include UUID-keyed value_overrides.
+      // reportId === policyId in this app. Each Tailoring is per OS minor.
       const { data: tailorings = [] } = await fetchTailorings({
         policyId: reportId,
         filters: 'NOT(null? os_minor_version)',
       });
 
-      // Skip value-definition calls when nothing is tailored
       const securityGuideIds = getSecurityGuideIdsWithOverrides(tailorings);
+      const overrideValueDefinitionIds =
+        getOverrideValueDefinitionIds(tailorings);
+      const remediableRuleIds = uniq(
+        ruleRestults.map(({ rule_id }) => rule_id).filter(Boolean),
+      );
+
       const valueDefinitionsBySecurityGuideId = {};
+      const valueChecksByRuleId = {};
 
       for (const securityGuideId of securityGuideIds) {
+        // Only fetch value definitions referenced by Tailoring overrides.
+        const valueDefinitionFilters =
+          overrideValueDefinitionIds.length > 0
+            ? {
+                filters: `id ^ (${overrideValueDefinitionIds.join(' ')})`,
+              }
+            : {};
+
         const { data: valueDefinitions = [] } = await fetchValueDefinitions({
           securityGuideId,
+          ...valueDefinitionFilters,
         });
         valueDefinitionsBySecurityGuideId[securityGuideId] = valueDefinitions;
+
+        // Rules provide value_checks so we can scope overrides per issue/rule.
+        if (remediableRuleIds.length > 0) {
+          const { data: rules = [] } = await fetchRules({
+            securityGuideId,
+            filters: `id ^ (${remediableRuleIds.join(' ')})`,
+          });
+          Object.assign(valueChecksByRuleId, buildValueChecksByRuleId(rules));
+        }
       }
 
-      // system → OS minor → Tailoring overrides (UUID → var_*/ref_id)
       const systemOsMinorMap = buildSystemOsMinorMap(reportTestResults);
-      const overridesByOsMinor = buildOverridesByOsMinor(
-        tailorings,
-        valueDefinitionsBySecurityGuideId,
-      );
+      const overridesByOsMinor = buildOverridesByOsMinor(tailorings);
 
       return compileRemediatonData(ruleRestults, selectedRuleResultIds, {
         systemOsMinorMap,
         overridesByOsMinor,
+        valueDefinitionsBySecurityGuideId,
+        valueChecksByRuleId,
       });
     } finally {
       setIsLoading(false);
     }
   }, [
     fetchBatchedQueue,
+    fetchRules,
     fetchTailorings,
     fetchValueDefinitions,
     reportId,
