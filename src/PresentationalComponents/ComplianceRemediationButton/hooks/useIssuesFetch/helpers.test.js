@@ -175,6 +175,7 @@ describe('useIssuesFetch helpers', () => {
         system_id: 'sys-1',
         description: 'Maximum password age',
         precedence: 1,
+        value_checks: ['uuid-1'],
       },
       {
         id: 'rr-2',
@@ -184,6 +185,7 @@ describe('useIssuesFetch helpers', () => {
         system_id: 'sys-2',
         description: 'Maximum password age',
         precedence: 1,
+        value_checks: ['uuid-1'],
       },
       {
         id: 'rr-3',
@@ -236,9 +238,6 @@ describe('useIssuesFetch helpers', () => {
                 ref_id: 'xccdf_org.ssgproject.content_value_var_accounts_tmout',
               },
             ],
-          },
-          valueChecksByRuleId: {
-            'rule-1': ['uuid-1'],
           },
         }),
       ).toEqual({

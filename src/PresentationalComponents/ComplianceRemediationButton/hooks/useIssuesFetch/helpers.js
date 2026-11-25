@@ -161,13 +161,13 @@ export const resolveValueOverridesForSystems = (
 };
 
 // Attach per-rule value_overrides (short var_* keys) when the issue's
-// systems have tailored values that apply to this rule's value_checks.
+// systems have tailored values that apply to this rule's value_checks
+// (from rule_results).
 const attachValueOverrides = (
   issue,
   systemOsMinorMap,
   overridesByOsMinor,
   valueDefinitionsBySecurityGuideId,
-  valueChecksByRuleId,
 ) => {
   const overrideEntry = resolveValueOverridesForSystems(
     issue.systems,
@@ -179,11 +179,10 @@ const attachValueOverrides = (
     return issue;
   }
 
-  const valueChecks = valueChecksByRuleId[issue.rule_id] || [];
   const valueOverrides = mapValueOverridesToPlaybookVars(
     overrideEntry.value_overrides,
     valueDefinitionsBySecurityGuideId[overrideEntry.security_guide_id] || [],
-    valueChecks,
+    issue.value_checks || [],
   );
 
   if (Object.keys(valueOverrides).length === 0) {
@@ -205,7 +204,6 @@ export const compileRemediatonData = (
     systemOsMinorMap = {},
     overridesByOsMinor = {},
     valueDefinitionsBySecurityGuideId = {},
-    valueChecksByRuleId = {},
   } = {},
 ) => {
   const remediatableIssues = Object.values(
@@ -215,7 +213,14 @@ export const compileRemediatonData = (
       .reduce(
         (
           remediationResult,
-          { rule_id, remediation_issue_id, system_id, description, precedence },
+          {
+            rule_id,
+            remediation_issue_id,
+            system_id,
+            description,
+            precedence,
+            value_checks: valueChecks = [],
+          },
         ) => ({
           ...remediationResult,
           [rule_id]: {
@@ -223,6 +228,8 @@ export const compileRemediatonData = (
             rule_id,
             precedence,
             description,
+            value_checks:
+              remediationResult[rule_id]?.value_checks || valueChecks,
             systems: uniq([
               ...(remediationResult[rule_id]?.systems || []),
               system_id,
@@ -237,9 +244,12 @@ export const compileRemediatonData = (
       systemOsMinorMap,
       overridesByOsMinor,
       valueDefinitionsBySecurityGuideId,
-      valueChecksByRuleId,
     );
-    const { rule_id: _ruleId, ...remediationIssue } = issueWithOverrides;
+    const {
+      rule_id: _ruleId,
+      value_checks: _valueChecks,
+      ...remediationIssue
+    } = issueWithOverrides;
     return remediationIssue;
   });
 
