@@ -49,8 +49,8 @@ export const toPlaybookVarKey = (refId) => {
   return shortVarMatch ? shortVarMatch[0] : refId;
 };
 
-// Returns { [var_*]: value }. Optionally limits to the rule's value_checks
-// so each issue only gets overrides for that rule.
+// Returns { [var_*]: value } for overrides whose UUIDs are in valueCheckIds.
+// An empty valueCheckIds means the rule has no applicable values — attach nothing.
 export const mapValueOverridesToPlaybookVars = (
   valueOverrides = {},
   valueDefinitions = [],
@@ -64,11 +64,10 @@ export const mapValueOverridesToPlaybookVars = (
     {},
   );
 
-  const allowedIds =
-    valueCheckIds.length > 0 ? new Set(valueCheckIds) : undefined;
+  const allowedIds = new Set(valueCheckIds);
 
   return Object.entries(valueOverrides).reduce((acc, [valueId, value]) => {
-    if (allowedIds && !allowedIds.has(valueId)) {
+    if (!allowedIds.has(valueId)) {
       return acc;
     }
 

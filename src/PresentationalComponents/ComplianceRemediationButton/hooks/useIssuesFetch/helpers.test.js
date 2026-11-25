@@ -60,6 +60,7 @@ describe('useIssuesFetch helpers', () => {
             'uuid-2': 'true',
           },
           valueDefinitions,
+          ['uuid-1', 'uuid-2'],
         ),
       ).toEqual({
         var_accounts_maximum_age_login_defs: '180',
@@ -82,11 +83,26 @@ describe('useIssuesFetch helpers', () => {
       });
     });
 
+    it('attaches nothing when value_checks is empty', () => {
+      expect(
+        mapValueOverridesToPlaybookVars(
+          {
+            'uuid-1': '180',
+            'uuid-2': 'true',
+          },
+          valueDefinitions,
+          [],
+        ),
+      ).toEqual({});
+    });
+
     it('throws when a UUID cannot be mapped', () => {
       expect(() =>
-        mapValueOverridesToPlaybookVars({ 'missing-uuid': '180' }, [
-          { id: 'other', ref_id: 'var_other' },
-        ]),
+        mapValueOverridesToPlaybookVars(
+          { 'missing-uuid': '180' },
+          [{ id: 'other', ref_id: 'var_other' }],
+          ['missing-uuid'],
+        ),
       ).toThrow(
         'Unable to map value override "missing-uuid" to a playbook var_* key',
       );
