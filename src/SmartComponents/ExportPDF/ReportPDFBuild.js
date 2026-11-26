@@ -84,7 +84,10 @@ export const styles = {
 
 export const fetchData = async (createAsyncRequest, options) => {
   const requests = [];
-  const { reportId } = options;
+  const { reportId, slice } = options;
+  const wanted = (setting) =>
+    options.exportSettings[setting] && (!slice || !!slice.ranges[setting]);
+  const range = (setting) => (slice ? [slice.ranges[setting]] : []);
   let osMajorVersion = null;
   let refId = null;
 
@@ -100,7 +103,7 @@ export const fetchData = async (createAsyncRequest, options) => {
   requests.push(Promise.resolve({ report_details: rawReportResponse.data }));
 
   // Top 10 failed rules
-  if (options.exportSettings.topTenFailedRules) {
+  if (options.exportSettings.topTenFailedRules && (!slice || slice.last)) {
     try {
       const response = await createAsyncRequest('compliance', {
         method: 'GET',
@@ -116,7 +119,7 @@ export const fetchData = async (createAsyncRequest, options) => {
   }
 
   // Compliant systems
-  if (options.exportSettings.compliantSystems) {
+  if (wanted('compliantSystems')) {
     requests.push(
       fetchPaginatedList(
         createAsyncRequest,
@@ -125,6 +128,7 @@ export const fetchData = async (createAsyncRequest, options) => {
         'compliant = true and supported = true',
         'compliant_systems',
         50,
+        ...range('compliantSystems'),
       ),
     );
   } else {
@@ -132,7 +136,7 @@ export const fetchData = async (createAsyncRequest, options) => {
   }
 
   // nonCompliantSystems
-  if (options.exportSettings.nonCompliantSystems) {
+  if (wanted('nonCompliantSystems')) {
     requests.push(
       fetchPaginatedList(
         createAsyncRequest,
@@ -141,6 +145,7 @@ export const fetchData = async (createAsyncRequest, options) => {
         'compliant = false and supported = true',
         'non_compliant_systems',
         50,
+        ...range('nonCompliantSystems'),
       ),
     );
   } else {
@@ -148,7 +153,7 @@ export const fetchData = async (createAsyncRequest, options) => {
   }
 
   // nonReportingSystems
-  if (options.exportSettings.nonReportingSystems) {
+  if (wanted('nonReportingSystems')) {
     requests.push(
       fetchPaginatedList(
         createAsyncRequest,
@@ -157,6 +162,7 @@ export const fetchData = async (createAsyncRequest, options) => {
         'never_reported = true',
         'non_reporting_systems',
         50,
+        ...range('nonReportingSystems'),
       ),
     );
   } else {
@@ -164,13 +170,14 @@ export const fetchData = async (createAsyncRequest, options) => {
   }
 
   // unsupportedSystems
-  if (options.exportSettings.unsupportedSystems) {
+  if (wanted('unsupportedSystems')) {
     requests.push(
       fetchUnsupportedSystemsWithExpectedSSG(
         createAsyncRequest,
         reportId,
         osMajorVersion,
         refId,
+        ...range('unsupportedSystems'),
       ),
     );
   } else {
@@ -190,30 +197,39 @@ const ReportPDFBuild = ({ asyncData }) => {
   const nonReportingSystems = data[4].non_reporting_systems;
   const unsupportedSystems = data[5].unsupported_systems;
 
+  const ranges = options.slice?.ranges ?? {};
+  const continued = (setting) => ranges[setting]?.offset > 0;
+
   return (
     <div style={styles.document}>
-      <span style={styles.insightsHeader}>Red Hat Lightspeed</span>
-      <br />
-      <span style={styles.policyTitleHeader}>
-        {`Compliance: ${reportData.title}`}
-      </span>
-      {options.exportSettings.userNotes && (
+      {(!options.slice || options.slice.first) && (
         <>
+          <span style={styles.insightsHeader}>Red Hat Lightspeed</span>
           <br />
-          <br />
-          <div style={{ backgroundColor: t_global_background_color_200.value }}>
-            <div style={styles.userNotes}>
-              <div>User notes:</div>
-              <div style={{ marginTop: t_global_spacer_sm.value }}>
-                {options.exportSettings.userNotes}
+          <span style={styles.policyTitleHeader}>
+            {`Compliance: ${reportData.title}`}
+          </span>
+          {options.exportSettings.userNotes && (
+            <>
+              <br />
+              <br />
+              <div
+                style={{ backgroundColor: t_global_background_color_200.value }}
+              >
+                <div style={styles.userNotes}>
+                  <div>User notes:</div>
+                  <div style={{ marginTop: t_global_spacer_sm.value }}>
+                    {options.exportSettings.userNotes}
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </>
+          )}
+          <br />
+          <br />
+          <PolicyDetailsSection reportData={reportData} styles={styles} />
         </>
       )}
-      <br />
-      <br />
-      <PolicyDetailsSection reportData={reportData} styles={styles} />
       {options.exportSettings.nonCompliantSystems &&
         nonCompliantSystems.length > 0 && (
           <>
@@ -221,6 +237,7 @@ const ReportPDFBuild = ({ asyncData }) => {
             <br />
             <SystemsTableSection
               sectionTitle={'Non-compliant systems'}
+              continued={continued('nonCompliantSystems')}
               systemsData={nonCompliantSystems}
               styles={styles}
             />
@@ -233,6 +250,7 @@ const ReportPDFBuild = ({ asyncData }) => {
             <br />
             <SystemsTableSection
               sectionTitle={'Systems with unsupported configuration'}
+              continued={continued('unsupportedSystems')}
               systemsData={unsupportedSystems}
               styles={styles}
             />
@@ -245,6 +263,7 @@ const ReportPDFBuild = ({ asyncData }) => {
             <br />
             <SystemsTableSection
               sectionTitle={'Systems never reported'}
+              continued={continued('nonReportingSystems')}
               systemsData={nonReportingSystems}
               styles={styles}
             />
@@ -257,6 +276,7 @@ const ReportPDFBuild = ({ asyncData }) => {
             <br />
             <SystemsTableSection
               sectionTitle={'Compliant systems'}
+              continued={continued('compliantSystems')}
               systemsData={compliantSystems}
               styles={styles}
             />

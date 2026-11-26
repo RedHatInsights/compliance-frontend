@@ -4,7 +4,12 @@ import { t_global_background_color_secondary_default } from '@patternfly/react-t
 import { Table, Tbody, Td, Th, Thead, Tr } from '@patternfly/react-table';
 import { Content } from '@patternfly/react-core';
 
-const SystemsTableSection = ({ sectionTitle, systemsData, styles }) => {
+const SystemsTableSection = ({
+  sectionTitle,
+  systemsData,
+  styles,
+  continued = false,
+}) => {
   const commonTableConfig = {
     headers: [
       { value: 'Name' },
@@ -105,7 +110,9 @@ const SystemsTableSection = ({ sectionTitle, systemsData, styles }) => {
 
   return (
     <React.Fragment>
-      <Content style={styles.sectionHeader}>{sectionTitle}</Content>
+      {!continued && (
+        <Content style={styles.sectionHeader}>{sectionTitle}</Content>
+      )}
       <Table borders={false} style={{ width: '100%' }}>
         <Thead>
           <Tr>
@@ -126,6 +133,7 @@ SystemsTableSection.propTypes = {
   sectionTitle: PropTypes.string.isRequired,
   systemsData: PropTypes.array.isRequired,
   styles: PropTypes.object.isRequired,
+  continued: PropTypes.bool,
 };
 
 export default SystemsTableSection;

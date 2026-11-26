@@ -15,6 +15,7 @@ import useExportSettings from './hooks/useExportSettings';
 import useReport from 'Utilities/hooks/api/useReport';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import { exportNotifications } from './constants';
+import { buildReportPdfSlices } from './helpers';
 
 export const ExportPDF = () => {
   const addNotification = useAddNotification();
@@ -39,20 +40,25 @@ export const ExportPDF = () => {
     setLoadingPDF(true);
     addNotification(exportNotifications.pending);
 
+    const payloads = buildReportPdfSlices(reportData, exportSettings).map(
+      (slice) => ({
+        manifestLocation: '/apps/compliance/fed-mods.json',
+        scope: 'compliance',
+        module: './ReportPDFBuild',
+        fetchDataParams: {
+          reportId: reportId,
+          exportSettings: exportSettings,
+          ...(slice && { slice }),
+        },
+      }),
+    );
+
     try {
       await requestPdf({
         filename: `compliance-report--${new Date()
           .toUTCString()
           .replace(/ /g, '-')}.pdf`,
-        payload: {
-          manifestLocation: '/apps/compliance/fed-mods.json',
-          scope: 'compliance',
-          module: './ReportPDFBuild',
-          fetchDataParams: {
-            reportId: reportId,
-            exportSettings: exportSettings,
-          },
-        },
+        payload: payloads.length > 1 ? payloads : payloads[0],
       });
 
       addNotification(exportNotifications.success);

@@ -193,6 +193,47 @@ describe('fetchData', () => {
     expect(result.data[5]).toEqual({ unsupported_systems: [] });
   });
 
+  it('loads only the rows of its slice', async () => {
+    const options = {
+      ...mockOptionsBase,
+      exportSettings: {
+        ...mockOptionsBase.exportSettings,
+        topTenFailedRules: true,
+        compliantSystems: true,
+        nonCompliantSystems: true,
+      },
+      slice: {
+        ranges: { nonCompliantSystems: { offset: 800, limit: 800 } },
+        first: false,
+        last: false,
+      },
+    };
+    createAsyncRequest.mockResolvedValueOnce({
+      data: { id: mockReportId, os_major_version: 8, ref_id: 'xccdf_foo' },
+    });
+    fetchPaginatedList.mockResolvedValueOnce({
+      non_compliant_systems: [{ id: 'nc-800' }],
+    });
+
+    const result = await fetchData(createAsyncRequest, options);
+
+    expect(createAsyncRequest).toHaveBeenCalledTimes(1);
+    expect(fetchPaginatedList).toHaveBeenCalledTimes(1);
+    expect(fetchPaginatedList).toHaveBeenCalledWith(
+      createAsyncRequest,
+      mockReportId,
+      '/test_results',
+      'compliant = false and supported = true',
+      'non_compliant_systems',
+      50,
+      { offset: 800, limit: 800 },
+    );
+    expect(result.data[2]).toEqual({ compliant_systems: [] });
+    expect(result.data[3]).toEqual({
+      non_compliant_systems: [{ id: 'nc-800' }],
+    });
+  });
+
   it('should return empty top_failed_rules on fetch error when enabled', async () => {
     const options = {
       ...mockOptionsBase,
@@ -363,6 +404,61 @@ describe('ReportPDFBuild', () => {
 
     expect(screen.queryByText('TopFailedRulesSection')).not.toBeInTheDocument();
     expect(screen.queryByText('SystemsTableSection')).not.toBeInTheDocument();
+  });
+
+  it('leaves the summary to the first slice and marks a continued list', () => {
+    const data = [...mockAsyncData.data.data];
+    data[3] = { non_compliant_systems: [{ id: 'nc-800' }] };
+    const sliced = (slice) => ({
+      data: {
+        data,
+        options: {
+          ...mockAsyncData.data.options,
+          exportSettings: {
+            ...mockAsyncData.data.options.exportSettings,
+            nonCompliantSystems: true,
+          },
+          slice,
+        },
+      },
+    });
+
+    const { unmount } = render(
+      <ReportPDFBuild
+        asyncData={sliced({
+          ranges: { nonCompliantSystems: { offset: 800 } },
+          first: false,
+          last: true,
+        })}
+      />,
+    );
+
+    expect(screen.queryByText('Red Hat Lightspeed')).not.toBeInTheDocument();
+    expect(screen.queryByText('PolicyDetailsSection')).not.toBeInTheDocument();
+    expect(SystemsTableSection).toHaveBeenLastCalledWith(
+      expect.objectContaining({
+        sectionTitle: 'Non-compliant systems',
+        continued: true,
+      }),
+      {},
+    );
+    unmount();
+
+    render(
+      <ReportPDFBuild
+        asyncData={sliced({
+          ranges: { nonCompliantSystems: { offset: 0, limit: 800 } },
+          first: true,
+          last: false,
+        })}
+      />,
+    );
+
+    expect(screen.getByText('Red Hat Lightspeed')).toBeInTheDocument();
+    expect(SystemsTableSection).toHaveBeenLastCalledWith(
+      expect.objectContaining({ continued: false }),
+      {},
+    );
   });
 
   it('should render all sections when all export settings are enabled and data is provided', () => {

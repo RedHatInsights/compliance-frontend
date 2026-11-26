@@ -209,4 +209,18 @@ describe('SystemsTableSection', () => {
       ).toBeInTheDocument();
     });
   });
+
+  it('prints no section title when it continues a list from an earlier slice', () => {
+    render(
+      <SystemsTableSection
+        sectionTitle="Compliant systems"
+        systemsData={mockCompliantSystems}
+        styles={styles}
+        continued
+      />,
+    );
+
+    expect(screen.queryByText('Compliant systems')).not.toBeInTheDocument();
+    expect(screen.getByText('system-alpha.example.com')).toBeInTheDocument();
+  });
 });
