@@ -3,6 +3,7 @@ import { pluralize, Content } from '@patternfly/react-core';
 import { SupportedSSGVersionsLink } from 'PresentationalComponents';
 import { paletteColors } from '../../../../constants';
 import { getAppConfig } from '@/config/appConfig';
+import { getTerm, pluralizeTerm } from '@/Utilities/helpers';
 
 const useLegendData = (donutValues) => {
   const showTooltipWithDocs = getAppConfig().features.showTooltipWithDocs;
@@ -11,33 +12,32 @@ const useLegendData = (donutValues) => {
   const unsupportedSystemCount = donutValues[2].y;
   const notReportingSystemCount = donutValues[3].y;
 
+  const system = getTerm('system', { lowercase: true });
+  const systems = getTerm('system', { plural: true, lowercase: true });
   const unsupportedVersionWording =
     unsupportedSystemCount === 1
-      ? `This system is running an unsupported version of the SCAP
+      ? `This ${system} is running an unsupported version of the SCAP
          Security Guide (SSG) for the version of RHEL installed on it.
-         Assessment of rules failed/passed on this system is
+         Assessment of rules failed/passed on this ${system} is
          a best-guess effort and may not be accurate.`
-      : `These systems are running unsupported versions of the SCAP
+      : `These ${systems} are running unsupported versions of the SCAP
          Security Guide (SSG) for the version of RHEL installed on them.
-         Assessment of rules failed/passed on these systems is
+         Assessment of rules failed/passed on these ${systems} is
          a best-guess effort and may not be accurate.`;
 
   return [
     {
-      name: `${pluralize(compliantSystemCount, 'system')} compliant`,
+      name: `${pluralizeTerm(compliantSystemCount, 'system')} compliant`,
       symbol: { fill: paletteColors.blue300 },
     },
     {
-      name: `${pluralize(nonCompliantSystemCount, 'system')} non-compliant`,
+      name: `${pluralizeTerm(nonCompliantSystemCount, 'system')} non-compliant`,
       symbol: { fill: paletteColors.orange400 },
     },
     ...(unsupportedSystemCount > 0
       ? [
           {
-            name: `${pluralize(
-              unsupportedSystemCount,
-              'system',
-            )} not supported`,
+            name: `${pluralizeTerm(unsupportedSystemCount, 'system')} not supported`,
             symbol: { fill: paletteColors.gold300 },
             popover: {
               title: 'Unsupported SSG versions',
@@ -47,7 +47,7 @@ const useLegendData = (donutValues) => {
                     {unsupportedVersionWording}
                   </Content>
                   <Content component="p" variant="p">
-                    The policy&apos;s compliance score excludes these systems.
+                    The policy&apos;s compliance score excludes these {systems}.
                   </Content>
                 </>
               ),
@@ -63,18 +63,17 @@ const useLegendData = (donutValues) => {
     ...(notReportingSystemCount > 0
       ? [
           {
-            name: `${pluralize(
-              notReportingSystemCount,
-              'system',
-            )} never reported`,
+            name: `${pluralizeTerm(notReportingSystemCount, 'system')} never reported`,
             popover: {
-              title: 'Systems never reported',
+              title: `${getTerm('system', { plural: true })} never reported`,
               content: `${pluralize(
                 notReportingSystemCount,
-                'system is',
-                'systems are',
+                `${system} is`,
+                `${systems} are`,
               )} not reporting scan results. This may be because the ${
-                notReportingSystemCount === 1 ? 'system is' : 'systems are'
+                notReportingSystemCount === 1
+                  ? `${system} is`
+                  : `${systems} are`
               } disconnected, or the insights-client is not properly configured to use Compliance.`,
             },
             symbol: { fill: paletteColors.black200 },

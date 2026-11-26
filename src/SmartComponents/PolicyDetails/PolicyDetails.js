@@ -26,6 +26,7 @@ import {
   CenteredSpinner,
 } from 'PresentationalComponents';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
+import { getTerm } from '@/Utilities/helpers';
 import useFeatureFlag from 'Utilities/hooks/unleash/useFeatureFlag';
 import {
   useRbacV1Permissions,
@@ -122,7 +123,11 @@ const PolicyDetailsContent = ({ route, usePermissionsHook }) => {
               >
                 <Tab title="Details" id="policy-details" eventKey="details" />
                 <Tab title="Rules" id="policy-rules" eventKey="rules" />
-                <Tab title="Systems" id="policy-systems" eventKey="systems" />
+                <Tab
+                  title={getTerm('system', { plural: true })}
+                  id="policy-systems"
+                  eventKey="systems"
+                />
               </RoutedTabs>
             </PageHeader>
             <section className="pf-v6-c-page__main-section">

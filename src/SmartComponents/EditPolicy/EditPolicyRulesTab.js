@@ -17,17 +17,19 @@ import Tailorings from '@/PresentationalComponents/Tailorings/Tailorings';
 import useProfileRuleIds from 'Utilities/hooks/useProfileRuleIds';
 import useTailorings from 'Utilities/hooks/api/useTailorings';
 import useDeepCompareEffect from 'use-deep-compare-effect';
-import { resetRuleValueOverrides } from '@/Utilities/helpers';
+import { getTerm, resetRuleValueOverrides } from '@/Utilities/helpers';
 
 const EditPolicyRulesTabEmptyState = () => (
   <EmptyState headingLevel="h5" titleText="No rules can be configured">
     <EmptyStateBody>
-      This policy has no associated systems, and therefore no rules can be
-      configured.
+      This policy has no associated{' '}
+      {getTerm('system', { plural: true, lowercase: true })}, and therefore no
+      rules can be configured.
     </EmptyStateBody>
     <EmptyStateFooter>
       <EmptyStateBody>
-        Add at least one system to configure rules for this policy.
+        Add at least one {getTerm('system', { lowercase: true })} to configure
+        rules for this policy.
       </EmptyStateBody>
     </EmptyStateFooter>
   </EmptyState>

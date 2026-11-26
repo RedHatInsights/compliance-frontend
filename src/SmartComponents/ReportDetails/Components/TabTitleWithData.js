@@ -1,6 +1,7 @@
 import React from 'react';
 import { Label, Spinner, TabTitleText } from '@patternfly/react-core';
 import propTypes from 'prop-types';
+import { getTerm } from '@/Utilities/helpers';
 
 const TabTitleWithData = ({ text, data, isLoading, color }) => (
   <TabTitleText>
@@ -9,7 +10,7 @@ const TabTitleWithData = ({ text, data, isLoading, color }) => (
       <Spinner size="md" />
     ) : data ? (
       <Label color={color} isCompact>
-        {data} Systems
+        {data} {getTerm('system', { plural: Number(data) !== 1 })}
       </Label>
     ) : (
       <></>
@@ -19,7 +20,7 @@ const TabTitleWithData = ({ text, data, isLoading, color }) => (
 
 TabTitleWithData.propTypes = {
   text: propTypes.string.isRequired,
-  data: propTypes.object,
+  data: propTypes.number,
   isLoading: propTypes.bool,
   color: propTypes.string,
 };

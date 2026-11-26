@@ -5,6 +5,7 @@ import { SystemsTable } from 'SmartComponents';
 import * as Columns from '../SystemsTable/Columns';
 import EditSystemsButtonToolbarItem from './EditSystemsButtonToolbarItem';
 import NoResultsTable from 'PresentationalComponents/NoResultsTable/NoResultsTable';
+import { getTerm } from '@/Utilities/helpers';
 
 const PolicySystemsTab = ({ policy }) => {
   return (
@@ -22,7 +23,9 @@ const PolicySystemsTab = ({ policy }) => {
         policy.total_system_count === 0 ? (
           <NoSystemsTableWithWarning />
         ) : (
-          <NoResultsTable kind="systems" />
+          <NoResultsTable
+            kind={getTerm('system', { plural: true, lowercase: true })}
+          />
         )
       }
       dedicatedAction={<EditSystemsButtonToolbarItem policy={policy} />}

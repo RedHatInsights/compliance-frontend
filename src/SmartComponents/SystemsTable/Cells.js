@@ -12,6 +12,7 @@ import { ExclamationTriangleIcon } from '@patternfly/react-icons';
 import DateFormat from '@redhat-cloud-services/frontend-components/DateFormat';
 import { ComplianceScore as PresentationalComplianceScore } from 'PresentationalComponents';
 import { unsupportedSystemWarningMessage } from '@/constants';
+import { getTerm } from '@/Utilities/helpers';
 import { getAppConfig } from '@/config/appConfig';
 
 const NEVER = 'Never';
@@ -203,8 +204,9 @@ const NeverScanned = () => (
     position="right"
     content={
       <Fragment>
-        This system has never returned a report for this policy. This may be
-        because it is disconnected, or the insights-client on this system is not
+        This {getTerm('system', { lowercase: true })} has never returned a
+        report for this policy. This may be because it is disconnected, or the
+        insights-client on this {getTerm('system', { lowercase: true })} is not
         configured to use Compliance.
       </Fragment>
     }

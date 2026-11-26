@@ -11,13 +11,14 @@ import {
 } from '@patternfly/react-core';
 import linkifyHtml from 'linkify-html';
 import EditPolicyDetailsInline from '../../SmartComponents/EditPolicyDetails/EditPolicyDetailsInline';
+import { getTerm } from '@/Utilities/helpers';
 
 const PolicyDetailsDescription = ({ policy, refetch, hasEditPermission }) => {
   const thresholdText = `${fixedPercentage(
     policy.compliance_threshold,
     1,
   )} of rules must be
-  passed for a system to be labeled "Compliant"`;
+  passed for a ${getTerm('system', { lowercase: true })} to be labeled "Compliant"`;
   const businessText = policy.business_objective || '-';
   const descriptionText = linkifyHtml(policy.description || '');
 

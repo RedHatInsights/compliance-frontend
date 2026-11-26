@@ -4,21 +4,27 @@ import propTypes from 'prop-types';
 import SystemsTable from 'SmartComponents/SystemsTable/SystemsTable';
 import * as Columns from 'SmartComponents/SystemsTable/Columns';
 import SystemsViewToggle, { SYSTEMS_VIEW } from './SystemsViewToggle';
+import { getTerm } from '@/Utilities/helpers';
+import { getAppConfig } from '@/config/appConfig';
 
 const systemTableColumns = [Columns.Name, Columns.Tags, Columns.OS];
 
 const EmptyState = ({ osMajorVersion }) => {
+  const insightsTerm = getAppConfig().features.terms.insights;
   return (
     <div data-testid="empty-state">
       <Content className="pf-v6-u-mb-md">
         <Content component="p">
-          You do not have any <b>RHEL {osMajorVersion}</b> systems connected to{' '}
-          Red Hat Lightspeed and enabled for Compliance.
+          You do not have any <b>RHEL {osMajorVersion}</b>{' '}
+          {getTerm('system', { plural: true, lowercase: true })} connected to{' '}
+          {insightsTerm} and enabled for Compliance.
         </Content>
       </Content>
       <Content className="pf-v6-u-mb-md">
         <Content component="p">
-          Connect RHEL {osMajorVersion} systems to Red Hat Lightspeed.
+          Connect RHEL {osMajorVersion}{' '}
+          {getTerm('system', { plural: true, lowercase: true })} to{' '}
+          {insightsTerm}.
         </Content>
       </Content>
     </div>
@@ -33,7 +39,8 @@ const PrependComponent = ({ osMajorVersion }) => (
   <React.Fragment>
     <Content className="pf-v6-u-mb-md" data-testid="prepend-component">
       <Content component="p">
-        Select which of your <b>RHEL {osMajorVersion}</b> systems should be
+        Select which of your <b>RHEL {osMajorVersion}</b>{' '}
+        {getTerm('system', { plural: true, lowercase: true })} should be
         included in this policy.
       </Content>
     </Content>

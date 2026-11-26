@@ -16,6 +16,7 @@ import {
   chart_color_orange_400,
   chart_color_blue_300,
 } from '@patternfly/react-tokens';
+import { getTerm } from '@/Utilities/helpers';
 
 export const supportedConfigsLink =
   'https://access.redhat.com/articles/6644131';
@@ -29,13 +30,12 @@ export const paletteColors = {
 };
 
 export const unsupportedSystemWarningMessage =
-  'This system was using an incompatible version of the SSG at the time this report was generated. ' +
-  'Assessment of rules failed/passed on this system is a best-guess effort and may not be accurate.';
+  `This ${getTerm('system', { lowercase: true })} was using an incompatible version of the SSG at the time this report was generated. ` +
+  `Assessment of rules failed/passed on this ${getTerm('system', { lowercase: true })} is a best-guess effort and may not be accurate.`;
 
 export const reportsPopoverData = {
   headerContent: 'About compliance reports',
-  bodyContent:
-    'These reports show how compliant your systems are against a specific policy.',
+  bodyContent: `These reports show how compliant your ${getTerm('system', { plural: true, lowercase: true })} are against a specific policy.`,
   bodyLink:
     'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/generating_compliance_service_reports/assembly-compl-uploading-current-data-systems',
 };
@@ -49,8 +49,8 @@ export const policiesPopoverData = {
 };
 
 export const systemsPopoverData = {
-  headerContent: 'Systems list',
-  bodyContent: `This list shows systems that have the necessary packages to successfully run Red Hat Lightspeed compliance scans.`,
+  headerContent: `${getTerm('system', { plural: true })} list`,
+  bodyContent: `This list shows ${getTerm('system', { plural: true, lowercase: true })} that have the necessary packages to successfully run Red Hat Lightspeed compliance scans.`,
   bodyLink:
     'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/compliance-getting-started_intro-compliance',
 };

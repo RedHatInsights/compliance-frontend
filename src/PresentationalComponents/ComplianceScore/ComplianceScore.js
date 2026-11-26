@@ -5,6 +5,7 @@ import {
 } from '@patternfly/react-icons';
 import { Content, Tooltip, Icon } from '@patternfly/react-core';
 import { fixedPercentage } from 'Utilities/TextHelper';
+import { getTerm } from '@/Utilities/helpers';
 
 const CompliantIcon = (system) => {
   {
@@ -35,7 +36,7 @@ const ComplianceScore = (system) => (
     {system.supported ? (
       <Tooltip
         content={
-          'The system compliance score is calculated by OpenSCAP and ' +
+          `The ${getTerm('system', { lowercase: true })} compliance score is calculated by OpenSCAP and ` +
           'is a normalized weighted sum of rules selected for this policy.'
         }
       >

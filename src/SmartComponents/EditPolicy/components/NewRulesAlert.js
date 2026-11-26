@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 
 import { Alert, AlertActionLink } from '@patternfly/react-core';
+import { getTerm } from '@/Utilities/helpers';
 
 const NewRulesAlert = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const NewRulesAlert = () => {
     <Alert
       variant="info"
       isInline
-      title="You selected a system that has a release version previously not included in this policy."
+      title={`You selected a ${getTerm('system', { lowercase: true })} that has a release version previously not included in this policy.`}
       actionLinks={
         <AlertActionLink
           onClick={() => navigate({ to: location.pathname, hash: 'rules' })}

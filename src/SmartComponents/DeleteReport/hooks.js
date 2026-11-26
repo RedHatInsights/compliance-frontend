@@ -1,4 +1,5 @@
 import { useAddNotification } from '@redhat-cloud-services/frontend-components-notifications/hooks';
+import { getTerm } from '@/Utilities/helpers';
 
 export const useHandleDeleteReport = () => {
   const addNotification = useAddNotification();
@@ -9,8 +10,7 @@ export const useHandleDeleteReport = () => {
       addNotification({
         variant: 'success',
         title: 'Report deleted',
-        description:
-          'Systems associated with this policy will upload reports on the next check-in.',
+        description: `${getTerm('system', { plural: true })} associated with this policy will upload reports on the next check-in.`,
       });
       onDelete();
     } catch (error) {
